@@ -1036,6 +1036,10 @@ img {
   text-align: left;
 }
 
+.horizontal-container.work {
+  padding-top: 0px;
+}
+
 .horizontal-container.card {
   -webkit-box-pack: start;
   -webkit-justify-content: flex-start;
@@ -3223,7 +3227,7 @@ img {
   }
 
   .h2 {
-    font-size: 28px;
+    font-size: 36px;
     line-height: 38px;
   }
 
@@ -3627,8 +3631,13 @@ img {
   }
 
   .h2 {
-    font-size: 20px;
-    line-height: 27px;
+    font-size: 32px;
+    line-height: 33px;
+  }
+
+  .h2.title-testimonial {
+    font-size: 32px;
+    line-height: 33px;
   }
 
   .h1.hero {
@@ -3723,6 +3732,7 @@ img {
   }
 
   .horizontal-container.work {
+    padding-top: 0px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
