@@ -1,276 +1,386 @@
-<!DOCTYPE html><!--  This site was created in Webflow. https://www.webflow.com  -->
-<!--  Last Published: Mon Mar 25 2024 04:23:10 GMT+0000 (Coordinated Universal Time)  -->
-<html data-wf-page="640eb43491ce97c385a53fdb" data-wf-site="62c7a4b1b80e2dca085e014f">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Reimagining the Entertainment Experience for Australia&#x27;s Biggest Airline</title>
-  <meta content="Building more than just a product, a brand experience for Qantas Entertainment" name="description">
-  <meta content="Reimagining  the Entertainment Experience for Australia&#x27;s Biggest Airline" property="og:title">
-  <meta content="Building more than just a product, a brand experience for Qantas Entertainment" property="og:description">
+  <title>Qantas Entertainment App Case Study - Alex Fracazo</title>
+  <meta content="Reimagining the Entertainment Experience for Australia's Biggest Airline" name="description">
+  <meta content="Qantas Entertainment App Case Study - Alex Fracazo" property="og:title">
+  <meta content="Reimagining the Entertainment Experience for Australia's Biggest Airline" property="og:description">
   <meta content="https://uploads-ssl.webflow.com/62c7a4b1b80e2dca085e014f/6300c17ae2abc52aedbd6676_opengraph.webp" property="og:image">
-  <meta content="Reimagining  the Entertainment Experience for Australia&#x27;s Biggest Airline" property="twitter:title">
-  <meta content="Building more than just a product, a brand experience for Qantas Entertainment" property="twitter:description">
+  <meta content="Qantas Entertainment App Case Study - Alex Fracazo" property="twitter:title">
+  <meta content="Reimagining the Entertainment Experience for Australia's Biggest Airline" property="twitter:description">
   <meta content="https://uploads-ssl.webflow.com/62c7a4b1b80e2dca085e014f/6300c17ae2abc52aedbd6676_opengraph.webp" property="twitter:image">
   <meta property="og:type" content="website">
   <meta content="summary_large_image" name="twitter:card">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <meta content="Webflow" name="generator">
-  <link href="../css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="../css/webflow.css" rel="stylesheet" type="text/css">
-  <link href="../css/alex-fracazo-product-designer.webflow.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
-  <script type="text/javascript">WebFont.load({  google: {    families: ["Plus Jakarta Sans:200,300,regular,500,600,700,800,200italic,300italic,italic,500italic,600italic,700italic,800italic"]  }});</script>
-  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
   <link href="../images/favicon.svg" rel="shortcut icon" type="image/x-icon">
   <link href="../images/webclip.svg" rel="apple-touch-icon">
+
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
   <style>
-.w-webflow-badge {
-   display: None !important;
-   visibility: hidden !important;
-}
-</style>
+  /* Case study specific styles */
+  .case-study-content { max-width: 800px; margin: 0 auto; }
+  .case-study-hero { padding: 48px 0; max-width: 640px; }
+  .case-study-meta { display: flex; flex-wrap: wrap; gap: 24px; margin: 24px 0; }
+  .case-study-meta-item { display: flex; gap: 8px; }
+  .case-study-meta-label { font-weight: 600; color: var(--text); }
+  .case-study-meta-value { color: var(--muted); }
+  .case-study-intro { color: var(--muted); font-size: 18px; line-height: 1.8; }
+  .case-study-image { width: 100%; border-radius: var(--radius); margin: 32px 0; }
+  .case-study-section { padding: 64px 0; }
+  .case-study-section h2 { font-size: 28px; margin-bottom: 20px; max-width: 640px; }
+  .case-study-section h3 { font-size: 20px; margin: 40px 0 16px; max-width: 640px; }
+  .case-study-section h4 { font-size: 16px; font-weight: 600; margin: 32px 0 12px; max-width: 640px; }
+  .case-study-section p { color: var(--muted); line-height: 1.8; margin-bottom: 24px; max-width: 640px; }
+  .case-study-section ul, .case-study-section ol { color: var(--muted); line-height: 1.8; margin-bottom: 24px; padding-left: 24px; max-width: 640px; }
+  .case-study-section li { margin-bottom: 12px; }
+  .case-study-section blockquote { border-left: 3px solid var(--brand); padding-left: 20px; margin: 32px 0; font-style: italic; color: var(--muted); line-height: 1.8; max-width: 640px; }
+  .case-study-section img { max-width: 100%; border-radius: var(--radius); margin: 24px 0; background: #fff; padding: 12px; }
+  .summary-card { background: transparent; border-radius: 0; padding: 0; box-shadow: none; margin: 40px 0; max-width: 640px; }
+  .summary-card h2 { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .summary-card h2 img { filter: brightness(0) invert(0.6); }
+  .summary-card p { line-height: 1.8; }
+  .notice-box { display: flex; gap: 16px; align-items: flex-start; background: var(--panel-2); border-radius: var(--radius); padding: 20px; margin: 40px 0; max-width: 640px; }
+  .notice-box img { width: 24px; height: 24px; filter: brightness(0) invert(0.6); background: transparent; padding: 0; }
+  .notice-box p { color: var(--muted); font-size: 14px; margin: 0; line-height: 1.8; }
+  .notice-box strong { color: var(--text); }
+  .up-next { padding: 64px 0; }
+  .up-next h2 { margin-bottom: 24px; }
+  .up-next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 800px) { .up-next-grid { grid-template-columns: 1fr; } }
+  .img-small { max-width: 400px; }
+  .img-full { width: 100%; margin: 32px 0; }
+  .img-caption { font-size: 12px; color: var(--muted); text-align: center; margin-top: -8px; }
+  </style>
 </head>
-<body class="case-study">
-  <div data-w-id="de87d4e9-2da7-be5c-1f2c-9df0497a788d" data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navigation w-nav">
-    <div class="navbar-container">
-      <a href="../index.html" data-w-id="a3cad039-bc8a-2f0f-44e7-331a74beb86a" class="brand link-hover-ix w-nav-brand"><img src="../images/logo.svg" loading="lazy" alt="Logo" class="logo-icon"></a>
-      <nav role="navigation" class="nav-menu w-nav-menu">
-        <a href="../index.html" class="nav-link home w-nav-link">Home</a>
-        <a href="/#Work" class="nav-link link-hover-ix w-nav-link">Work</a>
-        <a href="../contact.html" class="nav-link button link-hover-ix w-nav-link">Say hi!</a>
+<body>
+  <!-- Mobile Menu Button -->
+  <button class="hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="brand" aria-label="Home">
+          <span>Alex Fracazo</span>
+        </a>
+        <button class="sidebar-close" aria-label="Close menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <nav class="primary" aria-label="Primary">
+        <a href="../index.html#About">About</a>
+        <a href="../work.html">Work</a>
+        <a href="../contact.html">Say hi!</a>
       </nav>
-      <div class="menu-button w-nav-button">
-        <div class="w-icon-nav-menu"></div>
-      </div>
-    </div>
-  </div>
-  <div class="section gray">
-    <div class="container">
-      <div class="horizontal-container">
-        <div class="small-container">
-          <h1 data-w-id="5df6d35b-5220-305a-a768-472d2810db83" style="opacity:0" class="h2">Reimagining  the Entertainment Experience for Australia&#x27;s Biggest Airline</h1>
-          <div data-w-id="5df6d35b-5220-305a-a768-472d2810db85" style="opacity:0" class="inline-text">
-            <p class="small-text bold">Product:</p>
-            <p class="small-text left-margin">Qantas Entertainment App (iOS and Android)</p>
-          </div>
-          <div data-w-id="5df6d35b-5220-305a-a768-472d2810db8a" style="opacity:0" class="inline-text">
-            <p class="small-text bold">Date:</p>
-            <p class="small-text left-margin">2018</p>
-          </div>
-          <div data-w-id="da93e9cf-031c-a9b6-3e93-23bac305819e" style="opacity:0" class="inline-text">
-            <p class="small-text bold">Role:</p>
-            <p class="small-text left-margin">Lead Designer</p>
-          </div>
-          <div data-w-id="5df6d35b-5220-305a-a768-472d2810db8f" style="opacity:0" class="horizontal-line"></div>
-          <p data-w-id="5df6d35b-5220-305a-a768-472d2810db90" style="opacity:0" class="text">Building more than just a product, a brand experience for Qantas Entertainment</p>
+      <div class="sidebar-actions">
+        <div class="theme-switcher">
+          <button id="theme-light" class="theme-btn" aria-label="Light theme" title="Light">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <button id="theme-dark" class="theme-btn" aria-label="Dark theme" title="Dark">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
         </div>
-        <div data-w-id="5df6d35b-5220-305a-a768-472d2810db92" style="opacity:0" class="image-wrapper left-margin"><img srcset="../images/62dc26d29e21732abffdaacd_work4-p-1080-p-500.png 500w, ../images/62dc26d29e21732abffdaacd_work4-p-1080-p-800.png 800w, ../images/62dc26d29e21732abffdaacd_work4-p-1080-p-1080.png 1080w, ../images/62dc26d29e21732abffdaacd_work4-p-1080.png 1080w" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 84vw, (max-width: 991px) 88vw, 400px" src="../images/62dc26d29e21732abffdaacd_work4-p-1080.png" alt="" class="image-single-project"></div>
       </div>
-    </div>
-  </div>
-  <div class="section padding">
-    <div data-w-id="deec6e51-3fa4-f3c0-adc9-10717f72c636" style="opacity:0" class="container">
-      <div id="w-node-deec6e51-3fa4-f3c0-adc9-10717f72c637-85a53fdb" class="gray-card">
-        <div class="horizontal-container card"><img src="../images/bookmark.svg" loading="lazy" alt="">
-          <h2 class="h3 left-margin">Summary</h2>
+    </aside>
+    <div class="sidebar-backdrop"></div>
+
+    <!-- Main content -->
+    <main id="content" role="main">
+      <section class="section case-study-content">
+        <div class="case-study-hero">
+          <h1 class="h1">Reimagining the Entertainment Experience for Australia's Biggest Airline</h1>
+          <div class="case-study-meta">
+            <div class="case-study-meta-item">
+              <span class="case-study-meta-label">Product:</span>
+              <span class="case-study-meta-value">Qantas Entertainment App (iOS and Android)</span>
+            </div>
+            <div class="case-study-meta-item">
+              <span class="case-study-meta-label">Date:</span>
+              <span class="case-study-meta-value">2018</span>
+            </div>
+            <div class="case-study-meta-item">
+              <span class="case-study-meta-label">Role:</span>
+              <span class="case-study-meta-value">Lead Designer</span>
+            </div>
+          </div>
+          <p class="case-study-intro">Building more than just a product, a brand experience for Qantas Entertainment</p>
         </div>
-        <p class="text top-margin">With every passenger carrying a smartphone, tablet or laptop, Qantas saw an opportunity to transform the travel experience by installing inflight Wi-Fi on some aircraft. During my time working at Qantas, I was the lead product designer on the Entertainment squad. We identified 2 hypotheses that could increase app usage.</p>
-      </div>
-    </div>
-  </div>
-  <div class="section gray">
-    <div class="medium-container">
-      <div data-w-id="48a9105c-2033-87dd-5343-c18a367f56f7" style="opacity:0">
-        <h2 class="h2">The Work</h2>
-        <div class="horizontal-line"></div>
-        <div class="rich-text top-margin">
+
+        <img src="../images/62dc26d29e21732abffdaacd_work4-p-1080.png" alt="Qantas Entertainment App" class="case-study-image">
+
+        <div class="summary-card">
+          <h2><img src="../images/bookmark.svg" alt="" width="24"> Summary</h2>
+          <p>With every passenger carrying a smartphone, tablet or laptop, Qantas saw an opportunity to transform the travel experience by installing inflight Wi-Fi on some aircraft. During my time working at Qantas, I was the lead product designer on the Entertainment squad. We identified 2 hypotheses that could increase app usage.</p>
+        </div>
+
+        <div class="case-study-section">
+          <h2>The Work</h2>
+
           <h3>Getting to the heart of the traveller</h3>
-          <p>Having an in-depth understanding of the traveller&#x27;s flight journey – pre-flight, during, and after – laid the foundations for building an effective customer experience. I held multiple workshops, conducted qualitative interviews and tested our initial assumptions via face-to-face conversations and prototypes. My desire to make the app experience as smooth and effortless as possible drove our team&#x27;s design thinking, and also led to the implementation of interesting features.</p>
-          <h3><strong>The current state of the Qantas Entertainment app</strong></h3>
-          <p>The Qantas Entertainment app is used to stream entertainment to a customer&#x27;s personal device, it allows the user to watch or listen to various forms of media. <br><br>A known <strong>problem</strong> was that the current app only worked when the user was on board the plane and connected to a Qantas streaming network.</p><img src="../images/62db95b70af0c632dbf50130_Screen-Shot-2022-07-23-at-4.29.49-pm.webp" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 991px) 54vw, (max-width: 1919px) 468px, 552px" data-w-id="fb06379e-def2-9a41-88a5-326b1af9b3d2" alt="" srcset="../images/62db95b70af0c632dbf50130_Screen-Shot-2022-07-23-at-4.29.49-pm-p-500.png 500w, ../images/62db95b70af0c632dbf50130_Screen-Shot-2022-07-23-at-4.29.49-pm-p-800.png 800w, ../images/62db95b70af0c632dbf50130_Screen-Shot-2022-07-23-at-4.29.49-pm-p-1080.png 1080w, ../images/62db95b70af0c632dbf50130_Screen-Shot-2022-07-23-at-4.29.49-pm.webp 1328w" class="case-study-images image-50-small"><img src="../images/62db960e9e2cf8f5ed8f3cc0_Screen-Shot-2022-07-23-at-4.29.55-pm.webp" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 991px) 54vw, (max-width: 1919px) 468px, 552px" data-w-id="70a6bc44-1323-816f-92d2-aa42aa1837d0" alt="" srcset="../images/62db960e9e2cf8f5ed8f3cc0_Screen-Shot-2022-07-23-at-4.29.55-pm-p-500.png 500w, ../images/62db960e9e2cf8f5ed8f3cc0_Screen-Shot-2022-07-23-at-4.29.55-pm-p-800.png 800w, ../images/62db960e9e2cf8f5ed8f3cc0_Screen-Shot-2022-07-23-at-4.29.55-pm-p-1080.png 1080w, ../images/62db960e9e2cf8f5ed8f3cc0_Screen-Shot-2022-07-23-at-4.29.55-pm.webp 1366w" class="case-study-images image-50-small">
+          <p>Having an in-depth understanding of the traveller's flight journey – pre-flight, during, and after – laid the foundations for building an effective customer experience. I held multiple workshops, conducted qualitative interviews and tested our initial assumptions via face-to-face conversations and prototypes. My desire to make the app experience as smooth and effortless as possible drove our team's design thinking, and also led to the implementation of interesting features.</p>
+
+          <h3>The current state of the Qantas Entertainment app</h3>
+          <p>The Qantas Entertainment app is used to stream entertainment to a customer's personal device, it allows the user to watch or listen to various forms of media.</p>
+          <p>A known <strong>problem</strong> was that the current app only worked when the user was on board the plane and connected to a Qantas streaming network.</p>
+          <img src="../images/62db95b70af0c632dbf50130_Screen-Shot-2022-07-23-at-4.29.49-pm.webp" alt="Current app state" class="img-small">
+          <img src="../images/62db960e9e2cf8f5ed8f3cc0_Screen-Shot-2022-07-23-at-4.29.55-pm.webp" alt="App screens" class="img-small">
+
           <h3>The goal</h3>
           <blockquote>Increase Entertainment app usage.</blockquote>
+
           <h3>The problem</h3>
-          <blockquote>Travellers that have the Entertainment app installed on their phone don&#x27;t engage with it, because the app doesn&#x27;t work if not connected to the Qantas network.</blockquote>
+          <blockquote>Travellers that have the Entertainment app installed on their phone don't engage with it, because the app doesn't work if not connected to the Qantas network.</blockquote>
+
           <h3>Hypothesis</h3>
           <blockquote>We predict that increasing the entertainment offering before and after the flight will increase the app usage.</blockquote>
+
           <h3>Design Explorations</h3>
-          <p>Workshops with stakeholders and team members.</p><img class="case-study-images" src="../images/62dbb2f91599635a246c14ba_Sketch.webp" width="262" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 90vw, (max-width: 1919px) 780px, 920px" data-w-id="de9d4be3-f000-7d11-ab38-7c66b16f015a" loading="lazy" srcset="../images/62dbb2f91599635a246c14ba_Sketch-p-500.png 500w, ../images/62dbb2f91599635a246c14ba_Sketch-p-800.png 800w, ../images/62dbb2f91599635a246c14ba_Sketch-p-1080.png 1080w, ../images/62dbb2f91599635a246c14ba_Sketch-p-1600.png 1600w, ../images/62dbb2f91599635a246c14ba_Sketch-p-2000.png 2000w, ../images/62dbb2f91599635a246c14ba_Sketch.webp 2360w">
-          <h3>Iteration &amp; Testing</h3>
-          <p>The winning ideas are iterated and turned into mockups for user research.</p><img class="case-study-images" src="../images/62ddc453f0156d74347ac1cf_IMG_8141.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 90vw, (max-width: 1919px) 780px, 920px" data-w-id="39f0b301-1ef0-2ad5-b638-ebf6f3a7bf5f" loading="lazy" srcset="../images/62ddc453f0156d74347ac1cf_IMG_8141-p-500.jpeg 500w, ../images/62ddc453f0156d74347ac1cf_IMG_8141-p-800.jpeg 800w, ../images/62ddc453f0156d74347ac1cf_IMG_8141-p-1080.jpeg 1080w, ../images/62ddc453f0156d74347ac1cf_IMG_8141-p-1600.jpeg 1600w, ../images/62ddc453f0156d74347ac1cf_IMG_8141-p-2000.jpeg 2000w, ../images/62ddc453f0156d74347ac1cf_IMG_8141-p-2600.jpeg 2600w, ../images/62ddc453f0156d74347ac1cf_IMG_8141-p-3200.jpeg 3200w">
+          <p>Workshops with stakeholders and team members.</p>
+          <img src="../images/62dbb2f91599635a246c14ba_Sketch.webp" alt="Sketches">
+
+          <h3>Iteration & Testing</h3>
+          <p>The winning ideas are iterated and turned into mockups for user research.</p>
+          <img src="../images/62ddc453f0156d74347ac1cf_IMG_8141.webp" alt="Testing">
+
           <h3>The Qantas Entertainment app icon</h3>
           <p>Redesigning the app icon was part of the process during the project, as it should be the strongest connection with the user. It is what they will see first when they land or search in the App Store.</p>
-          <h4>What problems does the current app icon have?</h4><img class="case-study-images" src="../images/62db9a6a0af0c66bb8f54054_icon-redesign.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 90vw, (max-width: 1919px) 780px, 920px" data-w-id="81cd558a-7b3e-853c-2926-1807a573acf1" loading="lazy" srcset="../images/62db9a6a0af0c66bb8f54054_icon-redesign-p-500.png 500w, ../images/62db9a6a0af0c66bb8f54054_icon-redesign-p-800.png 800w, ../images/62db9a6a0af0c66bb8f54054_icon-redesign-p-1080.png 1080w, ../images/62db9a6a0af0c66bb8f54054_icon-redesign-p-1600.png 1600w, ../images/62db9a6a0af0c66bb8f54054_icon-redesign.webp 1722w">
-          <ul role="list">
+
+          <h4>What problems does the current app icon have?</h4>
+          <img src="../images/62db9a6a0af0c66bb8f54054_icon-redesign.webp" alt="Icon problems">
+          <ul>
             <li>The image of an old TV from the 80s could imply that streaming would be slow</li>
-            <li>The red background is the same colour as the Qantas Airways app, which could cause confusion when trying to find it in the App Store (both apps were red with the &quot;Roo&quot; icon)</li>
-          </ul><img src="../images/62dba00a2ccfa45b6b5caa25_icon.webp" loading="lazy" style="opacity:0" data-w-id="dcd67667-6e81-872d-32e3-203515f4366d" alt="" class="case-study-images image-80-small">
-          <h3><strong>App Icon Rationality</strong></h3>
-          <p>An app icon is expected to be a visual anchor for the product. It is a small piece of branding that, in addition to being attractive and standing out, should ideally also communicate the essence of the Qantas Entertainment (QE) app. Other app icons grab people&#x27;s attention in the same limited space.</p>
-          <h4>I created the QE app icon with 4 basic design principles in mind:<strong><br></strong></h4>
-          <ul role="list">
+            <li>The red background is the same colour as the Qantas Airways app, which could cause confusion when trying to find it in the App Store</li>
+          </ul>
+          <img src="../images/62dba00a2ccfa45b6b5caa25_icon.webp" alt="Icon comparison" style="max-width: 300px;">
+
+          <h3>App Icon Rationality</h3>
+          <p>An app icon is expected to be a visual anchor for the product. It is a small piece of branding that, in addition to being attractive and standing out, should ideally also communicate the essence of the Qantas Entertainment (QE) app.</p>
+
+          <h4>I created the QE app icon with 4 basic design principles in mind:</h4>
+          <ul>
             <li>Scalability</li>
             <li>Recognisability</li>
             <li>Consistency</li>
             <li>Uniqueness</li>
           </ul>
-          <p>Reviewing the Qantas Brand Guidelines, I discovered a branded device called &quot;pepple shape&quot; that would work perfectly to hold a play icon.<br></p><img class="case-study-images" src="../images/62ef65249d54c22b8832a872_icon-rationality.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 90vw, (max-width: 1919px) 780px, 920px" data-w-id="ac4551a6-277e-3914-7d45-4fe95fa51460" loading="lazy" srcset="../images/62ef65249d54c22b8832a872_icon-rationality-p-500.png 500w, ../images/62ef65249d54c22b8832a872_icon-rationality-p-800.png 800w, ../images/62ef65249d54c22b8832a872_icon-rationality-p-1080.png 1080w, ../images/62ef65249d54c22b8832a872_icon-rationality.webp 1814w">
+          <p>Reviewing the Qantas Brand Guidelines, I discovered a branded device called "pebble shape" that would work perfectly to hold a play icon.</p>
+          <img src="../images/62ef65249d54c22b8832a872_icon-rationality.webp" alt="Icon rationality">
+
           <h3>The New Icon</h3>
-          <p>The new icon had visibility across the Qantas group and the brand manager adopted the icon as the Qantas brand for entertainment.<br></p><img class="case-study-images" src="../images/62dfbfe1ae91243f8a293521_icon.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 90vw, (max-width: 1919px) 780px, 920px" data-w-id="5782d446-4985-70ab-5c5f-5513da08b4ab" loading="lazy" srcset="../images/62dfbfe1ae91243f8a293521_icon-p-500.png 500w, ../images/62dfbfe1ae91243f8a293521_icon-p-800.png 800w, ../images/62dfbfe1ae91243f8a293521_icon-p-1080.png 1080w, ../images/62dfbfe1ae91243f8a293521_icon-p-1600.png 1600w, ../images/62dfbfe1ae91243f8a293521_icon-p-2000.png 2000w, ../images/62dfbfe1ae91243f8a293521_icon.webp 2360w">
+          <p>The new icon had visibility across the Qantas group and the brand manager adopted the icon as the Qantas brand for entertainment.</p>
+          <img src="../images/62dfbfe1ae91243f8a293521_icon.webp" alt="New icon">
+
           <h3>Designing the Details</h3>
-          <p>Qantas Entertainment can retrieve data from the Qantas Airways app, like user name, flight and frequent flyer info.<br></p><img class="case-study-images" src="../images/62dbf1780df0886dbe040658_Experience-1.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 90vw, (max-width: 1919px) 780px, 920px" data-w-id="c3c1b8cb-a846-18d8-7ef1-3ecbd63718c7" loading="lazy" srcset="../images/62dbf1780df0886dbe040658_Experience-1-p-500.png 500w, ../images/62dbf1780df0886dbe040658_Experience-1-p-800.png 800w, ../images/62dbf1780df0886dbe040658_Experience-1-p-1080.png 1080w, ../images/62dbf1780df0886dbe040658_Experience-1-p-1600.png 1600w, ../images/62dbf1780df0886dbe040658_Experience-1-p-2000.png 2000w, ../images/62dbf1780df0886dbe040658_Experience-1-p-2600.png 2600w">
-          <h4>The UI adapts to the entertainment type the aircraft supports<br></h4>
-          <ul role="list">
+          <p>Qantas Entertainment can retrieve data from the Qantas Airways app, like user name, flight and frequent flyer info.</p>
+          <img src="../images/62dbf1780df0886dbe040658_Experience-1.webp" alt="Experience 1">
+
+          <h4>The UI adapts to the entertainment type the aircraft supports</h4>
+          <ul>
             <li>User has no upcoming trips - show the latest 5 movies</li>
             <li>Aircraft only has the seatback screen</li>
             <li>Aircraft only has streaming services</li>
             <li>Aircraft has both (seat back and streaming services)</li>
-            <li>Aircraft has neither (users only have access to Newspapers &amp; Magazines, and exclusive offers from Qantas partners)</li>
-          </ul><img class="case-study-images" src="../images/62dbf18c99bfd636c45d7ceb_Experience-2.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 90vw, (max-width: 1919px) 780px, 920px" data-w-id="50f5e2c9-0084-e19d-46ab-be5dc122d5ce" loading="lazy" srcset="../images/62dbf18c99bfd636c45d7ceb_Experience-2-p-500.png 500w, ../images/62dbf18c99bfd636c45d7ceb_Experience-2-p-800.png 800w, ../images/62dbf18c99bfd636c45d7ceb_Experience-2-p-1080.png 1080w, ../images/62dbf18c99bfd636c45d7ceb_Experience-2-p-1600.png 1600w, ../images/62dbf18c99bfd636c45d7ceb_Experience-2-p-2000.png 2000w, ../images/62dbf18c99bfd636c45d7ceb_Experience-2-p-2600.png 2600w"><img class="case-study-images image-70-small" src="../images/62dbf33322fdbe67a1f79575_redesigned---ready-to-flight.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 63vw, (max-width: 1919px) 546px, 644px" data-w-id="e87e0720-9e94-b7d8-1b2a-5d6b4afd2227" loading="lazy" srcset="../images/62dbf33322fdbe67a1f79575_redesigned---ready-to-flight-p-500.png 500w, ../images/62dbf33322fdbe67a1f79575_redesigned---ready-to-flight-p-800.png 800w, ../images/62dbf33322fdbe67a1f79575_redesigned---ready-to-flight-p-1080.png 1080w, ../images/62dbf33322fdbe67a1f79575_redesigned---ready-to-flight.webp 1376w"><img class="case-study-images image-70-small" src="../images/62dbb371788939d647160c0f_redesigned---at-the-airplane.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 63vw, (max-width: 1919px) 546px, 644px" data-w-id="c992312e-192f-374b-44d0-6b0caedc59ca" loading="lazy" srcset="../images/62dbb371788939d647160c0f_redesigned---at-the-airplane-p-500.png 500w, ../images/62dbb371788939d647160c0f_redesigned---at-the-airplane-p-800.png 800w, ../images/62dbb371788939d647160c0f_redesigned---at-the-airplane-p-1080.png 1080w, ../images/62dbb371788939d647160c0f_redesigned---at-the-airplane.webp 1444w"><img class="case-study-images" src="../images/62ef67ff917ce135295b4b6c_Experience-3.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 90vw, (max-width: 1919px) 780px, 920px" data-w-id="6827b895-2373-de08-d6c4-e830bc7e24b3" loading="lazy" srcset="../images/62ef67ff917ce135295b4b6c_Experience-3-p-500.png 500w, ../images/62ef67ff917ce135295b4b6c_Experience-3-p-800.png 800w, ../images/62ef67ff917ce135295b4b6c_Experience-3-p-1080.png 1080w, ../images/62ef67ff917ce135295b4b6c_Experience-3-p-1600.png 1600w, ../images/62ef67ff917ce135295b4b6c_Experience-3-p-2000.png 2000w, ../images/62ef67ff917ce135295b4b6c_Experience-3-p-2600.png 2600w">
+            <li>Aircraft has neither (users only have access to Newspapers & Magazines, and exclusive offers)</li>
+          </ul>
+          <img src="../images/62dbf18c99bfd636c45d7ceb_Experience-2.webp" alt="Experience 2">
+          <img src="../images/62dbf33322fdbe67a1f79575_redesigned---ready-to-flight.webp" alt="Ready to flight">
+          <img src="../images/62dbb371788939d647160c0f_redesigned---at-the-airplane.webp" alt="At the airplane">
+          <img src="../images/62ef67ff917ce135295b4b6c_Experience-3.webp" alt="Experience 3">
+
           <h3>Qualitative Research</h3>
-          <p>The way I like to perform qualitative user testing is to start talking about their life. In a relaxing way, I ask about specific things that have happened in the past and how they solved them.<br>After gathering an understanding of their situation, I ask them to perform a task and I watch to see how they complete it, without helping them along the way. This gives me realistic evidence of what people would do with the real app once it is released.<br></p><img class="case-study-images image-50-small border" src="../images/62ddc62adc69f994be51a3a8_IMG_8117.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 54vw, (max-width: 1919px) 468px, 552px" data-w-id="3646d545-6cf4-30cc-5a06-c53b070bffc8" loading="lazy" srcset="../images/62ddc62adc69f994be51a3a8_IMG_8117-p-500.jpeg 500w, ../images/62ddc62adc69f994be51a3a8_IMG_8117-p-800.jpeg 800w, ../images/62ddc62adc69f994be51a3a8_IMG_8117-p-1080.jpeg 1080w, ../images/62ddc62adc69f994be51a3a8_IMG_8117-p-1600.jpeg 1600w, ../images/62ddc62adc69f994be51a3a8_IMG_8117-p-2000.jpeg 2000w, ../images/62ddc62adc69f994be51a3a8_IMG_8117-p-2600.jpeg 2600w, ../images/62ddc62adc69f994be51a3a8_IMG_8117-p-3200.jpeg 3200w"><img class="case-study-images image-80-small border" src="../images/62ddc5e63b3a73d76a254359_IMG_8124.webp" height="" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 27vw, (max-width: 1919px) 234px, 276px" data-w-id="c8ebe945-8c99-b179-819a-1124f8e77dbb" loading="lazy" srcset="../images/62ddc5e63b3a73d76a254359_IMG_8124-p-500.jpeg 500w, ../images/62ddc5e63b3a73d76a254359_IMG_8124-p-800.jpeg 800w, ../images/62ddc5e63b3a73d76a254359_IMG_8124-p-1080.jpeg 1080w, ../images/62ddc5e63b3a73d76a254359_IMG_8124-p-1600.jpeg 1600w, ../images/62ddc5e63b3a73d76a254359_IMG_8124-p-2000.jpeg 2000w, ../images/62ddc5e63b3a73d76a254359_IMG_8124.webp 3024w">
+          <p>The way I like to perform qualitative user testing is to start talking about their life. In a relaxing way, I ask about specific things that have happened in the past and how they solved them. After gathering an understanding of their situation, I ask them to perform a task and I watch to see how they complete it, without helping them along the way.</p>
+          <img src="../images/62ddc62adc69f994be51a3a8_IMG_8117.webp" alt="Research 1" class="img-small">
+          <img src="../images/62ddc5e63b3a73d76a254359_IMG_8124.webp" alt="Research 2" style="max-width: 300px;">
+
           <h3>Continue Testing</h3>
-          <p>We also ran embedded user tests, on board the plane.<br></p><img class="case-study-images image-50-small border" src="../images/62ddc5473b3a732620253c07_IMG_4772.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 54vw, (max-width: 1919px) 468px, 552px" data-w-id="d4631c10-8695-a56d-f229-9c3f1071958c" loading="lazy" srcset="../images/62ddc5473b3a732620253c07_IMG_4772-p-500.jpg 500w, ../images/62ddc5473b3a732620253c07_IMG_4772-p-800.jpg 800w, ../images/62ddc5473b3a732620253c07_IMG_4772-p-1080.jpg 1080w, ../images/62ddc5473b3a732620253c07_IMG_4772-p-1600.jpg 1600w, ../images/62ddc5473b3a732620253c07_IMG_4772-p-2000.jpg 2000w, ../images/62ddc5473b3a732620253c07_IMG_4772.webp 2448w"><img class="case-study-images image-80-small border" src="../images/62ddc4c6ee175f391ba87014_IMG_1742.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 27vw, (max-width: 1919px) 234px, 276px" data-w-id="64232a1d-f78a-6699-7916-d92a4728b185" loading="lazy" srcset="../images/62ddc4c6ee175f391ba87014_IMG_1742-p-500.jpeg 500w, ../images/62ddc4c6ee175f391ba87014_IMG_1742-p-800.jpeg 800w, ../images/62ddc4c6ee175f391ba87014_IMG_1742-p-1080.jpeg 1080w, ../images/62ddc4c6ee175f391ba87014_IMG_1742-p-1600.jpeg 1600w, ../images/62ddc4c6ee175f391ba87014_IMG_1742-p-2000.jpeg 2000w, ../images/62ddc4c6ee175f391ba87014_IMG_1742-p-2600.jpeg 2600w, ../images/62ddc4c6ee175f391ba87014_IMG_1742-p-3200.jpeg 3200w">
+          <p>We also ran embedded user tests, on board the plane.</p>
+          <img src="../images/62ddc5473b3a732620253c07_IMG_4772.webp" alt="Testing on plane" class="img-small">
+          <img src="../images/62ddc4c6ee175f391ba87014_IMG_1742.webp" alt="Testing 2" style="max-width: 300px;">
+
           <h3>Connected experience across channels</h3>
-          <p>I worked closely with engineers to validate the design and copy implementations. Along with daily stand-ups, we also had weekly demos and would occasionally sit together to cross-check implementation with final designs.<br></p>
-          <ul role="list">
+          <p>I worked closely with engineers to validate the design and copy implementations. Along with daily stand-ups, we also had weekly demos and would occasionally sit together to cross-check implementation with final designs.</p>
+          <ul>
             <li>4 rounds of user testing</li>
             <li>2 rounds of design critique / Jam</li>
           </ul>
+
+          <img src="../images/user-flow.webp" alt="User flow" class="img-full">
+
+          <img src="../images/62ddc84c1ae3453b107eac6d_effedb79-f8b4-48eb-8219-395614866761.webp" alt="Presentation" class="img-small">
+          <p class="img-caption">Presenting iPad results during Qantas showcase</p>
+
+          <h3>Results</h3>
+          <p>Help customers to be fully prepared by guiding them on downloading the Qantas Entertainment app before they board, including informing them on what devices to bring onboard to make the most of the Entertainment & Wi-Fi on flights.</p>
+          <img src="../images/62de6bf705fafdd2df4c3e83_IFE-Image-1-1024x690.webp" alt="Results" class="img-small">
+
+          <h4>Monthly Active Users (MAU)</h4>
+          <ul>
+            <li>Start of the project (2017) = 165k</li>
+            <li>After redesign (~2019) = 180k • <strong>+10%</strong></li>
+          </ul>
+
+          <h4>App Store Rating</h4>
+          <ul>
+            <li>Start of the project (2017) = 2.1</li>
+            <li>After redesign (~2019) = 4.5 • <strong>+114%</strong></li>
+          </ul>
+
+          <h4>Advertising Revenue (from partners' offers)</h4>
+          <ul>
+            <li>Start of the project (2017) = 225k</li>
+            <li>After implementation (~2019) = 675k • <strong>+~200%</strong></li>
+          </ul>
+
+          <h3>Key Learnings</h3>
+
+          <h4>Don't take simple implementations for granted</h4>
+          <p>The "what's new" feature displayed the latest 5 new movies available for the user's flight. We identified huge engagement with this design pattern. There was an opportunity to add offers from Qantas partners.</p>
+
+          <h4>Bring engineers early on to uncover blind spots on implementation</h4>
+          <p>The tech review happened only after the design was approved. During the tech review, we identified that to create this service (back-end) would take ~6 months. Therefore I changed the design and created a new design pattern. I've learned to bring engineers to the design reviews early in the discovery journey.</p>
+
+          <h3>Next Steps</h3>
+          <p>Some ideas related to traveller expectations that could be explored further:</p>
+          <ul>
+            <li>Premium content within the app</li>
+            <li>Flight information such as refreshment times and flight crew profiles</li>
+            <li>What other passengers are watching on the same flight</li>
+            <li>Onboard cabin upgrade options (during the flight)</li>
+          </ul>
+          <img src="../images/62dc0d9832dfaec69cd1fe1c_Experience-4.webp" alt="Next steps">
+
+          <div class="notice-box">
+            <img src="../images/privacy.svg" alt="Privacy">
+            <div>
+              <p><strong>Protecting Data Privacy</strong></p>
+              <p>The case study shows fictitious figures, allowing the necessary contextual information to enable the evaluation of the methodologies used.</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div><img class="image-full-page" src="../images/user-flow.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 767px) 90vw, (max-width: 991px) 92vw, 100vw" data-w-id="91a6e9e5-75c3-5f23-51d4-a96867c898d3" loading="lazy" srcset="../images/user-flow-p-500.png 500w, ../images/user-flow-p-800.png 800w, ../images/user-flow-p-1080.png 1080w, ../images/user-flow-p-1600.png 1600w, ../images/user-flow-p-2000.png 2000w, ../images/user-flow.webp 2304w">
-    <div class="medium-container">
-      <div class="rich-text top-margin"><img class="case-study-images image-50-small" src="../images/62ddc84c1ae3453b107eac6d_effedb79-f8b4-48eb-8219-395614866761.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 54vw, (max-width: 1919px) 468px, 552px" data-w-id="74458a8a-5267-690f-b270-ff527b90d269" loading="lazy" srcset="../images/62ddc84c1ae3453b107eac6d_effedb79-f8b4-48eb-8219-395614866761-p-500.jpeg 500w, ../images/62ddc84c1ae3453b107eac6d_effedb79-f8b4-48eb-8219-395614866761-p-800.jpeg 800w, ../images/62ddc84c1ae3453b107eac6d_effedb79-f8b4-48eb-8219-395614866761-p-1080.jpeg 1080w, ../images/62ddc84c1ae3453b107eac6d_effedb79-f8b4-48eb-8219-395614866761.webp 1600w">
-        <div class="text-block-12"><sub>Presenting iPad results during Qantas showcase</sub></div>
-        <h3>Results</h3>
-        <p>Help customers to be fully prepared by guiding them on downloading the Qantas Entertainment app before they board, including informing them on what devices to bring onboard to make the most of the Entertainment &amp; Wi-Fi on flights.</p><img class="case-study-images image-50-small" src="../images/62de6bf705fafdd2df4c3e83_IFE-Image-1-1024x690.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 54vw, (max-width: 1919px) 468px, 552px" data-w-id="39125f99-b76d-bcd2-233b-2c3b427e7bca" loading="lazy" srcset="../images/62de6bf705fafdd2df4c3e83_IFE-Image-1-1024x690-p-500.png 500w, ../images/62de6bf705fafdd2df4c3e83_IFE-Image-1-1024x690-p-800.png 800w, ../images/62de6bf705fafdd2df4c3e83_IFE-Image-1-1024x690.webp 1024w">
-        <h4>Monthly Active Users (MAU)<br></h4>
-        <ul role="list">
-          <li>Start of the project (2017) = 165k</li>
-          <li>After redesign (~2019) = 180k • +10%</li>
-        </ul>
-        <h4>App Store Rating<br></h4>
-        <ul role="list">
-          <li>Start of the project (2017) = 2.1</li>
-          <li>After redesign (~2019) = 4.5 • +114%</li>
-        </ul>
-        <h4>Advertising Revenue (from partners&#x27; offers)<br></h4>
-        <ul role="list">
-          <li>Start of the project (2017) = 225k</li>
-          <li>After implementation (~2019) = 675k • +~200%</li>
-        </ul>
-        <h3>Key Learnings<br></h3>
-        <h4>Don&#x27;t take simple implementations for granted<br></h4>
-        <p>The &quot;what&#x27;s new&quot; feature displayed the latest 5 new movies available for the users flight. We identified huge engagement with this design pattern. There was an opportunity to add offers from Qantas partners. In order to do this our hypothesis was that merging the offer within the latest movies would increase the conversion rate on the partner offers. We designed and tested the feature which performed well.</p>
-        <h4>Bring engineers early on to uncover blind spots on implementation<br></h4>
-        <p>The tech review happened only after the design was approved. During the tech review, we identified that to create this service (back-end) would take ~6 months. Therefore I changed the design and created a new design pattern to be used exclusively for Qantas partner offers, where we could automatically enable/disable or swap the partner offer content with the 5 latest movies, depending on user context and stage in their journey. This solution could be implemented in the next release.  <br>‍<br>I&#x27;ve learned to bring engineers to the design reviews early in the discovery journey, send weekly updates during stand-ups and also run weekly design sparring with the team.</p>
-        <h3>Next Steps<br></h3>
-        <p>Some ideas related to traveler expectations that could be explored further:<br></p>
-        <ul role="list">
-          <li>Premium content within the app</li>
-          <li>Flight information such as refreshment times and flight crew profiles</li>
-          <li>What other passengers are watching on the same flight<br></li>
-          <li>Onboard cabin upgrade options (during the flight)</li>
-        </ul><img class="case-study-images" src="../images/62dc0d9832dfaec69cd1fe1c_Experience-4.webp" alt="" style="opacity:0" sizes="(max-width: 479px) 100vw, (max-width: 991px) 90vw, (max-width: 1919px) 780px, 920px" data-w-id="5dc92238-e02f-1e3f-b541-0eaf8264a9c4" loading="lazy" srcset="../images/62dc0d9832dfaec69cd1fe1c_Experience-4-p-500.png 500w, ../images/62dc0d9832dfaec69cd1fe1c_Experience-4-p-800.png 800w, ../images/62dc0d9832dfaec69cd1fe1c_Experience-4-p-1080.png 1080w, ../images/62dc0d9832dfaec69cd1fe1c_Experience-4-p-1600.png 1600w, ../images/62dc0d9832dfaec69cd1fe1c_Experience-4-p-2000.png 2000w, ../images/62dc0d9832dfaec69cd1fe1c_Experience-4-p-2600.png 2600w">
-      </div>
-      <div class="case-study-notice-box">
-        <div class="icon-block"><img alt="" loading="lazy" src="../images/privacy.svg" class="image-4"></div>
-        <div id="w-node-_16c23127-eb6f-e6bd-897f-195837f71c79-85a53fdb">
-          <div class="password-small-text"><strong>Protecting Data Privacy</strong></div>
-          <div class="password-small-text">The case study shows fictitious figures, allowing the necessary contextual information to enable the evaluation of the methodologies used.</div>
+
+        <div class="up-next">
+          <h2 class="h2">Up Next</h2>
+          <div class="up-next-grid">
+            <a href="qantas-app.html" class="card-project">
+              <div class="image-project">
+                <img src="../images/62dc1d83920df32baae28d6b_work2-p-1080.png" alt="Qantas App">
+              </div>
+              <div class="content-project">
+                <h4 class="h4">Bringing Entertainment to Qantas Airways app</h4>
+                <p class="tagline">How to increase app downloads by +70%</p>
+              </div>
+            </a>
+            <a href="bringing-visibility-to-workers-status.html" class="card-project">
+              <div class="image-project">
+                <img src="../images/62fbf14400d70051caf1b477_hireup-project-p-1080.png" alt="Hireup">
+              </div>
+              <div class="content-project">
+                <h4 class="h4">Bringing Visibility to Workers' Status</h4>
+                <p class="tagline">How we changed user behaviour by design</p>
+              </div>
+            </a>
+            <a href="eta-app.html" class="card-project">
+              <div class="image-project">
+                <img src="../images/62dc274f132cbe543717e126_work1-p-2000.jpg" alt="ETA App">
+              </div>
+              <div class="content-project">
+                <h4 class="h4">A Greenfield app for the Australian ETA Visa</h4>
+                <p class="tagline">Automating data entry for visa applications</p>
+              </div>
+            </a>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <!-- Footer -->
+      <section class="section" aria-labelledby="footer-title">
+        <footer role="contentinfo">
+          <div class="footer-inner">
+            <p id="footer-title" class="text footer-location">Based in Australia. Working globally.</p>
+            <p class="text footer-links">
+              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank">LinkedIn</a>, <a href="https://gitlab.com/afracazo" target="_blank">GitLab</a>, or <a href="contact.html">reach me by email</a>.
+            </p>
+          </div>
+        </footer>
+      </section>
+    </main>
   </div>
-  <div class="section padding other-projects-section">
-    <div class="container w-container">
-      <h2 class="other-projects-heading">Up Next</h2>
-      <div class="collection-list-wrapper">
-        <ul data-w-id="d2728fa0-38a0-11ef-32d6-97f880f60b79" style="opacity:0" role="list" class="other-projects">
-          <li data-w-id="dd45d3e8-9cb4-9c00-1468-4150758d4f48" class="collection-item">
-            <a href="../case-studies/qantas-app.html" class="card-project link-hover-ix w-inline-block">
-              <div class="image-project"><img src="../images/62dc1d83920df32baae28d6b_work2-p-1080.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 95vw, (max-width: 991px) 96vw, (max-width: 1919px) 31vw, 376px" srcset="../images/62dc1d83920df32baae28d6b_work2-p-1080-p-500.png 500w, ../images/62dc1d83920df32baae28d6b_work2-p-1080-p-800.png 800w, ../images/62dc1d83920df32baae28d6b_work2-p-1080-p-1080.png 1080w, ../images/62dc1d83920df32baae28d6b_work2-p-1080.png 1080w" alt="" class="image card"></div>
-              <div class="background-colour">
-                <h1 class="project-heading smaller">Bringing Entertainment to Qantas Airways app</h1>
-                <p class="text top-margin tagline">How to increase app downloads by +70% by connecting entertainment services in the flagship app “Qantas Airways”</p>
-              </div>
-            </a>
-          </li>
-          <li data-w-id="d2728fa0-38a0-11ef-32d6-97f880f60b7a" class="collection-item">
-            <a href="../case-studies/bringing-visibility-to-workers-status.html" class="card-project link-hover-ix w-inline-block">
-              <div class="image-project"><img src="../images/62fbf14400d70051caf1b477_hireup-project-p-1080.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 95vw, (max-width: 991px) 96vw, (max-width: 1919px) 31vw, 376px" srcset="../images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-500.png 500w, ../images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-800.png 800w, ../images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-1080.png 1080w, ../images/62fbf14400d70051caf1b477_hireup-project-p-1080.png 1080w" alt="" class="image card"></div>
-              <div class="background-colour">
-                <h1 class="project-heading smaller">Bringing Visibility to Workers’ Status</h1>
-                <p class="text top-margin tagline">I’m showcasing how we’ve changed user behaviour by design and increased the booking (connection) rate on Hireup by +12%</p>
-              </div>
-            </a>
-          </li>
-          <li data-w-id="740b0c3b-be10-ecc2-4b85-d42ced6b342e" class="collection-item">
-            <a href="../case-studies/eta-app.html" class="card-project link-hover-ix w-inline-block">
-              <div class="image-project"><img src="../images/62dc274f132cbe543717e126_work1-p-2000.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 95vw, (max-width: 991px) 96vw, (max-width: 1919px) 31vw, 376px" srcset="../images/62dc274f132cbe543717e126_work1-p-2000-p-500.jpg 500w, ../images/62dc274f132cbe543717e126_work1-p-2000-p-800.jpg 800w, ../images/62dc274f132cbe543717e126_work1-p-2000-p-1080.jpg 1080w, ../images/62dc274f132cbe543717e126_work1-p-2000-p-1600.jpg 1600w, ../images/62dc274f132cbe543717e126_work1-p-2000-p-2000.jpg 2000w, ../images/62dc274f132cbe543717e126_work1-p-2000.jpg 2000w" alt="" class="image card"></div>
-              <div class="background-colour">
-                <h1 class="project-heading smaller">A Greenfield app for the Australian ETA Visa</h1>
-                <p class="text top-margin tagline">How I’ve automated data entry and improved the experience of those applying for an Electronic Travel Authority (ETA) visa before travelling to Australia</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="cursor-wrapper">
-    <div class="cursor-dot"></div>
-    <div class="cursor-circle"></div>
-  </div>
-  <div class="w-embed">
-    <style>
-.cursor-wrapper {
-pointer-events: none;
-}
-@media only screen 
-  and (min-device-width: 1024px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-body {
-    cursor: default;
-}
-.cursor-wrapper {
-    display: none;
-}
-a {
-    cursor: pointer;
-}
-}
-@media only screen 
-  and (min-device-width: 1366px) 
-  and (max-device-width: 1366px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-body {
-    cursor: default;
-}
-.cursor-wrapper {
-    display: none;
-}
-a {
-    cursor: pointer;
-}
-}
-</style>
-  </div>
-  <div class="section footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <div class="small-text white footer-title-padding">👋 Hi, I&#x27;m Alex! © 2024• This site collects no data or analytics. 💚 </div>
-        <div class="small-text content-wrapper">I acknowledge and pay my respects to the Bidjigal and Gadigal people of the Eora nation, the traditional owners of this land on which I am working and living today of the eastern Sydney coastal area, and pays respects to Elders past and present. Always was, always will be. 🖤🌕❤️<br></div>
-      </div>
-    </div>
-  </div>
-  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=62c7a4b1b80e2dca085e014f" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="../js/webflow.js" type="text/javascript"></script>
+
+  <script>
+  // ===========================
+  // Theme: default dark + toggle with persistence
+  // ===========================
+  (function() {
+    const KEY = 'theme';
+    const root = document.documentElement;
+    const saved = localStorage.getItem(KEY);
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initial = saved ? saved : (prefersLight ? 'light' : 'dark');
+    applyTheme(initial);
+
+    function applyTheme(mode) {
+      root.classList.toggle('light', mode === 'light');
+      localStorage.setItem(KEY, mode);
+      updateThemeButtons(mode);
+    }
+
+    function updateThemeButtons(mode) {
+      const lightBtn = document.getElementById('theme-light');
+      const darkBtn = document.getElementById('theme-dark');
+      if (lightBtn && darkBtn) {
+        lightBtn.classList.toggle('active', mode === 'light');
+        darkBtn.classList.toggle('active', mode === 'dark');
+      }
+    }
+
+    const lightBtn = document.getElementById('theme-light');
+    const darkBtn = document.getElementById('theme-dark');
+    if (lightBtn) lightBtn.addEventListener('click', () => applyTheme('light'));
+    if (darkBtn) darkBtn.addEventListener('click', () => applyTheme('dark'));
+  })();
+
+  // ===========================
+  // Mobile Sidebar Toggle
+  // ===========================
+  (function() {
+    const hamburger = document.querySelector('.hamburger');
+    const closeBtn = document.querySelector('.sidebar-close');
+    const backdrop = document.querySelector('.sidebar-backdrop');
+    
+    function openSidebar() { document.body.classList.add('sidebar-open'); }
+    function closeSidebar() { document.body.classList.remove('sidebar-open'); }
+    
+    if (hamburger) hamburger.addEventListener('click', openSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (backdrop) backdrop.addEventListener('click', closeSidebar);
+    
+    document.querySelectorAll('.sidebar nav.primary a').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+  })();
+  </script>
 </body>
 </html>
