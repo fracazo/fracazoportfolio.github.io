@@ -259,11 +259,7 @@ main {
   color: var(--muted); background: var(--panel-2);
 }
 
-/* Theme Switcher */
-.theme-switcher {
-  display: flex;
-  gap: 8px;
-}
+/* Theme Toggle */
 .theme-btn {
   appearance: none;
   display: flex;
@@ -283,11 +279,12 @@ main {
   box-shadow: var(--shadow-hover);
   color: var(--brand);
 }
-.theme-btn.active {
-  background: var(--brand);
-  color: var(--bg);
-  box-shadow: var(--shadow-hover);
-}
+/* Dark mode: show sun icon (to switch to light) */
+.theme-btn .icon-sun { display: block; }
+.theme-btn .icon-moon { display: none; }
+/* Light mode: show moon icon (to switch to dark) */
+:root.light .theme-btn .icon-sun { display: none; }
+:root.light .theme-btn .icon-moon { display: block; }
 
 .muted { color: var(--muted); }
 .text { color: var(--muted); margin-top: 12px; line-height: 1.8; }
@@ -384,6 +381,18 @@ main {
 .role-card .text {
   margin-top: 20px;
   line-height: 1.8;
+}
+.role-image {
+  margin-top: 24px;
+  border-radius: var(--radius);
+  width: 100%;
+}
+@media (max-width: 700px) {
+  .role-image {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 /* ========================
