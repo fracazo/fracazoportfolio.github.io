@@ -482,23 +482,40 @@ main {
 /* ========================
    Section: Testimonials
    ======================== */
-.testimonial-wrap {
-  display: grid; gap: 16px;
+.testimonial-section {
+  padding-top: 48px;
+  padding-bottom: 48px;
 }
-.testimonial-grid {
-  display: grid; gap: 16px;
-  grid-template-columns: 1fr 1fr;
+.testimonial-heading {
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 24px;
 }
-@media (max-width: 900px) { .testimonial-grid { grid-template-columns: 1fr; } }
-.testimonial-col { display: grid; gap: 16px; }
-.testimonial-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 16px;
-  box-shadow: var(--shadow);
+.testimonial-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
-.testimonial-card .quotation-mark { width: 18px; height: 18px; opacity: 0.5; margin-bottom: 6px; filter: brightness(0) invert(1); }
-.small-text.italic { font-style: italic; color: var(--muted); }
+.testimonial {
+  margin: 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--border);
+}
+.testimonial p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 8px;
+}
+.testimonial footer {
+  margin: 0;
+}
+.testimonial cite {
+  font-style: normal;
+  font-size: 13px;
+  color: var(--muted);
+  opacity: 0.7;
+}
 
 /* ========================
    Contact Form
