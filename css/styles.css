@@ -5,6 +5,8 @@
   --bg:#0b0c0f; --panel:#121318; --panel-2:#1a1c22;
   --text:#e6e7ea; --muted:#a7adbb; --brand:#3b82f6;
   --border:#22242b; --card:#14161c; --ring:#2dd4bf;
+  --font-default: "Geist", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-dyslexia: "OpenDyslexic", sans-serif;
 
   --radius:12px;
   /* Subtle layered shadow for dark mode */
@@ -35,6 +37,22 @@
     0px 2px 4px 0px rgba(0, 0, 0, 0.06);
 }
 
+/* OpenDyslexic (dyslexia-friendly mode) – TTF loads reliably from CDN */
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/ttf/OpenDyslexic-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/ttf/OpenDyslexic-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ========================
    Base / Resets
    ======================== */
@@ -45,10 +63,148 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 400 16px/1.75 "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: var(--font-default);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.75;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dyslexia-friendly mode (case study pages) */
+:root.dyslexia-mode * {
+  font-family: "OpenDyslexic", sans-serif !important;
+  font-size: 1.03em !important; /* ~16.5px */
+  letter-spacing: 0em;
+  word-spacing: 0.12em;
+  line-height: 1.85;
+}
+
+/* Keep headings proportionally larger */
+:root.dyslexia-mode h1,
+:root.dyslexia-mode .h1 {
+  font-size: 2.75rem !important; /* ~44px instead of 40px */
+}
+
+:root.dyslexia-mode h2,
+:root.dyslexia-mode .h2 {
+  font-size: 1.875rem !important; /* ~30px instead of 28px */
+}
+
+:root.dyslexia-mode h3,
+:root.dyslexia-mode .h3 {
+  font-size: 1.375rem !important; /* ~22px instead of 20px */
+}
+
+/* Button icon stays consistent */
+.dyslexia-fab-icon {
+  font-family: "OpenDyslexic", sans-serif !important;
+  font-size: 20px !important; /* Fixed size, doesn't scale */
+  font-weight: 600;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Floating dyslexia toggle (case study pages only)
+   z-index: 1000 so it stays above sidebar and content but below modals/dropdowns */
+.dyslexia-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  animation: dyslexia-fab-in 400ms ease-out 500ms both;
+}
+.dyslexia-fab-icon {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  pointer-events: none;
+  font-family: var(--font-dyslexia) !important; /* Always show in OpenDyslexic */
+}
+@keyframes dyslexia-fab-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.dyslexia-fab:hover {
+  box-shadow: var(--shadow-hover);
+  color: var(--brand);
+}
+.dyslexia-fab.active {
+  background: var(--brand);
+  color: #fff;
+}
+.dyslexia-fab.active:hover {
+  color: #fff;
+  filter: brightness(1.1);
+}
+
+/* Tooltip inside button */
+.dyslexia-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
+  background: var(--card);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: var(--font-default);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease;
+  box-shadow: var(--shadow);
+  z-index: 10;
+}
+.dyslexia-fab:hover .dyslexia-tooltip {
+  opacity: 1;
+}
+.dyslexia-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 16px;
+  border: 6px solid transparent;
+  border-top-color: var(--card);
+}
+@media (max-width: 579.98px) {
+  .dyslexia-fab {
+    bottom: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+  }
+  .dyslexia-tooltip {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(100% + 8px);
+  }
+  .dyslexia-tooltip::after {
+    right: auto;
+    left: 50%;
+    margin-left: -6px;
+    transform: translateX(-50%);
+  }
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--brand); text-decoration: none; }
@@ -261,6 +417,7 @@ main {
 
 /* Theme Toggle */
 .theme-btn {
+  position: relative;
   appearance: none;
   display: flex;
   align-items: center;
@@ -279,6 +436,38 @@ main {
   box-shadow: var(--shadow-hover);
   color: var(--brand);
 }
+.theme-btn .theme-tooltip {
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 20;
+}
+.theme-btn:hover .theme-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+.theme-btn .theme-tooltip-light { display: none; }
+.theme-btn .theme-tooltip-dark { display: none; }
+/* Dark mode: show "Switch to light" */
+.theme-btn .theme-tooltip-light { display: block; }
+.theme-btn .theme-tooltip-dark { display: none; }
+/* Light mode: show "Switch to dark" */
+:root.light .theme-btn .theme-tooltip-light { display: none; }
+:root.light .theme-btn .theme-tooltip-dark { display: block; }
 /* Dark mode: show sun icon (to switch to light) */
 .theme-btn .icon-sun { display: block; }
 .theme-btn .icon-moon { display: none; }
@@ -643,3 +832,241 @@ main {
 .footer-links a:hover {
   text-decoration: underline;
 }
+
+/* ========================
+   Page: 404 Error
+   ======================== */
+.error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 48px 24px;
+}
+.error-icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 32px;
+  filter: brightness(0) invert(0.6);
+}
+.error-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+.error-description {
+  color: var(--muted);
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+.error-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--brand);
+  border: none;
+  border-radius: var(--radius);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.error-button:hover {
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+/* ========================
+   Page: Experiments
+   ======================== */
+.experiments-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  margin-top: 48px;
+}
+.experiment-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.experiment-video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  background: var(--panel);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.experiment-video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+.experiment-video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.experiment-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.experiment-info p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ========================
+   Page: Case Studies
+   ======================== */
+.case-study-content { max-width: 800px; margin: 0 auto; }
+
+/* Case Study Header (reusable) */
+.case-header { padding: 48px 0; max-width: 640px; }
+.case-title { font-size: 40px; line-height: 1.15; font-weight: 700; color: var(--text); margin: 0 0 12px; }
+.case-subtitle { font-size: 18px; line-height: 1.5; color: var(--muted); margin: 0 0 24px; }
+.case-meta { display: flex; flex-wrap: wrap; gap: 24px; margin: 0 0 24px; font-size: 14px; color: var(--muted); }
+.case-meta > div { display: flex; flex-direction: column; gap: 2px; }
+.case-meta dt { font-weight: 600; color: var(--muted); margin: 0; }
+.case-meta dd { margin: 0; color: var(--muted); }
+.case-intro { color: var(--muted); font-size: 18px; line-height: 1.8; margin: 0; }
+
+.case-study-image { width: 100%; border-radius: var(--radius); margin: 32px 0; }
+.case-study-section { padding: 64px 0; }
+.case-study-section h2 { font-size: 28px; margin-bottom: 20px; max-width: 640px; }
+.case-study-section h3 { font-size: 20px; margin: 40px 0 16px; max-width: 640px; }
+.case-study-section h4 { font-size: 16px; font-weight: 600; margin: 32px 0 12px; max-width: 640px; }
+.case-study-section p { color: var(--muted); line-height: 1.8; margin-bottom: 24px; max-width: 640px; }
+.case-study-section ul,
+.case-study-section ol { color: var(--muted); line-height: 1.8; margin-bottom: 24px; padding-left: 24px; max-width: 640px; }
+.case-study-section li { margin-bottom: 12px; }
+.case-study-section blockquote { border-left: 3px solid var(--brand); padding-left: 20px; margin: 32px 0; font-style: italic; color: var(--muted); line-height: 1.8; max-width: 640px; }
+.case-study-section img { max-width: 100%; border-radius: var(--radius); margin: 24px 0; background: #fff; padding: 12px; }
+.summary-card { background: transparent; border-radius: 0; padding: 0; box-shadow: none; margin: 40px 0; max-width: 640px; }
+.summary-card h2 { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.summary-card h2 img { filter: brightness(0) invert(0.6); }
+.summary-card p { line-height: 1.8; }
+.notice-box { display: flex; gap: 16px; align-items: flex-start; background: var(--panel-2); border-radius: var(--radius); padding: 20px; margin: 40px 0; max-width: 640px; }
+.notice-box img { width: 24px; height: 24px; filter: brightness(0) invert(0.6); background: transparent; padding: 0; }
+.notice-box p { color: var(--muted); font-size: 14px; margin: 0; line-height: 1.8; }
+.notice-box strong { color: var(--text); }
+.up-next { padding: 64px 0; }
+.up-next h2 { margin-bottom: 24px; }
+.up-next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 800px) { .up-next-grid { grid-template-columns: 1fr; } }
+.img-small { max-width: 400px; }
+.img-xs { max-width: 300px; }
+.img-md { max-width: 500px; }
+.img-full { width: 100%; margin: 32px 0; }
+.img-caption { font-size: 12px; color: var(--muted); text-align: center; margin-top: -8px; }
+
+/* ========================
+   Page: Style Guide
+   ======================== */
+.styleguide-section {
+  margin-bottom: 64px;
+}
+.styleguide-title {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.styleguide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+.styleguide-item {
+  margin-bottom: 32px;
+}
+.styleguide-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+}
+.color-swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.color-box {
+  width: 100%;
+  height: 80px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+.color-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+.color-value {
+  font-size: 12px;
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  color: var(--muted);
+}
+.button-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+.form-sample {
+  max-width: 400px;
+}
+.rich-text-sample {
+  max-width: 640px;
+}
+.rich-text-sample h1 { font-size: 40px; font-weight: 700; line-height: 1.15; margin-bottom: 16px; color: var(--text); }
+.rich-text-sample h2 { font-size: 28px; font-weight: 700; line-height: 1.2; margin: 32px 0 12px; color: var(--text); }
+.rich-text-sample h3 { font-size: 20px; font-weight: 600; line-height: 1.35; margin: 24px 0 8px; color: var(--text); }
+.rich-text-sample p { color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+.rich-text-sample a { color: var(--brand); }
+.rich-text-sample ul { color: var(--muted); padding-left: 20px; margin-bottom: 16px; line-height: 1.8; }
+.rich-text-sample li { margin: 4px 0; }
+.rich-text-sample blockquote {
+  border-left: 2px solid var(--border);
+  padding-left: 16px;
+  margin: 24px 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.rich-text-sample strong { color: var(--text); }
+
+/* Style Guide Utilities */
+.styleguide-section-first { margin-top: 48px; }
+.demo-body { color: var(--text); margin: 0; line-height: 1.75; }
+.demo-text { margin: 0; }
+.demo-small { font-size: 14px; color: var(--muted); margin: 0; }
+.mt-20 { margin-top: 20px; }

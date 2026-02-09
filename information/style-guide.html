@@ -1,151 +1,339 @@
-<!DOCTYPE html><!--  This site was created in Webflow. https://www.webflow.com  -->
-<!--  Last Published: Mon Mar 25 2024 04:23:10 GMT+0000 (Coordinated Universal Time)  -->
-<html data-wf-page="62c7a4b2b80e2da6755e015c" data-wf-site="62c7a4b1b80e2dca085e014f">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Style Guide</title>
-  <meta content="Style Guide" property="og:title">
-  <meta content="Style Guide" property="twitter:title">
+  <title>Style Guide - Alex Fracazo</title>
+  <meta content="Design system documentation: typography, colors, and components." name="description">
+  <meta content="Style Guide - Alex Fracazo" property="og:title">
+  <meta content="Design system documentation: typography, colors, and components." property="og:description">
+  <meta content="../images/opengraph.jpg" property="og:image">
+  <meta content="Style Guide - Alex Fracazo" property="twitter:title">
+  <meta content="Design system documentation: typography, colors, and components." property="twitter:description">
+  <meta content="../images/opengraph.jpg" property="twitter:image">
+  <meta property="og:type" content="website">
+  <meta content="summary_large_image" name="twitter:card">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <meta content="Webflow" name="generator">
-  <link href="../css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="../css/webflow.css" rel="stylesheet" type="text/css">
-  <link href="../css/alex-fracazo-product-designer.webflow.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
-  <script type="text/javascript">WebFont.load({  google: {    families: ["Plus Jakarta Sans:200,300,regular,500,600,700,800,200italic,300italic,italic,500italic,600italic,700italic,800italic"]  }});</script>
-  <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
   <link href="../images/favicon.svg" rel="shortcut icon" type="image/x-icon">
   <link href="../images/webclip.svg" rel="apple-touch-icon">
-  <style>
-.w-webflow-badge {
-   display: None !important;
-   visibility: hidden !important;
-}
-</style>
+
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
 </head>
 <body>
-  <div data-w-id="de87d4e9-2da7-be5c-1f2c-9df0497a788d" data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navigation w-nav">
-    <div class="navbar-container">
-      <a href="../index.html" data-w-id="a3cad039-bc8a-2f0f-44e7-331a74beb86a" class="brand link-hover-ix w-nav-brand"><img src="../images/logo.svg" loading="lazy" alt="Logo" class="logo-icon"></a>
-      <nav role="navigation" class="nav-menu w-nav-menu">
-        <a href="../index.html" class="nav-link home w-nav-link">Home</a>
-        <a href="/#Work" class="nav-link link-hover-ix w-nav-link">Work</a>
-        <a href="../contact.html" class="nav-link button link-hover-ix w-nav-link">Say hi!</a>
+  <!-- Mobile Menu Button -->
+  <button class="hamburger" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="brand" aria-label="Home">
+          <span>Alex Fracazo</span>
+        </a>
+        <button class="sidebar-close" aria-label="Close menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="primary" aria-label="Primary">
+        <a href="../index.html#About">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="18" x="3" y="3" rx="2"/>
+            <circle cx="12" cy="10" r="3"/>
+            <path d="M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
+          </svg>
+          About
+        </a>
+        <a href="../work.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12h.01"/>
+            <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            <path d="M22 13a18.15 18.15 0 0 1-20 0"/>
+            <rect width="20" height="14" x="2" y="6" rx="2"/>
+          </svg>
+          Work
+        </a>
+        <a href="../contact.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          Say hi!
+        </a>
       </nav>
-      <div class="menu-button w-nav-button">
-        <div class="w-icon-nav-menu"></div>
+      <div class="sidebar-actions">
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+          <span class="theme-tooltip theme-tooltip-light" aria-hidden="true">Switch to light mode</span>
+          <span class="theme-tooltip theme-tooltip-dark" aria-hidden="true">Switch to dark mode</span>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
       </div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="container">
-      <h1 class="h4 styleguide">✦ Typography ✦</h1>
-      <div class="styleguide-grid">
-        <div class="styleguide-container">
-          <div class="small-title">H1</div>
-          <h1 class="h1">Heading 1</h1>
-          <div class="small-title">H2</div>
-          <h2 class="h2">Heading 2</h2>
-          <div class="small-title">H3</div>
-          <h3 class="h3">Heading 3</h3>
-          <div class="small-title">H4</div>
-          <h4 class="h4">Heading 4</h4>
+    </aside>
+    <div class="sidebar-backdrop"></div>
+
+    <!-- Main content -->
+    <main id="content" role="main">
+      <section class="section">
+        <h1 class="h1">Style Guide</h1>
+        <p class="text">Design system documentation for typography, colors, and components used across the site.</p>
+
+        <!-- Typography -->
+        <div class="styleguide-section styleguide-section-first">
+          <h2 class="styleguide-title">Typography</h2>
+          <div class="styleguide-grid">
+            <div>
+              <div class="styleguide-item">
+                <div class="styleguide-label">H1 — 40px / 1.15</div>
+                <h1 class="h1">Heading 1</h1>
+              </div>
+              <div class="styleguide-item">
+                <div class="styleguide-label">H2 — 28px / 1.2</div>
+                <h2 class="h2">Heading 2</h2>
+              </div>
+              <div class="styleguide-item">
+                <div class="styleguide-label">H3 — 20px / 1.35</div>
+                <h3 class="h3">Heading 3</h3>
+              </div>
+            </div>
+            <div>
+              <div class="styleguide-item">
+                <div class="styleguide-label">Body — 16px / 1.75</div>
+                <p class="demo-body">The quick brown fox jumps over the lazy dog</p>
+              </div>
+              <div class="styleguide-item">
+                <div class="styleguide-label">Text (muted) — 16px / 1.8</div>
+                <p class="text demo-text">The quick brown fox jumps over the lazy dog</p>
+              </div>
+              <div class="styleguide-item">
+                <div class="styleguide-label">Small — 14px</div>
+                <p class="demo-small">The quick brown fox jumps over the lazy dog</p>
+              </div>
+              <div class="styleguide-item">
+                <div class="styleguide-label">Link</div>
+                <a href="#">Link Text</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="styleguide-container">
-          <div class="small-title">TEXT</div>
-          <p class="text">The quick brown fox jumps over the lazy dog</p>
-          <div class="small-title">BOLD TEXT</div>
-          <p class="bold-text">The quick brown fox jumps over the lazy dog</p>
-          <div class="small-title">SMALL TEXT</div>
-          <p class="small-text">The quick brown fox jumps over the lazy dog</p>
-          <div class="small-title">CAPTION</div>
-          <p class="caption">The quick brown fox jumps over the lazy dog</p>
-          <div class="small-title">LINK</div>
-          <a href="#" class="link">Link Text</a>
+
+        <!-- Colors -->
+        <div class="styleguide-section">
+          <h2 class="styleguide-title">Colors — Dark Mode</h2>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="color-box" style="background: #0b0c0f;"></div>
+              <div class="color-name">Background</div>
+              <div class="color-value">#0b0c0f</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #121318;"></div>
+              <div class="color-name">Panel</div>
+              <div class="color-value">#121318</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #14161c;"></div>
+              <div class="color-name">Card</div>
+              <div class="color-value">#14161c</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #e6e7ea;"></div>
+              <div class="color-name">Text</div>
+              <div class="color-value">#e6e7ea</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #a7adbb;"></div>
+              <div class="color-name">Muted</div>
+              <div class="color-value">#a7adbb</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #3b82f6;"></div>
+              <div class="color-name">Brand</div>
+              <div class="color-value">#3b82f6</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #22242b;"></div>
+              <div class="color-name">Border</div>
+              <div class="color-value">#22242b</div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="container">
-      <h1 class="h4 styleguide">✦ Colors ✦</h1>
-      <div class="styleguide-colors">
-        <div class="small-title">MIDNIGHT BLUE</div>
-        <div class="small-title">GRAY 600</div>
-        <div id="w-node-_407f4b0f-ae97-5b59-0463-2c2832a1814d-755e015c" class="small-title">GRAY 400</div>
-        <div class="small-title">GRAY 200</div>
-        <div class="small-title">GRAY 100</div>
-        <div id="w-node-_407f4b0f-ae97-5b59-0463-2c2832a18151-755e015c" class="color"></div>
-        <div id="w-node-_407f4b0f-ae97-5b59-0463-2c2832a18152-755e015c" class="color grey-600"></div>
-        <div id="w-node-_407f4b0f-ae97-5b59-0463-2c2832a18153-755e015c" class="color grey-400"></div>
-        <div id="w-node-_407f4b0f-ae97-5b59-0463-2c2832a18154-755e015c" class="color grey-200"></div>
-        <div id="w-node-_6c4c0082-ac5b-ec42-11f6-bc588d36dc31-755e015c" class="color grey-100"></div>
-      </div>
-      <div class="styleguide-colors">
-        <div id="w-node-_407f4b0f-ae97-5b59-0463-2c2832a18156-755e015c" class="small-title">PRIMARY 800</div>
-        <div id="w-node-_407f4b0f-ae97-5b59-0463-2c2832a18158-755e015c" class="small-title">PRIMARY 600</div>
-        <div id="w-node-_407f4b0f-ae97-5b59-0463-2c2832a1815a-755e015c" class="color primary-80"></div>
-        <div id="w-node-_407f4b0f-ae97-5b59-0463-2c2832a1815b-755e015c" class="color primary-40"></div>
-      </div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="container">
-      <h1 class="h4 styleguide">✦ buttons ✦</h1>
-      <div class="styleguide-colors">
-        <div class="small-title">PRIMARY</div>
-        <div id="w-node-d086eec2-c110-f55a-8f21-9081912ab3f8-755e015c" class="small-title">SECONDARY</div>
-        <a id="w-node-d086eec2-c110-f55a-8f21-9081912ab3fe-755e015c" href="#" class="secondary-button w-button">Button</a>
-        <a href="#" id="w-node-_236314a1-c2f5-641d-6172-1523cc6e2013-755e015c" class="primary-button w-button">Button</a>
-      </div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="container">
-      <h1 class="h4 styleguide">✦ RICH TEXT ✦</h1>
-      <div class="rich-text w-richtext">
-        <h1>Title for Heading 1</h1>
-        <p>The rich text element allows you to create and format headings, paragraphs, blockquotes, images, and video all in one place instead of having to add and format them individually. Just double-click and easily create content.</p>
-        <h2>Title for heading 2</h2>
-        <p>A rich text element can be used with static or dynamic content. For static content, just drop it into any page and begin editing. <a href="http://google.com">For dynamic content</a>, add a rich text field to any collection and then connect a rich text element to that field in the settings panel. Voila!</p>
-        <h3>Title for heading 3</h3>
-        <p>Headings, paragraphs, blockquotes, figures, images, and figure captions can all be styled after a class is added to the rich text element using the &quot;When inside of&quot; nested selector system. <strong>Bold text</strong></p>
-        <h4>Title for heading 4</h4>
-        <ul role="list">
-          <li>The rich text element allows you to create and format headings, paragraphs, blockquotes, images, and video all in one place. </li>
-          <li>Instead of having to add and format them individually.</li>
-          <li>Just double-click and easily create content.</li>
-        </ul>
-        <h5>Title for heading 5</h5>
-        <blockquote>A rich text element can be used with static or dynamic content. For static content, just drop it into any page and begin editing. For dynamic content, add a rich text field to any collection and then connect a rich text element to that field in the settings panel. Voila!</blockquote>
-      </div>
-    </div>
-  </div>
-  <div class="section">
-    <div class="container">
-      <h1 class="h4 styleguide">✦ Form ✦</h1>
-      <div class="form-block w-form">
-        <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form" data-wf-page-id="62c7a4b2b80e2da6755e015c" data-wf-element-id="a83bff3f-edbd-4e1d-14a3-594f36467ff1"><label for="name-3" class="label">Your name</label><label for="name" class="label">Email address</label><input class="text-field w-node-a83bff3f-edbd-4e1d-14a3-594f36467ff6-755e015c w-input" maxlength="256" name="name" data-name="Name" placeholder="e.g. David Ogilvy" type="text" id="name" required=""><input class="text-field w-node-a83bff3f-edbd-4e1d-14a3-594f36467ff7-755e015c w-input" maxlength="256" name="Email" data-name="Email" placeholder="e.g. david@ogilvy.com" type="email" id="Email" required=""><label for="Subject" id="w-node-a83bff3f-edbd-4e1d-14a3-594f36467ff8-755e015c" class="label top-margin">Subject</label><input class="text-field w-node-a83bff3f-edbd-4e1d-14a3-594f36467ffa-755e015c w-input" maxlength="256" name="Subject" data-name="Subject" placeholder="e.g. Web Copy inquiry" type="text" id="Subject"><label for="field" id="w-node-a83bff3f-edbd-4e1d-14a3-594f36467ffb-755e015c" class="label top-margin">Your message</label><textarea id="field" name="field" maxlength="5000" data-name="Field" placeholder="Type anything..." required="" class="textarea w-node-a83bff3f-edbd-4e1d-14a3-594f36467ffd-755e015c w-input"></textarea><input type="submit" data-wait="Please wait..." id="w-node-a83bff3f-edbd-4e1d-14a3-594f36467ffe-755e015c" class="primary-button w-button" value="Submit"></form>
-        <div class="success-message w-form-done">
-          <div>Thank you! Your submission has been received!</div>
+
+        <div class="styleguide-section">
+          <h2 class="styleguide-title">Colors — Light Mode</h2>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="color-box" style="background: #ffffff; border-color: #e5e7eb;"></div>
+              <div class="color-name">Background</div>
+              <div class="color-value">#ffffff</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #f7f7f9; border-color: #e5e7eb;"></div>
+              <div class="color-name">Panel</div>
+              <div class="color-value">#f7f7f9</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #ffffff; border-color: #e5e7eb;"></div>
+              <div class="color-name">Card</div>
+              <div class="color-value">#ffffff</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #101216;"></div>
+              <div class="color-name">Text</div>
+              <div class="color-value">#101216</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #4b5563;"></div>
+              <div class="color-name">Muted</div>
+              <div class="color-value">#4b5563</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #3b82f6;"></div>
+              <div class="color-name">Brand</div>
+              <div class="color-value">#3b82f6</div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-box" style="background: #e5e7eb;"></div>
+              <div class="color-name">Border</div>
+              <div class="color-value">#e5e7eb</div>
+            </div>
+          </div>
         </div>
-        <div class="error-message w-form-fail">
-          <div>Oops! Something went wrong while submitting the form.</div>
+
+        <!-- Buttons -->
+        <div class="styleguide-section">
+          <h2 class="styleguide-title">Buttons</h2>
+          <div class="button-grid">
+            <button class="form-submit">Primary Button</button>
+            <button class="btn">Secondary Button</button>
+            <button class="btn btn-ghost">Ghost Button</button>
+          </div>
         </div>
-      </div>
-    </div>
+
+        <!-- Form Elements -->
+        <div class="styleguide-section">
+          <h2 class="styleguide-title">Form Elements</h2>
+          <div class="form-sample">
+            <div class="form-group">
+              <label class="form-label" for="demo-name">Your name</label>
+              <input class="form-input" type="text" id="demo-name" placeholder="e.g. David Ogilvy">
+            </div>
+            <div class="form-group mt-20">
+              <label class="form-label" for="demo-email">Email address</label>
+              <input class="form-input" type="email" id="demo-email" placeholder="e.g. david@ogilvy.com">
+            </div>
+            <div class="form-group mt-20">
+              <label class="form-label" for="demo-message">Your message</label>
+              <textarea class="form-textarea" id="demo-message" placeholder="Type anything..."></textarea>
+            </div>
+            <button class="form-submit mt-20">Submit</button>
+          </div>
+        </div>
+
+        <!-- Rich Text -->
+        <div class="styleguide-section">
+          <h2 class="styleguide-title">Rich Text</h2>
+          <div class="rich-text-sample">
+            <h1>Title for Heading 1</h1>
+            <p>The rich text element allows you to create and format headings, paragraphs, blockquotes, images, and video all in one place instead of having to add and format them individually.</p>
+            <h2>Title for Heading 2</h2>
+            <p>A rich text element can be used with static or dynamic content. For static content, just drop it into any page. <a href="#">For dynamic content</a>, add a rich text field to any collection.</p>
+            <h3>Title for Heading 3</h3>
+            <p>Headings, paragraphs, blockquotes, figures, images, and figure captions can all be styled. <strong>Bold text stands out.</strong></p>
+            <ul>
+              <li>The rich text element allows you to create and format headings, paragraphs, blockquotes, images, and video all in one place.</li>
+              <li>Instead of having to add and format them individually.</li>
+              <li>Just double-click and easily create content.</li>
+            </ul>
+            <blockquote>A rich text element can be used with static or dynamic content. For static content, just drop it into any page and begin editing.</blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <section class="section" aria-labelledby="footer-title">
+        <footer role="contentinfo">
+          <div class="footer-inner">
+            <p id="footer-title" class="text footer-location">Based in Australia. Working globally.</p>
+            <p class="text footer-links">
+              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank">LinkedIn</a>, <a href="https://gitlab.com/afracazo" target="_blank">GitLab</a>, or <a href="../contact.html">reach me by email</a>.
+            </p>
+          </div>
+        </footer>
+      </section>
+    </main>
   </div>
-  <div class="section footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <div class="small-text white footer-title-padding">👋 Hi, I&#x27;m Alex! © 2024• This site collects no data or analytics. 💚 </div>
-        <div class="small-text content-wrapper">I acknowledge and pay my respects to the Bidjigal and Gadigal people of the Eora nation, the traditional owners of this land on which I am working and living today of the eastern Sydney coastal area, and pays respects to Elders past and present. Always was, always will be. 🖤🌕❤️<br></div>
-      </div>
-    </div>
-  </div>
-  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=62c7a4b1b80e2dca085e014f" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="../js/webflow.js" type="text/javascript"></script>
+
+  <script>
+  // ===========================
+  // Theme: default dark + toggle with persistence
+  // ===========================
+  (function() {
+    const KEY = 'theme';
+    const root = document.documentElement;
+    const saved = localStorage.getItem(KEY);
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initial = saved ? saved : (prefersLight ? 'light' : 'dark');
+    applyTheme(initial);
+
+    function applyTheme(mode) {
+      root.classList.toggle('light', mode === 'light');
+      localStorage.setItem(KEY, mode);
+    }
+
+    function toggleTheme() {
+      const isLight = root.classList.contains('light');
+      applyTheme(isLight ? 'dark' : 'light');
+    }
+
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
+  })();
+
+  // ===========================
+  // Mobile Sidebar Toggle
+  // ===========================
+  (function() {
+    const hamburger = document.querySelector('.hamburger');
+    const closeBtn = document.querySelector('.sidebar-close');
+    const backdrop = document.querySelector('.sidebar-backdrop');
+    
+    function openSidebar() {
+      document.body.classList.add('sidebar-open');
+    }
+    
+    function closeSidebar() {
+      document.body.classList.remove('sidebar-open');
+    }
+    
+    if (hamburger) hamburger.addEventListener('click', openSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (backdrop) backdrop.addEventListener('click', closeSidebar);
+    
+    // Close sidebar on nav link click (mobile)
+    document.querySelectorAll('.sidebar nav.primary a').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+  })();
+  </script>
 </body>
 </html>
