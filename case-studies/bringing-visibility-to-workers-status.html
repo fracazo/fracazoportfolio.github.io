@@ -23,9 +23,10 @@
 <body>
   <!-- Mobile Menu Button -->
   <button class="hamburger" aria-label="Toggle menu">
-    <span></span>
-    <span></span>
-    <span></span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <path d="M5 8H19"/>
+      <path d="M5 16H19"/>
+    </svg>
   </button>
 
   <div class="app">
@@ -42,31 +43,15 @@
           </svg>
         </button>
       </div>
-      <nav class="primary" aria-label="Primary">
-        <a href="../index.html#About">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect width="18" height="18" x="3" y="3" rx="2"/>
-            <circle cx="12" cy="10" r="3"/>
-            <path d="M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
-          </svg>
-          About
+      <nav class="case-study-nav" aria-label="Case study navigation">
+        <a href="../work.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Back to Work
         </a>
-        <a href="../work.html">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 12h.01"/>
-            <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-            <path d="M22 13a18.15 18.15 0 0 1-20 0"/>
-            <rect width="20" height="14" x="2" y="6" rx="2"/>
-          </svg>
-          Work
-        </a>
-        <a href="../contact.html">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect width="20" height="16" x="2" y="4" rx="2"/>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-          </svg>
-          Say hi!
-        </a>
+        <div class="case-nav-title">
+          <h2>On this page</h2>
+        </div>
+        <ul class="toc-list"></ul>
       </nav>
       <div class="sidebar-actions">
         <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
@@ -94,31 +79,47 @@
     <!-- Main content -->
     <main id="content" role="main">
       <section class="section case-study-content">
+        <div class="case-study-main">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a><span class="breadcrumb-sep"> &gt; </span><a href="../work.html">Work</a><span class="breadcrumb-sep"> &gt; </span><span>Worker Status Visibility</span>
+        </nav>
         <header class="case-header">
           <h1 class="case-title">Changing Booking Behaviour Through Worker Status Visibility</h1>
-          <p class="case-subtitle">Reducing uncertainty in a two-sided marketplace and increasing successful bookings by 12%.</p>
-          <dl class="case-meta">
-            <div>
-              <dt>Product</dt>
-              <dd>Hireup</dd>
+          <div class="case-metadata-card">
+            <img src="../images/62fbf14400d70051caf1b477_hireup-project-p-1080.png" alt="Hireup" class="case-hero-image">
+            <div class="metadata-content">
+              <div class="metadata-item">
+                <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M6 3.75A2.75 2.75 0 0 1 8.75 1h2.5A2.75 2.75 0 0 1 14 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 0 1 6 4.193V3.75Zm6.5 0v.325a41.622 41.622 0 0 0-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25ZM10 10a1 1 0 0 0-1 1v.01a1 1 0 0 0 1 1h.01a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1H10Z" clip-rule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 0 1-9.274 0C3.985 17.585 3 16.402 3 15.055Z"/></svg>
+                <div class="metadata-text">
+                  <p class="metadata-label">Product</p>
+                  <p class="metadata-value">Hireup</p>
+                </div>
+              </div>
+              <div class="metadata-item">
+                <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clip-rule="evenodd"/></svg>
+                <div class="metadata-text">
+                  <p class="metadata-label">Platform</p>
+                  <p class="metadata-value">iOS and Android</p>
+                </div>
+              </div>
+              <div class="metadata-item">
+                <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
+                <div class="metadata-text">
+                  <p class="metadata-label">Role</p>
+                  <p class="metadata-value">Principal Product Designer</p>
+                </div>
+              </div>
+              <div class="metadata-item">
+                <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clip-rule="evenodd"/></svg>
+                <div class="metadata-text">
+                  <p class="metadata-label">Year</p>
+                  <p class="metadata-value">2022</p>
+                </div>
+              </div>
             </div>
-            <div>
-              <dt>Platform</dt>
-              <dd>iOS and Android</dd>
-            </div>
-            <div>
-              <dt>Role</dt>
-              <dd>Principal Product Designer</dd>
-            </div>
-            <div>
-              <dt>Year</dt>
-              <dd>2022</dd>
-            </div>
-          </dl>
-          <p class="case-intro">We changed user behaviour by design and increased the booking rate on Hireup by 12%.</p>
+          </div>
+          <p class="case-intro">Reducing uncertainty in a two-sided marketplace and increasing successful bookings by 12%.</p>
         </header>
-
-        <img src="../images/62fbf14400d70051caf1b477_hireup-project-p-1080.png" alt="Hireup project hero" class="case-study-image">
 
         <div class="summary-card">
           <h2><img src="../images/bookmark.svg" alt="" width="24"> Summary</h2>
@@ -126,12 +127,12 @@
         </div>
 
         <div class="case-study-section">
-          <h2>The Work</h2>
+          <h2>Understanding the Problem</h2>
           
           <h3>About Hireup</h3>
           <p>Hireup is the largest online network of support workers in Australia for people with disabilities. The software is a marketplace that matches people with disabilities ("clients") with support workers ("workers").</p>
           
-          <h3>How does it work</h3>
+          <h3>How the Platform Works</h3>
           <img src="../images/62fb51f3578196031228354d_How-does-it-work.png" alt="How Hireup works">
           
           <h3>The Problem</h3>
@@ -143,20 +144,20 @@
           <p>For more clarity on the problem, I ran lean research - sent an email survey asking workers about how they use and update their availability status". Early insight on this was that workers set their status as "open to work" and forget to update their availability later.</p>
           <p>Most of the respondents set it during their account creation and onboarding. Another reason given was that they leave their status open only in case the "right" job arises.</p>
 
-          <h3>Analysing the current user flow experience</h3>
+          <h3>Current User Flow Analysis</h3>
           <p>How would workers update their availability status?</p>
           <img src="../images/62fdcd93d56ca3a042cc5291_current-flow.gif" alt="Current flow animation" class="img-xs">
           <p>They would tap on their profile avatar which would open 'My account' page. Inside this page, the user would skim through more options until they find 'My Availability', which would open the page where they could switch their "Looking for support work" status to on/off.</p>
           <img src="../images/62fb7e3f6533969785087587_Current-experience.png" alt="Current experience">
 
-          <h3>The flow report</h3>
+          <h3>Flow Report</h3>
           <p>By analysing the data, I noticed that few workers were tapping to update their availability.</p>
           <img src="../images/62fc2b5863456152bfa022e5_flow-report.png" alt="Flow report">
 
-          <h3>Why was it important to solve this problem immediately?</h3>
+          <h3>Why This Mattered</h3>
           <p>This problem impacted Hireup's connection rate. "Connection" is the first booking between a client and a support worker. We noticed a drop in clients creating a new connection with a support worker, meaning a low connection rate. This also impacted client activation, which in turn impacted user churn.</p>
 
-          <h3>Key Metrics definitions to look for</h3>
+          <h3>Key Metrics</h3>
           <ul>
             <li><strong>Response rate:</strong> Workers that respond (within 3 days) to clients' first message</li>
             <li><strong>Connection rate:</strong> Connections are created within 7 days after the first message from the client</li>
@@ -176,12 +177,14 @@
           
           <p>There were discussions in the team of simply reversing the mechanism to automatically switch reactivated support workers back to "Looking for work". I was concerned about the assumption that workers who would be back on the platform would be 'Looking for work' as they may or may not be. A scenario I used to explain my line of thought was Linkedin - when people log on to Linkedin, it doesn't mean they want their profile to say 'open to work'.</p>
 
+          <h2>Designing the Solution</h2>
+
           <h3>Problem Statement & Design Prompt</h3>
           <p>Workers who have returned to the platform after being inactive may not get new jobs on Hireup. This is because the software triggers the worker's availability status to 'Not Open for Work' when they remain 30 days without using the platform (inactive user).</p>
           
           <blockquote>How might we design an experience that makes it easy for current active workers and workers who return to the platform after being inactive to identify and understand what their availability status means and why it is important to keep it up to date?</blockquote>
 
-          <h3>Breaking down the problem</h3>
+          <h3>Design Approach</h3>
           <ul>
             <li>No clear visibility on the availability status</li>
             <li>Hard to find how to switch the "Looking for support work" feature on/off</li>
@@ -208,7 +211,7 @@
           <p>The process to decide on a solution was through design iteration based on feedback from multiple teams involved in the project and insights from user research.</p>
           <img src="../images/62fc52776345612371bb29d8_My-account---thought-process.png" alt="My Account thought process">
 
-          <h3>Home Page</h3>
+          <h3>Home Page Design</h3>
           <p><strong>Status signifier on avatar</strong></p>
           <p>This solution brought visibility of workers' availability status across all main app pages, as it was consistently at the top of the nav bar. The use of the "Bag" iconography across other features of the software (the same icon used on jobs) made this pattern easy to understand and recognise.</p>
           <img src="../images/62fc5238e209d1f5865eda41_Home-page.png" alt="Home page design">
@@ -227,10 +230,12 @@
           <h3>Final design</h3>
           <img src="../images/62fc5222cf2458417e3c4205_Final-design.png" alt="Final design">
 
+          <h2>Implementation & Testing</h2>
+
           <h3>Prototype</h3>
           <img src="../images/62fc9b36aee467542d9116cf_final-design.gif" alt="Prototype animation" class="img-xs">
 
-          <h3>Implementing the solution</h3>
+          <h3>Release Strategy</h3>
           <p>To measure and control risks, the team planned to release this feature by using experimentation and testing with cohorts.</p>
           <p>I worked with the engineers to implement the designs, and it was working and looking great!</p>
           <p>To make sure the workers were informed about the change, I worked with the marketing team to make sure we tightened up a clear communication to workers within the new release. This communication was sent to workers who were automatically set to "not looking for work". They were notified using a mix of push, SMS and email. They receive a warning after 25 days of inactivity and are switched off, then also informed at the 30-day mark.</p>
@@ -238,11 +243,13 @@
           
           <p>Setting workers to "not looking for work" was done in stages and comms were sent out to workers that may have been impacted by the change.</p>
 
-          <h3>What's new?</h3>
+          <h3>User Communication</h3>
           <p>We also introduced a new feature that communicates important changes to users that return to the app. This helps to gather context in case they miss comms for any reason. They would see it when they are back on the app.</p>
           <img src="../images/62fc51dad208697fbaaaf774_whats-new.png" alt="What's new feature">
 
-          <h3>Results of the implementation</h3>
+          <h2>Results & Impact</h2>
+
+          <h3>Behavior Change</h3>
           <img src="../images/62fc4eb12b9343326b9c9ecc_first-results.png" alt="First results" class="img-small">
           <p>By monitoring our data, we noticed an increase of +46.24% inactive workers returning to the platform.</p>
 
@@ -250,19 +257,18 @@
           <p>A subset of workers in Sydney and Melbourne markets were grouped as the control group</p>
           <img src="../images/62fbefd1b95849422076b287_control-groups.png" alt="Control groups">
 
-          <h3>Response rate</h3>
+          <h3>Response Rate Improvement</h3>
           <img src="../images/62fc1fc75683e24e4d73f378_Response-rate.png" alt="Response rate" class="img-small">
           <p>Response rate for the experimental group increased from 39.1% to 45.8%.</p>
 
-          <h3>Connection rate</h3>
+          <h3>Connection Rate Growth</h3>
           <img src="../images/62fc1fbd85376430031ca998_Connection-rate.png" alt="Connection rate" class="img-small">
           <p>Connection rate for the experimental group increased from 3% to 5.%</p>
 
-          <h3>Availability update</h3>
+          <h3>Availability Updates</h3>
           <img src="../images/62fc1ff1d055b02593cac784_flow-report-future.png" alt="Flow report future">
           <p>An increase of +10% workers updating their availability.</p>
 
-          <h3>Results</h3>
           <ul>
             <li>The response rate increased to +45.58%</li>
             <li>The connection rate increased by +5.1%</li>
@@ -276,7 +282,7 @@
             <li>We estimate that automatically setting inactive workers to "not looking for work" has had a <strong>+12% incremental impact on the connections from client first messages</strong>.</li>
           </ul>
 
-          <h3>Key Learnings</h3>
+          <h2>Key Learnings</h2>
           <ul>
             <li>Working with a diverse team that had to combine efforts to launch this feature: Product, Engineering, Data, Marketing and Design.</li>
             <li>The design work was created in a way that would drive user behaviour, this was key to understanding that the design decisions we made impact lots of users every day.</li>
@@ -415,9 +421,59 @@
     if (backdrop) backdrop.addEventListener('click', closeSidebar);
     
     // Close sidebar on nav link click (mobile)
-    document.querySelectorAll('.sidebar nav.primary a').forEach(link => {
+    document.querySelectorAll('.sidebar .case-study-nav a, .sidebar .back-link').forEach(link => {
       link.addEventListener('click', closeSidebar);
     });
+  })();
+
+  // ===========================
+  // Table of Contents (sidebar, case study pages)
+  // ===========================
+  (function() {
+    const tocList = document.querySelector('.case-study-nav .toc-list');
+    if (!tocList) return;
+
+    const content = document.querySelector('.case-study-content');
+    if (!content) return;
+    const headings = content.querySelectorAll('.summary-card h2, .case-study-section h2, .up-next h2');
+    if (headings.length === 0) return;
+
+    const seen = {};
+    function slugify(text) {
+      const raw = text.replace(/<[^>]+>/g, '').trim().toLowerCase()
+        .replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+      const id = seen[raw] ? raw + '-' + (++seen[raw]) : (seen[raw] = 1, raw);
+      return id;
+    }
+
+    headings.forEach(function(h) {
+      const id = h.id || slugify(h.textContent);
+      if (!h.id) h.id = id;
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#' + id;
+      a.className = 'toc-link';
+      a.textContent = h.textContent.replace(/\s*\[.*?\]\s*/g, '').trim();
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, null, '#' + id);
+      });
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    const links = tocList.querySelectorAll('.toc-link');
+    const io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        links.forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      });
+    }, { rootMargin: '-100px 0px -80% 0px', threshold: 0 });
+    headings.forEach(function(h) { io.observe(h); });
   })();
   </script>
 

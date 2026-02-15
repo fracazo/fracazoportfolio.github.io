@@ -23,9 +23,10 @@
 <body>
   <!-- Mobile Menu Button -->
   <button class="hamburger" aria-label="Toggle menu">
-    <span></span>
-    <span></span>
-    <span></span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <path d="M5 8H19"/>
+      <path d="M5 16H19"/>
+    </svg>
   </button>
 
   <div class="app">
@@ -42,31 +43,15 @@
           </svg>
         </button>
       </div>
-      <nav class="primary" aria-label="Primary">
-        <a href="../index.html#About">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect width="18" height="18" x="3" y="3" rx="2"/>
-            <circle cx="12" cy="10" r="3"/>
-            <path d="M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
-          </svg>
-          About
+      <nav class="case-study-nav" aria-label="Case study navigation">
+        <a href="../work.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Back to Work
         </a>
-        <a href="../work.html">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 12h.01"/>
-            <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-            <path d="M22 13a18.15 18.15 0 0 1-20 0"/>
-            <rect width="20" height="14" x="2" y="6" rx="2"/>
-          </svg>
-          Work
-        </a>
-        <a href="../contact.html">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect width="20" height="16" x="2" y="4" rx="2"/>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-          </svg>
-          Say hi!
-        </a>
+        <div class="case-nav-title">
+          <h2>On this page</h2>
+        </div>
+        <ul class="toc-list"></ul>
       </nav>
       <div class="sidebar-actions">
         <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
@@ -94,31 +79,47 @@
     <!-- Main content -->
     <main id="content" role="main">
       <section class="section case-study-content">
+        <div class="case-study-main">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a><span class="breadcrumb-sep"> &gt; </span><a href="../work.html">Work</a><span class="breadcrumb-sep"> &gt; </span><span>Qantas Entertainment</span>
+        </nav>
         <header class="case-header">
           <h1 class="case-title">Driving Engagement Through a Unified Entertainment Experience</h1>
-          <p class="case-subtitle">Reimagining in-flight entertainment as a cohesive product ecosystem.</p>
-          <dl class="case-meta">
-            <div>
-              <dt>Product</dt>
-              <dd>Qantas Entertainment App</dd>
+          <div class="case-metadata-card">
+            <img src="../images/62dc26d29e21732abffdaacd_work4-p-1080.png" alt="Qantas Entertainment App" class="case-hero-image">
+            <div class="metadata-content">
+              <div class="metadata-item">
+                <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M6 3.75A2.75 2.75 0 0 1 8.75 1h2.5A2.75 2.75 0 0 1 14 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 0 1 6 4.193V3.75Zm6.5 0v.325a41.622 41.622 0 0 0-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25ZM10 10a1 1 0 0 0-1 1v.01a1 1 0 0 0 1 1h.01a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1H10Z" clip-rule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 0 1-9.274 0C3.985 17.585 3 16.402 3 15.055Z"/></svg>
+                <div class="metadata-text">
+                  <p class="metadata-label">Product</p>
+                  <p class="metadata-value">Qantas Entertainment App</p>
+                </div>
+              </div>
+              <div class="metadata-item">
+                <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clip-rule="evenodd"/></svg>
+                <div class="metadata-text">
+                  <p class="metadata-label">Platform</p>
+                  <p class="metadata-value">iOS and Android</p>
+                </div>
+              </div>
+              <div class="metadata-item">
+                <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
+                <div class="metadata-text">
+                  <p class="metadata-label">Role</p>
+                  <p class="metadata-value">Lead Designer</p>
+                </div>
+              </div>
+              <div class="metadata-item">
+                <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clip-rule="evenodd"/></svg>
+                <div class="metadata-text">
+                  <p class="metadata-label">Year</p>
+                  <p class="metadata-value">2018</p>
+                </div>
+              </div>
             </div>
-            <div>
-              <dt>Platform</dt>
-              <dd>iOS and Android</dd>
-            </div>
-            <div>
-              <dt>Role</dt>
-              <dd>Lead Designer</dd>
-            </div>
-            <div>
-              <dt>Year</dt>
-              <dd>2018</dd>
-            </div>
-          </dl>
-          <p class="case-intro">Building a cohesive brand experience for Qantas Entertainment.</p>
+          </div>
+          <p class="case-intro">Reimagining in-flight entertainment as a cohesive product ecosystem.</p>
         </header>
-
-        <img src="../images/62dc26d29e21732abffdaacd_work4-p-1080.png" alt="Qantas Entertainment App" class="case-study-image">
 
         <div class="summary-card">
           <h2><img src="../images/bookmark.svg" alt="" width="24"> Summary</h2>
@@ -126,27 +127,29 @@
         </div>
 
         <div class="case-study-section">
-          <h2>The Work</h2>
+          <h2>Understanding the Opportunity</h2>
 
-          <h3>Getting to the heart of the traveller</h3>
+          <h3>User Insights</h3>
           <p>Having an in-depth understanding of the traveller's flight journey – pre-flight, during, and after – laid the foundations for building an effective customer experience. I held multiple workshops, conducted qualitative interviews and tested our initial assumptions via face-to-face conversations and prototypes. My desire to make the app experience as smooth and effortless as possible drove our team's design thinking, and also led to the implementation of interesting features.</p>
 
-          <h3>The current state of the Qantas Entertainment app</h3>
+          <h3>Current State Analysis</h3>
           <p>The Qantas Entertainment app is used to stream entertainment to a customer's personal device, it allows the user to watch or listen to various forms of media.</p>
           <p>A known <strong>problem</strong> was that the current app only worked when the user was on board the plane and connected to a Qantas streaming network.</p>
           <img src="../images/62db95b70af0c632dbf50130_Screen-Shot-2022-07-23-at-4.29.49-pm.webp" alt="Current app state" class="img-small">
           <img src="../images/62db960e9e2cf8f5ed8f3cc0_Screen-Shot-2022-07-23-at-4.29.55-pm.webp" alt="App screens" class="img-small">
 
-          <h3>The goal</h3>
+          <h3>Project Goals</h3>
           <blockquote>Increase Entertainment app usage.</blockquote>
 
-          <h3>The problem</h3>
+          <h3>Core Problem</h3>
           <blockquote>Travellers that have the Entertainment app installed on their phone don't engage with it, because the app doesn't work if not connected to the Qantas network.</blockquote>
 
           <h3>Hypothesis</h3>
           <blockquote>We predict that increasing the entertainment offering before and after the flight will increase the app usage.</blockquote>
 
-          <h3>Design Explorations</h3>
+          <h2>Design & Iteration</h2>
+
+          <h3>Concept Development</h3>
           <p>Workshops with stakeholders and team members.</p>
           <img src="../images/62dbb2f91599635a246c14ba_Sketch.webp" alt="Sketches">
 
@@ -154,7 +157,9 @@
           <p>The winning ideas are iterated and turned into mockups for user research.</p>
           <img src="../images/62ddc453f0156d74347ac1cf_IMG_8141.webp" alt="Testing">
 
-          <h3>The Qantas Entertainment app icon</h3>
+          <h2>Icon Redesign</h2>
+
+          <h3>Icon Strategy</h3>
           <p>Redesigning the app icon was part of the process during the project, as it should be the strongest connection with the user. It is what they will see first when they land or search in the App Store.</p>
 
           <h4>What problems does the current app icon have?</h4>
@@ -165,7 +170,7 @@
           </ul>
           <img src="../images/62dba00a2ccfa45b6b5caa25_icon.webp" alt="Icon comparison" class="img-xs">
 
-          <h3>App Icon Rationality</h3>
+          <h3>Design Rationale</h3>
           <p>An app icon is expected to be a visual anchor for the product. It is a small piece of branding that, in addition to being attractive and standing out, should ideally also communicate the essence of the Qantas Entertainment (QE) app.</p>
 
           <h4>I created the QE app icon with 4 basic design principles in mind:</h4>
@@ -178,11 +183,13 @@
           <p>Reviewing the Qantas Brand Guidelines, I discovered a branded device called "pebble shape" that would work perfectly to hold a play icon.</p>
           <img src="../images/62ef65249d54c22b8832a872_icon-rationality.webp" alt="Icon rationality">
 
-          <h3>The New Icon</h3>
+          <h3>Final Icon Design</h3>
           <p>The new icon had visibility across the Qantas group and the brand manager adopted the icon as the Qantas brand for entertainment.</p>
           <img src="../images/62dfbfe1ae91243f8a293521_icon.webp" alt="New icon">
 
-          <h3>Designing the Details</h3>
+          <h2>Product Experience</h2>
+
+          <h3>Feature Design</h3>
           <p>Qantas Entertainment can retrieve data from the Qantas Airways app, like user name, flight and frequent flyer info.</p>
           <img src="../images/62dbf1780df0886dbe040658_Experience-1.webp" alt="Experience 1">
 
@@ -199,17 +206,17 @@
           <img src="../images/62dbb371788939d647160c0f_redesigned---at-the-airplane.webp" alt="At the airplane">
           <img src="../images/62ef67ff917ce135295b4b6c_Experience-3.webp" alt="Experience 3">
 
-          <h3>Qualitative Research</h3>
+          <h3>User Research</h3>
           <p>The way I like to perform qualitative user testing is to start talking about their life. In a relaxing way, I ask about specific things that have happened in the past and how they solved them. After gathering an understanding of their situation, I ask them to perform a task and I watch to see how they complete it, without helping them along the way.</p>
           <img src="../images/62ddc62adc69f994be51a3a8_IMG_8117.webp" alt="Research 1" class="img-small">
           <img src="../images/62ddc5e63b3a73d76a254359_IMG_8124.webp" alt="Research 2" class="img-xs">
 
-          <h3>Continue Testing</h3>
+          <h3>Ongoing Validation</h3>
           <p>We also ran embedded user tests, on board the plane.</p>
           <img src="../images/62ddc5473b3a732620253c07_IMG_4772.webp" alt="Testing on plane" class="img-small">
           <img src="../images/62ddc4c6ee175f391ba87014_IMG_1742.webp" alt="Testing 2" class="img-xs">
 
-          <h3>Connected experience across channels</h3>
+          <h3>Cross-Channel Integration</h3>
           <p>I worked closely with engineers to validate the design and copy implementations. Along with daily stand-ups, we also had weekly demos and would occasionally sit together to cross-check implementation with final designs.</p>
           <ul>
             <li>4 rounds of user testing</li>
@@ -220,6 +227,8 @@
 
           <img src="../images/62ddc84c1ae3453b107eac6d_effedb79-f8b4-48eb-8219-395614866761.webp" alt="Presentation" class="img-small">
           <p class="img-caption">Presenting iPad results during Qantas showcase</p>
+
+          <h2>Impact & Learnings</h2>
 
           <h3>Results</h3>
           <p>Help customers to be fully prepared by guiding them on downloading the Qantas Entertainment app before they board, including informing them on what devices to bring onboard to make the most of the Entertainment & Wi-Fi on flights.</p>
@@ -251,7 +260,7 @@
           <h4>Bring engineers early on to uncover blind spots on implementation</h4>
           <p>The tech review happened only after the design was approved. During the tech review, we identified that to create this service (back-end) would take ~6 months. Therefore I changed the design and created a new design pattern. I've learned to bring engineers to the design reviews early in the discovery journey.</p>
 
-          <h3>Next Steps</h3>
+          <h3>Future Opportunities</h3>
           <p>Some ideas related to traveller expectations that could be explored further:</p>
           <ul>
             <li>Premium content within the app</li>
@@ -383,9 +392,59 @@
     if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
     if (backdrop) backdrop.addEventListener('click', closeSidebar);
     
-    document.querySelectorAll('.sidebar nav.primary a').forEach(link => {
+    document.querySelectorAll('.sidebar .case-study-nav a, .sidebar .back-link').forEach(link => {
       link.addEventListener('click', closeSidebar);
     });
+  })();
+
+  // ===========================
+  // Table of Contents (sidebar, case study pages)
+  // ===========================
+  (function() {
+    const tocList = document.querySelector('.case-study-nav .toc-list');
+    if (!tocList) return;
+
+    const content = document.querySelector('.case-study-content');
+    if (!content) return;
+    const headings = content.querySelectorAll('.summary-card h2, .case-study-section h2, .up-next h2');
+    if (headings.length === 0) return;
+
+    const seen = {};
+    function slugify(text) {
+      const raw = text.replace(/<[^>]+>/g, '').trim().toLowerCase()
+        .replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+      const id = seen[raw] ? raw + '-' + (++seen[raw]) : (seen[raw] = 1, raw);
+      return id;
+    }
+
+    headings.forEach(function(h) {
+      const id = h.id || slugify(h.textContent);
+      if (!h.id) h.id = id;
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#' + id;
+      a.className = 'toc-link';
+      a.textContent = h.textContent.replace(/\s*\[.*?\]\s*/g, '').trim();
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, null, '#' + id);
+      });
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+
+    const links = tocList.querySelectorAll('.toc-link');
+    const io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        links.forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      });
+    }, { rootMargin: '-100px 0px -80% 0px', threshold: 0 });
+    headings.forEach(function(h) { io.observe(h); });
   })();
   </script>
 

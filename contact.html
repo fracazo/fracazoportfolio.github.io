@@ -23,9 +23,10 @@
 <body>
   <!-- Mobile Menu Button -->
   <button class="hamburger" aria-label="Toggle menu">
-    <span></span>
-    <span></span>
-    <span></span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <path d="M5 8H19"/>
+      <path d="M5 16H19"/>
+    </svg>
   </button>
 
   <div class="app">
@@ -43,13 +44,12 @@
         </button>
       </div>
       <nav class="primary" aria-label="Primary">
-        <a href="index.html#About">
+        <a href="index.html">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect width="18" height="18" x="3" y="3" rx="2"/>
-            <circle cx="12" cy="10" r="3"/>
-            <path d="M7 21v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M9 22V12h6v10"/>
           </svg>
-          About
+          Home
         </a>
         <a href="work.html">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -97,20 +97,39 @@
         <div class="contact-intro">
           <h1 class="h1">Wanna be friends?</h1>
           <p class="text">I'm always down to chat. Drop me a line!</p>
-          <a href="mailto:fracazo@duck.com" class="email-link">fracazo@duck.com</a>
-        </div>
-      </section>
 
-      <!-- Footer -->
-      <section class="section" aria-labelledby="footer-title">
-        <footer role="contentinfo">
-          <div class="footer-inner">
+          <ul class="social-links">
+            <li>
+              <a href="mailto:fracazo@duck.com" class="social-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2"/>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+                <span>fracazo@duck.com</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/fracazo" target="_blank" rel="noopener noreferrer" class="social-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://gitlab.com/afracazo" target="_blank" rel="noopener noreferrer" class="social-link">
+                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="m14.329 6.922-.02-.053-1.239-3.232-.668 2.044-.337 1.035H3.936L3.598 5.68l-.667-2.043-1.24 3.237-.005.01-.004.01-.018.045a2.543 2.543 0 0 0 .848 2.93l.005.004.01.008.01.008.009.006 3.302 2.474.004.004 1.644 1.242.5.379.501-.379 1.644-1.242.006-.004 3.325-2.489.007-.005.009-.007a2.543 2.543 0 0 0 .844-2.939l-.003-.008Zm.053 4.152-3.337 2.497-1.643 1.242-.999.755a.675.675 0 0 1-.813 0l-.999-.755-1.643-1.242-3.313-2.483-.018-.014-.008-.006A4.043 4.043 0 0 1 .267 6.395l.023-.057 1.9-4.963.013-.033.081-.212.023-.06.158-.413A.565.565 0 0 1 2.941.3a.576.576 0 0 1 .613.415l.134.41.005.017.078.239.011.033 1.242 3.802h5.953l1.241-3.802.011-.033.078-.24.006-.016.133-.41a.575.575 0 0 1 1.088-.058l.157.409.025.064.08.211.013.033 1.903 4.963.022.058a4.043 4.043 0 0 1-1.343 4.671l-.01.008Z"/>
+                </svg>
+                <span>GitLab</span>
+              </a>
+            </li>
+          </ul>
+
+          <footer class="contact-footer" role="contentinfo" aria-labelledby="footer-title">
             <p id="footer-title" class="text footer-location">Based in Australia. Working globally.</p>
-            <p class="text footer-links">
-              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank">LinkedIn</a>, <a href="https://gitlab.com/afracazo" target="_blank">GitLab</a>, or <a href="contact.html">reach me by email</a>.
-            </p>
-          </div>
-        </footer>
+          </footer>
+        </div>
       </section>
     </main>
   </div>
