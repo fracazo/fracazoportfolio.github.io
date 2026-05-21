@@ -751,7 +751,7 @@ main > section:first-child {
 .breadcrumb-sep { color: var(--muted); margin: 0 4px; }
 .breadcrumb span { color: var(--muted); }
 
-#work-title { margin-top: 168px; margin-bottom: 32px; }
+.work-page-title { margin-top: 168px; margin-bottom: 32px; }
 
 .work-section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 48px 0 16px 0; }
 .work-section-rule { border: 0; height: 1px; background: var(--border); margin: 0 0 24px 0; }
@@ -950,19 +950,11 @@ main > section:first-child {
 /* ========================
    Footer
    ======================== */
-/* Default footer (homepage, work, contact) - full width */
-footer {
-  width: 100%;
-}
-
 .footer-inner {
   max-width: var(--container);
   margin: 0 auto;
-  display: grid;
-  gap: 8px;
+  display: grid; gap: 8px;
 }
-
-/* Case study pages override footer to 640px - see Page: Case Studies section */
 .footer-inner .footer-title-padding { color: var(--muted); }
 .content-wrapper { color: var(--muted); }
 .footer-location {
@@ -1085,7 +1077,7 @@ footer {
    Page: Case Studies
    ======================== */
 .case-study-content {
-  max-width: 640px;
+  max-width: 800px;
   margin: 0 auto;
 }
 .case-study-main {
@@ -1239,41 +1231,10 @@ footer {
 .notice-box img { width: 24px; height: 24px; filter: brightness(0) invert(0.6); background: transparent; padding: 0; }
 .notice-box p { color: var(--muted); font-size: 14px; margin: 0; line-height: 1.8; }
 .notice-box strong { color: var(--text); }
-
-/* Up Next section - keep at content width */
-.up-next {
-  padding: 64px 0;
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.up-next h2 {
-  margin-bottom: 24px;
-}
-
-.up-next-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-@media (max-width: 800px) {
-  .up-next-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Footer alignment on case study pages only (footer is sibling of .case-study-content) */
-main:has(.case-study-content) .section:has(footer) {
-  max-width: 640px;
-  margin: 0 auto;
-}
-main:has(.case-study-content) .section:has(footer) .footer-inner {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0;
-}
-
+.up-next { padding: 48px 0; }
+.up-next h2 { margin-bottom: 24px; }
+.up-next-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 800px) { .up-next-grid { grid-template-columns: 1fr; } }
 .img-small { max-width: 400px; }
 .img-xs { max-width: 300px; }
 .img-md { max-width: 500px; }
