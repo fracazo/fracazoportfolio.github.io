@@ -163,36 +163,36 @@
           <div class="case-study-section">
             <h2>Design Explorations</h2>
 
-            <h3>Competitor analysis</h3>
-            <p>Before sketching anything, I mapped how four major tools handled the same problem:</p>
+            <h3>Competitive analysis</h3>
+            <p>Before sketching anything, I mapped how five products handled the intersection of contextual and general comments. The key distinction I was looking for: which products had both, and how did they manage the tension between them.</p>
 
             <ul>
-              <li><strong>Google Docs:</strong> Inline comment threads appear in a right panel alongside the relevant text. Comments are visible by default and float next to the content they reference. Orphaned comments (where the original text has been deleted) are surfaced with a warning. The pattern works well for small groups actively drafting content, but creates significant visual noise on longer documents.</li>
-              <li><strong>Notion:</strong> Very similar to Google Docs in concept. Highlight text, click the comment icon, comment appears in a sidebar panel. Resolved comments are hidden. The reading experience is relatively clean, but all discussions live in a sidebar that competes for space with page navigation.</li>
-              <li><strong>Confluence:</strong> Inline comments appear as highlighted text within the document body. Threads can be opened inline or in a sidebar panel. The core UX problem: highlighted text accumulates visually across the page, making older documents feel cluttered and hard to read. Confluence users specifically cited this in their feedback, describing public-facing pages as "messy" when comments were present.</li>
-              <li><strong>Coda:</strong> A hybrid model. Contextual comments appear anchored to content but are accessible from a centralised comments panel. Comments can be dismissed without resolving, and the panel can be collapsed entirely. The cleanest of the four approaches from a reading experience perspective.</li>
+              <li><strong>Google Docs and Notion:</strong> Excellent inline commenting experience. You highlight text, a comment icon appears, and the thread opens in a right-side panel anchored to that text. Clean and intuitive. The limitation: neither product has a general comments section. All discussions are contextual. That doesn't work for GitLab Wiki, where page-level discussions already exist and are widely used.</li>
+              <li><strong>Confluence:</strong> The only major tool that combines both contextual and general comments. Contextual comments appear as highlighted text inline, with threads accessible via click. General comments live at the bottom. The problem I found in user research and public reports: on high-traffic or public-facing pages, the inline highlights accumulate and make the page feel messy. Multiple people commenting simultaneously creates visual noise that's hard to navigate. This was the primary failure mode I was designing to avoid.</li>
+              <li><strong>Medium:</strong> The product that first made contextual comments mainstream. When you highlight text, a comment icon appears inline and the comment is anchored to that passage as you read. It was a widely celebrated interaction when it launched. Medium's approach is clean because it has no general comment section competing for attention, but it was the clearest reference for what the interaction should feel like.</li>
+              <li><strong>GitLab Merge Requests:</strong> GitLab already had inline commenting on code. The familiar pattern of selecting a line and adding a comment existed in the product. The question was how to adapt that for prose content in a wiki, where the anchor is a text selection rather than a line number.</li>
             </ul>
 
-            <p>I documented all four with screenshots and recordings for internal reference and shared findings directly in the issue to keep the team aligned without requiring a meeting.</p>
+            <p>The core insight from the analysis: the products with the best contextual comment UX (Google Docs, Notion, Medium) had no general comment section. The only product with both (Confluence) had the messy page problem. GitLab needed both and couldn't afford the Confluence problem. That framed the design challenge clearly.</p>
 
-            <h3>Three approaches rejected</h3>
-            <p>I recorded a short walkthrough covering three approaches I explored and ultimately rejected:</p>
+            <h3>Three approaches explored</h3>
+            <p>I recorded a 13-minute walkthrough presenting the full competitive analysis and three design directions to the team for async review and feedback:</p>
 
             <div class="wiki-cc-video">
               <div class="wiki-cc-video-embed">
                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/k_K77qX_lNw" title="Wiki Contextual Comments: Design Explorations" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
-              <p class="glql-video-caption">13-minute walkthrough covering the three rejected approaches and the proposed solution. Shared in the issue for async review by the PM and engineers.</p>
+              <p class="glql-video-caption">13-minute walkthrough covering the competitive analysis, three design explorations, and the proposed layout direction. Shared in the issue for async review by the PM and engineers.</p>
             </div>
 
-            <p><strong>Approach 1: Simple integration.</strong> Select text, a comment button appears, clicking scrolls you to the bottom comments section with the context pre-filled. Rejected because on long documents the scroll behaviour was jarring and broke the reading flow. The connection between the highlighted text and the bottom comment felt too tenuous.</p>
+            <p><strong>Approach 1: Simple integration.</strong> Select text, a comment button appears, and clicking it scrolls the page to the general comments section with the selected text pre-filled as context. The simplest implementation path. Rejected because on long wiki pages, the auto-scroll behaviour was jarring and broke the reading flow. More importantly, it didn't actually give users contextual comments while reading — the comment lived at the bottom, disconnected from the content it referred to. That defeated the purpose.</p>
 
-            <p><strong>Approach 2: Google Docs style.</strong> Full inline comments rendered alongside the selected text in the document area. Rejected because GitLab Wiki already had a general comment section at the bottom. Having two comment surfaces with no clear relationship between them would confuse users and create duplicate discussions. It also directly replicated the Confluence "messy page" problem we were trying to avoid.</p>
+            <p><strong>Approach 2: Floating comments (Google Docs style).</strong> Contextual comments appear as floating threads anchored next to the selected text, with the same thread also visible in the general comments section at the bottom. Rejected because it created direct duplication: the same comment appeared in two places simultaneously. This created the exact Confluence problem — a messy, repetitive page where the same discussions surfaced multiple times. It also raised an unresolved question about which surface was the source of truth.</p>
 
-            <p><strong>Approach 3: Tabbed sidebar.</strong> A right-hand sidebar with tabs for Pages, Table of Contents, and Comments. Rejected because hidden comments would increase the risk of duplicate discussions. Users arriving at a page wouldn't know a discussion was already in progress. The discoverability was too low.</p>
+            <p><strong>Approach 3: Tabbed sidebar.</strong> A right-side sidebar with tabs for Pages, Table of Contents, and Comments. Contextual comments would live in the Comments tab. Rejected because comments were hidden by default — users arriving at a page would have no indication that a discussion was already in progress. The discoverability was too low, and the risk of duplicate discussions being started in Slack or email remained high.</p>
 
             <h3>The layout problem underlying all three</h3>
-            <p>All three approaches failed for a shared reason: the existing wiki layout didn't have a dedicated space for persistent comments. Solving contextual comments well required first solving the layout. That insight shifted the scope of the project.</p>
+            <p>All three approaches failed for the same underlying reason: the existing wiki layout had no dedicated, always-visible space for comments. The table of contents occupied the right side of the page, leaving nowhere to surface contextual discussions without either hiding them or duplicating them. Solving the comment UX well required first solving the layout. That realisation shifted the scope of the project from a feature design to a structural one.</p>
           </div>
 
           <div class="case-study-section">
