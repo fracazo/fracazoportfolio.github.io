@@ -222,7 +222,16 @@
 
             <p>As soon as we placed the AI-generated summary directly on the MR page, we started receiving feedback we hadn't seen before. Users reported problems with output quality. Our first instinct was to fix the prompts, and we made several improvements, but the summaries still weren't always correct. We were also dealing with real technical issues: summaries generating as random characters, encoding failures, content length problems, and issues with binary files in diffs.</p>
 
-            <p>After collecting more of this feedback, I ran a Qualtrics survey with a broader set of users. The survey confirmed two core problems that prompt improvements alone couldn't fix:</p>
+            <p>After collecting more of this feedback, I recorded a 10-minute walkthrough for the team presenting the workflow problems, research insights, and recommendations before running a broader Qualtrics survey.</p>
+
+            <div class="wiki-cc-video">
+              <div class="wiki-cc-video-embed">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/yLQDJKmplVc" title="Recommendations for AI feature: Summarise changes in a Merge Request" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <p class="glql-video-caption">Walkthrough presenting the identified workflow problems, user research insights, and the recommendation to pivot from reviewer-facing summary to author-facing writing assistant.</p>
+            </div>
+
+            <p>The Qualtrics survey confirmed two core problems that prompt improvements alone couldn't fix:</p>
 
             <ul>
               <li><strong>Lack of user trust.</strong> Users didn't trust the AI-generated summary, even when it was accurate. The presence of an AI summary alongside a human description created doubt about which one was correct. Users reported spending time cross-checking the two rather than trusting either.</li>
