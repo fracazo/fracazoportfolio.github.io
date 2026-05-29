@@ -24,6 +24,10 @@
     .case-metadata-card .case-hero-image { height: 160px; width: auto; object-fit: cover; max-height: 160px; }
     @media (max-width: 768px) {
       .case-metadata-card .case-hero-image { display: none; }
+      /* Prevent code blocks from causing horizontal page overflow */
+      .glql-syntax-group { min-width: 0; }
+      .glql-syntax-card { min-width: 0; overflow: hidden; }
+      .glql-code { white-space: pre-wrap; word-break: break-all; }
     }
   </style>
 </head>
