@@ -189,11 +189,17 @@
 
             <p><strong>To-do and email notifications.</strong> When you are requested to review an MR, the AI summary appears in your to-do item and email notification. You arrive at the MR already oriented.</p>
 
+            <img src="../images/To_do_list_-_summary.png" alt="To-do list showing AI-generated MR summary" class="gitlab-contrib-img">
+
             <p><strong>Summary side drawer on the MR page.</strong> Clicking the ellipsis menu reveals a "View Summary Notes" option. This opens a side drawer showing a chronological history of all summaries. Each entry includes a header with a title, an "Experimental" label, and copy stating "Summaries are written by AI" to clearly communicate that users are interacting with AI-generated content.</p>
+
+            <img src="../images/MR_-_Summary_notes_-_side_drawer.png" alt="MR summary notes side drawer" class="gitlab-contrib-img">
 
             <p><strong>Chronological summary list.</strong> Organized by time, showing when commits were made, summaries auto-generated, and when reviewers submitted their reviews. A timeline of the MR's evolution rather than a static snapshot.</p>
 
             <p><strong>Email consolidation.</strong> Rather than multiple notification emails, we consolidated into a single email per MR with all changes summarized together.</p>
+
+            <img src="../images/summay_email.png" alt="Email notification with AI-generated MR summary" class="gitlab-contrib-img">
 
             <h3>Design decisions and tradeoffs</h3>
             <p>I had designed a versioned approach with a dropdown to show only the latest summary, with historical versions accessible via progressive disclosure. The team decided to ship the flat chronological list first to test as an experiment before adding complexity. The right call for the stage we were at.</p>
