@@ -195,10 +195,6 @@
 
             <p><strong>Email consolidation.</strong> Rather than multiple notification emails, we consolidated into a single email per MR with all changes summarized together.</p>
 
-            <img src="../images/merge_request_ai_summary.gif" alt="Merge request AI summary side drawer in action" class="gitlab-contrib-img">
-
-            <p class="img-caption">The summary side drawer, showing the chronological list of AI-generated summaries with Experimental labelling and AI attribution copy.</p>
-
             <h3>Design decisions and tradeoffs</h3>
             <p>I had designed a versioned approach with a dropdown to show only the latest summary, with historical versions accessible via progressive disclosure. The team decided to ship the flat chronological list first to test as an experiment before adding complexity. The right call for the stage we were at.</p>
 
@@ -215,6 +211,9 @@
 
           <div class="case-study-section">
             <h2>The Pivot: Trust and Control</h2>
+
+            <img src="../images/merge_request_ai_summary.gif" alt="Merge request AI summary side drawer in action" class="gitlab-contrib-img">
+            <p class="img-caption">The summary side drawer shipped in Iteration 2 — chronological AI-generated summaries with Experimental labelling and AI attribution copy.</p>
 
             <p>As soon as we placed the AI-generated summary directly on the MR page, we started receiving feedback we hadn't seen before. Users reported problems with output quality. Our first instinct was to fix the prompts, and we made several improvements, but the summaries still weren't always correct. We were also dealing with real technical issues: summaries generating as random characters, encoding failures, content length problems, and issues with binary files in diffs.</p>
 
