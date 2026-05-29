@@ -25,7 +25,22 @@
     .case-study-section { padding-top: 0; }
     .gl-work-row-link { color: var(--muted); text-decoration: none; transition: color 0.15s ease; }
     .gl-work-row-link:hover { color: var(--brand); }
-    .case-hero-image { height: 160px; width: auto; object-fit: cover; }
+
+    /* Constrain pattern SVG — override global mobile reset with higher specificity */
+    .case-metadata-card .case-hero-image { height: 160px; width: auto; object-fit: cover; max-height: 160px; }
+    @media (max-width: 768px) {
+      .case-metadata-card .case-hero-image { width: 100%; height: 160px; max-height: 160px; }
+    }
+
+    /* Work list — wrap on mobile */
+    @media (max-width: 600px) {
+      .gl-work-row { flex-wrap: wrap; gap: 4px; padding: 12px 0; }
+      .gl-work-row-left { flex-wrap: wrap; gap: 6px; }
+      .gl-work-row-title { white-space: normal; }
+      .gl-work-row-type { white-space: normal; }
+      .gl-work-row-sep { display: none; }
+      .gl-work-row-date { width: 100%; margin-top: 2px; }
+    }
   </style>
 </head>
 <body>

@@ -21,7 +21,10 @@
   <link href="../css/styles.css" rel="stylesheet">
   <style>
     /* Wiki Contextual Comments page overrides — scoped to this page only */
-    .case-hero-image { height: 160px; width: auto; object-fit: cover; }
+    .case-metadata-card .case-hero-image { height: 160px; width: auto; object-fit: cover; max-height: 160px; }
+    @media (max-width: 768px) {
+      .case-metadata-card .case-hero-image { width: 100%; height: 160px; max-height: 160px; }
+    }
   </style>
 </head>
 <body>
