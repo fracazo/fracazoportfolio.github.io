@@ -224,16 +224,30 @@
             <p>Floating comments alongside the text (a Phase 2 vision) were explicitly scoped out of the MVC after discussion with the PM and the lead engineer. I documented this decision in the issue so there was no ambiguity about what was in scope for the first engineering sprint.</p>
 
             <h3>Design critique session</h3>
-            <p>I presented the proposed solution and the full design system at a design critique session with the team. The session covered the sidebar and comments interaction, the triggering mechanisms for starting a new comment, and the placement trade-offs between floating and sidebar approaches.</p>
+            <p>I ran a 53-minute design critique with the PM, two senior engineers, and a staff designer. I structured it with a clear agenda: competitive reference, two triggering options, the floating vs. sidebar question, comment duplication, and resolved thread handling. The session produced several concrete decisions.</p>
 
             <div class="wiki-cc-video">
               <div class="wiki-cc-video-embed">
                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/67UZDRRE7gQ" title="Design Critique: Wiki Sidebar and Contextual Comments" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
-              <p class="glql-video-caption">Design critique session recording. Covers the sidebar repositioning rationale, contextual comment triggering approaches, and team discussion on floating vs. sidebar placement.</p>
+              <p class="glql-video-caption">Full design critique session recording. Covers triggering mechanisms, floating vs. sidebar placement, comment duplication, resolved threads, orphaned comments, and edit mode integration.</p>
             </div>
 
-            <p>The team concluded the session with agreement to move forward with the sidebar model for MVC and to create mockups covering both edit and read modes.</p>
+            <h3>Key decisions from the session</h3>
+
+            <p><strong>Triggering mechanism: text selection wins over line hover.</strong> I presented two options. Option 1 showed a comment button when text was selected. Option 2 adapted GitLab's MR inline comment pattern, showing an icon on line hover. The team aligned on Option 1. Line hover worked well for code because comments anchored to a whole line, but for prose you want to select any fragment of text, as granular as a single word. Text selection was more specific, matched Google Docs, and was easier to discover.</p>
+
+            <p><strong>One unified comment panel, no duplication.</strong> I asked directly whether contextual comments should also appear in the general comments section at the bottom. The discussion was substantive. The team landed on a single centralised panel where everything lived together, with contextual comments showing their quoted text anchor and general comments appearing at the bottom of the same feed. The distinction between "inline" and "general" was removed. As one engineer put it: "Just everything is a comment. If it has a quote block attached to it, it's a line-level comment. If it doesn't, it's a doc comment." I synthesised that into the design direction immediately.</p>
+
+            <p><strong>Sidebar first, floating comments as a future phase.</strong> The team was genuinely excited by the floating comment explorations I showed in Figma, but we reasoned through the tradeoffs together. Floating comments have a specific advantage: you can see the comment in context while reading. But they also have real problems: multiple comments on adjacent words become hard to distinguish, they don't work when you're in edit mode since they'd be obscured by the editor, and they add significant engineering complexity. The sidebar gave us a single consistent location, worked in both read and edit modes, and was the right place to start. I proposed adding the floating concept to the design system as a documented future direction, which meant engineering could plan for it without it blocking the MVC.</p>
+
+            <p><strong>Auto-collapsing the wiki nav.</strong> I proposed that when a user opens the comments panel, the wiki page navigation collapses automatically to free up space. The reasoning was simple: if you are interacting with the comments sidebar, there is no realistic scenario where you also need the page navigation open at the same time. The team agreed. Users could still manually reopen the nav if needed, but the default behaviour would keep the layout clean.</p>
+
+            <p><strong>Orphaned comments.</strong> I raised the edge case of what happens when someone comments on a specific passage and the author later edits or deletes that text. I came prepared with how Google Docs handles it, surfacing orphaned comments with a visual indicator. The team agreed GitLab should handle it similarly: keep the comment visible in the panel with the original quoted text preserved, and add a status indicator to show the anchor is gone. This was captured as a design requirement for the MVC.</p>
+
+            <p><strong>Resolved threads.</strong> The team aligned on following the design management pattern: resolving a thread removes the highlight from the content and moves the thread to a collapsed "resolved" section in the panel. This gave authors a clear way to close out feedback without losing the record.</p>
+
+            <p>At the end of the session I committed to mocking up the unified comment panel, the edit mode interaction, and the floating comment concept as a documented future vision. All three were delivered in the subsequent design iteration.</p>
 
 
           </div>
