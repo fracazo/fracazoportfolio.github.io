@@ -26,10 +26,11 @@
     .gl-work-row-link { color: var(--muted); text-decoration: none; transition: color 0.15s ease; }
     .gl-work-row-link:hover { color: var(--brand); }
 
-    /* Constrain pattern SVG — override global mobile reset with higher specificity */
+    /* Constrain pattern SVG on desktop */
     .case-metadata-card .case-hero-image { height: 160px; width: auto; object-fit: cover; max-height: 160px; }
+    /* Hide decorative pattern image on mobile — adds no value at small sizes */
     @media (max-width: 768px) {
-      .case-metadata-card .case-hero-image { width: 100%; height: 160px; max-height: 160px; }
+      .case-metadata-card .case-hero-image { display: none; }
     }
 
     /* Work list — wrap on mobile */
