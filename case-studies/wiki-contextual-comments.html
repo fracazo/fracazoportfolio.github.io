@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Wiki Contextual Comments - Alex Fracazo</title>
+  <meta content="Designing contextual discussions for GitLab Wiki, positioning it as a competitive alternative to Confluence and Notion for async collaboration." name="description">
+  <meta content="Wiki Contextual Comments - Alex Fracazo" property="og:title">
+  <meta content="Designing contextual discussions for GitLab Wiki, positioning it as a competitive alternative to Confluence and Notion for async collaboration." property="og:description">
+  <meta content="../images/opengraph.jpg" property="og:image">
+  <meta content="Wiki Contextual Comments - Alex Fracazo" property="twitter:title">
+  <meta content="Designing contextual discussions for GitLab Wiki, positioning it as a competitive alternative to Confluence and Notion for async collaboration." property="twitter:description">
+  <meta content="../images/opengraph.jpg" property="twitter:image">
+  <meta property="og:type" content="website">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="../images/favicon.svg" rel="shortcut icon" type="image/x-icon">
+  <link href="../images/webclip.svg" rel="apple-touch-icon">
+
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Mobile Menu Button -->
+  <button class="hamburger" aria-label="Toggle menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <path d="M5 8H19"/>
+      <path d="M5 16H19"/>
+    </svg>
+  </button>
+
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="brand" aria-label="Home">
+          <span>Alex Fracazo</span>
+        </a>
+        <button class="sidebar-close" aria-label="Close menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="case-study-nav" aria-label="Case study navigation">
+        <a href="gitlab.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Back to GitLab
+        </a>
+        <div class="case-nav-title">
+          <h2>On this page</h2>
+        </div>
+        <ul class="toc-list"></ul>
+      </nav>
+      <div class="sidebar-actions">
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+          <span class="theme-tooltip theme-tooltip-light" aria-hidden="true">Switch to light mode</span>
+          <span class="theme-tooltip theme-tooltip-dark" aria-hidden="true">Switch to dark mode</span>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop"></div>
+
+    <!-- Main content -->
+    <main id="content" role="main">
+      <section class="section case-study-content">
+        <div class="case-study-main">
+
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a><span class="breadcrumb-sep"> &gt; </span><a href="../work.html">Work</a><span class="breadcrumb-sep"> &gt; </span><a href="gitlab.html">GitLab</a><span class="breadcrumb-sep"> &gt; </span><span>Wiki Contextual Comments</span>
+          </nav>
+
+          <header class="case-header">
+            <h1 class="case-title">Wiki Contextual Comments</h1>
+            <div class="case-metadata-card">
+              <img src="../images/gitlab-pattern.svg" alt="GitLab" class="case-hero-image">
+              <div class="metadata-content">
+                <div class="metadata-item">
+                  <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M6 3.75A2.75 2.75 0 0 1 8.75 1h2.5A2.75 2.75 0 0 1 14 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 0 1 6 4.193V3.75Zm6.5 0v.325a41.622 41.622 0 0 0-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25ZM10 10a1 1 0 0 0-1 1v.01a1 1 0 0 0 1 1h.01a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1H10Z" clip-rule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 0 1-9.274 0C3.985 17.585 3 16.402 3 15.055Z"/></svg>
+                  <div class="metadata-text">
+                    <p class="metadata-label">Product</p>
+                    <p class="metadata-value">GitLab Wiki</p>
+                  </div>
+                </div>
+                <div class="metadata-item">
+                  <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clip-rule="evenodd"/></svg>
+                  <div class="metadata-text">
+                    <p class="metadata-label">Platform</p>
+                    <p class="metadata-value">GitLab Web (SaaS &amp; Self-managed)</p>
+                  </div>
+                </div>
+                <div class="metadata-item">
+                  <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
+                  <div class="metadata-text">
+                    <p class="metadata-label">Role</p>
+                    <p class="metadata-value">Sole Product Designer</p>
+                  </div>
+                </div>
+                <div class="metadata-item">
+                  <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clip-rule="evenodd"/></svg>
+                  <div class="metadata-text">
+                    <p class="metadata-label">Year</p>
+                    <p class="metadata-value">2025</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="case-intro">Designed a contextual commenting system for GitLab Wiki that lets users comment on specific sections of content without the visual clutter seen in Confluence. Completed a full design spike, conducted extensive competitor analysis across Google Docs, Notion, Confluence, and Coda, and delivered designs that are now in active engineering development.</p>
+          </header>
+
+          <div class="summary-card">
+            <h2><img src="../images/bookmark.svg" alt="" width="24"> Summary</h2>
+            <p>GitLab Wiki had a comments section at the bottom of every page, but discussions about specific content happened scattered across Slack, email, and meetings. There was no way to tie a conversation to the exact line of text it referred to. This was a well-understood competitive gap against Confluence and Notion. I was assigned a design spike to solve it, and what started as a scoped exploration became a full design system: a hybrid sidebar and contextual comment approach that addressed the "messy page" problem that Confluence users consistently complained about.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>My Role and Context</h2>
+
+            <h3>Starting from a spike</h3>
+            <p>This work began as a product design spike, issue #509789, created by the PM to scope the problem before committing to a full design cycle. I was assigned to it and took ownership of the design direction from day one. There was no brief beyond the problem statement. I had to define the constraints, conduct the competitor research, propose the architecture, and get cross-functional alignment, all while keeping the PM and two senior engineers in the loop asynchronously.</p>
+
+            <p>The challenge wasn't just designing a commenting feature. It was deciding where comments should live in an interface that already had comments at the bottom, a sidebar navigation on the right, and a full-width reading area. Adding a new discussion layer to this without breaking the existing mental model required thinking about the wiki layout as a whole, not just as a UI component.</p>
+
+            <h3>The broader wiki context</h3>
+            <p>This project ran in parallel with the Wiki Sidebar Redesign, where I was also rethinking how the sidebar navigation worked. Moving the sidebar from right to left was partly motivated by this project. A left-positioned navigation would free up the right side of the screen for a comments panel, making the two projects architecturally connected. I was designing both at the same time, which required keeping a consistent layout vision across separate issues and separate engineering conversations.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Problem Definition</h2>
+
+            <h3>Where discussions were actually happening</h3>
+            <p>The existing wiki experience had a general comments section at the bottom of every page. In practice, this created several problems:</p>
+
+            <ul>
+              <li>Comments at the bottom had no connection to the specific text they referred to. A reviewer would leave a note like "the third paragraph is unclear" and the author had to hunt for the context.</li>
+              <li>Substantive discussions about content happened in Slack or email, creating a permanent disconnect between the decision and the document it informed.</li>
+              <li>There was no way to track whether a piece of feedback had been addressed or resolved. Comments lived at the bottom indefinitely with no status.</li>
+            </ul>
+
+            <p>This wasn't a niche problem. It was a core reason teams used Confluence or Notion instead of GitLab Wiki for collaborative documentation. Both products had solved inline commenting years earlier.</p>
+
+            <h3>The competitive gap</h3>
+            <p>GitLab's positioning for the Knowledge team was to make Wiki a genuine Confluence alternative for teams already working in GitLab. Contextual comments were a table-stakes feature for that positioning. The question wasn't whether to build them. It was how to build them without the problems that Confluence users consistently reported.</p>
+
+            <p>The most cited complaint about Confluence's inline comments: they made pages visually messy, especially on public-facing or high-traffic documentation. Comments accumulated over time, could no longer be resolved if the underlying text changed, and created a fragmented reading experience for anyone who hadn't participated in the discussion. That was the problem to avoid.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Design Explorations</h2>
+
+            <h3>Competitor analysis</h3>
+            <p>Before sketching anything, I mapped how four major tools handled the same problem:</p>
+
+            <ul>
+              <li><strong>Google Docs:</strong> Inline comment threads appear in a right panel alongside the relevant text. Comments are visible by default and float next to the content they reference. Orphaned comments (where the original text has been deleted) are surfaced with a warning. The pattern works well for small groups actively drafting content, but creates significant visual noise on longer documents.</li>
+              <li><strong>Notion:</strong> Very similar to Google Docs in concept. Highlight text, click the comment icon, comment appears in a sidebar panel. Resolved comments are hidden. The reading experience is relatively clean, but all discussions live in a sidebar that competes for space with page navigation.</li>
+              <li><strong>Confluence:</strong> Inline comments appear as highlighted text within the document body. Threads can be opened inline or in a sidebar panel. The core UX problem: highlighted text accumulates visually across the page, making older documents feel cluttered and hard to read. Confluence users specifically cited this in their feedback, describing public-facing pages as "messy" when comments were present.</li>
+              <li><strong>Coda:</strong> A hybrid model. Contextual comments appear anchored to content but are accessible from a centralised comments panel. Comments can be dismissed without resolving, and the panel can be collapsed entirely. The cleanest of the four approaches from a reading experience perspective.</li>
+            </ul>
+
+            <p>I documented all four with screenshots and recordings for internal reference and shared findings directly in the issue to keep the team aligned without requiring a meeting.</p>
+
+            <h3>Three approaches rejected</h3>
+            <p>My first video walkthrough covered three approaches I explored and ultimately rejected:</p>
+
+            <div class="wiki-cc-video">
+              <div class="wiki-cc-video-embed">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/k_K77qX_lNw" title="Wiki Contextual Comments: Design Explorations" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <p class="glql-video-caption">10-minute walkthrough covering the competitive analysis, three rejected approaches, and the proposed solution. Shared in the issue for async review by the PM and engineers.</p>
+            </div>
+
+            <p><strong>Approach 1: Simple integration.</strong> Select text, a comment button appears, clicking scrolls you to the bottom comments section with the context pre-filled. Rejected because on long documents the scroll behaviour was jarring and broke the reading flow. The connection between the highlighted text and the bottom comment felt too tenuous.</p>
+
+            <p><strong>Approach 2: Google Docs style.</strong> Full inline comments rendered alongside the selected text in the document area. Rejected because GitLab Wiki already had a general comment section at the bottom. Having two comment surfaces with no clear relationship between them would confuse users and create duplicate discussions. It also directly replicated the Confluence "messy page" problem we were trying to avoid.</p>
+
+            <p><strong>Approach 3: Tabbed sidebar.</strong> A right-hand sidebar with tabs for Pages, Table of Contents, and Comments. Rejected because hidden comments would increase the risk of duplicate discussions. Users arriving at a page wouldn't know a discussion was already in progress. The discoverability was too low.</p>
+
+            <h3>The layout problem underlying all three</h3>
+            <p>All three approaches failed for a shared reason: the existing wiki layout didn't have a dedicated space for persistent comments. Solving contextual comments well required first solving the layout. That insight shifted the scope of the project.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Proposed Solution</h2>
+
+            <h3>A hybrid sidebar approach</h3>
+            <p>The proposed solution restructured the wiki page layout to create a dedicated right-side comments panel. The key elements of the approach:</p>
+
+            <ul>
+              <li><strong>Sidebar repositioned to the left.</strong> Moving the wiki page navigation from right to left freed the right side of the screen for comments without adding a third column or compressing the reading area.</li>
+              <li><strong>Minimal contextual indicators in the content.</strong> Rather than rendering full comment threads inline (the Confluence approach), a small indicator appears next to highlighted text. One floating comment bubble per highlight, not a full thread. The content stays readable.</li>
+              <li><strong>Clicking the indicator navigates to the thread in the sidebar.</strong> The full thread lives in the right-side comments panel alongside the document. This gave users the thread context they needed without the visual clutter of inline rendering.</li>
+              <li><strong>General comments and contextual comments unified in one panel.</strong> Rather than creating two separate comment surfaces, both types of comments appeared in the same right-side panel, with contextual comments anchored to their source text and general comments at the bottom. One source of truth for all page discussions.</li>
+            </ul>
+
+            <p>The tradeoff I acknowledged directly with the PM: navigating to the thread required one extra click compared to a purely inline model. The team agreed this was an acceptable tradeoff to preserve the reading experience, especially for public-facing wiki pages.</p>
+
+            <h3>MVC scope</h3>
+            <p>After the design critique session (linked below), we aligned on a clear MVC scope:</p>
+
+            <ul>
+              <li>Sidebar comments panel (right side)</li>
+              <li>Contextual indicators on highlighted text</li>
+              <li>Centralised comments view showing all discussions in one space</li>
+              <li>Resolved thread status indicators</li>
+              <li>Handling for deleted or edited content within comment threads</li>
+            </ul>
+
+            <p>Floating comments alongside the text (a Phase 2 vision) were explicitly scoped out of the MVC after discussion with the PM and the lead engineer. I documented this decision in the issue so there was no ambiguity about what was in scope for the first engineering sprint.</p>
+
+            <h3>Design critique session</h3>
+            <p>I presented the proposed solution and the full design system at a design critique session with the team. The session covered the sidebar and comments interaction, the triggering mechanisms for starting a new comment, and the placement trade-offs between floating and sidebar approaches.</p>
+
+            <div class="wiki-cc-video">
+              <div class="wiki-cc-video-embed">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/67UZDRRE7gQ" title="Design Critique: Wiki Sidebar and Contextual Comments" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <p class="glql-video-caption">Design critique session recording. Covers the sidebar repositioning rationale, contextual comment triggering approaches, and team discussion on floating vs. sidebar placement.</p>
+            </div>
+
+            <p>The team concluded the session with agreement to move forward with the sidebar model for MVC and to create mockups covering both edit and read modes.</p>
+
+            <h3>Detailed walkthrough</h3>
+            <p>After the critique, I iterated on the designs and recorded a second, more detailed walkthrough covering the final direction:</p>
+
+            <div class="wiki-cc-video">
+              <div class="wiki-cc-video-embed">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/4TwgT7mn4dw" title="Wiki Contextual Comments: Detailed Design Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <p class="glql-video-caption">Detailed design walkthrough after the critique session. Covers the full MVC design system including the centralised comments view, resolved thread handling, and the sidebar architecture.</p>
+            </div>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Cross-functional Process</h2>
+
+            <h3>Working async with engineers</h3>
+            <p>This project involved two senior engineers with strong opinions about the implementation: Janis Altherr, who had deep familiarity with the wiki frontend, and Alexandru Croitor, who raised early engineering concerns about comment state management.</p>
+
+            <p>Janis had been thinking about the wiki layout problem independently and came to the design critique with a concrete suggestion: auto-collapse the super sidebar when a wiki page is opened and position a wiki-specific sidebar on the left. His thinking aligned closely with my own direction, which accelerated the layout decision significantly. Getting alignment from an engineer who had already thought through the constraints saved multiple back-and-forth cycles.</p>
+
+            <p>Alexandru raised a question about whether the new comment box should open in the sidebar or as a modal when the floating comment button was clicked. Janis weighed in directly in the issue thread, noting that a modal was slightly easier from an engineering standpoint but that building a shared store was a better long-term investment regardless. The discussion concluded in the issue without needing a meeting, and the design decision was made based on the ultimate UX vision rather than the short-term engineering convenience.</p>
+
+            <h3>Handling hard questions</h3>
+            <p>Two significant edge case questions came up during the cross-functional review:</p>
+
+            <p><strong>What happens when the original text is deleted?</strong> If a user comments on a specific paragraph and the author then deletes or rewrites that paragraph, the contextual anchor breaks. This is a known problem in Google Docs, which surfaces orphaned comments with a warning. I documented the GitLab approach for this in the designs: orphaned comments surface in the centralised view with a "content removed" indicator, giving users visibility without breaking the reading experience.</p>
+
+            <p><strong>Do contextual comments work in both the markdown and rich text editors?</strong> The PM flagged this as a requirement for a complete solution. I scoped the edit mode designs into a separate issue (#560758) to keep the MVC focused while ensuring the problem was captured and tracked. The two issues were linked so engineering could plan both in sequence.</p>
+
+            <h3>Shipping the handoff</h3>
+            <p>After the PM reviewed the complete designs and left comments, I iterated, updated the design management section in the issue with the final files, and changed the status to In Dev. The PM confirmed all designs were complete and closed the spike issue. The feature moved into the engineering Beta epic for implementation.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Outcomes</h2>
+
+            <h3>What shipped from this work</h3>
+            <ul>
+              <li>Complete MVC design system for contextual comments on wiki pages, covering default view, hover state, comment creation, centralised comments view, resolved thread states, and multi-comment scenarios</li>
+              <li>Designs for both the comments sidebar in read mode and the integration with the wiki layout restructure</li>
+              <li>Clear documentation of scope decisions (MVC vs. Phase 2 floating comments) in the issue, reducing ambiguity at engineering handoff</li>
+              <li>The feature moved to In Dev status and is tracked in the Wiki Contextual Discussions Beta epic for implementation</li>
+            </ul>
+
+            <h3>What I'd approach differently</h3>
+            <p>The scope creep from a design spike to a full layout redesign was the right call, but it took longer than expected to get explicit alignment on the fact that we were now designing a layout change, not just a commenting feature. I'd surface that scope shift earlier and more explicitly next time, with a clear framing like: "solving this well requires changing the page layout. Are we aligned on that?" rather than discovering the connection mid-exploration.</p>
+
+            <p>I'd also push earlier for a prototype users could interact with. Most of the design review happened through video walkthroughs and static designs, which worked well for the team but wouldn't be sufficient if we run solution validation before the engineering build completes. Having a clickable prototype ready earlier would make that research easier to execute.</p>
+
+            <h3>Broader impact</h3>
+            <p>This project, combined with the sidebar redesign, set the architectural foundation for GitLab Wiki as a Confluence alternative. Contextual comments were the single most-requested feature in competitive comparisons. Completing the design system positions the team to ship a feature that directly addresses the gap that drives teams toward Confluence, on a product they are already using for code and project management.</p>
+          </div>
+
+        </div><!-- /case-study-main -->
+      </section>
+
+      <!-- Footer -->
+      <section class="section" aria-labelledby="footer-title">
+        <footer role="contentinfo">
+          <div class="footer-inner">
+            <p id="footer-title" class="text footer-location">Based in Australia. Working globally.</p>
+            <p class="text footer-links">
+              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://gitlab.com/afracazo" target="_blank" rel="noopener">GitLab</a>, or <a href="../contact.html">reach me by email</a>.
+            </p>
+          </div>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <!-- Dyslexia-friendly reading (session-only) -->
+  <button id="dyslexia-fab" class="dyslexia-fab">
+    <span class="dyslexia-fab-icon">Aa</span>
+    <span class="dyslexia-tooltip">Dyslexic friendly</span>
+  </button>
+
+  <script>
+  (function() {
+    const KEY = 'theme';
+    const root = document.documentElement;
+    const saved = localStorage.getItem(KEY);
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initial = saved ? saved : (prefersLight ? 'light' : 'dark');
+    applyTheme(initial);
+    function applyTheme(mode) {
+      root.classList.toggle('light', mode === 'light');
+      localStorage.setItem(KEY, mode);
+    }
+    function toggleTheme() {
+      const isLight = root.classList.contains('light');
+      applyTheme(isLight ? 'dark' : 'light');
+    }
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
+  })();
+
+  (function() {
+    const root = document.documentElement;
+    const btn = document.getElementById('dyslexia-fab');
+    if (!btn) return;
+    function updateActive() {
+      btn.classList.toggle('active', root.classList.contains('dyslexia-mode'));
+      btn.setAttribute('aria-pressed', root.classList.contains('dyslexia-mode'));
+    }
+    btn.addEventListener('click', function() {
+      root.classList.toggle('dyslexia-mode');
+      updateActive();
+    });
+    updateActive();
+  })();
+
+  (function() {
+    const hamburger = document.querySelector('.hamburger');
+    const closeBtn = document.querySelector('.sidebar-close');
+    const backdrop = document.querySelector('.sidebar-backdrop');
+    function openSidebar() { document.body.classList.add('sidebar-open'); }
+    function closeSidebar() { document.body.classList.remove('sidebar-open'); }
+    if (hamburger) hamburger.addEventListener('click', openSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (backdrop) backdrop.addEventListener('click', closeSidebar);
+    document.querySelectorAll('.sidebar .case-study-nav a, .sidebar .back-link').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+  })();
+
+  (function() {
+    const tocList = document.querySelector('.case-study-nav .toc-list');
+    if (!tocList) return;
+    const content = document.querySelector('.case-study-content');
+    if (!content) return;
+    const headings = content.querySelectorAll('.summary-card h2, .case-study-section h2');
+    if (headings.length === 0) return;
+    const seen = {};
+    function slugify(text) {
+      const raw = text.replace(/<[^>]+>/g, '').trim().toLowerCase()
+        .replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+      const id = seen[raw] ? raw + '-' + (++seen[raw]) : (seen[raw] = 1, raw);
+      return id;
+    }
+    headings.forEach(function(h) {
+      const id = h.id || slugify(h.textContent);
+      if (!h.id) h.id = id;
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#' + id;
+      a.className = 'toc-link';
+      a.textContent = h.textContent.replace(/\s*\[.*?\]\s*/g, '').trim();
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, null, '#' + id);
+      });
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+    const links = tocList.querySelectorAll('.toc-link');
+    const io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        links.forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      });
+    }, { rootMargin: '-100px 0px -80% 0px', threshold: 0 });
+    headings.forEach(function(h) { io.observe(h); });
+  })();
+  </script>
+
+</body>
+</html>
