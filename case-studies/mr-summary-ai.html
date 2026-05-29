@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Summarize Merge Request with AI - Alex Fracazo</title>
+  <meta content="How three iterations and a Qualtrics survey reshaped an AI feature from reviewer-facing summary to author-facing writing assistant." name="description">
+  <meta content="Summarize Merge Request with AI - Alex Fracazo" property="og:title">
+  <meta content="How three iterations and a Qualtrics survey reshaped an AI feature from reviewer-facing summary to author-facing writing assistant." property="og:description">
+  <meta content="../images/opengraph.jpg" property="og:image">
+  <meta content="Summarize Merge Request with AI - Alex Fracazo" property="twitter:title">
+  <meta content="How three iterations and a Qualtrics survey reshaped an AI feature from reviewer-facing summary to author-facing writing assistant." property="twitter:description">
+  <meta content="../images/opengraph.jpg" property="twitter:image">
+  <meta property="og:type" content="website">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="../images/favicon.svg" rel="shortcut icon" type="image/x-icon">
+  <link href="../images/webclip.svg" rel="apple-touch-icon">
+
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+  <style>
+    /* MR Summary AI page overrides — scoped to this page only */
+    .case-metadata-card .case-hero-image { height: 160px; width: auto; object-fit: cover; max-height: 160px; }
+    @media (max-width: 768px) {
+      .case-metadata-card .case-hero-image { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Mobile Menu Button -->
+  <button class="hamburger" aria-label="Toggle menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <path d="M5 8H19"/>
+      <path d="M5 16H19"/>
+    </svg>
+  </button>
+
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="brand" aria-label="Home">
+          <span>Alex Fracazo</span>
+        </a>
+        <button class="sidebar-close" aria-label="Close menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="case-study-nav" aria-label="Case study navigation">
+        <a href="gitlab.html" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Back to GitLab
+        </a>
+        <div class="case-nav-title">
+          <h2>On this page</h2>
+        </div>
+        <ul class="toc-list"></ul>
+      </nav>
+      <div class="sidebar-actions">
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+          <span class="theme-tooltip theme-tooltip-light" aria-hidden="true">Switch to light mode</span>
+          <span class="theme-tooltip theme-tooltip-dark" aria-hidden="true">Switch to dark mode</span>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop"></div>
+
+    <!-- Main content -->
+    <main id="content" role="main">
+      <section class="section case-study-content">
+        <div class="case-study-main">
+
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a><span class="breadcrumb-sep"> &gt; </span><a href="../work.html">Work</a><span class="breadcrumb-sep"> &gt; </span><a href="gitlab.html">GitLab</a><span class="breadcrumb-sep"> &gt; </span><span>Summarize MR with AI</span>
+          </nav>
+
+          <header class="case-header">
+            <h1 class="case-title">Summarize Merge Request with AI</h1>
+            <div class="case-metadata-card">
+              <img src="../images/gitlab-pattern.svg" alt="GitLab" class="case-hero-image">
+              <div class="metadata-content">
+                <div class="metadata-item">
+                  <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M6 3.75A2.75 2.75 0 0 1 8.75 1h2.5A2.75 2.75 0 0 1 14 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 0 1 6 4.193V3.75Zm6.5 0v.325a41.622 41.622 0 0 0-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25ZM10 10a1 1 0 0 0-1 1v.01a1 1 0 0 0 1 1h.01a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1H10Z" clip-rule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 0 1-9.274 0C3.985 17.585 3 16.402 3 15.055Z"/></svg>
+                  <div class="metadata-text">
+                    <p class="metadata-label">Team</p>
+                    <p class="metadata-value">Code Review</p>
+                  </div>
+                </div>
+                <div class="metadata-item">
+                  <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clip-rule="evenodd"/></svg>
+                  <div class="metadata-text">
+                    <p class="metadata-label">Platform</p>
+                    <p class="metadata-value">GitLab Web (SaaS &amp; Self-managed)</p>
+                  </div>
+                </div>
+                <div class="metadata-item">
+                  <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
+                  <div class="metadata-text">
+                    <p class="metadata-label">Role</p>
+                    <p class="metadata-value">Product Designer</p>
+                  </div>
+                </div>
+                <div class="metadata-item">
+                  <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clip-rule="evenodd"/></svg>
+                  <div class="metadata-text">
+                    <p class="metadata-label">Period</p>
+                    <p class="metadata-value">Jan 2023 - Feb 2024</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="case-intro">Shipped three iterations of an AI-powered merge request summary feature over 13 months. A Qualtrics survey revealing trust and control problems led to a fundamental pivot: from AI generating summaries for reviewers to AI helping authors write better descriptions at creation time.</p>
+          </header>
+
+          <div class="summary-card">
+            <h2><img src="../images/bookmark.svg" alt="" width="24"> Summary</h2>
+            <p>This was January 2023, two months after ChatGPT launched. GitLab's approach to AI was deliberately different from the standard product development process: ship experiments fast, assess feasibility and value from real AI outputs, then mature to Beta and GA based on what you learn. I joined the Code Review team, mapped the complete author/reviewer cycle from scratch, and led the design through three distinct iterations. The feature we shipped at the end was fundamentally different from the one we started with, and the journey to get there was the most instructive AI design work I have done.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>The Problem</h2>
+
+            <h3>Merge request descriptions go stale</h3>
+            <p>A merge request contains changes across many files and relates to an issue being resolved. The description communicates the intent of the changes, but as review cycles progress, the description becomes stale. It no longer reflects what was actually changed to achieve the solution. Reviewers and authors get out of sync.</p>
+
+            <p>To make this concrete for the team, I found what was likely the longest merge request in GitLab's history: an enormous description, dozens of file changes, and a wall of comments accumulated over weeks. The cognitive load of getting up to speed was real and measurable.</p>
+
+            <p>The hypothesis was simple: what if AI could summarize the description and commit changes into a brief, well-articulated sentence, reducing the time reviewers and authors spent getting oriented?</p>
+
+            <h3>Building context first</h3>
+            <p>When I joined the Code Review team, I needed to rapidly build understanding of one of GitLab's most complex workflows. Before designing anything, I mapped the complete review cycle flow between authors and reviewers in Figma. This documented every touchpoint: draft, ready for review, first review, changes requested, re-review, approval, and merge. The map became the baseline for all AI feature work on the team, used by designers and PMs to evaluate where AI interventions could reduce friction versus where they would add it.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Iteration 1: Quick Action Summary</h2>
+
+            <h3>Deliberately minimal</h3>
+            <p>The first version was intentionally scoped to a single question: is AI-generated summary content useful to users at all? We added a quick action in the MR comment box. Typing the command triggered AI to read the diff and generate a digestible summary, posted as a comment in the thread.</p>
+
+            <p>We deliberately left out summarizing review comments. The scope stayed tight. We released internally and collected feedback in a dedicated issue.</p>
+
+            <h3>What we learned</h3>
+            <p>Engineers found the content helpful and gave us specific, actionable feedback. But clustering that feedback revealed something we hadn't anticipated. By the time users reached the comment box at the bottom of the MR, they had already read the full description. The summary was useful content placed at the wrong moment in the workflow. Users were getting the context after they had already done the work of gathering it themselves.</p>
+
+            <blockquote>The insight wasn't about the quality of the AI output. It was about placement. A summary is only valuable if it reaches you before you need to read everything else.</blockquote>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Iteration 2: Contextual Placement</h2>
+
+            <h3>Moving the summary upstream</h3>
+            <p>Based on the placement insight, I designed summaries into the moments where users actually needed them, before they opened the MR.</p>
+
+            <p><strong>To-do and email notifications.</strong> When you are requested to review an MR, the AI summary appears in your to-do item and email notification. You arrive at the MR already oriented, rather than having to read the full description before you can begin reviewing.</p>
+
+            <p><strong>Summary side drawer on the MR page.</strong> Accessible from the actions menu, a side drawer showed a chronological list of AI-generated summaries, auto-generated after each commit. This gave the feature continuity: the summary you saw in your to-do notification was the same one you could reference on the MR page itself.</p>
+
+            <p>We released this iteration and continued collecting feedback.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>The Pivot: Trust and Control</h2>
+
+            <h3>A new category of feedback</h3>
+            <p>As soon as we placed the AI-generated summary directly on the MR page, we started receiving feedback we hadn't seen before. Users reported problems with output quality. Our first instinct was to fix the prompts, and we made improvements, but the summaries still weren't always correct. The feedback didn't stop.</p>
+
+            <p>After collecting more of this feedback, I ran a Qualtrics survey with a broader set of users to understand whether the quality issues were the real problem or a symptom of something deeper.</p>
+
+            <h3>What the survey found</h3>
+            <p>The survey validated two core problems that prompt improvements alone couldn't fix:</p>
+
+            <ul>
+              <li><strong>Lack of trust.</strong> Users didn't trust the AI-generated summary, even when it was accurate. The presence of an AI summary alongside a human description created doubt about which one was correct. Users reported spending time cross-checking the two rather than trusting either.</li>
+              <li><strong>Lack of control.</strong> The UI gave users no way to edit, remove, or regenerate the summary. The experience felt imposed rather than assistive. Something had been added to their merge request that they hadn't authored and couldn't remove.</li>
+            </ul>
+
+            <p>The consequences were layered: duplicate content on the page, potentially conflicting information, no authorship control, and even when the AI got it right, having both a human description and an AI summary covering the same ground increased mental effort with no additional value.</p>
+
+            <blockquote>A colleague made an observation during the showcase that stayed with me: if we had known at the beginning that the AI was only around 50% accurate, we could have treated that as a design constraint and potentially skipped several iterations. That overconfidence in prompt quality shaped early decisions in ways we had to unlearn.</blockquote>
+
+            <p>I collected all survey results into a research issue and proposed a fundamental change to the workflow direction.</p>
+
+            <h3>The wrong role for AI</h3>
+            <p>The pivot came from a single reframe: we had been putting AI in the wrong role. Instead of generating a separate summary for reviewers to read alongside the human description, AI should help authors write better descriptions in the first place. The problem was a stale description. The right intervention was at creation time, not review time.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Iteration 3: AI as Authoring Assistant</h2>
+
+            <h3>The redesigned flow</h3>
+            <p>In the new design, when an author pushes code and creates a merge request, the creation form offers an AI-generated summary they can choose to add to their description. The author has full control: they can edit it, regenerate it, remove details, add more details, or connect it with GitLab Duo.</p>
+
+            <p>The result addressed every problem the survey identified:</p>
+            <ul>
+              <li>A cleaner MR page with a single description, no duplicate content</li>
+              <li>A correct description, because the author verified it before saving</li>
+              <li>Full control for the MR author over what appears</li>
+              <li>Trust maintained because the human remained in the loop</li>
+            </ul>
+
+            <h3>What we turned off</h3>
+            <p>Shipping the new approach also meant removing what we had built in earlier iterations: AI summaries in to-do notifications and emails, and the auto-generated summary on the MR page.</p>
+
+            <p>These weren't failures. They were necessary steps to learn that the right intervention point was upstream, at creation time, not downstream during review. Without shipping those versions, we wouldn't have collected the feedback that led to the correct direction.</p>
+          </div>
+
+          <div class="case-study-section">
+            <h2>Outcomes</h2>
+
+            <h3>What shipped</h3>
+            <ul>
+              <li>Three distinct iterations shipped over 13 months, each informing the next</li>
+              <li>Qualtrics survey validating trust and control findings at scale, used to make the case for the pivot</li>
+              <li>Feature direction pivoted from reviewer-facing summary to author-facing writing assistant</li>
+              <li>Contributed Experiment/Beta <a href="https://gitlab.com/gitlab-org/gitlab-services/design.gitlab.com/-/merge_requests/3374" target="_blank" rel="noopener">feature badge to the Pajamas Design System</a></li>
+              <li>Ran multiple usability studies on Code Review AI features with a UX researcher (<a href="https://gitlab.com/gitlab-org/ux-research/-/issues/2708" target="_blank" rel="noopener">ux-research#2708</a>)</li>
+              <li>Review cycle flow mapping became a reusable baseline for other AI feature work on the team</li>
+            </ul>
+
+            <h3>What I learned</h3>
+
+            <p><strong>AI output quality is a design constraint, not just an engineering problem.</strong> Prompt improvements can raise quality, but they cannot fully replace the contextual understanding a human brings. Design needs to account for the gap from the start, not after users report problems. Building in user control and transparency is not a nice-to-have for AI features — it is load-bearing.</p>
+
+            <p><strong>The value of shipping to learn.</strong> Each iteration gave us feedback we couldn't have predicted. The quick action taught us about contextual placement. The MR page summary taught us about trust and control. Without shipping those versions, we wouldn't have arrived at the right one. This approach requires a team willing to revisit and remove decisions, which is harder than it sounds.</p>
+
+            <p><strong>Workflow-driven design in complex domains.</strong> Mapping the full review cycle before designing any individual feature was what allowed me to see where AI interventions could genuinely help versus where they would add friction. In a workflow as complex as code review, features that appear useful in isolation can create real problems in context. The map made those trade-offs visible early.</p>
+
+            <p><strong>Knowing when to remove a feature takes more conviction than shipping one.</strong> Recommending that we turn off the to-do summaries and remove the MR page summary required strong evidence and a clear alternative. The survey data and the redesigned creation flow gave the team the confidence to make that call.</p>
+          </div>
+
+        </div><!-- /case-study-main -->
+      </section>
+
+      <!-- Footer -->
+      <section class="section" aria-labelledby="footer-title">
+        <footer role="contentinfo">
+          <div class="footer-inner">
+            <p id="footer-title" class="text footer-location">Based in Australia. Working globally.</p>
+            <p class="text footer-links">
+              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://gitlab.com/afracazo" target="_blank" rel="noopener">GitLab</a>, or <a href="../contact.html">reach me by email</a>.
+            </p>
+          </div>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <!-- Dyslexia-friendly reading (session-only) -->
+  <button id="dyslexia-fab" class="dyslexia-fab">
+    <span class="dyslexia-fab-icon">Aa</span>
+    <span class="dyslexia-tooltip">Dyslexic friendly</span>
+  </button>
+
+  <script>
+  (function() {
+    const KEY = 'theme';
+    const root = document.documentElement;
+    const saved = localStorage.getItem(KEY);
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initial = saved ? saved : (prefersLight ? 'light' : 'dark');
+    applyTheme(initial);
+    function applyTheme(mode) {
+      root.classList.toggle('light', mode === 'light');
+      localStorage.setItem(KEY, mode);
+    }
+    function toggleTheme() {
+      const isLight = root.classList.contains('light');
+      applyTheme(isLight ? 'dark' : 'light');
+    }
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
+  })();
+
+  (function() {
+    const root = document.documentElement;
+    const btn = document.getElementById('dyslexia-fab');
+    if (!btn) return;
+    function updateActive() {
+      btn.classList.toggle('active', root.classList.contains('dyslexia-mode'));
+      btn.setAttribute('aria-pressed', root.classList.contains('dyslexia-mode'));
+    }
+    btn.addEventListener('click', function() {
+      root.classList.toggle('dyslexia-mode');
+      updateActive();
+    });
+    updateActive();
+  })();
+
+  (function() {
+    const hamburger = document.querySelector('.hamburger');
+    const closeBtn = document.querySelector('.sidebar-close');
+    const backdrop = document.querySelector('.sidebar-backdrop');
+    function openSidebar() { document.body.classList.add('sidebar-open'); }
+    function closeSidebar() { document.body.classList.remove('sidebar-open'); }
+    if (hamburger) hamburger.addEventListener('click', openSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (backdrop) backdrop.addEventListener('click', closeSidebar);
+    document.querySelectorAll('.sidebar .case-study-nav a, .sidebar .back-link').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+  })();
+
+  (function() {
+    const tocList = document.querySelector('.case-study-nav .toc-list');
+    if (!tocList) return;
+    const content = document.querySelector('.case-study-content');
+    if (!content) return;
+    const headings = content.querySelectorAll('.summary-card h2, .case-study-section h2');
+    if (headings.length === 0) return;
+    const seen = {};
+    function slugify(text) {
+      const raw = text.replace(/<[^>]+>/g, '').trim().toLowerCase()
+        .replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+      const id = seen[raw] ? raw + '-' + (++seen[raw]) : (seen[raw] = 1, raw);
+      return id;
+    }
+    headings.forEach(function(h) {
+      const id = h.id || slugify(h.textContent);
+      if (!h.id) h.id = id;
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#' + id;
+      a.className = 'toc-link';
+      a.textContent = h.textContent.replace(/\s*\[.*?\]\s*/g, '').trim();
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, null, '#' + id);
+      });
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+    const links = tocList.querySelectorAll('.toc-link');
+    const io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        links.forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+        });
+      });
+    }, { rootMargin: '-100px 0px -80% 0px', threshold: 0 });
+    headings.forEach(function(h) { io.observe(h); });
+  })();
+  </script>
+
+</body>
+</html>
