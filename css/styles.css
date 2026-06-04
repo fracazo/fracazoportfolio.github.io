@@ -2202,33 +2202,22 @@ nav.primary a[aria-current="page"] {
   font-style: italic;
 }
 
-/* ---- Dotted divider (Jakub style) ---- */
-
-.writing-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  margin: 64px 0;
-}
-
-.writing-divider span {
-  width: 16px;
-  height: 2px;
-  border-radius: 999px;
-  background: var(--muted);
-  opacity: 0.5;
-}
-
 /* ---- Next article link ---- */
+
+.writing-next-rule {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 64px 0 0;
+}
 
 .writing-next {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  gap: 4px;
+  gap: 6px;
   text-decoration: none;
+  margin-top: 80px;
 }
 
 .writing-next:hover {
@@ -2236,12 +2225,12 @@ nav.primary a[aria-current="page"] {
 }
 
 .writing-next-label {
-  font-size: 13px;
+  font-size: 18px;
   color: var(--muted);
 }
 
 .writing-next-title {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 500;
   color: var(--text);
   line-height: 1.35;
