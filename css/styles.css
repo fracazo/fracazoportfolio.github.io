@@ -1841,7 +1841,7 @@ nav.primary a[aria-current="page"] {
 /* ---- Writing Article ---- */
 
 .writing-article {
-  padding-top: 48px;
+  padding-top: 0;
   padding-bottom: 80px;
 }
 
@@ -1852,6 +1852,7 @@ nav.primary a[aria-current="page"] {
   font-size: 13px;
   color: var(--muted);
   text-decoration: none;
+  margin-top: 168px;
   margin-bottom: 32px;
   transition: color 0.15s ease;
   letter-spacing: -0.01em;
