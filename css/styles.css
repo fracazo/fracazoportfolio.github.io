@@ -2251,13 +2251,3 @@ nav.primary a[aria-current="page"] {
 .writing-next:hover .writing-next-title {
   color: var(--brand);
 }
-
-/* ---- Inspired-by line ---- */
-
-.writing-inspired {
-  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.9;
-  margin-top: 32px;
-}
