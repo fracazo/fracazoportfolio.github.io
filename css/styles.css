@@ -1746,3 +1746,484 @@ a.gl-work-row:hover .gl-work-row-type {
     height: 180px;
   }
 }
+
+/* ============================================
+   Writing section
+   ============================================ */
+
+/* Active nav state (used on writing pages) */
+nav.primary a[aria-current="page"] {
+  color: var(--text);
+  background: var(--panel-2);
+  border-color: var(--border);
+}
+
+/* ---- Writing Index ---- */
+
+.writing-page-title {
+  margin-top: 168px;
+  margin-bottom: 32px;
+}
+
+.writing-year-group + .writing-year-group {
+  margin-top: 48px;
+}
+
+.writing-year-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 16px 0;
+}
+
+.writing-year-rule {
+  border: 0;
+  height: 1px;
+  background: var(--border);
+  margin: 0;
+}
+
+.writing-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.writing-list li {
+  border-bottom: 1px solid var(--border);
+}
+
+.writing-list li:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.writing-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.writing-row:hover {
+  text-decoration: none;
+}
+
+.writing-row-title {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text);
+  transition: color 0.15s ease;
+  line-height: 1.4;
+}
+
+.writing-row:hover .writing-row-title {
+  color: var(--brand);
+}
+
+.writing-row-date {
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (max-width: 540px) {
+  .writing-row-date {
+    display: none;
+  }
+}
+
+/* ---- Writing Article ---- */
+
+.writing-article {
+  padding-top: 48px;
+  padding-bottom: 80px;
+}
+
+.writing-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.15s ease;
+  letter-spacing: -0.01em;
+}
+
+.writing-back-link:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.writing-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.writing-tag {
+  font-size: 12px;
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: -0.01em;
+}
+
+.writing-article-title {
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px 0;
+  color: var(--text);
+}
+
+.writing-article-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.writing-rule {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+
+/* ---- Writing Body typography ---- */
+
+.writing-body p {
+  font-size: 15.5px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 1.4em;
+}
+
+.writing-body p:last-child {
+  margin-bottom: 0;
+}
+
+.writing-body h2 {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 48px 0 16px;
+}
+
+.writing-body a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.writing-body a:hover {
+  text-decoration: underline;
+}
+
+.writing-body code {
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 13px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--text);
+}
+
+/* ---- Callout ---- */
+
+.writing-callout {
+  border-left: 2px solid var(--brand);
+  padding: 2px 0 2px 20px;
+  margin: 28px 0;
+  font-size: 15px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.65;
+}
+
+/* ---- Code block ---- */
+
+.writing-code-block {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  overflow-x: auto;
+}
+
+.writing-code-block pre {
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+  white-space: pre;
+  margin: 0;
+}
+
+.writing-code-block .code-label {
+  display: block;
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.writing-code-block .comment {
+  color: var(--muted);
+}
+
+.writing-code-block .str {
+  color: #4ade80;
+}
+
+/* ---- Stack table ---- */
+
+.writing-stack {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 24px 0;
+}
+
+.writing-stack-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+}
+
+.writing-stack-row:last-child {
+  border-bottom: none;
+}
+
+.writing-stack-row .name {
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.writing-stack-row .role {
+  font-size: 12px;
+  color: var(--muted);
+  flex: 1;
+  text-align: right;
+}
+
+.writing-stack-row .num {
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 11px;
+  color: var(--muted);
+  min-width: 24px;
+  flex-shrink: 0;
+}
+
+.writing-stack-row .row-label {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.writing-ai-tag {
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 11px;
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--brand);
+  padding: 2px 7px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ---- Tool pills ---- */
+
+.writing-tools {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+
+.writing-tool {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 12.5px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  background: var(--panel-2);
+}
+
+.writing-tool .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand);
+  flex-shrink: 0;
+}
+
+/* ---- Flow diagram ---- */
+
+.writing-flow {
+  margin: 28px 0;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px 24px;
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 12.5px;
+}
+
+.writing-flow-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.writing-flow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.writing-flow-step:last-child {
+  border-bottom: none;
+}
+
+.writing-flow-step .num {
+  font-size: 11px;
+  color: var(--muted);
+  min-width: 20px;
+  padding-top: 1px;
+  flex-shrink: 0;
+}
+
+.writing-flow-step .step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.writing-flow-step .branch {
+  font-size: 11px;
+  color: var(--brand);
+  line-height: 1.4;
+}
+
+/* ---- Examples list (article 2) ---- */
+
+.writing-examples {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0;
+  border-left: 1.5px solid var(--border);
+}
+
+.writing-examples li {
+  padding: 0 0 24px 28px;
+  position: relative;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.writing-examples li::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--panel-2);
+  border: 1.5px solid var(--border);
+}
+
+.writing-examples li:last-child {
+  padding-bottom: 0;
+}
+
+.writing-examples .note {
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.7;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ---- Closing box (article 2) ---- */
+
+.writing-closing-box {
+  margin-top: 52px;
+  padding: 28px 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.writing-closing-box p {
+  margin-bottom: 0.9em;
+}
+
+.writing-closing-box p:last-child {
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+/* ---- Signature ---- */
+
+.writing-sig {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 2;
+}
+
+.writing-sig a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- Inspired-by line ---- */
+
+.writing-inspired {
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.9;
+  margin-top: 32px;
+}
