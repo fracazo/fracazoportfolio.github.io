@@ -2221,7 +2221,7 @@ nav.primary a[aria-current="page"] {
 .writing-nav-link {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 3px;
   text-decoration: none;
   color: var(--muted);
 }
@@ -2243,20 +2243,14 @@ nav.primary a[aria-current="page"] {
 }
 
 .writing-nav-label {
-  font-size: 18px;
+  font-size: 12px;
   color: inherit;
-  opacity: 0.85;
+  opacity: 0.7;
 }
 
 .writing-nav-title {
-  font-size: 22px;
+  font-size: 14px;
   font-weight: 500;
   color: inherit;
-  line-height: 1.35;
-}
-
-@media (max-width: 540px) {
-  .writing-nav-title {
-    font-size: 18px;
-  }
+  line-height: 1.4;
 }
