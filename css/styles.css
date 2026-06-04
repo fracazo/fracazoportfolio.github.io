@@ -1796,7 +1796,7 @@ nav.primary a[aria-current="page"] {
 }
 
 .writing-list li:first-child {
-  border-top: 1px solid var(--border);
+  border-top: none;
 }
 
 .writing-row {
