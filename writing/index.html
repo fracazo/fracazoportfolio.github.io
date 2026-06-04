@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Page Not Found - Alex Fracazo</title>
-  <meta content="The page you are looking for doesn't exist or has been moved." name="description">
-  <meta content="Page Not Found - Alex Fracazo" property="og:title">
-  <meta content="The page you are looking for doesn't exist or has been moved." property="og:description">
-  <meta content="images/opengraph.jpg" property="og:image">
-  <meta content="Page Not Found - Alex Fracazo" property="twitter:title">
-  <meta content="The page you are looking for doesn't exist or has been moved." property="twitter:description">
-  <meta content="images/opengraph.jpg" property="twitter:image">
+  <title>Writing - Alex Fracazo</title>
+  <meta content="Writing by Alex Fracazo — product designer, builder, and occasional writer." name="description">
+  <meta content="Writing - Alex Fracazo" property="og:title">
+  <meta content="Writing by Alex Fracazo — product designer, builder, and occasional writer." property="og:description">
+  <meta content="../images/opengraph.jpg" property="og:image">
+  <meta content="Writing - Alex Fracazo" property="twitter:title">
+  <meta content="Writing by Alex Fracazo — product designer, builder, and occasional writer." property="twitter:description">
+  <meta content="../images/opengraph.jpg" property="twitter:image">
   <meta property="og:type" content="website">
   <meta content="summary_large_image" name="twitter:card">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <link href="images/favicon.svg" rel="shortcut icon" type="image/x-icon">
-  <link href="images/webclip.svg" rel="apple-touch-icon">
+  <link href="../images/favicon.svg" rel="shortcut icon" type="image/x-icon">
+  <link href="../images/webclip.svg" rel="apple-touch-icon">
 
   <!-- Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
 </head>
 <body>
   <!-- Mobile Menu Button -->
@@ -33,7 +33,7 @@
     <!-- Sidebar -->
     <aside class="sidebar" aria-label="Sidebar">
       <div class="sidebar-header">
-        <a href="index.html" class="brand" aria-label="Home">
+        <a href="../index.html" class="brand" aria-label="Home">
           <span>Alex Fracazo</span>
         </a>
         <button class="sidebar-close" aria-label="Close menu">
@@ -44,14 +44,14 @@
         </button>
       </div>
       <nav class="primary" aria-label="Primary">
-        <a href="index.html">
+        <a href="../index.html">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
             <path d="M9 22V12h6v10"/>
           </svg>
           Home
         </a>
-        <a href="work.html">
+        <a href="../work.html">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 12h.01"/>
             <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
@@ -60,7 +60,14 @@
           </svg>
           Work
         </a>
-        <a href="contact.html">
+        <a href="index.html" aria-current="page">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          Writing
+        </a>
+        <a href="../contact.html">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect width="20" height="16" x="2" y="4" rx="2"/>
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
@@ -93,14 +100,26 @@
 
     <!-- Main content -->
     <main id="content" role="main">
-      <section class="section">
-        <div class="error-content">
-          <img src="images/404.svg" alt="404" class="error-icon" loading="lazy">
-          <h1 class="error-title">Page Not Found</h1>
-          <p class="error-description">
-            The page you are looking for doesn't exist or has been moved.
-          </p>
-          <a href="index.html" class="error-button">Back home</a>
+      <section class="section" aria-labelledby="writing-title">
+        <h1 id="writing-title" class="h1 writing-page-title">Writing</h1>
+
+        <div class="writing-year-group">
+          <p class="writing-year-label">2026</p>
+          <hr class="writing-year-rule">
+          <ul class="writing-list">
+            <li>
+              <a href="building-birthguide-with-ai.html" class="writing-row">
+                <span class="writing-row-title">Building BirthGuide as a solo designer using AI</span>
+                <span class="writing-row-date">Jun 2026</span>
+              </a>
+            </li>
+            <li>
+              <a href="titles-are-a-trap.html" class="writing-row">
+                <span class="writing-row-title">Titles are a trap. And the inner critic knows it.</span>
+                <span class="writing-row-date">Jun 2026</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -110,7 +129,7 @@
           <div class="footer-inner">
             <p id="footer-title" class="text footer-location">Based in Australia. Working globally.</p>
             <p class="text footer-links">
-              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank">LinkedIn</a>, or <a href="contact.html">reach me by email</a>.
+              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank">LinkedIn</a>, or <a href="../contact.html">reach me by email</a>.
             </p>
           </div>
         </footer>
@@ -120,7 +139,7 @@
 
   <script>
   // ===========================
-  // Theme: default dark + toggle with persistence
+  // Theme: system preference default + toggle with persistence
   // ===========================
   (function() {
     const KEY = 'theme';
@@ -151,20 +170,19 @@
     const hamburger = document.querySelector('.hamburger');
     const closeBtn = document.querySelector('.sidebar-close');
     const backdrop = document.querySelector('.sidebar-backdrop');
-    
+
     function openSidebar() {
       document.body.classList.add('sidebar-open');
     }
-    
+
     function closeSidebar() {
       document.body.classList.remove('sidebar-open');
     }
-    
+
     if (hamburger) hamburger.addEventListener('click', openSidebar);
     if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
     if (backdrop) backdrop.addEventListener('click', closeSidebar);
-    
-    // Close sidebar on nav link click (mobile)
+
     document.querySelectorAll('.sidebar nav.primary a').forEach(link => {
       link.addEventListener('click', closeSidebar);
     });
