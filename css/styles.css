@@ -2202,6 +2202,68 @@ nav.primary a[aria-current="page"] {
   font-style: italic;
 }
 
+/* ---- Two-column comparison (e.g. Speed vs Rigor) ---- */
+
+.writing-compare {
+  margin: 28px 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.writing-compare-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+}
+
+.writing-compare-row:last-child {
+  border-bottom: none;
+}
+
+.writing-compare-cell {
+  padding: 18px 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+
+.writing-compare-cell:last-child {
+  border-right: none;
+}
+
+.writing-compare-cell .cell-label {
+  display: block;
+  font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.writing-compare-cell.speed .cell-label {
+  color: var(--ring);
+}
+
+.writing-compare-cell.rigor .cell-label {
+  color: var(--brand);
+}
+
+@media (max-width: 540px) {
+  .writing-compare-row {
+    grid-template-columns: 1fr;
+  }
+  .writing-compare-cell {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .writing-compare-row:last-child .writing-compare-cell:last-child {
+    border-bottom: none;
+  }
+}
+
 /* ---- Previous / Next article navigation ---- */
 
 .writing-nav-rule {

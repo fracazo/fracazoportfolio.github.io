@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Speed to inform. Rigor to influence. Alex Fracazo</title>
+  <meta content="What I learned mentoring junior designers, and the mistake I kept seeing about speed and rigor." name="description">
+  <meta content="Speed to inform. Rigor to influence. Alex Fracazo" property="og:title">
+  <meta content="What I learned mentoring junior designers, and the mistake I kept seeing about speed and rigor." property="og:description">
+  <meta content="../images/opengraph.jpg" property="og:image">
+  <meta content="Speed to inform. Rigor to influence. Alex Fracazo" property="twitter:title">
+  <meta content="What I learned mentoring junior designers, and the mistake I kept seeing about speed and rigor." property="twitter:description">
+  <meta content="../images/opengraph.jpg" property="twitter:image">
+  <meta property="og:type" content="article">
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="../images/favicon.svg" rel="shortcut icon" type="image/x-icon">
+  <link href="../images/webclip.svg" rel="apple-touch-icon">
+
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Mobile Menu Button -->
+  <button class="hamburger" aria-label="Toggle menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <path d="M5 8H19"/>
+      <path d="M5 16H19"/>
+    </svg>
+  </button>
+
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-label="Sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="brand" aria-label="Home">
+          <span>Alex Fracazo</span>
+        </a>
+        <button class="sidebar-close" aria-label="Close menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="primary" aria-label="Primary">
+        <a href="../index.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M9 22V12h6v10"/>
+          </svg>
+          Home
+        </a>
+        <a href="../work.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 12h.01"/>
+            <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            <path d="M22 13a18.15 18.15 0 0 1-20 0"/>
+            <rect width="20" height="14" x="2" y="6" rx="2"/>
+          </svg>
+          Work
+        </a>
+        <a href="index.html" aria-current="page">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/>
+            <path d="M2 6h4"/>
+            <path d="M2 10h4"/>
+            <path d="M2 14h4"/>
+            <path d="M2 18h4"/>
+            <path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/>
+          </svg>
+          Writing
+        </a>
+        <a href="../contact.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          Say hi!
+        </a>
+      </nav>
+      <div class="sidebar-actions">
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+          <span class="theme-tooltip theme-tooltip-light" aria-hidden="true">Switch to light mode</span>
+          <span class="theme-tooltip theme-tooltip-dark" aria-hidden="true">Switch to dark mode</span>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop"></div>
+
+    <!-- Main content -->
+    <main id="content" role="main">
+      <article class="section writing-article">
+
+        <a href="index.html" class="writing-back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+          Writing
+        </a>
+
+        <div class="writing-tags">
+          <span class="writing-tag">Mentoring</span>
+          <span class="writing-tag">Design</span>
+          <span class="writing-tag">Career</span>
+        </div>
+
+        <h1 class="writing-article-title">Speed to inform. Rigor to influence.</h1>
+        <p class="writing-article-meta">5 min read</p>
+
+        <hr class="writing-rule">
+
+        <div class="writing-body">
+
+          <p>I've been mentoring designers in some form for most of my career: formally through Springboard and CareerFoundry, and informally through conversations that started on Slack or in a one-on-one and never really ended. Different people, different contexts, different parts of the world. But one pattern showed up so consistently that I eventually stopped being surprised by it.</p>
+
+          <p>Almost every junior designer I worked with treated speed and rigor as opposites. As if you had to choose. Move fast and stay shallow, or go deep and slow everything down. Pick your poison.</p>
+
+          <p>That framing is the trap. And it costs designers more than they realise.</p>
+
+          <hr class="writing-rule">
+
+          <h2>The line that changed how I mentored</h2>
+
+          <p>A mentor of mine put it simply, years ago: <em>speed to inform, rigor to influence.</em> I wrote it down. I've repeated it probably a hundred times since. It doesn't say speed is bad, or that rigor means slow. It says they serve different purposes, and without both you're only using half of what design can actually do.</p>
+
+          <div class="writing-compare">
+            <div class="writing-compare-row">
+              <div class="writing-compare-cell speed">
+                <span class="cell-label">Speed</span>
+                Explores broadly. Generates options. Surfaces what doesn't work so you can move past it. Keeps the conversation open.
+              </div>
+              <div class="writing-compare-cell rigor">
+                <span class="cell-label">Rigor</span>
+                Goes deep. Builds evidence. Earns trust from stakeholders. Gives you something to stand behind when the room pushes back.
+              </div>
+            </div>
+            <div class="writing-compare-row">
+              <div class="writing-compare-cell speed">
+                <span class="cell-label">When to use it</span>
+                Early. When you don't know the answer yet. When you need to explore ten directions before committing to one.
+              </div>
+              <div class="writing-compare-cell rigor">
+                <span class="cell-label">When to use it</span>
+                When the direction is set. When you need to make the case. When the work has to survive a room full of people who didn't design it.
+              </div>
+            </div>
+          </div>
+
+          <p>Without speed, design becomes a bottleneck. Teams wait weeks for a direction that could have been explored in days. The designer disappears into research and comes back with a polished answer to a question that moved on without them.</p>
+
+          <p>Without rigor, design becomes decoration. You ship fast but you can't explain why it's the right answer. Someone in a meeting says "I don't like it" and you have nothing to say back. The work gets changed by whoever has the loudest opinion, because you gave them no reason not to.</p>
+
+          <div class="writing-callout">
+            Without one or the other, the role of design becomes a service to someone else's ideas, good or bad.
+          </div>
+
+          <hr class="writing-rule">
+
+          <h2>What I actually saw in the work</h2>
+
+          <p>The designers who leaned only on speed were usually talented, energetic, and genuinely fast. They could produce screens quickly, iterate rapidly, keep up with any pace a team set. But when a stakeholder challenged a decision, they struggled. The work looked good but couldn't be defended. Over time they got treated as executors rather than thinkers, because they had never built the evidence that earns you a seat at the table where decisions are made.</p>
+
+          <p>The designers who leaned only on rigor were usually deep thinkers, thorough researchers, careful documenters. But by the time they arrived with their findings, the team had already moved. Or they had so much evidence that no one read it. Or they'd fallen so in love with the research phase that they hadn't actually designed anything yet. Rigor without speed becomes a way of avoiding the risk of being wrong.</p>
+
+          <div class="writing-code-block">
+            <span class="code-label">pattern I kept seeing</span>
+            <pre>"I need more time to research before I can show anything."
+"I'll sketch something rough once I understand the problem better."
+"I don't want to show this until it's more finished."
+
+<span class="comment">// these are all the same sentence. waiting until confidence
+// arrives before starting is the wrong order. you build
+// confidence by starting.</span></pre>
+          </div>
+
+          <hr class="writing-rule">
+
+          <h2>The conversation I kept having</h2>
+
+          <p>When a mentee was stuck in one mode, the question I'd ask was: what is this phase of the work actually for?</p>
+
+          <p>If you're exploring (trying to understand the space, generate options, figure out what the problem even is), you should be moving fast. Rough sketches, low fidelity, throw things away without attachment. Speed here is not laziness. It is how you stay honest. The rough sketch signals to everyone in the room, including yourself, that the thinking is not done yet.</p>
+
+          <p>If you're building conviction (making the case for a direction, preparing to present, documenting a decision so it survives the people who made it), you need rigor. User research cited. Trade-offs documented. The logic visible. Not because someone asked for it, but because your ability to influence the outcome depends on it.</p>
+
+          <p>The skill is reading which mode the moment requires. That's harder than it sounds, because most project contexts push you toward one or the other by default. Engineering-led teams push toward speed. Research-heavy teams push toward rigor. The designer who can operate in both, and knows when to switch, is the one who ends up with real influence over what gets built.</p>
+
+          <hr class="writing-rule">
+
+          <h2>Why it matters more now</h2>
+
+          <p>In 2026 this is not a hypothetical tension. AI has made the speed side almost frictionless. You can generate ten screen variations in the time it used to take to sketch one. Exploration is cheap. Iteration is cheap. The fast half of the equation has never been easier.</p>
+
+          <p>Which means rigor is now the differentiator. The designers who will have real influence aren't the ones who can generate the most. It's the ones who can look at what was generated and make a defensible judgment about what is actually right. Who can conduct the research that a language model can't do for you. Who can walk into a room and explain not just what they built, but why.</p>
+
+          <p>Speed to inform. Rigor to influence. The tools changed. The principle didn't.</p>
+
+          <div class="writing-closing-box">
+            <p>If you're a designer early in your career and you recognise yourself in either half of this (the one who moves fast but can't defend the work, or the one who goes deep but never ships), the fix is the same.</p>
+            <p>Ask yourself what this phase is actually for. Match your approach to the answer. Build the habit of switching between modes deliberately rather than defaulting to whichever one feels safer.</p>
+            <p>The designers I've seen grow fastest aren't the ones who got better at one mode. They're the ones who stopped treating them as opposites.</p>
+          </div>
+
+        </div><!-- /.writing-body -->
+
+        <hr class="writing-nav-rule">
+
+        <nav class="writing-nav" aria-label="Article navigation">
+          <a href="titles-are-a-trap.html" class="writing-nav-link writing-nav-prev">
+            <span class="writing-nav-label">Previous</span>
+            <span class="writing-nav-title">Titles are a trap. And the inner critic knows it.</span>
+          </a>
+        </nav>
+
+      </article>
+    </main>
+  </div>
+
+  <script>
+  // ===========================
+  // Theme: system preference default + toggle with persistence
+  // ===========================
+  (function() {
+    const KEY = 'theme';
+    const root = document.documentElement;
+    const saved = localStorage.getItem(KEY);
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const initial = saved ? saved : (prefersLight ? 'light' : 'dark');
+    applyTheme(initial);
+
+    function applyTheme(mode) {
+      root.classList.toggle('light', mode === 'light');
+      localStorage.setItem(KEY, mode);
+    }
+
+    function toggleTheme() {
+      const isLight = root.classList.contains('light');
+      applyTheme(isLight ? 'dark' : 'light');
+    }
+
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) toggleBtn.addEventListener('click', toggleTheme);
+  })();
+
+  // ===========================
+  // Mobile Sidebar Toggle
+  // ===========================
+  (function() {
+    const hamburger = document.querySelector('.hamburger');
+    const closeBtn = document.querySelector('.sidebar-close');
+    const backdrop = document.querySelector('.sidebar-backdrop');
+
+    function openSidebar() {
+      document.body.classList.add('sidebar-open');
+    }
+
+    function closeSidebar() {
+      document.body.classList.remove('sidebar-open');
+    }
+
+    if (hamburger) hamburger.addEventListener('click', openSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (backdrop) backdrop.addEventListener('click', closeSidebar);
+
+    document.querySelectorAll('.sidebar nav.primary a').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+  })();
+  </script>
+</body>
+</html>
