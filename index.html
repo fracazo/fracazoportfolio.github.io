@@ -76,7 +76,7 @@
             <rect width="20" height="16" x="2" y="4" rx="2"/>
             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
           </svg>
-          Say hi!
+          Contact
         </a>
       </nav>
       <div class="sidebar-actions">
@@ -109,41 +109,83 @@
         <div class="hero-grid">
           <div>
             <img src="images/avatar.png" alt="Alex Fracazo" class="hero-avatar">
-            <h1 id="hero-title" class="h1">Hey, I'm Alex</h1>
-            <p class="text hero-subtitle">Senior Product Designer at <a href="case-studies/gitlab.html">GitLab</a>. I design developer tools and enterprise platforms. Currently working on knowledge management features for distributed teams.</p>
+            <p class="hero-status"><span class="status-dot"></span>Open to senior roles &amp; contract work · Remote (UTC+10)</p>
+            <h1 id="hero-title" class="h1">I turn messy, cross-team problems into shipped product.</h1>
+            <p class="text hero-subtitle hero-name-line"><strong>Alex Fracazo</strong>, Senior Product Designer at <a href="case-studies/gitlab.html">GitLab</a>, 15+ years across developer tools, marketplaces and enterprise platforms. Currently building knowledge management for distributed teams.</p>
+            <div class="hero-ctas">
+              <a href="mailto:fracazo@duck.com" class="btn btn-primary">Email me</a>
+              <a href="files/resume_alexfracazo_2026_ats.pdf" target="_blank" rel="noopener" class="btn btn-ghost">Résumé (PDF)</a>
+              <a href="https://www.linkedin.com/in/fracazo" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Short Intro -->
-      <section id="About" aria-labelledby="about-title" class="section">
-        <div class="intro-wrap">
-          <p class="text intro-text">I've been designing products for 15+ years. I specialize in taking messy, unclear problems and turning them into working solutions that engineering can build and users can understand. Most of my work happens in the gaps between what product wants, what engineering can do, and what users actually need.</p>
+      <!-- Selected Work -->
+      <section id="Work" aria-labelledby="work-title" class="cases-grid section">
+        <div class="selected-work-header">
+          <h2 id="work-title" class="h2">Selected work</h2>
+          <p class="text">Case studies focused on product impact, decision-making, and outcomes.</p>
+        </div>
+        <ul role="list" class="collection-list">
+          <li class="collection-item">
+            <a href="case-studies/mr-summary-ai.html" class="card-project">
+              <div class="image-project">
+                <img src="images/To_do_list_-_summary.png" loading="lazy" alt="AI-generated merge request summary shown in the GitLab to-do list">
+              </div>
+              <div class="content-project">
+                <div class="card-eyebrow"><span>GitLab · 2023</span><span class="card-outcome">Shipped · 3 iterations</span></div>
+                <h3 class="h4 white">Summarize Merge Requests with AI</h3>
+                <div class="text top-margin tagline">Finding where AI summaries earn trust in code review, including the conviction to remove what didn't work.</div>
+              </div>
+            </a>
+          </li>
+          <li class="collection-item">
+            <a href="case-studies/glql.html" class="card-project">
+              <div class="image-project">
+                <img src="images/glql-embedded-view-card.png" loading="lazy" alt="GLQL code block rendering into an embedded table view of issues in GitLab">
+              </div>
+              <div class="content-project">
+                <div class="card-eyebrow"><span>GitLab · 2024–2025</span><span class="card-outcome">Launched publicly</span></div>
+                <h3 class="h4 white">GLQL: Embedded Views for Work Tracking</h3>
+                <div class="text top-margin tagline">Turning an engineer-built query language into a usable product, through research that overturned the team's assumptions.</div>
+              </div>
+            </a>
+          </li>
+          <li class="collection-item">
+            <a href="case-studies/bringing-visibility-to-workers-status.html" class="card-project">
+              <div class="image-project">
+                <img src="images/62fbf14400d70051caf1b477_hireup-project-p-1080.png" loading="lazy" sizes="(max-width: 479px) 93vw, (max-width: 767px) 95vw, (max-width: 1919px) 47vw, 570px" srcset="images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-500.png 500w, images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-800.png 800w, images/62fbf14400d70051caf1b477_hireup-project-p-1080.png 1080w" alt="Hireup brand with arrows that connects both the customer and the worker">
+              </div>
+              <div class="content-project">
+                <div class="card-eyebrow"><span>Hireup · 2022</span><span class="card-outcome">+12% bookings</span></div>
+                <h3 class="h4 white">Worker Status Visibility</h3>
+                <div class="text top-margin tagline">Reducing uncertainty in a two-sided marketplace by making availability honest.</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <div class="earlier-work">
+          <p class="earlier-work-title">More case studies</p>
+          <ul role="list" class="earlier-work-list">
+            <li><a href="case-studies/wiki-contextual-comments.html"><span class="earlier-work-name">Wiki Contextual Comments</span><span class="earlier-work-meta">GitLab</span></a></li>
+            <li><a href="case-studies/eta-app.html"><span class="earlier-work-name">Reducing Friction in Government Visa Applications</span><span class="earlier-work-meta">Dept. of Home Affairs</span></a></li>
+            <li><a href="case-studies/qantas-app.html"><span class="earlier-work-name">Increasing App Adoption (+70% downloads)</span><span class="earlier-work-meta">Qantas</span></a></li>
+            <li><a href="case-studies/qantas-entertainment-app.html"><span class="earlier-work-name">A Unified In-flight Entertainment Experience</span><span class="earlier-work-meta">Qantas</span></a></li>
+          </ul>
         </div>
       </section>
 
-      <!-- Current Work -->
-      <section aria-labelledby="current-work-title" class="section">
+      <!-- Now -->
+      <section aria-labelledby="now-title" class="section">
         <div class="current-work-wrap">
-          <h2 id="current-work-title" class="h2">Current work</h2>
+          <h2 id="now-title" class="h2">Now</h2>
           <div class="role-card">
             <h3 class="h3">GitLab</h3>
             <p class="role-title"><a href="case-studies/gitlab.html">Product Designer - Plan: Knowledge</a></p>
             <p class="role-meta">Remote · Australia (UTC+10)</p>
-            <p class="text">I design tools for documenting and sharing knowledge in distributed teams. I work with product managers, engineers, and researchers to ship features that help teams work better together.</p>
+            <p class="text">I design tools for documenting and sharing knowledge in distributed teams, working with product managers, engineers, and researchers to ship features that help teams work better together.</p>
             <img src="images/gitlab-activity.png" alt="GitLab activity overview" class="role-image" loading="lazy">
-          </div>
-        </div>
-      </section>
-
-      <!-- Experience -->
-      <section aria-labelledby="experience-title" class="section">
-        <div class="experience-wrap">
-          <h2 id="experience-title" class="h2">Experience</h2>
-          <div class="career-narrative">
-            <p class="text">Before <a href="case-studies/gitlab.html">GitLab</a>, I was a Principal Product Designer at Hireup, Australia's largest disability support platform, where I led mobile design initiatives and contributed to a <a href="case-studies/bringing-visibility-to-workers-status.html">+12% increase in booking rates</a> through user-centred changes.</p>
-            <p class="text">Earlier in my career, I designed web and mobile products for Qantas, Vodafone, Woolworths, and NAB in Australia.</p>
-            <p class="text">I've been the first designer at several startups, where I built design systems, defined product direction, and occasionally wrote code alongside engineers.</p>
           </div>
         </div>
       </section>
@@ -162,79 +204,28 @@
         </div>
       </section>
 
-      <!-- Beyond Product Work -->
-      <section aria-labelledby="beyond-work-title" class="section">
-        <div class="beyond-work-wrap">
-          <h2 id="beyond-work-title" class="h2">Beyond product work</h2>
-          <p class="text">I've also mentored junior designers through CareerFoundry and Springboard, helping them build their portfolios and advance their careers.</p>
+      <!-- Background -->
+      <section aria-labelledby="experience-title" class="section">
+        <div class="experience-wrap">
+          <h2 id="experience-title" class="h2">Background</h2>
+          <div class="career-narrative">
+            <p class="text">Before <a href="case-studies/gitlab.html">GitLab</a>, I was a Principal Product Designer at Hireup, Australia's largest disability support platform, where I led mobile design and contributed to a <a href="case-studies/bringing-visibility-to-workers-status.html">+12% increase in booking rates</a>. Earlier, I designed web and mobile products for Qantas, Vodafone, Woolworths, and NAB, and was the first designer at several startups, building design systems, defining product direction, and occasionally writing code alongside engineers.</p>
+            <p class="text">I also mentor junior designers through CareerFoundry and Springboard. The full history is in my <a href="files/resume_alexfracazo_2026_ats.pdf" target="_blank" rel="noopener">résumé</a>.</p>
+          </div>
         </div>
       </section>
 
-      <!-- Selected Work -->
-      <section id="Work" aria-labelledby="work-title" class="cases-grid section">
-        <div class="selected-work-header">
-          <h2 id="work-title" class="h2">Selected work</h2>
-          <p class="text">Design case studies focused on product impact, decision-making, and outcomes.</p>
+
+      <!-- Writing -->
+      <section aria-labelledby="writing-title" class="section">
+        <div class="experience-wrap">
+          <h2 id="writing-title" class="h2">Writing</h2>
+          <ul role="list" class="earlier-work-list">
+            <li><a href="writing/titles-are-a-trap.html"><span class="earlier-work-name">Titles are a trap</span><span class="earlier-work-meta">Essay</span></a></li>
+            <li><a href="writing/effort-and-impact-are-not-the-same-thing.html"><span class="earlier-work-name">Effort and impact are not the same thing</span><span class="earlier-work-meta">Essay</span></a></li>
+            <li><a href="writing/building-birthguide-with-ai.html"><span class="earlier-work-name">Building BirthGuide with AI</span><span class="earlier-work-meta">Essay</span></a></li>
+          </ul>
         </div>
-        <ul role="list" class="collection-list">
-          <!-- BirthGuide hidden until ready
-          <li class="collection-item">
-            <a href="case-studies/birthguide.html" class="card-project">
-              <div class="image-project">
-                <img src="images/birthguide-hero.svg" loading="lazy" sizes="(max-width: 479px) 93vw, (max-width: 767px) 95vw, (max-width: 1919px) 47vw, 570px" alt="BirthGuide interactive birth plan on mobile">
-              </div>
-              <div class="content-project">
-                <h3 class="h4 white">The birth plan that advocates for you during labour</h3>
-                <div class="text top-margin tagline">A birth plan you open on your phone, not one you forget in your bag.</div>
-              </div>
-            </a>
-          </li>
-          -->
-          <li class="collection-item">
-            <a href="case-studies/bringing-visibility-to-workers-status.html" class="card-project">
-              <div class="image-project">
-                <img src="images/62fbf14400d70051caf1b477_hireup-project-p-1080.png" loading="lazy" sizes="(max-width: 479px) 93vw, (max-width: 767px) 95vw, (max-width: 1919px) 47vw, 570px" srcset="images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-500.png 500w, images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-800.png 800w, images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-1080.png 1080w, images/62fbf14400d70051caf1b477_hireup-project-p-1080.png 1080w" alt="Hireup brand with arrows that connects both the customer and the worker">
-              </div>
-              <div class="content-project">
-                <h3 class="h4 white">Changing Booking Behaviour Through Worker Status Visibility</h3>
-                <div class="text top-margin tagline">Reducing uncertainty in a two-sided marketplace and increasing successful bookings by 12%.</div>
-              </div>
-            </a>
-          </li>
-          <li class="collection-item">
-            <a href="case-studies/eta-app.html" class="card-project">
-              <div class="image-project">
-                <img src="images/62dc274f132cbe543717e126_work1-p-2000.jpg" loading="lazy" sizes="(max-width: 479px) 93vw, (max-width: 767px) 95vw, (max-width: 1919px) 47vw, 570px" srcset="images/62dc274f132cbe543717e126_work1-p-2000-p-500.jpg 500w, images/62dc274f132cbe543717e126_work1-p-2000-p-800.jpg 800w, images/62dc274f132cbe543717e126_work1-p-2000-p-1080.jpg 1080w, images/62dc274f132cbe543717e126_work1-p-2000-p-1600.jpg 1600w, images/62dc274f132cbe543717e126_work1-p-2000-p-2000.jpg 2000w, images/62dc274f132cbe543717e126_work1-p-2000.jpg 2000w" alt="A high tech face recognition illustration">
-              </div>
-              <div class="content-project">
-                <h3 class="h4 white">Reducing Friction in Government Visa Applications</h3>
-                <div class="text top-margin tagline">Automating data entry to improve completion and reduce user effort in a high-stakes service.</div>
-              </div>
-            </a>
-          </li>
-          <li class="collection-item">
-            <a href="case-studies/qantas-entertainment-app.html" class="card-project">
-              <div class="image-project">
-                <img src="images/62dc26d29e21732abffdaacd_work4-p-1080.png" loading="lazy" sizes="(max-width: 479px) 93vw, (max-width: 767px) 95vw, (max-width: 1919px) 47vw, 570px" srcset="images/62dc26d29e21732abffdaacd_work4-p-1080-p-500.png 500w, images/62dc26d29e21732abffdaacd_work4-p-1080-p-800.png 800w, images/62dc26d29e21732abffdaacd_work4-p-1080-p-1080.png 1080w, images/62dc26d29e21732abffdaacd_work4-p-1080.png 1080w" alt="The Qantas entertainment logo">
-              </div>
-              <div class="content-project">
-                <h3 class="h4 white">Driving Engagement Through a Unified Entertainment Experience</h3>
-                <div class="text top-margin tagline">Reimagining in-flight entertainment as a cohesive product ecosystem.</div>
-              </div>
-            </a>
-          </li>
-          <li class="collection-item">
-            <a href="case-studies/qantas-app.html" class="card-project">
-              <div class="image-project">
-                <img src="images/62dc1d83920df32baae28d6b_work2-p-1080.png" loading="lazy" sizes="(max-width: 479px) 93vw, (max-width: 767px) 95vw, (max-width: 1919px) 47vw, 570px" srcset="images/62dc1d83920df32baae28d6b_work2-p-1080-p-500.png 500w, images/62dc1d83920df32baae28d6b_work2-p-1080-p-800.png 800w, images/62dc1d83920df32baae28d6b_work2-p-1080-p-1080.png 1080w, images/62dc1d83920df32baae28d6b_work2-p-1080.png 1080w" alt="The Qantas iconic kangaroo logo">
-              </div>
-              <div class="content-project">
-                <h3 class="h4 white">Increasing App Adoption by Integrating Entertainment Services</h3>
-                <div class="text top-margin tagline">Using entertainment features to drive a 70% increase in app downloads.</div>
-              </div>
-            </a>
-          </li>
-        </ul>
       </section>
 
       <!-- Working with Alex -->
@@ -254,6 +245,8 @@
             </footer>
           </blockquote>
         </div>
+        <!-- TODO: with permission, replace role-only attributions with full names; anonymous quotes carry far less weight -->
+        <p class="text testimonial-source"><a href="https://www.linkedin.com/in/fracazo/details/recommendations/" target="_blank" rel="noopener">Read full recommendations on LinkedIn &rarr;</a></p>
       </section>
 
       <!-- Footer -->
@@ -262,7 +255,7 @@
           <div class="footer-inner">
             <p id="footer-title" class="text footer-location">Based in Australia. Working globally.</p>
             <p class="text footer-links">
-              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank">LinkedIn</a>, or <a href="contact.html">reach me by email</a>.
+              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank">LinkedIn</a>, grab my <a href="files/resume_alexfracazo_2026_ats.pdf" target="_blank" rel="noopener">résumé</a>, or <a href="mailto:fracazo@duck.com">reach me by email</a>.
             </p>
           </div>
         </footer>

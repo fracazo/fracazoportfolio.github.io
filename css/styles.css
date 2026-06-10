@@ -481,6 +481,12 @@ main > section:first-child {
 .btn-ghost {
   background: transparent;
 }
+.btn-primary {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+.btn-primary:hover { background: #2f6fe0; border-color: #2f6fe0; color: #fff; }
 
 .pill {
   display: inline-flex; align-items: center; gap: 8px;
@@ -1336,7 +1342,7 @@ main > section:first-child {
 .mt-20 { margin-top: 20px; }
 
 /* ============================================
-   GLQL case study — syntax comparison cards
+   GLQL case study, syntax comparison cards
    ============================================ */
 .glql-syntax-group {
   display: flex;
@@ -1421,7 +1427,7 @@ main > section:first-child {
 }
 
 /* ============================================
-   Wiki Contextual Comments — YouTube embeds
+   Wiki Contextual Comments, YouTube embeds
    ============================================ */
 .wiki-cc-video {
   margin: 24px 0 32px;
@@ -1445,7 +1451,7 @@ main > section:first-child {
 }
 
 /* ============================================
-   GLQL case study — prototype video
+   GLQL case study, prototype video
    ============================================ */
 .glql-video-figure {
   margin: 24px 0 32px;
@@ -1465,7 +1471,7 @@ main > section:first-child {
 }
 
 /* ============================================
-   GitLab page — role metadata block
+   GitLab page, role metadata block
    ============================================ */
 .gl-role-meta {
   display: flex;
@@ -1512,7 +1518,7 @@ main > section:first-child {
 .gl-role-meta-link:hover { text-decoration: underline; }
 
 /* ============================================
-   GitLab page — work list (Danilo Leal style)
+   GitLab page, work list (Danilo Leal style)
    ============================================ */
 .gl-work-list {
   list-style: none;
@@ -1587,7 +1593,7 @@ a.gl-work-row:hover .gl-work-row-type {
 }
 
 /* ============================================
-   GitLab page — subtitle (legacy, kept for safety)
+   GitLab page, subtitle (legacy, kept for safety)
    ============================================ */
 .gitlab-subtitle {
   font-size: 15px;
@@ -1597,7 +1603,7 @@ a.gl-work-row:hover .gl-work-row-type {
 }
 
 /* ============================================
-   GitLab page — contribution graph image
+   GitLab page, contribution graph image
    ============================================ */
 .case-study-section img.gitlab-contrib-img {
   width: 100%;
@@ -1610,7 +1616,7 @@ a.gl-work-row:hover .gl-work-row-type {
 }
 
 /* ============================================
-   GitLab page — content item cards
+   GitLab page, content item cards
    ============================================ */
 .gitlab-item {
   display: flex;
@@ -1623,7 +1629,7 @@ a.gl-work-row:hover .gl-work-row-type {
   border-bottom: none;
 }
 
-/* Thumbnail — placeholder (icon box) */
+/* Thumbnail, placeholder (icon box) */
 .gitlab-item-thumb {
   flex-shrink: 0;
   width: 120px;
@@ -1640,7 +1646,7 @@ a.gl-work-row:hover .gl-work-row-type {
   color: var(--muted);
 }
 
-/* Thumbnail — video (has image + play overlay) */
+/* Thumbnail, video (has image + play overlay) */
 .gitlab-item-thumb--video {
   position: relative;
   text-decoration: none;
@@ -1715,7 +1721,7 @@ a.gl-work-row:hover .gl-work-row-type {
 }
 
 /* ============================================
-   GitLab page — skill tags
+   GitLab page, skill tags
    ============================================ */
 .gitlab-tags {
   display: flex;
@@ -2255,3 +2261,196 @@ nav.primary a[aria-current="page"] {
   color: inherit;
   line-height: 1.4;
 }
+
+/* ========================
+   Hero: availability + CTAs
+   ======================== */
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.hero-status .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34d399;
+  flex: none;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.15);
+}
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+.hero-ctas .btn {
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.hero-name-line {
+  color: var(--muted);
+}
+.hero-name-line strong { color: var(--text); font-weight: 600; }
+
+/* ========================
+   Work cards: eyebrow + outcome
+   ======================== */
+.card-eyebrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 12px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.card-eyebrow span { white-space: nowrap; }
+.card-outcome {
+  color: #34d399;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+:root.light .card-outcome { color: #059669; }
+
+/* ========================
+   Earlier work: compact list
+   ======================== */
+.earlier-work {
+  margin-top: 40px;
+}
+.earlier-work-title {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+.earlier-work-list,
+.cases-grid ul.earlier-work-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+/* Image placeholder: swap for a real product screenshot */
+.image-placeholder {
+  display: grid;
+  place-items: center;
+  background: repeating-linear-gradient(45deg, var(--panel) 0 14px, var(--panel-2) 14px 28px);
+}
+.image-placeholder span {
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  padding: 12px;
+}
+.earlier-work-list li {
+  margin: 0;
+  border-bottom: 1px solid var(--border);
+}
+.earlier-work-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 14px 2px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 15px;
+}
+.earlier-work-list a:hover .earlier-work-name { color: var(--brand); }
+.earlier-work-meta {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* ========================
+   Case study: end-of-page CTA
+   ======================== */
+.case-cta {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 28px;
+  margin: 56px 0 0;
+}
+.case-cta h2 {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+.case-cta p {
+  color: var(--muted);
+  margin: 0 0 18px;
+  max-width: 60ch;
+}
+.case-cta .case-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.case-cta .btn {
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.case-next {
+  display: flex;
+  justify-content: flex-end;
+  margin: 32px 0 0;
+}
+.case-next a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 15px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+.case-next a:hover .case-next-title { color: var(--brand); }
+.case-next-label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ========================
+   Testimonials: source link
+   ======================== */
+.testimonial-source {
+  margin-top: 8px;
+}
+.testimonial-source a {
+  font-size: 14px;
+  color: var(--muted);
+}
+.testimonial-source a:hover { color: var(--brand); }
