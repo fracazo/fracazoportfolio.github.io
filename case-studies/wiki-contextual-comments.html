@@ -95,7 +95,6 @@
           <header class="case-header">
             <h1 class="case-title">Wiki Contextual Comments</h1>
             <div class="case-metadata-card">
-              <img src="../images/gitlab-pattern.svg" alt="GitLab" class="case-hero-image">
               <div class="metadata-content">
                 <div class="metadata-item">
                   <svg class="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M6 3.75A2.75 2.75 0 0 1 8.75 1h2.5A2.75 2.75 0 0 1 14 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 0 1 6 4.193V3.75Zm6.5 0v.325a41.622 41.622 0 0 0-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25ZM10 10a1 1 0 0 0-1 1v.01a1 1 0 0 0 1 1h.01a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1H10Z" clip-rule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 0 1-9.274 0C3.985 17.585 3 16.402 3 15.055Z"/></svg>
@@ -129,6 +128,12 @@
             </div>
             <p class="case-intro">Designed a contextual commenting system for GitLab Wiki that lets users comment on specific sections of content without the visual clutter seen in Confluence. Completed a full design spike, conducted extensive competitor analysis across Google Docs, Notion, Confluence, and Coda, and delivered designs that are now in active engineering development.</p>
           </header>
+
+          <ul class="case-stats" role="list">
+            <li><span class="case-stat-value">5</span><span class="case-stat-label">competitor products analysed in depth</span></li>
+            <li><span class="case-stat-value">3</span><span class="case-stat-label">interaction models explored and tested</span></li>
+            <li><span class="case-stat-value">2025</span><span class="case-stat-label">in active engineering development</span></li>
+          </ul>
 
           <div class="summary-card">
             <h2><img src="../images/bookmark.svg" alt="" width="24"> Summary</h2>
@@ -217,6 +222,9 @@
 
             <p>The tradeoff I acknowledged directly with the PM: navigating to the thread required one extra click compared to a purely inline model. The team agreed this was an acceptable tradeoff to preserve the reading experience, especially for public-facing wiki pages.</p>
 
+            <img src="../images/wiki-comments-sidebar.png" alt="GitLab wiki page with contextual comments: highlighted passages in the content link to threaded discussions in a dedicated right-side comments panel">
+            <p class="img-caption">The hybrid approach in the product: highlighted passages anchor to threads in a unified right-side comments panel, with general comments in the same feed.</p>
+
             <h3>MVC scope</h3>
             <p>After the design critique session (linked below), we aligned on a clear MVC scope:</p>
 
@@ -251,6 +259,9 @@
             <p><strong>Auto-collapsing the wiki nav.</strong> I proposed that when a user opens the comments panel, the wiki page navigation collapses automatically to free up space. The reasoning was simple: if you are interacting with the comments sidebar, there is no realistic scenario where you also need the page navigation open at the same time. The team agreed. Users could still manually reopen the nav if needed, but the default behaviour would keep the layout clean.</p>
 
             <p><strong>Orphaned comments.</strong> I raised the edge case of what happens when someone comments on a specific passage and the author later edits or deletes that text. I came prepared with how Google Docs handles it, surfacing orphaned comments with a visual indicator. The team agreed GitLab should handle it similarly: keep the comment visible in the panel with the original quoted text preserved, and add a status indicator to show the anchor is gone. This was captured as a design requirement for the MVC.</p>
+
+            <img src="../images/wiki-comments-orphaned.png" alt="Comments panel showing an 'Original content deleted' indicator on an orphaned thread, and a collapsed resolved threads section">
+            <p class="img-caption">Edge cases in the panel: an orphaned thread keeps its record behind an "Original content deleted" indicator, and resolved threads collapse at the bottom.</p>
 
             <p><strong>Resolved threads.</strong> The team aligned on following the design management pattern: resolving a thread removes the highlight from the content and moves the thread to a collapsed "resolved" section in the panel. This gave authors a clear way to close out feedback without losing the record.</p>
 

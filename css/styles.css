@@ -1162,6 +1162,7 @@ main > section:first-child {
   flex-direction: column;
   gap: 4px;
   min-width: 0;
+  flex: 1;
 }
 
 .metadata-label {
@@ -1219,7 +1220,7 @@ main > section:first-child {
 }
 
 .case-study-image { width: 100%; border-radius: var(--radius); margin: 32px 0; }
-.case-study-section { padding: 48px 0; }
+.case-study-section { padding: 40px 0; }
 .case-study-section h2 { font-size: 28px; margin-bottom: 20px; max-width: 100%; }
 .case-study-section h3 { font-size: 20px; margin: 40px 0 16px; max-width: 100%; }
 .case-study-section h4 { font-size: 16px; font-weight: 600; margin: 32px 0 12px; max-width: 100%; }
@@ -1228,7 +1229,7 @@ main > section:first-child {
 .case-study-section ol { color: var(--muted); line-height: 1.8; margin-bottom: 24px; padding-left: 24px; max-width: 100%; }
 .case-study-section li { margin-bottom: 12px; }
 .case-study-section blockquote { border-left: 3px solid var(--brand); padding-left: 20px; margin: 32px 0; font-style: italic; color: var(--muted); line-height: 1.8; max-width: 100%; }
-.case-study-section img { max-width: 100%; border-radius: var(--radius); margin: 24px 0; background: #fff; padding: 12px; }
+.case-study-section img { max-width: 100%; max-height: 620px; object-fit: contain; display: block; margin: 24px auto; border-radius: var(--radius); background: #fff; padding: 12px; }
 .summary-card { background: transparent; border-radius: 0; padding: 0; box-shadow: none; margin: 40px 0; max-width: 100%; }
 .summary-card h2 { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
 .summary-card h2 img { filter: brightness(0) invert(0.6); }
@@ -2454,3 +2455,42 @@ nav.primary a[aria-current="page"] {
   color: var(--muted);
 }
 .testimonial-source a:hover { color: var(--brand); }
+
+/* ========================
+   Case study: outcome stat strip
+   ======================== */
+.case-stats {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 100%;
+}
+.case-stats li {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.case-stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.case-stat-label {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+@media (max-width: 640px) {
+  .case-stats { grid-template-columns: 1fr; }
+  .case-stats li { flex-direction: row; align-items: baseline; gap: 10px; }
+}
