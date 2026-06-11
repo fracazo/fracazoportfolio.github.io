@@ -541,6 +541,18 @@
     color: var(--muted);
     opacity: 0.7;
   }
+  /* Recommendation cards inside case-study prose reuse the home-page
+     testimonial look — must out-rank .case-study-section blockquote's
+     brand-accent italic styling */
+  .case-study-section .testimonial-list {
+    margin: 32px 0;
+  }
+  .case-study-section .testimonial {
+    border-left: 2px solid var(--border);
+    padding-left: 16px;
+    margin: 0;
+    font-style: normal;
+  }
 
   .case-header {
     padding: 12px 0 24px;

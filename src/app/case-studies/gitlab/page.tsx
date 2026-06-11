@@ -92,6 +92,7 @@ export default function Gitlab() {
                 </footer>
               </blockquote>
             </div>
+            <h3>Contributions activity</h3>
             <img src="/images/gitlab-activity.png" alt="GitLab contribution activity graph" className="gitlab-contrib-img" />
             <p>Aside from the features shipped to production, including direct code contributions via merge requests, here are some of the most relevant projects I've been part of:</p>
           </div>
