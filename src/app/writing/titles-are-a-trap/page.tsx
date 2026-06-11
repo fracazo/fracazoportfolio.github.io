@@ -5,21 +5,21 @@ import { WritingArticle } from "@/components/writing-article";
 const title = "Titles are a trap. And the inner critic knows it.";
 
 export const metadata: Metadata = {
-  title: `${title} - Alex Fracazo`,
+  title: "Titles are a trap. And the inner critic knows it. Alex Fracazo",
   description:
-    "Titles reflect the minimum expected of us, not the maximum that is open to us. On job titles, agency, and the inner critic.",
+    "On job titles, impostor syndrome, and the only thing that actually moves a career forward.",
   openGraph: {
-    title: `${title} - Alex Fracazo`,
+    title: "Titles are a trap. And the inner critic knows it. Alex Fracazo",
     description:
-      "Titles reflect the minimum expected of us, not the maximum that is open to us. On job titles, agency, and the inner critic.",
+    "On job titles, impostor syndrome, and the only thing that actually moves a career forward.",
     images: ["/images/opengraph.jpg"],
     type: "article",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${title} - Alex Fracazo`,
+    title: "Titles are a trap. And the inner critic knows it. Alex Fracazo",
     description:
-      "Titles reflect the minimum expected of us, not the maximum that is open to us. On job titles, agency, and the inner critic.",
+    "On job titles, impostor syndrome, and the only thing that actually moves a career forward.",
     images: ["/images/opengraph.jpg"],
   },
 };

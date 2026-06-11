@@ -287,6 +287,32 @@ export default function Home() {
               </cite>
             </footer>
           </blockquote>
+          <blockquote className="m-0 border-l-2 border-border pl-4">
+            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-muted">
+              &ldquo;Alex is the best designer I&rsquo;ve worked with. On GitLab
+              Query Language (GLQL) he thought through how every decision
+              impacts customers and built for long-term scale, not just the
+              immediate need.&rdquo;
+            </p>
+            <footer className="m-0">
+              <cite className="text-[13px] text-muted not-italic opacity-70">
+                Product Manager · GitLab
+              </cite>
+            </footer>
+          </blockquote>
+          <blockquote className="m-0 border-l-2 border-border pl-4">
+            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-muted">
+              &ldquo;Alex is at his best on hard, open-ended problems. He
+              grounds his decisions in research and took on technical work like
+              the visual builder and tokenized filtering for our query
+              language, GLQL.&rdquo;
+            </p>
+            <footer className="m-0">
+              <cite className="text-[13px] text-muted not-italic opacity-70">
+                Engineering Manager · GitLab
+              </cite>
+            </footer>
+          </blockquote>
         </div>
         {/* TODO: with permission, replace role-only attributions with full names; anonymous quotes carry far less weight */}
         <p className="text mt-2">

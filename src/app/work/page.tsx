@@ -94,7 +94,7 @@ const past = [
     outcome: "+12% bookings",
     title: "Changing Booking Behaviour Through Worker Status Visibility",
     tagline:
-      "Reducing uncertainty in a two-sided marketplace and increasing successful bookings by 12%.",
+      "Reducing uncertainty in a two-sided marketplace, driving an estimated +12% lift in successful bookings.",
   },
   {
     href: "/case-studies/eta-app",

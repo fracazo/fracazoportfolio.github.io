@@ -5,21 +5,21 @@ import { WritingArticle } from "@/components/writing-article";
 const title = "Effort and impact are not the same thing";
 
 export const metadata: Metadata = {
-  title: `${title} - Alex Fracazo`,
+  title: "Effort and impact are not the same thing Alex Fracazo",
   description:
-    "Speed to inform, rigor to influence. On mentoring designers to aim their effort at the phase in front of them.",
+    "Why effort and impact are not the same thing, and the four words that changed how I mentor designers.",
   openGraph: {
-    title: `${title} - Alex Fracazo`,
+    title: "Effort and impact are not the same thing Alex Fracazo",
     description:
-      "Speed to inform, rigor to influence. On mentoring designers to aim their effort at the phase in front of them.",
+    "Why effort and impact are not the same thing, and the four words that changed how I mentor designers.",
     images: ["/images/opengraph.jpg"],
     type: "article",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${title} - Alex Fracazo`,
+    title: "Effort and impact are not the same thing Alex Fracazo",
     description:
-      "Speed to inform, rigor to influence. On mentoring designers to aim their effort at the phase in front of them.",
+    "Why effort and impact are not the same thing, and the four words that changed how I mentor designers.",
     images: ["/images/opengraph.jpg"],
   },
 };

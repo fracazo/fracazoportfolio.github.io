@@ -5,21 +5,21 @@ import { WritingArticle } from "@/components/writing-article";
 const title = "Building BirthGuide as a solo designer using AI";
 
 export const metadata: Metadata = {
-  title: `${title} - Alex Fracazo`,
+  title: "Building BirthGuide as a solo designer using AI, Alex Fracazo",
   description:
-    "How I actually used AI to ship BirthGuide solo, from zero to production: rules, Figma MCP, prompting, and what I still do myself.",
+    "How I built BirthGuide from zero to production as a solo designer using AI tools.",
   openGraph: {
-    title: `${title} - Alex Fracazo`,
+    title: "Building BirthGuide as a solo designer using AI, Alex Fracazo",
     description:
-      "How I actually used AI to ship BirthGuide solo, from zero to production: rules, Figma MCP, prompting, and what I still do myself.",
+    "How I built BirthGuide from zero to production as a solo designer using AI tools.",
     images: ["/images/opengraph.jpg"],
     type: "article",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${title} - Alex Fracazo`,
+    title: "Building BirthGuide as a solo designer using AI, Alex Fracazo",
     description:
-      "How I actually used AI to ship BirthGuide solo, from zero to production: rules, Figma MCP, prompting, and what I still do myself.",
+    "How I built BirthGuide from zero to production as a solo designer using AI tools.",
     images: ["/images/opengraph.jpg"],
   },
 };
@@ -40,9 +40,9 @@ export default function BuildingBirthGuideWithAI() {
           I&rsquo;m a designer who codes. I&rsquo;ve been doing both for 20
           years, long enough to have a strong opinion about craft, and skeptical
           enough about AI to not just hand things over blindly. But I built{" "}
-          <a href="https://birthguide.com.au">BirthGuide</a> solo this year,
-          from zero to production, and my position shifted in ways I
-          didn&rsquo;t expect.
+          <a href="https://birthguide.com.au">BirthGuide</a>{" "}
+          solo this year, from zero to production, and my position shifted in
+          ways I didn&rsquo;t expect.
         </p>
 
         <p>This is how I actually used AI to ship it.</p>

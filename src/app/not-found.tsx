@@ -6,6 +6,20 @@ import { SiteFooter } from "@/components/site-footer";
 export const metadata: Metadata = {
   title: "Page Not Found - Alex Fracazo",
   description: "The page you are looking for doesn't exist or has been moved.",
+  openGraph: {
+    title: "Page Not Found - Alex Fracazo",
+    description:
+      "The page you are looking for doesn't exist or has been moved.",
+    images: ["/images/opengraph.jpg"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Page Not Found - Alex Fracazo",
+    description:
+      "The page you are looking for doesn't exist or has been moved.",
+    images: ["/images/opengraph.jpg"],
+  },
 };
 
 export default function NotFound() {
