@@ -1244,6 +1244,9 @@ main > section:first-child {
 .case-study-section ol { color: var(--muted); line-height: 1.8; margin-bottom: 24px; padding-left: 24px; max-width: 100%; }
 .case-study-section li { margin-bottom: 12px; }
 .case-study-section blockquote { border-left: 3px solid var(--brand); padding-left: 20px; margin: 32px 0; font-style: italic; color: var(--muted); line-height: 1.8; max-width: 100%; }
+/* Recommendation cards reuse the home-page testimonial look (muted border, not the brand accent) */
+.case-study-section .testimonial-list { margin: 32px 0; }
+.case-study-section .testimonial { border-left: 2px solid var(--border); padding-left: 16px; margin: 0; font-style: normal; }
 .case-study-section img { max-width: 100%; max-height: 620px; object-fit: contain; display: block; margin: 24px auto; border-radius: var(--radius); background: #fff; padding: 12px; }
 .summary-card { background: transparent; border-radius: 0; padding: 0; box-shadow: none; margin: 40px 0; max-width: 100%; }
 .summary-card h2 { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
