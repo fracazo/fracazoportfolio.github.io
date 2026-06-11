@@ -9,6 +9,8 @@ type CaseCardProps = {
   tagline?: string;
   /** Work page variant: single column, 21/9 image, larger type */
   wide?: boolean;
+  /** Heading element for the card title (work page uses h2) */
+  heading?: "h2" | "h3";
 };
 
 export function CaseCard({
@@ -19,6 +21,7 @@ export function CaseCard({
   title,
   tagline,
   wide = false,
+  heading: Heading = "h3",
 }: CaseCardProps) {
   return (
     <Link
@@ -49,13 +52,13 @@ export function CaseCard({
             )}
           </div>
         )}
-        <h3
+        <Heading
           className={`m-0 font-medium text-text transition-colors duration-200 group-hover:text-brand ${
             wide ? "text-lg leading-[1.4]" : "text-[15px] leading-[1.4]"
           }`}
         >
           {title}
-        </h3>
+        </Heading>
         {tagline && (
           <div
             className={`mt-1 font-normal text-muted ${

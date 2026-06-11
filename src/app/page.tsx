@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { CaseCard } from "@/components/case-card";
 import { RowList } from "@/components/row-list";
+import { SiteFooter } from "@/components/site-footer";
 
 const selectedWork = [
   {
@@ -96,10 +97,10 @@ export default function Home() {
               alt="Alex Fracazo"
               className="mt-[168px] mb-8 h-[60px] w-[60px] rounded-full object-cover max-md:mt-14"
             />
-            <p className="mb-4 flex items-start gap-2 font-mono text-[13px] text-muted">
+            <p className="mb-4 flex items-start gap-2 font-mono text-[13px] text-balance text-muted">
               <span className="mt-[7px] h-2 w-2 flex-none rounded-full bg-[#34d399] shadow-[0_0_0_3px_rgba(52,211,153,0.15)]" />
-              Available for product design roles &amp; contract engagements ·
-              Melbourne (hybrid) · Remote (UTC+10)
+              Available for design roles &amp; contract work · Melbourne or
+              remote (UTC+10)
             </p>
             <h1 id="hero-title" className="h1">
               I turn messy, cross-team problems into shipped product.
@@ -300,34 +301,7 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Footer */}
-      <section
-        aria-labelledby="footer-title"
-        className="mx-auto w-full max-w-[640px]"
-      >
-        <footer role="contentinfo">
-          <div className="grid gap-2">
-            <p id="footer-title" className="text mt-0 text-text">
-              Based in Melbourne. Working globally.
-            </p>
-            <p className="text mt-2">
-              You can find me on{" "}
-              <a href="http://www.linkedin.com/in/fracazo" target="_blank">
-                LinkedIn
-              </a>
-              , grab my{" "}
-              <a
-                href="/files/resume_alexfracazo_2026_ats.pdf"
-                target="_blank"
-                rel="noopener"
-              >
-                résumé
-              </a>
-              , or <a href="mailto:fracazo@duck.com">reach me by email</a>.
-            </p>
-          </div>
-        </footer>
-      </section>
+      <SiteFooter />
     </AppShell>
   );
 }
