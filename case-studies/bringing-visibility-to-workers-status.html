@@ -175,12 +175,12 @@
           
           <blockquote>Because of this, we predicted that these workers that planned to reactivate might not manually switch their availability back to "Looking for work", so their profile would not appear on search results. This would result in them potentially missing out on work opportunities.</blockquote>
           
-          <p>There were discussions in the team of simply reversing the mechanism to automatically switch reactivated support workers back to "Looking for work". I was concerned about the assumption that workers who would be back on the platform would be "Looking for work" as they may or may not be. A scenario I used to explain my line of thought was Linkedin - when people log on to Linkedin, it doesn't mean they want their profile to say "open to work".</p>
+          <p>There were discussions in the team of simply reversing the mechanism to automatically switch reactivated support workers back to "Looking for work". I was concerned about the assumption that workers who would be back on the platform would be "Looking for work" as they may or may not be. A scenario I used to explain my line of thought was LinkedIn - when people log on to LinkedIn, it doesn't mean they want their profile to say "open to work".</p>
 
           <h2>Designing the Solution</h2>
 
           <h3>Problem Statement & Design Prompt</h3>
-          <p>Workers who have returned to the platform after being inactive may not get new jobs on Hireup. This is because the software triggers the worker's availability status to "Not Open for Work" when they remain 30 days without using the platform (inactive user).</p>
+          <p>Workers who have returned to the platform after being inactive may not get new jobs on Hireup. This is because the software triggers the worker's availability status to "not looking for work" when they remain 30 days without using the platform (inactive user).</p>
           
           <blockquote>How might we design an experience that makes it easy for current active workers and workers who return to the platform after being inactive to identify and understand what their availability status means and why it is important to keep it up to date?</blockquote>
 
@@ -237,8 +237,8 @@
 
           <h3>Release Strategy</h3>
           <p>To measure and control risks, the team planned to release this feature by using experimentation and testing with cohorts.</p>
-          <p>I worked with the engineers to implement the designs, and it was working and looking great!</p>
-          <p>To make sure the workers were informed about the change, I worked with the marketing team to make sure we tightened up a clear communication to workers within the new release. This communication was sent to workers who were automatically set to "not looking for work". They were notified using a mix of push, SMS and email. They receive a warning after 25 days of inactivity and are switched off, then also informed at the 30-day mark.</p>
+          <p>I worked alongside engineers through implementation, cross-checking each build against the final designs.</p>
+          <p>I worked with the marketing team on clear release communication to workers affected by the change. This communication was sent to workers who were automatically set to "not looking for work". They were notified using a mix of push, SMS and email. They receive a warning after 25 days of inactivity and are switched off, then also informed at the 30-day mark.</p>
           <img src="../images/62fc4c700a231f91c8fcf134_Implementing-the-solution.png" alt="Implementation" class="img-md">
           
           <p>Setting workers to "not looking for work" was done in stages and comms were sent out to workers that may have been impacted by the change.</p>
@@ -251,7 +251,7 @@
 
           <h3>Behavior Change</h3>
           <img src="../images/62fc4eb12b9343326b9c9ecc_first-results.png" alt="First results" class="img-small">
-          <p>By monitoring our data, we noticed an increase of +46.24% inactive workers returning to the platform.</p>
+          <p>By monitoring our data, we saw a +46.24% increase in inactive workers returning to the platform.</p>
 
           <p><strong>Experimenting with cohorts</strong></p>
           <p>A subset of workers in Sydney and Melbourne markets were grouped as the control group</p>
@@ -268,12 +268,6 @@
           <h3>Availability Updates</h3>
           <img src="../images/62fc1ff1d055b02593cac784_flow-report-future.png" alt="Flow report future">
           <p>An increase of +10% workers updating their availability.</p>
-
-          <ul>
-            <li>The response rate increased to +45.58%</li>
-            <li>The connection rate increased by +5.1%</li>
-            <li>Workers that update their availability increased to +18.82%</li>
-          </ul>
 
           <p><strong>Overall impact</strong></p>
           <ul>
@@ -293,13 +287,6 @@
           <p><strong>What's next?</strong></p>
           <p>Continue to monitor how this affects important client experience metrics. We want to learn something statistically significant about messages, we know that message is the first step before a connection between a worker and a client. Next, I would use the learnings here to improve the message feature.</p>
 
-          <div class="notice-box">
-            <img src="../images/privacy.svg" alt="Privacy">
-            <div>
-              <p><strong>Protecting Data Privacy</strong></p>
-              <p>The case study shows fictitious figures, allowing the necessary contextual information to enable the evaluation of the methodologies used.</p>
-            </div>
-          </div>
         </div>
 
           <div class="up-next">
