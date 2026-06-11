@@ -381,10 +381,19 @@ nav.primary a:hover { color: var(--text); background: var(--panel-2); border-col
   padding: 0;
   border: none;
   border-radius: 9999px;
-  background: transparent;
+  /* Translucent chip keeps the button legible when content scrolls
+     beneath it. Literal colors (matching --bg) instead of
+     color-mix(var(--bg)): color-mix does not recompute when the theme
+     class toggles at runtime */
+  background: rgba(11, 12, 15, 0.75);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   color: var(--text);
   cursor: pointer;
   transition: background 0.15s ease;
+}
+:root.light .hamburger {
+  background: rgba(255, 255, 255, 0.75);
 }
 .hamburger:hover {
   background: rgba(255, 255, 255, 0.12);
@@ -447,9 +456,15 @@ main {
   display: grid;
   gap: 64px;
 }
+/* Grid items must be allowed to shrink below their content's intrinsic
+   width, otherwise wide children (code blocks, pre) push the page wider
+   than the viewport on small screens */
+main > * { min-width: 0; }
 @media (max-width: 979.98px) {
   main {
-    padding-left: 64px; /* Clear hamburger (16px position + 36px button + 12px gap) */
+    /* Clear the fixed hamburger vertically (16px offset + 36px button + 20px gap)
+       so horizontal padding can stay symmetric */
+    padding: 72px 24px 72px;
   }
 }
 
@@ -556,7 +571,7 @@ main > section:first-child {
 
 .muted { color: var(--muted); }
 .text { color: var(--muted); margin-top: 12px; line-height: 1.8; }
-.h1 { font-size: 40px; line-height: 1.15; margin: 0 0 32px 0; }
+.h1 { font-size: clamp(30px, 8vw, 40px); line-height: 1.15; margin: 0 0 32px 0; }
 .h2 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
 .h3 { font-size: 20px; line-height: 1.35; margin: 0; }
 
@@ -1266,7 +1281,9 @@ main > section:first-child {
 }
 .styleguide-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* min() lets columns shrink below 280px instead of overflowing on
+     screens narrower than 280px + page padding */
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 32px;
 }
 .styleguide-item {
@@ -2268,12 +2285,18 @@ nav.primary a[aria-current="page"] {
    ======================== */
 .hero-status {
   display: inline-flex;
-  align-items: center;
+  /* flex-start + dot offset keeps the dot on the first line when the
+     status text wraps on narrow screens (centering would float it
+     between the two lines) */
+  align-items: flex-start;
   gap: 8px;
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 13px;
   color: var(--muted);
   margin-bottom: 16px;
+}
+.hero-status .status-dot {
+  margin-top: 7px; /* optically centers on a 13px/1.75 first line */
 }
 .hero-status .status-dot {
   width: 8px;
@@ -2493,4 +2516,17 @@ nav.primary a[aria-current="page"] {
 @media (max-width: 640px) {
   .case-stats { grid-template-columns: 1fr; }
   .case-stats li { flex-direction: row; align-items: baseline; gap: 10px; }
+}
+
+/* ========================
+   Responsive: page top spacing
+   ======================== */
+/* The 168px top offset gives pages breathing room on desktop but wastes
+   a fifth of a phone screen; scale it down on small viewports */
+@media (max-width: 768px) {
+  .hero-avatar { margin-top: 56px; }
+  .work-page-title { margin-top: 56px; }
+  .writing-page-title { margin-top: 56px; }
+  .writing-back-link { margin-top: 56px; }
+  .contact-intro { padding-top: 56px; }
 }
