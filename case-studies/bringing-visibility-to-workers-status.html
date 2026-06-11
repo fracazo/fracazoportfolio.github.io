@@ -118,7 +118,7 @@
               </div>
             </div>
           </div>
-          <p class="case-intro">Reducing uncertainty in a two-sided marketplace and increasing successful bookings by 12%.</p>
+          <p class="case-intro">Redesigned availability visibility across iOS and Android at Hireup, Australia's largest disability support platform. The change lifted response rate from 39.1% to 45.8%, grew connection rate from 3% to 5%, and drove +46% inactive worker reactivations.</p>
         </header>
 
         <div class="summary-card">
@@ -138,16 +138,16 @@
           <h3>The Problem</h3>
           <p>In order to support our company-wide quarter objective of improving the discovery and connection between support workers (workers) and people with disabilities (clients), we started to investigate complaints from clients about workers not getting back to them.</p>
           
-          <blockquote>We noticed from our data that 39.1% of clients who were looking for support were messaging workers that hadn't been active on the platform but had kept their availability status as 'Looking for support work'.</blockquote>
+          <blockquote>We noticed from our data that 39.1% of clients who were looking for support were messaging workers that hadn't been active on the platform but had kept their availability status as "Looking for support work".</blockquote>
           
-          <p>A support worker at Hireup can choose to update their availability to 'Looking for work" or "Not looking for work". This means when they are looking for work their profile will be listed in the client search and they can receive job alerts from clients that are looking for a support worker.</p>
-          <p>For more clarity on the problem, I ran lean research - sent an email survey asking workers about how they use and update their availability status". Early insight on this was that workers set their status as "open to work" and forget to update their availability later.</p>
+          <p>A support worker at Hireup can choose to update their availability to "Looking for work" or "Not looking for work". This means when they are looking for work their profile will be listed in the client search and they can receive job alerts from clients that are looking for a support worker.</p>
+          <p>For more clarity on the problem, I ran lean research - sent an email survey asking workers about how they use and update their availability status. Early insight on this was that workers set their status as "open to work" and forget to update their availability later.</p>
           <p>Most of the respondents set it during their account creation and onboarding. Another reason given was that they leave their status open only in case the "right" job arises.</p>
 
           <h3>Current User Flow Analysis</h3>
           <p>How would workers update their availability status?</p>
           <img src="../images/62fdcd93d56ca3a042cc5291_current-flow.gif" alt="Current flow animation" class="img-xs">
-          <p>They would tap on their profile avatar which would open 'My account' page. Inside this page, the user would skim through more options until they find 'My Availability', which would open the page where they could switch their "Looking for support work" status to on/off.</p>
+          <p>They would tap on their profile avatar which would open "My account" page. Inside this page, the user would skim through more options until they find "My Availability", which would open the page where they could switch their "Looking for support work" status to on/off.</p>
           <img src="../images/62fb7e3f6533969785087587_Current-experience.png" alt="Current experience">
 
           <h3>Flow Report</h3>
@@ -168,19 +168,19 @@
           <p>The solution proposed, led by the data team and the product manager, was to automatically turn off the availability status for workers who maintain their status as "Looking for Support Work" but have not been active on the platform in the last 30 days. This would result in those inactive workers being filtered out from search results.</p>
           
           <p><strong>This solved part of the problem</strong></p>
-          <p>I shared my learnings about the common behaviour of workers setting and forgetting their availability to 'open for work'. I was also thinking about users that might decide to provide services for Hireup again after some time off. I asked the data team about reactivations and flagged my team that workers could reactivate after being inactive. They might not know they had to update their availability to "Looking for support work".</p>
+          <p>I shared my learnings about the common behaviour of workers setting and forgetting their availability to "open for work". I was also thinking about users that might decide to provide services for Hireup again after some time off. I asked the data team about reactivations and flagged my team that workers could reactivate after being inactive. They might not know they had to update their availability to "Looking for support work".</p>
           <img src="../images/62fc0f9fc79dbff73d588373_Reactivation-metrics.png" alt="Reactivation metrics">
           
           <p>We could see that there was a large spike in reactivations from inactive support workers, seasonally, around January - February.</p>
           
-          <blockquote>Because of this, we predicted that these workers that planned to reactivate might not manually switch their availability back to 'Looking for work', so their profile would not appear on search results. This would result in them potentially missing out on work opportunities.</blockquote>
+          <blockquote>Because of this, we predicted that these workers that planned to reactivate might not manually switch their availability back to "Looking for work", so their profile would not appear on search results. This would result in them potentially missing out on work opportunities.</blockquote>
           
-          <p>There were discussions in the team of simply reversing the mechanism to automatically switch reactivated support workers back to "Looking for work". I was concerned about the assumption that workers who would be back on the platform would be 'Looking for work' as they may or may not be. A scenario I used to explain my line of thought was Linkedin - when people log on to Linkedin, it doesn't mean they want their profile to say 'open to work'.</p>
+          <p>There were discussions in the team of simply reversing the mechanism to automatically switch reactivated support workers back to "Looking for work". I was concerned about the assumption that workers who would be back on the platform would be "Looking for work" as they may or may not be. A scenario I used to explain my line of thought was Linkedin - when people log on to Linkedin, it doesn't mean they want their profile to say "open to work".</p>
 
           <h2>Designing the Solution</h2>
 
           <h3>Problem Statement & Design Prompt</h3>
-          <p>Workers who have returned to the platform after being inactive may not get new jobs on Hireup. This is because the software triggers the worker's availability status to 'Not Open for Work' when they remain 30 days without using the platform (inactive user).</p>
+          <p>Workers who have returned to the platform after being inactive may not get new jobs on Hireup. This is because the software triggers the worker's availability status to "Not Open for Work" when they remain 30 days without using the platform (inactive user).</p>
           
           <blockquote>How might we design an experience that makes it easy for current active workers and workers who return to the platform after being inactive to identify and understand what their availability status means and why it is important to keep it up to date?</blockquote>
 
@@ -189,7 +189,7 @@
             <li>No clear visibility on the availability status</li>
             <li>Hard to find how to switch the "Looking for support work" feature on/off</li>
             <li>Workers set their status to "open to work" and forget to update</li>
-            <li>Inactive workers that become active again on the platform, might not notice they were set to 'not looking for work' status and have to manually switch it back to 'looking for support work'</li>
+            <li>Inactive workers that become active again on the platform, might not notice they were set to "not looking for work" status and have to manually switch it back to "looking for support work"</li>
           </ul>
           
           <p>I started by organising the workload according to user input touchpoints:</p>
@@ -263,7 +263,7 @@
 
           <h3>Connection Rate Growth</h3>
           <img src="../images/62fc1fbd85376430031ca998_Connection-rate.png" alt="Connection rate" class="img-small">
-          <p>Connection rate for the experimental group increased from 3% to 5.%</p>
+          <p>Connection rate for the experimental group increased from 3% to 5%</p>
 
           <h3>Availability Updates</h3>
           <img src="../images/62fc1ff1d055b02593cac784_flow-report-future.png" alt="Flow report future">
