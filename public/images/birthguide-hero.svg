@@ -1,0 +1,82 @@
+<svg width="560" height="304" viewBox="0 0 560 304" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+
+    <!-- Icon A: baby (BirthGuide's own logo icon) -->
+    <symbol id="ico-baby" viewBox="0 0 24 24">
+      <path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/>
+      <path d="M15 12h.01"/>
+      <path d="M19.38 6.813A9 9 0 0 1 20.8 10.2a2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/>
+      <path d="M9 12h.01"/>
+    </symbol>
+
+    <!-- Icon B: clipboard-list (the birth plan) -->
+    <symbol id="ico-plan" viewBox="0 0 24 24">
+      <rect width="8" height="4" x="8" y="2" rx="1" ry="1"/>
+      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+      <path d="M12 11h4"/>
+      <path d="M12 16h4"/>
+      <path d="M8 11h.01"/>
+      <path d="M8 16h.01"/>
+    </symbol>
+
+    <!-- Icon C: heart (care / birth team) -->
+    <symbol id="ico-heart" viewBox="0 0 24 24">
+      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 8.5 5.586L8 6l-.5-.5A5.5 5.5 0 0 0 2 10.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>
+    </symbol>
+
+    <!-- Icon D: share-2 (the shareable URL) -->
+    <symbol id="ico-share" viewBox="0 0 24 24">
+      <circle cx="18" cy="5" r="3"/>
+      <circle cx="6" cy="12" r="3"/>
+      <circle cx="18" cy="19" r="3"/>
+      <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/>
+      <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>
+    </symbol>
+
+    <!-- Tile: 4 icons across, 128×36px -->
+    <pattern id="tile" x="0" y="0" width="128" height="36" patternUnits="userSpaceOnUse">
+      <use href="#ico-baby"  x="6"   y="6" width="24" height="24" stroke="#5357e7" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <use href="#ico-plan"  x="38"  y="6" width="24" height="24" stroke="#5357e7" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <use href="#ico-heart" x="70"  y="6" width="24" height="24" stroke="#5357e7" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <use href="#ico-share" x="102" y="6" width="24" height="24" stroke="#5357e7" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </pattern>
+
+    <!-- Vertical fade: opaque top → transparent bottom -->
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="white" stop-opacity="1"/>
+      <stop offset="70%"  stop-color="white" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+
+    <mask id="fade-mask">
+      <rect width="560" height="304" fill="url(#fade)"/>
+    </mask>
+
+  </defs>
+
+  <!-- Background -->
+  <rect width="560" height="304" fill="#F8F7FF"/>
+
+  <!-- Repeating pattern fading downward -->
+  <rect width="560" height="304" fill="url(#tile)" opacity="0.20" mask="url(#fade-mask)"/>
+
+  <!-- Central focal icon: baby at 96×96 -->
+  <use href="#ico-baby" x="232" y="92" width="96" height="96"
+       stroke="#5357e7" fill="none" stroke-width="1.5"
+       stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Wordmark -->
+  <text x="280" y="212"
+        text-anchor="middle"
+        font-family="Geist, system-ui, -apple-system, sans-serif"
+        font-size="20" font-weight="700" letter-spacing="-0.4"
+        fill="#1a1a1a">BirthGuide</text>
+
+  <!-- URL -->
+  <text x="280" y="234"
+        text-anchor="middle"
+        font-family="Geist, system-ui, -apple-system, sans-serif"
+        font-size="11" font-weight="400" letter-spacing="0.2"
+        fill="#5357e7">birthguide.com.au</text>
+
+</svg>
