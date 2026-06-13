@@ -102,7 +102,7 @@ export function AppShell({
                       key={href}
                       href={href}
                       aria-current={active ? "page" : undefined}
-                      className={`flex items-center gap-2 rounded-lg border px-2.5 py-2 no-underline hover:border-border hover:bg-panel-2 hover:text-text hover:no-underline ${
+                      className={`flex items-center gap-2 rounded-lg border px-2.5 py-2 text-[15px] leading-[1.4] no-underline hover:border-border hover:bg-panel-2 hover:text-text hover:no-underline ${
                         active
                           ? "border-border bg-panel-2 text-text"
                           : "border-transparent text-muted"

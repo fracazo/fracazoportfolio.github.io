@@ -11,11 +11,17 @@
   --panel: #121318;
   --panel-2: #1a1c22;
   --text: #e6e7ea;
+  /* Reading-text color for paragraphs/lists/blockquotes. --muted is now
+     reserved for meta only (captions, dates, eyebrows, labels). */
+  --text-body: #c9cdd6;
   --muted: #a7adbb;
   --brand: #3b82f6;
   --border: #22242b;
   --card: #14161c;
   --ring: #2dd4bf;
+
+  /* Young Serif display face (page titles + section headings), Geist for UI */
+  --font-display: var(--font-young-serif), "Young Serif", Georgia, serif;
 
   --radius: 12px;
   /* Subtle layered shadow for dark mode */
@@ -33,6 +39,7 @@
   --panel: #f7f7f9;
   --panel-2: #eef0f4;
   --text: #101216;
+  --text-body: #333a45;
   --muted: #4b5563;
   --brand: #3b82f6;
   --border: #e5e7eb;
@@ -61,12 +68,14 @@
   --color-border: var(--border);
   --color-card: var(--card);
   --color-ring: var(--ring);
+  --color-text-body: var(--text-body);
 
   /* Typography */
   --font-sans: var(--font-geist-sans), "Geist", system-ui, -apple-system,
     "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Monaco, "Cascadia Code", monospace;
   --font-dyslexic: "OpenDyslexic", sans-serif;
+  --font-display: var(--font-young-serif), "Young Serif", Georgia, serif;
 
   /* Radius — rounded-card matches the old --radius token */
   --radius-card: 12px;
@@ -114,11 +123,14 @@
     color: var(--text);
     font-family: var(--font-sans);
     font-weight: 400;
-    font-size: 16px;
-    line-height: 1.75;
+    font-size: 17px;
+    line-height: 1.65;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  p {
+    text-wrap: pretty;
   }
   img {
     max-width: 100%;
@@ -301,18 +313,33 @@
     color: var(--muted);
   }
   .text {
-    color: var(--muted);
+    color: var(--text-body);
     margin-top: 12px;
-    line-height: 1.8;
+    line-height: 1.65;
   }
+  /* Page titles: Young Serif display face */
   .h1 {
-    font-size: clamp(30px, 8vw, 40px);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 42px;
     line-height: 1.15;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
     margin: 0 0 32px 0;
   }
+  @media (max-width: 768px) {
+    .h1 {
+      font-size: 36px;
+    }
+  }
+  /* Section headings (e.g. "Selected work"): Young Serif */
   .h2 {
-    font-size: 28px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 26px;
     line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
     margin: 0 0 8px;
   }
   .h3 {
@@ -527,7 +554,7 @@
     font-style: normal;
   }
   .testimonial p {
-    color: var(--muted);
+    color: var(--text-body);
     font-size: 15px;
     line-height: 1.7;
     margin: 0 0 8px;
@@ -559,15 +586,18 @@
     max-width: 100%;
   }
   .case-title {
-    font-size: 40px;
-    line-height: 1.1;
-    font-weight: 700;
+    font-family: var(--font-display);
+    font-size: 42px;
+    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
     color: var(--text);
     margin: 0;
   }
   @media (max-width: 768px) {
     .case-title {
-      font-size: 32px;
+      font-size: 36px;
     }
   }
 
@@ -619,7 +649,7 @@
     flex: 1;
   }
   .metadata-label {
-    font-size: 10px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--muted);
@@ -658,12 +688,13 @@
     }
   }
 
+  /* Case intro reads as a deck paragraph above the 17px body */
   .case-intro {
-    color: var(--muted);
-    font-size: 18px;
-    line-height: 1.7;
+    color: var(--text-body);
+    font-size: 19px;
+    line-height: 1.6;
     margin: 0 0 32px;
-    max-width: 100%;
+    max-width: 64ch;
   }
   .case-study-image {
     width: 100%;
@@ -673,48 +704,55 @@
   .case-study-section {
     padding: 40px 0;
   }
+  /* Case-study h2 stays Geist (in-content heading), tightened tracking */
   .case-study-section h2 {
     font-size: 28px;
+    letter-spacing: -0.01em;
     margin-bottom: 20px;
-    max-width: 100%;
+    max-width: 64ch;
   }
   .case-study-section h3 {
-    font-size: 20px;
+    font-size: 21px;
     margin: 40px 0 16px;
-    max-width: 100%;
+    max-width: 64ch;
   }
   .case-study-section h4 {
     font-size: 16px;
     font-weight: 600;
     margin: 32px 0 12px;
-    max-width: 100%;
+    max-width: 64ch;
   }
   .case-study-section p {
-    color: var(--muted);
-    line-height: 1.8;
+    color: var(--text-body);
+    line-height: 1.7;
     margin-bottom: 24px;
-    max-width: 100%;
+    max-width: 64ch;
+  }
+  /* Lead-in paragraph sits tight to the list it introduces */
+  .case-study-section p:has(+ ul),
+  .case-study-section p:has(+ ol) {
+    margin-bottom: 10px;
   }
   .case-study-section ul,
   .case-study-section ol {
-    color: var(--muted);
-    line-height: 1.8;
+    color: var(--text-body);
+    line-height: 1.7;
     margin-bottom: 24px;
     padding-left: 24px;
-    max-width: 100%;
+    max-width: 64ch;
     list-style: revert;
   }
   .case-study-section li {
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
   .case-study-section blockquote {
     border-left: 3px solid var(--brand);
     padding-left: 20px;
     margin: 32px 0;
     font-style: italic;
-    color: var(--muted);
+    color: var(--text-body);
     line-height: 1.8;
-    max-width: 100%;
+    max-width: 64ch;
   }
   .case-study-section img {
     max-width: 100%;
@@ -858,7 +896,7 @@
     margin: 0 0 8px;
   }
   .case-cta p {
-    color: var(--muted);
+    color: var(--text-body);
     margin: 0 0 18px;
     max-width: 60ch;
   }
@@ -1293,11 +1331,14 @@
     border-radius: 4px;
     letter-spacing: -0.01em;
   }
+  /* Writing article title: Young Serif page-title face */
   .writing-article-title {
-    font-size: clamp(22px, 4vw, 30px);
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 400;
     line-height: 1.2;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
     margin: 0 0 12px 0;
     color: var(--text);
   }
@@ -1312,21 +1353,27 @@
     margin: 32px 0;
   }
   .writing-body p {
-    font-size: 15.5px;
-    color: var(--muted);
-    line-height: 1.75;
+    font-size: 17px;
+    color: var(--text-body);
+    line-height: 1.7;
     margin-bottom: 1.4em;
   }
   .writing-body p:last-child {
     margin-bottom: 0;
   }
+  /* Lead-in paragraph sits tight to the list it introduces */
+  .writing-body p:has(+ ul),
+  .writing-body p:has(+ ol) {
+    margin-bottom: 10px;
+  }
+  /* Restored heading hierarchy: was 13px uppercase (smaller than body) */
   .writing-body h2 {
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-transform: none;
     color: var(--text);
-    margin: 48px 0 16px;
+    margin: 44px 0 14px;
   }
   .writing-body a {
     color: var(--brand);
@@ -1349,7 +1396,7 @@
     padding: 2px 0 2px 20px;
     margin: 28px 0;
     font-size: 15px;
-    color: var(--muted);
+    color: var(--text-body);
     font-style: italic;
     line-height: 1.65;
   }
@@ -1516,7 +1563,7 @@
     position: relative;
     font-size: 15px;
     line-height: 1.7;
-    color: var(--muted);
+    color: var(--text-body);
   }
   .writing-examples li::before {
     content: "";
@@ -1547,7 +1594,7 @@
     border-radius: 8px;
     background: var(--panel);
     font-size: 15px;
-    color: var(--muted);
+    color: var(--text-body);
     line-height: 1.85;
   }
   .writing-closing-box p {
@@ -1664,18 +1711,18 @@
     color: var(--text);
   }
   .rich-text-sample p {
-    color: var(--muted);
-    line-height: 1.8;
+    color: var(--text-body);
+    line-height: 1.7;
     margin-bottom: 16px;
   }
   .rich-text-sample a {
     color: var(--brand);
   }
   .rich-text-sample ul {
-    color: var(--muted);
+    color: var(--text-body);
     padding-left: 20px;
     margin-bottom: 16px;
-    line-height: 1.8;
+    line-height: 1.7;
     list-style: revert;
   }
   .rich-text-sample li {
@@ -1685,7 +1732,7 @@
     border-left: 2px solid var(--border);
     padding-left: 16px;
     margin: 24px 0;
-    color: var(--muted);
+    color: var(--text-body);
     font-size: 15px;
     line-height: 1.7;
   }

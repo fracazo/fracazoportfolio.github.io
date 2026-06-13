@@ -108,7 +108,7 @@ export function CaseStudyShell({
         {backLabel}
       </Link>
       <div>
-        <h2 className="m-0 mt-2 px-2.5 text-[11px] font-semibold tracking-[0.06em] text-muted uppercase opacity-60">
+        <h2 className="m-0 mt-2 px-2.5 text-[12px] font-semibold tracking-[0.06em] text-muted uppercase opacity-60">
           On this page
         </h2>
         <ul className="m-0 mt-3 flex list-none flex-col gap-0.5 p-0">

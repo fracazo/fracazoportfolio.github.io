@@ -10,7 +10,7 @@ export function RowList({ items }: { items: RowItem[] }) {
         <li key={item.href} className="border-b border-border">
           <Link
             href={item.href}
-            className="group flex items-baseline justify-between gap-4 px-0.5 py-3.5 text-[15px] font-medium text-text no-underline hover:no-underline"
+            className="group flex items-baseline justify-between gap-4 px-0.5 py-3.5 text-[15px] leading-[1.4] font-medium text-text no-underline hover:no-underline"
           >
             <span className="group-hover:text-brand">{item.name}</span>
             {item.meta && (

@@ -105,7 +105,7 @@ export default function Home() {
             <h1 id="hero-title" className="h1">
               I turn messy, cross-team problems into shipped product.
             </h1>
-            <p className="mt-3 text-lg leading-[1.8] text-muted">
+            <p className="mt-3 text-lg leading-[1.6] text-text-body">
               <strong className="font-semibold text-text">Alex Fracazo</strong>,
               product designer and front-end engineer. I design and build
               end-to-end, from research to production code, for consumer and
@@ -180,11 +180,11 @@ export default function Home() {
         <h2 id="how-i-work-title" className="h2">
           How I work
         </h2>
-        <p className="text">I do my best work on problems that are:</p>
-        <ul className="mt-3 list-disc pl-5 leading-[1.8] text-muted">
-          <li className="my-1">unclear or under-defined</li>
-          <li className="my-1">shared across multiple teams</li>
-          <li className="my-1">
+        <p className="text mb-0">I do my best work on problems that are:</p>
+        <ul className="mt-2 list-disc pl-5 leading-[1.6] text-text-body">
+          <li className="my-1.5">unclear or under-defined</li>
+          <li className="my-1.5">shared across multiple teams</li>
+          <li className="my-1.5">
             constrained by legacy systems or organisational complexity
           </li>
         </ul>
@@ -263,7 +263,7 @@ export default function Home() {
         </h2>
         <div className="flex flex-col gap-6">
           <blockquote className="m-0 border-l-2 border-border pl-4">
-            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-muted">
+            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
               &ldquo;Alex consistently demonstrated strong design leadership and
               strategic thinking. He translated complex technical constraints
               into clear, user-centred direction that directly shaped product
@@ -276,7 +276,7 @@ export default function Home() {
             </footer>
           </blockquote>
           <blockquote className="m-0 border-l-2 border-border pl-4">
-            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-muted">
+            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
               &ldquo;Alex brings a rare mix of big-picture perspective and
               grounded execution. He consistently raises the quality of thinking
               across the team and creates space for others to grow.&rdquo;
@@ -288,7 +288,7 @@ export default function Home() {
             </footer>
           </blockquote>
           <blockquote className="m-0 border-l-2 border-border pl-4">
-            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-muted">
+            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
               &ldquo;Alex is the best designer I&rsquo;ve worked with. On GitLab
               Query Language (GLQL) he thought through how every decision
               impacts customers and built for long-term scale, not just the
@@ -301,7 +301,7 @@ export default function Home() {
             </footer>
           </blockquote>
           <blockquote className="m-0 border-l-2 border-border pl-4">
-            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-muted">
+            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
               &ldquo;Alex is at his best on hard, open-ended problems. He
               grounds his decisions in research and took on technical work like
               the visual builder and tokenized filtering for our query

@@ -58,7 +58,7 @@ export default function Writing() {
 
         {years.map(({ year, posts }, i) => (
           <div key={year} className={i > 0 ? "mt-12" : undefined}>
-            <h2 className="mb-4 text-[11px] font-semibold tracking-[0.06em] text-muted uppercase">
+            <h2 className="mb-4 text-[12px] font-semibold tracking-[0.06em] text-muted uppercase">
               {year}
             </h2>
             <ul className="m-0 list-none p-0">

@@ -53,8 +53,8 @@ export function CaseCard({
           </div>
         )}
         <Heading
-          className={`m-0 font-medium text-text transition-colors duration-200 group-hover:text-brand ${
-            wide ? "text-lg leading-[1.4]" : "text-[15px] leading-[1.4]"
+          className={`m-0 font-semibold text-text transition-colors duration-200 group-hover:text-brand ${
+            wide ? "text-[19px] leading-[1.4]" : "text-[16px] leading-[1.4]"
           }`}
         >
           {title}
@@ -62,7 +62,7 @@ export function CaseCard({
         {tagline && (
           <div
             className={`mt-1 font-normal text-muted ${
-              wide ? "mt-1.5 text-[15px] leading-[1.5]" : "text-[13px] leading-[1.5]"
+              wide ? "mt-1.5 text-[15px] leading-[1.55]" : "text-[14px] leading-[1.55]"
             }`}
           >
             {tagline}

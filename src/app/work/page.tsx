@@ -143,7 +143,7 @@ const past = [
 ];
 
 const sectionTitleClass =
-  "mb-4 text-[11px] font-semibold tracking-[0.06em] text-muted uppercase";
+  "mb-4 text-[12px] font-semibold tracking-[0.06em] text-muted uppercase";
 
 export default function Work() {
   return (
