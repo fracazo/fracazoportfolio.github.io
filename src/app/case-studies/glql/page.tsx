@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 
 const title = "GLQL / Embedded Views - Alex Fracazo";
-const description = "How I transformed an engineering-led query language into a user-centred product, from problem validation through GA launch.";
+const description =
+  "Turning a query language built by engineers into something a non-technical person could actually use, without taking any power away from the experts.";
 
 export const metadata: Metadata = {
   title,
@@ -53,19 +54,19 @@ export default function Glql() {
                   <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
                   <div className="metadata-text">
                     <p className="metadata-label">Role</p>
-                    <p className="metadata-value">Sole Product Designer</p>
+                    <p className="metadata-value">Sole Product Designer · Knowledge team</p>
                   </div>
                 </div>
                 <div className="metadata-item">
                   <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clipRule="evenodd"/></svg>
                   <div className="metadata-text">
                     <p className="metadata-label">Year</p>
-                    <p className="metadata-value">2024-2025</p>
+                    <p className="metadata-value">2024–2025</p>
                   </div>
                 </div>
               </div>
             </div>
-            <p className="case-intro">Transformed an engineering-led query language into a user-centred product. Led research from problem validation through solution validation, shaped syntax direction, and successfully advocated to prevent premature release. Contributed to 33% post-GA adoption growth and Plan stage's 21% increase in paid GMAU.</p>
+            <p className="case-intro">Turning a query language built by engineers into something a non-technical person could actually use, without taking any power away from the experts.</p>
           </header>
 
           <ul className="case-stats" role="list">
@@ -74,77 +75,47 @@ export default function Glql() {
             <li><span className="case-stat-value">0</span><span className="case-stat-label">critical bugs at GA launch</span></li>
           </ul>
 
-          <div className="summary-card">
-            <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-            <p>GLQL (GitLab Query Language) launched as an experimental engineering feature, powerful in concept, but built without user input. I joined a group with no existing design practice and had to build the process, establish cross-functional trust, and advocate for users in a space where engineering decisions were already in motion. Through two research studies, structured competitor analysis, and clear evidence-based communication, I shaped both the product direction and the team's way of working. The feature shipped to GA with 0 critical bugs, a 94% balanced scorecard score, and 33% adoption growth in the first weeks post-launch.</p>
+          <div className="case-study-section">
+            <blockquote>Adoption grew about a third in the first weeks after GA, driven by discoverability I designed.</blockquote>
           </div>
 
           <div className="case-study-section">
-            <h2>My Role &amp; Context</h2>
-
-            <h3>Joining an engineering-led group</h3>
-            <p>When I joined the Knowledge team, GLQL was already in development. It was an experimental feature built by engineers who were deeply invested in the technical architecture. There was no design practice in the group, no established research process, and no shared framework for making user-centred decisions. My role wasn't just to design; it was to introduce design as a discipline alongside people who were already moving fast.</p>
-
-            <p>The first challenge was building trust without disrupting momentum. I focused on making design useful immediately: bringing structure to discussions, translating engineering concepts into user outcomes, and creating space for questions the team hadn't yet thought to ask: <em>Who actually uses this? What are they trying to accomplish? What happens when a query fails?</em></p>
-
-            <p>Early on, I created the UX and product vision issue (#480664) as a shared artefact, a place to document open questions, track competitor analysis, and connect design decisions to user needs. This became the foundation for cross-functional collaboration across the product manager, engineers, and later UX researchers.</p>
-
-            <blockquote>The goal wasn't to slow down engineering. It was to make sure we were building the right thing, and to create a record of why.</blockquote>
+            <h2>The challenge</h2>
+            <p>GLQL launched as an experimental engineering feature. Powerful, and built with no user input. The job it was meant to serve was easy to say and hard to do: let someone track work progress without stitching it together by hand across boards, milestones, and issues.</p>
+            <p>The catch showed up fast. The same tool had to serve two people with opposite instincts. A project manager who never wants to see a line of code, and a power user who expects a query to behave exactly like the ones they already write. Most query tools pick one of those people and lose the other.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Research Findings</h2>
-
-            <h3>Problem validation study</h3>
-            <p>Before shaping any design direction, I collaborated with UX Research on a problem validation study (ux-research#3173) focused on understanding how GitLab users track work progress, the core job-to-be-done that GLQL was meant to support.</p>
-
-            <p>The study targeted project and program managers who needed to surface status and progress across teams. Key themes from the findings:</p>
-
-            <ul>
-              <li>Users were stitching together views across multiple GitLab areas (boards, milestones, epics, issue lists). There was no single place to see what they needed</li>
-              <li>The cost of context-switching was high; users were losing time assembling status manually for stakeholders</li>
-              <li>Non-technical users wanted filtering and reporting that didn't require writing code or learning a query syntax</li>
-              <li>Power users (engineers, technical PMs) were comfortable with structured syntax but expected it to behave predictably, more like SQL than a search bar</li>
-            </ul>
-
-            <p>These findings validated that there was a real problem worth solving, but also surfaced a critical tension: <strong>the same tool needed to serve both technical and non-technical users</strong>, with very different mental models for what "querying" meant.</p>
-
-            <h3>What the data didn't tell us yet</h3>
-            <p>The problem validation confirmed the <em>what</em>: users needed a unified way to surface and embed GitLab data. It didn't yet answer the <em>how</em>: what the syntax should look like, how errors should behave, or what presentation formats (table, board, chart) were most needed. That became the focus of solution validation.</p>
+            <h2>My role</h2>
+            <p>I was the only designer on the team, in an engineering-led group with no design practice, no research process, and no shared way of deciding what users actually needed. So the first job was not a screen. It was earning the right to be in the room, and making design useful fast enough that it sped the team up instead of slowing it down.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Competitor Analysis</h2>
+            <h2>The principle</h2>
+            <p>One idea ran through every decision: outcome first, settings second. Show people the result before you ask them to configure anything. Design for the person who does not want to learn the tool, without dumbing it down for the person who does.</p>
 
-            <h3>Mapping the landscape</h3>
-            <p>GLQL sat at the intersection of two distinct product categories: query languages and embedded views. To understand design precedents and differentiation opportunities, I mapped competitors across both dimensions.</p>
-
-            <h3>Query language syntax</h3>
-            <p>I analysed Jira JQL, Splunk SPL, Google Charts Query Language, and GitHub's filter syntax. Key observations:</p>
-
-            <ul>
-              <li><strong>Jira JQL</strong>: mature, widely adopted, SQL-adjacent. Strong for filtering but no presentation layer built in. Users relied on Marketplace plugins for charts and views, creating fragmentation.</li>
-              <li><strong>Splunk</strong>: pipe-based syntax designed for log analysis. Powerful for data engineers; high learning curve for general users. Not a reference model for our audience.</li>
-              <li><strong>Google Charts QL</strong>: full SQL syntax (SELECT, FROM, WHERE). Familiar to data-literate users but alienating to non-technical audiences.</li>
-              <li><strong>GitHub Projects</strong>: the closest analogue. Queryable views with visual column editing, no syntax exposure for basic use. The interaction model that most closely matched our non-technical user segment.</li>
-            </ul>
-
-            <h3>Key insight: syntax should be a last resort</h3>
-            <p>Across every competitor, the pattern was clear: users reached for query syntax only when UI controls couldn't do what they needed. The implication for GLQL was important. The syntax needed to be designed with this in mind. Simple queries should be writable by non-technical users without documentation. Complex queries should reward expertise without punishing beginners.</p>
-
-            <blockquote>This shaped our approach: GLQL syntax should read like natural language where possible, with predictable field:value patterns rather than operator-heavy expressions.</blockquote>
-
-            <h3>Embedded views comparison</h3>
-            <p>For the presentation layer, I analysed how Confluence, Notion, GitHub, and Linear handled embedded content. The differentiating insight: GitLab's advantage was that the data <em>lived inside GitLab</em>. Unlike Notion or Confluence, users didn't need to connect to an external source. The query and the data were co-located. That was a significant UX opportunity that shaped how we framed the feature to users.</p>
+            <img src="/images/glql-embedded-view-card.png" alt="A GLQL code block on the left and the live embedded table it renders on the right" />
+            <p className="img-caption">Outcome first: a GLQL block (left) and the live embedded view it renders (right). The result is the point; the syntax is just how you adjust it.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Solution Validation Research</h2>
+            <h2>Research</h2>
+            <p>I ran problem validation with our researcher to confirm the job was real, then a two-phase study on the part that worried me most: the syntax. Twelve participants, half internal, half external. In the first phase they wrote real queries against live documentation. In the second they compared three different syntax styles.</p>
+            <p>Watching them write was where the design direction came from. People did not read their query before running it. They typed, hit an error, and used the error message to find their way. When the message was vague, they were stuck. The error messages were the navigation, not the docs.</p>
+            <p>And the finding that changed the team&apos;s mind: plain-language syntax was easier for non-technical users than a SQL-style one, because the people who knew SQL arrived expecting things our language could not do. Familiarity was a trap, not a shortcut.</p>
 
-            <h3>The problem we were trying to solve</h3>
-            <p>By mid-2024, GLQL was already in production behind a feature flag using a specific syntax: YAML frontmatter combined with a query expression. The engineering team had made pragmatic decisions to ship quickly, but a critical question remained unanswered: was this the right syntax to standardise on before moving to Beta? Once out of experimental stage, breaking changes would no longer be acceptable.</p>
+            <figure className="glql-video-figure">
+              <video controls playsInline preload="metadata" className="glql-proto-video">
+                <source src="/images/Screen_Recording_2024-08-05_at_17.15.37.mov" type="video/mp4" />
+                Your browser does not support the video element.
+              </video>
+              <figcaption className="glql-video-caption">Early prototype recording (Aug 2024), produced with Himanshu Kapoor before any design refinements, showing the raw capability of GLQL. Used internally to gather early feedback and build cross-functional alignment on what the feature could become.</figcaption>
+            </figure>
+          </div>
 
-            <p>Three syntax options were on the table, each representing a different philosophy about how querying and presentation should relate to each other:</p>
+          <div className="case-study-section">
+            <h2>Decision one: the syntax is the UX</h2>
+            <p>Three syntax options were on the table, and the engineering instinct was to move toward SQL. Clean, familiar, a tidy separation of concerns. My argument was that the syntax is the first thing a user touches, so it is the interface, and we should not lock it on instinct before testing it. We tested it. The plain-language option won, and we shipped it with full backward compatibility.</p>
 
             <div className="glql-syntax-group">
               <div className="glql-syntax-card">
@@ -158,7 +129,7 @@ project = "gitlab-org/gitlab" and milestone = "17.4" and label = "group::knowled
               </div>
 
               <div className="glql-syntax-card">
-                <div className="glql-syntax-label">Option 2: Pure YAML, query as a property <span className="glql-syntax-tag glql-syntax-tag--winner">Research winner</span></div>
+                <div className="glql-syntax-label">Option 2: Pure YAML, query as a property <span className="glql-syntax-tag glql-syntax-tag--winner">Plain-language winner</span></div>
                 <pre className="glql-code">{`display: table
 fields: state, title, labels("workflow")
 filter: project = "gitlab-org/gitlab" and milestone = "17.4" and label = "group::knowledge"`}</pre>
@@ -172,113 +143,52 @@ WHERE project = "gitlab-org/gitlab"
   AND milestone = "17.4"
   AND label = "group::knowledge"
 DISPLAY AS table`}</pre>
-                <p className="glql-syntax-note">Full SQL-adjacent syntax. Familiar to data-literate users but risks importing SQL expectations that GLQL doesn't fully support.</p>
+                <p className="glql-syntax-note">Full SQL-adjacent syntax. Familiar to data-literate users but risks importing SQL expectations that GLQL doesn&apos;t fully support.</p>
               </div>
             </div>
-
-            <h3>Why we had to test before deciding</h3>
-            <p>The engineering team's instinct, including the lead engineer's, was to move toward SQL: familiar to power users, cleaner separation of concerns. My instinct, shaped by the competitor analysis and problem validation research, was more cautious. SQL familiarity could be a liability if users arrived with expectations GLQL couldn't meet. We needed data, not opinions.</p>
-
-            <p>I also pushed back on the framing that syntax was primarily an engineering problem. The syntax was the first thing a user touched. It was the UX. Testing it before locking it in wasn't a delay. It was the only way to avoid building technical debt into the user experience.</p>
-
-            <p>I designed a two-phase unmoderated study using UserTesting, run across 12 participants: 6 internal GitLab team members and 6 external users recruited via Respondent. The phases were distinct by intent:</p>
-
-            <ul>
-              <li><strong>Phase 1:</strong> Task-based syntax writing. Participants were given the documentation and asked to construct queries against realistic scenarios ("build a table showing issues with columns for priority label, title, workflow label, state, milestone, weight, and assignee"). This ran against Option 1, the live syntax, so queries could actually render results in a GitLab demo environment.</li>
-              <li><strong>Phase 2:</strong> Comparative preference. After completing the tasks, participants were shown all three syntax options side by side and asked to rank them on clarity and readability. This was observational, no running required.</li>
-            </ul>
-
-            <p>Getting the study environment right required coordination across teams. The GitLab UX demo cloud needed the GLQL feature flag enabled and the instance updated to at least 17.6 to reflect recent language improvements (case-insensitivity, field aliases). I worked with the sandbox team to configure this before external testing began.</p>
-
-            <h3>What I observed in sessions</h3>
-            <p>Watching participants attempt to write queries, before seeing the results, was the most instructive part of the study. A few patterns emerged immediately:</p>
-
-            <ul>
-              <li><strong>Error messages were the primary navigation tool.</strong> Participants didn't read the query carefully before running it. They typed something, hit an error, and used the error message to debug. When error messages were vague ("invalid syntax"), they were stuck. When they were specific, they recovered quickly. This was the single most actionable finding from Phase 1.</li>
-              <li><strong>Documentation examples were copied and adapted, not read.</strong> Most participants found a working example in the docs and modified it for the task rather than constructing a query from scratch. This had implications for how we wrote documentation. Example diversity mattered more than explanatory prose.</li>
-              <li><strong>Internal participants made assumptions external participants didn't.</strong> Internal users were familiar with GitLab's data model (what a label was, how milestones worked). External participants needed more scaffolding. The study surfaced this as a documentation gap, not a syntax problem.</li>
-              <li><strong>Natural language phrasing increased learnability.</strong> Participants verbally described what they wanted before writing the query. Syntaxes that matched those verbal descriptions (using everyday words like <code>filter</code> rather than technical terms) were picked up faster.</li>
-            </ul>
-
-            <figure className="glql-video-figure">
-              <video controls playsInline preload="metadata" className="glql-proto-video">
-                <source src="/images/Screen_Recording_2024-08-05_at_17.15.37.mov" type="video/mp4" />
-                Your browser does not support the video element.
-              </video>
-              <figcaption className="glql-video-caption">Early prototype recording (Aug 2024), produced with Himanshu Kapoor before any design refinements, showing the raw capability of GLQL. Used internally to gather early feedback and build cross-functional alignment on what the feature could become.</figcaption>
-            </figure>
-
-            <h3>The results</h3>
-            <p>Internal participants (6) showed a clear lean: <strong>4 of 6 preferred Option 2</strong>. The reasoning was consistent. Option 2 felt less cluttered, read more like plain language, and didn't require understanding what "frontmatter" meant.</p>
-
-            <p>External participants (6) were more split: <strong>2 preferred Option 1, 2 preferred Option 2, 2 preferred Option 3</strong>. SQL familiarity drove some preference for Option 3, but those same participants acknowledged it could be confusing for less technical users.</p>
-
-            <blockquote>One finding from watching the videos challenged a core engineering assumption: YAML was actually easier to read than SQL for non-technical participants. SQL users brought existing expectations that GLQL couldn't meet, making SQL familiarity a liability, not an asset.</blockquote>
-
-            <p>The synthesised conclusions from Dovetail analysis:</p>
-            <ul>
-              <li><strong>Option 2 was the preferred syntax:</strong> least cluttered, most aligned with plain language</li>
-              <li><strong>Error messages needed to be actionable:</strong> participants couldn't self-recover without specific guidance</li>
-              <li><strong>Documentation needed more examples:</strong> users adapted examples more than they read explanations</li>
-              <li><strong>In-context documentation links and query previews</strong> were frequently mentioned as adoption accelerators</li>
-            </ul>
-
-            <h3>The advocacy moment: preventing premature release</h3>
-            <p>While the syntax study was running, there was internal pressure to ship GLQL to a broader audience ahead of schedule. Based on the in-progress research, particularly the error message findings and the documentation gaps surfacing in external sessions, I raised concerns formally.</p>
-
-            <p>I framed it not as a design objection but as a risk argument: what was the cost of early adopters hitting opaque errors and abandoning the feature before improvements landed? The first impression of an experimental feature often determined whether it reached critical mass.</p>
-
-            <blockquote>The argument wasn't "this isn't ready." It was: "here is what users are experiencing, here is the risk to adoption, and here is what needs to be addressed first." That framing made the difference.</blockquote>
-
-            <p>The release timeline was adjusted. Error handling was improved. The syntax was updated to Option 2 before GA, with backward compatibility preserved by the engineering team. The feature launched with 0 P1, P2, or P3 bugs.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Design Decisions &amp; Syntax Direction</h2>
-
-            <h3>What research changed</h3>
-            <p>Going into the study, the engineering team's default position was Option 1 (the existing syntax) or a potential pivot to SQL. The research changed that. The outcome wasn't just a syntax preference. It reshaped how the team thought about the relationship between the query language and the users writing it.</p>
-
-            <p>Three principles emerged from the combined findings:</p>
-            <ul>
-              <li><strong>Plain language over technical convention:</strong> a word like <code>filter</code> outperformed <code>---frontmatter---</code> not because it was simpler, but because it matched how users described what they wanted to do verbally.</li>
-              <li><strong>Errors are part of the syntax UX:</strong> the quality of the error message was inseparable from the quality of the syntax. A great syntax with bad error messages felt worse than a mediocre syntax with clear recovery paths.</li>
-              <li><strong>Documentation is an extension of the design:</strong> the way users actually learned GLQL was by copying examples and adapting them. Designing the syntax in isolation from the documentation it would live in was a mistake we corrected mid-study.</li>
-            </ul>
-
-            <h3>What shipped as a result of this work</h3>
-            <p>Four issues were opened directly from the research outcomes and shipped post-GA:</p>
-            <ul>
-              <li>Syntax updated to Option 2 (<code>filter:</code> property replacing YAML frontmatter) with full backward compatibility</li>
-              <li>GLQL error messages improved with specific, actionable guidance</li>
-              <li>Documentation updated with workflow-based examples covering the most common use cases</li>
-              <li>In-block preview feature for GLQL in the rich text editor scoped for post-GA</li>
-            </ul>
-
-            <img src="/images/glql_table_v18_5.png" alt="A GLQL embedded view rendering a live table of issues with state, health, epic, milestone and weight columns" />
-            <p className="img-caption">The shipped output: a GLQL block rendering live issue data as an embedded table inside GitLab.</p>
-
-            <h3>The visual builder question</h3>
-            <p>A parallel exploration investigated whether non-technical users could be served by a visual query builder that generated GLQL syntax behind the scenes, eliminating the need to write a query at all. Research suggested this was valuable, but leadership feedback expanded the scope to a platform-wide filtering initiative beyond the Knowledge team's remit. I documented the exploration with clear handoff context rather than letting it evaporate.</p>
+            <h2>Decision two: errors are part of the syntax</h2>
+            <p>Because people navigated by error, error quality was not polish, it was the design. When there was pressure to push the feature to a wider audience early, I raised it as a risk, not an opinion: here is what new users hit, here is what it costs us if their first attempt dead-ends, here is what we fix first. The timeline moved, the error messages were rewritten to guide people toward a fix, and the first thing a new user met stopped being a wall.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Outcomes &amp; Impact</h2>
+            <h2>Driving adoption through design</h2>
+            <p>A good feature buried in a menu nobody opens is a feature nobody uses. The metric itself was the PM&apos;s call, as the person who owned that decision, and we measured adoption. What I owned was moving that number. I led the discoverability work: surfacing the feature inside the editor at the moment someone is writing, getting it placed as a primary item in the release post, and featuring it in GitLab&apos;s What&apos;s New. Adoption grew about a third in the first weeks after GA alongside that push.</p>
+          </div>
 
-            <h3>Launch results</h3>
+          <div className="case-study-section">
+            <h2>Shipping in code</h2>
+            <p>I did not hand off a spec and walk away. I worked in the same repository as the engineers, through the same review, and merged to production myself.</p>
+            <p>One example: embedded views could not show a &quot;0&quot; when a table was empty, so you could not scan a page of tables and tell which ones had no results without opening each one. I traced it to a shared component whose zero-count logic was tied to having an icon, which meant most of the fifty-plus components using it could not show a zero at all. I added an explicit prop to control it, kept it backward compatible, wrote the tests, and shipped it. (Merge request !209750.)</p>
+            <p>That changed how the team treated design. Less lost in translation, faster iteration, and trust, because I was held to the same bar they were.</p>
+
+            <img src="/images/glql_table_v18_5.png" alt="A GLQL embedded view rendering live issue data as a table, with a count badge in the header" />
+            <p className="img-caption">A GLQL embedded view rendering live issue data as a table. The header count (here, 8) is the same count logic that now shows a 0 when a view is empty — the fix in !209750.</p>
+          </div>
+
+          <div className="case-study-section">
+            <h2>The vision: a visual query builder</h2>
+            <p>From day one the goal was the person who does not want to learn a query language. The syntax made GLQL usable. This was the vision that would have made it effortless.</p>
+            <p>A visual builder, where one click drops in a smart template and you see a live view of your own work immediately, then adjust only if you want to. Outcome first, settings second.</p>
+            <p>I took it through five iterations to get there: a modal, a modal with tabs, a stepper, a smart template, and finally a simplified view builder. The first three made people configure before they saw anything. The last two flipped it, so the result came first and the controls came second. We used embeddable views to show people what GLQL could do, instead of asking them to picture it.</p>
+            <p>The research said this was the right direction for non-technical users. The work then grew into a platform-wide initiative beyond our team&apos;s scope, so it did not ship from us. I documented it fully so the thinking would not be lost, and I still believe it is where this should go.</p>
+          </div>
+
+          <div className="case-study-section">
+            <h2>Outcomes and what I learned</h2>
+            <p>Adoption grew about a third in the early weeks, driven by the discoverability work. The result I am prouder of is quieter and lasts longer: I joined a team with no research process and no design practice and left it with both, which made the projects after this one, the Wiki sidebar and contextual comments, faster and less contentious to build.</p>
+
+            <p>What I would carry into the next one:</p>
             <ul>
-              <li><strong>33% adoption growth</strong> in the weeks following GA launch, weekly active users grew from 600 to 801</li>
-              <li><strong>0 P1, P2, or P3 bugs</strong> at launch, a direct result of the advocacy to address critical issues before release</li>
-              <li><strong>94% balanced scorecard score,</strong> GitLab's internal quality metric covering UX, stability, and performance</li>
-              <li><strong>21% increase in paid GMAU</strong> for the Plan stage, to which GLQL contributed as a differentiating feature for knowledge management workflows</li>
+              <li>The syntax is the UX. The first thing a user touches is the interface, whatever engineering calls it.</li>
+              <li>Outcome first, settings second.</li>
+              <li>Errors are part of the design, not cleanup.</li>
+              <li>Design for the person who does not want to learn the tool.</li>
             </ul>
 
-            <h3>What I'd do differently</h3>
-            <p>The YAML frontmatter friction was a known compromise. Given more time before GA, I would have pushed harder for even a minimal UI control layer, a single dropdown for choosing table vs. list view, to reduce the barrier for non-technical users. The research was clear; the constraint was timeline. Post-GA, this became a prioritised item.</p>
-
-            <p>I'd also have set up adoption instrumentation earlier in the process. The 33% growth number was meaningful, but it told us <em>that</em> adoption grew, not <em>why</em>, or which features drove it. Better instrumentation from the start would have made that story more actionable.</p>
-
-            <p>Beyond the feature itself, GLQL established the design practice on the Knowledge team. By the time it shipped, we had a shared research process, a documented way of making and communicating design decisions, and a cross-functional working relationship that made subsequent projects like Wiki Sidebar and Contextual Comments faster and less contentious to navigate.</p>
+            <p>What I would do differently: set up the measurement earlier, so I could show not just that adoption grew but which design choices drove it, and push sooner for the visual layer that non-technical users needed from the start.</p>
           </div>
 
         </div>{/* /case-study-main */}
