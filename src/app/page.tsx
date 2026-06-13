@@ -213,28 +213,21 @@ export default function Home() {
               <Link href="/case-studies/bringing-visibility-to-workers-status">
                 +12% increase in booking rates
               </Link>
-              . Earlier, I designed web and mobile products for Qantas,
-              Vodafone, Woolworths, and NAB, and was the first designer at
-              several startups, building design systems, defining product
-              direction, and occasionally writing code alongside engineers.
+              .
+            </p>
+            <p className="text mt-6">
+              Earlier, I designed web and mobile products for Qantas, Vodafone,
+              Woolworths, and NAB, and was the first designer at several
+              startups, building design systems, defining product direction, and
+              occasionally writing code alongside engineers.
+            </p>
+            <p className="text mt-6">
               Outside of that, I founded and solo-built{" "}
               <a href="https://birthguide.com.au" target="_blank" rel="noopener">
                 BirthGuide
               </a>
               , a consumer product for Australian first-time parents, designed
               and shipped end-to-end on Next.js, Supabase, and Stripe.
-            </p>
-            <p className="text mt-6">
-              I also mentor junior designers through CareerFoundry and
-              Springboard. The full history is in my{" "}
-              <a
-                href="/files/resume_alexfracazo_2026_ats.pdf"
-                target="_blank"
-                rel="noopener"
-              >
-                résumé
-              </a>
-              .
             </p>
           </div>
         </div>
