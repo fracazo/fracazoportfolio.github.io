@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { ContactIcon } from "@/components/icons";
 
@@ -63,12 +64,7 @@ export default function Contact() {
               </a>
             </li>
             <li>
-              <a
-                href="/files/resume_alexfracazo_2026_ats.pdf"
-                target="_blank"
-                rel="noopener"
-                className={socialLinkClass}
-              >
+              <Link href="/resume" className={socialLinkClass}>
                 <svg
                   width="20"
                   height="20"
@@ -86,8 +82,8 @@ export default function Contact() {
                   <path d="M16 13H8" />
                   <path d="M16 17H8" />
                 </svg>
-                <span className="flex-1">Résumé (PDF)</span>
-              </a>
+                <span className="flex-1">Résumé</span>
+              </Link>
             </li>
           </ul>
 

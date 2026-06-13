@@ -3,6 +3,7 @@ import { AppShell } from "@/components/app-shell";
 import { CaseCard } from "@/components/case-card";
 import { RowList } from "@/components/row-list";
 import { SiteFooter } from "@/components/site-footer";
+import { ExternalLinkIcon } from "@/components/icons";
 
 const selectedWork = [
   {
@@ -118,14 +119,12 @@ export default function Home() {
               >
                 Email me
               </a>
-              <a
-                href="/files/resume_alexfracazo_2026_ats.pdf"
-                target="_blank"
-                rel="noopener"
+              <Link
+                href="/resume"
                 className="btn btn-ghost inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
               >
-                Résumé (PDF)
-              </a>
+                Résumé
+              </Link>
               <a
                 href="https://www.linkedin.com/in/fracazo"
                 target="_blank"
@@ -133,6 +132,7 @@ export default function Home() {
                 className="btn btn-ghost inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
               >
                 LinkedIn
+                <ExternalLinkIcon size={14} className="opacity-70" />
               </a>
             </div>
           </div>
