@@ -107,10 +107,12 @@ export default function Home() {
               I turn messy, cross-team problems into shipped product.
             </h1>
             <p className="mt-3 text-lg leading-[1.6] text-text-body">
-              <strong className="font-semibold text-text">Alex Fracazo</strong>,
-              a software designer who builds. End-to-end, from research and
-              strategy to a working product, for consumer and enterprise. I lean
-              on AI-assisted tooling to move fast without losing craft.
+              <strong className="font-semibold text-text">
+                A software designer who builds.
+              </strong>{" "}
+              End-to-end, from research and strategy to a working product, for
+              consumer and enterprise. I lean on AI-assisted tooling to move
+              fast without losing craft.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <a
