@@ -150,7 +150,16 @@ DISPLAY AS table`}</pre>
             <img src="/images/glql-decision2.gif" alt="The GitLab documentation page for GLQL embedded views, the source users copied examples from" />
             <p className="img-caption">The starting point in almost every session: an example copied straight from the GLQL documentation, then pasted into GitLab to try.</p>
 
-            <p>That told me where GLQL belonged. If the real workflow was copy from the docs and try it in the product, the design job was to close that gap and pull the starting point in-product: working examples and templates surfaced inside the editor, so the first usable query was one click away instead of a tab away. That insight set the direction for the discoverability work that followed, and for the visual builder.</p>
+            <p>That told me where GLQL belonged. If the real workflow was copy from the docs and try it in the product, the design job was to close that gap and pull the starting point in-product: working examples and templates surfaced inside the editor, so the first usable query was one click away instead of a tab away.</p>
+
+            <figure className="glql-video-figure">
+              <video controls playsInline preload="metadata" className="glql-proto-video">
+                <source src="/images/glql-table.mp4" type="video/mp4" />
+                Your browser does not support the video element.
+              </video>
+            </figure>
+
+            <p>That insight set the direction for the discoverability work that followed, and for the visual builder.</p>
           </div>
 
           <div className="case-study-section">
