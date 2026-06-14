@@ -50,7 +50,7 @@ const experience = [
     role: "Principal Product Designer",
     context: "Australia's largest disability support platform.",
     period: "2021 – 2022",
-    location: "Sydney",
+    location: "Remote, Australia",
     outcome: "Connection rate 3% → 5% (+67% relative)",
     points: [
       "Found through data analysis that 39.1% of clients were messaging inactive workers, dragging down platform-wide connection rates.",
