@@ -99,7 +99,7 @@ export default function Home() {
               className="mt-[168px] mb-8 h-[60px] w-[60px] rounded-full object-cover max-md:mt-14"
             />
             <p className="mb-4 flex items-start gap-2 font-mono text-[13px] text-balance text-muted">
-              <span className="mt-[7px] h-2 w-2 flex-none rounded-full bg-[#34d399] shadow-[0_0_0_3px_rgba(52,211,153,0.15)]" />
+              <span className="status-dot mt-[7px] h-2 w-2 flex-none rounded-full bg-[#34d399]" />
               Available for design roles &amp; contract work · Melbourne or
               remote (UTC+10)
             </p>
