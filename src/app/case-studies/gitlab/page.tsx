@@ -166,17 +166,6 @@ export default function Gitlab() {
                 </a>
               </li>
 
-              <li className="gl-work-row-item--muted">
-                <span className="gl-work-row gl-work-row--static">
-                  <span className="gl-work-row-left">
-                    <span className="gl-work-row-title">GLQL Visual Builder Exploration</span>
-                    <span className="gl-work-row-sep" aria-hidden="true">|</span>
-                    <span className="gl-work-row-type">Exploration</span>
-                  </span>
-                  <span className="gl-work-row-date">2025</span>
-                </span>
-              </li>
-
               <li>
                 <a href="https://www.youtube.com/watch?v=wuM58BBGSg0" target="_blank" rel="noopener" className="gl-work-row">
                   <span className="gl-work-row-left">
