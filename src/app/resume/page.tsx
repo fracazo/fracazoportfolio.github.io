@@ -40,7 +40,7 @@ const experience = [
     outcome: "+33% adoption · 0 bugs · code in production",
     points: [
       "Led GLQL from research through GA launch: 33% adoption growth, zero bugs, and shipped my own code to production via merge requests.",
-      "Led the Wiki UX transformation — shipped the sidebar redesign to production through code contributions and finalised the contextual comments design system now in engineering development.",
+      "Led the Wiki UX transformation, shipping the sidebar redesign to production through code contributions and finalising the contextual comments design system now in engineering development.",
       "Ran usability studies and a Qualtrics survey on AI code review that exposed trust and control problems, driving a full product pivot to an author-facing writing assistant.",
     ],
   },
@@ -54,7 +54,7 @@ const experience = [
     outcome: "Connection rate 3% → 5% (+67% relative)",
     points: [
       "Found through data analysis that 39.1% of clients were messaging inactive workers, dragging down platform-wide connection rates.",
-      "Designed an availability visibility system across iOS and Android — lifted response rate from 39.1% to 45.8% and drove +46% inactive worker reactivations.",
+      "Designed an availability visibility system across iOS and Android that lifted response rate from 39.1% to 45.8% and drove +46% inactive worker reactivations.",
       "Redesigned the core booking experience, achieving a +12% increase in booking rates.",
     ],
   },
@@ -223,8 +223,12 @@ export default function Resume() {
                 </h3>
                 <p className="mt-0.5 text-[14px] leading-[1.55] text-muted">
                   {job.role}
-                  {job.context ? ` — ${job.context}` : ""}
                 </p>
+                {job.context && (
+                  <p className="mt-0.5 text-[13.5px] leading-[1.55] text-muted">
+                    {job.context}
+                  </p>
+                )}
                 {job.outcome && (
                   <p className="mt-2.5">
                     <span className="inline-flex items-center rounded-full bg-[rgba(59,130,246,0.12)] px-2.5 py-1 text-[12px] font-medium text-brand">
@@ -241,7 +245,7 @@ export default function Resume() {
             ))}
           </div>
           <p className="mt-8 text-[13px] leading-[1.7] text-muted">
-            <span className="font-medium text-text">Earlier —</span>{" "}
+            <span className="font-medium text-text">Earlier:</span>{" "}
             Bem Direto (2012–2013), first designer at Brazil&rsquo;s first real
             estate marketplace for agents · Smartia (2011–2012), Brazil&rsquo;s
             first car insurance comparison platform · Artia (2009–2011), built my
