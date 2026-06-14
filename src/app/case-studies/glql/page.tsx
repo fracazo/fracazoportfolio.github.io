@@ -107,7 +107,10 @@ export default function Glql() {
 
           <div className="case-study-section">
             <h2>Decision one: the syntax is the UX</h2>
-            <p>Three syntax options were on the table, and the engineering instinct was to move toward SQL. Clean, familiar, a tidy separation of concerns. My argument was that the syntax is the first thing a user touches, so it is the interface, and we should not lock it on instinct before testing it. We tested it. The plain-language option won, and we shipped it with full backward compatibility.</p>
+            <p>Three syntax options were on the table, and the engineering instinct was to move toward SQL. Clean, familiar, a tidy separation of concerns.</p>
+            <p>My argument was that the syntax is the first thing a user touches, so it is the interface, and we should not lock it on instinct before testing it.</p>
+            <p>We tested it.</p>
+            <p>The plain-language option won, and we shipped it with full backward compatibility.</p>
 
             <div className="glql-syntax-group">
               <div className="glql-syntax-card">
@@ -152,7 +155,9 @@ DISPLAY AS table`}</pre>
 
           <div className="case-study-section">
             <h2>Driving adoption through design</h2>
-            <p>A good feature buried in a menu nobody opens is a feature nobody uses. The metric itself was the PM&apos;s call, as the person who owned that decision, and we measured adoption. What I owned was moving that number. I led the discoverability work: surfacing the feature inside the editor at the moment someone is writing, getting it placed as a primary item in the release post, and featuring it in GitLab&apos;s What&apos;s New. Adoption grew about a third in the first weeks after GA alongside that push.</p>
+            <p>Even a strong feature has to be found before it gets used.</p>
+            <p>I led the discoverability work: surfacing the feature inside the editor at the moment someone is writing, getting it placed as a primary item in the release post, and featuring it in GitLab&apos;s What&apos;s New.</p>
+            <p>Adoption grew about a third in the first weeks after GA alongside that push.</p>
 
             <figure className="glql-figure-pair">
               <div className="glql-figure-pair-grid">
