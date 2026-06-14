@@ -107,27 +107,29 @@ export function CaseStudyShell({
         <ArrowLeftIcon className="shrink-0" />
         {backLabel}
       </Link>
-      <div>
-        <h2 className="m-0 mt-2 px-2.5 text-[12px] font-semibold tracking-[0.06em] text-muted uppercase opacity-60">
-          On this page
-        </h2>
-        <ul className="m-0 mt-3 flex list-none flex-col gap-0.5 p-0">
-          {toc.map(({ id, label }) => (
-            <li key={id}>
-              <a
-                href={`#${id}`}
-                className={`block rounded-lg px-2.5 py-1.5 text-sm leading-[1.4] no-underline transition-all duration-200 hover:bg-panel-2 hover:text-text hover:no-underline ${
-                  activeId === id
-                    ? "bg-[rgba(59,130,246,0.1)] font-medium text-brand"
-                    : "text-muted"
-                }`}
-              >
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {toc.length > 0 && (
+        <div>
+          <h2 className="m-0 mt-2 px-2.5 text-[12px] font-semibold tracking-[0.06em] text-muted uppercase opacity-60">
+            On this page
+          </h2>
+          <ul className="m-0 mt-3 flex list-none flex-col gap-0.5 p-0">
+            {toc.map(({ id, label }) => (
+              <li key={id}>
+                <a
+                  href={`#${id}`}
+                  className={`block rounded-lg px-2.5 py-1.5 text-sm leading-[1.4] no-underline transition-all duration-200 hover:bg-panel-2 hover:text-text hover:no-underline ${
+                    activeId === id
+                      ? "bg-[rgba(59,130,246,0.1)] font-medium text-brand"
+                      : "text-muted"
+                  }`}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </nav>
   );
 
