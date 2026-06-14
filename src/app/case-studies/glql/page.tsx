@@ -141,8 +141,13 @@ DISPLAY AS table`}</pre>
           </div>
 
           <div className="case-study-section">
-            <h2>Decision two: errors are part of the syntax</h2>
-            <p>Because people navigated by error, error quality was not polish, it was the design. When there was pressure to push the feature to a wider audience early, I raised it as a risk, not an opinion: here is what new users hit, here is what it costs us if their first attempt dead-ends, here is what we fix first. The timeline moved, the error messages were rewritten to guide people toward a fix, and the first thing a new user met stopped being a wall.</p>
+            <h2>Decision two: bring the starting point in-product</h2>
+            <p>User testing surfaced a behavior I had not designed for: people did not write queries from scratch. They found an example in the documentation, copied it, pasted it into GitLab, and adjusted from there. The docs were the starting point and the product was the workbench, with a round trip between the two every time they got stuck.</p>
+
+            <img src="/images/glql-decision2.gif" alt="The GitLab documentation page for GLQL embedded views, the source users copied examples from" />
+            <p className="img-caption">The starting point in almost every session: an example copied straight from the GLQL documentation, then pasted into GitLab to try.</p>
+
+            <p>That told me where GLQL belonged. If the real workflow was copy from the docs and try it in the product, the design job was to close that gap and pull the starting point in-product: working examples and templates surfaced inside the editor, so the first usable query was one click away instead of a tab away. That insight set the direction for the discoverability work that followed, and for the visual builder.</p>
           </div>
 
           <div className="case-study-section">
@@ -193,7 +198,6 @@ DISPLAY AS table`}</pre>
             <img src="/images/builder-final.gif" alt="An embeddable view adding without needing to write code" />
             <p className="img-caption">The vision in motion: adding an embeddable view and seeing live results immediately, without writing a query.</p>
 
-            <p>I took it through five iterations to get there: a modal, a modal with tabs, a stepper, a smart template, and finally a simplified view builder. The first three made people configure before they saw anything. The last two flipped it, so the result came first and the controls came second. We used embeddable views to show people what GLQL could do, instead of asking them to picture it.</p>
             <p>The research said this was the right direction for non-technical users. The work then grew into a platform-wide initiative beyond our team&apos;s scope, so it did not ship from us. I documented it fully so the thinking would not be lost, and I still believe it is where this should go.</p>
           </div>
 
