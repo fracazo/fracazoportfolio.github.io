@@ -50,7 +50,7 @@ const themeInit = `(function(){try{var s=localStorage.getItem('theme');var l=win
    of the home route (like Linear's landing page). `.intro` is removed once the
    reveal has played so client-side navigation back to the home page doesn't
    replay it — only an actual page load does. */
-const introInit = `(function(){try{if(location.pathname==='/'){var h=document.documentElement;h.classList.add('intro');addEventListener('load',function(){setTimeout(function(){h.classList.remove('intro');},2600);});}}catch(e){}})();`;
+const introInit = `(function(){try{if(location.pathname==='/'){var h=document.documentElement;h.classList.add('intro');addEventListener('load',function(){setTimeout(function(){h.classList.remove('intro');},3000);});}}catch(e){}})();`;
 
 export default function RootLayout({
   children,

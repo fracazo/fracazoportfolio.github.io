@@ -301,18 +301,19 @@
 /* ========================
    Landing-page intro reveal (Linear-style)
    The home hero's elements (avatar, status line, headline, subhead, buttons)
-   fade up a few px and sharpen from a slight blur, arriving one after another.
+   sharpen from a blur and fade in with only a touch of movement, arriving one
+   after another.
    Plays on every full load of the landing page (/) — there is no scroll
    animation and no navigation transition anywhere else. An inline <head>
    script (see layout.tsx) adds `.intro` to <html> before first paint, then
    removes it once the reveal has played so client-side navigation back to home
    doesn't replay it.
    ======================== */
-@keyframes reveal-up {
+@keyframes reveal-in {
   from {
     opacity: 0;
-    transform: translateY(14px);
-    filter: blur(4px);
+    transform: translateY(4px);
+    filter: blur(8px);
   }
   to {
     opacity: 1;
@@ -321,24 +322,24 @@
   }
 }
 
-/* The avatar develops into focus from a heavier blur with a small scale, so it
-   reads as the deliberate first beat before the text lines arrive. */
+/* The avatar develops into focus from a heavier blur, reading as the deliberate
+   first beat before the text lines arrive. Movement is kept minimal. */
 @keyframes reveal-avatar {
   from {
     opacity: 0;
-    transform: translateY(6px) scale(0.92);
+    transform: translateY(4px);
     filter: blur(14px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
     filter: blur(0);
   }
 }
 
 .intro .reveal-group > * {
   opacity: 0;
-  animation: reveal-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: reveal-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: opacity, transform, filter;
 }
 
@@ -355,9 +356,19 @@
 .intro .reveal-group > *:nth-child(5) { animation-delay: 1.36s; }
 .intro .reveal-group > *:nth-child(n + 6) { animation-delay: 1.5s; }
 
+/* The Selected work section is the final beat: it arrives as one block once
+   the hero has landed, so the top of the page settles before it appears. */
+.intro .reveal-after {
+  opacity: 0;
+  animation: reveal-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 1.7s;
+  will-change: opacity, transform, filter;
+}
+
 /* Respect reduced-motion: show everything immediately, no transform/blur */
 @media (prefers-reduced-motion: reduce) {
-  .intro .reveal-group > * {
+  .intro .reveal-group > *,
+  .intro .reveal-after {
     opacity: 1 !important;
     animation: none !important;
     transform: none !important;
