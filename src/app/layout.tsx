@@ -45,12 +45,12 @@ export const metadata: Metadata = {
    page never flashes the wrong background. Mirrors the old inline script. */
 const themeInit = `(function(){try{var s=localStorage.getItem('theme');var l=window.matchMedia('(prefers-color-scheme: light)').matches;var m=s||(l?'light':'dark');document.documentElement.classList.toggle('light',m==='light');}catch(e){}})();`;
 
-/* Gates the landing-page intro reveal (see globals.css). Runs before first
-   paint so the hero can start hidden without a flash. Conditions: only on the
-   home route, and only the first time it's seen in a browser session. Once the
-   reveal has played, `.intro` is removed so client-side navigation back to the
-   home page doesn't replay it. */
-const introInit = `(function(){try{if(location.pathname==='/'&&!sessionStorage.getItem('introPlayed')){var h=document.documentElement;h.classList.add('intro');sessionStorage.setItem('introPlayed','1');addEventListener('load',function(){setTimeout(function(){h.classList.remove('intro');},1600);});}}catch(e){}})();`;
+/* Drives the landing-page intro reveal (see globals.css). Runs before first
+   paint so the hero can start hidden without a flash. Plays on every full load
+   of the home route (like Linear's landing page). `.intro` is removed once the
+   reveal has played so client-side navigation back to the home page doesn't
+   replay it — only an actual page load does. */
+const introInit = `(function(){try{if(location.pathname==='/'){var h=document.documentElement;h.classList.add('intro');addEventListener('load',function(){setTimeout(function(){h.classList.remove('intro');},2600);});}}catch(e){}})();`;
 
 export default function RootLayout({
   children,

@@ -96,6 +96,8 @@ export default function Home() {
             <img
               src="/images/avatar.png"
               alt="Alex Fracazo"
+              fetchPriority="high"
+              decoding="async"
               className="mt-[168px] mb-8 h-[60px] w-[60px] rounded-full object-cover max-md:mt-14"
             />
             <p className="mb-4 flex items-start gap-2 font-mono text-[13px] text-balance text-muted">

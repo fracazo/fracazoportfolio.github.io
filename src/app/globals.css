@@ -302,18 +302,17 @@
    Landing-page intro reveal (Linear-style)
    The home hero's elements (avatar, status line, headline, subhead, buttons)
    fade up a few px and sharpen from a slight blur, arriving one after another.
-   Plays ONCE, only on the landing page (/), and only the first time it's seen
-   in a browser session — there is no scroll animation and no navigation
-   transition anywhere else. The gate lives in an inline <head> script
-   (see layout.tsx) that adds `.intro` to <html> before first paint when the
-   conditions are met, then removes it once the reveal has played so SPA
-   navigation back to home doesn't replay it.
+   Plays on every full load of the landing page (/) — there is no scroll
+   animation and no navigation transition anywhere else. An inline <head>
+   script (see layout.tsx) adds `.intro` to <html> before first paint, then
+   removes it once the reveal has played so client-side navigation back to home
+   doesn't replay it.
    ======================== */
 @keyframes reveal-up {
   from {
     opacity: 0;
-    transform: translateY(12px);
-    filter: blur(6px);
+    transform: translateY(14px);
+    filter: blur(4px);
   }
   to {
     opacity: 1;
@@ -322,17 +321,39 @@
   }
 }
 
+/* The avatar develops into focus from a heavier blur with a small scale, so it
+   reads as the deliberate first beat before the text lines arrive. */
+@keyframes reveal-avatar {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.92);
+    filter: blur(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
 .intro .reveal-group > * {
   opacity: 0;
-  animation: reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: reveal-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: opacity, transform, filter;
 }
-.intro .reveal-group > *:nth-child(1) { animation-delay: 0.12s; }
-.intro .reveal-group > *:nth-child(2) { animation-delay: 0.2s; }
-.intro .reveal-group > *:nth-child(3) { animation-delay: 0.28s; }
-.intro .reveal-group > *:nth-child(4) { animation-delay: 0.36s; }
-.intro .reveal-group > *:nth-child(5) { animation-delay: 0.44s; }
-.intro .reveal-group > *:nth-child(n + 6) { animation-delay: 0.5s; }
+
+/* One thing at a time: the avatar leads, then each line follows on an evenly
+   spaced beat (~0.22s) rather than everything arriving at once. */
+.intro .reveal-group > *:nth-child(1) {
+  animation-name: reveal-avatar;
+  animation-duration: 0.95s;
+  animation-delay: 0.15s;
+}
+.intro .reveal-group > *:nth-child(2) { animation-delay: 0.7s; }
+.intro .reveal-group > *:nth-child(3) { animation-delay: 0.92s; }
+.intro .reveal-group > *:nth-child(4) { animation-delay: 1.14s; }
+.intro .reveal-group > *:nth-child(5) { animation-delay: 1.36s; }
+.intro .reveal-group > *:nth-child(n + 6) { animation-delay: 1.5s; }
 
 /* Respect reduced-motion: show everything immediately, no transform/blur */
 @media (prefers-reduced-motion: reduce) {
