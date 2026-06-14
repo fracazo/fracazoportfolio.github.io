@@ -258,7 +258,7 @@ export default function QantasApp() {
           <p>I'm available for product design roles and contract engagements, hybrid in Melbourne or remote (UTC+10). If the way I work resonates, let's talk.</p>
           <div className="case-cta-actions">
             <a href="mailto:fracazo@duck.com" className="btn btn-primary">Email me</a>
-            <a href="/files/resume_alexfracazo_2026_ats.pdf" target="_blank" rel="noopener" className="btn btn-ghost">Résumé (PDF)</a>
+            <a href="/resume" className="btn btn-ghost">Résumé</a>
             <a href="https://www.linkedin.com/in/fracazo" target="_blank" rel="noopener" className="btn btn-ghost">LinkedIn</a>
           </div>
         </div>
