@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
 };
 
-const RESUME_PDF = "/files/resume_alexfracazo_2026_ats.pdf";
+const RESUME_PDF = "/files/resume_alexfracazo_2026_light.pdf";
 
 const experience = [
   {
