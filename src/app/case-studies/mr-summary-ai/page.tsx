@@ -59,46 +59,53 @@ export default function MrSummaryAi() {
                 <div className="metadata-item">
                   <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clipRule="evenodd"/></svg>
                   <div className="metadata-text">
-                    <p className="metadata-label">Period</p>
-                    <p className="metadata-value">Jan 2023 - May 2024</p>
+                    <p className="metadata-label">Year</p>
+                    <p className="metadata-value">2023–2024</p>
                   </div>
                 </div>
               </div>
             </div>
-            <p className="case-intro">Shipped three iterations of an AI-powered merge request summary feature over 16 months. A Qualtrics survey revealing trust and control problems led to a fundamental pivot: from AI generating summaries for reviewers to AI helping authors write better descriptions at creation time. The <a href="https://gitlab.com/groups/gitlab-org/-/work_items/10401" target="_blank" rel="noopener">epic closed in May 2024</a> with all 24 child issues completed.</p>
+            <p className="case-intro">An AI feature that took three iterations and a survey to get right, and ended somewhere it did not start: helping authors write the description, not summarizing it for reviewers.</p>
           </header>
 
           <ul className="case-stats" role="list">
-            <li><span className="case-stat-value">3</span><span className="case-stat-label">shipped iterations</span></li>
+            <li><span className="case-stat-value">3</span><span className="case-stat-label">iterations shipped to real users</span></li>
             <li><span className="case-stat-value">24</span><span className="case-stat-label">issues delivered across design, frontend and backend</span></li>
-            <li><span className="case-stat-value">16 mo</span><span className="case-stat-label">Jan 2023 to May 2024</span></li>
+            <li><span className="case-stat-value">1</span><span className="case-stat-label">pivot, from reviewer-facing summary to author-facing assistant</span></li>
           </ul>
 
-          <div className="summary-card">
-            <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-            <p>This was January 2023, two months after ChatGPT launched. GitLab's approach to AI was deliberately different from the standard product development process: prototype and ship experiments as fast as possible to assess feasibility and potential value from real AI outputs, then mature to Beta and GA based on feedback. I joined the Code Review team, mapped the complete author/reviewer cycle from scratch, and led the design through three distinct iterations. The feature we shipped at the end was fundamentally different from the one we started with, and the journey to get there was the most instructive AI design work I have done.</p>
+          <div className="case-study-section">
+            <blockquote>Three shipped versions taught us the AI was in the wrong role. The fix was not a better summary, it was helping the author write a better description.</blockquote>
           </div>
 
           <div className="case-study-section">
-            <h2>The Problem</h2>
+            <h2>The challenge</h2>
 
-            <p>A merge request contains changes across many files and relates back to an issue being resolved. The description communicates the intent of the changes, but as review cycles progress, it becomes stale. It no longer reflects what was actually changed to achieve the solution. Reviewers and authors get out of sync.</p>
+            <p>A merge request contains changes across many files and traces back to the issue it resolves. The description communicates the intent of those changes, but as review cycles progress it goes stale. It stops reflecting what was actually changed to reach the solution, and reviewers and authors drift out of sync.</p>
 
-            <p>To illustrate the scale of this problem, I found what was probably the longest merge request in GitLab's history: an enormous description, dozens of file changes, and a wall of comments accumulated over weeks. The cognitive load of getting up to speed was real and measurable.</p>
+            <p>To show the scale of it, I found what was probably the longest merge request in GitLab's history: an enormous description, dozens of file changes, and a wall of comments accumulated over weeks. The cognitive load of getting up to speed was real and measurable.</p>
 
-            <p>The hypothesis: what if AI could summarize the description and commit changes into a brief, well-articulated sentence, reducing the time it takes for reviewers and authors to get up to speed?</p>
+            <p>The hypothesis was the obvious one. What if AI summarized the description and the diff into a brief, well-articulated sentence, cutting the time reviewers and authors needed to get oriented? Most of this case study is about why the obvious answer was the wrong one.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Building Foundational Understanding</h2>
+            <h2>My role</h2>
 
-            <p>When I joined the Code Review team, I needed to rapidly understand one of GitLab's most complex workflows. Before designing anything, I mapped the complete review cycle flow between authors and reviewers in Figma. Every touchpoint: draft, ready for review, first review, changes requested, re-review, approval, and merge. This map became the baseline for all AI feature work on the team.</p>
+            <p>This was January 2023, two months after ChatGPT launched. GitLab ran AI differently from its usual product process: prototype and ship experiments as fast as possible to judge feasibility and real value from real AI outputs, then mature to Beta and GA on feedback. I joined the Code Review team as the product designer and led the design through three distinct iterations.</p>
 
-            <p>The systems-level view was critical. It shifted the team's conversation from "where do we put a summary button" to "how does AI fit into the entire review workflow." When I later marked AI intervention points across the map in orange, the placement decisions became much easier to reason about together.</p>
+            <p>Before designing anything, I mapped the complete review cycle in Figma. Every touchpoint between author and reviewer: draft, ready for review, first review, changes requested, re-review, approval, and merge. It was one of GitLab's most complex workflows, and I needed the whole picture before placing a single feature.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Iteration 1: Quick Action Summary</h2>
+            <h2>The principle</h2>
+
+            <p>One idea ran through the work: design AI around the workflow, not the screen. The map shifted the team's conversation from "where do we put a summary button" to "how does AI fit into the entire review workflow." When I later marked the AI intervention points across that map, placement became something we could reason about together instead of guess at.</p>
+
+            <p>The second idea: ship to learn. Each iteration was a real release to real users, scoped tight enough to answer one question, and we stayed willing to remove what we built when the answer told us to. That last part is harder than it sounds.</p>
+          </div>
+
+          <div className="case-study-section">
+            <h2>Iteration one: the quick-action summary</h2>
 
             <img src="/images/merge-request-changes-summary-ai.gif" alt="Merge request changes summary AI quick action" className="gitlab-contrib-img" />
 
@@ -119,7 +126,7 @@ export default function MrSummaryAi() {
           </div>
 
           <div className="case-study-section">
-            <h2>Iteration 2: Contextual Placement</h2>
+            <h2>Iteration two: contextual placement</h2>
 
             <div className="wiki-cc-video">
               <div className="wiki-cc-video-embed">
@@ -174,7 +181,7 @@ export default function MrSummaryAi() {
           </div>
 
           <div className="case-study-section">
-            <h2>The Pivot: Trust and Control</h2>
+            <h2>The pivot: trust and control</h2>
 
             <img src="/images/merge_request_ai_summary.gif" alt="Merge request AI summary" className="gitlab-contrib-img" />
 
@@ -217,27 +224,27 @@ export default function MrSummaryAi() {
           </div>
 
           <div className="case-study-section">
-            <h2>Outcomes</h2>
+            <h2>Outcomes and what I learned</h2>
+
+            <p>The epic closed with all 24 child issues completed and the feature pointed somewhere fundamentally better: author-facing, in the author's control, with one trustworthy description on the page instead of a human one and an AI one competing for attention. Turning off the reviewer-facing summary was the point, not a failure.</p>
 
             <ul>
-              <li>Three distinct iterations shipped over 16 months (Jan 2023 - May 2024)</li>
-              <li>24 issues delivered across design, frontend, backend, and infrastructure</li>
-              <li>Qualtrics survey validating trust and control findings at scale, used to make the case for the pivot</li>
-              <li>Feature direction pivoted from reviewer-facing summary to author-facing writing assistant</li>
-              <li>Contributed Experiment/Beta <a href="https://gitlab.com/gitlab-org/gitlab-services/design.gitlab.com/-/merge_requests/3374" target="_blank" rel="noopener">feature badge to the Pajamas Design System</a></li>
-              <li>Ran multiple usability studies on Code Review AI features with UX researcher (<a href="https://gitlab.com/gitlab-org/ux-research/-/issues/2708" target="_blank" rel="noopener">ux-research#2708</a>)</li>
-              <li>Review cycle flow mapping became a reusable baseline for other AI feature work on the team</li>
+              <li>Pivoted the feature from reviewer-facing summary to author-facing writing assistant, with a Qualtrics survey that validated the trust and control findings at scale and made the case for the change.</li>
+              <li>24 issues delivered across design, frontend, backend, and infrastructure.</li>
+              <li>Contributed the Experiment/Beta <a href="https://gitlab.com/gitlab-org/gitlab-services/design.gitlab.com/-/merge_requests/3374" target="_blank" rel="noopener">feature badge to the Pajamas Design System</a>.</li>
+              <li>Ran multiple usability studies on Code Review AI features with a UX researcher (<a href="https://gitlab.com/gitlab-org/ux-research/-/issues/2708" target="_blank" rel="noopener">ux-research#2708</a>).</li>
+              <li>The review cycle map became a reusable baseline for other AI feature work on the team.</li>
             </ul>
 
-            <h3>What I learned</h3>
+            <p>What I would carry into the next one:</p>
+            <ul>
+              <li>AI output quality is a design constraint, not just an engineering problem. Prompts can raise quality but cannot replace contextual human understanding, so user control and transparency are load-bearing, not nice-to-haves.</li>
+              <li>Ship to learn, and be willing to remove what you shipped. The quick action taught us about placement, the notifications taught us about continuity, the on-page summary taught us about trust. We could not have reasoned our way to the final answer without shipping the wrong ones first.</li>
+              <li>Map the whole workflow before designing any single feature. My manager called this "exactly the right approach for a complex area like Code Review, to make sure we don't look at features in isolation, but how they fit into the complete context of the user."</li>
+              <li>Removing a feature takes more conviction than shipping one. The survey data and a clear alternative gave the team the confidence to make that call.</li>
+            </ul>
 
-            <p><strong>AI output quality is a design constraint, not just an engineering problem.</strong> Prompt improvements can raise quality, but they cannot fully replace contextual human understanding. Design needs to account for the gap from the start. Building in user control and transparency is not a nice-to-have for AI features. It is load-bearing.</p>
-
-            <p><strong>The value of shipping to learn.</strong> Each iteration gave us feedback we couldn't have predicted. The quick action taught us about placement. The to-do and email integration taught us about continuity expectations. The MR page summary taught us about trust and control. Without shipping those versions, we wouldn't have arrived at the right one. This approach requires a team willing to revisit and remove decisions, which is harder than it sounds.</p>
-
-            <p><strong>Workflow-driven design in complex domains.</strong> My manager at the time noted in my FY24 performance review that my workflow-driven approach was "exactly the right approach for a complex area like Code Review, to make sure we don't look at features in isolation, but how they fit into the complete context of the user." Mapping the full review cycle before designing any individual feature was what allowed me to see where AI interventions would genuinely help versus where they would add friction.</p>
-
-            <p><strong>Knowing when to remove a feature takes more conviction than shipping one.</strong> Recommending that we turn off the to-do summaries, remove the MR page summary, and pivot the entire approach required strong evidence and a clear alternative. The survey data and the redesigned creation flow gave the team the confidence to make that call.</p>
+            <p>What I would do differently: treat the model's real accuracy as a design constraint from day one rather than assuming better prompts would close the gap. I would also instrument the experiments so I could show which design choices moved the outcome, not just that the feature shipped.</p>
           </div>
 
         </div>{/* /case-study-main */}
