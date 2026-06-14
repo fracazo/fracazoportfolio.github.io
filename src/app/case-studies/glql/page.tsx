@@ -91,14 +91,6 @@ export default function Glql() {
           </div>
 
           <div className="case-study-section">
-            <h2>The principle</h2>
-            <p>One idea ran through every decision: outcome first, settings second. Show people the result before you ask them to configure anything. Design for the person who does not want to learn the tool, without dumbing it down for the person who does.</p>
-
-            <img src="/images/glql-embedded-view-card.png" alt="A GLQL code block on the left and the live embedded table it renders on the right" />
-            <p className="img-caption">Outcome first: a GLQL block (left) and the live embedded view it renders (right). The result is the point; the syntax is just how you adjust it.</p>
-          </div>
-
-          <div className="case-study-section">
             <h2>Research</h2>
             <p>I ran problem validation with our researcher to confirm the job was real, then a two-phase study on the part that worried me most: the syntax. Twelve participants, half internal, half external. In the first phase they wrote real queries against live documentation. In the second they compared three different syntax styles.</p>
             <p>Watching them write was where the design direction came from. People did not read their query before running it. They typed, hit an error, and used the error message to find their way. When the message was vague, they were stuck. The error messages were the navigation, not the docs.</p>
@@ -156,6 +148,14 @@ DISPLAY AS table`}</pre>
           <div className="case-study-section">
             <h2>Driving adoption through design</h2>
             <p>A good feature buried in a menu nobody opens is a feature nobody uses. The metric itself was the PM&apos;s call, as the person who owned that decision, and we measured adoption. What I owned was moving that number. I led the discoverability work: surfacing the feature inside the editor at the moment someone is writing, getting it placed as a primary item in the release post, and featuring it in GitLab&apos;s What&apos;s New. Adoption grew about a third in the first weeks after GA alongside that push.</p>
+
+            <figure className="glql-figure-pair">
+              <div className="glql-figure-pair-grid">
+                <img src="/images/discoverability-popover.png" alt="A discoverability popover surfacing GLQL inside the editor while a user is writing" />
+                <img src="/images/discoverability-popover2.png" alt="A second view of the in-editor discoverability popover promoting GLQL embedded views" />
+              </div>
+              <figcaption>Discoverability by design: surfacing GLQL inside the editor at the moment someone is writing.</figcaption>
+            </figure>
           </div>
 
           <div className="case-study-section">
@@ -164,14 +164,35 @@ DISPLAY AS table`}</pre>
             <p>One example: embedded views could not show a &quot;0&quot; when a table was empty, so you could not scan a page of tables and tell which ones had no results without opening each one. I traced it to a shared component whose zero-count logic was tied to having an icon, which meant most of the fifty-plus components using it could not show a zero at all. I added an explicit prop to control it, kept it backward compatible, wrote the tests, and shipped it. (Merge request !209750.)</p>
             <p>That changed how the team treated design. Less lost in translation, faster iteration, and trust, because I was held to the same bar they were.</p>
 
-            <img src="/images/glql_table_v18_5.png" alt="A GLQL embedded view rendering live issue data as a table, with a count badge in the header" />
-            <p className="img-caption">A GLQL embedded view rendering live issue data as a table. The header count (here, 8) is the same count logic that now shows a 0 when a view is empty — the fix in !209750.</p>
+            <figure className="glql-beforeafter-figure">
+              <div className="glql-beforeafter">
+                <div className="glql-ba-col">
+                  <div className="glql-ba-label">Before</div>
+                  <div className="glql-ba-desc">No count shown for empty results</div>
+                  <div className="glql-ba-shot">
+                    <img src="/images/shipping-into-code-before.png" alt="An empty GLQL embedded view titled 'My new table' with no count badge in the header" />
+                  </div>
+                </div>
+                <div className="glql-ba-col">
+                  <div className="glql-ba-label">After</div>
+                  <div className="glql-ba-desc">Shows &quot;0&quot; for empty results</div>
+                  <div className="glql-ba-shot">
+                    <img src="/images/shipping-into-code-after.png" alt="The same empty GLQL embedded view now showing a 0 count badge next to the title" />
+                  </div>
+                </div>
+              </div>
+              <figcaption>The fix in practice: an empty embedded view now shows a 0 in its header count, so a page of views can be scanned without opening each one.</figcaption>
+            </figure>
           </div>
 
           <div className="case-study-section">
             <h2>The vision: a visual query builder</h2>
             <p>From day one the goal was the person who does not want to learn a query language. The syntax made GLQL usable. This was the vision that would have made it effortless.</p>
             <p>A visual builder, where one click drops in a smart template and you see a live view of your own work immediately, then adjust only if you want to. Outcome first, settings second.</p>
+
+            <img src="/images/builder-final.gif" alt="An embeddable view adding without needing to write code" />
+            <p className="img-caption">The vision in motion: adding an embeddable view and seeing live results immediately, without writing a query.</p>
+
             <p>I took it through five iterations to get there: a modal, a modal with tabs, a stepper, a smart template, and finally a simplified view builder. The first three made people configure before they saw anything. The last two flipped it, so the result came first and the controls came second. We used embeddable views to show people what GLQL could do, instead of asking them to picture it.</p>
             <p>The research said this was the right direction for non-technical users. The work then grew into a platform-wide initiative beyond our team&apos;s scope, so it did not ship from us. I documented it fully so the thinking would not be lost, and I still believe it is where this should go.</p>
           </div>

@@ -1132,6 +1132,110 @@
     font-style: italic;
   }
 
+  /* ---- GLQL case study: before/after comparison ---- */
+  .glql-beforeafter-figure {
+    margin: 24px 0 32px;
+  }
+  .glql-beforeafter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--panel);
+  }
+  /* Each column spans all three rows; subgrid keeps the label/desc/image rows
+     aligned across both columns so the horizontal dividers line up. */
+  .glql-ba-col {
+    display: grid;
+    grid-row: 1 / -1;
+    grid-template-rows: subgrid;
+  }
+  .glql-ba-col:first-child {
+    border-right: 1px solid var(--border);
+  }
+  .glql-ba-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .glql-ba-desc {
+    font-size: 14px;
+    color: var(--text-body);
+    line-height: 1.5;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .glql-ba-shot {
+    padding: 18px;
+    display: flex;
+    align-items: center;
+  }
+  .glql-ba-shot img {
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: calc(var(--radius) - 4px);
+    display: block;
+  }
+  .glql-beforeafter-figure figcaption {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-style: italic;
+  }
+  @media (max-width: 640px) {
+    .glql-beforeafter {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+    }
+    /* Stacked: each column flows normally so its label, description and
+       screenshot stay together; swap the vertical divider for a horizontal one. */
+    .glql-ba-col {
+      display: block;
+      grid-row: auto;
+    }
+    .glql-ba-col:first-child {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+  }
+
+  /* ---- GLQL case study: paired figure (detail screenshots stacked) ---- */
+  .glql-figure-pair {
+    margin: 24px 0 32px;
+  }
+  .glql-figure-pair-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .glql-figure-pair-grid img {
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: block;
+  }
+  .glql-figure-pair figcaption {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
   /* ---- Wiki Contextual Comments: YouTube embeds ---- */
   .wiki-cc-video {
     margin: 24px 0 32px;
