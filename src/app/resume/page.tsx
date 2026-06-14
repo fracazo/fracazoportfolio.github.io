@@ -34,8 +34,8 @@ const experience = [
     href: "/case-studies/gitlab",
     role: "Senior Product Designer",
     context:
-      "Sole designer, Knowledge team, reporting to the Senior Director of Product Design.",
-    period: "2022 – Present",
+      "Sole designer on the Knowledge team in an engineering-led group, reporting to the Senior Director of Product Design, owning Wiki, GLQL, Pages, and text editors.",
+    period: "2022 – Current",
     location: "Remote, global",
     outcome: "+33% adoption · 0 bugs · code in production",
     points: [
@@ -48,9 +48,10 @@ const experience = [
     company: "Hireup",
     href: "/case-studies/bringing-visibility-to-workers-status",
     role: "Principal Product Designer",
-    context: "Australia's largest disability support platform.",
+    context:
+      "Australia's largest disability support marketplace. Sole designer on the iOS and Android app team.",
     period: "2021 – 2022",
-    location: "Remote, Australia",
+    location: "Sydney",
     outcome: "Connection rate 3% → 5% (+67% relative)",
     points: [
       "Found through data analysis that 39.1% of clients were messaging inactive workers, dragging down platform-wide connection rates.",
@@ -59,16 +60,17 @@ const experience = [
     ],
   },
   {
-    company: "Arq Group & Outware",
+    company: "Arq Group and Outware Mobile",
     href: null,
-    role: "Team Lead and Lead Product Designer",
-    context: null,
+    role: "Lead Product Designer",
+    context:
+      "Led product design across mobile, web, and wearable for Qantas, Woolworths, and NAB. Established research practices and mentored designers across teams.",
     period: "2016 – 2020",
     location: "Sydney",
     outcome: "+70% app downloads · Sydney Design Award",
     points: [
-      "Led product design across web, mobile, and wearable for Qantas, Woolworths, and NAB; managed designers and established research practices across teams.",
-      "Led the Qantas Entertainment app redesign end-to-end (+70% downloads) and designed the Australian ETA visa app, winner of the Sydney Design Award.",
+      "Led the Qantas Entertainment app redesign end-to-end (+70% downloads).",
+      "Designed the Australian ETA visa app, winner of the Sydney Design Award.",
     ],
   },
   {
@@ -80,7 +82,7 @@ const experience = [
     location: "Sydney",
     outcome: null,
     points: [
-      "Led UX for the self-service team across web and native apps; established user research and testing processes across multiple products.",
+      "Led UX for the self-service team across web and native apps, and established user research and testing processes across multiple products.",
     ],
   },
   {
@@ -92,7 +94,7 @@ const experience = [
     location: "Rio de Janeiro",
     outcome: "1 design system · 3 apps unified",
     points: [
-      "Designed a responsive white-label e-commerce platform supporting multiple branded stores; created an internal design system that improved consistency across 3 native apps.",
+      "Designed a responsive white-label e-commerce platform supporting multiple branded stores, and created an internal design system that improved consistency across 3 native apps.",
     ],
   },
 ];
@@ -101,16 +103,12 @@ const projects = [
   {
     name: "BirthGuide",
     href: "https://birthguide.com.au",
-    role: "Founder and Solo Builder",
-    period: "2026 – Present",
-    location: "Melbourne",
+    year: "2026",
     context:
-      "Founded and solo-shipped a consumer product during parental leave, after experiencing firsthand how hard it is to create a birth plan with a partner. Parents answer a guided questionnaire and receive an interactive birth plan with a QR code midwives scan on their phone, plus a printable partner summary.",
+      "A consumer birth-planning product for Australian first-time parents, designed and built solo, end-to-end, on Next.js, React 19, Supabase, and Stripe using AI-powered tools (Claude, Claude Code). Parents answer a guided questionnaire and receive an interactive birth plan with a QR code midwives scan on their phone, plus a printable partner summary.",
     points: [
       "Reframed the category from ‘printable template’ to ‘labour communication tool’ after research revealed the partner is the primary plan reader during active labour.",
-      "Designed and built end-to-end on Next.js, React 19, Supabase, and Stripe, using AI-powered tools (Claude, Claude Code).",
-      "Validated real usage patterns with Clarity session recordings, and iterated on UX based on observed behaviour.",
-      "Built free tools, guides, and an AI chat assistant as an organic acquisition strategy to validate the wedge before paid growth.",
+      "Validated real usage with Clarity session recordings, and built free tools, guides, and an AI chat assistant as an organic acquisition strategy.",
     ],
   },
 ];
@@ -145,7 +143,7 @@ const education = [
   },
   {
     title: "Interaction Design",
-    detail: "Faber-Ludens Institute, Brazil · Graphic Design, UNOPAR, Brazil",
+    detail: "Faber-Ludens Institute, Brazil, 2010–2012",
   },
   {
     title: "Publication",
@@ -280,7 +278,7 @@ export default function Resume() {
             {projects.map((project) => (
               <article key={project.name}>
                 <p className="mb-1.5 text-[12.5px] tracking-[0.02em] text-muted">
-                  {project.period} · {project.location}
+                  {project.year}
                 </p>
                 <h3 className="text-[16px] font-semibold text-text">
                   <a
@@ -293,9 +291,6 @@ export default function Resume() {
                     <ExternalLinkIcon size={13} className="opacity-70" />
                   </a>
                 </h3>
-                <p className="mt-0.5 text-[14px] leading-[1.55] text-muted">
-                  {project.role}
-                </p>
                 <p className="mt-0.5 text-[13.5px] leading-[1.55] text-muted">
                   {project.context}
                 </p>
