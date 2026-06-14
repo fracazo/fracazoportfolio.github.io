@@ -113,8 +113,7 @@ export default function Home() {
                 A software designer who builds.
               </strong>{" "}
               End-to-end, from research and strategy to a working product, for
-              consumer and enterprise. I lean on AI-assisted tooling to move
-              fast without losing craft.
+              consumer and enterprise.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <a
@@ -147,7 +146,7 @@ export default function Home() {
       <section
         id="Work"
         aria-labelledby="work-title"
-        className="mx-auto grid w-full max-w-[640px] gap-4"
+        className="reveal-after mx-auto grid w-full max-w-[640px] gap-4"
       >
         <div className="grid gap-1">
           <h2 id="work-title" className="h2">
