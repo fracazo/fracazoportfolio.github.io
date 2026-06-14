@@ -196,10 +196,6 @@ export default function Resume() {
               LinkedIn
               <ExternalLinkIcon size={13} className="opacity-70" />
             </a>
-            <span aria-hidden className="text-border">
-              ·
-            </span>
-            <span className="text-text-body">Melbourne or remote (UTC+10)</span>
           </p>
         </header>
 
@@ -292,7 +288,8 @@ export default function Resume() {
         </section>
 
         {/* Footer */}
-        <footer className="mt-14 flex flex-wrap items-center gap-3 border-t border-border pt-8 text-[13px] text-muted">
+        <footer className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-8 text-[13px] text-muted">
+          <span>Melbourne or remote (UTC+10)</span>
           <a
             href={RESUME_PDF}
             download
