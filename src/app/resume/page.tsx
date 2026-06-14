@@ -186,10 +186,9 @@ export default function Resume() {
           <p className="mt-0.5 text-[15px] text-muted">Product Designer</p>
           <p className="mt-5 text-[15px] leading-[1.7] text-text-body">
             I design and build end-to-end, from research and strategy through to
-            a working product, using AI-assisted tooling to move fast without
-            losing craft. Most recently I led design for GitLab&rsquo;s Knowledge
-            platform as sole designer in an engineering-led group, growing
-            feature adoption 33% and shipping code to production.
+            a working product. Most recently I led design for GitLab&rsquo;s
+            Knowledge platform as sole designer in an engineering-led group,
+            growing feature adoption 33% and shipping code to production.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
