@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://alexfracazo.com"),
   title: "Alex Fracazo - Product Designer",
   description:
-    "Product designer and front-end engineer. I design and build end-to-end, from research to production code, for consumer and enterprise products.",
+    "Software designer who ships. I design and build end-to-end, from research and strategy to a working product, for consumer and enterprise.",
   icons: {
     shortcut: "/images/favicon.svg",
     apple: "/images/webclip.svg",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Alex Fracazo - Product Designer",
     description:
-      "Product designer and front-end engineer. I design and build end-to-end, from research to production code, for consumer and enterprise products.",
+      "Software designer who ships. I design and build end-to-end, from research and strategy to a working product, for consumer and enterprise.",
     images: ["/images/opengraph.jpg"],
     type: "website",
   },
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Alex Fracazo - Product Designer",
     description:
-      "Product designer and front-end engineer. I design and build end-to-end, from research to production code, for consumer and enterprise products.",
+      "Software designer who ships. I design and build end-to-end, from research and strategy to a working product, for consumer and enterprise.",
     images: ["/images/opengraph.jpg"],
   },
 };

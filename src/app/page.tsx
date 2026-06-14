@@ -108,9 +108,9 @@ export default function Home() {
             </h1>
             <p className="mt-3 text-lg leading-[1.6] text-text-body">
               <strong className="font-semibold text-text">Alex Fracazo</strong>,
-              product designer and front-end engineer. I design and build
-              end-to-end, from research to production code, for consumer and
-              enterprise products.
+              a software designer who builds. End-to-end, from research and
+              strategy to a working product, for consumer and enterprise. I lean
+              on AI-assisted tooling to move fast without losing craft.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <a
@@ -193,6 +193,11 @@ export default function Home() {
           synchronous conversations when alignment, ambiguity, or feedback
           quality really matters.
         </p>
+        <p className="text mt-6">
+          And I close the loop. I do not hand a design over a wall. I prototype,
+          build, and ship it, with AI-assisted tooling doing the heavy lifting
+          on code.
+        </p>
       </section>
 
       {/* Background */}
@@ -206,28 +211,33 @@ export default function Home() {
           </h2>
           <div>
             <p className="text mt-0">
-              Before <Link href="/case-studies/gitlab">GitLab</Link>, I was a
-              Principal Product Designer at Hireup, Australia&rsquo;s largest
-              disability support platform, where I led mobile design and
-              contributed to a{" "}
-              <Link href="/case-studies/bringing-visibility-to-workers-status">
-                +12% increase in booking rates
-              </Link>
-              .
+              I am the sole product designer on{" "}
+              <Link href="/case-studies/gitlab">GitLab</Link>&rsquo;s Knowledge
+              team, an engineering-led group that had never had a designer. I
+              built the research practice from scratch, own UX for Wiki, GLQL,
+              Pages, and text editors, and shipped to production, including
+              direct code contributions via merge requests.
             </p>
             <p className="text mt-6">
-              Earlier, I designed web and mobile products for Qantas, Vodafone,
-              Woolworths, and NAB, and was the first designer at several
-              startups, building design systems, defining product direction, and
-              occasionally writing code alongside engineers.
-            </p>
-            <p className="text mt-6">
-              Outside of that, I founded and solo-built{" "}
+              Alongside that, I founded and solo-built{" "}
               <a href="https://birthguide.com.au" target="_blank" rel="noopener">
                 BirthGuide
               </a>
               , a consumer product for Australian first-time parents, designed
-              and shipped end-to-end on Next.js, Supabase, and Stripe.
+              and shipped end-to-end on Next.js, Supabase, and Stripe. Design,
+              build, product, payments, all of it.
+            </p>
+            <p className="text mt-6">
+              Earlier I was Principal Product Designer at Hireup,
+              Australia&rsquo;s largest disability support platform, where I led
+              mobile design and drove a{" "}
+              <Link href="/case-studies/bringing-visibility-to-workers-status">
+                +12% increase in booking rates
+              </Link>
+              . Before that, web and mobile products for Qantas, Vodafone,
+              Woolworths, and NAB, and first designer at several startups. My
+              career started in front-end engineering, writing Ruby on Rails,
+              Haml, and Sass, before I moved into product design.
             </p>
           </div>
         </div>

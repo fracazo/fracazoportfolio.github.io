@@ -9,11 +9,11 @@ import {
 export const metadata: Metadata = {
   title: "Résumé - Alex Fracazo Product Designer",
   description:
-    "The résumé of Alex Fracazo - product designer and front-end engineer based in Melbourne. Experience at GitLab, Hireup, Qantas and more. Download the PDF.",
+    "The résumé of Alex Fracazo, product designer based in Melbourne. Experience at GitLab, Hireup, Qantas and more.",
   openGraph: {
     title: "Résumé - Alex Fracazo Product Designer",
     description:
-      "The résumé of Alex Fracazo - product designer and front-end engineer based in Melbourne. Experience at GitLab, Hireup, Qantas and more.",
+      "The résumé of Alex Fracazo, product designer based in Melbourne. Experience at GitLab, Hireup, Qantas and more.",
     images: ["/images/opengraph.jpg"],
     type: "website",
   },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Résumé - Alex Fracazo Product Designer",
     description:
-      "The résumé of Alex Fracazo - product designer and front-end engineer based in Melbourne. Experience at GitLab, Hireup, Qantas and more.",
+      "The résumé of Alex Fracazo, product designer based in Melbourne. Experience at GitLab, Hireup, Qantas and more.",
     images: ["/images/opengraph.jpg"],
   },
 };
@@ -35,13 +35,13 @@ const experience = [
     role: "Senior Product Designer",
     context:
       "Sole designer, Knowledge team, reporting to the Senior Director of Product Design.",
-    period: "2022 – 2026",
+    period: "2022 – Present",
     location: "Remote, global",
     outcome: "+33% adoption · 0 bugs · code in production",
     points: [
       "Led GLQL from research through GA launch: 33% adoption growth, zero bugs, and shipped my own code to production via merge requests.",
-      "Led the Wiki UX transformation, shipping the sidebar redesign to production through code contributions and finalising the contextual comments design system now in engineering development.",
-      "Ran usability studies and a Qualtrics survey on AI code review that exposed trust and control problems, driving a full product pivot to an author-facing writing assistant.",
+      "Led the Wiki UX transformation, shipping the sidebar redesign to production through code contributions, and finalising the contextual comments design system now in engineering development.",
+      "Ran usability studies and a survey on AI code review that exposed trust and control problems, driving a full product pivot to an author-facing writing assistant.",
     ],
   },
   {
@@ -54,7 +54,7 @@ const experience = [
     outcome: "Connection rate 3% → 5% (+67% relative)",
     points: [
       "Found through data analysis that 39.1% of clients were messaging inactive workers, dragging down platform-wide connection rates.",
-      "Designed an availability visibility system across iOS and Android that lifted response rate from 39.1% to 45.8% and drove +46% inactive worker reactivations.",
+      "Designed an availability visibility system across iOS and Android that lifted connection rate from 3% to 5% (+67% relative), response rate from 39.1% to 45.8%, and drove +46% inactive worker reactivations.",
       "Redesigned the core booking experience, achieving a +12% increase in booking rates.",
     ],
   },
@@ -97,6 +97,24 @@ const experience = [
   },
 ];
 
+const projects = [
+  {
+    name: "BirthGuide",
+    href: "https://birthguide.com.au",
+    role: "Founder and Solo Builder",
+    period: "2026 – Present",
+    location: "Melbourne",
+    context:
+      "Founded and solo-shipped a consumer product during parental leave, after experiencing firsthand how hard it is to create a birth plan with a partner. Parents answer a guided questionnaire and receive an interactive birth plan with a QR code midwives scan on their phone, plus a printable partner summary.",
+    points: [
+      "Reframed the category from ‘printable template’ to ‘labour communication tool’ after research revealed the partner is the primary plan reader during active labour.",
+      "Designed and built end-to-end on Next.js, React 19, Supabase, and Stripe, using AI-powered tools (Claude, Claude Code).",
+      "Validated real usage patterns with Clarity session recordings, and iterated on UX based on observed behaviour.",
+      "Built free tools, guides, and an AI chat assistant as an organic acquisition strategy to validate the wedge before paid growth.",
+    ],
+  },
+];
+
 const skills = [
   {
     label: "Design",
@@ -104,11 +122,14 @@ const skills = [
       "UX research, product strategy, interaction design, design systems, prototyping, iOS and Android",
   },
   {
-    label: "Engineering",
+    label: "Build and ship",
     value:
-      "Next.js, React, TypeScript, Tailwind CSS, Supabase, Stripe, Vercel, HTML/CSS, Git",
+      "Next.js, React, TypeScript, Tailwind CSS, Supabase, Stripe, Vercel, Git",
   },
-  { label: "AI tools", value: "Claude, Claude Code, Cursor, OpenCode" },
+  {
+    label: "AI tools",
+    value: "Claude, Claude Code, Cursor, OpenCode, Claude Design",
+  },
   { label: "Analytics", value: "GA4, Clarity, cohort analysis, A/B testing" },
 ];
 
@@ -118,6 +139,10 @@ const education = [
     detail: "Nielsen Norman Group, 2021 · Interaction, Research, Management",
   },
   { title: "MBA", detail: "d.MBA, 2020" },
+  {
+    title: "User Experience Design Immersive",
+    detail: "General Assembly, Sydney, 2015",
+  },
   {
     title: "Interaction Design",
     detail: "Faber-Ludens Institute, Brazil · Graphic Design, UNOPAR, Brazil",
@@ -160,15 +185,13 @@ export default function Resume() {
           <h1 className="text-[23px] font-semibold tracking-[-0.01em] text-text">
             Alex Fracazo
           </h1>
-          <p className="mt-0.5 text-[15px] text-muted">
-            Product Designer &amp; Front-end Engineer
-          </p>
+          <p className="mt-0.5 text-[15px] text-muted">Product Designer</p>
           <p className="mt-5 text-[15px] leading-[1.7] text-text-body">
-            I design and build end-to-end, from user research to production
-            code, using AI-powered tools to move fast without losing craft. Most
-            recently I led design for GitLab&rsquo;s Knowledge platform as sole
-            designer in an engineering-led group, growing feature adoption 33%
-            and contributing code to production.
+            I design and build end-to-end, from research and strategy through to
+            a working product, using AI-assisted tooling to move fast without
+            losing craft. Most recently I led design for GitLab&rsquo;s Knowledge
+            platform as sole designer in an engineering-led group, growing
+            feature adoption 33% and shipping code to production.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
@@ -248,6 +271,42 @@ export default function Resume() {
             own UI in Haml, Sass, and Rails · Sitevip (2005–2009), front-end
             coder in a fast-paced agency.
           </p>
+        </section>
+
+        {/* Projects */}
+        <section className="mt-14 border-t border-border pt-10">
+          <h2 className={sectionLabel}>Projects</h2>
+          <div className="flex flex-col gap-9">
+            {projects.map((project) => (
+              <article key={project.name}>
+                <p className="mb-1.5 text-[12.5px] tracking-[0.02em] text-muted">
+                  {project.period} · {project.location}
+                </p>
+                <h3 className="text-[16px] font-semibold text-text">
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener"
+                    className="inline-flex items-center gap-1 text-brand"
+                  >
+                    {project.name}
+                    <ExternalLinkIcon size={13} className="opacity-70" />
+                  </a>
+                </h3>
+                <p className="mt-0.5 text-[14px] leading-[1.55] text-muted">
+                  {project.role}
+                </p>
+                <p className="mt-0.5 text-[13.5px] leading-[1.55] text-muted">
+                  {project.context}
+                </p>
+                <ul className="mt-2.5 list-disc space-y-1.5 pl-[18px] text-[14px] leading-[1.6] text-text-body">
+                  {project.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
         </section>
 
         {/* Skills */}
