@@ -158,9 +158,9 @@ export default function Work() {
         </h2>
         <hr className="mb-6 h-px border-0 bg-border" />
         <ul role="list" className="m-0 grid list-none grid-cols-1 gap-8 p-0">
-          {current.map((work) => (
+          {current.map((work, index) => (
             <li key={work.href}>
-              <CaseCard {...work} wide heading="h2" />
+              <CaseCard {...work} wide heading="h2" priority={index === 0} />
             </li>
           ))}
         </ul>

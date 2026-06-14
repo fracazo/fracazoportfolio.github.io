@@ -11,6 +11,12 @@ type CaseCardProps = {
   wide?: boolean;
   /** Heading element for the card title (work page uses h2) */
   heading?: "h2" | "h3";
+  /**
+   * Above-the-fold card: load its image eagerly with high priority instead of
+   * lazily. Lazy-loading an image that's already in the initial viewport only
+   * delays it, so the first card on a page should set this.
+   */
+  priority?: boolean;
 };
 
 export function CaseCard({
@@ -22,6 +28,7 @@ export function CaseCard({
   tagline,
   wide = false,
   heading: Heading = "h3",
+  priority = false,
 }: CaseCardProps) {
   return (
     <Link
@@ -37,7 +44,8 @@ export function CaseCard({
           alt={image.alt}
           srcSet={image.srcSet}
           sizes={image.sizes}
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
           className="h-full w-full object-cover"
         />
       </div>
