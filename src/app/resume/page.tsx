@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
 };
 
-const RESUME_PDF = "/files/Alex Fracazo · Resume.pdf";
+const RESUME_PDF = "/files/Alex Fracazo - Resume.pdf";
 
 const experience = [
   {
