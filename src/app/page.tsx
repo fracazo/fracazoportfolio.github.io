@@ -91,7 +91,7 @@ export default function Home() {
       {/* Hero */}
       <section aria-labelledby="hero-title" className="mx-auto w-full max-w-[640px]">
         <div className="grid grid-cols-1 items-start gap-6 text-left">
-          <div>
+          <div className="reveal-group">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/avatar.png"
