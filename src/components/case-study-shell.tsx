@@ -119,7 +119,7 @@ export function CaseStudyShell({
                   href={`#${id}`}
                   className={`block rounded-lg px-2.5 py-1.5 text-sm leading-[1.4] no-underline transition-colors duration-200 hover:bg-panel-2 hover:text-text hover:no-underline ${
                     activeId === id
-                      ? "bg-[rgba(59,130,246,0.1)] font-medium text-brand"
+                      ? "bg-accent/10 font-medium text-accent"
                       : "text-muted"
                   }`}
                 >

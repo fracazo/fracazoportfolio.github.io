@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Chip } from "./chip";
 
 type CaseCardProps = {
   href: string;
@@ -30,6 +31,14 @@ export function CaseCard({
   heading: Heading = "h3",
   priority = false,
 }: CaseCardProps) {
+  // Each "·"-separated fact becomes its own chip (e.g. "Shipped · 3 iterations").
+  const metrics = outcome
+    ? outcome
+        .split("·")
+        .map((part) => part.trim())
+        .filter(Boolean)
+    : [];
+
   return (
     <Link
       href={href}
@@ -50,14 +59,9 @@ export function CaseCard({
         />
       </div>
       <div className={wide ? "px-6 pt-5 pb-6" : "px-3.5 py-3"}>
-        {(eyebrow || outcome) && (
-          <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 text-[11px] font-medium tracking-[0.06em] text-muted uppercase">
-            {eyebrow && <span className="whitespace-nowrap">{eyebrow}</span>}
-            {outcome && (
-              <span className="font-semibold tracking-[0.04em] whitespace-nowrap text-[#34d399] light:text-[#059669]">
-                {outcome}
-              </span>
-            )}
+        {eyebrow && (
+          <div className="mb-2 text-[11px] font-medium tracking-[0.06em] text-muted uppercase">
+            {eyebrow}
           </div>
         )}
         <Heading
@@ -74,6 +78,13 @@ export function CaseCard({
             }`}
           >
             {tagline}
+          </div>
+        )}
+        {metrics.length > 0 && (
+          <div className={`flex flex-wrap gap-1.5 ${wide ? "mt-4" : "mt-3"}`}>
+            {metrics.map((metric) => (
+              <Chip key={metric}>{metric}</Chip>
+            ))}
           </div>
         )}
       </div>

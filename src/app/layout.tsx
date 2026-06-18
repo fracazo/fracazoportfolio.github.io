@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Young_Serif } from "next/font/google";
+import { Geist, Geist_Mono, Young_Serif } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+// Mono face for eyebrow labels, metadata, button labels and code.
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 // Display face for page titles and section headings (single 400 weight).
@@ -60,7 +68,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${youngSerif.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${youngSerif.variable}`}
       suppressHydrationWarning
     >
       <head>

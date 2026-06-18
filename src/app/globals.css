@@ -6,63 +6,97 @@
 /* ========================
    Design Tokens / Themes
    ======================== */
+/* ========================
+   Warm theme — one temperature, two modes.
+   Default (:root) is dark "warm charcoal" (espresso, not navy); :root.light is
+   "warm paper". The .light class is toggled at runtime by ThemeScript.
+
+   Spec tokens (--background, --surface, --text-primary/secondary/tertiary,
+   --border, --border-muted, --accent) are the source of truth. The original
+   token names (--bg, --panel, --card, --text, --muted, --brand, --ring …) are
+   kept as aliases so existing utilities and component CSS keep resolving.
+   No pure #000/#fff; one clay accent, used only for links/active/focus.
+   ======================== */
 :root {
-  --bg: #0b0c0f;
-  --panel: #121318;
-  --panel-2: #1a1c22;
-  --text: #e6e7ea;
-  /* Reading-text color for paragraphs/lists/blockquotes. --muted is now
-     reserved for meta only (captions, dates, eyebrows, labels). */
-  --text-body: #c9cdd6;
-  --muted: #a7adbb;
-  --brand: #3b82f6;
-  --border: #22242b;
-  --card: #14161c;
-  --ring: #2dd4bf;
-  /* Subtle image edge — pure white in dark mode so it never picks up a tint
-     from the surface behind it (a tinted neutral reads as dirt on the edge). */
-  --img-outline: rgba(255, 255, 255, 0.1);
+  /* Warm charcoal — dark mode (default) */
+  --background: #1a1612;
+  --surface: #24201b;
+  --text-primary: #ece7df;
+  --text-secondary: #a2988c;
+  --text-tertiary: #9b9286;
+  --border: #2e2922;
+  --border-muted: #241f1a;
+  --accent: #c8855a;
+  /* Warm near-white for the rare text/icon that sits on an --accent fill */
+  --on-accent: #faf7f2;
+
+  /* Legacy aliases → warm system */
+  --bg: var(--background);
+  --panel: var(--surface);
+  --panel-2: #2a241e;
+  /* Reading-text color for paragraphs/lists. --muted (text-secondary) is for
+     meta only (captions, dates, eyebrows, labels). */
+  --text-body: #cdc4b8;
+  --card: var(--surface);
+  --text: var(--text-primary);
+  --muted: var(--text-secondary);
+  --brand: var(--accent);
+  --ring: var(--accent);
+  /* Subtle image edge — warm light in dark mode so it never reads as a tint */
+  --img-outline: rgba(236, 231, 223, 0.1);
 
   /* Young Serif display face (page titles + section headings), Geist for UI */
   --font-display: var(--font-young-serif), "Young Serif", Georgia, serif;
 
   --radius: 12px;
-  /* Subtle layered shadow for dark mode */
+  /* Near-flat: a hairline ring plus the faintest drop. Flat layout favours
+     dividers over elevation, so shadows stay barely-there. */
   --shadow:
-    0px 0px 0px 1px rgba(255, 255, 255, 0.06),
-    0px 1px 2px -1px rgba(0, 0, 0, 0.3),
-    0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+    0px 0px 0px 1px rgba(0, 0, 0, 0.25),
+    0px 1px 2px -1px rgba(0, 0, 0, 0.3);
   --shadow-hover:
-    0px 0px 0px 1px rgba(255, 255, 255, 0.08),
-    0px 1px 2px -1px rgba(0, 0, 0, 0.4),
-    0px 2px 4px 0px rgba(0, 0, 0, 0.3);
+    0px 0px 0px 1px rgba(0, 0, 0, 0.3),
+    0px 2px 6px -2px rgba(0, 0, 0, 0.4);
 }
 :root.light {
-  --bg: #ffffff;
-  --panel: #f7f7f9;
-  --panel-2: #eef0f4;
-  --text: #101216;
-  --text-body: #333a45;
-  --muted: #4b5563;
-  --brand: #3b82f6;
-  --border: #e5e7eb;
-  --card: #ffffff;
-  --ring: #22c55e;
-  --img-outline: rgba(0, 0, 0, 0.1);
-  /* Subtle layered shadow for light mode */
+  /* Warm paper — light mode */
+  --background: #faf8f2;
+  --surface: #fffdf8;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --text-tertiary: #6f6862;
+  --border: #e7e3db;
+  --border-muted: #f0ede6;
+  --accent: #9c5a34;
+
+  --panel: #f4f1ea;
+  --panel-2: #efebe2;
+  --text-body: #3d362f;
+  --img-outline: rgba(28, 25, 23, 0.1);
+  /* Near-flat warm shadow for light mode */
   --shadow:
-    0px 0px 0px 1px rgba(0, 0, 0, 0.06),
-    0px 1px 2px -1px rgba(0, 0, 0, 0.06),
-    0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+    0px 0px 0px 1px rgba(28, 25, 23, 0.05),
+    0px 1px 2px -1px rgba(28, 25, 23, 0.06);
   --shadow-hover:
-    0px 0px 0px 1px rgba(0, 0, 0, 0.08),
-    0px 1px 2px -1px rgba(0, 0, 0, 0.08),
-    0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+    0px 0px 0px 1px rgba(28, 25, 23, 0.08),
+    0px 2px 6px -2px rgba(28, 25, 23, 0.08);
 }
 
 @theme inline {
-  /* Colors — usable as bg-bg, bg-panel, bg-panel-2, text-text, text-muted,
-     text-brand, border-border, bg-card, ring/outline-ring */
+  /* Warm spec colors — usable as bg-background, bg-surface, text-text-primary,
+     text-text-secondary, text-text-tertiary, border-border-muted, text/bg/
+     border/ring-accent (Tailwind v4 keeps the /alpha modifier via color-mix). */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border-muted: var(--border-muted);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+
+  /* Legacy aliases — bg-bg, bg-panel, bg-panel-2, text-text, text-muted,
+     text-brand, border-border, bg-card, ring/outline-ring, text-text-body */
   --color-bg: var(--bg);
   --color-panel: var(--panel);
   --color-panel-2: var(--panel-2);
@@ -77,7 +111,8 @@
   /* Typography */
   --font-sans: var(--font-geist-sans), "Geist", system-ui, -apple-system,
     "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Monaco, "Cascadia Code", monospace;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", Monaco,
+    "Cascadia Code", monospace;
   --font-dyslexic: "OpenDyslexic", sans-serif;
   --font-display: var(--font-young-serif), "Young Serif", Georgia, serif;
 
@@ -225,10 +260,10 @@
 }
 .dyslexia-fab.active {
   background: var(--brand);
-  color: #fff;
+  color: var(--on-accent);
 }
 .dyslexia-fab.active:hover {
-  color: #fff;
+  color: var(--on-accent);
   filter: brightness(1.1);
 }
 .dyslexia-tooltip {
@@ -430,39 +465,47 @@
    (long-form content uses descendant selectors; utilities don't fit)
    ======================== */
 @layer components {
-  /* Buttons */
+  /* Buttons — muted ghost. Calm at rest, accent only on interaction; never a
+     resting fill. Base = secondary (Résumé, LinkedIn); .btn-primary = the
+     subtle lead action (Email me). Mono label per the type ramp. */
   .btn {
     appearance: none;
-    background: var(--card);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 8px 12px;
-    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-muted);
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
-    transition: border-color 0.15s ease, color 0.15s ease,
-      background-color 0.15s ease, transform 0.1s ease;
+    transition: border-color 0.2s ease, color 0.2s ease,
+      background-color 0.2s ease, transform 0.1s ease;
   }
   .btn:hover {
-    border-color: var(--brand);
-    color: var(--brand);
+    border-color: var(--accent);
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
     text-decoration: none;
   }
   .btn:active {
-    transform: scale(0.96);
+    transform: scale(0.98);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
   }
   .btn-ghost {
     background: transparent;
   }
   .btn-primary {
-    background: var(--brand);
-    border-color: var(--brand);
-    color: #fff;
+    border-color: var(--border);
+    color: var(--text-primary);
   }
   .btn-primary:hover {
-    background: #2f6fe0;
-    border-color: #2f6fe0;
-    color: #fff;
+    border-color: var(--accent);
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
   }
 
   /* Generic text helpers used inside content markup */
@@ -531,46 +574,50 @@
     appearance: none;
     width: 100%;
     padding: 12px 14px;
-    background: var(--card);
+    background: var(--surface);
     color: var(--text);
-    border: none;
-    border-radius: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
     font-size: 15px;
     font-family: inherit;
-    box-shadow: var(--shadow);
-    transition: box-shadow 0.15s ease;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
   .form-input::placeholder,
   .form-textarea::placeholder {
-    color: var(--muted);
+    color: var(--text-secondary);
   }
   .form-input:focus,
   .form-textarea:focus {
     outline: none;
-    box-shadow: var(--shadow-hover), 0 0 0 2px var(--brand);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 50%, transparent);
   }
   .form-textarea {
     min-height: 140px;
     resize: vertical;
   }
+  /* Primary ghost — the lead form action. No filled fill; accent on interaction. */
   .form-submit {
     appearance: none;
-    background: var(--brand);
-    color: var(--bg);
-    border: none;
-    border-radius: 10px;
-    padding: 14px 24px;
-    font-size: 15px;
-    font-weight: 600;
-    font-family: inherit;
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font-mono);
     cursor: pointer;
-    transition: opacity 0.15s ease, transform 0.1s ease;
+    transition: border-color 0.2s ease, color 0.2s ease,
+      background-color 0.2s ease, transform 0.1s ease;
   }
   .form-submit:hover {
-    opacity: 0.9;
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
   }
   .form-submit:active {
-    transform: scale(0.96);
+    transform: scale(0.98);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
   }
 
   /* ---- Case study content ---- */
@@ -1147,9 +1194,9 @@
     border: 1px solid var(--border);
   }
   .glql-syntax-tag--winner {
-    background: rgba(59, 130, 246, 0.15);
-    color: var(--brand);
-    border: 1px solid rgba(59, 130, 246, 0.3);
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   }
   .glql-code {
     font-family: var(--font-mono);
@@ -1765,8 +1812,8 @@
   .writing-ai-tag {
     font-family: var(--font-mono);
     font-size: 11px;
-    background: rgba(59, 130, 246, 0.12);
-    color: var(--brand);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    color: var(--accent);
     padding: 2px 7px;
     border-radius: 3px;
     flex-shrink: 0;

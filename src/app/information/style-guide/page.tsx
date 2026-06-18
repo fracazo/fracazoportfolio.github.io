@@ -58,39 +58,34 @@ export default function StyleGuide() {
           <h2 className="styleguide-title">Colors - Dark Mode</h2>
           <div className="color-grid">
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#0b0c0f" }}></div>
+              <div className="color-box" style={{ background: "#1a1612" }}></div>
               <div className="color-name">Background</div>
-              <div className="color-value">#0b0c0f</div>
+              <div className="color-value">#1a1612</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#121318" }}></div>
-              <div className="color-name">Panel</div>
-              <div className="color-value">#121318</div>
+              <div className="color-box" style={{ background: "#24201b" }}></div>
+              <div className="color-name">Surface</div>
+              <div className="color-value">#24201b</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#14161c" }}></div>
-              <div className="color-name">Card</div>
-              <div className="color-value">#14161c</div>
+              <div className="color-box" style={{ background: "#ece7df" }}></div>
+              <div className="color-name">Text primary</div>
+              <div className="color-value">#ece7df</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#e6e7ea" }}></div>
-              <div className="color-name">Text</div>
-              <div className="color-value">#e6e7ea</div>
+              <div className="color-box" style={{ background: "#a2988c" }}></div>
+              <div className="color-name">Text secondary</div>
+              <div className="color-value">#a2988c</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#a7adbb" }}></div>
-              <div className="color-name">Muted</div>
-              <div className="color-value">#a7adbb</div>
+              <div className="color-box" style={{ background: "#c8855a" }}></div>
+              <div className="color-name">Accent</div>
+              <div className="color-value">#c8855a</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#3b82f6" }}></div>
-              <div className="color-name">Brand</div>
-              <div className="color-value">#3b82f6</div>
-            </div>
-            <div className="color-swatch">
-              <div className="color-box" style={{ background: "#22242b" }}></div>
+              <div className="color-box" style={{ background: "#2e2922" }}></div>
               <div className="color-name">Border</div>
-              <div className="color-value">#22242b</div>
+              <div className="color-value">#2e2922</div>
             </div>
           </div>
         </div>
@@ -99,39 +94,34 @@ export default function StyleGuide() {
           <h2 className="styleguide-title">Colors - Light Mode</h2>
           <div className="color-grid">
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#ffffff", borderColor: "#e5e7eb" }}></div>
+              <div className="color-box" style={{ background: "#faf8f2", borderColor: "#e7e3db" }}></div>
               <div className="color-name">Background</div>
-              <div className="color-value">#ffffff</div>
+              <div className="color-value">#faf8f2</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#f7f7f9", borderColor: "#e5e7eb" }}></div>
-              <div className="color-name">Panel</div>
-              <div className="color-value">#f7f7f9</div>
+              <div className="color-box" style={{ background: "#fffdf8", borderColor: "#e7e3db" }}></div>
+              <div className="color-name">Surface</div>
+              <div className="color-value">#fffdf8</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#ffffff", borderColor: "#e5e7eb" }}></div>
-              <div className="color-name">Card</div>
-              <div className="color-value">#ffffff</div>
+              <div className="color-box" style={{ background: "#1c1917" }}></div>
+              <div className="color-name">Text primary</div>
+              <div className="color-value">#1c1917</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#101216" }}></div>
-              <div className="color-name">Text</div>
-              <div className="color-value">#101216</div>
+              <div className="color-box" style={{ background: "#57534e" }}></div>
+              <div className="color-name">Text secondary</div>
+              <div className="color-value">#57534e</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#4b5563" }}></div>
-              <div className="color-name">Muted</div>
-              <div className="color-value">#4b5563</div>
+              <div className="color-box" style={{ background: "#9c5a34" }}></div>
+              <div className="color-name">Accent</div>
+              <div className="color-value">#9c5a34</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#3b82f6" }}></div>
-              <div className="color-name">Brand</div>
-              <div className="color-value">#3b82f6</div>
-            </div>
-            <div className="color-swatch">
-              <div className="color-box" style={{ background: "#e5e7eb" }}></div>
+              <div className="color-box" style={{ background: "#e7e3db" }}></div>
               <div className="color-name">Border</div>
-              <div className="color-value">#e5e7eb</div>
+              <div className="color-value">#e7e3db</div>
             </div>
           </div>
         </div>

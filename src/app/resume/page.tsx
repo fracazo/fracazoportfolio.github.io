@@ -247,7 +247,7 @@ export default function Resume() {
                 )}
                 {job.outcome && (
                   <p className="mt-2.5">
-                    <span className="inline-flex items-center rounded-full bg-[rgba(59,130,246,0.12)] px-2.5 py-1 text-[12px] font-medium text-brand">
+                    <span className="inline-flex items-center rounded-full bg-accent/10 px-2.5 py-1 text-[12px] font-medium text-accent">
                       {job.outcome}
                     </span>
                   </p>
