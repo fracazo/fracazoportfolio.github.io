@@ -1370,16 +1370,17 @@
   }
 
   /* ---- GitLab page: work list ---- */
-  .gl-work-list {
+  .case-study-section .gl-work-list {
     list-style: none;
     padding: 0;
     margin: 16px 0 0;
+    max-width: none;
   }
-  .gl-work-list li {
+  .case-study-section .gl-work-list li {
     border-bottom: 1px solid var(--border);
     margin-bottom: 0;
   }
-  .gl-work-list li:first-child {
+  .case-study-section .gl-work-list li:first-child {
     border-top: 1px solid var(--border);
   }
   .gl-work-row {
@@ -1440,11 +1441,25 @@
     flex-shrink: 0;
   }
   @media (max-width: 540px) {
+    .gl-work-row {
+      align-items: flex-start;
+    }
     .gl-work-row-date {
       display: none;
     }
+    .gl-work-row-left {
+      flex-wrap: wrap;
+      gap: 8px 14px;
+    }
     .gl-work-row-title {
+      flex: 1 0 100%;
       white-space: normal;
+      overflow: visible;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+    .gl-work-row-sep {
+      display: none;
     }
   }
 

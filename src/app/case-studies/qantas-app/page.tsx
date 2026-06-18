@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
+import { ExternalLinkIcon } from "@/components/icons";
 
 const title = "Increasing App Adoption by Integrating Entertainment Services - Alex Fracazo";
 const description = "Using entertainment features to drive a 70% increase in app downloads.";
@@ -259,7 +260,7 @@ export default function QantasApp() {
           <div className="case-cta-actions">
             <a href="mailto:fracazo@duck.com" className="btn btn-primary">Email me</a>
             <a href="/resume" className="btn btn-ghost">Résumé</a>
-            <a href="https://www.linkedin.com/in/fracazo" target="_blank" rel="noopener" className="btn btn-ghost">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/fracazo" target="_blank" rel="noopener" className="btn btn-ghost">LinkedIn<ExternalLinkIcon size={14} className="opacity-70" /></a>
           </div>
         </div>
         </section>
