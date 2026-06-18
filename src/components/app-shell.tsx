@@ -55,7 +55,7 @@ export function AppShell({
           type="button"
           aria-label="Toggle menu"
           onClick={() => setOpen(true)}
-          className="fixed top-4 left-4 z-90 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-[rgba(11,12,15,0.75)] text-text backdrop-blur-[8px] transition-colors duration-150 hover:bg-white/12 focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring light:bg-white/75 light:hover:bg-black/8 desk:hidden"
+          className="fixed top-4 left-4 z-90 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-[rgba(11,12,15,0.75)] text-text backdrop-blur-[8px] transition-[color,background-color,transform] duration-150 hover:bg-white/12 active:scale-[0.96] focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring light:bg-white/75 light:hover:bg-black/8 desk:hidden"
         >
           <MenuIcon />
         </button>
@@ -80,7 +80,7 @@ export function AppShell({
               type="button"
               aria-label="Close menu"
               onClick={() => setOpen(false)}
-              className="cursor-pointer rounded-lg border-none bg-transparent p-2 text-muted transition-all duration-150 hover:bg-panel-2 hover:text-text desk:hidden"
+              className="cursor-pointer rounded-lg border-none bg-transparent p-2.5 text-muted transition-[color,background-color,transform] duration-150 hover:bg-panel-2 hover:text-text active:scale-[0.96] desk:hidden"
             >
               <CloseIcon />
             </button>

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 const socialLinkClass =
-  "flex max-w-[280px] items-center gap-3 rounded-[10px] border border-border bg-card px-4 py-3 text-[15px] font-medium text-text no-underline transition-all duration-200 hover:bg-panel-2 hover:no-underline group";
+  "flex max-w-[280px] items-center gap-3 rounded-[10px] border border-border bg-card px-4 py-3 text-[15px] font-medium text-text no-underline transition-colors duration-200 hover:bg-panel-2 hover:no-underline group";
 
 const socialIconClass =
   "shrink-0 text-muted transition-colors duration-200 group-hover:text-text";

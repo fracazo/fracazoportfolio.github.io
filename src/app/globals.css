@@ -19,6 +19,9 @@
   --border: #22242b;
   --card: #14161c;
   --ring: #2dd4bf;
+  /* Subtle image edge — pure white in dark mode so it never picks up a tint
+     from the surface behind it (a tinted neutral reads as dirt on the edge). */
+  --img-outline: rgba(255, 255, 255, 0.1);
 
   /* Young Serif display face (page titles + section headings), Geist for UI */
   --font-display: var(--font-young-serif), "Young Serif", Georgia, serif;
@@ -45,6 +48,7 @@
   --border: #e5e7eb;
   --card: #ffffff;
   --ring: #22c55e;
+  --img-outline: rgba(0, 0, 0, 0.1);
   /* Subtle layered shadow for light mode */
   --shadow:
     0px 0px 0px 1px rgba(0, 0, 0, 0.06),
@@ -209,12 +213,15 @@
   cursor: pointer;
   box-shadow: var(--shadow);
   transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease,
-    filter 0.2s ease;
+    filter 0.2s ease, transform 0.1s ease;
   animation: dyslexia-fab-in 400ms ease-out 500ms both;
 }
 .dyslexia-fab:hover {
   box-shadow: var(--shadow-hover);
   color: var(--brand);
+}
+.dyslexia-fab:active {
+  transform: scale(0.96);
 }
 .dyslexia-fab.active {
   background: var(--brand);
@@ -270,6 +277,48 @@
     left: 50%;
     margin-left: -6px;
     transform: translateX(-50%);
+  }
+}
+
+/* ========================
+   Theme toggle — sun/moon cross-fade
+   Both icons stay in the DOM, stacked. Swapping theme cross-fades them with
+   opacity + scale + blur (the contextual icon-animation values) instead of a
+   hard visibility toggle, so the change reads as one icon morphing into the
+   other rather than popping.
+   ======================== */
+.theme-toggle-icon {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1),
+    transform 0.3s cubic-bezier(0.2, 0, 0, 1),
+    filter 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+/* Dark mode shows the sun ("switch to light"); the moon waits, shrunk + blurred */
+.theme-toggle-icon--sun {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+.theme-toggle-icon--moon {
+  opacity: 0;
+  transform: scale(0.25);
+  filter: blur(4px);
+}
+:root.light .theme-toggle-icon--sun {
+  opacity: 0;
+  transform: scale(0.25);
+  filter: blur(4px);
+}
+:root.light .theme-toggle-icon--moon {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-icon {
+    transition: none;
   }
 }
 
@@ -391,11 +440,16 @@
     padding: 8px 12px;
     font-weight: 600;
     cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease,
+      background-color 0.15s ease, transform 0.1s ease;
   }
   .btn:hover {
     border-color: var(--brand);
     color: var(--brand);
     text-decoration: none;
+  }
+  .btn:active {
+    transform: scale(0.96);
   }
   .btn-ghost {
     background: transparent;
@@ -448,6 +502,7 @@
   .h3 {
     font-size: 20px;
     line-height: 1.35;
+    text-wrap: balance;
     margin: 0;
   }
 
@@ -509,10 +564,13 @@
     font-weight: 600;
     font-family: inherit;
     cursor: pointer;
-    transition: opacity 0.15s ease;
+    transition: opacity 0.15s ease, transform 0.1s ease;
   }
   .form-submit:hover {
     opacity: 0.9;
+  }
+  .form-submit:active {
+    transform: scale(0.96);
   }
 
   /* ---- Case study content ---- */
@@ -811,17 +869,20 @@
   .case-study-section h2 {
     font-size: 28px;
     letter-spacing: -0.01em;
+    text-wrap: balance;
     margin-bottom: 20px;
     max-width: 64ch;
   }
   .case-study-section h3 {
     font-size: 21px;
+    text-wrap: balance;
     margin: 40px 0 16px;
     max-width: 64ch;
   }
   .case-study-section h4 {
     font-size: 16px;
     font-weight: 600;
+    text-wrap: balance;
     margin: 32px 0 12px;
     max-width: 64ch;
   }
@@ -866,6 +927,8 @@
     border-radius: var(--radius);
     background: #fff;
     padding: 12px;
+    outline: 1px solid var(--img-outline);
+    outline-offset: -1px;
   }
   .case-study-section code {
     font-family: var(--font-mono);
@@ -892,6 +955,7 @@
   }
   .summary-card h2 img {
     filter: brightness(0) invert(0.6);
+    outline: none;
   }
   .summary-card p {
     line-height: 1.8;
@@ -912,6 +976,7 @@
     filter: brightness(0) invert(0.6);
     background: transparent;
     padding: 0;
+    outline: none;
   }
   .notice-box p {
     color: var(--muted);
@@ -1224,7 +1289,6 @@
     margin: 0;
     padding: 0;
     background: transparent;
-    border: 1px solid var(--border);
     border-radius: var(--radius);
     display: block;
   }
@@ -1433,6 +1497,7 @@
     padding: 0;
     border-radius: 0;
     background: transparent;
+    outline: none;
   }
   .gitlab-item-play {
     position: absolute;
@@ -1471,6 +1536,7 @@
     color: var(--text);
     margin: 0 0 8px;
     line-height: 1.35;
+    text-wrap: balance;
   }
   .gitlab-item-desc {
     font-size: 14px;
@@ -1579,6 +1645,7 @@
     font-weight: 600;
     letter-spacing: -0.01em;
     text-transform: none;
+    text-wrap: balance;
     color: var(--text);
     margin: 44px 0 14px;
   }

@@ -20,7 +20,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="Toggle theme"
-      className="group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-card text-muted shadow-elevated transition-all duration-200 hover:text-brand hover:shadow-elevated-hover"
+      className="group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-card text-muted shadow-elevated transition-[color,box-shadow,transform] duration-200 hover:text-brand hover:shadow-elevated-hover active:scale-[0.96]"
     >
       <span className={`${tooltipClass} light:hidden`} aria-hidden="true">
         Switch to light mode
@@ -28,8 +28,8 @@ export function ThemeToggle() {
       <span className={`${tooltipClass} hidden light:block`} aria-hidden="true">
         Switch to dark mode
       </span>
-      <SunIcon className="light:hidden" />
-      <MoonIcon className="hidden light:block" />
+      <SunIcon className="theme-toggle-icon theme-toggle-icon--sun" />
+      <MoonIcon className="theme-toggle-icon theme-toggle-icon--moon" />
     </button>
   );
 }

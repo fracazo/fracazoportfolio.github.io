@@ -102,7 +102,7 @@ export function CaseStudyShell({
     >
       <Link
         href={backHref}
-        className="flex items-center gap-2 rounded-lg border border-border px-2.5 py-2 text-sm text-muted no-underline transition-all duration-200 hover:bg-panel-2 hover:text-text hover:no-underline"
+        className="flex items-center gap-2 rounded-lg border border-border px-2.5 py-2 text-sm text-muted no-underline transition-colors duration-200 hover:bg-panel-2 hover:text-text hover:no-underline"
       >
         <ArrowLeftIcon className="shrink-0" />
         {backLabel}
@@ -117,7 +117,7 @@ export function CaseStudyShell({
               <li key={id}>
                 <a
                   href={`#${id}`}
-                  className={`block rounded-lg px-2.5 py-1.5 text-sm leading-[1.4] no-underline transition-all duration-200 hover:bg-panel-2 hover:text-text hover:no-underline ${
+                  className={`block rounded-lg px-2.5 py-1.5 text-sm leading-[1.4] no-underline transition-colors duration-200 hover:bg-panel-2 hover:text-text hover:no-underline ${
                     activeId === id
                       ? "bg-[rgba(59,130,246,0.1)] font-medium text-brand"
                       : "text-muted"
