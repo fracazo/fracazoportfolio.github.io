@@ -218,7 +218,8 @@ export default function Home() {
               <Link href="/case-studies/gitlab">GitLab</Link>&rsquo;s Knowledge
               team, an engineering-led group that had never had a designer. I
               built the research practice from scratch and own UX across Wiki,
-              GLQL, Pages, and text editors. I led GLQL, GitLab&rsquo;s first
+              GLQL (GitLab Query Language), Pages, and text editors. I led
+              GLQL, GitLab&rsquo;s first
               built-in query language for embedding live views of issues, from
               research to a GA launch where adoption grew 33%, and led the Wiki
               redesign that positions it as a competitive alternative to

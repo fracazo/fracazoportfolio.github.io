@@ -34,12 +34,12 @@ const experience = [
     href: "/case-studies/gitlab",
     role: "Senior Product Designer",
     context:
-      "Sole designer on the Knowledge team in an engineering-led group, reporting to the Senior Director of Product Design, owning Wiki, GLQL, Pages, and text editors.",
+      "Sole designer on the Knowledge team in an engineering-led group, reporting to the Senior Director of Product Design, owning Wiki, GLQL (GitLab Query Language), Pages, and text editors.",
     period: "2022 – Current",
     location: "Remote, global",
-    outcome: "+33% adoption · 0 bugs · code in production",
+    outcome: "+33% adoption · code in production",
     points: [
-      "Led GLQL from research through GA launch: 33% adoption growth, zero bugs, and shipped my own code to production via merge requests.",
+      "Led GLQL from research through GA launch: 33% adoption growth and shipped my own code to production via merge requests.",
       "Led the Wiki UX transformation, shipping the sidebar redesign to production through code contributions, and finalising the contextual comments design system now in engineering development.",
       "Ran usability studies and a survey on AI code review that exposed trust and control problems, driving a full product pivot to an author-facing writing assistant.",
     ],
