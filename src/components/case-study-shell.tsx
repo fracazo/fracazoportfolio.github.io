@@ -7,25 +7,17 @@ import { ArrowLeftIcon } from "./icons";
 
 type TocItem = { id: string; label: string };
 
-function DyslexiaFab() {
-  const [active, setActive] = useState(false);
-
-  function toggle() {
-    const on = document.documentElement.classList.toggle("dyslexia-mode");
-    setActive(on);
-  }
-
-  // Session-only: clear the mode when leaving case study pages
-  useEffect(() => {
-    return () => {
-      document.documentElement.classList.remove("dyslexia-mode");
-    };
-  }, []);
-
+function DyslexiaFab({
+  active,
+  onToggle,
+}: {
+  active: boolean;
+  onToggle: () => void;
+}) {
   return (
     <button
       type="button"
-      onClick={toggle}
+      onClick={onToggle}
       aria-pressed={active}
       className={`dyslexia-fab${active ? " active" : ""}`}
     >
@@ -54,6 +46,7 @@ export function CaseStudyShell({
   const contentRef = useRef<HTMLDivElement>(null);
   const [toc, setToc] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState("");
+  const [dyslexia, setDyslexia] = useState(false);
 
   useEffect(() => {
     const content = contentRef.current;
@@ -137,11 +130,16 @@ export function CaseStudyShell({
     <AppShell sidebarNav={sidebarNav}>
       <div
         ref={contentRef}
-        className="mx-auto grid w-full max-w-[800px] gap-16 [&>*]:min-w-0"
+        className={`mx-auto grid w-full max-w-[800px] gap-16 [&>*]:min-w-0${
+          dyslexia ? " dyslexia-mode" : ""
+        }`}
       >
         {children}
       </div>
-      <DyslexiaFab />
+      <DyslexiaFab
+        active={dyslexia}
+        onToggle={() => setDyslexia((v) => !v)}
+      />
     </AppShell>
   );
 }

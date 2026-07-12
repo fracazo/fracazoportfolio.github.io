@@ -191,27 +191,46 @@
 }
 
 /* ========================
-   Dyslexia-friendly mode (case study pages)
+   Dyslexia-friendly mode (scoped to case study content, not the sidebar)
+   OpenDyslexic targets the smaller, denser body text where it actually helps.
+   Left untouched: headings (already large/bold) and the chrome/meta regions
+   (breadcrumb, metadata card, stat cards) — short glanceable labels and big
+   numbers that read fine and benefit from staying in the normal type scale.
    ======================== */
-:root.dyslexia-mode * {
+.dyslexia-mode,
+.dyslexia-mode
+  *:not(
+    :is(
+      h1, h2, h3, h4, .h1, .h2, .h3,
+      .breadcrumb, .case-metadata-card, .case-stats
+    )
+  ):not(
+    :is(
+      h1, h2, h3, h4, .h1, .h2, .h3,
+      .breadcrumb, .case-metadata-card, .case-stats
+    ) *
+  ) {
   font-family: "OpenDyslexic", sans-serif !important;
-  font-size: 1.03em !important; /* ~16.5px */
+  /* rem (not em) so the size is uniform and doesn't compound with nesting */
+  font-size: 0.95rem !important; /* ~15px — trimmed from base */
   letter-spacing: 0em;
   word-spacing: 0.12em;
   line-height: 1.85;
 }
-/* Keep headings proportionally larger */
-:root.dyslexia-mode h1,
-:root.dyslexia-mode .h1 {
-  font-size: 2.75rem !important;
+/* Headings keep their normal typeface and size — they're already big and bold,
+   so OpenDyslexic just muddies the hierarchy. They'd otherwise inherit the body
+   override from their wrapper, so restore the font-family explicitly. */
+.dyslexia-mode :is(h1, .h1, .case-title) {
+  font-family: var(--font-display) !important;
 }
-:root.dyslexia-mode h2,
-:root.dyslexia-mode .h2 {
-  font-size: 1.875rem !important;
+.dyslexia-mode :is(h2, h3, h4, .h2, .h3) {
+  font-family: var(--font-sans) !important;
 }
-:root.dyslexia-mode h3,
-:root.dyslexia-mode .h3 {
-  font-size: 1.375rem !important;
+/* Chrome/meta regions: excluded from the override above, so restore the normal
+   UI font on the container — their descendants inherit it instead of the
+   OpenDyslexic set on the outer content wrapper. */
+.dyslexia-mode :is(.breadcrumb, .case-metadata-card, .case-stats) {
+  font-family: var(--font-sans) !important;
 }
 /* Button icon stays consistent */
 .dyslexia-fab-icon {
