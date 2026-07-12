@@ -79,11 +79,11 @@ export default function EtaApp() {
           <h3>Known Facts</h3>
           <p>An ETA is an electronically stored authority equivalent to an e-visa, which is linked to a passport number.</p>
           <img src="/images/62ca9453bd099acc44edfcac_Screen-Shot-2015-08-23-at-2.02.32-PM.png" alt="Australian Government ETA website" />
-          <p className="img-caption">Australian Government ETA web-based website</p>
+          <p className="img-caption">Australian Government ETA website</p>
           <p>When the project started, the Department of Home Affairs offered an <strong>ETA product (web-based website)</strong> as the primary entry point for users to apply for the ETA, to facilitate clients <strong>from nominated countries</strong> visiting Australia <strong>for short-term tourist or limited business activities.</strong> The process could take anywhere from a <strong>week to two months</strong>.</p>
 
           <h3>User Immersion</h3>
-          <p>I wanted to meet with those who were significantly involved in the visa approval process the border control and management providers. Therefore, I contacted the key stakeholders in Sydney, SITA and the Department of Home Affairs. I gained access to relevant and high-security data and also interviewed some of their staff. Some data analysed:</p>
+          <p>I wanted to meet with those who were significantly involved in the visa approval process: the border control and management providers. Therefore, I contacted the key stakeholders in Sydney, SITA and the Department of Home Affairs. I gained access to relevant and high-security data and also interviewed some of their staff. Some data analysed:</p>
           <ul>
             <li>Quantity of ETAs processed</li>
             <li>% of data success rate, and ETAs not completed</li>
@@ -103,7 +103,7 @@ export default function EtaApp() {
 
           <h3>Competitive Landscape</h3>
           <p>We also analysed worldwide business trends on e-visas and found out that:</p>
-          <blockquote>Malaysia was the first country from APAC to collect biometrics through visa applicants and now expected to have the largest market share in the Asia-Pacific e-visa market.</blockquote>
+          <blockquote>Malaysia was the first country from APAC to collect biometrics from visa applicants and is now expected to have the largest market share in the Asia-Pacific e-visa market.</blockquote>
           <p>Countries that have additional support for e-visas have helped the market share grow in the region.</p>
 
           <h3>Key Insights</h3>
@@ -221,7 +221,7 @@ export default function EtaApp() {
           <p>The design principles that I focused on most for this project were accessibility and inclusion, as it is an application that people from different cultures and age groups can use. Some of the guidelines I had in mind while creating the user interface were:</p>
           <blockquote>The app provides a utility so the <strong>interface should feel native and simple</strong> to the device the person is using</blockquote>
           <p>The colours used in the design were adapted from the <strong>Home Affairs Brand guidelines to create customer empathy</strong> through the visual and brand connection.</p>
-          <p>The preferred typeface from the Brand Guidelines was Helvetica Neue, but since the App is heavy on data, I chose to use the <strong>device's native fonts</strong> to minimise the screen load so that the app feels light weight <strong>as user actions should be quick to respond.</strong></p>
+          <p>The preferred typeface from the Brand Guidelines was Helvetica Neue, but since the App is heavy on data, I chose to use the <strong>device's native fonts</strong> to minimise the screen load so that the app feels lightweight <strong>as user actions should be quick to respond.</strong></p>
           <img src="/images/62ca98319e6ac4a404da4d49_Screen-Shot-2022-07-10-at-7.13.01-pm.png" alt="Design details" className="img-small" />
 
           <h2>Key Features</h2>
@@ -290,7 +290,7 @@ export default function EtaApp() {
                 <img src="/images/To_do_list_-_summary.png" alt="AI-generated merge request summary in the GitLab to-do list" />
               </div>
               <div className="content-project">
-                <h4 className="h4">Summarize Merge Requests with AI</h4>
+                <h4 className="h4">Summarize Merge Request with AI</h4>
                 <p className="tagline">Finding where AI summaries earn trust in code review. GitLab, 2023.</p>
               </div>
             </a>

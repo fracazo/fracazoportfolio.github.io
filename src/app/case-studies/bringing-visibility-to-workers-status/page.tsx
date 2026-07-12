@@ -94,7 +94,7 @@ export default function BringingVisibilityToWorkersStatus() {
           <h3>Current User Flow Analysis</h3>
           <p>How would workers update their availability status?</p>
           <img src="/images/62fdcd93d56ca3a042cc5291_current-flow.gif" alt="Current flow animation" className="img-xs" />
-          <p>They would tap on their profile avatar which would open "My account" page. Inside this page, the user would skim through more options until they find "My Availability", which would open the page where they could switch their "Looking for support work" status to on/off.</p>
+          <p>They would tap on their profile avatar which would open the "My account" page. Inside this page, the user would skim through more options until they find "My Availability", which would open the page where they could switch their "Looking for support work" status to on/off.</p>
           <img src="/images/62fb7e3f6533969785087587_Current-experience.png" alt="Current experience" />
 
           <h3>Flow Report</h3>
@@ -115,7 +115,7 @@ export default function BringingVisibilityToWorkersStatus() {
           <p>The solution proposed, led by the data team and the product manager, was to automatically turn off the availability status for workers who maintain their status as "Looking for Support Work" but have not been active on the platform in the last 30 days. This would result in those inactive workers being filtered out from search results.</p>
           
           <p><strong>This solved part of the problem</strong></p>
-          <p>I shared my learnings about the common behaviour of workers setting and forgetting their availability to "open for work". I was also thinking about users that might decide to provide services for Hireup again after some time off. I asked the data team about reactivations and flagged my team that workers could reactivate after being inactive. They might not know they had to update their availability to "Looking for support work".</p>
+          <p>I shared my learnings about the common behaviour of workers setting and forgetting their availability to "open for work". I was also thinking about users that might decide to provide services for Hireup again after some time off. I asked the data team about reactivations and flagged to my team that workers could reactivate after being inactive. They might not know they had to update their availability to "Looking for support work".</p>
           <img src="/images/62fc0f9fc79dbff73d588373_Reactivation-metrics.png" alt="Reactivation metrics" />
           
           <p>We could see that there was a large spike in reactivations from inactive support workers, seasonally, around January - February.</p>
@@ -151,7 +151,7 @@ export default function BringingVisibilityToWorkersStatus() {
           <img src="/images/62fb817e7d3362906fa43868_My-Account.png" alt="My Account design" />
 
           <h3>Copywriting with empathy</h3>
-          <p>I've recommended to change the microcopy from "Looking for support work / Not looking for support work" to a more direct and simple, plain language that is easy to understand for everyone.</p>
+          <p>I've recommended changing the microcopy from "Looking for support work / Not looking for support work" to a more direct and simple, plain language that is easy to understand for everyone.</p>
           <img src="/images/62fc90125c97db0ee5c84b53_open-for-work---not-open-for-work.gif" alt="Copywriting animation" className="img-xs" />
 
           <p><strong>Thought process and design evolution</strong></p>
@@ -171,7 +171,7 @@ export default function BringingVisibilityToWorkersStatus() {
           <ul>
             <li>4 rounds of user testing</li>
             <li>2 rounds of design critique / Jam</li>
-            <li>Working closely with engineers to validate the design and copy implementations. Along with daily stand-ups, we also had weekly demos and occasionally huddled together over slack and cross-checked implementation with final designs.</li>
+            <li>Working closely with engineers to validate the design and copy implementations. Along with daily stand-ups, we also had weekly demos and occasionally huddled together over Slack and cross-checked implementation with final designs.</li>
           </ul>
 
           <h3>Final design</h3>
@@ -244,7 +244,7 @@ export default function BringingVisibilityToWorkersStatus() {
                 <img src="/images/To_do_list_-_summary.png" alt="AI-generated merge request summary in the GitLab to-do list" />
               </div>
               <div className="content-project">
-                <h4 className="h4">Summarize Merge Requests with AI</h4>
+                <h4 className="h4">Summarize Merge Request with AI</h4>
                 <p className="tagline">Finding where AI summaries earn trust in code review. GitLab, 2023.</p>
               </div>
             </a>

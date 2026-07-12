@@ -39,7 +39,7 @@ const current = [
     },
     eyebrow: "GitLab · 2023",
     outcome: "Shipped · 3 iterations",
-    title: "Summarize Merge Requests with AI",
+    title: "Summarize Merge Request with AI",
     tagline:
       "Finding where AI summaries earn trust in code review, including the conviction to remove what didn't work.",
   },
