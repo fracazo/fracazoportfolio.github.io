@@ -212,10 +212,10 @@
   ) {
   font-family: "OpenDyslexic", sans-serif !important;
   /* rem (not em) so the size is uniform and doesn't compound with nesting */
-  font-size: 0.95rem !important; /* ~15px — trimmed from base */
+  font-size: 1.1rem !important; /* ~17.6px */
   letter-spacing: 0em;
   word-spacing: 0.12em;
-  line-height: 1.85;
+  line-height: 1.5;
 }
 /* Headings keep their normal typeface and size — they're already big and bold,
    so OpenDyslexic just muddies the hierarchy. They'd otherwise inherit the body
