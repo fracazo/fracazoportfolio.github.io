@@ -76,7 +76,6 @@ export default function QantasApp() {
         <div className="case-study-section">
           <h2>The Challenge</h2>
 
-          <h3>The Challenge</h3>
           <p>Qantas provides a wide range of inflight entertainment systems, using multiple providers for aircraft hardware. Traveller behaviour is moving towards bringing personal devices on board. We've seen more and more travellers using their personal devices to stream content as well as switch devices/systems at will.</p>
           <p>Qantas already has an appealing seatback screen experience but lacks a hassle-free personal device experience. Building a better experience for entertainment using the Qantas Airways app is a great extension of the company's mission, while managing to leverage its existing systems and providers, increase its value for customers and provide the company with another revenue stream.</p>
 
@@ -93,7 +92,7 @@ export default function QantasApp() {
           </ul>
 
           <h3>Research & Discovery</h3>
-          <p>Some known facts about Qantas product offering that is relevant for entertainment:</p>
+          <p>Some known facts about the Qantas product offering that are relevant to entertainment:</p>
           
           <h4>1. Qantas Airways app (Flagship) - 1.17 million active monthly users</h4>
           <ul>
@@ -166,14 +165,14 @@ export default function QantasApp() {
           <h2>Rollout & Iteration</h2>
 
           <h3>Experiment Results</h3>
-          <p>We collect the following data 24 hours after launch:</p>
+          <p>We collected the following data 24 hours after launch:</p>
           <ul>
             <li>27k unique visitors tapped on the 'Download Qantas Entertainment app'</li>
             <li>9k unique visitors tapped on 'Open Qantas Entertainment app'</li>
           </ul>
 
           <h3>Progressive Releases</h3>
-          <p>With the positive results of our experiment, we decided to launch more features that we believed could solve other user-identified pain points and also get travellers engaged and excited about their trip. We start by showing the 5 latest movies available for their flight.</p>
+          <p>With the positive results of our experiment, we decided to launch more features that we believed could solve other user-identified pain points and also get travellers engaged and excited about their trip. We started by showing the 5 latest movies available for their flight.</p>
           <img src="/images/62d932ca88b9cb77a06bf8ee_Screen-Shot-2022-07-21-at-9.04.18-pm.webp" alt="Movies feature" />
 
           <h3>Media Content</h3>
@@ -213,7 +212,7 @@ export default function QantasApp() {
           <h3>Key Takeaways</h3>
           <p>Beyond building a simple design pattern, we allow passengers to discover what's showing on board their next flight. This feature delivers awareness of what entertainment is available when travelling with Qantas and further strengthens the passengers' engagement with the app and the Qantas brand.</p>
           <img src="/images/62df2cccc02b82ce55e9b9f3_conclusion.webp" alt="Conclusion" />
-          <p>After working many months, participating in all stages of this project, see also the redesign of Qantas Entertainment app case study, which was fundamental for the success of the business. I'm excited to see how many improvements we made as a team, creating something really exciting, and a product we are all proud of.</p>
+          <p>After many months working across all stages of this project, see also the Qantas Entertainment app redesign case study, which was fundamental to the success of the business. I'm excited to see how many improvements we made as a team, creating something really exciting, and a product we are all proud of.</p>
 
         </div>
 
@@ -225,7 +224,7 @@ export default function QantasApp() {
                 <img src="/images/To_do_list_-_summary.png" alt="AI-generated merge request summary in the GitLab to-do list" />
               </div>
               <div className="content-project">
-                <h4 className="h4">Summarize Merge Requests with AI</h4>
+                <h4 className="h4">Summarize Merge Request with AI</h4>
                 <p className="tagline">Finding where AI summaries earn trust in code review. GitLab, 2023.</p>
               </div>
             </a>

@@ -197,7 +197,7 @@ export default function Gitlab() {
           </div>
         </div>
         <div className="case-next">
-          <a href="/case-studies/mr-summary-ai"><span className="case-next-label">Next case study</span><span className="case-next-title">Summarize Merge Requests with AI</span></a>
+          <a href="/case-studies/mr-summary-ai"><span className="case-next-label">Next case study</span><span className="case-next-title">Summarize Merge Request with AI</span></a>
         </div>
         </section>
 
