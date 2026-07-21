@@ -113,6 +113,14 @@ export default function BuildingBirthGuideWithAI() {
             <span className="name">Figma + Figma MCP</span>
             <span className="role">UI design</span>
           </div>
+          <div className="writing-stack-row">
+            <span className="name">Microsoft Clarity</span>
+            <span className="role">Session replay + heatmaps</span>
+          </div>
+          <div className="writing-stack-row">
+            <span className="name">Google Analytics</span>
+            <span className="role">Traffic + behavior</span>
+          </div>
         </div>
 
         <hr className="writing-rule" />
@@ -210,46 +218,46 @@ Keep components small and focused.`}
         <h2>The design system lives in the rules</h2>
 
         <p>
-          One rule shaped everything else: the{" "}
+          One rule shaped how everything else got built: the{" "}
           <a href="https://birthguide-storybook.vercel.app/?path=/docs/design-system-principles--docs">
             design system
           </a>{" "}
-          is part of what the agent reads before it writes a line. I
-          didn&rsquo;t just tell it &ldquo;use Tailwind.&rdquo; I built a real
-          system, color, spacing, and type as tokens, with components on top,
-          and wrote it into the rules so the agent reaches for it by default.
+          is part of what the agent reads before it starts. I didn&rsquo;t just
+          tell it &ldquo;use Tailwind.&rdquo; I built a proper system, color,
+          spacing and type as tokens, with components on top, and put it in the
+          rules so the agent uses it by default.
         </p>
 
         <p>
-          So every change speaks the same language. When I ask for a new screen
-          or a new component, the agent doesn&rsquo;t invent a color or guess a
-          spacing value. It pulls from tokens that already exist. The system is
-          the single source of truth, and because it lives in the rules, the
-          agent treats it that way on every session, without me restating it.
+          So everything I build stays consistent. When I ask for a new screen or
+          a new component, the agent doesn&rsquo;t make up a color or guess at
+          spacing. It uses the tokens that already exist. And because the system
+          lives in the rules, it does this on every session, without me having
+          to remind it.
         </p>
 
         <div className="writing-callout">
-          The rules don&rsquo;t just say how to write code. They say how the
-          product should look. That&rsquo;s the line between an agent that
-          guesses and one that stays on brand.
+          The rules don&rsquo;t just tell the agent how to write code. They tell
+          it how the product should look. That&rsquo;s the difference between an
+          agent guessing and an agent getting it right.
         </div>
 
         <p>
-          To keep it honest, a lint rule blocks raw color values in the markup.
-          Hex, rgb, oklch, even Tailwind arbitrary utilities like{" "}
-          <code>bg-[#fff]</code> fail the check. If the value you need
-          isn&rsquo;t a token, that&rsquo;s a design decision to raise, not a
-          literal to inline.
+          There&rsquo;s also a lint rule that blocks raw color values in the
+          code. If I try to drop in a hex code or an rgb value instead of a
+          token, the build fails. It keeps every color coming from the system,
+          so nothing slowly drifts out of line.
         </p>
 
         <p>
-          And because everything routes through tokens, refactors are safe to
-          make. A change to the token layer must not move a single pixel, and
-          that&rsquo;s verified, not eyeballed:
+          Because every color runs through a token, I can change the system
+          safely. When I edit a token, the pages shouldn&rsquo;t look any
+          different, and a script checks that for me instead of me eyeballing
+          it:
         </p>
 
         <div className="writing-code-block">
-          <span className="code-label">zero visual change: verified, not eyeballed</span>
+          <span className="code-label">make sure nothing changed visually</span>
           <pre>
             {`pnpm design:snapshot baseline.json
 `}
@@ -262,10 +270,10 @@ pnpm design:compare baseline.json after.json   `}
         </div>
 
         <p>
-          The snapshot records every token, in light and dark, down to the
-          resolved color bytes. If a refactor changed the output, the compare
-          fails. So I can clean up the system without wondering whether I
-          quietly broke a screen.
+          The check captures every token in both light and dark mode. If a
+          change alters anything on screen, it fails and I catch it before it
+          ships. So I can tidy up the system without worrying I quietly broke a
+          screen.
         </p>
 
         <hr className="writing-rule" />
@@ -298,8 +306,8 @@ pnpm design:compare baseline.json after.json   `}
         </div>
 
         <p>
-          That&rsquo;s the whole case for tokens. You decide the values once.
-          Everything downstream just reads them.
+          That&rsquo;s the real point of tokens. You set the values once, and
+          everything else just uses them.
         </p>
 
         <hr className="writing-rule" />
@@ -337,6 +345,34 @@ pnpm design:compare baseline.json after.json   `}
           everything at once. One task, confirm it works, then the next. The
           output is better and it&rsquo;s easier to follow what&rsquo;s
           happening.
+        </p>
+
+        <hr className="writing-rule" />
+
+        <h2>Watching how people actually use it</h2>
+
+        <p>
+          I built BirthGuide with no budget. At a bigger company I&rsquo;d run
+          proper user research: recruit people, sit in on sessions, pay for the
+          tools that make it work. On a solo project I don&rsquo;t have any of
+          that, so I watch how people use the product instead.
+        </p>
+
+        <p>
+          Google Analytics tells me what pages people land on and where they
+          leave. Microsoft Clarity shows me the actual sessions, recordings and
+          heatmaps of people using the tool, and it&rsquo;s the one I check
+          most. It&rsquo;s where I see people making decisions: hesitating,
+          scrolling past the thing I wanted them to notice, clicking something I
+          didn&rsquo;t expect.
+        </p>
+
+        <p>
+          I&rsquo;ve caught more bugs and UX problems this way than any other.
+          You watch someone get stuck on a screen you were sure was obvious, and
+          it&rsquo;s immediately clear what to fix. It isn&rsquo;t the same as
+          talking to users, but for a project with no research budget, it&rsquo;s
+          the closest I get to sitting behind someone while they use it.
         </p>
 
         <hr className="writing-rule" />
