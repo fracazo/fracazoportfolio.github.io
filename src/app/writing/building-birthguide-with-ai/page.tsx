@@ -30,7 +30,7 @@ export default function BuildingBirthGuideWithAI() {
       <WritingArticle
         tags={["AI", "Design engineering", "BirthGuide", "Solo building"]}
         title={title}
-        meta="6 min read"
+        meta="7 min read"
         next={{
           href: "/writing/titles-are-a-trap",
           title: "Titles are a trap. And the inner critic knows it.",
@@ -204,6 +204,103 @@ Keep components small and focused.`}
           Without rules, the output looks like the agent guessed. With rules, it
           looks like it read your mind.
         </div>
+
+        <hr className="writing-rule" />
+
+        <h2>The design system lives in the rules</h2>
+
+        <p>
+          One rule shaped everything else: the{" "}
+          <a href="https://birthguide-storybook.vercel.app/?path=/docs/design-system-principles--docs">
+            design system
+          </a>{" "}
+          is part of what the agent reads before it writes a line. I
+          didn&rsquo;t just tell it &ldquo;use Tailwind.&rdquo; I built a real
+          system, color, spacing, and type as tokens, with components on top,
+          and wrote it into the rules so the agent reaches for it by default.
+        </p>
+
+        <p>
+          So every change speaks the same language. When I ask for a new screen
+          or a new component, the agent doesn&rsquo;t invent a color or guess a
+          spacing value. It pulls from tokens that already exist. The system is
+          the single source of truth, and because it lives in the rules, the
+          agent treats it that way on every session, without me restating it.
+        </p>
+
+        <div className="writing-callout">
+          The rules don&rsquo;t just say how to write code. They say how the
+          product should look. That&rsquo;s the line between an agent that
+          guesses and one that stays on brand.
+        </div>
+
+        <p>
+          To keep it honest, a lint rule blocks raw color values in the markup.
+          Hex, rgb, oklch, even Tailwind arbitrary utilities like{" "}
+          <code>bg-[#fff]</code> fail the check. If the value you need
+          isn&rsquo;t a token, that&rsquo;s a design decision to raise, not a
+          literal to inline.
+        </p>
+
+        <p>
+          And because everything routes through tokens, refactors are safe to
+          make. A change to the token layer must not move a single pixel, and
+          that&rsquo;s verified, not eyeballed:
+        </p>
+
+        <div className="writing-code-block">
+          <span className="code-label">zero visual change: verified, not eyeballed</span>
+          <pre>
+            {`pnpm design:snapshot baseline.json
+`}
+            <span className="comment">{"# make the change"}</span>
+            {`
+pnpm design:snapshot after.json
+pnpm design:compare baseline.json after.json   `}
+            <span className="comment">{"# must exit 0"}</span>
+          </pre>
+        </div>
+
+        <p>
+          The snapshot records every token, in light and dark, down to the
+          resolved color bytes. If a refactor changed the output, the compare
+          fails. So I can clean up the system without wondering whether I
+          quietly broke a screen.
+        </p>
+
+        <hr className="writing-rule" />
+
+        <h2>Dark mode, almost for free</h2>
+
+        <p>
+          The payoff showed up when I added dark mode. Every color in the app
+          resolves through a token, never a hardcoded hex, so I never had to
+          hunt through components. I set the dark values once at the token layer
+          and the whole app followed.
+        </p>
+
+        <div className="writing-code-block">
+          <span className="code-label">one system, two themes</span>
+          <pre>
+            {`:root {
+  --surface: <light>;
+  --text:    <light>;
+  --border:  <light>;
+}
+[data-theme="dark"] {
+  --surface: <dark>;
+  --text:    <dark>;
+  --border:  <dark>;
+}
+`}
+            <span className="comment">{"// components only ever read var(--surface), var(--text)"}</span>
+          </pre>
+        </div>
+
+        <p>
+          That&rsquo;s the whole case for tokens. You decide the values once.
+          Everything downstream just reads them.
+        </p>
 
         <hr className="writing-rule" />
 
