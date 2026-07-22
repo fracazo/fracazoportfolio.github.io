@@ -96,6 +96,10 @@ export default function BuildingBirthGuideWithAI() {
             <span className="role">Payments</span>
           </div>
           <div className="writing-stack-row">
+            <span className="name">Resend</span>
+            <span className="role">Transactional email</span>
+          </div>
+          <div className="writing-stack-row">
             <span className="name">Tailwind CSS</span>
             <span className="role">Styling</span>
           </div>
