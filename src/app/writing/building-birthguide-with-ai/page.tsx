@@ -52,10 +52,9 @@ export default function BuildingBirthGuideWithAI() {
         <h2>The honest thing about AI and iteration</h2>
 
         <p>
-          The way I used to work: spend hours exploring a concept, not sure if
-          it&rsquo;s right, commit to it anyway because switching costs too much
-          time. The way I work now: try the concept in minutes, throw it away if
-          it doesn&rsquo;t feel right, try another.
+          The way I used to work: spend hours designing a concept just to find
+          out whether it was worth keeping. The way I work now: try it in
+          minutes, throw it away if it doesn&rsquo;t feel right, and try another.
         </p>
 
         <p>
