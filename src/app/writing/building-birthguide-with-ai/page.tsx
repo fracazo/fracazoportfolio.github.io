@@ -198,11 +198,13 @@ Keep components small and focused.`}
         <h2>Figma and the Figma MCP</h2>
 
         <p>
-          For complex UI I still design in Figma first. Iterating in code is
-          cheap now with AI, so that isn&rsquo;t why. I do it because I care about
-          the UX decisions and I think better visually. Figma is where I work out
-          hierarchy, spacing, how a flow feels to move through. That thinking is
-          mine and I want to own it.
+          For complex UI components I still design in Figma first. I care about
+          the UX decisions on specific parts of the interface, and I think better
+          visually. Figma is where I work out hierarchy, spacing, and how a screen
+          feels to move through. That thinking is mine and I want to own it. AI is
+          faster than me in a working flow, and prototyping by iterating in code
+          is very cheap now. It still can&rsquo;t hit the level of craft I expect,
+          though.
         </p>
 
         <p>
