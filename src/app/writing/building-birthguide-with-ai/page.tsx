@@ -37,9 +37,12 @@ export default function BuildingBirthGuideWithAI() {
         }}
       >
         <p>
-          I&rsquo;m a designer who codes. I&rsquo;ve been doing both for 20
-          years, long enough to have a strong opinion about craft, and skeptical
-          enough about AI to not just hand things over blindly. But I built{" "}
+          I&rsquo;m a designer who started my career in 2005 as a web designer,
+          designing in Photoshop and coding with tables, then tableless.
+          That&rsquo;s how I learned to code, and after the basics the rest was a
+          simple evolution. I&rsquo;ve been doing design and code for a long
+          time, long enough to have a strong opinion about craft, and skeptical
+          enough about AI to not just hand things over blindly. I built{" "}
           <a href="https://birthguide.com.au">BirthGuide</a>{" "}
           solo this year, from zero to production, and my position shifted in
           ways I didn&rsquo;t expect.
@@ -108,8 +111,8 @@ export default function BuildingBirthGuideWithAI() {
             <span className="writing-ai-tag">AI feature</span>
           </div>
           <div className="writing-stack-row">
-            <span className="name">Claude + OpenCode</span>
-            <span className="role">My dev tools</span>
+            <span className="name">Claude Code</span>
+            <span className="role">My dev tool</span>
             <span className="writing-ai-tag">AI tooling</span>
           </div>
           <div className="writing-stack-row">
@@ -132,10 +135,10 @@ export default function BuildingBirthGuideWithAI() {
 
         <p>
           Whether you use Claude Code, OpenCode, Cursor, or something else, the
-          setup matters more than the tool. I use OpenCode, a chat interface
-          similar to Cursor but without the IDE layer. Install it as an app,
-          open a project, and work from there. I find it cleaner for focused
-          sessions.
+          setup matters more than the tool. I started on OpenCode, a chat
+          interface similar to Cursor but without the IDE layer, and later moved
+          to Claude Code. The workflow is the same either way: open a project and
+          work from there, one focused session at a time.
         </p>
 
         <p>
@@ -240,9 +243,9 @@ Keep components small and focused.`}
         </p>
 
         <div className="writing-callout">
-          The rules don&rsquo;t just tell the agent how to write code. They tell
-          it how the product should look. That&rsquo;s the difference between an
-          agent guessing and an agent getting it right.
+          Most coding rules cover how to write code. Mine also cover how the
+          product should look, so the agent builds UI that fits the system
+          instead of guessing at it.
         </div>
 
         <p>
@@ -319,32 +322,55 @@ pnpm design:compare baseline.json after.json   `}
 
         <p>
           Specificity is the whole job. The more precisely I describe what I
-          want: inputs, outputs, edge cases, what to avoid, the less I have to
-          correct afterward. Vague prompts produce vague work, same as vague
-          briefs.
+          want, the less I have to fix afterward. Vague prompts produce vague
+          work, same as vague briefs.
         </p>
 
-        <div className="writing-code-block">
-          <span className="code-label">prompt pattern: specific beats vague</span>
-          <pre>
-            <span className="comment">{"// This"}</span>
-            {"\n"}
-            <span className="str">
-              {`"Add a Stripe webhook handler that:
-1. Listens for checkout.session.completed
-2. Updates the Supabase user record: plan_purchased = true
-3. Sends a confirmation email via Resend
-4. Returns 200 on success, 400 if session data is missing"`}
-            </span>
-            {"\n\n"}
-            <span className="comment">{"// Not this"}</span>
-            {"\n"}
-            <span className="str">{`"Add Stripe webhooks"`}</span>
-          </pre>
-        </div>
+        <p>
+          This matters most with UI, and it&rsquo;s where being a designer who
+          codes earns its keep. A designer feels when something is wrong but
+          usually names the symptom: this looks cramped, that feels off, the
+          page is janky. The agent can&rsquo;t act on a feeling. My job is to
+          name the layer the problem actually lives in. Once I do, the fix is
+          obvious.
+        </p>
 
         <p>
-          For bigger tasks I break the prompt into steps rather than asking for
+          When a paragraph feels cramped, I don&rsquo;t ask the agent to
+          &ldquo;make it breathe.&rdquo; I tell it the line length is too wide to
+          read comfortably: cap it with <code>max-w-prose</code>, open up the
+          leading with <code>leading-relaxed</code>, use the existing text scale,
+          and don&rsquo;t drop to a smaller text size to make it fit. Same
+          feeling, but now it knows what to change.
+        </p>
+
+        <p>
+          When a long article title shoves the Save button off the edge of a
+          card, &ldquo;the button looks squished&rdquo; only gets me a guess.
+          Naming the behavior works: put <code>shrink-0</code> on the icon and
+          button so they hold their size, and <code>min-w-0</code> with{" "}
+          <code>truncate</code> on the title so it clips instead of pushing them
+          out.
+        </p>
+
+        <p>
+          When the week-by-week guide jumps around while its illustrations load,
+          the fix isn&rsquo;t &ldquo;stop the jumping.&rdquo; It&rsquo;s giving
+          each image a fixed <code>aspect-[4/3]</code> so its space is reserved
+          before it loads, and matching the skeleton to the final card height.
+          People read this one-handed at 3am. The layout has to hold still.
+        </p>
+
+        <p>
+          The same holds for structure. I ask for a real checkbox with a label
+          instead of a styled div, a button instead of a clickable card, because
+          native elements come with keyboard and screen reader behavior built in.
+          On something people lean on through a pregnancy, that isn&rsquo;t a
+          nice-to-have.
+        </p>
+
+        <p>
+          For bigger tasks I break the prompt into steps instead of asking for
           everything at once. One task, confirm it works, then the next. The
           output is better and it&rsquo;s easier to follow what&rsquo;s
           happening.
