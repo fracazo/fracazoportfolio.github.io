@@ -61,10 +61,10 @@ export default function BuildingBirthGuideWithAI() {
         </p>
 
         <p>
-          That&rsquo;s the real shift. Not that AI writes my code for me.
-          It&rsquo;s that the cost of being wrong dropped so low that I can
-          explore more honestly. I&rsquo;m not married to decisions I&rsquo;ve
-          spent two days on. I can change my mind.
+          That&rsquo;s the real shift. AI writing my code for me was never the
+          point. Being wrong got cheap, and that let me explore more honestly.
+          I&rsquo;m not married to decisions I&rsquo;ve spent two days on. I can
+          change my mind.
         </p>
 
         <div className="writing-callout">
@@ -73,7 +73,7 @@ export default function BuildingBirthGuideWithAI() {
         </div>
 
         <p>
-          The important thing, though: you have to stay in charge. AI works best
+          The important thing, though, is to stay in charge. AI works best
           when you know what you want and you&rsquo;re directing the work, not
           when you&rsquo;re hoping the agent figures it out. The moment you stop
           understanding what&rsquo;s being built, the quality drops and the
@@ -137,14 +137,14 @@ export default function BuildingBirthGuideWithAI() {
           Whether you use Claude Code, OpenCode, Cursor, or something else, the
           setup matters more than the tool. I started on OpenCode, a chat
           interface similar to Cursor but without the IDE layer, and later moved
-          to Claude Code. The workflow is the same either way: open a project and
+          to Claude Code. The workflow is the same either way. Open a project and
           work from there, one focused session at a time.
         </p>
 
         <p>
           The first thing I do when starting a project is write rules for the
           codebase. Before any prompting starts, the agent needs to know how I
-          work: what patterns I follow, what I want to avoid, what the
+          work, which patterns I follow, what I want to avoid, and what the
           conventions are. Without this, every session starts from scratch and
           you spend half your time re-explaining yourself.
         </p>
@@ -186,8 +186,8 @@ Keep components small and focused.`}
         </p>
 
         <p>
-          One other thing that made a big difference: I always assume the agent
-          has no context at the start of a session. Even if we worked on
+          One other thing made a big difference. I always assume the agent has
+          no context at the start of a session. Even if we worked on
           something yesterday, I re-explain the relevant state. AI doesn&rsquo;t
           carry memory across conversations the way a human collaborator would.
           Treating each session as fresh leads to much better output.
@@ -198,11 +198,11 @@ Keep components small and focused.`}
         <h2>Figma and the Figma MCP</h2>
 
         <p>
-          For complex UI I still design in Figma first. Not because iterating in
-          code is expensive. With AI it genuinely is not anymore. But because I
-          care about the UX decisions and I think better visually. Figma is
-          where I work out hierarchy, spacing, how a flow feels to move through.
-          That thinking is mine and I want to own it.
+          For complex UI I still design in Figma first. Iterating in code is
+          cheap now with AI, so that isn&rsquo;t why. I do it because I care about
+          the UX decisions and I think better visually. Figma is where I work out
+          hierarchy, spacing, how a flow feels to move through. That thinking is
+          mine and I want to own it.
         </p>
 
         <p>
@@ -224,7 +224,7 @@ Keep components small and focused.`}
         <h2>The design system lives in the rules</h2>
 
         <p>
-          One rule shaped how everything else got built: the{" "}
+          One rule shaped how everything else got built. The{" "}
           <a href="https://birthguide-storybook.vercel.app/?path=/docs/design-system-principles--docs">
             design system
           </a>{" "}
@@ -329,7 +329,7 @@ pnpm design:compare baseline.json after.json   `}
         <p>
           This matters most with UI, and it&rsquo;s where being a designer who
           codes earns its keep. A designer feels when something is wrong but
-          usually names the symptom: this looks cramped, that feels off, the
+          usually names the symptom. This looks cramped, that feels off, the
           page is janky. The agent can&rsquo;t act on a feeling. My job is to
           name the layer the problem actually lives in. Once I do, the fix is
           obvious.
@@ -338,7 +338,7 @@ pnpm design:compare baseline.json after.json   `}
         <p>
           When a paragraph feels cramped, I don&rsquo;t ask the agent to
           &ldquo;make it breathe.&rdquo; I tell it the line length is too wide to
-          read comfortably: cap it with <code>max-w-prose</code>, open up the
+          read comfortably. Cap it with <code>max-w-prose</code>, open up the
           leading with <code>leading-relaxed</code>, use the existing text scale,
           and don&rsquo;t drop to a smaller text size to make it fit. Same
           feeling, but now it knows what to change.
@@ -347,7 +347,7 @@ pnpm design:compare baseline.json after.json   `}
         <p>
           When a long article title shoves the Save button off the edge of a
           card, &ldquo;the button looks squished&rdquo; only gets me a guess.
-          Naming the behavior works: put <code>shrink-0</code> on the icon and
+          Naming the behavior works. Put <code>shrink-0</code> on the icon and
           button so they hold their size, and <code>min-w-0</code> with{" "}
           <code>truncate</code> on the title so it clips instead of pushing them
           out.
@@ -355,10 +355,10 @@ pnpm design:compare baseline.json after.json   `}
 
         <p>
           When the week-by-week guide jumps around while its illustrations load,
-          the fix isn&rsquo;t &ldquo;stop the jumping.&rdquo; It&rsquo;s giving
-          each image a fixed <code>aspect-[4/3]</code> so its space is reserved
-          before it loads, and matching the skeleton to the final card height.
-          People read this one-handed at 3am. The layout has to hold still.
+          the real cause is unreserved space. I tell the agent to give each image
+          a fixed <code>aspect-[4/3]</code> so its slot exists before it loads,
+          and to size the skeleton to the final card height. People read this
+          one-handed at 3am. The layout has to hold still.
         </p>
 
         <p>
@@ -382,8 +382,8 @@ pnpm design:compare baseline.json after.json   `}
 
         <p>
           I built BirthGuide with no budget. At a bigger company I&rsquo;d run
-          proper user research: recruit people, sit in on sessions, pay for the
-          tools that make it work. On a solo project I don&rsquo;t have any of
+          proper user research, recruiting people, sitting in on sessions, and
+          paying for the tools that make it work. On a solo project I don&rsquo;t have any of
           that, so I watch how people use the product instead.
         </p>
 
@@ -391,7 +391,7 @@ pnpm design:compare baseline.json after.json   `}
           Google Analytics tells me what pages people land on and where they
           leave. Microsoft Clarity shows me the actual sessions, recordings and
           heatmaps of people using the tool, and it&rsquo;s the one I check
-          most. It&rsquo;s where I see people making decisions: hesitating,
+          most. It&rsquo;s where I see people making decisions, hesitating,
           scrolling past the thing I wanted them to notice, clicking something I
           didn&rsquo;t expect.
         </p>
