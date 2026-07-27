@@ -55,21 +55,25 @@ const moreCaseStudies = [
     href: "/case-studies/wiki-contextual-comments",
     name: "Wiki Contextual Comments",
     meta: "GitLab",
+    image: { src: "/images/wiki-comments-card.png" },
   },
   {
     href: "/case-studies/eta-app",
     name: "Reducing Friction in Government Visa Applications",
     meta: "Dept. of Home Affairs",
+    image: { src: "/images/62dc274f132cbe543717e126_work1-p-2000-p-800.jpg" },
   },
   {
     href: "/case-studies/qantas-app",
     name: "Increasing App Adoption (+70% downloads)",
     meta: "Qantas",
+    image: { src: "/images/62dc1d83920df32baae28d6b_work2-p-1080-p-800.png" },
   },
   {
     href: "/case-studies/qantas-entertainment-app",
     name: "A Unified In-flight Entertainment Experience",
     meta: "Qantas",
+    image: { src: "/images/62dc26d29e21732abffdaacd_work4-p-1080-p-800.png" },
   },
 ];
 
