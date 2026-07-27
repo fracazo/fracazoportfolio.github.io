@@ -61,7 +61,7 @@ export function RowList({ items }: { items: RowItem[] }) {
         <div
           ref={floatRef}
           aria-hidden="true"
-          className={`pointer-events-none fixed top-0 left-0 z-50 w-[240px] origin-top-left overflow-hidden rounded-card bg-panel-2 shadow-elevated-hover transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none ${
+          className={`thumb-frame pointer-events-none fixed top-0 left-0 z-50 w-[240px] origin-top-left overflow-hidden rounded-card bg-panel-2 transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none ${
             preview
               ? "opacity-100 [transform:scale(1)]"
               : "opacity-0 [transform:scale(0.95)]"
@@ -74,7 +74,7 @@ export function RowList({ items }: { items: RowItem[] }) {
                 src={preview.src}
                 alt=""
                 loading="lazy"
-                className="h-full w-full object-cover [outline:1px_solid_var(--img-outline)] [outline-offset:-1px]"
+                className="h-full w-full object-cover"
               />
             )}
           </div>

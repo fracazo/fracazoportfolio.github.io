@@ -57,6 +57,9 @@
   --shadow-hover:
     0px 0px 0px 1px rgba(0, 0, 0, 0.3),
     0px 2px 6px -2px rgba(0, 0, 0, 0.4);
+  /* Framed thumbnails reuse the standard elevation in dark mode. */
+  --thumb-shadow: var(--shadow);
+  --thumb-shadow-hover: var(--shadow-hover);
 }
 :root.light {
   /* Warm paper — light mode */
@@ -72,7 +75,7 @@
   --panel: #f4f1ea;
   --panel-2: #efebe2;
   --text-body: #3d362f;
-  --img-outline: rgba(28, 25, 23, 0.1);
+  --img-outline: rgba(28, 25, 23, 0.14);
   /* Near-flat warm shadow for light mode */
   --shadow:
     0px 0px 0px 1px rgba(28, 25, 23, 0.05),
@@ -80,6 +83,14 @@
   --shadow-hover:
     0px 0px 0px 1px rgba(28, 25, 23, 0.08),
     0px 2px 6px -2px rgba(28, 25, 23, 0.08);
+  /* Thumbnails need more lift than the near-flat cards: light screenshots
+     otherwise dissolve into the paper background. */
+  --thumb-shadow:
+    0px 1px 2px 0px rgba(28, 25, 23, 0.06),
+    0px 8px 20px -8px rgba(28, 25, 23, 0.16);
+  --thumb-shadow-hover:
+    0px 2px 4px 0px rgba(28, 25, 23, 0.08),
+    0px 12px 28px -8px rgba(28, 25, 23, 0.2);
 }
 
 @theme inline {
@@ -484,6 +495,21 @@
    (long-form content uses descendant selectors; utilities don't fit)
    ======================== */
 @layer components {
+  /* Framed thumbnail (work rows + row-list hover preview). The hairline is an
+     inset shadow so it follows the rounded corners instead of clipping into a
+     square like `outline` does, plus a drop that lifts light screenshots off
+     the paper background in light mode. */
+  .thumb-frame {
+    box-shadow:
+      inset 0 0 0 1px var(--img-outline),
+      var(--thumb-shadow);
+  }
+  .group:hover .thumb-frame {
+    box-shadow:
+      inset 0 0 0 1px var(--img-outline),
+      var(--thumb-shadow-hover);
+  }
+
   /* Buttons — muted ghost. Calm at rest, accent only on interaction; never a
      resting fill. Base = secondary (Résumé, LinkedIn); .btn-primary = the
      subtle lead action (Email me). Mono label per the type ramp. */

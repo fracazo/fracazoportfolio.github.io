@@ -51,7 +51,7 @@ export function WorkRow({
       className="group grid grid-cols-1 gap-5 border-t border-border py-8 no-underline hover:no-underline desk:grid-cols-[280px_1fr] desk:items-center desk:gap-8"
     >
       {/* Thumbnail — uniform frame so the mismatched screenshots stop clashing */}
-      <div className="overflow-hidden rounded-card bg-panel-2 shadow-elevated transition-shadow duration-200 group-hover:shadow-elevated-hover">
+      <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 transition-shadow duration-200">
         <div className="aspect-[16/10] overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -61,7 +61,7 @@ export function WorkRow({
             sizes={image.sizes}
             loading={priority ? "eager" : "lazy"}
             fetchPriority={priority ? "high" : undefined}
-            className="h-full w-full object-cover [outline:1px_solid_var(--img-outline)] [outline-offset:-1px]"
+            className="h-full w-full object-cover"
           />
         </div>
       </div>
