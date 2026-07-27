@@ -35,7 +35,7 @@ export default function NotFound() {
             className="mb-8 h-[120px] w-[120px] brightness-0 invert-[0.6]"
           />
           <h1 className="mb-3 text-[32px] font-bold text-text">
-            Page Not Found
+            Page not found
           </h1>
           <p className="mb-8 max-w-[400px] text-muted">
             The page you are looking for doesn&rsquo;t exist or has been moved.
@@ -44,7 +44,7 @@ export default function NotFound() {
             href="/"
             className="inline-flex items-center gap-2 rounded-card border-0 bg-brand px-6 py-3 text-sm font-semibold text-white no-underline transition-opacity duration-200 hover:opacity-90 hover:no-underline"
           >
-            Back home
+            Back to home
           </Link>
         </div>
       </section>

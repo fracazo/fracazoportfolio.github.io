@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
-import { CaseCard } from "@/components/case-card";
+import { WorkRow } from "@/components/work-row";
 import { RowList } from "@/components/row-list";
 import { SiteFooter } from "@/components/site-footer";
 import { ExternalLinkIcon } from "@/components/icons";
@@ -13,10 +13,11 @@ const selectedWork = [
       alt: "AI-generated merge request summary shown in the GitLab to-do list",
     },
     eyebrow: "GitLab · 2023",
-    outcome: "Shipped · 3 iterations",
+    category: "AI & Code Review",
     title: "Summarize Merge Request with AI",
     tagline:
-      "Finding where AI summaries earn trust in code review, including the conviction to remove what didn't work.",
+      "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
+    metric: { value: "3", label: "Iterations shipped" },
   },
   {
     href: "/case-studies/glql",
@@ -25,10 +26,11 @@ const selectedWork = [
       alt: "GLQL code block rendering into an embedded table view of issues in GitLab",
     },
     eyebrow: "GitLab · 2024–2025",
-    outcome: "+33% adoption post-GA",
+    category: "Work Tracking",
     title: "GLQL: Embedded Views for Work Tracking",
     tagline:
-      "Turning an engineer-built query language into a usable product, through research that overturned the team's assumptions.",
+      "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
+    metric: { value: "+33%", label: "Adoption post‑GA" },
   },
   {
     href: "/case-studies/bringing-visibility-to-workers-status",
@@ -37,14 +39,14 @@ const selectedWork = [
       alt: "Hireup brand with arrows that connects both the customer and the worker",
       srcSet:
         "/images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-500.png 500w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-800.png 800w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080.png 1080w",
-      sizes:
-        "(max-width: 479px) 93vw, (max-width: 767px) 95vw, (max-width: 1919px) 47vw, 570px",
+      sizes: "(min-width: 980px) 280px, 92vw",
     },
     eyebrow: "Hireup · 2022",
-    outcome: "+12% bookings",
+    category: "Marketplace",
     title: "Worker Status Visibility",
     tagline:
       "Reducing uncertainty in a two-sided marketplace by making availability honest.",
+    metric: { value: "+12%", label: "Bookings" },
   },
 ];
 
@@ -89,7 +91,10 @@ export default function Home() {
   return (
     <AppShell>
       {/* Hero */}
-      <section aria-labelledby="hero-title" className="mx-auto w-full max-w-[640px]">
+      <section
+        aria-labelledby="hero-title"
+        className="mx-auto w-full max-w-[640px] desk:mx-0"
+      >
         <div className="grid grid-cols-1 items-start gap-6 text-left">
           <div className="reveal-group">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -98,7 +103,7 @@ export default function Home() {
               alt="Alex Fracazo"
               fetchPriority="high"
               decoding="async"
-              className="mt-[168px] mb-8 h-[60px] w-[60px] rounded-full object-cover max-md:mt-14"
+              className="mt-24 mb-8 h-[60px] w-[60px] rounded-full object-cover max-md:mt-14"
             />
             <p className="mb-4 flex items-start gap-2 font-mono text-[13px] text-balance text-muted">
               <span className="status-dot mt-[7px] h-2 w-2 flex-none rounded-full bg-[#34d399]" />
@@ -146,9 +151,9 @@ export default function Home() {
       <section
         id="Work"
         aria-labelledby="work-title"
-        className="reveal-after mx-auto grid w-full max-w-[640px] gap-4"
+        className="reveal-after mx-auto grid w-full gap-4 desk:mx-0"
       >
-        <div className="grid gap-1">
+        <div className="grid max-w-[640px] gap-1">
           <h2 id="work-title" className="h2">
             Selected work
           </h2>
@@ -157,17 +162,14 @@ export default function Home() {
             outcomes.
           </p>
         </div>
-        <ul
-          role="list"
-          className="m-0 grid list-none grid-cols-2 gap-4 p-0 max-[800px]:grid-cols-1"
-        >
-          {selectedWork.map((work) => (
+        <ul role="list" className="m-0 flex list-none flex-col p-0">
+          {selectedWork.map((work, index) => (
             <li key={work.href}>
-              <CaseCard {...work} />
+              <WorkRow {...work} priority={index === 0} />
             </li>
           ))}
         </ul>
-        <div className="mt-10">
+        <div className="mt-10 max-w-[640px]">
           <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
             More case studies
           </p>
@@ -178,13 +180,13 @@ export default function Home() {
       {/* How I Work */}
       <section
         aria-labelledby="how-i-work-title"
-        className="mx-auto w-full max-w-[640px]"
+        className="mx-auto w-full max-w-[640px] desk:mx-0"
       >
         <h2 id="how-i-work-title" className="h2">
           How I work
         </h2>
         <p className="text mb-0">I do my best work on problems that are:</p>
-        <ul className="mt-2 list-disc pl-5 leading-[1.6] text-text-body">
+        <ul className="mt-2 list-disc ps-5 leading-[1.6] text-text-body">
           <li className="my-1.5">unclear or under-defined</li>
           <li className="my-1.5">shared across multiple teams</li>
           <li className="my-1.5">
@@ -206,7 +208,7 @@ export default function Home() {
       {/* Background */}
       <section
         aria-labelledby="experience-title"
-        className="mx-auto w-full max-w-[640px]"
+        className="mx-auto w-full max-w-[640px] desk:mx-0"
       >
         <div className="grid gap-4">
           <h2 id="experience-title" className="h2">
@@ -254,7 +256,7 @@ export default function Home() {
       {/* Writing */}
       <section
         aria-labelledby="writing-title"
-        className="mx-auto w-full max-w-[640px]"
+        className="mx-auto w-full max-w-[640px] desk:mx-0"
       >
         <div className="grid gap-4">
           <h2 id="writing-title" className="h2">
@@ -267,13 +269,13 @@ export default function Home() {
       {/* Working with Alex */}
       <section
         aria-labelledby="testimonials-title"
-        className="mx-auto w-full max-w-[640px] pt-12 pb-12"
+        className="mx-auto w-full max-w-[640px] pt-12 pb-12 desk:mx-0"
       >
         <h2 id="testimonials-title" className="h3 mb-6 font-medium text-muted">
           Working with Alex
         </h2>
         <div className="flex flex-col gap-6">
-          <blockquote className="m-0 border-l-2 border-border pl-4">
+          <blockquote className="m-0 border-s-2 border-border ps-4">
             <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
               &ldquo;Alex consistently demonstrated strong design leadership and
               strategic thinking. He translated complex technical constraints
@@ -286,7 +288,7 @@ export default function Home() {
               </cite>
             </footer>
           </blockquote>
-          <blockquote className="m-0 border-l-2 border-border pl-4">
+          <blockquote className="m-0 border-s-2 border-border ps-4">
             <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
               &ldquo;Alex brings a rare mix of big-picture perspective and
               grounded execution. He consistently raises the quality of thinking
@@ -298,7 +300,7 @@ export default function Home() {
               </cite>
             </footer>
           </blockquote>
-          <blockquote className="m-0 border-l-2 border-border pl-4">
+          <blockquote className="m-0 border-s-2 border-border ps-4">
             <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
               &ldquo;Alex is the best designer I&rsquo;ve worked with. On GitLab
               Query Language (GLQL) he thought through how every decision
@@ -311,7 +313,7 @@ export default function Home() {
               </cite>
             </footer>
           </blockquote>
-          <blockquote className="m-0 border-l-2 border-border pl-4">
+          <blockquote className="m-0 border-s-2 border-border ps-4">
             <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
               &ldquo;Alex is at his best on hard, open-ended problems. He
               grounds his decisions in research and took on technical work like

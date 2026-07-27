@@ -27,9 +27,9 @@ const videoWrapClass =
 export default function Experiments() {
   return (
     <AppShell>
-      <section className="mx-auto w-full max-w-[640px]">
-        <h1 className="h1">Prototypes and Experiments</h1>
-        <p className="text">Prototypes created on xcode with swiftui</p>
+      <section className="mx-auto w-full max-w-[640px] desk:mx-0">
+        <h1 className="h1 mt-24 max-md:mt-14">Prototypes and experiments</h1>
+        <p className="text">Prototypes built in Xcode with SwiftUI.</p>
 
         <div className="mt-12 flex flex-col gap-12">
           {/* Interaction Prototype */}
@@ -63,7 +63,7 @@ export default function Experiments() {
             <div className={videoWrapClass}>
               <iframe
                 src="https://www.youtube-nocookie.com/embed/b_6N9OjKZw8?start=47&rel=0"
-                title="Americanas iOS7 app"
+                title="Americanas iOS 7 app"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 loading="lazy"
@@ -72,10 +72,10 @@ export default function Experiments() {
             </div>
             <div>
               <h3 className="mb-1 text-lg font-semibold text-text">
-                Americanas iOS7 App
+                Americanas iOS 7 App
               </h3>
               <p className="text-sm leading-normal text-muted">
-                E-commerce app design showcase
+                E-commerce app design for iOS 7.
               </p>
             </div>
           </div>

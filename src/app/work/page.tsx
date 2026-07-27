@@ -41,7 +41,7 @@ const current = [
     outcome: "Shipped · 3 iterations",
     title: "Summarize Merge Request with AI",
     tagline:
-      "Finding where AI summaries earn trust in code review, including the conviction to remove what didn't work.",
+      "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
   },
   {
     href: "/case-studies/glql",
@@ -53,7 +53,7 @@ const current = [
     outcome: "+33% adoption post-GA",
     title: "GLQL: Embedded Views for Work Tracking",
     tagline:
-      "Turning an engineer-built query language into a usable product, through research that overturned the team's assumptions.",
+      "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
   },
   {
     href: "/case-studies/wiki-contextual-comments",
@@ -64,7 +64,7 @@ const current = [
     eyebrow: "GitLab · Plan: Knowledge",
     title: "Wiki Contextual Comments",
     tagline:
-      "Tying discussion to the content it's about, so knowledge stops scattering across Slack, email, and meetings.",
+      "Tying discussion to the content it’s about, so knowledge stops scattering across Slack, email, and meetings.",
   },
   /* BirthGuide hidden until ready:
   {
@@ -149,8 +149,8 @@ export default function Work() {
   return (
     <AppShell>
       {/* Current */}
-      <section aria-labelledby="current-title" className="mx-auto w-full max-w-[640px]">
-        <h1 id="work-title" className="h1 mt-[168px] max-md:mt-14">
+      <section aria-labelledby="current-title" className="mx-auto w-full max-w-[640px] desk:mx-0">
+        <h1 id="work-title" className="h1 mt-24 max-md:mt-14">
           Work
         </h1>
         <h2 id="current-title" className={sectionTitleClass}>
@@ -167,7 +167,7 @@ export default function Work() {
       </section>
 
       {/* Past experience */}
-      <section aria-labelledby="past-title" className="mx-auto grid w-full max-w-[640px] gap-4">
+      <section aria-labelledby="past-title" className="mx-auto grid w-full max-w-[640px] gap-4 desk:mx-0">
         <h2 id="past-title" className={`${sectionTitleClass} mt-12 mb-0`}>
           Past experience
         </h2>

@@ -29,8 +29,8 @@ const socialIconClass =
 export default function Contact() {
   return (
     <AppShell>
-      <section className="mx-auto w-full max-w-[640px]">
-        <div className="pt-[168px] text-left max-md:pt-14">
+      <section className="mx-auto w-full max-w-[640px] desk:mx-0">
+        <div className="pt-24 text-left max-md:pt-14">
           <h1 className="h1 mb-3">Let&rsquo;s talk</h1>
           <p className="text">
             The fastest way to reach me is email. I reply within a day.

@@ -55,7 +55,7 @@ export function AppShell({
           type="button"
           aria-label="Toggle menu"
           onClick={() => setOpen(true)}
-          className="fixed top-4 left-4 z-90 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border bg-surface/80 text-text backdrop-blur-[8px] transition-[color,background-color,transform] duration-150 hover:bg-surface active:scale-[0.96] focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring desk:hidden"
+          className="fixed top-4 start-4 z-90 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border bg-surface/80 text-text backdrop-blur-[8px] transition-[color,background-color,transform] duration-150 hover:bg-surface active:scale-[0.96] focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring desk:hidden"
         >
           <MenuIcon />
         </button>
@@ -64,7 +64,7 @@ export function AppShell({
       <div className="grid min-h-dvh grid-cols-1 desk:grid-cols-[280px_1fr]">
         <aside
           aria-label="Sidebar"
-          className={`fixed top-0 left-0 z-100 flex h-dvh w-[280px] flex-col gap-5 border-r border-border bg-panel p-5 transition-transform duration-300 desk:sticky desk:z-auto desk:w-auto desk:translate-x-0 desk:self-start ${
+          className={`fixed top-0 start-0 z-100 flex h-dvh w-[280px] flex-col gap-5 border-e border-border bg-panel p-5 transition-transform duration-300 desk:sticky desk:z-auto desk:w-auto desk:translate-x-0 desk:self-start ${
             open ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -132,7 +132,7 @@ export function AppShell({
 
         <main
           id="content"
-          className="mx-auto grid w-full max-w-[1200px] gap-16 px-6 pt-18 pb-18 desk:pt-8 [&>*]:min-w-0"
+          className="mx-auto grid w-full max-w-[860px] gap-16 px-6 pt-18 pb-18 desk:mx-0 desk:pt-8 [&>*]:min-w-0"
         >
           {children}
         </main>
