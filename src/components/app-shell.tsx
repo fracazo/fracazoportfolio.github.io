@@ -8,7 +8,6 @@ import {
   HomeIcon,
   WorkIcon,
   WritingIcon,
-  ContactIcon,
   CloseIcon,
   MenuIcon,
 } from "./icons";
@@ -17,7 +16,6 @@ const navLinks = [
   { href: "/", label: "Home", icon: HomeIcon },
   { href: "/work", label: "Work", icon: WorkIcon },
   { href: "/writing", label: "Writing", icon: WritingIcon },
-  { href: "/contact", label: "Contact", icon: ContactIcon },
 ];
 
 function isActive(pathname: string, href: string) {
