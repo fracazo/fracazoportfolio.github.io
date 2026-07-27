@@ -5,7 +5,7 @@ type WorkRowProps = {
   href: string;
   image: { src: string; alt: string; srcSet?: string; sizes?: string };
   /** Left segments of the eyebrow, e.g. "GitLab · 2023". Uppercased in CSS. */
-  eyebrow: string;
+  eyebrow?: string;
   /** Trailing eyebrow segment naming the problem space, e.g. "AI & Code Review". */
   category?: string;
   title: string;
@@ -22,9 +22,9 @@ type WorkRowProps = {
 /**
  * Editorial "selected work" row: a uniform framed thumbnail on the leading
  * edge and the case study's eyebrow, title, tagline, and outcome chips beside
- * it. Type sizes, title color, and hover behavior match the /work CaseCard
- * (white title shifting to brand on hover, no underline). Stacks to one column
- * below `desk`. A top border draws the divider between rows.
+ * it. Used on both the landing page and /work. The title is white and shifts
+ * to brand on hover with no underline. Stacks to one column below `desk`; a
+ * top border draws the divider between rows.
  */
 export function WorkRow({
   href,

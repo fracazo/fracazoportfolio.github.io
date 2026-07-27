@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AppShell } from "@/components/app-shell";
-import { CaseCard } from "@/components/case-card";
+import { WorkRow } from "@/components/work-row";
 import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
@@ -156,26 +156,24 @@ export default function Work() {
         <h2 id="current-title" className={sectionTitleClass}>
           Current
         </h2>
-        <hr className="mb-6 h-px border-0 bg-border" />
-        <ul role="list" className="m-0 grid list-none grid-cols-1 gap-8 p-0">
+        <ul role="list" className="m-0 flex list-none flex-col p-0">
           {current.map((work, index) => (
             <li key={work.href}>
-              <CaseCard {...work} wide heading="h2" priority={index === 0} />
+              <WorkRow {...work} priority={index === 0} />
             </li>
           ))}
         </ul>
       </section>
 
       {/* Past experience */}
-      <section aria-labelledby="past-title" className="mx-auto grid w-full max-w-[640px] gap-4">
-        <h2 id="past-title" className={`${sectionTitleClass} mt-12 mb-0`}>
+      <section aria-labelledby="past-title" className="mx-auto w-full max-w-[640px]">
+        <h2 id="past-title" className={`${sectionTitleClass} mt-12`}>
           Past experience
         </h2>
-        <hr className="m-0 h-px border-0 bg-border" />
-        <ul role="list" className="m-0 grid list-none grid-cols-1 gap-8 p-0">
+        <ul role="list" className="m-0 flex list-none flex-col p-0">
           {past.map((work) => (
             <li key={work.href}>
-              <CaseCard {...work} wide heading="h2" />
+              <WorkRow {...work} />
             </li>
           ))}
         </ul>
