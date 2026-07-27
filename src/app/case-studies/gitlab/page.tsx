@@ -105,7 +105,7 @@ export default function Gitlab() {
               <li>
                 <div className="gl-work-row">
                   <span className="gl-work-row-left">
-                    <span className="gl-work-row-title">Summarize Merge Request with AI</span>
+                    <span className="gl-work-row-title">Summarize Merge Requests with AI</span>
                     <span className="gl-work-row-sep" aria-hidden="true">|</span>
                     <a href="/case-studies/mr-summary-ai" className="gl-work-row-type gl-work-row-link">Case study &rarr;</a>
                     <span className="gl-work-row-sep" aria-hidden="true">|</span>
@@ -197,7 +197,7 @@ export default function Gitlab() {
           </div>
         </div>
         <div className="case-next">
-          <a href="/case-studies/mr-summary-ai"><span className="case-next-label">Next case study</span><span className="case-next-title">Summarize Merge Request with AI</span></a>
+          <a href="/case-studies/mr-summary-ai"><span className="case-next-label">Next case study</span><span className="case-next-title">Summarize Merge Requests with AI</span></a>
         </div>
         </section>
 

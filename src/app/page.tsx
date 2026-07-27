@@ -14,10 +14,10 @@ const selectedWork = [
     },
     eyebrow: "GitLab · 2023",
     category: "AI & Code Review",
-    title: "Summarize Merge Request with AI",
+    title: "Summarize Merge Requests with AI",
     tagline:
       "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
-    metric: { value: "3", label: "Iterations shipped" },
+    outcome: "Shipped · 3 iterations",
   },
   {
     href: "/case-studies/glql",
@@ -30,7 +30,7 @@ const selectedWork = [
     title: "GLQL: Embedded Views for Work Tracking",
     tagline:
       "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
-    metric: { value: "+33%", label: "Adoption post‑GA" },
+    outcome: "+33% adoption post-GA",
   },
   {
     href: "/case-studies/bringing-visibility-to-workers-status",
@@ -46,7 +46,7 @@ const selectedWork = [
     title: "Worker Status Visibility",
     tagline:
       "Reducing uncertainty in a two-sided marketplace by making availability honest.",
-    metric: { value: "+12%", label: "Bookings" },
+    outcome: "+12% bookings",
   },
 ];
 
@@ -93,7 +93,7 @@ export default function Home() {
       {/* Hero */}
       <section
         aria-labelledby="hero-title"
-        className="mx-auto w-full max-w-[640px] desk:mx-0"
+        className="mx-auto w-full max-w-[640px]"
       >
         <div className="grid grid-cols-1 items-start gap-6 text-left">
           <div className="reveal-group">
@@ -151,9 +151,9 @@ export default function Home() {
       <section
         id="Work"
         aria-labelledby="work-title"
-        className="reveal-after mx-auto grid w-full gap-4 desk:mx-0"
+        className="reveal-after mx-auto grid w-full max-w-[640px] gap-4"
       >
-        <div className="grid max-w-[640px] gap-1">
+        <div className="grid gap-1">
           <h2 id="work-title" className="h2">
             Selected work
           </h2>
@@ -169,7 +169,7 @@ export default function Home() {
             </li>
           ))}
         </ul>
-        <div className="mt-10 max-w-[640px]">
+        <div className="mt-10">
           <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
             More case studies
           </p>
@@ -180,7 +180,7 @@ export default function Home() {
       {/* How I Work */}
       <section
         aria-labelledby="how-i-work-title"
-        className="mx-auto w-full max-w-[640px] desk:mx-0"
+        className="mx-auto w-full max-w-[640px]"
       >
         <h2 id="how-i-work-title" className="h2">
           How I work
@@ -208,7 +208,7 @@ export default function Home() {
       {/* Background */}
       <section
         aria-labelledby="experience-title"
-        className="mx-auto w-full max-w-[640px] desk:mx-0"
+        className="mx-auto w-full max-w-[640px]"
       >
         <div className="grid gap-4">
           <h2 id="experience-title" className="h2">
@@ -256,7 +256,7 @@ export default function Home() {
       {/* Writing */}
       <section
         aria-labelledby="writing-title"
-        className="mx-auto w-full max-w-[640px] desk:mx-0"
+        className="mx-auto w-full max-w-[640px]"
       >
         <div className="grid gap-4">
           <h2 id="writing-title" className="h2">
@@ -269,7 +269,7 @@ export default function Home() {
       {/* Working with Alex */}
       <section
         aria-labelledby="testimonials-title"
-        className="mx-auto w-full max-w-[640px] pt-12 pb-12 desk:mx-0"
+        className="mx-auto w-full max-w-[640px] pt-12 pb-12"
       >
         <h2 id="testimonials-title" className="h3 mb-6 font-medium text-muted">
           Working with Alex

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Chip } from "./chip";
 
 type WorkRowProps = {
   href: string;
@@ -9,8 +10,8 @@ type WorkRowProps = {
   category?: string;
   title: string;
   tagline?: string;
-  /** Pulled-out outcome: a large value plus a small label, e.g. 3 / "Iterations shipped". */
-  metric?: { value: string; label: string };
+  /** "·"-separated facts; each becomes a Chip, matching the /work cards. */
+  outcome?: string;
   /**
    * Above-the-fold row: load its image eagerly. The first row on the landing
    * page should set this so its thumbnail isn't lazy-loaded into view.
@@ -20,9 +21,10 @@ type WorkRowProps = {
 
 /**
  * Editorial "selected work" row: a uniform framed thumbnail on the leading
- * edge, the title + tagline in the middle, and a single headline metric on the
- * trailing edge. Rows stack into one column below `desk`. A top border draws
- * the divider between rows (and under the section intro for the first row).
+ * edge and the case study's eyebrow, title, tagline, and outcome chips beside
+ * it. Type sizes, title color, and hover behavior match the /work CaseCard
+ * (white title shifting to brand on hover, no underline). Stacks to one column
+ * below `desk`. A top border draws the divider between rows.
  */
 export function WorkRow({
   href,
@@ -31,15 +33,22 @@ export function WorkRow({
   category,
   title,
   tagline,
-  metric,
+  outcome,
   priority = false,
 }: WorkRowProps) {
   const eyebrowText = [eyebrow, category].filter(Boolean).join(" · ");
+  // Each "·"-separated fact becomes its own chip (e.g. "Shipped · 3 iterations").
+  const metrics = outcome
+    ? outcome
+        .split("·")
+        .map((part) => part.trim())
+        .filter(Boolean)
+    : [];
 
   return (
     <Link
       href={href}
-      className="group grid grid-cols-1 gap-5 border-t border-border py-8 no-underline hover:no-underline desk:grid-cols-[280px_1fr_112px] desk:items-center desk:gap-8"
+      className="group grid grid-cols-1 gap-5 border-t border-border py-8 no-underline hover:no-underline desk:grid-cols-[280px_1fr] desk:items-center desk:gap-8"
     >
       {/* Thumbnail — uniform frame so the mismatched screenshots stop clashing */}
       <div className="overflow-hidden rounded-card bg-panel-2 shadow-elevated transition-shadow duration-200 group-hover:shadow-elevated-hover">
@@ -57,34 +66,29 @@ export function WorkRow({
         </div>
       </div>
 
-      {/* Title + tagline */}
+      {/* Eyebrow + title + tagline + outcome chips (matches the /work card) */}
       <div className="min-w-0">
         {eyebrowText && (
           <div className="mb-2 text-[11px] font-medium tracking-[0.06em] text-muted uppercase">
             {eyebrowText}
           </div>
         )}
-        <h3 className="m-0 text-[22px] leading-[1.25] font-semibold text-brand underline-offset-[3px] transition-colors duration-200 group-hover:underline desk:text-[24px]">
+        <h3 className="m-0 text-[19px] leading-[1.4] font-semibold text-text transition-colors duration-200 group-hover:text-brand">
           {title}
         </h3>
         {tagline && (
-          <p className="mt-2 mb-0 text-[15px] leading-[1.55] text-muted">
+          <p className="mt-1.5 mb-0 text-[15px] leading-[1.55] font-normal text-muted">
             {tagline}
           </p>
         )}
+        {metrics.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {metrics.map((metric) => (
+              <Chip key={metric}>{metric}</Chip>
+            ))}
+          </div>
+        )}
       </div>
-
-      {/* Headline metric */}
-      {metric && (
-        <div className="desk:text-right">
-          <div className="text-[34px] leading-none font-semibold tracking-[-0.01em] text-text tabular-nums">
-            {metric.value}
-          </div>
-          <div className="mt-2 text-[11px] font-medium tracking-[0.06em] text-muted uppercase">
-            {metric.label}
-          </div>
-        </div>
-      )}
     </Link>
   );
 }

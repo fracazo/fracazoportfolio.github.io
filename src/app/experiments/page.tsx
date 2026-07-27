@@ -27,7 +27,7 @@ const videoWrapClass =
 export default function Experiments() {
   return (
     <AppShell>
-      <section className="mx-auto w-full max-w-[640px] desk:mx-0">
+      <section className="mx-auto w-full max-w-[640px]">
         <h1 className="h1 mt-24 max-md:mt-14">Prototypes and experiments</h1>
         <p className="text">Prototypes built in Xcode with SwiftUI.</p>
 

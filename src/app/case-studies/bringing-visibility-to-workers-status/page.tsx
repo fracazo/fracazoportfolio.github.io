@@ -244,7 +244,7 @@ export default function BringingVisibilityToWorkersStatus() {
                 <img src="/images/To_do_list_-_summary.png" alt="AI-generated merge request summary in the GitLab to-do list" />
               </div>
               <div className="content-project">
-                <h4 className="h4">Summarize Merge Request with AI</h4>
+                <h4 className="h4">Summarize Merge Requests with AI</h4>
                 <p className="tagline">Finding where AI summaries earn trust in code review. GitLab, 2023.</p>
               </div>
             </a>

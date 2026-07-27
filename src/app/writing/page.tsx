@@ -51,7 +51,7 @@ const years: { year: string; posts: { href: string; title: string }[] }[] = [
 export default function Writing() {
   return (
     <AppShell>
-      <section aria-labelledby="writing-title" className="mx-auto w-full max-w-[640px] desk:mx-0">
+      <section aria-labelledby="writing-title" className="mx-auto w-full max-w-[640px]">
         <h1 id="writing-title" className="h1 mt-24 max-md:mt-14">
           Writing
         </h1>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { ExternalLinkIcon } from "@/components/icons";
 
-const title = "Summarize Merge Request with AI - Alex Fracazo";
+const title = "Summarize Merge Requests with AI - Alex Fracazo";
 const description = "How three iterations and a Qualtrics survey reshaped an AI feature from reviewer-facing summary to author-facing writing assistant.";
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default function MrSummaryAi() {
           </nav>
 
           <header className="case-header">
-            <h1 className="case-title">Summarize Merge Request with AI</h1>
+            <h1 className="case-title">Summarize Merge Requests with AI</h1>
             <div className="case-metadata-card">
               <div className="metadata-content">
                 <div className="metadata-item">

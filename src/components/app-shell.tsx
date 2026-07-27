@@ -108,7 +108,7 @@ export function AppShell({
                           : "border-transparent text-muted"
                       }`}
                     >
-                      <Icon />
+                      <Icon strokeWidth={1.5} />
                       {label}
                     </Link>
                   );
@@ -132,7 +132,7 @@ export function AppShell({
 
         <main
           id="content"
-          className="mx-auto grid w-full max-w-[860px] gap-16 px-6 pt-18 pb-18 desk:mx-0 desk:pt-8 [&>*]:min-w-0"
+          className="mx-auto grid w-full max-w-[1200px] gap-16 px-6 pt-18 pb-18 desk:pt-8 [&>*]:min-w-0"
         >
           {children}
         </main>

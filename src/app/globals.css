@@ -511,7 +511,7 @@
     text-decoration: none;
   }
   .btn:active {
-    transform: scale(0.98);
+    transform: scale(0.96);
     background: color-mix(in srgb, var(--accent) 10%, transparent);
   }
   .btn-ghost {
@@ -636,7 +636,7 @@
     background: color-mix(in srgb, var(--accent) 6%, transparent);
   }
   .form-submit:active {
-    transform: scale(0.98);
+    transform: scale(0.96);
     background: color-mix(in srgb, var(--accent) 10%, transparent);
   }
 

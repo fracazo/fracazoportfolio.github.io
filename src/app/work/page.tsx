@@ -39,7 +39,7 @@ const current = [
     },
     eyebrow: "GitLab · 2023",
     outcome: "Shipped · 3 iterations",
-    title: "Summarize Merge Request with AI",
+    title: "Summarize Merge Requests with AI",
     tagline:
       "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
   },
@@ -149,7 +149,7 @@ export default function Work() {
   return (
     <AppShell>
       {/* Current */}
-      <section aria-labelledby="current-title" className="mx-auto w-full max-w-[640px] desk:mx-0">
+      <section aria-labelledby="current-title" className="mx-auto w-full max-w-[640px]">
         <h1 id="work-title" className="h1 mt-24 max-md:mt-14">
           Work
         </h1>
@@ -167,7 +167,7 @@ export default function Work() {
       </section>
 
       {/* Past experience */}
-      <section aria-labelledby="past-title" className="mx-auto grid w-full max-w-[640px] gap-4 desk:mx-0">
+      <section aria-labelledby="past-title" className="mx-auto grid w-full max-w-[640px] gap-4">
         <h2 id="past-title" className={`${sectionTitleClass} mt-12 mb-0`}>
           Past experience
         </h2>

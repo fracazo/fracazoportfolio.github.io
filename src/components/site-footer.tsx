@@ -6,7 +6,7 @@ export function SiteFooter({ links }: { links?: ReactNode }) {
   return (
     <section
       aria-labelledby="footer-title"
-      className="mx-auto w-full max-w-[640px] desk:mx-0"
+      className="mx-auto w-full max-w-[640px]"
     >
       <footer role="contentinfo">
         <div className="grid gap-2">
