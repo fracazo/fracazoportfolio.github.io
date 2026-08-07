@@ -228,7 +228,7 @@ DISPLAY AS table`}</pre>
               <li>Design for the person who does not want to learn the tool.</li>
             </ul>
 
-            <p>What I would do differently: set up the measurement earlier, so I could show not just that adoption grew but which design choices drove it, and push sooner for the visual layer that non-technical users needed from the start.</p>
+            <p>What I would do differently: set up the measurement earlier, so I could point to the design choices that drove adoption, and push sooner for the visual layer that non-technical users needed from the start.</p>
           </div>
 
         </div>{/* /case-study-main */}

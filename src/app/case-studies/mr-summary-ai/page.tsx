@@ -245,7 +245,7 @@ export default function MrSummaryAi() {
               <li>Removing a feature takes more conviction than shipping one. The survey data and a clear alternative gave the team the confidence to make that call.</li>
             </ul>
 
-            <p>What I would do differently: treat the model's real accuracy as a design constraint from day one rather than assuming better prompts would close the gap. I would also instrument the experiments so I could show which design choices moved the outcome, not just that the feature shipped.</p>
+            <p>I would treat the model's real accuracy as a design constraint from day one. I assumed better prompts would close the gap, and they didn't. I would also instrument the experiments so I could show which design choices moved the outcome.</p>
           </div>
 
         </div>{/* /case-study-main */}
