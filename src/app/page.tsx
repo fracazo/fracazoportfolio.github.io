@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AppShell } from "@/components/app-shell";
+import { PlainShell } from "@/components/plain-shell";
 import { WorkRow } from "@/components/work-row";
 import { RowList } from "@/components/row-list";
 import { SiteFooter } from "@/components/site-footer";
@@ -93,7 +93,7 @@ const writing = [
 
 export default function Home() {
   return (
-    <AppShell>
+    <PlainShell>
       {/* Hero */}
       <section
         aria-labelledby="hero-title"
@@ -345,6 +345,6 @@ export default function Home() {
       </section>
 
       <SiteFooter />
-    </AppShell>
+    </PlainShell>
   );
 }
