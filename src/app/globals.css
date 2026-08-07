@@ -167,6 +167,9 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    /* Full-bleed elements are sized in vw, which counts a classic scrollbar.
+       Clip the overshoot so it never becomes a horizontal page scrollbar. */
+    overflow-x: clip;
   }
   body {
     background: var(--bg);

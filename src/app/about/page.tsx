@@ -2,6 +2,98 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PlainShell } from "@/components/plain-shell";
 import { ArrowLeftIcon } from "@/components/icons";
+import { PhotoCarousel, type CarouselPhoto } from "@/components/photo-carousel";
+import { PhotoStrip, type StripPhoto } from "@/components/photo-strip";
+
+/** The Pantanal, out past Cuiaba: where the story starts, before any of the work. */
+const pantanalPhotos: StripPhoto[] = [
+  {
+    src: "/images/pantanal-highway-sign.jpg",
+    alt: "A highway gantry over an empty road reading 'O Pantanal e lindo. Quem conhece ama. Boa viagem!'",
+    width: 448,
+    height: 320,
+  },
+  {
+    src: "/images/pantanal-wooden-bridge.jpg",
+    alt: "A car parked at the end of a plank bridge over flooded grassland, doors open.",
+    width: 442,
+    height: 320,
+  },
+  {
+    src: "/images/pantanal-boats.jpg",
+    alt: "Three aluminium boats pulled up on a sandbank under a clear sky, someone loading a pack.",
+    width: 428,
+    height: 320,
+  },
+  {
+    src: "/images/pantanal-capybara.jpg",
+    alt: "A capybara half submerged at the edge of a pond, watching from the reeds.",
+    width: 429,
+    height: 320,
+  },
+  {
+    src: "/images/pantanal-caiman-riverbank.jpg",
+    alt: "A caiman resting at the waterline on an orange sand bank.",
+    width: 427,
+    height: 320,
+  },
+  {
+    src: "/images/pantanal-piranha.jpg",
+    alt: "Two hands holding a piranha in a boat, its jaws open.",
+    width: 429,
+    height: 320,
+  },
+  {
+    src: "/images/pantanal-jabiru.jpg",
+    alt: "A jabiru stork on the bank with a fish held crosswise in its beak.",
+    width: 433,
+    height: 320,
+  },
+  {
+    src: "/images/pantanal-boat-sunset.jpg",
+    alt: "A boat moored on the sand as the sun sets over the river.",
+    width: 430,
+    height: 320,
+  },
+  {
+    src: "/images/pantanal-sunset-moon.jpg",
+    alt: "Trees silhouetted against an orange sunset with a crescent moon above.",
+    width: 583,
+    height: 320,
+  },
+  {
+    src: "/images/pantanal-caiman-dusk.jpg",
+    alt: "The silhouette of a caiman's head breaking still water lit gold by the sunset.",
+    width: 582,
+    height: 320,
+  },
+];
+
+/** Artia, early 2010: the sprint boards the team ran the product from. */
+const artiaPhotos: CarouselPhoto[] = [
+  {
+    src: "/images/artia-sprint-review.jpg",
+    alt: "A meeting table with an open MacBook, notebooks and sticky notes, colleagues working at desks behind it.",
+    caption: "Sprint review at Artia, February 2010.",
+    width: 800,
+    height: 606,
+  },
+  {
+    src: "/images/artia-sprint-board.jpg",
+    alt: "A whiteboard covered in sticky notes, with columns headed Cenarios, Tarefas pendentes, Tarefas em execucao and Tarefas completas, seen over the tops of desktop computers.",
+    caption:
+      "The sprint board: scenarios down the left, tasks moving across to done.",
+    width: 800,
+    height: 600,
+  },
+  {
+    src: "/images/artia-new-sprint-board.jpg",
+    alt: "A freshly drawn whiteboard with numbered rows of yellow sticky notes under Cenario, and an empty Execucao column.",
+    caption: "A new board for the next sprint, before anything had moved.",
+    width: 800,
+    height: 600,
+  },
+];
 
 const description =
   "Twenty years of design, from table layouts in Brazil to product work at GitLab.";
@@ -40,10 +132,21 @@ export default function About() {
           <h1 className="h1">About me</h1>
 
           <div className="writing-body">
+            <PhotoStrip
+              photos={pantanalPhotos}
+              label="Photos from the Pantanal, Mato Grosso"
+              caption="Home first: the Pantanal, out past Cuiaba."
+            />
+
             <p>
               I started in 2005 building websites out of table layouts, in an
               agency in Mato Grosso, Brazil. Then tableless. Then Haml and Sass
               at Artia, the first product management software built in Brazil.
+            </p>
+
+            <PhotoCarousel photos={artiaPhotos} />
+
+            <p>
               Small agile team, everyone doing a bit of everything, design was
               my specialty and the code was just part of the job.
             </p>
@@ -80,6 +183,17 @@ export default function About() {
               first day.
             </p>
 
+            <figure className="relative my-8 w-full overflow-hidden rounded-card bg-panel pt-[56.25%]">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/b_6N9OjKZw8?start=47&rel=0"
+                title="Americanas iOS 7 app"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                loading="lazy"
+                className="absolute top-0 left-0 h-full w-full border-0"
+              />
+            </figure>
+
             <p>
               Then months of making it faster, which mattered more than the
               redesign did. Mobile revenue grew ten times over the following
@@ -93,15 +207,54 @@ export default function About() {
             </p>
 
             <p>
-              Fifteen years followed. Vodafone, Qantas, Woolworths, NAB, Hireup,
-              then GitLab, where I was the designer on an engineering-led team
+              Fifteen years followed. Vodafone, Qantas, Woolworths, NAB, Hireup.
+            </p>
+
+            <figure className="my-8">
+              <img
+                src="/images/MVIMG_20180824_175632-ANIMATION-1.gif"
+                alt="A hackathon team of about ten people crowded together and laughing, wearing matching Argathon T-shirts, with a certificate and balloons behind them."
+                width={972}
+                height={730}
+                loading="lazy"
+                className="block w-full rounded-[var(--radius)]"
+              />
+            </figure>
+
+            <p>
+              Then GitLab, where I was the designer on an engineering-led team
               owning Wiki, GLQL, Pages, and the text editors.
             </p>
 
+            <figure className="my-8">
+              <img
+                src="/images/gitlab_team_lasvegas.jpeg"
+                alt="A large GitLab team gathered around giant GitLab letters and the tanuki logo in a hotel ballroom, most wearing lanyards."
+                width={2048}
+                height={1536}
+                loading="lazy"
+                className="block w-full rounded-[var(--radius)]"
+              />
+            </figure>
+
+            <p>Two years ago I started coding again.</p>
+
+            <figure className="my-8">
+              <img
+                src="/images/gitlab-activity.png"
+                alt="A year of GitLab contribution squares, filled in across most weekdays, labelled issues, merge requests, pushes, and comments."
+                width={1818}
+                height={401}
+                loading="lazy"
+                /* Dark screenshot kept as-is; the hairline edge stops it
+                   floating on the light theme's paper background. */
+                className="block w-full rounded-[var(--radius)] border border-border"
+              />
+            </figure>
+
             <p>
-              Two years ago I started coding again. Not by relearning syntax, by
-              directing AI and reviewing what comes back, which is close enough
-              to the work I did in 2009 that it feels familiar.
+              By directing AI and reviewing what comes back, which is close
+              enough to the work I did in 2009 that it feels familiar.
             </p>
 
             <p>
