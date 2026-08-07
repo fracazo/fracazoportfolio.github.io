@@ -109,25 +109,30 @@ export default function Home() {
               decoding="async"
               className="mt-24 mb-8 h-[60px] w-[60px] rounded-full object-cover max-md:mt-14"
             />
-            <p className="mb-4 flex items-start gap-2 font-mono text-[13px] text-balance text-muted">
-              <span className="status-dot mt-[7px] h-2 w-2 flex-none rounded-full bg-[#34d399]" />
-              Available for design roles &amp; contract work · Melbourne or
-              remote (UTC+10)
+            <p className="mb-4 font-mono text-[13px] text-muted">
+              Welcome to my portfolio
             </p>
             <h1 id="hero-title" className="h1">
-              I turn messy, cross-team problems into shipped product.
+              👋 Hi, I&rsquo;m Alex!
             </h1>
             <p className="mt-3 text-lg leading-[1.6] text-text-body">
+              I&rsquo;m a{" "}
               <strong className="font-semibold text-text">
-                A software designer who builds.
+                product designer
               </strong>{" "}
-              End-to-end, from research and strategy to a working product, for
-              consumer and enterprise.
+              with nearly two decades of experience, crafting consumer and
+              enterprise products for top brands worldwide.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
+              <Link
+                href="/about"
+                className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
+              >
+                About me
+              </Link>
               <a
                 href="mailto:fracazo@duck.com"
-                className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
+                className="btn btn-ghost inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
               >
                 Email me
               </a>
@@ -209,54 +214,6 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Background */}
-      <section
-        aria-labelledby="experience-title"
-        className="mx-auto w-full max-w-[640px]"
-      >
-        <div className="grid gap-4">
-          <h2 id="experience-title" className="h2">
-            Background
-          </h2>
-          <div>
-            <p className="text mt-0">
-              I am the sole product designer on{" "}
-              <Link href="/case-studies/gitlab">GitLab</Link>&rsquo;s Knowledge
-              team, an engineering-led group that had never had a designer. I
-              built the research practice from scratch and own UX across Wiki,
-              GLQL (GitLab Query Language), Pages, and text editors. I led
-              GLQL, GitLab&rsquo;s first
-              built-in query language for embedding live views of issues, from
-              research to a GA launch where adoption grew 33%, and led the Wiki
-              redesign that positions it as a competitive alternative to
-              Confluence, shipping to production through direct code
-              contributions via merge requests.
-            </p>
-            <p className="text mt-6">
-              Alongside that, I founded and solo-built{" "}
-              <a href="https://birthguide.com.au" target="_blank" rel="noopener">
-                BirthGuide
-              </a>
-              , a consumer product for Australian first-time parents, designed
-              and shipped end-to-end on Next.js, Supabase, and Stripe. Design,
-              build, product, payments, all of it.
-            </p>
-            <p className="text mt-6">
-              Earlier I was Principal Product Designer at Hireup,
-              Australia&rsquo;s largest disability support platform, where I led
-              mobile design and drove a{" "}
-              <Link href="/case-studies/bringing-visibility-to-workers-status">
-                +12% increase in booking rates
-              </Link>
-              . Before that, web and mobile products for Qantas, Vodafone,
-              Woolworths, and NAB, and first designer at several startups. My
-              career started in front-end engineering, writing Ruby on Rails,
-              Haml, and Sass, before I moved into product design.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Writing */}
       <section
         aria-labelledby="writing-title"
@@ -286,21 +243,24 @@ export default function Home() {
               into clear, user-centred direction that directly shaped product
               decisions.&rdquo;
             </p>
-            <footer className="m-0">
-              <cite className="text-[13px] text-muted not-italic opacity-70">
-                Design Manager · GitLab
-              </cite>
-            </footer>
-          </blockquote>
-          <blockquote className="m-0 border-s-2 border-border ps-4">
-            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
-              &ldquo;Alex brings a rare mix of big-picture perspective and
-              grounded execution. He consistently raises the quality of thinking
-              across the team and creates space for others to grow.&rdquo;
-            </p>
-            <footer className="m-0">
-              <cite className="text-[13px] text-muted not-italic opacity-70">
-                Product Designer · Hireup
+            <footer className="m-0 flex items-center gap-2.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/testimonial-caitlin-steele.jpg"
+                alt=""
+                width={36}
+                height={36}
+                loading="lazy"
+                decoding="async"
+                className="h-9 w-9 flex-none rounded-full object-cover"
+              />
+              <cite className="text-[13px] not-italic">
+                <span className="block font-medium text-text">
+                  Caitlin Steele
+                </span>
+                <span className="block text-muted opacity-70">
+                  Design Manager at GitLab
+                </span>
               </cite>
             </footer>
           </blockquote>
@@ -311,9 +271,24 @@ export default function Home() {
               impacts customers and built for long-term scale, not just the
               immediate need.&rdquo;
             </p>
-            <footer className="m-0">
-              <cite className="text-[13px] text-muted not-italic opacity-70">
-                Product Manager · GitLab
+            <footer className="m-0 flex items-center gap-2.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/testimonial-matthew-macfarlane.jpg"
+                alt=""
+                width={36}
+                height={36}
+                loading="lazy"
+                decoding="async"
+                className="h-9 w-9 flex-none rounded-full object-cover"
+              />
+              <cite className="text-[13px] not-italic">
+                <span className="block font-medium text-text">
+                  Matthew Macfarlane
+                </span>
+                <span className="block text-muted opacity-70">
+                  Senior Product Manager at GitLab
+                </span>
               </cite>
             </footer>
           </blockquote>
@@ -324,14 +299,55 @@ export default function Home() {
               the visual builder and tokenized filtering for our query
               language, GLQL.&rdquo;
             </p>
-            <footer className="m-0">
-              <cite className="text-[13px] text-muted not-italic opacity-70">
-                Engineering Manager · GitLab
+            <footer className="m-0 flex items-center gap-2.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/testimonial-armin-pasalic.jpg"
+                alt=""
+                width={36}
+                height={36}
+                loading="lazy"
+                decoding="async"
+                className="h-9 w-9 flex-none rounded-full object-cover"
+              />
+              <cite className="text-[13px] not-italic">
+                <span className="block font-medium text-text">
+                  Armin Pašalić
+                </span>
+                <span className="block text-muted opacity-70">
+                  Engineering Manager at GitLab
+                </span>
+              </cite>
+            </footer>
+          </blockquote>
+          <blockquote className="m-0 border-s-2 border-border ps-4">
+            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
+              &ldquo;What excellent luck to have encountered such a mentor.
+              He&rsquo;s got sharp analytical skills and a broad body of
+              knowledge in the UX domain. With his help both in my learning and
+              job-search coaching, I ended up receiving multiple job
+              offers.&rdquo;
+            </p>
+            <footer className="m-0 flex items-center gap-2.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/testimonial-cherie-k.jpg"
+                alt=""
+                width={36}
+                height={36}
+                loading="lazy"
+                decoding="async"
+                className="h-9 w-9 flex-none rounded-full object-cover"
+              />
+              <cite className="text-[13px] not-italic">
+                <span className="block font-medium text-text">Cherie K.</span>
+                <span className="block text-muted opacity-70">
+                  Product Designer
+                </span>
               </cite>
             </footer>
           </blockquote>
         </div>
-        {/* TODO: with permission, replace role-only attributions with full names; anonymous quotes carry far less weight */}
         <p className="text mt-2">
           <a
             href="https://www.linkedin.com/in/fracazo/details/recommendations/"
