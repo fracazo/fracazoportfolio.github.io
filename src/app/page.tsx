@@ -139,6 +139,43 @@ const productDesign = [
   },
 ];
 
+const designEngineering = [
+  {
+    title: "BirthGuide",
+    meta: "Solo build · 2026",
+    links: [
+      { href: "https://birthguide.com.au", label: "Site" },
+      { href: "/writing/building-birthguide-with-ai", label: "Essay" },
+    ],
+  },
+  {
+    title: "Birth Plans",
+    meta: "Solo build · 2026",
+    links: [{ href: "https://birthplans.app", label: "Site" }],
+  },
+  {
+    title: "Don Draper",
+    meta: "Claude Code skill · 2026",
+    links: [
+      { href: "https://github.com/fracazo/don-draper-skill", label: "GitHub" },
+    ],
+  },
+  {
+    title: "Contrast Lab",
+    meta: "Raycast extension · 2026",
+    links: [
+      { href: "https://github.com/fracazo/contrast-lab", label: "GitHub" },
+    ],
+  },
+  {
+    title: "Triage Agent",
+    meta: "TypeScript and MCP · 2026",
+    links: [
+      { href: "https://github.com/fracazo/triage-agent", label: "GitHub" },
+    ],
+  },
+];
+
 const writing = [
   { href: "/writing/titles-are-a-trap", name: "Titles are a trap", meta: "Essay" },
   {
@@ -245,6 +282,12 @@ export default function Home() {
             Product design
           </p>
           <LinkRowList items={productDesign} />
+        </div>
+        <div className="mt-10">
+          <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
+            Design engineering with AI
+          </p>
+          <LinkRowList items={designEngineering} />
         </div>
       </section>
 
