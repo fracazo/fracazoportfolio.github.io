@@ -3,7 +3,7 @@ import { PlainShell } from "@/components/plain-shell";
 import { WorkRow } from "@/components/work-row";
 import { RowList } from "@/components/row-list";
 import { SiteFooter } from "@/components/site-footer";
-import { ExternalLinkIcon } from "@/components/icons";
+import { ArrowRightIcon, ExternalLinkIcon } from "@/components/icons";
 
 const selectedWork = [
   {
@@ -179,9 +179,21 @@ export default function Home() {
           ))}
         </ul>
         <div className="mt-10">
-          <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
-            More case studies
-          </p>
+          <div className="mb-1 flex items-center justify-between gap-4">
+            <p className="text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
+              More case studies
+            </p>
+            <Link
+              href="/work"
+              className="group -m-2 inline-flex items-center gap-1.5 p-2 text-sm whitespace-nowrap text-text no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
+            >
+              All work
+              <ArrowRightIcon
+                size={14}
+                className="transition-transform duration-150 group-hover:translate-x-0.5"
+              />
+            </Link>
+          </div>
           <RowList items={moreCaseStudies} />
         </div>
       </section>

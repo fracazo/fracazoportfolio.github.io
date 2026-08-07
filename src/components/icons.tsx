@@ -110,6 +110,15 @@ export function ArrowLeftIcon(props: IconProps) {
   );
 }
 
+export function ArrowRightIcon(props: IconProps) {
+  return (
+    <svg {...base({ size: 14, ...props })}>
+      <path d="m12 5 7 7-7 7" />
+      <path d="M5 12h14" />
+    </svg>
+  );
+}
+
 export function ExternalLinkIcon(props: IconProps) {
   return (
     <svg {...base({ size: 14, ...props })}>

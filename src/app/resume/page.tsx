@@ -35,7 +35,7 @@ const experience = [
     role: "Senior Product Designer",
     context:
       "Sole designer on the Knowledge team in an engineering-led group, reporting to the Senior Director of Product Design, owning Wiki, GLQL (GitLab Query Language), Pages, and text editors.",
-    period: "2022 – Current",
+    period: "2022 – 2026",
     location: "Remote, global",
     outcome: "+33% adoption · code in production",
     points: [
