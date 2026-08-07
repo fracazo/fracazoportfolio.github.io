@@ -113,7 +113,7 @@ export default function Home() {
               Welcome to my portfolio
             </p>
             <h1 id="hero-title" className="h1">
-              👋 Hi, I&rsquo;m Alex!
+              👋 <span lang="pt">Olá</span>, I&rsquo;m Alex!
             </h1>
             <p className="mt-3 text-lg leading-[1.6] text-text-body">
               I&rsquo;m a{" "}
