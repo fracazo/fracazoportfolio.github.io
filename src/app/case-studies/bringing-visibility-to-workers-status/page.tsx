@@ -236,38 +236,6 @@ export default function BringingVisibilityToWorkersStatus() {
 
         </div>
 
-          <div className="up-next">
-          <h2 className="h2">Up Next</h2>
-          <div className="up-next-grid">
-            <a href="/case-studies/mr-summary-ai" className="card-project">
-              <div className="image-project">
-                <img src="/images/To_do_list_-_summary.png" alt="AI-generated merge request summary in the GitLab to-do list" />
-              </div>
-              <div className="content-project">
-                <h4 className="h4">Summarize Merge Requests with AI</h4>
-                <p className="tagline">Finding where AI summaries earn trust in code review. GitLab, 2023.</p>
-              </div>
-            </a>
-            <a href="/case-studies/eta-app" className="card-project">
-              <div className="image-project">
-                <img src="/images/62dc274f132cbe543717e126_work1-p-2000.jpg" alt="ETA App" />
-              </div>
-              <div className="content-project">
-                <h4 className="h4">Reducing Friction in Government Visa Applications</h4>
-                <p className="tagline">Automating data entry to improve completion and reduce user effort in a high-stakes service.</p>
-              </div>
-            </a>
-            <a href="/case-studies/qantas-entertainment-app" className="card-project">
-              <div className="image-project">
-                <img src="/images/62dc26d29e21732abffdaacd_work4-p-1080.png" alt="Qantas Entertainment" />
-              </div>
-              <div className="content-project">
-                <h4 className="h4">Driving Engagement Through a Unified Entertainment Experience</h4>
-                <p className="tagline">Reimagining in-flight entertainment as a cohesive product ecosystem.</p>
-              </div>
-            </a>
-          </div>
-        </div>
         </div>
       </section>
 
@@ -281,6 +249,9 @@ export default function BringingVisibilityToWorkersStatus() {
             <a href="/resume" className="btn btn-ghost">Résumé</a>
             <a href="https://www.linkedin.com/in/fracazo" target="_blank" rel="noopener" className="btn btn-ghost">LinkedIn<ExternalLinkIcon size={14} className="opacity-70" /></a>
           </div>
+        </div>
+        <div className="case-next">
+          <a href="/case-studies/eta-app"><span className="case-next-label">Next case study</span><span className="case-next-title">Reducing Friction in Government Visa Applications</span></a>
         </div>
         </section>
 

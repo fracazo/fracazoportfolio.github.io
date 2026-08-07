@@ -219,38 +219,6 @@ export default function QantasEntertainmentApp() {
 
         </div>
 
-        <div className="up-next">
-          <h2 className="h2">Up Next</h2>
-          <div className="up-next-grid">
-            <a href="/case-studies/mr-summary-ai" className="card-project">
-              <div className="image-project">
-                <img src="/images/To_do_list_-_summary.png" alt="AI-generated merge request summary in the GitLab to-do list" />
-              </div>
-              <div className="content-project">
-                <h4 className="h4">Summarize Merge Requests with AI</h4>
-                <p className="tagline">Finding where AI summaries earn trust in code review. GitLab, 2023.</p>
-              </div>
-            </a>
-            <a href="/case-studies/qantas-app" className="card-project">
-              <div className="image-project">
-                <img src="/images/62dc1d83920df32baae28d6b_work2-p-1080.png" alt="Qantas App" />
-              </div>
-              <div className="content-project">
-                <h4 className="h4">Increasing App Adoption by Integrating Entertainment Services</h4>
-                <p className="tagline">Using entertainment features to drive a 70% increase in app downloads.</p>
-              </div>
-            </a>
-            <a href="/case-studies/bringing-visibility-to-workers-status" className="card-project">
-              <div className="image-project">
-                <img src="/images/62fbf14400d70051caf1b477_hireup-project-p-1080.png" alt="Hireup" />
-              </div>
-              <div className="content-project">
-                <h4 className="h4">Changing Booking Behaviour Through Worker Status Visibility</h4>
-                <p className="tagline">Reducing uncertainty in a two-sided marketplace and increasing successful bookings by 12%.</p>
-              </div>
-            </a>
-          </div>
-        </div>
         </div>
       </section>
 
@@ -264,6 +232,9 @@ export default function QantasEntertainmentApp() {
             <a href="/resume" className="btn btn-ghost">Résumé</a>
             <a href="https://www.linkedin.com/in/fracazo" target="_blank" rel="noopener" className="btn btn-ghost">LinkedIn<ExternalLinkIcon size={14} className="opacity-70" /></a>
           </div>
+        </div>
+        <div className="case-next">
+          <a href="/case-studies/qantas-app"><span className="case-next-label">Next case study</span><span className="case-next-title">Increasing App Adoption by Integrating Entertainment Services</span></a>
         </div>
         </section>
 

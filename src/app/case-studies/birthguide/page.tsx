@@ -227,37 +227,8 @@ export default function Birthguide() {
             </div>
           </div>
 
-          <div className="up-next">
-            <h2 className="h2">Up Next</h2>
-            <div className="up-next-grid">
-              <a href="/case-studies/bringing-visibility-to-workers-status" className="card-project">
-                <div className="image-project">
-                  <img src="/images/62fbf14400d70051caf1b477_hireup-project-p-1080.png" alt="Hireup" />
-                </div>
-                <div className="content-project">
-                  <h4 className="h4">Changing Booking Behaviour Through Worker Status Visibility</h4>
-                  <p className="tagline">Reducing uncertainty in a two-sided marketplace and increasing successful bookings by 12%.</p>
-                </div>
-              </a>
-              <a href="/case-studies/eta-app" className="card-project">
-                <div className="image-project">
-                  <img src="/images/62dc274f132cbe543717e126_work1-p-2000.jpg" alt="ETA App" />
-                </div>
-                <div className="content-project">
-                  <h4 className="h4">Reducing Friction in Government Visa Applications</h4>
-                  <p className="tagline">Automating data entry to improve completion and reduce user effort in a high-stakes service.</p>
-                </div>
-              </a>
-              <a href="/case-studies/qantas-entertainment-app" className="card-project">
-                <div className="image-project">
-                  <img src="/images/62dc26d29e21732abffdaacd_work4-p-1080.png" alt="Qantas Entertainment" />
-                </div>
-                <div className="content-project">
-                  <h4 className="h4">Driving Engagement Through a Unified Entertainment Experience</h4>
-                  <p className="tagline">Reimagining in-flight entertainment as a cohesive product ecosystem.</p>
-                </div>
-              </a>
-            </div>
+          <div className="case-next">
+            <a href="/case-studies/bringing-visibility-to-workers-status"><span className="case-next-label">Next case study</span><span className="case-next-title">Changing Booking Behaviour Through Worker Status Visibility</span></a>
           </div>
 
         </div>

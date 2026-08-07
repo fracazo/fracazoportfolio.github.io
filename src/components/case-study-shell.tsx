@@ -53,7 +53,7 @@ export function CaseStudyShell({
     if (!content) return;
 
     const headings = content.querySelectorAll<HTMLHeadingElement>(
-      ".summary-card h2, .case-study-section h2, .up-next h2",
+      ".summary-card h2, .case-study-section h2",
     );
     if (headings.length === 0) return;
 
