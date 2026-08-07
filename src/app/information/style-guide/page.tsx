@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AppShell } from "@/components/app-shell";
+import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
   title: "Style Guide - Alex Fracazo",
@@ -176,17 +177,7 @@ export default function StyleGuide() {
         </div>
       </section>
 
-      {/* Footer */}
-      <section className="section" aria-labelledby="footer-title">
-        <footer role="contentinfo">
-          <div className="footer-inner">
-            <p id="footer-title" className="text footer-location">Based in Melbourne. Working globally.</p>
-            <p className="text footer-links">
-              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank">LinkedIn</a>, or <a href="/contact">reach me by email</a>.
-            </p>
-          </div>
-        </footer>
-      </section>
+      <SiteFooter />
     </AppShell>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
+import { SiteFooter } from "@/components/site-footer";
 
 const title = "The birth plan that advocates for you during labour - Alex Fracazo";
 const description = "A birth plan you open on your phone, not one you forget in your bag. Designed and shipped in 10 days as a solo non-developer founder.";
@@ -234,17 +235,7 @@ export default function Birthguide() {
         </div>
       </section>
 
-      {/* Footer */}
-      <section className="section" aria-labelledby="footer-title">
-        <footer role="contentinfo">
-          <div className="footer-inner">
-            <p id="footer-title" className="text footer-location">Based in Melbourne. Working globally.</p>
-            <p className="text footer-links">
-              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank">LinkedIn</a>, or <a href="/contact">reach me by email</a>.
-            </p>
-          </div>
-        </footer>
-      </section>
+      <SiteFooter />
     </CaseStudyShell>
   );
 }

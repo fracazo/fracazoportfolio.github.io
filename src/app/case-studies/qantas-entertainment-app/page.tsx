@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { ExternalLinkIcon } from "@/components/icons";
+import { SiteFooter } from "@/components/site-footer";
 
 const title = "Driving Engagement Through a Unified Entertainment Experience - Alex Fracazo";
 const description = "Reimagining in-flight entertainment as a cohesive product ecosystem.";
@@ -238,17 +239,7 @@ export default function QantasEntertainmentApp() {
         </div>
         </section>
 
-      {/* Footer */}
-      <section className="section" aria-labelledby="footer-title">
-        <footer role="contentinfo">
-          <div className="footer-inner">
-            <p id="footer-title" className="text footer-location">Based in Melbourne. Working globally.</p>
-            <p className="text footer-links">
-              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank">LinkedIn</a>, or <a href="/contact">reach me by email</a>.
-            </p>
-          </div>
-        </footer>
-      </section>
+      <SiteFooter />
     </CaseStudyShell>
   );
 }

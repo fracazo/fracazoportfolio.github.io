@@ -49,17 +49,7 @@ export default function NotFound() {
         </div>
       </section>
 
-      <SiteFooter
-        links={
-          <>
-            You can find me on{" "}
-            <a href="http://www.linkedin.com/in/fracazo" target="_blank">
-              LinkedIn
-            </a>
-            , or <a href="/contact">reach me by email</a>.
-          </>
-        }
-      />
+      <SiteFooter />
     </AppShell>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PlainShell } from "@/components/plain-shell";
+import { SiteFooter } from "@/components/site-footer";
 import { ArrowLeftIcon } from "@/components/icons";
 import { PhotoCarousel, type CarouselPhoto } from "@/components/photo-carousel";
 import { PhotoStrip, type StripPhoto } from "@/components/photo-strip";
@@ -127,7 +128,7 @@ export default function About() {
         Back
       </Link>
 
-      <section className="mx-auto w-full max-w-[640px] pb-20">
+      <section className="mx-auto w-full max-w-[640px]">
         <div className="pt-24 text-left max-md:pt-20">
           <h1 className="h1">About me</h1>
 
@@ -264,6 +265,8 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      <SiteFooter />
     </PlainShell>
   );
 }

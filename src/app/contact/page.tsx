@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { ContactIcon } from "@/components/icons";
+import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
   title: "Contact - Alex Fracazo Product Designer",
@@ -87,15 +88,7 @@ export default function Contact() {
             </li>
           </ul>
 
-          <footer
-            role="contentinfo"
-            aria-labelledby="footer-title"
-            className="mt-8"
-          >
-            <p id="footer-title" className="text mt-0 text-text">
-              Based in Melbourne. Working globally.
-            </p>
-          </footer>
+          <SiteFooter links={null} className="mt-8" />
         </div>
       </section>
     </AppShell>

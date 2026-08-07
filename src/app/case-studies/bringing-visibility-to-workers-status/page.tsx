@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { ExternalLinkIcon } from "@/components/icons";
+import { SiteFooter } from "@/components/site-footer";
 
 const title = "Changing Booking Behaviour Through Worker Status Visibility - Alex Fracazo";
 const description = "Reducing uncertainty in a two-sided marketplace and increasing successful bookings by 12%.";
@@ -255,17 +256,7 @@ export default function BringingVisibilityToWorkersStatus() {
         </div>
         </section>
 
-      {/* Footer */}
-      <section className="section" aria-labelledby="footer-title">
-        <footer role="contentinfo">
-          <div className="footer-inner">
-            <p id="footer-title" className="text footer-location">Based in Melbourne. Working globally.</p>
-            <p className="text footer-links">
-              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank">LinkedIn</a>, or <a href="/contact">reach me by email</a>.
-            </p>
-          </div>
-        </footer>
-      </section>
+      <SiteFooter />
     </CaseStudyShell>
   );
 }

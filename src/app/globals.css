@@ -711,32 +711,8 @@
     line-height: 1.5;
     margin-top: 4px;
   }
-  .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    gap: 8px;
-  }
-  .footer-inner .footer-title-padding {
-    color: var(--muted);
-  }
   .content-wrapper {
     color: var(--muted);
-  }
-  .footer-location {
-    color: var(--text);
-    margin: 0;
-  }
-  .footer-links {
-    color: var(--muted);
-    margin: 8px 0 0;
-  }
-  .footer-links a {
-    color: var(--brand);
-    text-decoration: none;
-  }
-  .footer-links a:hover {
-    text-decoration: underline;
   }
   .testimonial-list {
     display: flex;

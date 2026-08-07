@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { ExternalLinkIcon } from "@/components/icons";
+import { SiteFooter } from "@/components/site-footer";
 
 const title = "Summarize Merge Requests with AI - Alex Fracazo";
 const description = "How three iterations and a Qualtrics survey reshaped an AI feature from reviewer-facing summary to author-facing writing assistant.";
@@ -267,17 +268,7 @@ export default function MrSummaryAi() {
         </div>
         </section>
 
-      {/* Footer */}
-      <section className="section" aria-labelledby="footer-title">
-        <footer role="contentinfo">
-          <div className="footer-inner">
-            <p id="footer-title" className="text footer-location">Based in Melbourne. Working globally.</p>
-            <p className="text footer-links">
-              You can find me on <a href="http://www.linkedin.com/in/fracazo" target="_blank" rel="noopener">LinkedIn</a>, or <a href="/contact">reach me by email</a>.
-            </p>
-          </div>
-        </footer>
-      </section>
+      <SiteFooter />
     </CaseStudyShell>
   );
 }
