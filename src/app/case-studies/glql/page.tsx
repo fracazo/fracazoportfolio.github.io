@@ -88,7 +88,7 @@ export default function Glql() {
 
           <div className="case-study-section">
             <h2>My role</h2>
-            <p>I was the only designer on the team, in an engineering-led group with no design practice, no research process, and no shared way of deciding what users actually needed. So the first job was not a screen. It was earning the right to be in the room, and making design useful fast enough that it sped the team up instead of slowing it down.</p>
+            <p>I was the designer on the team, in an engineering-led group with no design practice, no research process, and no shared way of deciding what users actually needed. So the first job was not a screen. It was earning the right to be in the room, and making design useful fast enough that it sped the team up instead of slowing it down.</p>
           </div>
 
           <div className="case-study-section">

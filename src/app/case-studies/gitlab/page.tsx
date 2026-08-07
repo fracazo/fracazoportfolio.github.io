@@ -42,7 +42,7 @@ export default function Gitlab() {
                   <div className="metadata-text">
                     <p className="metadata-label">Teams</p>
                     <p className="metadata-value">Create: Code Review (2022-2024)</p>
-                    <p className="metadata-value">Plan: Knowledge (2024-Present)</p>
+                    <p className="metadata-value">Plan: Knowledge (2024-2026)</p>
                   </div>
                 </div>
                 <div className="metadata-item">
@@ -63,7 +63,7 @@ export default function Gitlab() {
                   <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clipRule="evenodd"/></svg>
                   <div className="metadata-text">
                     <p className="metadata-label">Period</p>
-                    <p className="metadata-value">2022-Present</p>
+                    <p className="metadata-value">2022-2026</p>
                   </div>
                 </div>
               </div>
@@ -72,7 +72,7 @@ export default function Gitlab() {
 
           {/* Intro */}
           <div className="case-study-section">
-            <p>I was the sole product designer on GitLab&rsquo;s Knowledge team, owning UX for Wiki, GLQL (GitLab Query Language), Pages, and text editors on a platform used by millions of developers. I led GLQL, the first query language built natively into GitLab, for embedding live, filtered views of issues into wikis and docs, from research to a GA launch where adoption grew 33%. I led the Wiki redesign, from the panel layout to contextual comments, positioning it as a competitive alternative to Confluence. All of it shipped to production, including direct code contributions via merge requests.</p>
+            <p>I was the product designer on GitLab&rsquo;s Knowledge team, owning UX for Wiki, GLQL (GitLab Query Language), Pages, and text editors on a platform used by millions of developers. I led GLQL, the first query language built natively into GitLab, for embedding live, filtered views of issues into wikis and docs, from research to a GA launch where adoption grew 33%. I led the Wiki redesign, from the panel layout to contextual comments, positioning it as a competitive alternative to Confluence. All of it shipped to production, including direct code contributions via merge requests.</p>
             <img src="/images/gitlab_team_lasvegas.jpeg" alt="GitLab team in Las Vegas" className="gitlab-team-photo gitlab-contrib-img" />
             <p>It has also stretched me in ways I didn't expect. Everything at GitLab is async-first: decisions happen in issues, not meetings. Your rationale needs to stand on its own in a comment thread read days later by someone in a different timezone. That changed how I think about communication entirely.</p>
             <p>On top of that, my team had never had a dedicated designer before. GitLab has a mature UX department with established research methods, design critique practices, and the <a href="https://design.gitlab.com/" target="_blank" rel="noopener">Pajamas design system</a>, but none of that had been applied locally to the Knowledge team. I brought those practices in, adapted them to the group's workflow, and connected UX decisions back to product strategy. No big rollout, I just kept showing up with research, rationale, and results until it became the way we worked. Earning the trust of a highly technical, engineering-led group through evidence rather than opinion is something I'm genuinely proud of.</p>

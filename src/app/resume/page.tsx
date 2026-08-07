@@ -34,7 +34,7 @@ const experience = [
     href: "/case-studies/gitlab",
     role: "Senior Product Designer",
     context:
-      "Sole designer on the Knowledge team in an engineering-led group, reporting to the Senior Director of Product Design, owning Wiki, GLQL (GitLab Query Language), Pages, and text editors.",
+      "Designer on the Knowledge team, an engineering-led group that had never had a dedicated designer, reporting to the Senior Director of Product Design, owning Wiki, GLQL (GitLab Query Language), Pages, and text editors.",
     period: "2022 – 2026",
     location: "Remote, global",
     outcome: "+33% adoption · code in production",
@@ -49,7 +49,7 @@ const experience = [
     href: "/case-studies/bringing-visibility-to-workers-status",
     role: "Principal Product Designer",
     context:
-      "Australia's largest disability support marketplace. Sole designer on the iOS and Android app team.",
+      "Australia's largest disability support marketplace. Designer on the iOS and Android app team.",
     period: "2021 – 2022",
     location: "Sydney",
     outcome: "Connection rate 3% → 5% (+67% relative)",
@@ -187,8 +187,9 @@ export default function Resume() {
           <p className="mt-5 text-[15px] leading-[1.7] text-text-body">
             I design and build end-to-end, from research and strategy through to
             a working product. Most recently I led design for GitLab&rsquo;s
-            Knowledge platform as sole designer in an engineering-led group,
-            growing feature adoption 33% and shipping code to production.
+            Knowledge platform in an engineering-led group that had never had a
+            dedicated designer, growing feature adoption 33% and shipping code
+            to production.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
