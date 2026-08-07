@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AppShell } from "@/components/app-shell";
+import { PlainShell } from "@/components/plain-shell";
 import { SiteFooter } from "@/components/site-footer";
+import { ArrowLeftIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Writing - Alex Fracazo",
@@ -50,9 +51,21 @@ const years: { year: string; posts: { href: string; title: string }[] }[] = [
 
 export default function Writing() {
   return (
-    <AppShell>
-      <section aria-labelledby="writing-title" className="mx-auto w-full max-w-[640px]">
-        <h1 id="writing-title" className="h1 mt-24 max-md:mt-14">
+    <PlainShell>
+      {/* Back to site */}
+      <Link
+        href="/"
+        className="fixed top-5 left-5 z-50 inline-flex items-center gap-1.5 rounded-full border border-border bg-card/80 px-3 py-1.5 text-[13px] font-medium text-muted no-underline backdrop-blur-md transition-colors hover:border-border hover:text-text hover:no-underline"
+      >
+        <ArrowLeftIcon size={14} />
+        Back
+      </Link>
+
+      <section
+        aria-labelledby="writing-title"
+        className="mx-auto w-full max-w-[640px] pt-24 max-md:pt-20"
+      >
+        <h1 id="writing-title" className="h1">
           Writing
         </h1>
 
@@ -93,6 +106,6 @@ export default function Writing() {
           </>
         }
       />
-    </AppShell>
+    </PlainShell>
   );
 }

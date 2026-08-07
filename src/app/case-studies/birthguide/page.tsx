@@ -28,7 +28,7 @@ export default function Birthguide() {
         <div className="case-study-main">
 
           <nav className="breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/work">Work</a><span className="breadcrumb-sep"> &gt; </span><span>BirthGuide</span>
+            <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><span>BirthGuide</span>
           </nav>
 
           <header className="case-header">

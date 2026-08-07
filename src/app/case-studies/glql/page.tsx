@@ -25,12 +25,12 @@ export const metadata: Metadata = {
 
 export default function Glql() {
   return (
-    <CaseStudyShell backHref="/case-studies/gitlab" backLabel="Back to GitLab">
+    <CaseStudyShell>
       <section className="section case-study-content">
         <div className="case-study-main">
 
           <nav className="breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/work">Work</a><span className="breadcrumb-sep"> &gt; </span><a href="/case-studies/gitlab">GitLab</a><span className="breadcrumb-sep"> &gt; </span><span>GLQL / Embedded Views</span>
+            <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><span>GLQL / Embedded Views</span>
           </nav>
 
           <header className="case-header">

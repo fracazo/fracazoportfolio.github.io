@@ -24,12 +24,12 @@ export const metadata: Metadata = {
 
 export default function WikiContextualComments() {
   return (
-    <CaseStudyShell backHref="/case-studies/gitlab" backLabel="Back to GitLab">
+    <CaseStudyShell>
       <section className="section case-study-content">
         <div className="case-study-main">
 
           <nav className="breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/work">Work</a><span className="breadcrumb-sep"> &gt; </span><a href="/case-studies/gitlab">GitLab</a><span className="breadcrumb-sep"> &gt; </span><span>Wiki Contextual Comments</span>
+            <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><span>Wiki Contextual Comments</span>
           </nav>
 
           <header className="case-header">

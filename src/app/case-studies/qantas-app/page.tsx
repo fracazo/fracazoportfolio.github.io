@@ -28,7 +28,7 @@ export default function QantasApp() {
       <section className="section case-study-content">
         <div className="case-study-main">
         <nav className="breadcrumb" aria-label="Breadcrumb">
-          <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/work">Work</a><span className="breadcrumb-sep"> &gt; </span><span>Qantas App</span>
+          <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><span>Qantas App</span>
         </nav>
         <header className="case-header">
           <h1 className="case-title">Increasing App Adoption by Integrating Entertainment Services</h1>
@@ -231,7 +231,7 @@ export default function QantasApp() {
           </div>
         </div>
         <div className="case-next">
-          <a href="/work"><span className="case-next-label">End of the series</span><span className="case-next-title">All case studies</span></a>
+          <a href="/"><span className="case-next-label">End of the series</span><span className="case-next-title">All case studies</span></a>
         </div>
         </section>
 

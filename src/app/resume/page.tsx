@@ -31,7 +31,7 @@ const RESUME_PDF = "/files/Alex Fracazo - Resume.pdf";
 const experience = [
   {
     company: "GitLab",
-    href: "/case-studies/gitlab",
+    href: null,
     role: "Senior Product Designer",
     context:
       "Designer on the Knowledge team, an engineering-led group that had never had a dedicated designer, reporting to the Senior Director of Product Design, owning Wiki, GLQL (GitLab Query Language), Pages, and text editors.",

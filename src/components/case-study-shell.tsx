@@ -35,11 +35,10 @@ function DyslexiaFab({
  */
 export function CaseStudyShell({
   children,
-  backHref = "/work",
-  backLabel = "Back to Work",
+  backHref = "/",
+  backLabel = "Back to home",
 }: {
   children: ReactNode;
-  /** Sub-case-studies (e.g. GLQL) link back to their parent page instead */
   backHref?: string;
   backLabel?: string;
 }) {

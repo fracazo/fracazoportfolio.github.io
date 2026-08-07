@@ -4,17 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { ThemeToggle } from "./theme-toggle";
-import {
-  HomeIcon,
-  WorkIcon,
-  WritingIcon,
-  CloseIcon,
-  MenuIcon,
-} from "./icons";
+import { HomeIcon, WritingIcon, CloseIcon, MenuIcon } from "./icons";
 
 const navLinks = [
   { href: "/", label: "Home", icon: HomeIcon },
-  { href: "/work", label: "Work", icon: WorkIcon },
   { href: "/writing", label: "Writing", icon: WritingIcon },
 ];
 

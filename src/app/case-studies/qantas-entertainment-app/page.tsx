@@ -28,7 +28,7 @@ export default function QantasEntertainmentApp() {
       <section className="section case-study-content">
         <div className="case-study-main">
         <nav className="breadcrumb" aria-label="Breadcrumb">
-          <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/work">Work</a><span className="breadcrumb-sep"> &gt; </span><span>Qantas Entertainment</span>
+          <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><span>Qantas Entertainment</span>
         </nav>
         <header className="case-header">
           <h1 className="case-title">Driving Engagement Through a Unified Entertainment Experience</h1>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PlainShell } from "@/components/plain-shell";
 import { WorkRow } from "@/components/work-row";
 import { RowList } from "@/components/row-list";
+import { LinkRowList } from "@/components/link-row-list";
 import { SiteFooter } from "@/components/site-footer";
 import { ArrowRightIcon, ExternalLinkIcon } from "@/components/icons";
 
@@ -50,30 +51,91 @@ const selectedWork = [
   },
 ];
 
-const moreCaseStudies = [
+const productDesign = [
   {
-    href: "/case-studies/wiki-contextual-comments",
-    name: "Wiki Contextual Comments",
-    meta: "GitLab",
-    image: { src: "/images/wiki-comments-card.png" },
+    title: "UX Forum: Rich Links",
+    meta: "GitLab · 2026",
+    links: [
+      { href: "https://www.youtube.com/watch?v=wuM58BBGSg0", label: "Video" },
+    ],
   },
   {
-    href: "/case-studies/eta-app",
-    name: "Reducing Friction in Government Visa Applications",
+    title: "Wiki Sidebar Redesign",
+    meta: "GitLab · 2026",
+    links: [
+      {
+        href: "https://gitlab.com/gitlab-org/gitlab/-/work_items/590402",
+        label: "GitLab issue",
+      },
+    ],
+  },
+  {
+    title: "Wiki Contextual Comments",
+    meta: "GitLab · 2025",
+    image: { src: "/images/wiki-comments-card.png" },
+    links: [
+      { href: "/case-studies/wiki-contextual-comments", label: "Case study" },
+      {
+        href: "https://gitlab.com/gitlab-org/gitlab/-/work_items/509789",
+        label: "GitLab issue",
+      },
+      { href: "https://youtu.be/67UZDRRE7gQ", label: "Design critique" },
+    ],
+  },
+  {
+    title: "Build a website with GitLab Pages",
+    meta: "GitLab · March 2025",
+    links: [
+      {
+        href: "https://about.gitlab.com/blog/build-a-new-website-in-a-few-easy-steps-with-gitlab-pages/",
+        label: "Blog post",
+      },
+    ],
+  },
+  {
+    title: "GLQL / Embedded Views",
+    meta: "GitLab · 2024–2025",
+    image: { src: "/images/glql-embedded-view-card.png" },
+    links: [
+      { href: "/case-studies/glql", label: "Case study" },
+      {
+        href: "https://about.gitlab.com/blog/embedded-views-the-future-of-work-tracking-in-gitlab/",
+        label: "Blog post",
+      },
+      { href: "https://docs.gitlab.com/user/glql/", label: "Docs" },
+    ],
+  },
+  {
+    title: "Summarize Merge Requests with AI",
+    meta: "GitLab · 2023",
+    image: { src: "/images/To_do_list_-_summary.png" },
+    links: [
+      { href: "/case-studies/mr-summary-ai", label: "Case study" },
+      {
+        href: "https://gitlab.com/gitlab-org/gitlab/-/work_items/429882",
+        label: "GitLab issue",
+      },
+    ],
+  },
+  {
+    title: "Reducing Friction in Government Visa Applications",
     meta: "Dept. of Home Affairs",
     image: { src: "/images/62dc274f132cbe543717e126_work1-p-2000-p-800.jpg" },
+    links: [{ href: "/case-studies/eta-app", label: "Case study" }],
   },
   {
-    href: "/case-studies/qantas-app",
-    name: "Increasing App Adoption (+70% downloads)",
+    title: "Increasing App Adoption (+70% downloads)",
     meta: "Qantas",
     image: { src: "/images/62dc1d83920df32baae28d6b_work2-p-1080-p-800.png" },
+    links: [{ href: "/case-studies/qantas-app", label: "Case study" }],
   },
   {
-    href: "/case-studies/qantas-entertainment-app",
-    name: "A Unified In-flight Entertainment Experience",
+    title: "A Unified In-flight Entertainment Experience",
     meta: "Qantas",
     image: { src: "/images/62dc26d29e21732abffdaacd_work4-p-1080-p-800.png" },
+    links: [
+      { href: "/case-studies/qantas-entertainment-app", label: "Case study" },
+    ],
   },
 ];
 
@@ -179,22 +241,10 @@ export default function Home() {
           ))}
         </ul>
         <div className="mt-10">
-          <div className="mb-1 flex items-center justify-between gap-4">
-            <p className="text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
-              More case studies
-            </p>
-            <Link
-              href="/work"
-              className="group -m-2 inline-flex items-center gap-1.5 p-2 text-sm whitespace-nowrap text-text no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
-            >
-              All work
-              <ArrowRightIcon
-                size={14}
-                className="transition-transform duration-150 group-hover:translate-x-0.5"
-              />
-            </Link>
-          </div>
-          <RowList items={moreCaseStudies} />
+          <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
+            Product design
+          </p>
+          <LinkRowList items={productDesign} />
         </div>
       </section>
 
@@ -232,9 +282,21 @@ export default function Home() {
         className="mx-auto w-full max-w-[640px]"
       >
         <div className="grid gap-4">
-          <h2 id="writing-title" className="h2">
-            Writing
-          </h2>
+          <div className="flex items-baseline justify-between gap-4">
+            <h2 id="writing-title" className="h2">
+              Writing
+            </h2>
+            <Link
+              href="/writing"
+              className="group -m-2 inline-flex items-center gap-1.5 p-2 text-sm whitespace-nowrap text-text no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
+            >
+              All writing
+              <ArrowRightIcon
+                size={14}
+                className="transition-transform duration-150 group-hover:translate-x-0.5"
+              />
+            </Link>
+          </div>
           <RowList items={writing} />
         </div>
       </section>

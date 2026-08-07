@@ -28,7 +28,7 @@ export default function EtaApp() {
       <section className="section case-study-content">
         <div className="case-study-main">
         <nav className="breadcrumb" aria-label="Breadcrumb">
-          <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/work">Work</a><span className="breadcrumb-sep"> &gt; </span><span>ETA App</span>
+          <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><span>ETA App</span>
         </nav>
         <header className="case-header">
           <h1 className="case-title">Reducing Friction in Government Visa Applications</h1>

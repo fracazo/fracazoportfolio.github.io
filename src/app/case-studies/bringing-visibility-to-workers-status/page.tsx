@@ -28,7 +28,7 @@ export default function BringingVisibilityToWorkersStatus() {
       <section className="section case-study-content">
         <div className="case-study-main">
         <nav className="breadcrumb" aria-label="Breadcrumb">
-          <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/work">Work</a><span className="breadcrumb-sep"> &gt; </span><span>Worker Status Visibility</span>
+          <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><span>Worker Status Visibility</span>
         </nav>
         <header className="case-header">
           <h1 className="case-title">Changing Booking Behaviour Through Worker Status Visibility</h1>
