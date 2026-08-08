@@ -44,6 +44,10 @@
   --ring: var(--accent);
   /* Subtle image edge — warm light in dark mode so it never reads as a tint */
   --img-outline: rgba(236, 231, 223, 0.1);
+  /* Dot field behind the page (see .dot-grid). Warm light dots on charcoal,
+     kept faint enough that body text contrast is untouched. */
+  --dot-color: rgba(236, 231, 223, 0.2);
+  --dot-gap: 8px;
 
   /* Young Serif display face (page titles + section headings), Geist for UI */
   --font-display: var(--font-young-serif), "Young Serif", Georgia, serif;
@@ -76,6 +80,9 @@
   --panel-2: #efebe2;
   --text-body: #3d362f;
   --img-outline: rgba(28, 25, 23, 0.14);
+  /* Warm espresso dots on paper — same 0.2 alpha as dark mode, pointed the
+     other way. */
+  --dot-color: rgba(28, 25, 23, 0.2);
   /* Near-flat warm shadow for light mode */
   --shadow:
     0px 0px 0px 1px rgba(28, 25, 23, 0.05),
@@ -170,9 +177,12 @@
     /* Full-bleed elements are sized in vw, which counts a classic scrollbar.
        Clip the overshoot so it never becomes a horizontal page scrollbar. */
     overflow-x: clip;
+    /* The page background lives on <html>, not <body>, so it paints on the
+       canvas — below the negatively-stacked .dot-grid layer. On <body> it would
+       cover the dots. */
+    background: var(--bg);
   }
   body {
-    background: var(--bg);
     color: var(--text);
     font-family: var(--font-sans);
     font-weight: 400;
@@ -201,6 +211,47 @@
     outline: 2px solid var(--ring);
     outline-offset: 2px;
     border-radius: 6px;
+  }
+}
+
+/* ========================
+   Dot grid backdrop
+   A fixed, viewport-sized field of dots sitting behind every page (rendered
+   once in the root layout). It stays put while the page scrolls, so the field
+   reads as texture on the surface rather than something moving with content.
+   The radial mask fades it out toward the edges so it never crowds the sidebar
+   divider or the footer, and the dot color is a theme token, so light and dark
+   each get a warm dot in their own direction.
+   ======================== */
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Matches the Aceternity block: a 0.5px dot with a hard stop, not a 1px dot
+     with a soft ramp. The ramp painted roughly three times the area, which is
+     what read as "too bright" at the same alpha. */
+  background-image: radial-gradient(
+    circle at 0.5px 0.5px,
+    var(--dot-color) 0.5px,
+    transparent 0
+  );
+  background-size: var(--dot-gap) var(--dot-gap);
+  -webkit-mask-image: radial-gradient(
+    ellipse 100% 85% at 50% 45%,
+    #000 55%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 100% 85% at 50% 45%,
+    #000 55%,
+    transparent 100%
+  );
+}
+/* Texture is decoration; don't waste ink on it. */
+@media print {
+  .dot-grid {
+    display: none;
   }
 }
 

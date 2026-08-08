@@ -75,7 +75,11 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <script dangerouslySetInnerHTML={{ __html: introInit }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {/* Dot texture behind every page (styles in globals.css) */}
+        <div className="dot-grid" aria-hidden="true" />
+        {children}
+      </body>
     </html>
   );
 }
