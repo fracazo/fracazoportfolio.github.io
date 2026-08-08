@@ -7,21 +7,21 @@ import {
 } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "Résumé - Alex Fracazo Product Designer",
+  title: "Résumé - Alex Fracazo",
   description:
-    "The résumé of Alex Fracazo, product designer based in Melbourne. Experience at GitLab, Hireup, Qantas and more.",
+    "I work end to end, from research and strategy through to a working product.",
   openGraph: {
-    title: "Résumé - Alex Fracazo Product Designer",
+    title: "Résumé - Alex Fracazo",
     description:
-      "The résumé of Alex Fracazo, product designer based in Melbourne. Experience at GitLab, Hireup, Qantas and more.",
+      "I work end to end, from research and strategy through to a working product.",
     images: ["/images/opengraph.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Résumé - Alex Fracazo Product Designer",
+    title: "Résumé - Alex Fracazo",
     description:
-      "The résumé of Alex Fracazo, product designer based in Melbourne. Experience at GitLab, Hireup, Qantas and more.",
+      "I work end to end, from research and strategy through to a working product.",
     images: ["/images/opengraph.jpg"],
   },
 };
@@ -262,12 +262,12 @@ export default function Resume() {
             ))}
           </div>
           <p className="mt-8 text-[13px] leading-[1.7] text-muted">
-            <span className="font-medium text-text">Earlier:</span>{" "}
-            Bem Direto (2012–2013), first designer at Brazil&rsquo;s first real
-            estate marketplace for agents · Smartia (2011–2012), Brazil&rsquo;s
-            first car insurance comparison platform · Artia (2009–2011), built my
-            own UI in Haml, Sass, and Rails · Sitevip (2005–2009), front-end
-            coder in a fast-paced agency.
+            <span className="font-medium text-text">Earlier:</span> Bem Direto
+            (2012–2013), first designer at Brazil&rsquo;s first real estate
+            marketplace for agents · Smartia (2011–2012), Brazil&rsquo;s first
+            car insurance comparison platform · Artia (2009–2011), built my own
+            UI in Haml, Sass, and Rails · Sitevip (2005–2009), front-end coder
+            in a fast-paced agency.
           </p>
         </section>
 

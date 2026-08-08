@@ -6,20 +6,17 @@ import { ArrowLeftIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Writing - Alex Fracazo",
-  description:
-    "Writing by Alex Fracazo, product designer, builder, and occasional writer.",
+  description: "Writing by Alex Fracazo on design, product and engineering.",
   openGraph: {
     title: "Writing - Alex Fracazo",
-    description:
-      "Writing by Alex Fracazo, product designer, builder, and occasional writer.",
+    description: "Writing by Alex Fracazo on design, product and engineering.",
     images: ["/images/opengraph.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Writing - Alex Fracazo",
-    description:
-      "Writing by Alex Fracazo, product designer, builder, and occasional writer.",
+    description: "Writing by Alex Fracazo on design, product and engineering.",
     images: ["/images/opengraph.jpg"],
   },
 };

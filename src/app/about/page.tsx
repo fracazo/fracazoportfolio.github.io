@@ -98,20 +98,20 @@ const artiaPhotos: CarouselPhoto[] = [
 ];
 
 const description =
-  "Twenty years of design, from table layouts in Brazil to product work at GitLab.";
+  "I work end to end, from research and strategy through to a working product.";
 
 export const metadata: Metadata = {
-  title: "About - Alex Fracazo Product Designer",
+  title: "About - Alex Fracazo",
   description,
   openGraph: {
-    title: "About - Alex Fracazo Product Designer",
+    title: "About - Alex Fracazo",
     description,
     images: ["/images/opengraph.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "About - Alex Fracazo Product Designer",
+    title: "About - Alex Fracazo",
     description,
     images: ["/images/opengraph.jpg"],
   },
