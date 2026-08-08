@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { ArrowLeftIcon } from "@/components/icons";
 import { PhotoCarousel, type CarouselPhoto } from "@/components/photo-carousel";
 import { PhotoStrip, type StripPhoto } from "@/components/photo-strip";
+import { HoverJoke } from "@/components/hover-joke";
 
 /** The Pantanal, out past Cuiaba: where the story starts, before any of the work. */
 const pantanalPhotos: StripPhoto[] = [
@@ -140,9 +141,18 @@ export default function About() {
             />
 
             <p>
-              I started in 2005 building websites out of table layouts, in an
-              agency in Mato Grosso, Brazil. Then tableless. Then Haml and Sass
-              at Artia, the first product management software built in Brazil.
+              I started in 2005 by{" "}
+              <HoverJoke
+                id="photoshop-joke"
+                word="designing"
+                src="/images/photoshop-grandma.jpg"
+                alt="Meme: an elderly woman with a walking frame says 'I used to design websites in photoshop', and the young woman helping her replies 'Sure you did grandma, let's get you back in bed'."
+                width={640}
+                height={446}
+              />{" "}
+              and building websites out of table layouts, in an agency in Mato
+              Grosso, Brazil. Then tableless. Then Haml and Sass at Artia, the
+              first product management software built in Brazil.
             </p>
 
             <PhotoCarousel photos={artiaPhotos} />
