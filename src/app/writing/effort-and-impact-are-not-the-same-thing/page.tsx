@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppShell } from "@/components/app-shell";
+import { PlainShell } from "@/components/plain-shell";
 import { WritingArticle } from "@/components/writing-article";
 
 const title = "Effort and impact are not the same thing";
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function EffortAndImpact() {
   return (
-    <AppShell>
+    <PlainShell>
       <WritingArticle
         tags={["Mentoring", "Design", "Career"]}
         title={title}
@@ -194,6 +194,6 @@ for confidence to begin. Beginning is how it shows up.`}
           you is for. Then aim what you&rsquo;ve got at it.
         </p>
       </WritingArticle>
-    </AppShell>
+    </PlainShell>
   );
 }

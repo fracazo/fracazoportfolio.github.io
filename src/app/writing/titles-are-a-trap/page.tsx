@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppShell } from "@/components/app-shell";
+import { PlainShell } from "@/components/plain-shell";
 import { WritingArticle } from "@/components/writing-article";
 
 const title = "Titles are a trap. And the inner critic knows it.";
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function TitlesAreATrap() {
   return (
-    <AppShell>
+    <PlainShell>
       <WritingArticle
         tags={["Career", "Design", "Impostor syndrome"]}
         title={title}
@@ -235,6 +235,6 @@ The title was never protecting you. It was just limiting you.`}</pre>
           <p>It&rsquo;s still just a bug. Don&rsquo;t let it vote.</p>
         </div>
       </WritingArticle>
-    </AppShell>
+    </PlainShell>
   );
 }

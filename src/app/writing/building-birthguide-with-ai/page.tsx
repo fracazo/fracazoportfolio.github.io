@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AppShell } from "@/components/app-shell";
+import { PlainShell } from "@/components/plain-shell";
 import { WritingArticle } from "@/components/writing-article";
 
 const title = "Building BirthGuide as a solo designer using AI";
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function BuildingBirthGuideWithAI() {
   return (
-    <AppShell>
+    <PlainShell>
       <WritingArticle
         tags={["AI", "Design engineering", "BirthGuide", "Solo building"]}
         title={title}
@@ -425,6 +425,6 @@ pnpm design:compare baseline.json after.json   `}
           fast. It can&rsquo;t care.
         </p>
       </WritingArticle>
-    </AppShell>
+    </PlainShell>
   );
 }
