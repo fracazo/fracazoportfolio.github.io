@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AvatarWave } from "@/components/avatar-wave";
+import { AvatarGreeting } from "@/components/avatar-greeting";
 import { PlainShell } from "@/components/plain-shell";
 import { WorkRow } from "@/components/work-row";
 import { RowList } from "@/components/row-list";
@@ -201,7 +201,7 @@ export default function Home() {
       >
         <div className="grid grid-cols-1 items-start gap-6 text-left">
           <div className="reveal-group">
-            <AvatarWave />
+            <AvatarGreeting />
             <p className="mb-4 font-mono text-[13px] text-muted">
               Welcome to my portfolio
             </p>

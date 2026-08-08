@@ -41,7 +41,7 @@ const WAVE_DELAY = 1100;
 /** Quiet beat between the wave settling and the nudge to scroll. */
 const POINT_DELAY = 2500;
 
-export function AvatarWave() {
+export function AvatarGreeting() {
   const waveRef = useRef<HTMLVideoElement>(null);
   const pointRef = useRef<HTMLVideoElement>(null);
 
