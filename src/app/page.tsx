@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AvatarWave } from "@/components/avatar-wave";
 import { PlainShell } from "@/components/plain-shell";
 import { WorkRow } from "@/components/work-row";
 import { RowList } from "@/components/row-list";
@@ -200,14 +201,7 @@ export default function Home() {
       >
         <div className="grid grid-cols-1 items-start gap-6 text-left">
           <div className="reveal-group">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/avatar.png"
-              alt="Alex Fracazo"
-              fetchPriority="high"
-              decoding="async"
-              className="mt-24 mb-8 h-[60px] w-[60px] rounded-full object-cover max-md:mt-14"
-            />
+            <AvatarWave />
             <p className="mb-4 font-mono text-[13px] text-muted">
               Welcome to my portfolio
             </p>
