@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node tools/mirror-trailing-slash.mjs",
     "start": "next start",
     "lint": "eslint"
   },

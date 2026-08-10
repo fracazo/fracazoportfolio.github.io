@@ -217,8 +217,8 @@ export default function Resume() {
             Design, Product and Engineering
           </p>
           <p className="mt-5 text-[15px] leading-[1.7] text-text-body">
-            I design and build end-to-end, from research and strategy through to
-            a working product. Most recently I paired with the senior product
+            I work end to end, from research and strategy through to a working
+            product. Most recently I paired with the senior product
             manager to define the roadmap for GitLab&rsquo;s Knowledge platform.
             Feature adoption grew 33%, and I shipped code to production.
           </p>
