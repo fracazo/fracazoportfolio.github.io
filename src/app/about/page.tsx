@@ -233,8 +233,9 @@ export default function About() {
             </figure>
 
             <p>
-              Then GitLab, where I was the designer on an engineering-led team
-              owning Wiki, GLQL, Pages, and the text editors.
+              Then GitLab, where I owned Wiki, GLQL, Pages, and the text
+              editors, and spent as much time on what to build as on how it
+              looked.
             </p>
 
             <figure className="my-8">

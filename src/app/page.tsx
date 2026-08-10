@@ -209,12 +209,12 @@ export default function Home() {
               👋 <span lang="pt">Olá</span>, I&rsquo;m Alex!
             </h1>
             <p className="mt-3 text-lg leading-[1.6] text-text-body">
-              I&rsquo;m a{" "}
+              Nearly two decades{" "}
               <strong className="font-semibold text-text">
-                product designer
-              </strong>{" "}
-              with nearly two decades of experience, crafting consumer and
-              enterprise products for top brands worldwide.
+                shipping consumer and enterprise software
+              </strong>
+              . Most recently GitLab&rsquo;s Knowledge platform, where I paired
+              with the PM to define the roadmap and grew feature adoption 33%.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <Link

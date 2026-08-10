@@ -34,7 +34,7 @@ const experience = [
     href: null,
     role: "Senior Product Designer",
     context:
-      "Designer on the Knowledge team, an engineering-led group that had never had a dedicated designer, reporting to the Senior Director of Product Design, owning Wiki, GLQL (GitLab Query Language), Pages, and text editors.",
+      "Paired with the senior product manager to define the roadmap for Knowledge, covering Wiki, GLQL (GitLab Query Language), Pages, and text editors.",
     period: "2022 – 2026",
     location: "Remote, global",
     outcome: "+33% adoption · code in production",
@@ -99,17 +99,47 @@ const experience = [
   },
 ];
 
+/* BirthGuide carries the bullets; the rest stay one line each so the section
+   reads as one flagship product followed by a shipping record. */
 const projects = [
   {
     name: "BirthGuide",
     href: "https://birthguide.com.au",
-    year: "2026",
+    year: "Solo build · 2026",
     context:
       "A consumer birth-planning product for Australian first-time parents, designed and built solo, end-to-end, on Next.js, React 19, Supabase, and Stripe using AI-powered tools (Claude, Claude Code). Parents answer a guided questionnaire and receive an interactive birth plan with a QR code midwives scan on their phone, plus a printable partner summary.",
     points: [
       "Reframed the category from ‘printable template’ to ‘labour communication tool’ after research revealed the partner is the primary plan reader during active labour.",
       "Validated real usage with Clarity session recordings, and built free tools, guides, and an AI chat assistant as an organic acquisition strategy.",
     ],
+  },
+  {
+    name: "Birth Plans",
+    href: "https://birthplans.app",
+    year: "Solo build · 2026",
+    context:
+      "A focused global birth-plan builder, kept separate from BirthGuide so one product stays a single-purpose tool while the other expands into the full pregnancy journey.",
+  },
+  {
+    name: "Triage Agent",
+    href: "https://github.com/fracazo/triage-agent",
+    year: "TypeScript and MCP · 2026",
+    context:
+      "A support-triage agent built on a ‘model proposes, code decides’ architecture. A deterministic policy module holds the final call, with adversarial eval sets, injection blocking, and confidence-based escalation.",
+  },
+  {
+    name: "Contrast Lab",
+    href: "https://github.com/fracazo/contrast-lab",
+    year: "Raycast extension · 2026",
+    context:
+      "WCAG 2 and APCA contrast checking in pure TypeScript, published to the Raycast store.",
+  },
+  {
+    name: "Don Draper",
+    href: "https://github.com/fracazo/don-draper-skill",
+    year: "Claude Code skill · 2026",
+    context:
+      "A creative-director critique agent built on the Agent Skills standard. Installs into Claude Code or OpenCode with one command.",
   },
 ];
 
@@ -183,13 +213,14 @@ export default function Resume() {
           <h1 className="text-[23px] font-semibold tracking-[-0.01em] text-text">
             Alex Fracazo
           </h1>
-          <p className="mt-0.5 text-[15px] text-muted">Product Designer</p>
+          <p className="mt-0.5 text-[15px] text-muted">
+            Design, Product and Engineering
+          </p>
           <p className="mt-5 text-[15px] leading-[1.7] text-text-body">
             I design and build end-to-end, from research and strategy through to
-            a working product. Most recently I led design for GitLab&rsquo;s
-            Knowledge platform in an engineering-led group that had never had a
-            dedicated designer, growing feature adoption 33% and shipping code
-            to production.
+            a working product. Most recently I paired with the senior product
+            manager to define the roadmap for GitLab&rsquo;s Knowledge platform.
+            Feature adoption grew 33%, and I shipped code to production.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
@@ -219,6 +250,41 @@ export default function Resume() {
             </a>
           </p>
         </header>
+
+        {/* Products */}
+        <section className="mt-14 border-t border-border pt-10">
+          <h2 className={sectionLabel}>Products</h2>
+          <div className="flex flex-col gap-9">
+            {projects.map((project) => (
+              <article key={project.name}>
+                <p className="mb-1.5 text-[12.5px] tracking-[0.02em] text-muted">
+                  {project.year}
+                </p>
+                <h3 className="text-[16px] font-semibold text-text">
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener"
+                    className="inline-flex items-center gap-1 text-brand"
+                  >
+                    {project.name}
+                    <ExternalLinkIcon size={13} className="opacity-70" />
+                  </a>
+                </h3>
+                <p className="mt-0.5 text-[13.5px] leading-[1.55] text-muted">
+                  {project.context}
+                </p>
+                {project.points && (
+                  <ul className="mt-2.5 list-disc space-y-1.5 pl-[18px] text-[14px] leading-[1.6] text-text-body">
+                    {project.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
 
         {/* Experience */}
         <section className="mt-14 border-t border-border pt-10">
@@ -269,39 +335,6 @@ export default function Resume() {
             UI in Haml, Sass, and Rails · Sitevip (2005–2009), front-end coder
             in a fast-paced agency.
           </p>
-        </section>
-
-        {/* Projects */}
-        <section className="mt-14 border-t border-border pt-10">
-          <h2 className={sectionLabel}>Projects</h2>
-          <div className="flex flex-col gap-9">
-            {projects.map((project) => (
-              <article key={project.name}>
-                <p className="mb-1.5 text-[12.5px] tracking-[0.02em] text-muted">
-                  {project.year}
-                </p>
-                <h3 className="text-[16px] font-semibold text-text">
-                  <a
-                    href={project.href}
-                    target="_blank"
-                    rel="noopener"
-                    className="inline-flex items-center gap-1 text-brand"
-                  >
-                    {project.name}
-                    <ExternalLinkIcon size={13} className="opacity-70" />
-                  </a>
-                </h3>
-                <p className="mt-0.5 text-[13.5px] leading-[1.55] text-muted">
-                  {project.context}
-                </p>
-                <ul className="mt-2.5 list-disc space-y-1.5 pl-[18px] text-[14px] leading-[1.6] text-text-body">
-                  {project.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
         </section>
 
         {/* Skills */}
