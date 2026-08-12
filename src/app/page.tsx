@@ -302,14 +302,8 @@ export default function Home() {
           </li>
         </ul>
         <p className="text mt-6">
-          I prefer written, async collaboration for day-to-day work, and use
-          synchronous conversations when alignment, ambiguity, or feedback
-          quality really matters.
-        </p>
-        <p className="text mt-6">
-          And I close the loop. I do not hand a design over a wall. I prototype,
-          build, and ship it, with AI-assisted tooling doing the heavy lifting
-          on code.
+          I close the loop. I prototype, build, and ship the thing, using
+          AI-assisted tooling to move faster through the code.
         </p>
       </section>
 
