@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Young_Serif } from "next/font/google";
+import { CursorDots } from "@/components/cursor-dots";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -78,6 +79,8 @@ export default function RootLayout({
       <body>
         {/* Dot texture behind every page (styles in globals.css) */}
         <div className="dot-grid" aria-hidden="true" />
+        {/* Dots lighting up around the cursor, one layer above the dot field */}
+        <CursorDots />
         {children}
       </body>
     </html>
