@@ -34,9 +34,23 @@ const FPS = 24;
 const WAVE = { in: 30, out: 100, rate: 1.5 };
 const POINT = { in: 8, out: 116, rate: 1.5 };
 
-/** How long after load the greeting plays. Lands just after the intro reveal
- *  has sharpened the avatar into focus and before the headline arrives. */
-const WAVE_DELAY = 1100;
+/**
+ * Beat between the intro reveal finishing and the greeting playing. The reveal
+ * pulls the eye down the page (avatar, then each line, then Selected work as
+ * the last beat), so the wave waits for that to land and for the eye to come
+ * back up to the avatar. Waving while the headline is still arriving means
+ * nobody is looking at it.
+ */
+const WAVE_DELAY = 900;
+
+/**
+ * Backstop for the same beat measured from mount, used when the reveal isn't
+ * running to be watched: a client-side navigation back to home, or a load slow
+ * enough that the last element had already finished before this mounted. Sized
+ * to the reveal's own end (`.reveal-after`, 1.7s delay + 0.7s duration in
+ * globals.css) plus the beat.
+ */
+const WAVE_FALLBACK = 2400 + WAVE_DELAY;
 
 /** Quiet beat between the wave settling and the nudge to scroll. */
 const POINT_DELAY = 2500;
@@ -117,36 +131,64 @@ export function AvatarGreeting() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    timers.push(
-      window.setTimeout(async () => {
-        await playSegment(wave, WAVE);
-        if (cancelled) return;
+    const greet = async () => {
+      await playSegment(wave, WAVE);
+      if (cancelled) return;
 
-        timers.push(
-          window.setTimeout(() => {
-            // Pointing down at content someone is already reading is noise, so
-            // the nudge is skipped outright once they have scrolled. It plays
-            // at most once either way.
-            if (cancelled || scrolled || window.scrollY > 0) return;
-            // Revealed only once it is actually playing: if autoplay is
-            // refused there is no reason to swap layers at all.
-            point.addEventListener(
-              "playing",
-              () => {
-                point.style.opacity = "1";
-              },
-              { once: true },
-            );
-            void playSegment(point, POINT);
-          }, POINT_DELAY),
-        );
-      }, WAVE_DELAY),
-    );
+      timers.push(
+        window.setTimeout(() => {
+          // Pointing down at content someone is already reading is noise, so
+          // the nudge is skipped outright once they have scrolled. It plays
+          // at most once either way.
+          if (cancelled || scrolled || window.scrollY > 0) return;
+          // Revealed only once it is actually playing: if autoplay is
+          // refused there is no reason to swap layers at all.
+          point.addEventListener(
+            "playing",
+            () => {
+              point.style.opacity = "1";
+            },
+            { once: true },
+          );
+          void playSegment(point, POINT);
+        }, POINT_DELAY),
+      );
+    };
+
+    // The greeting hangs off the end of the intro reveal rather than a delay
+    // measured from mount, so it can't land on top of the reveal when hydration
+    // is late or the animation starts behind first paint. The last beat of the
+    // reveal is the Selected work section (`.reveal-after`), so its
+    // `animationend` is the moment the page has finished arriving. The fallback
+    // covers every case where that event won't come: no intro class on a
+    // client-side return to home, or a page opened in a background tab, where
+    // the reveal is paused and then cancelled outright when the intro class is
+    // stripped, so the animation simply never ends.
+    let started = false;
+    const start = () => {
+      if (started || cancelled) return;
+      started = true;
+      timers.push(window.setTimeout(greet, WAVE_DELAY));
+    };
+
+    const last = document.documentElement.classList.contains("intro")
+      ? document.querySelector(".reveal-after")
+      : null;
+
+    // `animationend` bubbles, so this only counts the section's own reveal and
+    // not any animation a card inside it might grow later.
+    const onRevealEnd = (event: Event) => {
+      if (event.target === last) start();
+    };
+
+    last?.addEventListener("animationend", onRevealEnd);
+    timers.push(window.setTimeout(start, WAVE_FALLBACK));
 
     return () => {
       cancelled = true;
       timers.forEach(clearTimeout);
       window.removeEventListener("scroll", onScroll);
+      last?.removeEventListener("animationend", onRevealEnd);
     };
   }, []);
 
