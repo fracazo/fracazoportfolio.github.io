@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HoverJoke } from "@/components/hover-joke";
 import { PlainShell } from "@/components/plain-shell";
 import { WritingArticle } from "@/components/writing-article";
 
@@ -37,8 +38,16 @@ export default function BuildingBirthGuideWithAI() {
         }}
       >
         <p>
-          I&rsquo;m a designer who started my career in 2005 as a web designer,
-          designing in Photoshop and coding with tables, then tableless.
+          I&rsquo;m a designer who started my career in 2005 as a web designer,{" "}
+          <HoverJoke
+            id="photoshop-joke"
+            word="designing"
+            src="/images/photoshop-grandma.jpg"
+            alt="Meme: an elderly woman with a walking frame says 'I used to design websites in photoshop', and the young woman helping her replies 'Sure you did grandma, let's get you back in bed'."
+            width={640}
+            height={446}
+          />{" "}
+          and coding with tables, then tableless.
           That&rsquo;s how I learned to code, and after the basics the rest was a
           simple evolution. I&rsquo;ve been doing design and code for a long
           time, long enough to have a strong opinion about craft, and skeptical
@@ -63,8 +72,8 @@ export default function BuildingBirthGuideWithAI() {
         <p>
           That&rsquo;s the real shift. AI writing my code for me was never the
           point. Being wrong got cheap, and that let me explore more honestly.
-          I&rsquo;m not married to decisions I&rsquo;ve spent two days on. I can
-          change my mind.
+          I&rsquo;m not married to decisions I produced quickly. I can change my
+          mind if I have a good reason to do so.
         </p>
 
         <div className="writing-callout">
