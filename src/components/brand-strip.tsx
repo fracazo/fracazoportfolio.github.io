@@ -24,6 +24,8 @@ const brandMarks = [
     w: 50,
     h: 37,
   },
+  /* One flat path, so it needs none of the alpha surgery the others did. */
+  { name: "Endeavour Group", src: "/images/brands/endeavour.svg", w: 78, h: 22 },
   { name: "GitLab", src: "/images/brands/gitlab.svg", w: 100, h: 22 },
 ];
 
