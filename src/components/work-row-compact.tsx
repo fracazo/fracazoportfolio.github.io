@@ -1,3 +1,4 @@
+import { PanelButton } from "./panel-button";
 import { PanelLink } from "./panel-link";
 import { Chip } from "./chip";
 
@@ -15,6 +16,8 @@ type WorkRowCompactProps = {
   /** Optional thumbnail. Fills the leading grid column the row already
       reserves, so a row with one lines up with a row without. */
   image?: { src: string; alt: string };
+  /** Registry key for work with no route: opens a short stub in the panel. */
+  stub?: string;
 };
 
 /**
@@ -33,6 +36,7 @@ export function WorkRowCompact({
   metric,
   todo,
   image,
+  stub,
 }: WorkRowCompactProps) {
   const thumb = image ? (
     <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-1 @min-[600px]:row-start-1">
@@ -85,6 +89,18 @@ export function WorkRowCompact({
      two-column grid at widths that cannot carry it. */
   const rowClass =
     "work-row-compact grid grid-cols-1 border-t border-border py-5 @min-[600px]:grid-cols-[280px_1fr] @min-[600px]:gap-8";
+
+  if (stub) {
+    return (
+      <PanelButton
+        panelKey={stub}
+        className={`group ${rowClass} w-full cursor-pointer text-start`}
+      >
+        {thumb}
+        {content}
+      </PanelButton>
+    );
+  }
 
   if (!href) {
     return (

@@ -12,6 +12,18 @@ export const panelRegistry: Record<
   string,
   { title: string; load: React.ComponentType }
 > = {
+  "stub:coursify": {
+    title: "Coursify.me",
+    load: dynamic(() =>
+      import("@/components/stubs/coursify").then((m) => m.CoursifyStub),
+    ),
+  },
+  "stub:vodafone": {
+    title: "MyMix",
+    load: dynamic(() =>
+      import("@/components/stubs/vodafone").then((m) => m.VodafoneStub),
+    ),
+  },
   "/about": {
     title: "About me",
     load: dynamic(() =>

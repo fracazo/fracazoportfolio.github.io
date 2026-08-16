@@ -62,10 +62,12 @@ const workGroups = [
     ],
     compact: [
       {
+        stub: "stub:coursify",
         eyebrow: "Co-founded · 2012–2014",
         title: "Coursify.me",
+        tagline:
+          "An online course platform: create courses, tutorials and ebooks, and sell them.",
         metric: "50,000 students",
-        todo: "One line on what it was and what you did. Everything else here is yours.",
       },
       {
         href: "/case-studies/mr-summary-ai",
@@ -132,10 +134,11 @@ const workGroups = [
         todo: "A real project title, and confirmation the résumé line above is the one you want here.",
       },
       {
+        stub: "stub:vodafone",
         eyebrow: "Vodafone · 2015–2016",
-        title: "Vodafone",
-        tagline: "UX for the self-service team across web and native apps.",
-        todo: "A real project title, a metric, and confirmation the résumé line above is the one you want here.",
+        title: "MyMix",
+        tagline:
+          "Letting prepaid customers build their own recharge, in four taps.",
       },
     ],
   },
