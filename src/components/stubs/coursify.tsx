@@ -2,29 +2,37 @@ import { ExternalLinkIcon } from "@/components/icons";
 import { WorkStub } from "@/components/work-stub";
 
 /**
- * Coursify.me. The description is the product's own, and the numbers are
- * Alex's. What he did on it is still outstanding, so the stub says what the
- * thing is and stops rather than filling the gap.
+ * Coursify.me. Product description is its own; the brand work and the
+ * concentric-waves origin come from Alex's own study documents.
  */
 export function CoursifyStub() {
   return (
     <WorkStub
       eyebrow="Co-founded · 2012–2014"
       title="Coursify.me"
-      intro="An online course platform: create courses, tutorials and ebooks, and sell them."
+      intro="An online course platform, and the brand identity behind it."
     >
       <p>
-        Make money selling online courses, tutorials and ebooks. The platform
-        lets you easily create online courses and sell them.
+        Coursify.me let any person or company build a school and sell courses,
+        tutorials and ebooks online. The job was connecting teachers and
+        companies to their students, which is a marketplace problem wearing a
+        publishing tool&rsquo;s clothes. It reached 50,000 students and is still
+        running.
       </p>
       <p>
-        Co-founded in 2012 and grown to 50,000 students. It is still running
-        today.
+        I designed the brand. It started from a sketch of a person broadcasting
+        concentric rings, on the idea that knowledge travels like an
+        electromagnetic wave. That sketch became the mark: a C drawn as four
+        nested arcs radiating from a centre, so the letter and the transmission
+        are the same shape.
       </p>
-      <p className="inline-block rounded border border-dashed border-border px-2 py-1 font-mono text-[12px] text-text-tertiary">
-        TODO: what you actually did on it. Founder is a role, not a
-        contribution, and this is the entry that makes the Knowledge products
-        group a ten-year story rather than a GitLab one.
+      <p>
+        The work behind it was geometric rather than decorative. The letterform
+        was constructed on overlapping circles and axes, tested against Open
+        Sans, Roboto, Segoe UI and Inter to find a C that was properly circular,
+        and explored both ways: as a solid counterform and as the nested arcs
+        that won. The four-colour palette had to survive being reduced,
+        flipped, and blurred down to pure light.
       </p>
       <p>
         <a href="https://coursify.me/" target="_blank" rel="noopener">
