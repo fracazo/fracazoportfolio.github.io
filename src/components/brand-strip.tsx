@@ -6,8 +6,10 @@
    than a wordmark to carry the same weight. Ordered by recognition, not date. */
 const brandMarks = [
   { name: "Qantas", src: "/images/brands/qantas.svg", w: 44, h: 37 },
-  /* The two-tone T masks to a single silhouette, which is still the mark. */
-  { name: "Telstra", src: "/images/brands/telstra.svg", w: 32, h: 37 },
+  /* Full lockup, so it sits with the wordmarks rather than the symbols. The
+     swoosh carries partial alpha in the file: masking to one flat colour
+     collapses the T, which is defined by the colour boundary, not by a hole. */
+  { name: "Telstra", src: "/images/brands/telstra.svg", w: 87, h: 24 },
   /* PNG, not the source webp: the webp's comma counter is opaque white rather
      than a hole, so an alpha mask filled it in and flattened the mark. */
   { name: "Vodafone", src: "/images/brands/vodafone.png", w: 86, h: 23 },
