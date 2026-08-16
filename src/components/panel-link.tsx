@@ -47,7 +47,7 @@ export function PanelLink({
           return;
         }
         e.preventDefault();
-        open(href);
+        open(href, e.currentTarget);
       }}
     >
       {children}

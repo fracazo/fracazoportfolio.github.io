@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type ReactNode,
@@ -15,7 +16,10 @@ import { panelRegistry } from "./panel-registry";
 /** Below this the split has no room, so the panel becomes a full-screen sheet. */
 const SPLIT_MIN = 1200;
 
-type PanelApi = { open: (href: string) => void; active: string | null };
+type PanelApi = {
+  open: (href: string, trigger?: HTMLElement) => void;
+  active: string | null;
+};
 
 const PanelContext = createContext<PanelApi>({ open: () => {}, active: null });
 
@@ -33,6 +37,16 @@ export function PanelShell({ children }: { children: ReactNode }) {
   const savedScroll = useRef(0);
   /** Element that opened the panel, refocused on close. */
   const opener = useRef<HTMLElement | null>(null);
+  /**
+   * Where the clicked row sat in the viewport at the moment of the click.
+   * Restoring a raw scroll offset is not enough: opening the split reflows the
+   * index into a narrower column and compacts the rows, so the same offset
+   * lands on different content. Anchoring on the row itself keeps it still.
+   */
+  const anchor = useRef<{ el: HTMLElement | null; top: number }>({
+    el: null,
+    top: 0,
+  });
 
   useEffect(() => {
     const mq = window.matchMedia(`(min-width: ${SPLIT_MIN}px)`);
@@ -50,14 +64,16 @@ export function PanelShell({ children }: { children: ReactNode }) {
   }, []);
 
   const open = useCallback(
-    (href: string) => {
+    (href: string, trigger?: HTMLElement) => {
       if (!(href in panelRegistry)) return;
+      const el = trigger ?? (document.activeElement as HTMLElement | null);
+      anchor.current = { el, top: el?.getBoundingClientRect().top ?? 0 };
       if (active) {
         // Swapping entries replaces the entry rather than stacking one, so a
         // single back press still closes the panel however many you viewed.
         window.history.replaceState({ panel: href }, "");
       } else {
-        opener.current = document.activeElement as HTMLElement | null;
+        opener.current = el;
         savedScroll.current = window.scrollY;
         // A history entry so the browser back button closes the panel. The URL
         // is deliberately unchanged: a shareable split URL would make the split
@@ -92,18 +108,42 @@ export function PanelShell({ children }: { children: ReactNode }) {
   const isOpen = Boolean(active);
   useEffect(() => {
     if (!isOpen) return;
-    const y = savedScroll.current;
     document.body.style.overflow = "hidden";
-    if (split && indexRef.current) indexRef.current.scrollTop = y;
     panelRef.current?.focus();
     return () => {
       document.body.style.overflow = "";
-      window.scrollTo(0, y);
       // Focus goes back to whatever opened the panel, however it was closed:
       // the button, Escape, the back button, or the system back gesture.
       opener.current?.focus();
       opener.current = null;
     };
+  }, [isOpen, split]);
+
+  // Runs after the split has been applied but before paint, so the correction
+  // is never visible. Without it the row you clicked slides away under you.
+  useLayoutEffect(() => {
+    const y = savedScroll.current;
+    const inPane = isOpen && split;
+    // Coarse restore first, so we are in the right region of the page...
+    if (inPane) {
+      const pane = indexRef.current;
+      if (pane) pane.scrollTop = y;
+    } else if (!isOpen) {
+      window.scrollTo(0, y);
+    }
+    // ...then pin the clicked row to exactly where it was. The coarse offset
+    // alone is wrong because the split reflows the column and compacts the
+    // rows, so the same number of pixels lands on different content.
+    const { el, top } = anchor.current;
+    if (!el || !el.isConnected) return;
+    const delta = el.getBoundingClientRect().top - top;
+    if (Math.abs(delta) < 1) return;
+    if (inPane) {
+      const pane = indexRef.current;
+      if (pane) pane.scrollTop = pane.scrollTop + delta;
+    } else {
+      window.scrollBy(0, delta);
+    }
   }, [isOpen, split]);
 
   // Swapping entries resets the panel's own scroll without collapsing the split.

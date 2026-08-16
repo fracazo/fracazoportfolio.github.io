@@ -1948,11 +1948,11 @@
 /* Selected state. Without it there is no way to tell which entry produced the
    content in the panel. A leading rule plus a faint wash, so it reads at a
    glance without competing with the panel. */
-:is(.work-row, .work-row-compact)[data-selected] {
+:is(.work-row, .work-row-compact, .row-link)[data-selected] {
   position: relative;
   background: var(--panel-2);
 }
-:is(.work-row, .work-row-compact)[data-selected]::before {
+:is(.work-row, .work-row-compact, .row-link)[data-selected]::before {
   content: "";
   position: absolute;
   inset-block: 0;
@@ -1978,4 +1978,12 @@
   vertical-align: -0.1em;
   margin-inline-start: 0.3em;
   opacity: 0.7;
+}
+
+/* The card you clicked already showed this image, so repeating it as the first
+   thing in the panel is the same picture twice in one glance. Scoped to the
+   panel: the standalone route has no card above it, so the hero still earns
+   its place there. */
+.panel-body .case-hero-image {
+  display: none;
 }

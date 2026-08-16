@@ -69,6 +69,10 @@ const workGroups = [
       },
       {
         href: "/case-studies/mr-summary-ai",
+        image: {
+          src: "/images/gitlab-pattern.svg",
+          alt: "GitLab pattern",
+        },
         eyebrow: "GitLab · 2023",
         title: "Summarize Merge Requests with AI",
         tagline:
@@ -80,7 +84,7 @@ const workGroups = [
   {
     id: "consumer-at-scale",
     title: "Consumer at scale",
-    context: "Products used by millions of Australians and Brazilians.",
+    context: "Products used by millions of Australians.",
     full: [],
     compact: [
       {
