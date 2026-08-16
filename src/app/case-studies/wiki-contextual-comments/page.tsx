@@ -252,6 +252,14 @@ export default function WikiContextualComments() {
             <p>This project, combined with the sidebar redesign, set the architectural foundation for GitLab Wiki as a Confluence alternative. Contextual comments were the single most-requested feature in competitive comparisons. Completing the design system positions the team to ship a feature that directly addresses the gap that drives teams toward Confluence, on a product they are already using for code and project management.</p>
           </div>
 
+          <div className="case-study-section">
+            <h2>Links</h2>
+            <ul>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/work_items/509789" target="_blank" rel="noopener">GitLab issue 509789</a>, the design spike this work came from</li>
+              <li><a href="https://youtu.be/67UZDRRE7gQ" target="_blank" rel="noopener">Design critique</a>, video</li>
+            </ul>
+          </div>
+
         </div>{/* /case-study-main */}
       </section>
 

@@ -249,6 +249,13 @@ export default function MrSummaryAi() {
             <p>I would treat the model's real accuracy as a design constraint from day one. I assumed better prompts would close the gap, and they didn't. I would also instrument the experiments so I could show which design choices moved the outcome.</p>
           </div>
 
+          <div className="case-study-section">
+            <h2>Links</h2>
+            <ul>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/work_items/429882" target="_blank" rel="noopener">GitLab issue 429882</a>, the feature issue</li>
+            </ul>
+          </div>
+
         </div>{/* /case-study-main */}
       </section>
 

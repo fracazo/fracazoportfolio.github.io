@@ -232,6 +232,14 @@ DISPLAY AS table`}</pre>
             <p>What I would do differently: set up the measurement earlier, so I could point to the design choices that drove adoption, and push sooner for the visual layer that non-technical users needed from the start.</p>
           </div>
 
+          <div className="case-study-section">
+            <h2>Links</h2>
+            <ul>
+              <li><a href="https://about.gitlab.com/blog/embedded-views-the-future-of-work-tracking-in-gitlab/" target="_blank" rel="noopener">Blog post</a>, about.gitlab.com</li>
+              <li><a href="https://docs.gitlab.com/user/glql/" target="_blank" rel="noopener">Documentation</a>, docs.gitlab.com</li>
+            </ul>
+          </div>
+
         </div>{/* /case-study-main */}
       </section>
 
