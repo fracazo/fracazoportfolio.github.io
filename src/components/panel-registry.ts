@@ -18,6 +18,44 @@ export const panelRegistry: Record<
       import("@/components/about-content").then((m) => m.AboutContent),
     ),
   },
+  "/resume": {
+    title: "Résumé",
+    load: dynamic(() =>
+      import("@/components/resume-content").then((m) => m.ResumeContent),
+    ),
+  },
+  "/writing": {
+    title: "Writing",
+    load: dynamic(() =>
+      import("@/components/writing-index-content").then(
+        (m) => m.WritingIndexContent,
+      ),
+    ),
+  },
+  "/writing/titles-are-a-trap": {
+    title: "Titles are a trap",
+    load: dynamic(() =>
+      import("@/components/writing/titles-are-a-trap").then(
+        (m) => m.TitlesAreATrapContent,
+      ),
+    ),
+  },
+  "/writing/effort-and-impact-are-not-the-same-thing": {
+    title: "Effort and impact are not the same thing",
+    load: dynamic(() =>
+      import("@/components/writing/effort-and-impact-are-not-the-same-thing").then(
+        (m) => m.EffortAndImpactContent,
+      ),
+    ),
+  },
+  "/writing/building-birthguide-with-ai": {
+    title: "Building BirthGuide with AI",
+    load: dynamic(() =>
+      import("@/components/writing/building-birthguide-with-ai").then(
+        (m) => m.BuildingBirthguideWithAiContent,
+      ),
+    ),
+  },
   "/case-studies/glql": {
     title: "GLQL / Embedded Views",
     load: dynamic(() =>

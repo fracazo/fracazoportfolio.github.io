@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { SiteFooter } from "./site-footer";
-import { ArrowLeftIcon } from "./icons";
 
 type ArticleLink = { href: string; title: string };
 
@@ -19,6 +18,7 @@ export function WritingArticle({
   prev,
   next,
   children,
+  back,
 }: {
   tags: string[];
   title: string;
@@ -26,17 +26,12 @@ export function WritingArticle({
   prev?: ArticleLink;
   next?: ArticleLink;
   children: ReactNode;
+  /** Route chrome. Omitted in the panel, where a fixed pill would misplace. */
+  back?: ReactNode;
 }) {
   return (
     <>
-      {/* Back to the writing index */}
-      <Link
-        href="/writing"
-        className="fixed top-5 left-5 z-50 inline-flex items-center gap-1.5 rounded-full border border-border bg-card/80 px-3 py-1.5 text-[13px] font-medium text-muted no-underline backdrop-blur-md transition-colors hover:border-border hover:text-text hover:no-underline"
-      >
-        <ArrowLeftIcon size={14} />
-        Writing
-      </Link>
+      {back}
 
       <article className="mx-auto w-full max-w-[640px] pt-24 max-md:pt-20">
         <div className="writing-tags">

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { PanelLink } from "./panel-link";
 import { useRef, useState } from "react";
 
 export type RowItem = {
@@ -38,7 +38,7 @@ export function RowList({ items }: { items: RowItem[] }) {
       <ul role="list" className="m-0 list-none p-0">
         {items.map((item) => (
           <li key={item.href} className="border-b border-border">
-            <Link
+            <PanelLink
               href={item.href}
               onMouseEnter={
                 item.image ? () => setPreview(item.image) : undefined
@@ -52,7 +52,7 @@ export function RowList({ items }: { items: RowItem[] }) {
                   {item.meta}
                 </span>
               )}
-            </Link>
+            </PanelLink>
           </li>
         ))}
       </ul>

@@ -1910,3 +1910,17 @@
     animation: none !important;
   }
 }
+
+/* Panel body. Content components carry their own centring and gutters, tuned
+   for a full page rather than a 720px pane, so in the panel they landed at
+   three different insets (a case study flush to the edge, an essay at 40px, a
+   résumé at 74px). The panel owns the gutter instead, and the wrappers below
+   are flattened so every kind of content lines up with the index beside it.
+   Scoped to .panel-body, so the standalone routes are untouched. */
+.panel-body :is(.case-study-content, .case-study-main) {
+  max-width: none;
+}
+.panel-body :is(main, article) {
+  max-width: none;
+  padding-inline: 0;
+}

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { AvatarGreeting } from "@/components/avatar-greeting";
 import { PlainShell } from "@/components/plain-shell";
 import { BrandStrip } from "@/components/brand-strip";
@@ -269,12 +268,12 @@ export default function Home() {
               >
                 Email me
               </a>
-              <Link
+              <PanelLink
                 href="/resume"
                 className="btn btn-ghost inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
               >
                 Résumé
-              </Link>
+              </PanelLink>
               <a
                 href="https://www.linkedin.com/in/fracazo"
                 target="_blank"
@@ -386,7 +385,7 @@ export default function Home() {
             <h2 id="writing-title" className="h2">
               Writing
             </h2>
-            <Link
+            <PanelLink
               href="/writing"
               className="group -m-2 inline-flex items-center gap-1.5 p-2 text-sm whitespace-nowrap text-text no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
             >
@@ -395,7 +394,7 @@ export default function Home() {
                 size={14}
                 className="transition-transform duration-150 group-hover:translate-x-0.5"
               />
-            </Link>
+            </PanelLink>
           </div>
           <RowList items={writing} />
         </div>

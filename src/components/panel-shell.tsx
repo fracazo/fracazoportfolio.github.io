@@ -152,8 +152,8 @@ export function PanelShell({ children }: { children: ReactNode }) {
             aria-label={entry?.title}
             className={
               splitOpen
-                ? "animate-[panel-in_320ms_cubic-bezier(0.32,0.72,0,1)_both] overflow-y-auto overscroll-contain bg-bg outline-none"
-                : "fixed inset-0 z-50 animate-[panel-in_320ms_cubic-bezier(0.32,0.72,0,1)_both] overflow-y-auto overscroll-contain bg-bg outline-none"
+                ? "panel-body animate-[panel-in_320ms_cubic-bezier(0.32,0.72,0,1)_both] overflow-y-auto overscroll-contain bg-bg px-6 outline-none min-[700px]:px-10"
+                : "panel-body fixed inset-0 z-50 animate-[panel-in_320ms_cubic-bezier(0.32,0.72,0,1)_both] overflow-y-auto overscroll-contain bg-bg px-6 outline-none"
             }
           >
             <PanelChrome
@@ -177,7 +177,7 @@ function PanelChrome({
   label: string;
 }) {
   return (
-    <div className="sticky top-0 z-10 flex justify-end bg-bg/85 px-4 py-3 backdrop-blur-md">
+    <div className="sticky top-0 z-10 -mx-6 flex justify-start bg-bg/85 px-6 py-3 backdrop-blur-md min-[700px]:-mx-10 min-[700px]:px-10">
       <button
         type="button"
         onClick={onClose}
