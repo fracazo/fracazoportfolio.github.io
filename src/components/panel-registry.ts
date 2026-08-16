@@ -24,14 +24,6 @@ export const panelRegistry: Record<
       import("@/components/resume-content").then((m) => m.ResumeContent),
     ),
   },
-  "/writing": {
-    title: "Writing",
-    load: dynamic(() =>
-      import("@/components/writing-index-content").then(
-        (m) => m.WritingIndexContent,
-      ),
-    ),
-  },
   "/writing/titles-are-a-trap": {
     title: "Titles are a trap",
     load: dynamic(() =>

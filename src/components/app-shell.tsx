@@ -4,11 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { ThemeToggle } from "./theme-toggle";
-import { HomeIcon, WritingIcon, CloseIcon, MenuIcon } from "./icons";
+import { HomeIcon, CloseIcon, MenuIcon } from "./icons";
 
 const navLinks = [
   { href: "/", label: "Home", icon: HomeIcon },
-  { href: "/writing", label: "Writing", icon: WritingIcon },
 ];
 
 function isActive(pathname: string, href: string) {

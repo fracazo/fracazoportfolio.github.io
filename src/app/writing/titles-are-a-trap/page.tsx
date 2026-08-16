@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PlainShell>
-      <TitlesAreATrapContent back={<BackToSite href="/writing" label="Writing" />} />
+      <TitlesAreATrapContent back={<BackToSite />} />
     </PlainShell>
   );
 }

@@ -8,7 +8,7 @@ import { WorkRowCompact } from "@/components/work-row-compact";
 import { RowList } from "@/components/row-list";
 import { LinkRowList } from "@/components/link-row-list";
 import { SiteFooter } from "@/components/site-footer";
-import { ArrowRightIcon, ExternalLinkIcon } from "@/components/icons";
+import { ExternalLinkIcon } from "@/components/icons";
 
 /* Work is grouped by the kind of problem, not by date. Each group leads with
    the full case studies and follows with compact rows, so the weight change
@@ -393,21 +393,9 @@ export default function Home() {
         className="mx-auto w-full max-w-[640px]"
       >
         <div className="grid gap-4">
-          <div className="flex items-baseline justify-between gap-4">
-            <h2 id="writing-title" className="h2">
-              Writing
-            </h2>
-            <PanelLink
-              href="/writing"
-              className="group -m-2 inline-flex items-center gap-1.5 p-2 text-sm whitespace-nowrap text-text no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
-            >
-              All writing
-              <ArrowRightIcon
-                size={14}
-                className="transition-transform duration-150 group-hover:translate-x-0.5"
-              />
-            </PanelLink>
-          </div>
+          <h2 id="writing-title" className="h2">
+            Writing
+          </h2>
           <RowList items={writing} />
         </div>
       </section>
