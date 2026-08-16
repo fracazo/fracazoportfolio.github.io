@@ -12,6 +12,16 @@ export const panelRegistry: Record<
   string,
   { title: string; load: React.ComponentType }
 > = {
+  "stub:b2w": {
+    title: "Mobile for Americanas, Submarino and Shoptime",
+    load: dynamic(() => import("@/components/stubs/b2w").then((m) => m.B2wStub)),
+  },
+  "stub:bem-direto": {
+    title: "Bem Direto",
+    load: dynamic(() =>
+      import("@/components/stubs/bem-direto").then((m) => m.BemDiretoStub),
+    ),
+  },
   "stub:coursify": {
     title: "Coursify.me",
     load: dynamic(() =>

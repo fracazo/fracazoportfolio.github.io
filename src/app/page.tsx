@@ -126,12 +126,12 @@ const workGroups = [
         metric: "Sydney Design Award",
       },
       {
+        stub: "stub:b2w",
         eyebrow: "B2W Digital · 2013–2015",
-        title: "B2W Digital",
+        title: "Mobile for Americanas, Submarino and Shoptime",
         tagline:
-          "A responsive white-label e-commerce platform supporting multiple branded stores.",
-        metric: "3 native apps unified",
-        todo: "A real project title, and confirmation the résumé line above is the one you want here.",
+          "Rebuilding mobile for three of Brazil's largest e-commerce brands.",
+        metric: "500,000+ items",
       },
       {
         stub: "stub:vodafone",
@@ -167,8 +167,11 @@ const workGroups = [
     ],
     compact: [
       {
+        stub: "stub:bem-direto",
+        eyebrow: "Bem Direto · 2010–2012",
         title: "Bem Direto",
-        todo: "Years, what it was, your role, and a one-line outcome. The site carries one clause about it on the résumé and nothing else.",
+        tagline:
+          "A two-sided property tool connecting buyers, agencies and brokers.",
       },
     ],
   },
