@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ExternalLinkIcon } from "./icons";
 import { useRef, useState } from "react";
 
 export type LinkRowItem = {
@@ -69,9 +70,10 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
                       href={link.href}
                       target="_blank"
                       rel="noopener"
-                      className="text-[13px] text-muted no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
+                      className="inline-flex items-center gap-1 text-[13px] text-muted no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
                     >
-                      {link.label}&nbsp;&rarr;
+                      {link.label}
+                      <ExternalLinkIcon size={12} className="opacity-70" />
                     </a>
                   ),
                 )}

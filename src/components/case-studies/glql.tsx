@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ExternalLinkIcon } from "@/components/icons";
 
 /**
  * Body of the glql case study, without the route chrome.
@@ -221,8 +222,8 @@ DISPLAY AS table`}</pre>
           <div className="case-study-section">
             <h2>Links</h2>
             <ul>
-              <li><a href="https://about.gitlab.com/blog/embedded-views-the-future-of-work-tracking-in-gitlab/" target="_blank" rel="noopener">Blog post</a>, about.gitlab.com</li>
-              <li><a href="https://docs.gitlab.com/user/glql/" target="_blank" rel="noopener">Documentation</a>, docs.gitlab.com</li>
+              <li><a href="https://about.gitlab.com/blog/embedded-views-the-future-of-work-tracking-in-gitlab/" target="_blank" rel="noopener">Blog post<ExternalLinkIcon size={12} className="external-mark" /></a>, about.gitlab.com</li>
+              <li><a href="https://docs.gitlab.com/user/glql/" target="_blank" rel="noopener">Documentation<ExternalLinkIcon size={12} className="external-mark" /></a>, docs.gitlab.com</li>
             </ul>
           </div>
 

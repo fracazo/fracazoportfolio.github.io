@@ -31,7 +31,7 @@ export function SiteFooter({
                     GitHub
                   </a>
                   ,{" "}
-                  <a href="http://www.linkedin.com/in/fracazo" target="_blank">
+                  <a href="https://www.linkedin.com/in/fracazo" target="_blank">
                     LinkedIn
                   </a>
                   , read my <Link href="/resume">résumé</Link>, or{" "}

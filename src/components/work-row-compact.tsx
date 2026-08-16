@@ -12,11 +12,15 @@ type WorkRowCompactProps = {
   metric?: string;
   /** Copy Alex still owes this entry. Renders as an obvious unfinished marker. */
   todo?: string;
+  /** Optional thumbnail. Fills the leading grid column the row already
+      reserves, so a row with one lines up with a row without. */
+  image?: { src: string; alt: string };
 };
 
 /**
  * The lighter of the two work card weights. Same top border and eyebrow/title
- * hierarchy as `WorkRow`, but no thumbnail, one metric instead of two, and
+ * hierarchy as `WorkRow`, but an optional thumbnail, one metric instead of
+ * two, and
  * shorter vertical padding so it sits under the full cards without looking
  * like a full card with a missing image. Rows with no detail page render as a
  * plain div rather than a dead link.
@@ -28,9 +32,24 @@ export function WorkRowCompact({
   tagline,
   metric,
   todo,
+  image,
 }: WorkRowCompactProps) {
+  const thumb = image ? (
+    <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-1 @min-[600px]:row-start-1">
+      <div className="aspect-[16/10] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image.src}
+          alt={image.alt}
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  ) : null;
+
   const content = (
-    <div className="work-row-body min-w-0 @min-[600px]:col-start-2">
+    <div className="work-row-body min-w-0 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
       {eyebrow && (
         <div className="mb-1.5 text-[11px] font-medium tracking-[0.06em] text-muted uppercase">
           {eyebrow}
@@ -68,7 +87,12 @@ export function WorkRowCompact({
     "work-row-compact grid grid-cols-1 border-t border-border py-5 @min-[600px]:grid-cols-[280px_1fr] @min-[600px]:gap-8";
 
   if (!href) {
-    return <div className={rowClass}>{content}</div>;
+    return (
+      <div className={rowClass}>
+        {thumb}
+        {content}
+      </div>
+    );
   }
 
   return (
@@ -76,6 +100,7 @@ export function WorkRowCompact({
       href={href}
       className={`group ${rowClass} no-underline hover:no-underline`}
     >
+      {thumb}
       {content}
     </PanelLink>
   );

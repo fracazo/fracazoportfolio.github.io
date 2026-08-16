@@ -85,6 +85,10 @@ const workGroups = [
     compact: [
       {
         href: "/case-studies/qantas-entertainment-app",
+        image: {
+          src: "/images/62dc26d29e21732abffdaacd_work4-p-1080.png",
+          alt: "Qantas Entertainment App",
+        },
         eyebrow: "Qantas · 2018",
         title: "A Unified In-flight Entertainment Experience",
         tagline:
@@ -93,6 +97,10 @@ const workGroups = [
       },
       {
         href: "/case-studies/qantas-app",
+        image: {
+          src: "/images/62dc1d83920df32baae28d6b_work2-p-1080.png",
+          alt: "Qantas Airways App",
+        },
         eyebrow: "Qantas · 2016",
         title: "Increasing App Adoption Through Entertainment",
         tagline:
@@ -101,6 +109,10 @@ const workGroups = [
       },
       {
         href: "/case-studies/eta-app",
+        image: {
+          src: "/images/62dc274f132cbe543717e126_work1-p-2000.jpg",
+          alt: "The Australian Government ETA visa app",
+        },
         eyebrow: "Australian Government · 2020",
         title: "Reducing Friction in Government Visa Applications",
         tagline:
@@ -526,9 +538,10 @@ export default function Home() {
             href="https://www.linkedin.com/in/fracazo/details/recommendations/"
             target="_blank"
             rel="noopener"
-            className="text-sm text-muted hover:text-brand"
+            className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-brand"
           >
-            Read full recommendations on LinkedIn &rarr;
+            Read full recommendations on LinkedIn
+            <ExternalLinkIcon size={13} className="opacity-70" />
           </a>
         </p>
       </section>

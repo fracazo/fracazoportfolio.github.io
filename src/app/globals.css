@@ -1886,20 +1886,13 @@
   }
 }
 
-/* Side panel motion. The panel slides in from the right; the index slides left
-   by roughly the distance its column actually travels when the layout goes
-   from one centred column to the left half of a split. */
+/* Side panel motion. Only the panel moves: it slides in from the right while
+   the index simply reflows into the space left over. Animating the index too
+   read as a wobble, because the layout snaps its column left instantly and the
+   transform then started it right of where it had landed and slid it back. */
 @keyframes panel-in {
   from {
     transform: translateX(100%);
-  }
-  to {
-    transform: none;
-  }
-}
-@keyframes panel-index-in {
-  from {
-    transform: translateX(50%);
   }
   to {
     transform: none;
@@ -1976,4 +1969,13 @@
   margin-inline: 0;
   width: 100%;
   padding-inline: 0;
+}
+
+/* External-link mark inside prose lists: sits on the text baseline rather than
+   the line box, so it reads as punctuation after the label. */
+.external-mark {
+  display: inline-block;
+  vertical-align: -0.1em;
+  margin-inline-start: 0.3em;
+  opacity: 0.7;
 }

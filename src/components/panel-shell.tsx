@@ -140,7 +140,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
           aria-hidden={Boolean(active) && !split ? true : undefined}
           className={
             splitOpen
-              ? "animate-[panel-index-in_320ms_cubic-bezier(0.32,0.72,0,1)_both] overflow-x-hidden overflow-y-auto overscroll-contain border-e border-border"
+              ? "overflow-x-hidden overflow-y-auto overscroll-contain border-e border-border"
               : undefined
           }
         >

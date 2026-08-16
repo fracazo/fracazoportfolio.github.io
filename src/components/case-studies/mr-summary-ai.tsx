@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ExternalLinkIcon } from "@/components/icons";
 
 /**
  * Body of the mr-summary-ai case study, without the route chrome.
@@ -100,7 +101,7 @@ export function MrSummaryAiContent({
 
             <p>The first version was intentionally minimal. We added a quick action in the MR comment box that triggered AI to read the merge request diff and generate a digestible summary, posted as a comment. We weren't focused on UX or design polish at this stage. We wanted to know: is AI-generated summary content useful to users at all?</p>
 
-            <p>We deliberately scoped out summarizing review comments to keep the question tight. We released internally and collected feedback in a <a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408726" target="_blank" rel="noopener">dedicated issue</a>.</p>
+            <p>We deliberately scoped out summarizing review comments to keep the question tight. We released internally and collected feedback in a <a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408726" target="_blank" rel="noopener">dedicated issue<ExternalLinkIcon size={12} className="external-mark" /></a>.</p>
 
             <h3>What we learned</h3>
             <p>Engineers found the content helpful and gave specific, actionable feedback. Clustering that feedback revealed three distinct problems:</p>
@@ -160,12 +161,12 @@ export function MrSummaryAiContent({
 
             <h3>Issues delivered</h3>
             <ul>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408307" target="_blank" rel="noopener">Design</a></li>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408434" target="_blank" rel="noopener">Auto-generate change summaries</a></li>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408436" target="_blank" rel="noopener">GraphQL endpoint for LLM summaries</a></li>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408640" target="_blank" rel="noopener">MR page frontend</a></li>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408641" target="_blank" rel="noopener">To-do list frontend</a></li>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/414401" target="_blank" rel="noopener">Email notifications</a></li>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408307" target="_blank" rel="noopener">Design<ExternalLinkIcon size={12} className="external-mark" /></a></li>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408434" target="_blank" rel="noopener">Auto-generate change summaries<ExternalLinkIcon size={12} className="external-mark" /></a></li>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408436" target="_blank" rel="noopener">GraphQL endpoint for LLM summaries<ExternalLinkIcon size={12} className="external-mark" /></a></li>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408640" target="_blank" rel="noopener">MR page frontend<ExternalLinkIcon size={12} className="external-mark" /></a></li>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/408641" target="_blank" rel="noopener">To-do list frontend<ExternalLinkIcon size={12} className="external-mark" /></a></li>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/414401" target="_blank" rel="noopener">Email notifications<ExternalLinkIcon size={12} className="external-mark" /></a></li>
             </ul>
           </div>
 
@@ -207,9 +208,9 @@ export function MrSummaryAiContent({
             <p>The result: a cleaner MR page with a single description, a correct description because the author verified it, full control for the author, and trust maintained because the human remained in the loop.</p>
 
             <h3>What we turned off</h3>
-            <p>Shipping the new approach meant removing what we had built: AI summaries in to-do notifications and emails, and the auto-generated summary on the MR page. The <a href="https://gitlab.com/gitlab-org/gitlab/-/issues/443331" target="_blank" rel="noopener">frontend was removed</a> and the <a href="https://gitlab.com/gitlab-org/gitlab/-/issues/451241" target="_blank" rel="noopener">backend components cleaned up</a>.</p>
+            <p>Shipping the new approach meant removing what we had built: AI summaries in to-do notifications and emails, and the auto-generated summary on the MR page. The <a href="https://gitlab.com/gitlab-org/gitlab/-/issues/443331" target="_blank" rel="noopener">frontend was removed<ExternalLinkIcon size={12} className="external-mark" /></a> and the <a href="https://gitlab.com/gitlab-org/gitlab/-/issues/451241" target="_blank" rel="noopener">backend components cleaned up<ExternalLinkIcon size={12} className="external-mark" /></a>.</p>
 
-            <p>These weren't failures. They were necessary steps to learn that the right intervention point was upstream at creation time, not downstream during review. The <a href="https://gitlab.com/groups/gitlab-org/-/work_items/10401" target="_blank" rel="noopener">epic closed in May 2024</a> with all 24 child issues completed.</p>
+            <p>These weren't failures. They were necessary steps to learn that the right intervention point was upstream at creation time, not downstream during review. The <a href="https://gitlab.com/groups/gitlab-org/-/work_items/10401" target="_blank" rel="noopener">epic closed in May 2024<ExternalLinkIcon size={12} className="external-mark" /></a> with all 24 child issues completed.</p>
           </div>
 
           <div className="case-study-section">
@@ -220,8 +221,8 @@ export function MrSummaryAiContent({
             <ul>
               <li>Pivoted the feature from reviewer-facing summary to author-facing writing assistant, with a Qualtrics survey that validated the trust and control findings at scale and made the case for the change.</li>
               <li>24 issues delivered across design, frontend, backend, and infrastructure.</li>
-              <li>Contributed the Experiment/Beta <a href="https://gitlab.com/gitlab-org/gitlab-services/design.gitlab.com/-/merge_requests/3374" target="_blank" rel="noopener">feature badge to the Pajamas Design System</a>.</li>
-              <li>Ran multiple usability studies on Code Review AI features with a UX researcher (<a href="https://gitlab.com/gitlab-org/ux-research/-/issues/2708" target="_blank" rel="noopener">ux-research#2708</a>).</li>
+              <li>Contributed the Experiment/Beta <a href="https://gitlab.com/gitlab-org/gitlab-services/design.gitlab.com/-/merge_requests/3374" target="_blank" rel="noopener">feature badge to the Pajamas Design System<ExternalLinkIcon size={12} className="external-mark" /></a>.</li>
+              <li>Ran multiple usability studies on Code Review AI features with a UX researcher (<a href="https://gitlab.com/gitlab-org/ux-research/-/issues/2708" target="_blank" rel="noopener">ux-research#2708<ExternalLinkIcon size={12} className="external-mark" /></a>).</li>
               <li>The review cycle map became a reusable baseline for other AI feature work on the team.</li>
             </ul>
 
@@ -239,7 +240,7 @@ export function MrSummaryAiContent({
           <div className="case-study-section">
             <h2>Links</h2>
             <ul>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/work_items/429882" target="_blank" rel="noopener">GitLab issue 429882</a>, the feature issue</li>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/work_items/429882" target="_blank" rel="noopener">GitLab issue 429882<ExternalLinkIcon size={12} className="external-mark" /></a>, the feature issue</li>
             </ul>
           </div>
 

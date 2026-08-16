@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ExternalLinkIcon } from "@/components/icons";
 
 /**
  * Body of the wiki-contextual-comments case study, without the route chrome.
@@ -242,8 +243,8 @@ export function WikiContextualCommentsContent({
           <div className="case-study-section">
             <h2>Links</h2>
             <ul>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/work_items/509789" target="_blank" rel="noopener">GitLab issue 509789</a>, the design spike this work came from</li>
-              <li><a href="https://youtu.be/67UZDRRE7gQ" target="_blank" rel="noopener">Design critique</a>, video</li>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/work_items/509789" target="_blank" rel="noopener">GitLab issue 509789<ExternalLinkIcon size={12} className="external-mark" /></a>, the design spike this work came from</li>
+              <li><a href="https://youtu.be/67UZDRRE7gQ" target="_blank" rel="noopener">Design critique<ExternalLinkIcon size={12} className="external-mark" /></a>, video</li>
             </ul>
           </div>
 
