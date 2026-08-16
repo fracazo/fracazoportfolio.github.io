@@ -31,7 +31,7 @@ const workGroups = [
         title: "GLQL: Embedded Views for Work Tracking",
         tagline:
           "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
-        outcome: "+33% adoption post-GA · 0 critical bugs at GA",
+        outcome: "+33% adoption post-GA",
       },
       {
         href: "/case-studies/wiki-contextual-comments",
@@ -44,7 +44,6 @@ const workGroups = [
         title: "GitLab Wiki: Contextual Comments",
         tagline:
           "Tying a discussion to the exact line it refers to, closing a competitive gap against Confluence and Notion.",
-        outcome: "5 competitors analysed · In engineering development",
       },
       {
         href: "/case-studies/birthguide",
@@ -103,7 +102,7 @@ const workGroups = [
         title: "A Unified In-flight Entertainment Experience",
         tagline:
           "Reimagining in-flight entertainment as a cohesive product ecosystem.",
-        todo: "One metric for the chip. The case study ships no numbers.",
+        metric: "Ad revenue 225k → 675k",
       },
       {
         href: "/case-studies/qantas-app",
@@ -172,10 +171,11 @@ const workGroups = [
     compact: [
       {
         stub: "stub:bem-direto",
-        eyebrow: "Bem Direto · 2010–2012",
+        eyebrow: "Bem Direto · 2012–2013",
         title: "Bem Direto",
         tagline:
-          "A two-sided property tool connecting buyers, agencies and brokers.",
+          "Brazil's first real estate marketplace for agents, designed from scratch.",
+        metric: "First designer",
       },
     ],
   },
