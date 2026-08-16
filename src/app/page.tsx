@@ -63,6 +63,10 @@ const workGroups = [
     compact: [
       {
         stub: "stub:coursify",
+        image: {
+          src: "/images/coursify-hero.webp",
+          alt: "The Coursify.me logo: a C drawn as four nested arcs beside the wordmark",
+        },
         eyebrow: "Co-founded · 2012–2014",
         title: "Coursify.me",
         tagline:
