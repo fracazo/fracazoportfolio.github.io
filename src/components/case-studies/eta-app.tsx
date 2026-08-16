@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ExternalLinkIcon } from "@/components/icons";
 
 /**
  * Body of the eta-app case study, without the route chrome.
@@ -239,7 +240,10 @@ export function EtaAppContent({
           <h2>Outcomes & Learnings</h2>
 
           <h3>Recognition</h3>
-          <p>The ETA app won a <strong>Sydney Design Award</strong>. The award went to the project team at Outware Mobile, where I was the lead product designer.</p>
+          <p>The ETA app won <strong>Gold at the Sydney Design Awards</strong>. The award went to the project team at Outware Mobile, where I was the lead product designer.</p>
+          <ul>
+            <li><a href="https://betterfutureawards.com/syd21/project.asp?ID=22007" target="_blank" rel="noopener">The award listing<ExternalLinkIcon size={12} className="external-mark" /></a>, betterfutureawards.com</li>
+          </ul>
 
           <h3>Implementation</h3>
           <img src="/images/62cab39b903d34450f12a591_Screen-Shot-2022-07-10-at-9.10.01-pm.webp" alt="Building phase" className="img-small" />

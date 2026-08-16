@@ -180,11 +180,17 @@ export function PanelShell({ children }: { children: ReactNode }) {
           aria-hidden={Boolean(active) && !split ? true : undefined}
           className={
             splitOpen
-              ? "panel-index-enter overflow-x-hidden overflow-y-auto overscroll-contain border-e border-border"
+              ? "overflow-x-hidden overflow-y-auto overscroll-contain border-e border-border"
               : undefined
           }
         >
-          {children}
+          {/* The slide belongs to the content, not the pane. Animating the pane
+              moved its background and its dividing border too, so the whole
+              left region swept in from the right and left a gap down the side.
+              The pane holds still and its column travels inside it. */}
+          <div className={splitOpen ? "panel-index-enter" : undefined}>
+            {children}
+          </div>
         </div>
 
         {active && (

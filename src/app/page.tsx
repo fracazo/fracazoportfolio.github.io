@@ -126,7 +126,7 @@ const workGroups = [
         title: "Reducing Friction in Government Visa Applications",
         tagline:
           "Automating data entry to improve completion and reduce user effort in a high-stakes service.",
-        metric: "Sydney Design Award",
+        metric: "Gold, Sydney Design Awards",
       },
       {
         stub: "stub:b2w",
@@ -278,7 +278,7 @@ export default function Home() {
               where I worked with product managers to grow a core
               feature&rsquo;s adoption by a third. Before that: Qantas,
               Vodafone, and the Australian Government&rsquo;s ETA visa app,
-              which I led design on.
+              which I led design on and took to the Sydney Design Awards.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <PanelLink

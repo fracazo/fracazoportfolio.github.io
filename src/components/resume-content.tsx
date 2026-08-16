@@ -43,10 +43,10 @@ const experience = [
       "Led product design across web, mobile, and wearable for Qantas, Telstra, NAB, and Endeavour Group. Managed designers and established research practices across teams.",
     period: "2016 – 2020",
     location: "Sydney",
-    outcome: "+70% app downloads · Sydney Design Award",
+    outcome: "+70% app downloads · Sydney Design Awards Gold",
     points: [
       "Led Qantas Entertainment app redesign, increasing app downloads +70%.",
-      "Designed the Australian ETA visa app, winner of the Sydney Design Award.",
+      "Designed the Australian ETA visa app, Gold at the Sydney Design Awards.",
     ],
   },
   {
