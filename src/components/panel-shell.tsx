@@ -109,12 +109,12 @@ export function PanelShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!isOpen) return;
     document.body.style.overflow = "hidden";
-    panelRef.current?.focus();
+    panelRef.current?.focus({ preventScroll: true });
     return () => {
       document.body.style.overflow = "";
       // Focus goes back to whatever opened the panel, however it was closed:
       // the button, Escape, the back button, or the system back gesture.
-      opener.current?.focus();
+      opener.current?.focus({ preventScroll: true });
       opener.current = null;
     };
   }, [isOpen, split]);
@@ -134,6 +134,11 @@ export function PanelShell({ children }: { children: ReactNode }) {
     // ...then pin the clicked row to exactly where it was. The coarse offset
     // alone is wrong because the split reflows the column and compacts the
     // rows, so the same number of pixels lands on different content.
+    // Nothing should ever scroll the split horizontally; the entry transform
+    // briefly makes it possible, so pin it.
+    const shell = indexRef.current?.parentElement;
+    if (shell && shell.scrollLeft !== 0) shell.scrollLeft = 0;
+
     const { el, top } = anchor.current;
     if (!el || !el.isConnected) return;
     const delta = el.getBoundingClientRect().top - top;
