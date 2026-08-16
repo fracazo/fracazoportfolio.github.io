@@ -60,7 +60,7 @@ const experience = [
     ],
   },
   {
-    company: "Arq Group and Outware Mobile",
+    company: "Outware Mobile, later Arq Group",
     href: null,
     role: "Lead Product Designer",
     context:

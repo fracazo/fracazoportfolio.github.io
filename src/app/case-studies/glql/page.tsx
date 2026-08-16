@@ -56,7 +56,7 @@ export default function Glql() {
                   <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
                   <div className="metadata-text">
                     <p className="metadata-label">Role</p>
-                    <p className="metadata-value">Sole Product Designer · Knowledge team</p>
+                    <p className="metadata-value">Product Designer · Knowledge group</p>
                   </div>
                 </div>
                 <div className="metadata-item">
@@ -89,7 +89,7 @@ export default function Glql() {
 
           <div className="case-study-section">
             <h2>My role</h2>
-            <p>I was the designer on the team, in an engineering-led group with no design practice, no research process, and no shared way of deciding what users actually needed. So the first job was not a screen. It was earning the right to be in the room, and making design useful fast enough that it sped the team up instead of slowing it down.</p>
+            <p>I owned four products across the Knowledge group as its designer, embedded with engineering. GLQL sat with an engineering-led team that had been shipping without research or a shared way of deciding what users actually needed. So the first job was not a screen. It was earning the right to be in the room, and making design useful fast enough that it sped the team up instead of slowing it down.</p>
           </div>
 
           <div className="case-study-section">
