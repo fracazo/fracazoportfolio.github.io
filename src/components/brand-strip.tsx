@@ -6,6 +6,8 @@
    than a wordmark to carry the same weight. Ordered by recognition, not date. */
 const brandMarks = [
   { name: "Qantas", src: "/images/brands/qantas.svg", w: 44, h: 37 },
+  /* The two-tone T masks to a single silhouette, which is still the mark. */
+  { name: "Telstra", src: "/images/brands/telstra.svg", w: 32, h: 37 },
   /* PNG, not the source webp: the webp's comma counter is opaque white rather
      than a hole, so an alpha mask filled it in and flattened the mark. */
   { name: "Vodafone", src: "/images/brands/vodafone.png", w: 86, h: 23 },
@@ -18,9 +20,6 @@ const brandMarks = [
     w: 50,
     h: 37,
   },
-  /* Taller than the other wordmarks: the Hireup lockup sets its type well
-     inside the artboard, so matching heights would leave it reading small. */
-  { name: "Hireup", src: "/images/brands/hireup.svg", w: 104, h: 27 },
   { name: "GitLab", src: "/images/brands/gitlab.svg", w: 100, h: 22 },
 ];
 
