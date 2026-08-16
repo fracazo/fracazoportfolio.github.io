@@ -278,8 +278,7 @@ export default function Home() {
               where I worked with product managers to grow a core
               feature&rsquo;s adoption by a third. Before that: Qantas,
               Vodafone, and the Australian Government&rsquo;s ETA visa app,
-              which I led design on and took to Gold at the Sydney Design
-              Awards.
+              which I led design on.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <PanelLink
