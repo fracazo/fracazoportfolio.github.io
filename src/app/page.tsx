@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AvatarGreeting } from "@/components/avatar-greeting";
 import { PlainShell } from "@/components/plain-shell";
 import { BrandStrip } from "@/components/brand-strip";
+import { PanelLink } from "@/components/panel-link";
 import { PanelShell } from "@/components/panel-shell";
 import { WorkRow } from "@/components/work-row";
 import { WorkRowCompact } from "@/components/work-row-compact";
@@ -256,12 +257,12 @@ export default function Home() {
               Awards.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
-              <Link
+              <PanelLink
                 href="/about"
                 className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
               >
                 About me
-              </Link>
+              </PanelLink>
               <a
                 href="mailto:fracazo@duck.com"
                 className="btn btn-ghost inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"

@@ -12,6 +12,12 @@ export const panelRegistry: Record<
   string,
   { title: string; load: React.ComponentType }
 > = {
+  "/about": {
+    title: "About me",
+    load: dynamic(() =>
+      import("@/components/about-content").then((m) => m.AboutContent),
+    ),
+  },
   "/case-studies/glql": {
     title: "GLQL / Embedded Views",
     load: dynamic(() =>
