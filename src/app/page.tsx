@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Link from "next/link";
 import { AvatarGreeting } from "@/components/avatar-greeting";
 import { PlainShell } from "@/components/plain-shell";
@@ -6,6 +7,17 @@ import { RowList } from "@/components/row-list";
 import { LinkRowList } from "@/components/link-row-list";
 import { SiteFooter } from "@/components/site-footer";
 import { ArrowRightIcon, ExternalLinkIcon } from "@/components/icons";
+
+/* Recognition strip under the hero. These are names a reader outside developer
+   tools already knows, which the work list alone does not surface. Ordered by
+   how much recognition each name buys, not by date. */
+const brandStrip = [
+  "Qantas",
+  "Vodafone",
+  "Australian Government",
+  "GitLab",
+  "B2W Digital",
+];
 
 const selectedWork = [
   {
@@ -215,6 +227,19 @@ export default function Home() {
               </strong>
               . Most recently GitLab&rsquo;s Knowledge platform, where I paired
               with the PM to define the roadmap and grew feature adoption 33%.
+            </p>
+            <p className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px] font-medium tracking-[0.14em] text-text-tertiary uppercase">
+              <span className="sr-only">Previously worked with:</span>
+              {brandStrip.map((brand, index) => (
+                <Fragment key={brand}>
+                  {index > 0 && (
+                    <span aria-hidden="true" className="opacity-50">
+                      ·
+                    </span>
+                  )}
+                  <span>{brand}</span>
+                </Fragment>
+              ))}
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <Link
