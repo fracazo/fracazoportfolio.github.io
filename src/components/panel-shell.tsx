@@ -180,7 +180,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
           aria-hidden={Boolean(active) && !split ? true : undefined}
           className={
             splitOpen
-              ? "overflow-x-hidden overflow-y-auto overscroll-contain border-e border-border"
+              ? "panel-index-enter overflow-x-hidden overflow-y-auto overscroll-contain border-e border-border"
               : undefined
           }
         >
@@ -196,8 +196,8 @@ export function PanelShell({ children }: { children: ReactNode }) {
             aria-label={entry?.title}
             className={
               splitOpen
-                ? "panel-body animate-[panel-in_320ms_cubic-bezier(0.32,0.72,0,1)_both] overflow-y-auto overscroll-contain bg-bg px-6 outline-none min-[700px]:px-10"
-                : "panel-body fixed inset-0 z-50 animate-[panel-in_320ms_cubic-bezier(0.32,0.72,0,1)_both] overflow-y-auto overscroll-contain bg-bg px-6 outline-none"
+                ? "panel-body panel-enter overflow-y-auto overscroll-contain bg-bg px-6 outline-none min-[700px]:px-10"
+                : "panel-body panel-enter fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-bg px-6 outline-none"
             }
           >
             <PanelChrome

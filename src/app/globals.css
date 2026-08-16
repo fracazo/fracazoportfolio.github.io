@@ -1886,10 +1886,19 @@
   }
 }
 
-/* Side panel motion. Only the panel moves: it slides in from the right while
-   the index simply reflows into the space left over. Animating the index too
-   read as a wobble, because the layout snaps its column left instantly and the
-   transform then started it right of where it had landed and slid it back. */
+/* Side panel motion. Both panes travel leftward together: the panel enters
+   from the right edge while the index slides from where it was sitting into
+   its half. The index starts at +50% of its pane, which is exactly the
+   distance its centred column has to cover, so the first painted frame leaves
+   it where the eye last saw it and nothing jumps. */
+@keyframes panel-index-in {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: none;
+  }
+}
 @keyframes panel-in {
   from {
     transform: translateX(100%);
@@ -1898,8 +1907,19 @@
     transform: none;
   }
 }
+/* Real classes rather than Tailwind arbitrary values: the commas inside
+   cubic-bezier() break that parser, which silently dropped the curve and left
+   the motion linear. Both panes share one duration and one easing so they
+   travel together. */
+.panel-enter {
+  animation: panel-in 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+.panel-index-enter {
+  animation: panel-index-in 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
 @media (prefers-reduced-motion: reduce) {
-  [class*="animate-[panel-"] {
+  .panel-enter,
+  .panel-index-enter {
     animation: none !important;
   }
 }
