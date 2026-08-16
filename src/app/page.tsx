@@ -72,8 +72,10 @@ const workGroups = [
     ],
     compact: [
       {
+        eyebrow: "Co-founded · 2012–2014",
         title: "Coursify.me",
-        todo: "Years, role, scale, and a one-line outcome. Nothing about this exists in the repo yet.",
+        metric: "50,000 students",
+        todo: "One line on what it was and what you did. Everything else here is yours.",
       },
       {
         href: "/case-studies/mr-summary-ai",
