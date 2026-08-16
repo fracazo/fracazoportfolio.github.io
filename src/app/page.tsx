@@ -3,6 +3,7 @@ import Link from "next/link";
 import { AvatarGreeting } from "@/components/avatar-greeting";
 import { PlainShell } from "@/components/plain-shell";
 import { WorkRow } from "@/components/work-row";
+import { WorkRowCompact } from "@/components/work-row-compact";
 import { RowList } from "@/components/row-list";
 import { LinkRowList } from "@/components/link-row-list";
 import { SiteFooter } from "@/components/site-footer";
@@ -19,48 +20,146 @@ const brandStrip = [
   "B2W Digital",
 ];
 
-const selectedWork = [
+/* Work is grouped by the kind of problem, not by date. Each group leads with
+   the full case studies and follows with compact rows, so the weight change
+   lands once per group rather than alternating down the page. */
+const workGroups = [
   {
-    href: "/case-studies/mr-summary-ai",
-    image: {
-      src: "/images/To_do_list_-_summary.png",
-      alt: "AI-generated merge request summary shown in the GitLab to-do list",
-    },
-    eyebrow: "GitLab · 2023",
-    category: "AI & Code Review",
-    title: "Summarize Merge Requests with AI",
-    tagline:
-      "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
-    outcome: "Shipped · 3 iterations",
+    id: "knowledge-products",
+    title: "Knowledge products",
+    context:
+      "Ten years building tools people use to find, write, and share what they know.",
+    full: [
+      {
+        href: "/case-studies/glql",
+        image: {
+          src: "/images/glql-embedded-view-card.png",
+          alt: "GLQL code block rendering into an embedded table view of issues in GitLab",
+        },
+        eyebrow: "GitLab · 2024–2025",
+        category: "Work Tracking",
+        title: "GLQL: Embedded Views for Work Tracking",
+        tagline:
+          "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
+        outcome: "+33% adoption post-GA · 0 critical bugs at GA",
+      },
+      {
+        href: "/case-studies/wiki-contextual-comments",
+        image: {
+          src: "/images/wiki-comments-card.png",
+          alt: "A GitLab wiki page with highlighted passages linked to threaded discussions in a right-side comments panel",
+        },
+        eyebrow: "GitLab · 2025",
+        category: "Documentation",
+        title: "GitLab Wiki: Contextual Comments",
+        tagline:
+          "Tying a discussion to the exact line it refers to, closing a competitive gap against Confluence and Notion.",
+        outcome: "5 competitors analysed · In engineering development",
+      },
+      {
+        href: "/case-studies/birthguide",
+        image: {
+          src: "/images/birthguide-hero.svg",
+          alt: "BirthGuide interactive birth plan on mobile",
+        },
+        eyebrow: "Solo build · 2026",
+        category: "Consumer Health",
+        title: "BirthGuide",
+        tagline:
+          "A birth plan you open on your phone, not one you forget in your bag.",
+        outcome: "Shipped in 10 days · Live and taking payments",
+      },
+    ],
+    compact: [
+      {
+        title: "Coursify.me",
+        todo: "Years, role, scale, and a one-line outcome. Nothing about this exists in the repo yet.",
+      },
+      {
+        href: "/case-studies/mr-summary-ai",
+        eyebrow: "GitLab · 2023",
+        title: "Summarize Merge Requests with AI",
+        tagline:
+          "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
+        metric: "3 shipped iterations",
+      },
+    ],
   },
   {
-    href: "/case-studies/glql",
-    image: {
-      src: "/images/glql-embedded-view-card.png",
-      alt: "GLQL code block rendering into an embedded table view of issues in GitLab",
-    },
-    eyebrow: "GitLab · 2024–2025",
-    category: "Work Tracking",
-    title: "GLQL: Embedded Views for Work Tracking",
-    tagline:
-      "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
-    outcome: "+33% adoption post-GA",
+    id: "consumer-at-scale",
+    title: "Consumer at scale",
+    context: "Products used by millions of Australians and Brazilians.",
+    full: [],
+    compact: [
+      {
+        href: "/case-studies/qantas-entertainment-app",
+        eyebrow: "Qantas · 2018",
+        title: "A Unified In-flight Entertainment Experience",
+        tagline:
+          "Reimagining in-flight entertainment as a cohesive product ecosystem.",
+        todo: "One metric for the chip. The case study ships no numbers.",
+      },
+      {
+        href: "/case-studies/qantas-app",
+        eyebrow: "Qantas · 2016",
+        title: "Increasing App Adoption Through Entertainment",
+        tagline:
+          "Using entertainment features to pull travellers into the main Qantas app.",
+        metric: "+70% downloads",
+      },
+      {
+        href: "/case-studies/eta-app",
+        eyebrow: "Australian Government · 2020",
+        title: "Reducing Friction in Government Visa Applications",
+        tagline:
+          "Automating data entry to improve completion and reduce user effort in a high-stakes service.",
+        metric: "Sydney Design Award",
+      },
+      {
+        eyebrow: "B2W Digital · 2013–2015",
+        title: "B2W Digital",
+        tagline:
+          "A responsive white-label e-commerce platform supporting multiple branded stores.",
+        metric: "3 native apps unified",
+        todo: "A real project title, and confirmation the résumé line above is the one you want here.",
+      },
+      {
+        eyebrow: "Vodafone · 2015–2016",
+        title: "Vodafone",
+        tagline: "UX for the self-service team across web and native apps.",
+        todo: "A real project title, a metric, and confirmation the résumé line above is the one you want here.",
+      },
+    ],
   },
   {
-    href: "/case-studies/bringing-visibility-to-workers-status",
-    image: {
-      src: "/images/62fbf14400d70051caf1b477_hireup-project-p-1080.png",
-      alt: "Hireup brand with arrows that connects both the customer and the worker",
-      srcSet:
-        "/images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-500.png 500w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-800.png 800w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080.png 1080w",
-      sizes: "(min-width: 980px) 280px, 92vw",
-    },
-    eyebrow: "Hireup · 2022",
-    category: "Marketplace",
-    title: "Worker Status Visibility",
-    tagline:
-      "Reducing uncertainty in a two-sided marketplace by making availability honest.",
-    outcome: "+12% bookings",
+    id: "marketplaces",
+    title: "Marketplaces",
+    context:
+      "Two-sided platforms where supply and demand both need designing.",
+    full: [
+      {
+        href: "/case-studies/bringing-visibility-to-workers-status",
+        image: {
+          src: "/images/62fbf14400d70051caf1b477_hireup-project-p-1080.png",
+          alt: "Hireup brand with arrows that connects both the customer and the worker",
+          srcSet:
+            "/images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-500.png 500w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-800.png 800w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080.png 1080w",
+          sizes: "(min-width: 980px) 280px, 92vw",
+        },
+        eyebrow: "Hireup · 2022",
+        category: "Marketplace",
+        title: "Worker Status Visibility",
+        tagline:
+          "Reducing uncertainty in a two-sided marketplace by making availability honest.",
+        outcome: "+12% bookings · Connection rate 3% → 5%",
+      },
+    ],
+    compact: [
+      {
+        title: "Bem Direto",
+        todo: "Years, what it was, your role, and a one-line outcome. The site carries one clause about it on the résumé and nothing else.",
+      },
+    ],
   },
 ];
 
@@ -83,19 +182,6 @@ const productDesign = [
     ],
   },
   {
-    title: "Wiki Contextual Comments",
-    meta: "GitLab · 2025",
-    image: { src: "/images/wiki-comments-card.png" },
-    links: [
-      { href: "/case-studies/wiki-contextual-comments", label: "Case study" },
-      {
-        href: "https://gitlab.com/gitlab-org/gitlab/-/work_items/509789",
-        label: "GitLab issue",
-      },
-      { href: "https://youtu.be/67UZDRRE7gQ", label: "Design critique" },
-    ],
-  },
-  {
     title: "Build a website with GitLab Pages",
     meta: "GitLab · March 2025",
     links: [
@@ -105,62 +191,9 @@ const productDesign = [
       },
     ],
   },
-  {
-    title: "GLQL / Embedded Views",
-    meta: "GitLab · 2024–2025",
-    image: { src: "/images/glql-embedded-view-card.png" },
-    links: [
-      { href: "/case-studies/glql", label: "Case study" },
-      {
-        href: "https://about.gitlab.com/blog/embedded-views-the-future-of-work-tracking-in-gitlab/",
-        label: "Blog post",
-      },
-      { href: "https://docs.gitlab.com/user/glql/", label: "Docs" },
-    ],
-  },
-  {
-    title: "Summarize Merge Requests with AI",
-    meta: "GitLab · 2023",
-    image: { src: "/images/To_do_list_-_summary.png" },
-    links: [
-      { href: "/case-studies/mr-summary-ai", label: "Case study" },
-      {
-        href: "https://gitlab.com/gitlab-org/gitlab/-/work_items/429882",
-        label: "GitLab issue",
-      },
-    ],
-  },
-  {
-    title: "Reducing Friction in Government Visa Applications",
-    meta: "Dept. of Home Affairs",
-    image: { src: "/images/62dc274f132cbe543717e126_work1-p-2000-p-800.jpg" },
-    links: [{ href: "/case-studies/eta-app", label: "Case study" }],
-  },
-  {
-    title: "Increasing App Adoption (+70% downloads)",
-    meta: "Qantas",
-    image: { src: "/images/62dc1d83920df32baae28d6b_work2-p-1080-p-800.png" },
-    links: [{ href: "/case-studies/qantas-app", label: "Case study" }],
-  },
-  {
-    title: "A Unified In-flight Entertainment Experience",
-    meta: "Qantas",
-    image: { src: "/images/62dc26d29e21732abffdaacd_work4-p-1080-p-800.png" },
-    links: [
-      { href: "/case-studies/qantas-entertainment-app", label: "Case study" },
-    ],
-  },
 ];
 
 const designEngineering = [
-  {
-    title: "BirthGuide",
-    meta: "Solo build · 2026",
-    links: [
-      { href: "https://birthguide.com.au", label: "Site" },
-      { href: "/writing/building-birthguide-with-ai", label: "Essay" },
-    ],
-  },
   {
     title: "Birth Plans",
     meta: "Solo build · 2026",
@@ -289,13 +322,38 @@ export default function Home() {
             outcomes.
           </p>
         </div>
-        <ul role="list" className="m-0 flex list-none flex-col p-0">
-          {selectedWork.map((work, index) => (
-            <li key={work.href}>
-              <WorkRow {...work} priority={index === 0} />
-            </li>
-          ))}
-        </ul>
+        {workGroups.map((group, groupIndex) => (
+          <section
+            key={group.id}
+            aria-labelledby={`${group.id}-title`}
+            className="mt-8 first:mt-2"
+          >
+            <h3
+              id={`${group.id}-title`}
+              className="m-0 text-[13px] font-medium tracking-[0.06em] text-muted uppercase"
+            >
+              {group.title}
+            </h3>
+            <p className="mt-1.5 mb-0 text-[15px] leading-[1.55] text-text-body">
+              {group.context}
+            </p>
+            <ul role="list" className="m-0 mt-4 flex list-none flex-col p-0">
+              {group.full.map((work, index) => (
+                <li key={work.href}>
+                  <WorkRow
+                    {...work}
+                    priority={groupIndex === 0 && index === 0}
+                  />
+                </li>
+              ))}
+              {group.compact.map((work) => (
+                <li key={work.title}>
+                  <WorkRowCompact {...work} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
         <div className="mt-10">
           <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
             Product design
