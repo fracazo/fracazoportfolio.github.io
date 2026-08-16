@@ -5,7 +5,9 @@
    Heights are tuned per mark, not shared: the two symbols need more height
    than a wordmark to carry the same weight. Ordered by recognition, not date. */
 const brandMarks = [
-  { name: "Qantas", src: "/images/brands/qantas.svg", w: 44, h: 37 },
+  /* Full lockup. The white path inside the roo and the gradient highlights are
+     zeroed in the file: opaque they fill the silhouette and lose the shape. */
+  { name: "Qantas", src: "/images/brands/qantas.svg", w: 108, h: 22 },
   /* Full lockup, so it sits with the wordmarks rather than the symbols. The
      swoosh carries partial alpha in the file: masking to one flat colour
      collapses the T, which is defined by the colour boundary, not by a hole. */
