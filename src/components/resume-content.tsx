@@ -40,12 +40,12 @@ const experience = [
     href: null,
     role: "Lead Product Designer",
     context:
-      "Led product design across mobile, web, and wearable for Qantas, Woolworths, and NAB. Established research practices and mentored designers across teams.",
+      "Led product design across web, mobile, and wearable for Qantas, Telstra, NAB, and Endeavour Group. Managed designers and established research practices across teams.",
     period: "2016 – 2020",
     location: "Sydney",
     outcome: "+70% app downloads · Sydney Design Award",
     points: [
-      "Led the Qantas Entertainment app redesign end-to-end (+70% downloads).",
+      "Led Qantas Entertainment app redesign, increasing app downloads +70%.",
       "Designed the Australian ETA visa app, winner of the Sydney Design Award.",
     ],
   },
