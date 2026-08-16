@@ -51,7 +51,7 @@ export function WorkRow({
       /* Container query, not a viewport one: in the split layout this row lives
          in a pane roughly half the window, so keying off the window would hold
          the thumbnail column at widths that cannot carry it. */
-      className="group grid grid-cols-1 gap-5 border-t border-border py-8 no-underline hover:no-underline @min-[600px]:grid-cols-[280px_1fr] @min-[600px]:items-center @min-[600px]:gap-8"
+      className="work-row group grid grid-cols-1 gap-5 border-t border-border py-8 no-underline hover:no-underline @min-[600px]:grid-cols-[280px_1fr] @min-[600px]:items-center @min-[600px]:gap-8"
     >
       {/* Thumbnail — uniform frame so the mismatched screenshots stop clashing */}
       <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 transition-shadow duration-200">

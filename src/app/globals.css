@@ -1924,3 +1924,56 @@
   max-width: none;
   padding-inline: 0;
 }
+
+/* Work rows inside the split.
+   The row is 640px wide whether it is the whole page or one pane, so a
+   container query cannot tell the two apart. In open space a 280px thumbnail
+   reads as an editorial card; filling a 720px pane it reads as a poster. The
+   index pane flags split mode and the rows shrink back to a list. */
+[data-panel-split] .work-row,
+[data-panel-split] .work-row-compact {
+  grid-template-columns: 88px 1fr;
+  align-items: center;
+  gap: 16px;
+  padding-block: 14px;
+}
+[data-panel-split] .work-row-body {
+  grid-column-start: 2;
+}
+[data-panel-split] .work-row h3,
+[data-panel-split] .work-row-compact h3 {
+  font-size: 15px;
+}
+/* One line of supporting copy is enough at list density. */
+[data-panel-split] :is(.work-row, .work-row-compact) p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+/* Selected state. Without it there is no way to tell which entry produced the
+   content in the panel. A leading rule plus a faint wash, so it reads at a
+   glance without competing with the panel. */
+:is(.work-row, .work-row-compact)[data-selected] {
+  position: relative;
+  background: var(--panel-2);
+}
+:is(.work-row, .work-row-compact)[data-selected]::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: -12px;
+  width: 3px;
+  background: var(--brand);
+}
+
+/* PhotoStrip breaks out of the text column using viewport units, which is
+   right on a full page and wrong in a pane: 100vw is twice the pane width, so
+   the strip overhangs the divider. Inside the panel it stays in the column.
+   Same failure mode as a position:fixed control in a pane. */
+.panel-body .photo-strip-row {
+  margin-inline: 0;
+  width: 100%;
+  padding-inline: 0;
+}

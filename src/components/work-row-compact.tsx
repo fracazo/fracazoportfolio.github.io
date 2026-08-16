@@ -30,7 +30,7 @@ export function WorkRowCompact({
   todo,
 }: WorkRowCompactProps) {
   const content = (
-    <div className="min-w-0 @min-[600px]:col-start-2">
+    <div className="work-row-body min-w-0 @min-[600px]:col-start-2">
       {eyebrow && (
         <div className="mb-1.5 text-[11px] font-medium tracking-[0.06em] text-muted uppercase">
           {eyebrow}
@@ -65,7 +65,7 @@ export function WorkRowCompact({
      a pane roughly half the window, so keying off the window would hold the
      two-column grid at widths that cannot carry it. */
   const rowClass =
-    "grid grid-cols-1 border-t border-border py-5 @min-[600px]:grid-cols-[280px_1fr] @min-[600px]:gap-8";
+    "work-row-compact grid grid-cols-1 border-t border-border py-5 @min-[600px]:grid-cols-[280px_1fr] @min-[600px]:gap-8";
 
   if (!href) {
     return <div className={rowClass}>{content}</div>;

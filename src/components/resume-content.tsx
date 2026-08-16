@@ -179,17 +179,11 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
       <main className="mx-auto w-full max-w-[620px] px-6 pt-24 pb-24 max-md:pt-20">
         {/* Header */}
         <header>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/avatar.png"
-            alt="Alex Fracazo"
-            className="mb-5 h-14 w-14 rounded-full object-cover"
-          />
-          <h1 className="text-[23px] font-semibold tracking-[-0.01em] text-text">
-            Alex Fracazo
-          </h1>
-          <p className="mt-0.5 text-[15px] text-muted">
-            Design, Product and Engineering
+          <h1 className="h1">Résumé</h1>
+          {/* The name still has to be on the document itself, since this is
+              printed and downloaded as often as it is read on the page. */}
+          <p className="mt-1 text-[15px] text-muted">
+            Alex Fracazo, Design, Product and Engineering
           </p>
           <p className="mt-5 text-[15px] leading-[1.7] text-text-body">
             I work end to end, from research and strategy through to a working

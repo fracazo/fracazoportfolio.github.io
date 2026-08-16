@@ -33,7 +33,7 @@ export function PhotoStrip({
         role="group"
         aria-label={label}
         tabIndex={0}
-        className="mx-[calc(50%-50vw)] flex w-screen gap-2 overflow-x-auto pb-1 ps-[max(1.5rem,calc(50vw-320px))] pe-6 outline-offset-4"
+        className="photo-strip-row mx-[calc(50%-50vw)] flex w-screen gap-2 overflow-x-auto pb-1 ps-[max(1.5rem,calc(50vw-320px))] pe-6 outline-offset-4"
       >
         {photos.map((photo) => (
           <img

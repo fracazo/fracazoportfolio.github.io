@@ -85,10 +85,13 @@ export function PanelShell({ children }: { children: ReactNode }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [active]);
 
-  // Opening freezes the document behind the panes and hands the saved scroll
-  // to the index pane, so the index keeps its place while the panel changes.
+  // Keyed on "is the panel open", not on which entry is open. Depending on
+  // `active` here would tear this down and re-run it on every swap, snapping
+  // the index back to wherever it sat when the panel first opened instead of
+  // leaving it where the reader has since scrolled to.
+  const isOpen = Boolean(active);
   useEffect(() => {
-    if (!active) return;
+    if (!isOpen) return;
     const y = savedScroll.current;
     document.body.style.overflow = "hidden";
     if (split && indexRef.current) indexRef.current.scrollTop = y;
@@ -101,7 +104,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
       opener.current?.focus();
       opener.current = null;
     };
-  }, [active, split]);
+  }, [isOpen, split]);
 
   // Swapping entries resets the panel's own scroll without collapsing the split.
   useEffect(() => {
@@ -131,6 +134,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
       >
         <div
           ref={indexRef}
+          data-panel-split={splitOpen ? "" : undefined}
           // Hidden from assistive tech only as a modal sheet, never in the
           // split, where the index is still real content beside the panel.
           aria-hidden={Boolean(active) && !split ? true : undefined}
