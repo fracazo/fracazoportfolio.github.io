@@ -1,24 +1,14 @@
-import { Fragment } from "react";
 import Link from "next/link";
 import { AvatarGreeting } from "@/components/avatar-greeting";
 import { PlainShell } from "@/components/plain-shell";
+import { BrandStrip } from "@/components/brand-strip";
+import { PanelShell } from "@/components/panel-shell";
 import { WorkRow } from "@/components/work-row";
 import { WorkRowCompact } from "@/components/work-row-compact";
 import { RowList } from "@/components/row-list";
 import { LinkRowList } from "@/components/link-row-list";
 import { SiteFooter } from "@/components/site-footer";
 import { ArrowRightIcon, ExternalLinkIcon } from "@/components/icons";
-
-/* Recognition strip under the hero. These are names a reader outside developer
-   tools already knows, which the work list alone does not surface. Ordered by
-   how much recognition each name buys, not by date. */
-const brandStrip = [
-  "Qantas",
-  "Vodafone",
-  "Australian Government",
-  "GitLab",
-  "B2W Digital",
-];
 
 /* Work is grouped by the kind of problem, not by date. Each group leads with
    the full case studies and follows with compact rows, so the weight change
@@ -240,6 +230,7 @@ const writing = [
 
 export default function Home() {
   return (
+    <PanelShell>
     <PlainShell>
       {/* Hero */}
       <section
@@ -256,25 +247,13 @@ export default function Home() {
               👋 <span lang="pt">Olá</span>, I&rsquo;m Alex!
             </h1>
             <p className="mt-3 text-lg leading-[1.6] text-text-body">
-              Nearly two decades{" "}
-              <strong className="font-semibold text-text">
-                shipping consumer and enterprise software
-              </strong>
-              . Most recently GitLab&rsquo;s Knowledge platform, where I paired
-              with the PM to define the roadmap and grew feature adoption 33%.
-            </p>
-            <p className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px] font-medium tracking-[0.14em] text-text-tertiary uppercase">
-              <span className="sr-only">Previously worked with:</span>
-              {brandStrip.map((brand, index) => (
-                <Fragment key={brand}>
-                  {index > 0 && (
-                    <span aria-hidden="true" className="opacity-50">
-                      ·
-                    </span>
-                  )}
-                  <span>{brand}</span>
-                </Fragment>
-              ))}
+              I&rsquo;m a designer who makes hard things work inside big, messy
+              organisations. Most recently at GitLab,
+              where I worked with product managers to grow a core
+              feature&rsquo;s adoption by a third. Before that: Qantas,
+              Vodafone, and the Australian Government&rsquo;s ETA visa app,
+              which I led design on and took to Gold at the Sydney Design
+              Awards.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <Link
@@ -313,7 +292,10 @@ export default function Home() {
       <section
         id="Work"
         aria-labelledby="work-title"
-        className="reveal-after mx-auto grid w-full max-w-[640px] gap-4"
+        /* Containment context for the work cards. They size off this column
+           rather than the window, so they stay correct once the column becomes
+           one half of a split rather than the whole page. */
+        className="@container reveal-after mx-auto grid w-full max-w-[640px] gap-4"
       >
         <div className="grid gap-1">
           <h2 id="work-title" className="h2">
@@ -324,6 +306,7 @@ export default function Home() {
             outcomes.
           </p>
         </div>
+        <BrandStrip className="mt-2 mb-4" />
         {workGroups.map((group, groupIndex) => (
           <section
             key={group.id}
@@ -552,5 +535,6 @@ export default function Home() {
 
       <SiteFooter />
     </PlainShell>
+    </PanelShell>
   );
 }

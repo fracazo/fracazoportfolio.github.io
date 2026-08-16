@@ -1885,3 +1885,28 @@
     color: var(--text);
   }
 }
+
+/* Side panel motion. The panel slides in from the right; the index slides left
+   by roughly the distance its column actually travels when the layout goes
+   from one centred column to the left half of a split. */
+@keyframes panel-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes panel-index-in {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-[panel-"] {
+    animation: none !important;
+  }
+}
