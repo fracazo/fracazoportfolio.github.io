@@ -179,7 +179,7 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
       <main className="mx-auto w-full max-w-[620px] px-6 pt-24 pb-24 max-md:pt-20">
         {/* Header */}
         <header>
-          <h1 className="h1">Work History</h1>
+          <h1 className="h1">Work history</h1>
           {/* The name still has to be on the document itself, since this is
               printed and downloaded as often as it is read on the page. */}
           <p className="mt-1 text-[15px] text-muted">

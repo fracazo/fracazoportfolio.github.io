@@ -17,8 +17,7 @@ const workGroups = [
   {
     id: "knowledge-products",
     title: "Knowledge products",
-    context:
-      "Ten years building tools people use to find, write, and share what they know.",
+    context: "Building tools people use and love.",
     full: [
       {
         href: "/case-studies/glql",
@@ -298,7 +297,7 @@ export default function Home() {
                 href="/resume"
                 className="btn btn-ghost inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
               >
-                Work History
+                Work history
               </PanelLink>
               <a
                 href="https://www.linkedin.com/in/fracazo"

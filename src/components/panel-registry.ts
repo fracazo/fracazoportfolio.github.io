@@ -41,7 +41,7 @@ export const panelRegistry: Record<
     ),
   },
   "/resume": {
-    title: "Work History",
+    title: "Work history",
     load: dynamic(() =>
       import("@/components/resume-content").then((m) => m.ResumeContent),
     ),

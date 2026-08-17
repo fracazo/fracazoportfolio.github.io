@@ -83,7 +83,7 @@ export default function Contact() {
                   <path d="M16 13H8" />
                   <path d="M16 17H8" />
                 </svg>
-                <span className="flex-1">Work History</span>
+                <span className="flex-1">Work history</span>
               </Link>
             </li>
           </ul>
