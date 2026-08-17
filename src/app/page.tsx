@@ -48,7 +48,7 @@ const workGroups = [
         href: "/case-studies/birthguide",
         image: {
           src: "/images/birthguide-hero.svg",
-          alt: "BirthGuide interactive birth plan on mobile",
+          alt: "The BirthGuide mark: a winding route icon above the wordmark and birthguide.com.au",
         },
         eyebrow: "Solo build · 2026",
         category: "Consumer Health",
