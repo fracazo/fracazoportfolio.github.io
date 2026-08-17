@@ -36,7 +36,7 @@ const POINT = { in: 8, out: 116, rate: 1.5 };
 
 /**
  * Beat between the intro reveal finishing and the greeting playing. The reveal
- * pulls the eye down the page (avatar, then each line, then Selected work as
+ * pulls the eye down the page (avatar, then each line, then Selected projects as
  * the last beat), so the wave waits for that to land and for the eye to come
  * back up to the avatar. Waving while the headline is still arriving means
  * nobody is looking at it.
@@ -158,7 +158,7 @@ export function AvatarGreeting() {
     // The greeting hangs off the end of the intro reveal rather than a delay
     // measured from mount, so it can't land on top of the reveal when hydration
     // is late or the animation starts behind first paint. The last beat of the
-    // reveal is the Selected work section (`.reveal-after`), so its
+    // reveal is the Selected projects section (`.reveal-after`), so its
     // `animationend` is the moment the page has finished arriving. The fallback
     // covers every case where that event won't come: no intro class on a
     // client-side return to home, or a page opened in a background tab, where

@@ -179,7 +179,7 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
       <main className="mx-auto w-full max-w-[620px] px-6 pt-24 pb-24 max-md:pt-20">
         {/* Header */}
         <header>
-          <h1 className="h1">Résumé</h1>
+          <h1 className="h1">Work History</h1>
           {/* The name still has to be on the document itself, since this is
               printed and downloaded as often as it is read on the page. */}
           <p className="mt-1 text-[15px] text-muted">
@@ -187,9 +187,7 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
           </p>
           <p className="mt-5 text-[15px] leading-[1.7] text-text-body">
             I work end to end, from research and strategy through to a working
-            product. Most recently I paired with the senior product
-            manager to define the roadmap for GitLab&rsquo;s Knowledge platform.
-            Feature adoption grew 33%, and I shipped code to production.
+            product.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-2.5">

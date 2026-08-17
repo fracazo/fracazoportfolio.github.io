@@ -34,7 +34,7 @@ export function SiteFooter({
                   <a href="https://www.linkedin.com/in/fracazo" target="_blank">
                     LinkedIn
                   </a>
-                  , read my <Link href="/resume">résumé</Link>, or{" "}
+                  , read my <Link href="/resume">work history</Link>, or{" "}
                   <a href="mailto:fracazo@duck.com">reach me by email</a>.
                 </>
               )}

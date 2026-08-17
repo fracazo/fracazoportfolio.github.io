@@ -298,7 +298,7 @@ export default function Home() {
                 href="/resume"
                 className="btn btn-ghost inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
               >
-                Résumé
+                Work History
               </PanelLink>
               <a
                 href="https://www.linkedin.com/in/fracazo"
@@ -314,70 +314,79 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Selected Work */}
-      <section
-        id="Work"
-        aria-labelledby="work-title"
-        /* Containment context for the work cards. They size off this column
-           rather than the window, so they stay correct once the column becomes
-           one half of a split rather than the whole page. */
-        className="@container reveal-after mx-auto grid w-full max-w-[640px] gap-4"
-      >
-        <div className="grid gap-1">
-          <h2 id="work-title" className="h2">
-            Selected work
+      {/* Where I've worked + Selected projects. One reveal block, so the brand strip
+          and the case studies arrive together as the page's final beat. */}
+      <div className="reveal-after mx-auto grid w-full max-w-[640px] gap-10">
+        <section aria-labelledby="where-ive-worked-title">
+          <h2 id="where-ive-worked-title" className="h2">
+            Where I&rsquo;ve worked
           </h2>
-          <p className="text mt-0">
-            Case studies focused on product impact, decision-making, and
-            outcomes.
-          </p>
-        </div>
-        <BrandStrip className="mt-2 mb-4" />
-        {workGroups.map((group, groupIndex) => (
-          <section
-            key={group.id}
-            aria-labelledby={`${group.id}-title`}
-            className="mt-8 first:mt-2"
-          >
-            <h3
-              id={`${group.id}-title`}
-              className="m-0 text-[13px] font-medium tracking-[0.06em] text-muted uppercase"
-            >
-              {group.title}
-            </h3>
-            <p className="mt-1.5 mb-0 text-[15px] leading-[1.55] text-text-body">
-              {group.context}
+          <BrandStrip className="mt-4" />
+        </section>
+
+        <section
+          id="Work"
+          aria-labelledby="work-title"
+          /* Containment context for the work cards. They size off this column
+             rather than the window, so they stay correct once the column becomes
+             one half of a split rather than the whole page. */
+          className="@container grid w-full gap-4"
+        >
+          <div className="grid gap-1">
+            <h2 id="work-title" className="h2">
+              Selected projects
+            </h2>
+            <p className="text mt-0">
+              Case studies focused on product impact, decision-making, and
+              outcomes.
             </p>
-            <ul role="list" className="m-0 mt-4 flex list-none flex-col p-0">
-              {group.full.map((work, index) => (
-                <li key={work.href}>
-                  <WorkRow
-                    {...work}
-                    priority={groupIndex === 0 && index === 0}
-                  />
-                </li>
-              ))}
-              {group.compact.map((work) => (
-                <li key={work.title}>
-                  <WorkRowCompact {...work} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-        <div className="mt-10">
-          <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
-            Product design
-          </p>
-          <LinkRowList items={productDesign} />
-        </div>
-        <div className="mt-10">
-          <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
-            Design engineering with AI
-          </p>
-          <LinkRowList items={designEngineering} />
-        </div>
-      </section>
+          </div>
+          {workGroups.map((group, groupIndex) => (
+            <section
+              key={group.id}
+              aria-labelledby={`${group.id}-title`}
+              className="mt-8 first:mt-2"
+            >
+              <h3
+                id={`${group.id}-title`}
+                className="m-0 text-[13px] font-medium tracking-[0.06em] text-muted uppercase"
+              >
+                {group.title}
+              </h3>
+              <p className="mt-1.5 mb-0 text-[15px] leading-[1.55] text-text-body">
+                {group.context}
+              </p>
+              <ul role="list" className="m-0 mt-4 flex list-none flex-col p-0">
+                {group.full.map((work, index) => (
+                  <li key={work.href}>
+                    <WorkRow
+                      {...work}
+                      priority={groupIndex === 0 && index === 0}
+                    />
+                  </li>
+                ))}
+                {group.compact.map((work) => (
+                  <li key={work.title}>
+                    <WorkRowCompact {...work} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+          <div className="mt-10">
+            <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
+              Product design
+            </p>
+            <LinkRowList items={productDesign} />
+          </div>
+          <div className="mt-10">
+            <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
+              Design engineering with AI
+            </p>
+            <LinkRowList items={designEngineering} />
+          </div>
+        </section>
+      </div>
 
       {/* How I Work */}
       <section

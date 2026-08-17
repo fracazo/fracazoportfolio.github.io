@@ -580,7 +580,7 @@
 .intro .reveal-group > *:nth-child(5) { animation-delay: 1.36s; }
 .intro .reveal-group > *:nth-child(n + 6) { animation-delay: 1.5s; }
 
-/* The Selected work section is the final beat: it arrives as one block once
+/* The Selected projects section is the final beat: it arrives as one block once
    the hero has landed, so the top of the page settles before it appears. */
 .intro .reveal-after {
   opacity: 0;
@@ -693,7 +693,7 @@
       font-size: 36px;
     }
   }
-  /* Section headings (e.g. "Selected work"): Young Serif */
+  /* Section headings (e.g. "Selected projects"): Young Serif */
   .h2 {
     font-family: var(--font-display);
     font-weight: 400;
