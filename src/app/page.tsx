@@ -54,8 +54,8 @@ const workGroups = [
         category: "Consumer Health",
         title: "BirthGuide",
         tagline:
-          "A birth plan you open on your phone, not one you forget in your bag.",
-        outcome: "Shipped in 10 days · Live and taking payments",
+          "The users were there to learn, not to get a document. So the learning became the product.",
+        outcome: "Shipped in 10 days · Model inverted in 26",
       },
     ],
     compact: [

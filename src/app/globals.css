@@ -990,9 +990,16 @@
   .case-study-section {
     padding: 40px 0;
   }
+  /* Headings set their own leading: inheriting the body's 1.65 puts ~9px of
+     invisible half-leading under a 28px heading, which reads as extra margin. */
+  .case-study-section :is(h2, h3, h4) {
+    line-height: 1.3;
+  }
   /* Case-study h2 stays Geist (in-content heading), tightened tracking */
   .case-study-section h2 {
     font-size: 28px;
+    font-weight: 600;
+    line-height: 1.25;
     letter-spacing: -0.01em;
     text-wrap: balance;
     margin-bottom: 20px;
@@ -1000,15 +1007,21 @@
   }
   .case-study-section h3 {
     font-size: 21px;
+    font-weight: 600;
     text-wrap: balance;
-    margin: 40px 0 16px;
+    margin: 32px 0 12px;
     max-width: 64ch;
+  }
+  /* An h3 opening a section belongs to the h2 above it, so it sits closer than
+     one that breaks up the body copy. */
+  .case-study-section h2 + h3 {
+    margin-top: 24px;
   }
   .case-study-section h4 {
     font-size: 16px;
     font-weight: 600;
     text-wrap: balance;
-    margin: 32px 0 12px;
+    margin: 28px 0 10px;
     max-width: 64ch;
   }
   .case-study-section p {
@@ -1076,6 +1089,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    font-weight: 600;
     margin-bottom: 20px;
   }
   .summary-card h2 img {
@@ -1084,6 +1098,10 @@
   }
   .summary-card p {
     line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .summary-card p:last-child {
+    margin-bottom: 0;
   }
   .notice-box {
     display: flex;
@@ -1130,6 +1148,89 @@
     color: var(--muted);
     text-align: center;
     margin-top: -8px;
+  }
+
+  /* Comparison table in long-form content. Scrolls inside its own wrapper so a
+     narrow viewport never pushes the page sideways. */
+  .case-table-scroll {
+    max-width: 64ch;
+    margin: 20px 0 32px;
+    overflow-x: auto;
+  }
+  .case-table {
+    width: 100%;
+    min-width: 460px;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .case-table th,
+  .case-table td {
+    text-align: left;
+    vertical-align: top;
+    padding: 12px 20px 12px 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+    color: var(--text-body);
+  }
+  .case-table thead th {
+    color: var(--text);
+    font-weight: 600;
+  }
+  /* Row labels read as the same small mono eyebrow used elsewhere */
+  .case-table tbody th {
+    width: 6em;
+    padding-top: 15px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+  .case-table tbody tr:last-child th,
+  .case-table tbody tr:last-child td {
+    border-bottom: 0;
+  }
+  /* Below the grid's width, two columns of prose stop being readable side by
+     side, so each row stacks and every cell carries its column name. */
+  @media (max-width: 640px) {
+    .case-table,
+    .case-table tbody,
+    .case-table tr,
+    .case-table th,
+    .case-table td {
+      display: block;
+      min-width: 0;
+    }
+    .case-table thead {
+      display: none;
+    }
+    .case-table tbody tr {
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .case-table tbody tr:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+    .case-table tbody th,
+    .case-table tbody td {
+      width: auto;
+      padding: 0 0 10px;
+      border-bottom: 0;
+    }
+    .case-table tbody tr td:last-child {
+      padding-bottom: 0;
+    }
+    .case-table tbody td::before {
+      content: attr(data-col);
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
   }
 
   /* Outcome stat strip */
@@ -1186,6 +1287,7 @@
   }
   .case-cta h2 {
     font-size: 20px;
+    font-weight: 600;
     margin: 0 0 8px;
   }
   .case-cta p {

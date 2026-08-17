@@ -3,8 +3,8 @@ import { CaseStudyShell } from "@/components/case-study-shell";
 import { BirthguideContent } from "@/components/case-studies/birthguide";
 import { SiteFooter } from "@/components/site-footer";
 
-const title = "The birth plan that advocates for you during labour - Alex Fracazo";
-const description = "A birth plan you open on your phone, not one you forget in your bag. Designed and shipped in 10 days as a solo non-developer founder.";
+const title = "I built a birth plan generator. My users were using it to learn. - Alex Fracazo";
+const description = "Shipped in ten days, sold for six months, then the research said the document was not the valuable part. How I inverted the business model in twenty-six days.";
 
 export const metadata: Metadata = {
   title,
