@@ -206,14 +206,6 @@ export function BirthguideContent({
               <li>GA4 with custom event taxonomy, Microsoft Clarity session recording</li>
               <li>Claude API for the on-site conversational assistant</li>
             </ul>
-
-            <div className="notice-box">
-              <img src="/images/privacy.svg" alt="Privacy" />
-              <div>
-                <p><strong>Protecting Data Privacy</strong></p>
-                <p>All user data referenced in this case study is from BirthGuide's own product analytics. No individual users are identified beyond what they have consented to share as customers of the product.</p>
-              </div>
-            </div>
           </div>
 
         {tail}
