@@ -88,7 +88,7 @@ export function WorkRowCompact({
      a pane roughly half the window, so keying off the window would hold the
      two-column grid at widths that cannot carry it. */
   const rowClass =
-    "work-row-compact grid grid-cols-1 border-t border-border py-5 @min-[600px]:grid-cols-[280px_1fr] @min-[600px]:gap-8";
+    "work-row-compact grid grid-cols-1 gap-4 border-t border-border py-5 @min-[600px]:grid-cols-[280px_1fr] @min-[600px]:gap-8";
 
   if (stub) {
     return (

@@ -318,11 +318,11 @@ export default function Home() {
             >
               <h3
                 id={`${group.id}-title`}
-                className="m-0 text-[13px] font-medium tracking-[0.06em] text-muted uppercase"
+                className="m-0 text-[13px] font-medium leading-none tracking-[0.06em] text-muted uppercase"
               >
                 {group.title}
               </h3>
-              <p className="mt-1.5 mb-0 text-[15px] leading-[1.55] text-text-body">
+              <p className="mt-1 mb-0 text-[15px] leading-[1.55] text-text-body">
                 {group.context}
               </p>
               <ul role="list" className="m-0 mt-4 flex list-none flex-col p-0">
