@@ -213,7 +213,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
           >
             <PanelChrome
               onClose={() => window.history.back()}
-              label={split ? "Back" : "Close"}
+              label={split ? "Close" : "Back"}
             />
             {Content && <Content />}
           </div>
@@ -223,7 +223,11 @@ export function PanelShell({ children }: { children: ReactNode }) {
   );
 }
 
-/** Sticky back control. 44px minimum target, per the touch guidance. */
+/**
+ * Sticky dismiss control. 44px minimum target, per the touch guidance.
+ * Close sits top right, the way a panel beside its index dismisses; Back sits
+ * top left, the way a full-screen sheet steps back.
+ */
 function PanelChrome({
   onClose,
   label,
@@ -232,7 +236,11 @@ function PanelChrome({
   label: string;
 }) {
   return (
-    <div className="sticky top-0 z-10 -mx-6 flex justify-start bg-bg/85 px-6 py-3 backdrop-blur-md min-[700px]:-mx-10 min-[700px]:px-10">
+    <div
+      className={`sticky top-0 z-10 -mx-6 flex bg-bg/85 px-6 py-3 backdrop-blur-md min-[700px]:-mx-10 min-[700px]:px-10 ${
+        label === "Close" ? "justify-end" : "justify-start"
+      }`}
+    >
       <button
         type="button"
         onClick={onClose}
