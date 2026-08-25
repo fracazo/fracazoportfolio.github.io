@@ -25,7 +25,7 @@ export function WorkStub({
     <section className="section case-study-content">
       <div className="case-study-main">
         <header className="case-header">
-          <p className="mb-2 text-[11px] font-medium tracking-[0.06em] text-muted uppercase">
+          <p className="mb-2 text-meta font-medium tracking-[0.06em] text-muted uppercase">
             {eyebrow}
           </p>
           <h1 className="case-title">{title}</h1>

@@ -14,7 +14,7 @@ export function Chip({
 }) {
   return (
     <span
-      className={`inline-flex items-center whitespace-nowrap rounded-md border border-border bg-panel-2 px-2.5 py-1 font-mono text-[11px] leading-none tracking-[0.01em] text-text-secondary tabular-nums ${className}`}
+      className={`inline-flex items-center whitespace-nowrap rounded-md border border-border bg-panel-2 px-2.5 py-1 font-mono text-meta leading-none tracking-[0.01em] text-text-secondary tabular-nums ${className}`}
     >
       {children}
     </span>

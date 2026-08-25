@@ -95,12 +95,12 @@ export function BirthguideContent({
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", margin: "1.5rem 0" }}>
               <div style={{ background: "var(--panel)", border: "1px solid var(--border)", borderTop: "3px solid #dc2626", padding: "1.25rem" }}>
-                <p style={{ fontSize: "0.7rem", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.1em", color: "#dc2626", marginBottom: "0.75rem" }}>Before</p>
-                <p style={{ fontSize: "0.88rem", lineHeight: "1.6", color: "var(--muted)", margin: "0" }}>Get your Birth Plan Kit: 4 outputs including an online birth plan, full PDF, cheat sheet, and hospital bag checklist.</p>
+                <p style={{ fontSize: "var(--text-meta-size)", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.1em", color: "#dc2626", marginBottom: "0.75rem" }}>Before</p>
+                <p style={{ fontSize: "var(--text-body-size)", lineHeight: "1.6", color: "var(--muted)", margin: "0" }}>Get your Birth Plan Kit: 4 outputs including an online birth plan, full PDF, cheat sheet, and hospital bag checklist.</p>
               </div>
               <div style={{ background: "var(--panel)", border: "1px solid var(--border)", borderTop: "3px solid #16a34a", padding: "1.25rem" }}>
-                <p style={{ fontSize: "0.7rem", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.1em", color: "#16a34a", marginBottom: "0.75rem" }}>After</p>
-                <p style={{ fontSize: "0.88rem", lineHeight: "1.6", color: "var(--muted)", margin: "0" }}>A birth plan you share. Send your preferences to your midwife and partner in one tap. Print versions included for the hospital bag.</p>
+                <p style={{ fontSize: "var(--text-meta-size)", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.1em", color: "#16a34a", marginBottom: "0.75rem" }}>After</p>
+                <p style={{ fontSize: "var(--text-body-size)", lineHeight: "1.6", color: "var(--muted)", margin: "0" }}>A birth plan you share. Send your preferences to your midwife and partner in one tap. Print versions included for the hospital bag.</p>
               </div>
             </div>
 

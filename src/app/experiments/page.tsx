@@ -48,10 +48,10 @@ export default function Experiments() {
               </video>
             </div>
             <div>
-              <h3 className="mb-1 text-lg font-semibold text-text">
+              <h3 className="mb-1 text-subhead-sm font-semibold text-text">
                 Interaction Prototype
               </h3>
-              <p className="text-sm leading-normal text-muted">
+              <p className="text-meta text-muted">
                 Exploring micro-interactions and transitions in mobile
                 interfaces.
               </p>
@@ -71,10 +71,10 @@ export default function Experiments() {
               />
             </div>
             <div>
-              <h3 className="mb-1 text-lg font-semibold text-text">
+              <h3 className="mb-1 text-subhead-sm font-semibold text-text">
                 Americanas iOS 7 App
               </h3>
-              <p className="text-sm leading-normal text-muted">
+              <p className="text-meta text-muted">
                 E-commerce app design for iOS 7.
               </p>
             </div>

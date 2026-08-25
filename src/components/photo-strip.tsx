@@ -48,7 +48,7 @@ export function PhotoStrip({
           />
         ))}
       </div>
-      <figcaption className="mt-3 text-[13px] leading-normal text-muted italic">
+      <figcaption className="mt-3 text-meta text-muted italic">
         {caption}
       </figcaption>
     </figure>

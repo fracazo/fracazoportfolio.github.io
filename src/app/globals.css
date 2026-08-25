@@ -57,6 +57,16 @@
   /* Young Serif display face (page titles + section headings), Geist for UI */
   --font-display: var(--font-young-serif), "Young Serif", Georgia, serif;
 
+  /* Type scale — every non-title text uses one of these two sizes.
+     Body: fluid (16px floor on phones, ~18-19px on laptops, 20px cap).
+     Meta: the one small size for labels, captions, dates, tags, eyebrows. */
+  --text-body-size: clamp(1rem, 0.6vw + 0.65rem, 1.25rem);
+  --text-meta-size: 0.8125rem; /* 13px */
+  /* Sub-heading tiers ride +3px / +1px above the fluid body size, so a
+     heading can never render smaller than the paragraphs beneath it. */
+  --text-subhead-size: calc(var(--text-body-size) + 3px);
+  --text-subhead-sm-size: calc(var(--text-body-size) + 1px);
+
   --radius: 12px;
   /* Near-flat: a hairline ring plus the faintest drop. Flat layout favours
      dividers over elevation, so shadows stay barely-there. */
@@ -139,6 +149,17 @@
   --font-dyslexic: "OpenDyslexic", sans-serif;
   --font-display: var(--font-young-serif), "Young Serif", Georgia, serif;
 
+  /* Type scale — text-body / text-meta utilities (font-size + line-height).
+     Note: text-body sets SIZE; the color utility is text-text-body. */
+  --text-body: var(--text-body-size);
+  --text-body--line-height: 1.7;
+  --text-meta: var(--text-meta-size);
+  --text-meta--line-height: 1.5;
+  --text-subhead: var(--text-subhead-size);
+  --text-subhead--line-height: 1.35;
+  --text-subhead-sm: var(--text-subhead-sm-size);
+  --text-subhead-sm--line-height: 1.4;
+
   /* Radius — rounded-card matches the old --radius token */
   --radius-card: 12px;
 
@@ -191,8 +212,8 @@
     color: var(--text);
     font-family: var(--font-sans);
     font-weight: 400;
-    font-size: 18px;
-    line-height: 1.65;
+    font-size: var(--text-body-size);
+    line-height: 1.7;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -414,7 +435,7 @@
   color: var(--text);
   padding: 8px 12px;
   border-radius: 8px;
-  font-size: 13px;
+  font-size: var(--text-meta-size);
   font-family: var(--font-sans);
   white-space: nowrap;
   opacity: 0;
@@ -639,7 +660,7 @@
     border-radius: 8px;
     padding: 10px 18px;
     font-family: var(--font-mono);
-    font-size: 14px;
+    font-size: var(--text-meta-size);
     font-weight: 500;
     cursor: pointer;
     transition: border-color 0.2s ease, color 0.2s ease,
@@ -712,7 +733,7 @@
     margin: 0 0 8px;
   }
   .h3 {
-    font-size: 20px;
+    font-size: var(--text-subhead-size);
     line-height: 1.35;
     text-wrap: balance;
     margin: 0;
@@ -734,7 +755,7 @@
     gap: 6px;
   }
   .form-label {
-    font-size: 14px;
+    font-size: var(--text-meta-size);
     font-weight: 500;
     color: var(--text);
   }
@@ -748,7 +769,7 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     /* 16px keeps iOS Safari from zooming the page when a field is focused. */
-    font-size: 16px;
+    font-size: var(--text-body-size);
     font-family: inherit;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
@@ -774,7 +795,7 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 12px 24px;
-    font-size: 14px;
+    font-size: var(--text-meta-size);
     font-weight: 500;
     font-family: var(--font-mono);
     cursor: pointer;
@@ -808,7 +829,7 @@
     width: 100%;
   }
   .breadcrumb {
-    font-size: 14px;
+    font-size: var(--text-meta-size);
     margin-bottom: 8px;
   }
   .breadcrumb a {
@@ -827,7 +848,7 @@
   }
   .tagline {
     color: var(--muted);
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     font-weight: 400;
     line-height: 1.5;
     margin-top: 4px;
@@ -849,7 +870,6 @@
   }
   .testimonial p {
     color: var(--text-body);
-    font-size: 15px;
     line-height: 1.7;
     margin: 0 0 8px;
   }
@@ -858,7 +878,7 @@
   }
   .testimonial cite {
     font-style: normal;
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     color: var(--muted);
     opacity: 0.7;
   }
@@ -943,7 +963,7 @@
     flex: 1;
   }
   .metadata-label {
-    font-size: 11px;
+    font-size: var(--text-meta-size);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--muted);
@@ -951,7 +971,7 @@
     font-weight: 600;
   }
   .metadata-value {
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     color: var(--text);
     margin: 0;
     line-height: 1.4;
@@ -985,7 +1005,6 @@
   /* Case intro reads as a deck paragraph above the 17px body */
   .case-intro {
     color: var(--text-body);
-    font-size: 19px;
     line-height: 1.6;
     margin: 0 0 32px;
     max-width: 64ch;
@@ -1014,7 +1033,7 @@
     max-width: 64ch;
   }
   .case-study-section h3 {
-    font-size: 21px;
+    font-size: var(--text-subhead-size);
     font-weight: 600;
     text-wrap: balance;
     margin: 32px 0 12px;
@@ -1026,7 +1045,7 @@
     margin-top: 24px;
   }
   .case-study-section h4 {
-    font-size: 16px;
+    font-size: var(--text-subhead-sm-size);
     font-weight: 600;
     text-wrap: balance;
     margin: 28px 0 10px;
@@ -1078,7 +1097,7 @@
   }
   .case-study-section code {
     font-family: var(--font-mono);
-    font-size: 12.5px;
+    font-size: 0.9em;
     background: var(--panel-2);
     border: 1px solid var(--border);
     border-radius: 4px;
@@ -1131,7 +1150,6 @@
   }
   .notice-box p {
     color: var(--muted);
-    font-size: 14px;
     margin: 0;
     line-height: 1.8;
   }
@@ -1152,7 +1170,7 @@
     margin: 32px 0;
   }
   .img-caption {
-    font-size: 12px;
+    font-size: var(--text-meta-size);
     color: var(--muted);
     text-align: center;
     margin-top: -8px;
@@ -1169,7 +1187,6 @@
     width: 100%;
     min-width: 460px;
     border-collapse: collapse;
-    font-size: 15px;
   }
   .case-table th,
   .case-table td {
@@ -1189,7 +1206,7 @@
     width: 6em;
     padding-top: 15px;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--text-meta-size);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -1235,7 +1252,7 @@
     .case-table tbody td::before {
       content: attr(data-col);
       display: block;
-      font-size: 13px;
+      font-size: var(--text-meta-size);
       font-weight: 600;
       color: var(--text);
     }
@@ -1269,7 +1286,7 @@
     line-height: 1.1;
   }
   .case-stat-label {
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     color: var(--muted);
     line-height: 1.45;
     text-wrap: pretty;
@@ -1310,7 +1327,7 @@
   }
   .case-cta .btn {
     text-decoration: none;
-    font-size: 14px;
+    font-size: var(--text-meta-size);
     padding: 10px 16px;
     display: inline-flex;
     align-items: center;
@@ -1326,7 +1343,6 @@
     text-decoration: none;
     color: var(--text);
     font-weight: 500;
-    font-size: 15px;
     display: inline-flex;
     flex-direction: column;
     align-items: flex-end;
@@ -1336,7 +1352,7 @@
     color: var(--brand);
   }
   .case-next-label {
-    font-size: 12px;
+    font-size: var(--text-meta-size);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--muted);
@@ -1358,7 +1374,7 @@
     padding: 20px;
   }
   .glql-syntax-label {
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     font-weight: 600;
     color: var(--text);
     margin-bottom: 12px;
@@ -1369,7 +1385,7 @@
   }
   .glql-syntax-tag {
     display: inline-block;
-    font-size: 11px;
+    font-size: var(--text-meta-size);
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -1388,7 +1404,7 @@
   }
   .glql-code {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     line-height: 1.65;
     color: var(--text);
     background: var(--panel-2);
@@ -1401,14 +1417,17 @@
     display: block;
   }
   .glql-syntax-note {
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     color: var(--muted);
     line-height: 1.7;
     margin: 0;
   }
+  /* Already at meta size; don't let the prose inline-code 0.9em shrink it further */
+  .glql-syntax-note code {
+    font-size: 1em;
+  }
   .glql-syntax-note code {
     font-family: var(--font-mono);
-    font-size: 12px;
     background: var(--panel-2);
     border: 1px solid var(--border);
     border-radius: 4px;
@@ -1426,7 +1445,7 @@
   }
   .glql-video-caption {
     margin-top: 10px;
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     color: var(--muted);
     line-height: 1.6;
     font-style: italic;
@@ -1456,14 +1475,13 @@
     border-right: 1px solid var(--border);
   }
   .glql-ba-label {
-    font-size: 16px;
+    font-size: var(--text-subhead-sm-size);
     font-weight: 700;
     color: var(--text);
     padding: 14px 18px;
     border-bottom: 1px solid var(--border);
   }
   .glql-ba-desc {
-    font-size: 14px;
     color: var(--text-body);
     line-height: 1.5;
     padding: 14px 18px;
@@ -1486,7 +1504,7 @@
   }
   .glql-beforeafter-figure figcaption {
     margin-top: 10px;
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     color: var(--muted);
     line-height: 1.6;
     font-style: italic;
@@ -1529,7 +1547,7 @@
   }
   .glql-figure-pair figcaption {
     margin-top: 10px;
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     color: var(--muted);
     line-height: 1.6;
     font-style: italic;
@@ -1576,7 +1594,7 @@
     margin-bottom: 20px;
   }
   .writing-tag {
-    font-size: 12px;
+    font-size: var(--text-meta-size);
     font-family: var(--font-mono);
     background: var(--panel-2);
     border: 1px solid var(--border);
@@ -1597,7 +1615,7 @@
     color: var(--text);
   }
   .writing-article-meta {
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     color: var(--muted);
     margin: 0;
   }
@@ -1607,7 +1625,6 @@
     margin: 32px 0;
   }
   .writing-body p {
-    font-size: 17px;
     color: var(--text-body);
     line-height: 1.7;
     margin-bottom: 1.4em;
@@ -1622,7 +1639,7 @@
   }
   /* Restored heading hierarchy: was 13px uppercase (smaller than body) */
   .writing-body h2 {
-    font-size: 19px;
+    font-size: var(--text-subhead-size);
     font-weight: 600;
     letter-spacing: -0.01em;
     text-transform: none;
@@ -1639,7 +1656,7 @@
   }
   .writing-body code {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 0.9em;
     background: var(--panel-2);
     border: 1px solid var(--border);
     border-radius: 4px;
@@ -1650,7 +1667,6 @@
     border-left: 2px solid var(--brand);
     padding: 2px 0 2px 20px;
     margin: 28px 0;
-    font-size: 15px;
     color: var(--text-body);
     font-style: italic;
     line-height: 1.65;
@@ -1665,7 +1681,7 @@
   }
   .writing-code-block pre {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: var(--text-meta-size);
     line-height: 1.65;
     color: var(--text);
     white-space: pre;
@@ -1674,7 +1690,7 @@
   .writing-code-block .code-label {
     display: block;
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--text-meta-size);
     color: var(--muted);
     margin-bottom: 12px;
     letter-spacing: 0.06em;
@@ -1699,38 +1715,35 @@
     gap: 12px;
     padding: 11px 20px;
     border-bottom: 1px solid var(--border);
-    font-size: 13.5px;
+    font-size: var(--text-meta-size);
   }
   .writing-stack-row:last-child {
     border-bottom: none;
   }
   .writing-stack-row .name {
     font-family: var(--font-mono);
-    font-size: 13px;
     color: var(--text);
   }
   .writing-stack-row .role {
-    font-size: 12px;
     color: var(--muted);
     flex: 1;
     text-align: right;
   }
   .writing-stack-row .num {
     font-family: var(--font-mono);
-    font-size: 11px;
     color: var(--muted);
     min-width: 24px;
     flex-shrink: 0;
   }
   .writing-stack-row .row-label {
-    font-size: 14px;
+    font-size: var(--text-meta-size);
     color: var(--text);
     line-height: 1.5;
     flex: 1;
   }
   .writing-ai-tag {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--text-meta-size);
     background: color-mix(in srgb, var(--accent) 12%, transparent);
     color: var(--accent);
     padding: 2px 7px;
@@ -1748,7 +1761,7 @@
     align-items: center;
     gap: 6px;
     font-family: var(--font-mono);
-    font-size: 12.5px;
+    font-size: var(--text-meta-size);
     padding: 6px 12px;
     border: 1px solid var(--border);
     border-radius: 4px;
@@ -1769,10 +1782,9 @@
     border-radius: 6px;
     padding: 20px 24px;
     font-family: var(--font-mono);
-    font-size: 12.5px;
+    font-size: var(--text-meta-size);
   }
   .writing-flow-title {
-    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--muted);
@@ -1791,7 +1803,6 @@
     border-bottom: none;
   }
   .writing-flow-step .num {
-    font-size: 11px;
     color: var(--muted);
     min-width: 20px;
     padding-top: 1px;
@@ -1803,7 +1814,6 @@
     gap: 4px;
   }
   .writing-flow-step .branch {
-    font-size: 11px;
     color: var(--brand);
     line-height: 1.4;
   }
@@ -1816,7 +1826,6 @@
   .writing-examples li {
     padding: 0 0 24px 28px;
     position: relative;
-    font-size: 15px;
     line-height: 1.7;
     color: var(--text-body);
   }
@@ -1836,7 +1845,7 @@
   }
   .writing-examples .note {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: var(--text-meta-size);
     color: var(--muted);
     opacity: 0.7;
     display: block;
@@ -1848,7 +1857,6 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     background: var(--panel);
-    font-size: 15px;
     color: var(--text-body);
     line-height: 1.85;
   }
@@ -1868,7 +1876,7 @@
     margin-top: 48px;
   }
   .styleguide-title {
-    font-size: 14px;
+    font-size: var(--text-meta-size);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1886,7 +1894,7 @@
     margin-bottom: 32px;
   }
   .styleguide-label {
-    font-size: 12px;
+    font-size: var(--text-meta-size);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -1910,12 +1918,12 @@
     border: 1px solid var(--border);
   }
   .color-name {
-    font-size: 14px;
+    font-size: var(--text-meta-size);
     font-weight: 500;
     color: var(--text);
   }
   .color-value {
-    font-size: 12px;
+    font-size: var(--text-meta-size);
     font-family: var(--font-mono);
     color: var(--muted);
   }
@@ -1937,7 +1945,7 @@
     margin: 0;
   }
   .demo-small {
-    font-size: 14px;
+    font-size: var(--text-meta-size);
     color: var(--muted);
     margin: 0;
   }
@@ -1988,7 +1996,6 @@
     padding-left: 16px;
     margin: 24px 0;
     color: var(--text-body);
-    font-size: 15px;
     line-height: 1.7;
   }
   .rich-text-sample strong {
@@ -2065,7 +2072,7 @@
 }
 [data-panel-split] .work-row h3,
 [data-panel-split] .work-row-compact h3 {
-  font-size: 15px;
+  font-size: var(--text-subhead-sm-size);
 }
 /* One line of supporting copy is enough at list density. */
 [data-panel-split] :is(.work-row, .work-row-compact) p {

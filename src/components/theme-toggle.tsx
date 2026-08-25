@@ -3,7 +3,7 @@
 import { SunIcon, MoonIcon } from "./icons";
 
 const tooltipBase =
-  "pointer-events-none invisible absolute z-20 whitespace-nowrap rounded-lg border border-border bg-card px-2.5 py-1.5 text-[13px] font-medium text-text opacity-0 shadow-elevated transition-opacity duration-200 group-hover:visible group-hover:opacity-100";
+  "pointer-events-none invisible absolute z-20 whitespace-nowrap rounded-lg border border-border bg-card px-2.5 py-1.5 text-meta font-medium text-text opacity-0 shadow-elevated transition-opacity duration-200 group-hover:visible group-hover:opacity-100";
 
 /** Where the hover tooltip sits: beside the button, or under it (top bars). */
 const tooltipPlacement = {

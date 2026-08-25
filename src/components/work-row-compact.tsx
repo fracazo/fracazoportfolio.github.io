@@ -55,24 +55,24 @@ export function WorkRowCompact({
   const content = (
     <div className="work-row-body min-w-0 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
       {eyebrow && (
-        <div className="mb-1.5 text-[11px] font-medium tracking-[0.06em] text-muted uppercase">
+        <div className="mb-1.5 text-meta font-medium tracking-[0.06em] text-muted uppercase">
           {eyebrow}
         </div>
       )}
       <h3
-        className={`m-0 text-[17px] leading-[1.4] font-semibold text-text ${
+        className={`m-0 text-subhead-sm font-semibold text-text ${
           href ? "transition-colors duration-200 group-hover:text-brand" : ""
         }`}
       >
         {title}
       </h3>
       {tagline && (
-        <p className="mt-1 mb-0 text-[15px] leading-[1.55] font-normal text-muted">
+        <p className="mt-1 mb-0 text-body leading-[1.3] font-normal text-text-body">
           {tagline}
         </p>
       )}
       {todo && (
-        <p className="mt-1.5 mb-0 inline-block rounded border border-dashed border-border px-2 py-1 font-mono text-[12px] leading-[1.4] text-text-tertiary">
+        <p className="mt-1.5 mb-0 inline-block rounded border border-dashed border-border px-2 py-1 font-mono text-meta text-text-tertiary">
           TODO: {todo}
         </p>
       )}

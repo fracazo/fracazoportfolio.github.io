@@ -63,7 +63,7 @@ export function PhotoCarousel({
       </div>
 
       <figcaption className="mt-3 flex items-center gap-4">
-        <span aria-live="polite" className="flex-1 text-[13px] leading-normal text-muted italic">
+        <span aria-live="polite" className="flex-1 text-meta text-muted italic">
           {current.caption}
         </span>
 

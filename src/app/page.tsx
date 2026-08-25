@@ -270,20 +270,20 @@ export default function Home() {
             </h1>
             {/* Pull against .h1's 32px bottom margin so the mission caption
                 reads as part of the headline, not a new block. */}
-            <p className="-mt-5 font-mono text-[15px] text-muted">
+            <p className="-mt-5 text-body text-text-body">
               👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo. This is my
               mission.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <PanelLink
                 href="/about"
-                className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
+                className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
               >
                 About me
               </PanelLink>
               <PanelLink
                 href="/resume"
-                className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
+                className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
               >
                 Work history
               </PanelLink>
@@ -318,11 +318,11 @@ export default function Home() {
             >
               <h3
                 id={`${group.id}-title`}
-                className="m-0 text-[13px] font-medium leading-none tracking-[0.06em] text-muted uppercase"
+                className="m-0 text-meta font-medium leading-none tracking-[0.06em] text-muted uppercase"
               >
                 {group.title}
               </h3>
-              <p className="mt-1 mb-0 text-[15px] leading-[1.55] text-text-body">
+              <p className="mt-1 mb-0 text-body text-text-body">
                 {group.context}
               </p>
               <ul role="list" className="m-0 mt-4 flex list-none flex-col p-0">
@@ -343,13 +343,13 @@ export default function Home() {
             </section>
           ))}
           <div className="mt-10">
-            <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
+            <p className="mb-1 text-meta font-medium tracking-[0.06em] text-muted uppercase">
               Product design
             </p>
             <LinkRowList items={productDesign} />
           </div>
           <div className="mt-10">
-            <p className="mb-1 text-[13px] font-medium tracking-[0.06em] text-muted uppercase">
+            <p className="mb-1 text-meta font-medium tracking-[0.06em] text-muted uppercase">
               Design engineering with AI
             </p>
             <LinkRowList items={designEngineering} />
@@ -366,7 +366,7 @@ export default function Home() {
           How I work
         </h2>
         <p className="text mb-0">I do my best work on problems that are:</p>
-        <ul className="mt-2 list-disc ps-5 leading-[1.6] text-text-body">
+        <ul className="mt-2 list-disc ps-5 text-text-body">
           <li className="my-1.5">unclear or under-defined</li>
           <li className="my-1.5">shared across multiple teams</li>
           <li className="my-1.5">
@@ -402,7 +402,7 @@ export default function Home() {
         </h2>
         <div className="flex flex-col gap-6">
           <blockquote className="m-0 border-s-2 border-border ps-4">
-            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
+            <p className="m-0 mb-2 text-body text-text-body">
               &ldquo;Alex consistently demonstrated strong design leadership and
               strategic thinking. He translated complex technical constraints
               into clear, user-centred direction that directly shaped product
@@ -419,7 +419,7 @@ export default function Home() {
                 decoding="async"
                 className="h-9 w-9 flex-none rounded-full object-cover"
               />
-              <cite className="text-[13px] not-italic">
+              <cite className="text-meta not-italic">
                 <span className="block font-medium text-text">
                   Caitlin Steele
                 </span>
@@ -430,7 +430,7 @@ export default function Home() {
             </footer>
           </blockquote>
           <blockquote className="m-0 border-s-2 border-border ps-4">
-            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
+            <p className="m-0 mb-2 text-body text-text-body">
               &ldquo;Alex is the best designer I&rsquo;ve worked with. On GitLab
               Query Language (GLQL) he thought through how every decision
               impacts customers and built for long-term scale, not just the
@@ -447,7 +447,7 @@ export default function Home() {
                 decoding="async"
                 className="h-9 w-9 flex-none rounded-full object-cover"
               />
-              <cite className="text-[13px] not-italic">
+              <cite className="text-meta not-italic">
                 <span className="block font-medium text-text">
                   Matthew Macfarlane
                 </span>
@@ -458,7 +458,7 @@ export default function Home() {
             </footer>
           </blockquote>
           <blockquote className="m-0 border-s-2 border-border ps-4">
-            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
+            <p className="m-0 mb-2 text-body text-text-body">
               &ldquo;Alex is at his best on hard, open-ended problems. He
               grounds his decisions in research and took on technical work like
               the visual builder and tokenized filtering for our query
@@ -475,7 +475,7 @@ export default function Home() {
                 decoding="async"
                 className="h-9 w-9 flex-none rounded-full object-cover"
               />
-              <cite className="text-[13px] not-italic">
+              <cite className="text-meta not-italic">
                 <span className="block font-medium text-text">
                   Armin Pašalić
                 </span>
@@ -486,7 +486,7 @@ export default function Home() {
             </footer>
           </blockquote>
           <blockquote className="m-0 border-s-2 border-border ps-4">
-            <p className="m-0 mb-2 text-[15px] leading-[1.7] text-text-body">
+            <p className="m-0 mb-2 text-body text-text-body">
               &ldquo;What excellent luck to have encountered such a mentor.
               He&rsquo;s got sharp analytical skills and a broad body of
               knowledge in the UX domain. With his help both in my learning and
@@ -504,7 +504,7 @@ export default function Home() {
                 decoding="async"
                 className="h-9 w-9 flex-none rounded-full object-cover"
               />
-              <cite className="text-[13px] not-italic">
+              <cite className="text-meta not-italic">
                 <span className="block font-medium text-text">Cherie K.</span>
                 <span className="block text-muted opacity-70">
                   Product Designer
@@ -518,7 +518,7 @@ export default function Home() {
             href="https://www.linkedin.com/in/fracazo/details/recommendations/"
             target="_blank"
             rel="noopener"
-            className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-brand"
+            className="inline-flex items-center gap-1.5 text-meta text-muted hover:text-brand"
           >
             Read full recommendations on LinkedIn
             <ExternalLinkIcon size={13} className="opacity-70" />

@@ -163,7 +163,7 @@ const education = [
 ];
 
 const sectionLabel =
-  "mb-6 text-[12px] font-semibold tracking-[0.09em] text-muted uppercase";
+  "mb-6 text-meta font-semibold tracking-[0.09em] text-muted uppercase";
 
 
 /**
@@ -180,11 +180,11 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
         {/* Header */}
         <header>
           <h1 className="h1">Work history</h1>
-          <p className="mt-1 text-[15px] text-muted">
+          <p className="mt-1 text-meta text-muted">
             I work end to end, from research and strategy through to a working
             product.
           </p>
-          <p className="mt-5 text-[15px] leading-[1.7] text-text-body">
+          <p className="mt-5 text-body text-text-body">
             I&rsquo;m a designer who makes hard things work inside big, messy
             organisations. Most recently at GitLab, where a feature I
             redesigned saw 33% more use after launch. Before that: Qantas,
@@ -196,14 +196,14 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
             <a
               href={RESUME_PDF}
               download
-              className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
+              className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
             >
               <DownloadIcon size={16} />
               Download résumé (PDF)
             </a>
           </div>
 
-          <p className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[14px] text-muted">
+          <p className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-meta text-muted">
             <a href="mailto:fracazo@duck.com">fracazo@duck.com</a>
             <span aria-hidden className="text-border">
               ·
@@ -226,10 +226,10 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
           <div className="flex flex-col gap-9">
             {projects.map((project) => (
               <article key={project.name}>
-                <p className="mb-1.5 text-[12.5px] tracking-[0.02em] text-muted">
+                <p className="mb-1.5 text-meta tracking-[0.02em] text-muted">
                   {project.year}
                 </p>
-                <h3 className="text-[16px] font-semibold text-text">
+                <h3 className="text-subhead font-semibold text-text">
                   <a
                     href={project.href}
                     target="_blank"
@@ -240,11 +240,11 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
                     <ExternalLinkIcon size={13} className="opacity-70" />
                   </a>
                 </h3>
-                <p className="mt-0.5 text-[13.5px] leading-[1.55] text-muted">
+                <p className="mt-0.5 text-meta text-muted">
                   {project.context}
                 </p>
                 {project.points && (
-                  <ul className="mt-2.5 list-disc space-y-1.5 pl-[18px] text-[14px] leading-[1.6] text-text-body">
+                  <ul className="mt-2.5 list-disc space-y-1.5 pl-[18px] text-body text-text-body">
                     {project.points.map((point) => (
                       <li key={point}>{point}</li>
                     ))}
@@ -261,10 +261,10 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
           <div className="flex flex-col gap-9">
             {experience.map((job) => (
               <article key={`${job.company}-${job.period}`}>
-                <p className="mb-1.5 text-[12.5px] tracking-[0.02em] text-muted">
+                <p className="mb-1.5 text-meta tracking-[0.02em] text-muted">
                   {job.period} · {job.location}
                 </p>
-                <h3 className="text-[16px] font-semibold text-text">
+                <h3 className="text-subhead font-semibold text-text">
                   {job.href ? (
                     <Link href={job.href} className="text-brand">
                       {job.company}
@@ -273,22 +273,22 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
                     job.company
                   )}
                 </h3>
-                <p className="mt-0.5 text-[14px] leading-[1.55] text-muted">
+                <p className="mt-0.5 text-meta text-muted">
                   {job.role}
                 </p>
                 {job.context && (
-                  <p className="mt-0.5 text-[13.5px] leading-[1.55] text-muted">
+                  <p className="mt-0.5 text-meta text-muted">
                     {job.context}
                   </p>
                 )}
                 {job.outcome && (
                   <p className="mt-2.5">
-                    <span className="inline-flex items-center rounded-full bg-accent/10 px-2.5 py-1 text-[12px] font-medium text-accent">
+                    <span className="inline-flex items-center rounded-full bg-accent/10 px-2.5 py-1 text-meta font-medium text-accent">
                       {job.outcome}
                     </span>
                   </p>
                 )}
-                <ul className="mt-2.5 list-disc space-y-1.5 pl-[18px] text-[14px] leading-[1.6] text-text-body">
+                <ul className="mt-2.5 list-disc space-y-1.5 pl-[18px] text-body text-text-body">
                   {job.points.map((point) => (
                     <li key={point}>{point}</li>
                   ))}
@@ -296,7 +296,7 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
               </article>
             ))}
           </div>
-          <p className="mt-8 text-[13px] leading-[1.7] text-muted">
+          <p className="mt-8 text-meta text-muted">
             <span className="font-medium text-text">Earlier:</span> Bem Direto
             (2012–2013), first designer at Brazil&rsquo;s first real estate
             marketplace for agents · Smartia (2011–2012), Brazil&rsquo;s first
@@ -312,10 +312,10 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
           <div className="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
             {skills.map((skill) => (
               <div key={skill.label}>
-                <p className="mb-1 text-[11px] font-semibold tracking-[0.06em] text-muted uppercase">
+                <p className="mb-1 text-meta font-semibold tracking-[0.06em] text-muted uppercase">
                   {skill.label}
                 </p>
-                <p className="text-[14px] leading-[1.6] text-text-body">
+                <p className="text-body text-text-body">
                   {skill.value}
                 </p>
               </div>
@@ -332,10 +332,10 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
                 key={item.title}
                 className="flex flex-col gap-0.5 py-3.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
               >
-                <span className="text-[14px] font-medium text-text">
+                <span className="text-meta font-medium text-text">
                   {item.title}
                 </span>
-                <span className="text-[13.5px] leading-[1.5] text-muted sm:text-right">
+                <span className="text-meta text-muted sm:text-right">
                   {item.detail}
                 </span>
               </li>
@@ -344,7 +344,7 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
         </section>
 
         {/* Footer */}
-        <footer className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-8 text-[13px] text-muted">
+        <footer className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-8 text-meta text-muted">
           <span>Melbourne or remote (UTC+10)</span>
           <a
             href={RESUME_PDF}

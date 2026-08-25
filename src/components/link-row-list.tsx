@@ -51,7 +51,7 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
             className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1.5 border-b border-border px-0.5 py-3.5"
           >
             <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
-              <span className="text-[15px] leading-[1.4] font-medium text-text">
+              <span className="text-body font-medium text-text">
                 {item.title}
               </span>
               <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -60,7 +60,7 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
                     <Link
                       key={link.href}
                       href={link.href}
-                      className="text-[13px] text-muted no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
+                      className="text-meta text-muted no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
                     >
                       {link.label}&nbsp;&rarr;
                     </Link>
@@ -70,7 +70,7 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
                       href={link.href}
                       target="_blank"
                       rel="noopener"
-                      className="inline-flex items-center gap-1 text-[13px] text-muted no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
+                      className="inline-flex items-center gap-1 text-meta text-muted no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
                     >
                       {link.label}
                       <ExternalLinkIcon size={12} className="opacity-70" />
@@ -80,7 +80,7 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
               </span>
             </div>
             {item.meta && (
-              <span className="ms-auto text-[13px] whitespace-nowrap text-muted opacity-70">
+              <span className="ms-auto text-meta whitespace-nowrap text-muted opacity-70">
                 {item.meta}
               </span>
             )}

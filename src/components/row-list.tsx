@@ -44,11 +44,11 @@ export function RowList({ items }: { items: RowItem[] }) {
                 item.image ? () => setPreview(item.image) : undefined
               }
               onMouseLeave={item.image ? () => setPreview(undefined) : undefined}
-              className="row-link group flex items-baseline justify-between gap-4 px-0.5 py-3.5 text-[15px] leading-[1.4] font-medium text-text no-underline hover:no-underline"
+              className="row-link group flex items-baseline justify-between gap-4 px-0.5 py-3.5 text-body font-medium text-text no-underline hover:no-underline"
             >
               <span className="group-hover:text-brand">{item.name}</span>
               {item.meta && (
-                <span className="text-[13px] font-normal whitespace-nowrap text-muted">
+                <span className="text-meta font-normal whitespace-nowrap text-muted">
                   {item.meta}
                 </span>
               )}

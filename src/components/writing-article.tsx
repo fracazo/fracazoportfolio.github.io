@@ -61,10 +61,10 @@ export function WritingArticle({
                   href={prev.href}
                   className={`${navLinkClass} items-start text-left`}
                 >
-                  <span className="text-[13px] font-medium opacity-65">
+                  <span className="text-meta font-medium opacity-65">
                     Previous
                   </span>
-                  <span className="text-[13px] leading-[1.4] font-medium">
+                  <span className="text-meta font-medium">
                     {prev.title}
                   </span>
                 </Link>
@@ -74,10 +74,10 @@ export function WritingArticle({
                   href={next.href}
                   className={`${navLinkClass} ml-auto items-end text-right`}
                 >
-                  <span className="text-[13px] font-medium opacity-65">
+                  <span className="text-meta font-medium opacity-65">
                     Next
                   </span>
-                  <span className="text-[13px] leading-[1.4] font-medium">
+                  <span className="text-meta font-medium">
                     {next.title}
                   </span>
                 </Link>

@@ -42,7 +42,7 @@ export default function NotFound() {
           </p>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-card border-0 bg-brand px-6 py-3 text-sm font-semibold text-white no-underline transition-opacity duration-200 hover:opacity-90 hover:no-underline"
+            className="inline-flex items-center gap-2 rounded-card border-0 bg-brand px-6 py-3 text-meta font-semibold text-white no-underline transition-opacity duration-200 hover:opacity-90 hover:no-underline"
           >
             Back to home
           </Link>
