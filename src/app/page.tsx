@@ -283,7 +283,7 @@ export default function Home() {
               </PanelLink>
               <PanelLink
                 href="/resume"
-                className="btn btn-ghost inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
+                className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
               >
                 Work history
               </PanelLink>
