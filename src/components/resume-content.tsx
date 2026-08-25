@@ -186,11 +186,10 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
           </p>
           <p className="mt-5 text-[15px] leading-[1.7] text-text-body">
             I&rsquo;m a designer who makes hard things work inside big, messy
-            organisations. Most recently at GitLab, where I worked with product
-            managers to grow a core feature&rsquo;s adoption by a third. Before
-            that: Qantas, Vodafone, and the Australian Government&rsquo;s ETA
-            visa app, which I led design on and which won Gold at the Sydney
-            Design Awards.
+            organisations. Most recently at GitLab, where a feature I
+            redesigned saw 33% more use after launch. Before that: Qantas,
+            Vodafone, and the Australian Government&rsquo;s ETA visa app, which
+            I led design on and which won Gold at the Sydney Design Awards.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
