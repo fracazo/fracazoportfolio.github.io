@@ -287,27 +287,12 @@ export default function Home() {
               >
                 About me
               </PanelLink>
-              <a
-                href="mailto:fracazo@duck.com"
-                className="btn btn-ghost inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
-              >
-                Email me
-              </a>
               <PanelLink
                 href="/resume"
                 className="btn btn-ghost inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
               >
                 Work history
               </PanelLink>
-              <a
-                href="https://www.linkedin.com/in/fracazo"
-                target="_blank"
-                rel="noopener"
-                className="btn btn-ghost inline-flex items-center gap-2 px-4 py-2.5 text-sm whitespace-nowrap no-underline hover:no-underline"
-              >
-                LinkedIn
-                <ExternalLinkIcon size={14} className="opacity-70" />
-              </a>
             </div>
           </div>
         </div>
