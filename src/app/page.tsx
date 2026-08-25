@@ -1,5 +1,6 @@
 import { AvatarGreeting } from "@/components/avatar-greeting";
 import { PlainShell } from "@/components/plain-shell";
+import { BrandStrip } from "@/components/brand-strip";
 import { PanelLink } from "@/components/panel-link";
 import { PanelShell } from "@/components/panel-shell";
 import { WorkRow } from "@/components/work-row";
@@ -287,6 +288,10 @@ export default function Home() {
                 Work history
               </PanelLink>
             </div>
+            {/* Client marks close the hero without a heading: the strip's own
+                aria-label ("Previously worked with") names it for readers the
+                logos can't reach. */}
+            <BrandStrip className="mt-10" />
           </div>
         </div>
       </section>
