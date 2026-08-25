@@ -1,6 +1,5 @@
 import { AvatarGreeting } from "@/components/avatar-greeting";
 import { PlainShell } from "@/components/plain-shell";
-import { BrandStrip } from "@/components/brand-strip";
 import { PanelLink } from "@/components/panel-link";
 import { PanelShell } from "@/components/panel-shell";
 import { WorkRow } from "@/components/work-row";
@@ -265,20 +264,14 @@ export default function Home() {
         <div className="grid grid-cols-1 items-start gap-6 text-left">
           <div className="reveal-group">
             <AvatarGreeting />
-            <p className="mb-4 font-mono text-[13px] text-muted">
-              Welcome to my portfolio
-            </p>
             <h1 id="hero-title" className="h1">
-              👋 <span lang="pt">Olá</span>, I&rsquo;m Alex!
+              I build software that respects the person using it.
             </h1>
-            <p className="mt-3 text-lg leading-[1.6] text-text-body">
-              I&rsquo;m a designer who makes hard things work inside big, messy
-              organisations. Most recently at GitLab,
-              where I worked with product managers to grow a core
-              feature&rsquo;s adoption by a third. Before that: Qantas,
-              Vodafone, and the Australian Government&rsquo;s ETA visa app,
-              which I led design on and which won Gold at the Sydney Design
-              Awards.
+            {/* Pull against .h1's 32px bottom margin so the mission caption
+                reads as part of the headline, not a new block. */}
+            <p className="-mt-5 font-mono text-[15px] text-muted">
+              👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo. This is my
+              mission.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <PanelLink
@@ -298,38 +291,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Where I've worked + Selected projects. One reveal block, so the brand strip
-          and the case studies arrive together as the page's final beat. */}
-      <div className="reveal-after mx-auto grid w-full max-w-[640px] gap-10">
-        <section aria-labelledby="where-ive-worked-title">
-          <h2 id="where-ive-worked-title" className="h2">
-            Where I&rsquo;ve worked
-          </h2>
-          <BrandStrip className="mt-4" />
-        </section>
-
+      {/* The case studies reveal as their own block. No section heading: the
+          group labels carry the structure, so the block pulls up against the
+          main grid's gap-16 to sit close under the hero buttons. */}
+      <div className="reveal-after -mt-8 mx-auto grid w-full max-w-[640px] gap-10">
         <section
           id="Work"
-          aria-labelledby="work-title"
+          aria-label="Selected projects"
           /* Containment context for the work cards. They size off this column
              rather than the window, so they stay correct once the column becomes
              one half of a split rather than the whole page. */
           className="@container grid w-full gap-4"
         >
-          <div className="grid gap-1">
-            <h2 id="work-title" className="h2">
-              Selected projects
-            </h2>
-            <p className="text mt-0">
-              Case studies focused on product impact, decision-making, and
-              outcomes.
-            </p>
-          </div>
           {workGroups.map((group, groupIndex) => (
             <section
               key={group.id}
               aria-labelledby={`${group.id}-title`}
-              className="mt-8 first:mt-2"
+              className="mt-8 first:mt-0"
             >
               <h3
                 id={`${group.id}-title`}

@@ -180,14 +180,17 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
         {/* Header */}
         <header>
           <h1 className="h1">Work history</h1>
-          {/* The name still has to be on the document itself, since this is
-              printed and downloaded as often as it is read on the page. */}
           <p className="mt-1 text-[15px] text-muted">
-            Alex Fracazo, Design, Product and Engineering
-          </p>
-          <p className="mt-5 text-[15px] leading-[1.7] text-text-body">
             I work end to end, from research and strategy through to a working
             product.
+          </p>
+          <p className="mt-5 text-[15px] leading-[1.7] text-text-body">
+            I&rsquo;m a designer who makes hard things work inside big, messy
+            organisations. Most recently at GitLab, where I worked with product
+            managers to grow a core feature&rsquo;s adoption by a third. Before
+            that: Qantas, Vodafone, and the Australian Government&rsquo;s ETA
+            visa app, which I led design on and which won Gold at the Sydney
+            Design Awards.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
