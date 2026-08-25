@@ -71,7 +71,7 @@ export function WorkRow({
           they sit right under the tagline; as a separate grid row they could
           not start until the image's full height, leaving a dead gap. They
           may wrap inside the ~328px column, which is the accepted trade. */}
-      <div className="mt-5 min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1 @min-[600px]:mt-0">
+      <div className="work-row-body mt-5 min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1 @min-[600px]:mt-0">
         <h3 className="m-0 text-subhead font-semibold text-text transition-colors duration-200 group-hover:text-brand">
           {title}
         </h3>

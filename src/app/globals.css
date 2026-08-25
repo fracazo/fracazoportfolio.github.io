@@ -1960,8 +1960,19 @@
   gap: 16px;
   padding-block: 14px;
 }
+/* Pin the placement here too. The rows' own column assignments live behind the
+   same @min-[600px] container query as their 280px layout; a pane narrower
+   than that leaves auto-placement in charge, which drops the DOM-first
+   thumbnail into the 1fr track and blows it up to pane width. */
+[data-panel-split] :is(.work-row, .work-row-compact) .thumb-frame {
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
 [data-panel-split] .work-row-body {
   grid-column-start: 1;
+  grid-row-start: 1;
+  /* The stacked layout's image-to-text gap; the columns don't need it. */
+  margin-top: 0;
 }
 /* The chips flow inline under the tagline; at list density they tighten up. */
 [data-panel-split] .work-row-chips {
@@ -1980,19 +1991,25 @@
 }
 
 /* Selected state. Without it there is no way to tell which entry produced the
-   content in the panel. A leading rule plus a faint wash, so it reads at a
-   glance without competing with the panel. */
-:is(.work-row, .work-row-compact, .row-link)[data-selected] {
+   content in the panel. A faint wash, bled to the pane's edges the way a
+   master-detail list highlights its open row; stopped at the content column
+   it read as a cropped box. The wash lives on a pseudo-element so the row's
+   own box (and its top-border divider) stays in the column. In the split the
+   index pane is exactly half the viewport, so 25vw - 50% of the row is the
+   run from the row's edge to the pane's; the pane's overflow-x clips the
+   scrollbar's worth of error. Split-scoped: as a full-screen sheet the panel
+   covers the index, so the selection never shows there. */
+[data-panel-split] :is(.work-row, .work-row-compact, .row-link)[data-selected] {
   position: relative;
-  background: var(--panel-2);
 }
-:is(.work-row, .work-row-compact, .row-link)[data-selected]::before {
+[data-panel-split]
+  :is(.work-row, .work-row-compact, .row-link)[data-selected]::before {
   content: "";
   position: absolute;
   inset-block: 0;
-  inset-inline-start: -12px;
-  width: 3px;
-  background: var(--brand);
+  inset-inline: calc(50% - 25vw);
+  background: var(--panel-2);
+  z-index: -1;
 }
 
 /* PhotoStrip breaks out of the text column using viewport units, which is
