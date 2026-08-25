@@ -46,7 +46,7 @@ const experience = [
     outcome: "+70% app downloads · Sydney Design Awards Gold",
     points: [
       "Led Qantas Entertainment app redesign, increasing app downloads +70%.",
-      "Designed the Australian ETA visa app, Gold at the Sydney Design Awards.",
+      "Designed the Australian ETA visa app from 0 to 1, Gold at the Sydney Design Awards.",
     ],
   },
   {

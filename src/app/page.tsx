@@ -125,7 +125,7 @@ const workGroups = [
         title: "Reducing Friction in Government Visa Applications",
         tagline:
           "Automating data entry to improve completion and reduce user effort in a high-stakes service.",
-        metric: "Gold, Sydney Design Awards",
+        metric: "From 0 to 1 · Gold, Sydney Design Awards",
       },
       {
         stub: "stub:b2w",

@@ -2070,6 +2070,12 @@
 [data-panel-split] .work-row-body {
   grid-column-start: 2;
 }
+/* At list density the chips return to the text column; the row's own 16px gap
+   spaces them, so the full-page margin comes off. */
+[data-panel-split] .work-row-chips {
+  grid-column: 2;
+  margin-top: 0;
+}
 [data-panel-split] .work-row h3,
 [data-panel-split] .work-row-compact h3 {
   font-size: var(--text-subhead-sm-size);

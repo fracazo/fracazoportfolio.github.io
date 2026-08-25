@@ -60,6 +60,7 @@ export function EtaAppContent({
         <div className="summary-card">
           <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
           <p>The Department of Home Affairs was finding it difficult to manage the ETA visa data mismatch, due to the time it took to update the traveller data and interact with airlines/gates.</p>
+          <p>I designed the app <strong>from 0 to 1</strong>: no mobile product existed before this project, only the web form. The finished app won <strong>Gold at the Sydney Design Awards</strong>.</p>
         </div>
 
         <div className="case-study-section">
