@@ -5,15 +5,13 @@ import { Chip } from "./chip";
 type WorkRowCompactProps = {
   /** Omitted when no detail page exists; the row then renders unlinked. */
   href?: string;
-  /** Company and year, e.g. "Qantas · 2018". Uppercased in CSS. */
-  eyebrow?: string;
   title: string;
   tagline?: string;
   /** "·"-separated facts; each becomes a Chip, matching `WorkRow`. */
   metric?: string;
   /** Copy Alex still owes this entry. Renders as an obvious unfinished marker. */
   todo?: string;
-  /** Optional thumbnail. Fills the leading grid column the row already
+  /** Optional thumbnail. Fills the trailing grid column the row already
       reserves, so a row with one lines up with a row without. */
   image?: { src: string; alt: string };
   /** Registry key for work with no route: opens a short stub in the panel. */
@@ -21,7 +19,7 @@ type WorkRowCompactProps = {
 };
 
 /**
- * The lighter of the two work card weights. Same top border and eyebrow/title
+ * The lighter of the two work card weights. Same top border and title
  * hierarchy as `WorkRow`, but an optional thumbnail and shorter vertical
  * padding so it sits under the full cards without looking like a full card
  * with a missing image. Rows with no detail page render as a plain div rather
@@ -29,7 +27,6 @@ type WorkRowCompactProps = {
  */
 export function WorkRowCompact({
   href,
-  eyebrow,
   title,
   tagline,
   metric,
@@ -46,7 +43,7 @@ export function WorkRowCompact({
     : [];
 
   const thumb = image ? (
-    <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-1 @min-[600px]:row-start-1">
+    <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
       <div className="aspect-[16/10] overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -61,15 +58,10 @@ export function WorkRowCompact({
 
   const content = (
     <div
-      className={`work-row-body min-w-0 @min-[600px]:col-start-2 @min-[600px]:row-start-1${
+      className={`work-row-body min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1${
         image ? " mt-4 @min-[600px]:mt-0" : ""
       }`}
     >
-      {eyebrow && (
-        <div className="mb-1.5 text-meta font-medium tracking-[0.06em] text-muted uppercase">
-          {eyebrow}
-        </div>
-      )}
       <h3
         className={`m-0 text-subhead-sm font-semibold text-text ${
           href ? "transition-colors duration-200 group-hover:text-brand" : ""
@@ -87,33 +79,26 @@ export function WorkRowCompact({
           TODO: {todo}
         </p>
       )}
+      {/* Chips flow right after the tagline inside the text column; as a
+          separate grid row they could not start until the image's full
+          height, leaving a dead gap. They may wrap in the ~328px column. */}
+      {metrics.length > 0 && (
+        <div className="work-row-chips mt-3 flex flex-wrap gap-1.5">
+          {metrics.map((fact) => (
+            <Chip key={fact}>{fact}</Chip>
+          ))}
+        </div>
+      )}
     </div>
   );
 
-  /* Chips sit outside the text column: two facts side by side outgrow the
-     ~328px that column offers, so rows with a thumbnail span the chips across
-     the full card width below it. Imageless rows keep them under their text. */
-  const chips =
-    metrics.length > 0 ? (
-      <div
-        className={`work-row-chips mt-3 flex flex-wrap gap-1.5 ${
-          image ? "@min-[600px]:col-span-2" : "@min-[600px]:col-start-2"
-        }`}
-      >
-        {metrics.map((fact) => (
-          <Chip key={fact}>{fact}</Chip>
-        ))}
-      </div>
-    ) : null;
-
   /* Container query, not a viewport one: in the split layout this row lives in
      a pane roughly half the window, so keying off the window would hold the
-     two-column grid at widths that cannot carry it. Vertical rhythm lives on
-     the items (content/chips margins) rather than a row gap, so the chips row
-     adds no track gap of its own. `items-start` keeps the thumb frame at its
-     image's height instead of stretching to match a taller text column. */
+     two-column grid at widths that cannot carry it. `items-start` keeps the
+     thumb frame at its image's height instead of stretching to match a taller
+     text column. */
   const rowClass =
-    "work-row-compact grid grid-cols-1 border-t border-border py-5 @min-[600px]:grid-cols-[280px_1fr] @min-[600px]:items-start @min-[600px]:gap-x-8";
+    "work-row-compact grid grid-cols-1 border-t border-border py-5 @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8";
 
   if (stub) {
     return (
@@ -123,7 +108,6 @@ export function WorkRowCompact({
       >
         {thumb}
         {content}
-        {chips}
       </PanelButton>
     );
   }
@@ -133,7 +117,6 @@ export function WorkRowCompact({
       <div className={rowClass}>
         {thumb}
         {content}
-        {chips}
       </div>
     );
   }
@@ -145,7 +128,6 @@ export function WorkRowCompact({
     >
       {thumb}
       {content}
-      {chips}
     </PanelLink>
   );
 }

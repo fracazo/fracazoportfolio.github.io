@@ -25,8 +25,6 @@ const workGroups = [
           src: "/images/glql-embedded-view-card.png",
           alt: "GLQL code block rendering into an embedded table view of issues in GitLab",
         },
-        eyebrow: "GitLab · 2024–2025",
-        category: "Work Tracking",
         title: "GLQL: Embedded Views for Work Tracking",
         tagline:
           "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
@@ -38,8 +36,6 @@ const workGroups = [
           src: "/images/wiki-comments-card.png",
           alt: "A GitLab wiki page with highlighted passages linked to threaded discussions in a right-side comments panel",
         },
-        eyebrow: "GitLab · 2025",
-        category: "Documentation",
         title: "GitLab Wiki: Contextual Comments",
         tagline:
           "Tying a discussion to the exact line it refers to, closing a competitive gap against Confluence and Notion.",
@@ -50,8 +46,6 @@ const workGroups = [
           src: "/images/birthguide-hero.svg",
           alt: "The BirthGuide mark: a winding route icon above the wordmark and birthguide.com.au",
         },
-        eyebrow: "Solo build · 2026",
-        category: "Consumer Health",
         title: "BirthGuide",
         tagline:
           "The users were there to learn, not to get a document. So the learning became the product.",
@@ -65,7 +59,6 @@ const workGroups = [
           src: "/images/coursify-hero.webp",
           alt: "The Coursify.me logo: a C drawn as four nested arcs beside the wordmark",
         },
-        eyebrow: "Co-founded · 2012–2014",
         title: "Coursify.me",
         tagline:
           "An online course platform: create courses, tutorials and ebooks, and sell them.",
@@ -77,7 +70,6 @@ const workGroups = [
           src: "/images/gitlab-pattern.svg",
           alt: "GitLab pattern",
         },
-        eyebrow: "GitLab · 2023",
         title: "Summarize Merge Requests with AI",
         tagline:
           "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
@@ -97,7 +89,6 @@ const workGroups = [
           src: "/images/62dc26d29e21732abffdaacd_work4-p-1080.png",
           alt: "Qantas Entertainment App",
         },
-        eyebrow: "Qantas · 2018",
         title: "A Unified In-flight Entertainment Experience",
         tagline:
           "Reimagining in-flight entertainment as a cohesive product ecosystem.",
@@ -109,7 +100,6 @@ const workGroups = [
           src: "/images/62dc1d83920df32baae28d6b_work2-p-1080.png",
           alt: "Qantas Airways App",
         },
-        eyebrow: "Qantas · 2016",
         title: "Increasing App Adoption Through Entertainment",
         tagline:
           "Using entertainment features to pull travellers into the main Qantas app.",
@@ -121,7 +111,6 @@ const workGroups = [
           src: "/images/62dc274f132cbe543717e126_work1-p-2000.jpg",
           alt: "The Australian Government ETA visa app",
         },
-        eyebrow: "Australian Government · 2020",
         title: "Reducing Friction in Government Visa Applications",
         tagline:
           "Automating data entry to improve completion and reduce user effort in a high-stakes service.",
@@ -129,7 +118,6 @@ const workGroups = [
       },
       {
         stub: "stub:b2w",
-        eyebrow: "B2W Digital · 2013–2015",
         title: "Mobile for Americanas, Submarino and Shoptime",
         tagline:
           "Rebuilding mobile for three of Brazil's largest e-commerce brands.",
@@ -137,7 +125,6 @@ const workGroups = [
       },
       {
         stub: "stub:vodafone",
-        eyebrow: "Vodafone · 2015–2016",
         title: "MyMix",
         tagline:
           "Letting prepaid customers build their own recharge, in four taps.",
@@ -159,8 +146,6 @@ const workGroups = [
             "/images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-500.png 500w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-800.png 800w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080.png 1080w",
           sizes: "(min-width: 980px) 280px, 92vw",
         },
-        eyebrow: "Hireup · 2022",
-        category: "Marketplace",
         title: "Worker Status Visibility",
         tagline:
           "Reducing uncertainty in a two-sided marketplace by making availability honest.",
@@ -170,7 +155,6 @@ const workGroups = [
     compact: [
       {
         stub: "stub:bem-direto",
-        eyebrow: "Bem Direto · 2012–2013",
         title: "Bem Direto",
         tagline:
           "Brazil's first real estate marketplace for agents, designed from scratch.",
@@ -314,7 +298,7 @@ export default function Home() {
             <section
               key={group.id}
               aria-labelledby={`${group.id}-title`}
-              className="mt-8 first:mt-0"
+              className="mt-22 first:mt-0"
             >
               <h3
                 id={`${group.id}-title`}
@@ -342,13 +326,13 @@ export default function Home() {
               </ul>
             </section>
           ))}
-          <div className="mt-10">
+          <div className="mt-22">
             <p className="mb-1 text-meta font-medium tracking-[0.06em] text-muted uppercase">
               Product design
             </p>
             <LinkRowList items={productDesign} />
           </div>
-          <div className="mt-10">
+          <div className="mt-22">
             <p className="mb-1 text-meta font-medium tracking-[0.06em] text-muted uppercase">
               Design engineering with AI
             </p>

@@ -4,10 +4,6 @@ import { Chip } from "./chip";
 type WorkRowProps = {
   href: string;
   image: { src: string; alt: string; srcSet?: string; sizes?: string };
-  /** Left segments of the eyebrow, e.g. "GitLab · 2023". Uppercased in CSS. */
-  eyebrow?: string;
-  /** Trailing eyebrow segment naming the problem space, e.g. "AI & Code Review". */
-  category?: string;
   title: string;
   tagline?: string;
   /** "·"-separated facts; each becomes a Chip, matching the /work cards. */
@@ -20,9 +16,10 @@ type WorkRowProps = {
 };
 
 /**
- * Editorial "selected work" row: a uniform framed thumbnail on the leading
- * edge, the case study's eyebrow, title, and tagline beside it, and the
- * outcome chips spanning the card below both.
+ * Editorial "selected work" row: the case study's title and tagline on the
+ * leading edge so a reader skimming down the column hits every title, a
+ * uniform framed thumbnail on the trailing edge, and the outcome chips
+ * spanning the card below both.
  * Used on both the landing page and /work. The title is white and shifts
  * to brand on hover with no underline. Stacks to one column below `desk`; a
  * top border draws the divider between rows.
@@ -30,14 +27,11 @@ type WorkRowProps = {
 export function WorkRow({
   href,
   image,
-  eyebrow,
-  category,
   title,
   tagline,
   outcome,
   priority = false,
 }: WorkRowProps) {
-  const eyebrowText = [eyebrow, category].filter(Boolean).join(" · ");
   // Each "·"-separated fact becomes its own chip (e.g. "Shipped · 3 iterations").
   const metrics = outcome
     ? outcome
@@ -51,13 +45,14 @@ export function WorkRow({
       href={href}
       /* Container query, not a viewport one: in the split layout this row lives
          in a pane roughly half the window, so keying off the window would hold
-         the thumbnail column at widths that cannot carry it. Vertical rhythm
-         lives on the items (body/chips margins) rather than a row gap, so the
-         full-width chips row below adds no track gap of its own. */
-      className="work-row group grid grid-cols-1 border-t border-border py-8 no-underline hover:no-underline @min-[600px]:grid-cols-[280px_1fr] @min-[600px]:items-center @min-[600px]:gap-x-8"
+         the thumbnail column at widths that cannot carry it. */
+      className="work-row group grid grid-cols-1 border-t border-border py-8 no-underline hover:no-underline @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-center @min-[600px]:gap-x-8"
     >
-      {/* Thumbnail — uniform frame so the mismatched screenshots stop clashing */}
-      <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 transition-shadow duration-200">
+      {/* Thumbnail — uniform frame so the mismatched screenshots stop clashing.
+          DOM order keeps it first so the stacked (sub-600px) card still leads
+          with the image; at two columns it moves to the trailing edge so the
+          text owns the scan line. */}
+      <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 transition-shadow duration-200 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
         <div className="aspect-[16/10] overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -72,13 +67,11 @@ export function WorkRow({
         </div>
       </div>
 
-      {/* Eyebrow + title + tagline (matches the /work card) */}
-      <div className="mt-5 min-w-0 @min-[600px]:mt-0">
-        {eyebrowText && (
-          <div className="mb-2 text-meta font-medium tracking-[0.06em] text-muted uppercase">
-            {eyebrowText}
-          </div>
-        )}
+      {/* Title + tagline + chips. The chips live inside the text column so
+          they sit right under the tagline; as a separate grid row they could
+          not start until the image's full height, leaving a dead gap. They
+          may wrap inside the ~328px column, which is the accepted trade. */}
+      <div className="mt-5 min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1 @min-[600px]:mt-0">
         <h3 className="m-0 text-subhead font-semibold text-text transition-colors duration-200 group-hover:text-brand">
           {title}
         </h3>
@@ -87,18 +80,14 @@ export function WorkRow({
             {tagline}
           </p>
         )}
+        {metrics.length > 0 && (
+          <div className="work-row-chips mt-3 flex flex-wrap gap-1.5">
+            {metrics.map((metric) => (
+              <Chip key={metric}>{metric}</Chip>
+            ))}
+          </div>
+        )}
       </div>
-
-      {/* Chips span the card below the thumbnail row: two facts side by side
-          outgrow the ~328px text column, and the compact rows already carry
-          their chips this way. */}
-      {metrics.length > 0 && (
-        <div className="work-row-chips mt-4 flex flex-wrap gap-1.5 @min-[600px]:col-span-2">
-          {metrics.map((metric) => (
-            <Chip key={metric}>{metric}</Chip>
-          ))}
-        </div>
-      )}
     </PanelLink>
   );
 }
