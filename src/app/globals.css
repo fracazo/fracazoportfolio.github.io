@@ -44,15 +44,6 @@
   --ring: var(--accent);
   /* Subtle image edge — warm light in dark mode so it never reads as a tint */
   --img-outline: rgba(236, 231, 223, 0.1);
-  /* Dot field behind the page (see .dot-grid). Warm light dots on charcoal,
-     kept faint enough that body text contrast is untouched. */
-  --dot-color: rgba(236, 231, 223, 0.2);
-  --dot-gap: 8px;
-  /* Lit dot under the cursor (see .cursor-dots). Clay pushed toward the text
-     color, so "lit" means more contrast with the background in both modes:
-     lighter on charcoal, deeper on paper. Dial this and the mask's solid stop
-     in .cursor-dots to make the effect stronger or weaker. */
-  --dot-lit: color-mix(in srgb, var(--accent) 80%, transparent);
 
   /* Young Serif display face (page titles + section headings), Geist for UI */
   --font-display: var(--font-young-serif), "Young Serif", Georgia, serif;
@@ -95,9 +86,6 @@
   --panel-2: #efebe2;
   --text-body: #3d362f;
   --img-outline: rgba(28, 25, 23, 0.14);
-  /* Warm espresso dots on paper — same 0.2 alpha as dark mode, pointed the
-     other way. */
-  --dot-color: rgba(28, 25, 23, 0.2);
   /* Near-flat warm shadow for light mode */
   --shadow:
     0px 0px 0px 1px rgba(28, 25, 23, 0.05),
@@ -203,9 +191,6 @@
     /* Full-bleed elements are sized in vw, which counts a classic scrollbar.
        Clip the overshoot so it never becomes a horizontal page scrollbar. */
     overflow-x: clip;
-    /* The page background lives on <html>, not <body>, so it paints on the
-       canvas — below the negatively-stacked .dot-grid layer. On <body> it would
-       cover the dots. */
     background: var(--bg);
   }
   body {
@@ -237,98 +222,6 @@
     outline: 2px solid var(--ring);
     outline-offset: 2px;
     border-radius: 6px;
-  }
-}
-
-/* ========================
-   Dot grid backdrop
-   A fixed, viewport-sized field of dots sitting behind every page (rendered
-   once in the root layout). It stays put while the page scrolls, so the field
-   reads as texture on the surface rather than something moving with content.
-   The radial mask fades it out toward the edges so it never crowds the sidebar
-   divider or the footer, and the dot color is a theme token, so light and dark
-   each get a warm dot in their own direction.
-   ======================== */
-.dot-grid {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  /* Matches the Aceternity block: a 0.5px dot with a hard stop, not a 1px dot
-     with a soft ramp. The ramp painted roughly three times the area, which is
-     what read as "too bright" at the same alpha. */
-  background-image: radial-gradient(
-    circle at 0.5px 0.5px,
-    var(--dot-color) 0.5px,
-    transparent 0
-  );
-  background-size: var(--dot-gap) var(--dot-gap);
-  -webkit-mask-image: radial-gradient(
-    ellipse 100% 85% at 50% 45%,
-    #000 55%,
-    transparent 100%
-  );
-  mask-image: radial-gradient(
-    ellipse 100% 85% at 50% 45%,
-    #000 55%,
-    transparent 100%
-  );
-}
-/* Texture is decoration; don't waste ink on it. */
-@media print {
-  .dot-grid {
-    display: none;
-  }
-}
-
-/* ========================
-   Cursor-lit dots
-   A pool that follows the pointer one layer above .dot-grid, painting the same
-   8px lattice as little bright squares — same size as the dots underneath, so
-   the field looks like it is lighting up around the cursor rather than growing
-   a second pattern. The conic gradient is what makes each mark a square; the
-   radial mask fades the pool out at its own edge. CursorDots feeds the position
-   through variables on <html> and only mounts for a fine pointer with motion
-   allowed, so this layer is absent on touch and under reduced motion.
-   ======================== */
-.cursor-dots {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 400px;
-  z-index: -1;
-  pointer-events: none;
-  /* Both driven by CursorDots: 0.6 while the pointer moves, 0.2 once it rests,
-     0 when it leaves — with a fast ramp up and a slow settle back down. */
-  opacity: var(--cursor-on, 0);
-  transition: opacity var(--cursor-fade, 600ms) ease;
-  transform: translate3d(var(--cursor-x, 0), var(--cursor-y, 0), 0);
-  background-image: conic-gradient(
-    at 1px 1px,
-    transparent 75%,
-    var(--dot-lit) 0
-  );
-  background-size: var(--dot-gap) var(--dot-gap);
-  background-position: var(--cursor-dot-x, 0) var(--cursor-dot-y, 0);
-  /* Solid to 30% so the dots right under the pointer read at full strength,
-     then a long ramp out. A plain 0%-to-edge ramp faded them to nothing. */
-  -webkit-mask-image: radial-gradient(
-    circle 200px at center,
-    #000 0%,
-    #000 30%,
-    transparent 100%
-  );
-  mask-image: radial-gradient(
-    circle 200px at center,
-    #000 0%,
-    #000 30%,
-    transparent 100%
-  );
-}
-@media print {
-  .cursor-dots {
-    display: none;
   }
 }
 
