@@ -662,6 +662,14 @@
     --btn-surface: var(--panel-2);
     color: var(--text-primary);
   }
+  /* Selected: the panel this button opens is the one on screen. Holds the far
+     end of the hover/press accent ramp so "open" survives the pointer leaving.
+     PanelLink sets data-selected while its target is the active panel. */
+  .btn[data-selected] {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 20%, var(--btn-surface));
+    color: var(--text-primary);
+  }
   .case-cta .btn {
     --btn-surface: var(--panel-2);
   }

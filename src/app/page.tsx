@@ -291,15 +291,17 @@ export default function Home() {
             {/* Client marks close the hero without a heading: the strip's own
                 aria-label ("Previously worked with") names it for readers the
                 logos can't reach. */}
-            <BrandStrip className="mt-10" />
+            {/* Same 64px above the strip as the section gap below it: the
+                marks float between hero and work rather than crowding either. */}
+            <BrandStrip className="mt-16" />
           </div>
         </div>
       </section>
 
       {/* The case studies reveal as their own block. No section heading: the
-          group labels carry the structure, so the block pulls up against the
-          main grid's gap-16 to sit close under the hero buttons. */}
-      <div className="reveal-after -mt-8 mx-auto grid w-full max-w-[640px] gap-10">
+          group labels carry the structure, and the main grid's gap-16 gives
+          the brand strip its clearance from the first group. */}
+      <div className="reveal-after mx-auto grid w-full max-w-[640px] gap-10">
         <section
           id="Work"
           aria-label="Selected projects"
