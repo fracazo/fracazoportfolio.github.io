@@ -105,7 +105,7 @@ const projects = [
   },
   {
     name: "Contrast Lab",
-    href: "https://github.com/fracazo/contrast-lab",
+    href: "https://www.raycast.com/fracazo/contrast-lab",
     year: "Raycast extension · 2026",
     context:
       "WCAG 2 and APCA contrast checking in pure TypeScript, published to the Raycast store.",

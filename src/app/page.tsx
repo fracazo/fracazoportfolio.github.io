@@ -211,6 +211,10 @@ const designEngineering = [
     title: "Contrast Lab",
     meta: "Raycast extension · 2026",
     links: [
+      {
+        href: "https://www.raycast.com/fracazo/contrast-lab",
+        label: "Raycast Store",
+      },
       { href: "https://github.com/fracazo/contrast-lab", label: "GitHub" },
     ],
   },
