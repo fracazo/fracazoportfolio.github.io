@@ -37,7 +37,9 @@ export function BemDiretoStub() {
         what they wanted, and agents browsed those leads, each one priced at a
         few reais. The client&rsquo;s phone number stayed masked until an agent
         paid to unlock it. Signing up came with R$25 in credits, so the first
-        contacts were free.
+        contacts were free. Around that lead engine the product grew a full
+        toolkit for agents: a CRM, a portfolio showcase, a public profile, and
+        a website and email on the agent&rsquo;s own domain.
       </p>
       <figure className="my-8 grid gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -104,6 +106,12 @@ export function BemDiretoStub() {
         />
       </figure>
       <p>
+        The model found its market. By late 2013 the platform was generating
+        15,000 new leads a month and registering 2,000 new agents in the same
+        window, numbers Exame cited when it picked Fisgo, the company behind
+        Bem Direto, as one of Brazil&rsquo;s top 10 startups of the year.
+      </p>
+      <p>
         What Bem Direto left me was the shape of two-sided problems: a
         marketplace lives or dies on whether both sides keep showing up, and no
         screen fixes an empty side. When I met that shape again at Hireup, I
@@ -112,6 +120,16 @@ export function BemDiretoStub() {
       <p>
         At the same company I worked on Fisgo, which grew into the largest
         classifieds aggregator in Brazil.
+      </p>
+      <p>
+        <a
+          href="https://exame.com/pme/as-10-startups-que-mais-se-destacaram-em-2013/"
+          target="_blank"
+          rel="noopener"
+        >
+          Exame&rsquo;s top 10 startups of 2013
+          <ExternalLinkIcon size={12} className="external-mark" />
+        </a>
       </p>
       <p>
         <a
