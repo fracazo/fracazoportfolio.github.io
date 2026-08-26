@@ -534,6 +534,41 @@
       var(--thumb-shadow-hover);
   }
 
+  /* Work-row hover vignettes (WorkVignette). Real classes rather than Tailwind
+     arbitrary values where commas are involved: they break that parser (see
+     .panel-enter). Scenes drive their own inline transitions; these classes
+     supply the shared stage fade, the card frame, and the caret blink. */
+  .vignette-fade {
+    transition: opacity 250ms ease;
+  }
+  .vignette-card {
+    box-shadow:
+      inset 0 0 0 1px var(--img-outline),
+      var(--thumb-shadow);
+  }
+  .vignette-caret {
+    animation: vignette-blink 1s step-end infinite;
+  }
+  /* The split-panel list shrinks thumbs to 88px: overlay vignettes have no
+     stage to play on there (the component also bails in JS, this is the
+     belt-and-braces), while standalone ones ARE the thumbnail and stay,
+     scaled down like an image. A positive class rather than
+     .work-vignette:not(.work-vignette-standalone): the build pipeline strips
+     the :not() from the compiled selector, which hid the standalone thumbs. */
+  [data-panel-split] .work-vignette-overlay {
+    display: none;
+  }
+  /* Blanket kill switch: scene transitions live in inline styles, and
+     !important is what lets the stylesheet beat them. The JS gate already
+     refuses to start; this covers a setting change mid-scene. */
+  @media (prefers-reduced-motion: reduce) {
+    .work-vignette,
+    .work-vignette * {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+
   /* Buttons — muted, filled. The fill is opaque (--btn-surface) so the dot
      field never shows through the label. Accent still only appears on
      interaction, mixed into that same surface. Base = secondary (Résumé,
@@ -1931,6 +1966,17 @@
   .panel-enter,
   .panel-index-enter {
     animation: none !important;
+  }
+}
+/* Caret blink for the work-row hover vignette. step-end holds each state for
+   the full half-second instead of fading, like a terminal caret. */
+@keyframes vignette-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
   }
 }
 

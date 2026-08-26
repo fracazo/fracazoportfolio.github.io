@@ -21,24 +21,18 @@ const workGroups = [
     full: [
       {
         href: "/case-studies/glql",
-        image: {
-          src: "/images/glql-embedded-view-card.png",
-          alt: "GLQL code block rendering into an embedded table view of issues in GitLab",
-        },
         title: "GLQL: Embedded Views for Work Tracking",
         tagline:
           "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
         outcome: "+33% adoption post-GA",
+        vignette: "glql" as const,
       },
       {
         href: "/case-studies/wiki-contextual-comments",
-        image: {
-          src: "/images/wiki-comments-card.png",
-          alt: "A GitLab wiki page with highlighted passages linked to threaded discussions in a right-side comments panel",
-        },
         title: "GitLab Wiki: Contextual Comments",
         tagline:
           "Tying a discussion to the exact line it refers to, closing a competitive gap against Confluence and Notion.",
+        vignette: "wiki" as const,
       },
       {
         href: "/case-studies/birthguide",
@@ -50,15 +44,13 @@ const workGroups = [
         tagline:
           "The users were there to learn, not to get a document. So the learning became the product.",
         outcome: "Shipped in 10 days · Model inverted in 26",
+        vignette: "birthguide" as const,
       },
     ],
     compact: [
       {
         stub: "stub:coursify",
-        image: {
-          src: "/images/coursify-hero.webp",
-          alt: "The Coursify.me logo: a C drawn as four nested arcs beside the wordmark",
-        },
+        vignette: "coursify" as const,
         title: "Coursify.me",
         tagline:
           "An online course platform: create courses, tutorials and ebooks, and sell them.",
@@ -66,10 +58,7 @@ const workGroups = [
       },
       {
         href: "/case-studies/mr-summary-ai",
-        image: {
-          src: "/images/gitlab-pattern.svg",
-          alt: "GitLab pattern",
-        },
+        vignette: "mr-summary" as const,
         title: "Summarize Merge Requests with AI",
         tagline:
           "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",

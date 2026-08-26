@@ -1,6 +1,11 @@
 import { PanelButton } from "./panel-button";
 import { PanelLink } from "./panel-link";
 import { Chip } from "./chip";
+import { WorkVignette } from "./work-vignette";
+import {
+  VIGNETTE_REPLACES_IMAGE,
+  type WorkVignetteKind,
+} from "./work-vignette-kinds";
 
 type WorkRowCompactProps = {
   /** Omitted when no detail page exists; the row then renders unlinked. */
@@ -16,6 +21,9 @@ type WorkRowCompactProps = {
   image?: { src: string; alt: string };
   /** Registry key for work with no route: opens a short stub in the panel. */
   stub?: string;
+  /** Optional hover scene in the thumbnail; see WorkVignette. Standalone
+      kinds replace the image entirely and rest in their settled frame. */
+  vignette?: WorkVignetteKind;
 };
 
 /**
@@ -33,6 +41,7 @@ export function WorkRowCompact({
   todo,
   image,
   stub,
+  vignette,
 }: WorkRowCompactProps) {
   // Each "·"-separated fact becomes its own chip (e.g. "From 0 to 1 · Gold").
   const metrics = metric
@@ -42,24 +51,28 @@ export function WorkRowCompact({
         .filter(Boolean)
     : [];
 
-  const thumb = image ? (
-    <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
-      <div className="aspect-[16/10] overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={image.src}
-          alt={image.alt}
-          loading="lazy"
-          className="h-full w-full object-cover"
-        />
+  const thumb =
+    image || vignette ? (
+      <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
+        <div className="relative aspect-[16/10] overflow-hidden">
+          {image && !(vignette && VIGNETTE_REPLACES_IMAGE[vignette]) && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={image.src}
+              alt={image.alt}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          )}
+          {vignette && <WorkVignette kind={vignette} />}
+        </div>
       </div>
-    </div>
-  ) : null;
+    ) : null;
 
   const content = (
     <div
       className={`work-row-body min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1${
-        image ? " mt-4 @min-[600px]:mt-0" : ""
+        thumb ? " mt-4 @min-[600px]:mt-0" : ""
       }`}
     >
       <h3

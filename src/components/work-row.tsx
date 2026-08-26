@@ -1,9 +1,15 @@
 import { PanelLink } from "./panel-link";
 import { Chip } from "./chip";
+import { WorkVignette } from "./work-vignette";
+import {
+  VIGNETTE_REPLACES_IMAGE,
+  type WorkVignetteKind,
+} from "./work-vignette-kinds";
 
 type WorkRowProps = {
   href: string;
-  image: { src: string; alt: string; srcSet?: string; sizes?: string };
+  /** Screenshot thumbnail; omitted when a standalone vignette is the thumb. */
+  image?: { src: string; alt: string; srcSet?: string; sizes?: string };
   title: string;
   tagline?: string;
   /** "·"-separated facts; each becomes a Chip, matching the /work cards. */
@@ -13,6 +19,9 @@ type WorkRowProps = {
    * page should set this so its thumbnail isn't lazy-loaded into view.
    */
   priority?: boolean;
+  /** Optional hover scene in the thumbnail; see WorkVignette. Standalone
+      kinds replace the image entirely and rest in their settled frame. */
+  vignette?: WorkVignetteKind;
 };
 
 /**
@@ -31,6 +40,7 @@ export function WorkRow({
   tagline,
   outcome,
   priority = false,
+  vignette,
 }: WorkRowProps) {
   // Each "·"-separated fact becomes its own chip (e.g. "Shipped · 3 iterations").
   const metrics = outcome
@@ -53,17 +63,20 @@ export function WorkRow({
           with the image; at two columns it moves to the trailing edge so the
           text owns the scan line. */}
       <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 transition-shadow duration-200 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
-        <div className="aspect-[16/10] overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={image.src}
-            alt={image.alt}
-            srcSet={image.srcSet}
-            sizes={image.sizes}
-            loading={priority ? "eager" : "lazy"}
-            fetchPriority={priority ? "high" : undefined}
-            className="h-full w-full object-cover"
-          />
+        <div className="relative aspect-[16/10] overflow-hidden">
+          {image && !(vignette && VIGNETTE_REPLACES_IMAGE[vignette]) && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={image.src}
+              alt={image.alt}
+              srcSet={image.srcSet}
+              sizes={image.sizes}
+              loading={priority ? "eager" : "lazy"}
+              fetchPriority={priority ? "high" : undefined}
+              className="h-full w-full object-cover"
+            />
+          )}
+          {vignette && <WorkVignette kind={vignette} />}
         </div>
       </div>
 
