@@ -19,20 +19,21 @@ export function CoursifyStub() {
         running.
       </p>
       <p>
-        I was the founder designer, and the design work was the whole
-        product, not just the mark. The UX covered both sides of the
+        I was the founder designer. The UX covered both sides of the
         marketplace: how a teacher built a school and put courses up for sale,
-        and how a student found them, enrolled and learned. I drew the UI for
-        every screen those flows ran through.
+        and how a student found them, enrolled and learned. I designed the UX
+        and UI for every screen those flows ran through.
       </p>
       <p>
-        The brand started from a sketch of a person broadcasting concentric
-        rings, on the idea that knowledge travels like an electromagnetic wave.
-        That sketch became the mark: a C drawn as four nested arcs radiating
+        I also designed the brand, it started from a sketch of a person
+        broadcasting concentric rings, on the idea that knowledge travels like
+        an electromagnetic wave.
+      </p>
+      <p>
+        That sketch became the logo: a C drawn as four nested arcs radiating
         from a centre, so the letter and the transmission are the same shape.
         The construction was geometric rather than decorative, built on
-        overlapping circles and axes, with a four-colour palette that had to
-        survive being reduced, flipped and blurred down to pure light.
+        overlapping circles and axes.
       </p>
       <p>
         <a href="https://coursify.me/" target="_blank" rel="noopener">
