@@ -90,6 +90,7 @@ const workGroups = [
           src: "/images/62dc1d83920df32baae28d6b_work2-p-1080.png",
           alt: "Qantas Airways App",
         },
+        video: { src: "/videos/qantas-app-kangaroo.mp4" },
         title: "Increasing App Adoption Through Entertainment",
         tagline:
           "Using entertainment features to pull travellers into the main Qantas app.",
@@ -101,6 +102,7 @@ const workGroups = [
           src: "/images/62dc274f132cbe543717e126_work1-p-2000.jpg",
           alt: "The Australian Government ETA visa app",
         },
+        video: { src: "/videos/eta-face-scan.mp4" },
         title: "Reducing Friction in Government Visa Applications",
         tagline:
           "Automating data entry to improve completion and reduce user effort in a high-stakes service.",
