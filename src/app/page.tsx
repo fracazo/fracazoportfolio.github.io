@@ -135,6 +135,7 @@ const workGroups = [
             "/images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-500.png 500w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-800.png 800w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080.png 1080w",
           sizes: "(min-width: 980px) 280px, 92vw",
         },
+        video: { src: "/videos/hireup-status-cycle.mp4" },
         title: "Worker Status Visibility",
         tagline:
           "Reducing uncertainty in a two-sided marketplace by making availability honest.",

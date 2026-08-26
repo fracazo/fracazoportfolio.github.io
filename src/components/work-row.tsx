@@ -1,5 +1,6 @@
 import { PanelLink } from "./panel-link";
 import { Chip } from "./chip";
+import { HoverVideo } from "./hover-video";
 import { WorkVignette } from "./work-vignette";
 import {
   VIGNETTE_REPLACES_IMAGE,
@@ -14,6 +15,9 @@ type WorkRowProps = {
   tagline?: string;
   /** "·"-separated facts; each becomes a Chip, matching the /work cards. */
   outcome?: string;
+  /** Optional hover clip: fades in over the still and plays while the row is
+      hovered. Touch, keyboard, and reduced-motion users keep the still. */
+  video?: { src: string };
   /**
    * Above-the-fold row: load its image eagerly. The first row on the landing
    * page should set this so its thumbnail isn't lazy-loaded into view.
@@ -39,6 +43,7 @@ export function WorkRow({
   title,
   tagline,
   outcome,
+  video,
   priority = false,
   vignette,
 }: WorkRowProps) {
@@ -63,21 +68,25 @@ export function WorkRow({
           with the image; at two columns it moves to the trailing edge so the
           text owns the scan line. */}
       <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 transition-shadow duration-200 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
-        <div className="relative aspect-[16/10] overflow-hidden">
-          {image && !(vignette && VIGNETTE_REPLACES_IMAGE[vignette]) && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={image.src}
-              alt={image.alt}
-              srcSet={image.srcSet}
-              sizes={image.sizes}
-              loading={priority ? "eager" : "lazy"}
-              fetchPriority={priority ? "high" : undefined}
-              className="h-full w-full object-cover"
-            />
-          )}
-          {vignette && <WorkVignette kind={vignette} />}
-        </div>
+        {video && image ? (
+          <HoverVideo src={video.src} image={image} priority={priority} />
+        ) : (
+          <div className="relative aspect-[16/10] overflow-hidden">
+            {image && !(vignette && VIGNETTE_REPLACES_IMAGE[vignette]) && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={image.src}
+                alt={image.alt}
+                srcSet={image.srcSet}
+                sizes={image.sizes}
+                loading={priority ? "eager" : "lazy"}
+                fetchPriority={priority ? "high" : undefined}
+                className="h-full w-full object-cover"
+              />
+            )}
+            {vignette && <WorkVignette kind={vignette} />}
+          </div>
+        )}
       </div>
 
       {/* Title + tagline + chips. The chips live inside the text column so
