@@ -110,6 +110,11 @@ const workGroups = [
       },
       {
         stub: "stub:b2w",
+        image: {
+          src: "/images/b2w-americanas-app.jpg",
+          alt: "A hand holding an iPhone running the americanas.com app, browsing the day's deals",
+        },
+        video: { src: "/videos/b2w-mobile-shopping.mp4" },
         title: "Mobile for Americanas, Submarino and Shoptime",
         tagline:
           "Rebuilding mobile for three of Brazil's largest e-commerce brands.",
