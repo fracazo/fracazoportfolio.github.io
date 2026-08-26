@@ -15,13 +15,12 @@ export function CoursifyStub() {
       <p>
         Coursify.me let any person or company build a school and sell courses,
         tutorials and ebooks online. The job was connecting teachers and
-        companies to their students, which is a marketplace problem wearing a
-        publishing tool&rsquo;s clothes. It reached 50,000 students and is still
+        companies to their students. It reached 50,000 students and is still
         running.
       </p>
       <p>
-        I was the designer among the founders, and the design work was the
-        whole product, not just the mark. The UX covered both sides of the
+        I was the founder designer, and the design work was the whole
+        product, not just the mark. The UX covered both sides of the
         marketplace: how a teacher built a school and put courses up for sale,
         and how a student found them, enrolled and learned. I drew the UI for
         every screen those flows ran through.
