@@ -16,7 +16,8 @@ type WorkRowProps = {
   /** "·"-separated facts; each becomes a Chip, matching the /work cards. */
   outcome?: string;
   /** Optional hover clip: fades in over the still and plays while the row is
-      hovered. Touch, keyboard, and reduced-motion users keep the still. */
+      hovered (or, on touch, while the row sits mid-viewport). Keyboard and
+      reduced-motion users keep the still. */
   video?: { src: string };
   /**
    * Above-the-fold row: load its image eagerly. The first row on the landing

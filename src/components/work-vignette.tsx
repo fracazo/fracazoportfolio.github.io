@@ -5,6 +5,7 @@ import {
   VIGNETTE_REPLACES_IMAGE,
   type WorkVignetteKind,
 } from "./work-vignette-kinds";
+import { useScrollPlay } from "./use-scroll-play";
 
 export type { WorkVignetteKind };
 
@@ -15,16 +16,24 @@ export type { WorkVignetteKind };
  * its winding route through the stages.
  *
  * Standalone kinds (see VIGNETTE_REPLACES_IMAGE) are the thumbnail itself:
- * they rest settled, so touch, reduced motion, the split-panel list, and the
- * no-JS export all show the finished composition, and hover replays the
- * animation from the start. Overlay kinds sit hidden over a screenshot and
- * play on hover. Either way the stage is aria-hidden, ignores pointer events
- * so PanelLink keeps the click, and hover is gated to fine pointers.
+ * they rest settled, so reduced motion, the split-panel list, and the no-JS
+ * export all show the finished composition, and hover replays the animation
+ * from the start. Overlay kinds sit hidden over a screenshot and play on
+ * hover. Either way the stage is aria-hidden, ignores pointer events so
+ * PanelLink keeps the click, and hover is gated to fine pointers. Touch has
+ * no hover, so there the scene plays while the row sits mid-viewport
+ * instead, replaying on each pass.
  */
 export function WorkVignette({ kind }: { kind: WorkVignetteKind }) {
   const standalone = VIGNETTE_REPLACES_IMAGE[kind];
   const rootRef = useRef<HTMLDivElement>(null);
-  const active = useRowHover(rootRef);
+  const hovered = useRowHover(rootRef);
+  const scrolledTo = useScrollPlay(
+    rootRef,
+    ".work-row, .work-row-compact",
+    HOVER_QUERY,
+  );
+  const active = hovered || scrolledTo;
   const scale = useCanvasScale(rootRef, standalone);
   const [mode, setMode] = useState<SceneMode>(
     standalone ? "settled" : "hidden",
@@ -103,6 +112,10 @@ type SceneMode = "hidden" | "settled" | "reset" | "play";
 const HOVER_INTENT_MS = 400;
 const RESET_MS = 220;
 
+/* Shared between the hover path (must match) and the scroll path (must NOT
+   match), so exactly one trigger owns any given device. */
+const HOVER_QUERY = "(hover: hover) and (pointer: fine)";
+
 /* The thumb's exact 16:10 at its two-column size; scenes lay out against
    this and the standalone shell scales it. */
 const CANVAS_W = 280;
@@ -124,8 +137,7 @@ function useRowHover(rootRef: RefObject<HTMLDivElement | null>) {
     let timer: number | undefined;
     const enter = () => {
       if (row.closest("[data-panel-split]")) return;
-      if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches)
-        return;
+      if (!window.matchMedia(HOVER_QUERY).matches) return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       timer = window.setTimeout(() => setActive(true), HOVER_INTENT_MS);
     };
