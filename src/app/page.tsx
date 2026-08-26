@@ -155,10 +155,11 @@ const workGroups = [
     compact: [
       {
         stub: "stub:bem-direto",
+        vignette: "bemdireto" as const,
         title: "Bem Direto",
         tagline:
           "Brazil's first real estate marketplace for agents, designed from scratch.",
-        metric: "First designer",
+        metric: "First designer · From 0 to 1",
       },
     ],
   },

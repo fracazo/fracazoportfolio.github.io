@@ -56,6 +56,8 @@ export function WorkVignette({ kind }: { kind: WorkVignetteKind }) {
       <MrSummaryScene mode={mode} />
     ) : kind === "mymix" ? (
       <MymixScene mode={mode} />
+    ) : kind === "bemdireto" ? (
+      <BemDiretoScene mode={mode} />
     ) : (
       <BirthGuideScene mode={mode} />
     );
@@ -517,6 +519,102 @@ function MymixScene({ mode }: { mode: SceneMode }) {
         </div>
       </div>
     </div>
+  );
+}
+
+/* ---- Bem Direto: an agent buys a lead and the contact unlocks ---- */
+
+/* The app's paid moment: a buyer's phone stays masked until the agent pays
+   the lead's price, so the reveal IS the transaction. Digits and prices are
+   the app's own (2012 Rio numbers were 8 digits). */
+const BEMDIRETO_UNLOCK_MS = 1050;
+
+function BemDiretoScene({ mode }: { mode: SceneMode }) {
+  const shown = mode === "settled" || mode === "play";
+  const delay = (ms: number) => (mode === "play" ? `${ms}ms` : "0ms");
+  const reveal = (ms: number, hiddenTransform = "translateY(4px)") => ({
+    opacity: shown ? 1 : 0,
+    transform: shown ? "none" : hiddenTransform,
+    transition: "opacity 250ms ease, transform 250ms ease",
+    transitionDelay: delay(ms),
+  });
+  // Both sides of the unlock share one moment; swaps land together.
+  const swap = (visible: boolean, extraMs = 0) => ({
+    opacity: visible ? 1 : 0,
+    transition: "opacity 200ms ease",
+    transitionDelay: delay(BEMDIRETO_UNLOCK_MS + extraMs),
+  });
+
+  return (
+    <>
+      {/* The lead: who wants to buy, and what the contact costs the agent. */}
+      <div className="vignette-card absolute inset-x-[7%] top-[8%] rounded-lg bg-surface px-3 py-2.5">
+        <div className="flex items-center gap-2" style={reveal(0)}>
+          <span className="size-3 shrink-0 rounded-full bg-border" />
+          <span className="h-1.5 w-14 rounded-full bg-border" />
+          <span className="ml-auto font-mono text-meta text-accent">
+            R$ 9,90
+          </span>
+        </div>
+        <div
+          className="mt-2.5 h-1.5 w-[85%] rounded-full bg-border"
+          style={reveal(150)}
+        />
+        <div
+          className="mt-1.5 h-1.5 w-[55%] rounded-full bg-border"
+          style={reveal(250)}
+        />
+      </div>
+
+      {/* The contact: masked digits until the buy, then the number is real. */}
+      <div
+        className="vignette-card absolute inset-x-[7%] bottom-[8%] flex items-center justify-between rounded-lg bg-surface px-3 py-2"
+        style={reveal(450)}
+      >
+        <span className="font-mono text-meta text-text">
+          (021) 8187{" "}
+          <span className="relative">
+            <span className="text-muted" style={swap(!shown)}>
+              ****
+            </span>
+            <span className="absolute left-0" style={swap(shown)}>
+              3452
+            </span>
+          </span>
+        </span>
+        <span className="relative h-[21px] w-[76px] shrink-0">
+          <span
+            className="absolute inset-0 flex items-center justify-center rounded-full bg-accent font-mono text-meta text-on-accent"
+            style={{
+              ...swap(!shown),
+              transform: shown ? "scale(0.92)" : "none",
+              transition: "opacity 200ms ease, transform 200ms ease",
+            }}
+          >
+            Comprar
+          </span>
+          <span
+            className="absolute top-1/2 right-0 flex size-[18px] items-center justify-center rounded-full bg-accent"
+            style={{
+              opacity: shown ? 1 : 0,
+              transform: `translateY(-50%) scale(${shown ? 1 : 0.4})`,
+              transition: "opacity 200ms ease, transform 200ms ease",
+              transitionDelay: delay(BEMDIRETO_UNLOCK_MS + 80),
+            }}
+          >
+            <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
+              <path
+                d="M1.5 5.5 L4 8 L8.5 2"
+                stroke="var(--on-accent)"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+        </span>
+      </div>
+    </>
   );
 }
 
