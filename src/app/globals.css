@@ -2084,3 +2084,208 @@
 .panel-body .case-hero-image {
   display: none;
 }
+
+/* --- MyMix test-rig embed (case study) ------------------------------------
+   A working model of the 2015 Pick & Mix prototypes, styled with the site's
+   tokens rather than Vodafone's brand. Tokens flip with the theme, so there
+   are no per-mode overrides here. */
+.mymix-embed {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 20px;
+  margin-block: 8px;
+}
+.mymix-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.mymix-seg {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.mymix-seg-btn {
+  font-size: var(--text-meta-size);
+  padding: 6px 12px;
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+}
+.mymix-seg-btn + .mymix-seg-btn {
+  border-inline-start: 1px solid var(--border);
+}
+.mymix-seg-btn[aria-selected="true"] {
+  background: var(--panel-2);
+  color: var(--text);
+}
+.mymix-group {
+  margin-bottom: 14px;
+}
+.mymix-group-label {
+  font-size: var(--text-meta-size);
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+.mymix-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.mymix-opt {
+  font-size: var(--text-meta-size);
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, opacity 0.15s;
+}
+.mymix-opt[data-state="selected"] {
+  border-color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 16%, var(--surface));
+  color: var(--text);
+}
+.mymix-opt[data-state="semi"] {
+  opacity: 0.55;
+}
+.mymix-opt:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.mymix-sliders {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.mymix-track {
+  position: relative;
+  height: 210px;
+  margin: 10px 12px 26px 8px;
+  border-inline-start: 2px solid var(--border);
+  touch-action: none;
+  cursor: grab;
+}
+.mymix-detent {
+  position: absolute;
+  inset-inline-start: 12px;
+  transform: translateY(50%);
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.mymix-handle {
+  position: absolute;
+  inset-inline-start: -9px;
+  transform: translateY(50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--brand);
+  border: 2px solid var(--surface);
+  box-shadow: 0 0 0 1px var(--border);
+  cursor: grab;
+}
+.mymix-handle:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.mymix-price {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-radius: 8px;
+  background: var(--panel-2);
+  padding: 12px 16px;
+  margin-top: 6px;
+}
+.mymix-price-value {
+  font-family: var(--font-display);
+  font-size: calc(var(--text-body-size) * 1.7);
+  color: var(--text);
+}
+.mymix-price-note {
+  font-size: var(--text-meta-size);
+  color: var(--muted);
+}
+.mymix-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+.mymix-continue {
+  font-size: var(--text-meta-size);
+  padding: 9px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--brand);
+  background: var(--brand);
+  color: var(--on-accent);
+  cursor: default;
+  transition: opacity 0.2s;
+}
+.mymix-continue[aria-disabled="true"] {
+  opacity: 0.35;
+}
+.mymix-reset {
+  font-size: var(--text-meta-size);
+  background: none;
+  border: 0;
+  color: var(--muted);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.mymix-oops {
+  position: absolute;
+  inset-inline: 24px;
+  top: 30%;
+  z-index: 2;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-hover);
+  padding: 20px 24px;
+  text-align: center;
+}
+.mymix-oops-title {
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 6px;
+}
+.mymix-oops p {
+  font-size: var(--text-meta-size);
+  color: var(--text-body);
+  margin: 0 0 12px;
+}
+.mymix-oops-ok {
+  font-size: var(--text-meta-size);
+  padding: 8px 28px;
+  border-radius: 8px;
+  border: 0;
+  background: var(--brand);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+.mymix-embed-note {
+  font-size: var(--text-meta-size);
+  color: var(--muted);
+  margin: 14px 0 0;
+}
+@media (max-width: 560px) {
+  .mymix-sliders {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mymix-detent {
+    font-size: 10px;
+  }
+}

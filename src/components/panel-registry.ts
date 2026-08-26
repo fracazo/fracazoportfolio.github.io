@@ -28,12 +28,6 @@ export const panelRegistry: Record<
       import("@/components/stubs/coursify").then((m) => m.CoursifyStub),
     ),
   },
-  "stub:vodafone": {
-    title: "MyMix",
-    load: dynamic(() =>
-      import("@/components/stubs/vodafone").then((m) => m.VodafoneStub),
-    ),
-  },
   "/about": {
     title: "About me",
     load: dynamic(() =>
@@ -67,6 +61,14 @@ export const panelRegistry: Record<
     load: dynamic(() =>
       import("@/components/writing/building-birthguide-with-ai").then(
         (m) => m.BuildingBirthguideWithAiContent,
+      ),
+    ),
+  },
+  "/case-studies/vodafone-mymix": {
+    title: "MyMix",
+    load: dynamic(() =>
+      import("@/components/case-studies/vodafone-mymix").then(
+        (m) => m.VodafoneMymixContent,
       ),
     ),
   },
