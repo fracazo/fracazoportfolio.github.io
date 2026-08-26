@@ -10,7 +10,7 @@ export function CoursifyStub() {
     <WorkStub
       eyebrow="Co-founded · 2012–2014"
       title="Coursify.me"
-      intro="An online course platform, and the brand identity behind it."
+      intro="An online course platform. The UX, the UI and the brand were all mine."
     >
       <p>
         Coursify.me let any person or company build a school and sell courses,
@@ -20,19 +20,21 @@ export function CoursifyStub() {
         running.
       </p>
       <p>
-        I designed the brand. It started from a sketch of a person broadcasting
-        concentric rings, on the idea that knowledge travels like an
-        electromagnetic wave. That sketch became the mark: a C drawn as four
-        nested arcs radiating from a centre, so the letter and the transmission
-        are the same shape.
+        I was the designer among the founders, and the design work was the
+        whole product, not just the mark. The UX covered both sides of the
+        marketplace: how a teacher built a school and put courses up for sale,
+        and how a student found them, enrolled and learned. I drew the UI for
+        every screen those flows ran through.
       </p>
       <p>
-        The work behind it was geometric rather than decorative. The letterform
-        was constructed on overlapping circles and axes, tested against Open
-        Sans, Roboto, Segoe UI and Inter to find a C that was properly circular,
-        and explored both ways: as a solid counterform and as the nested arcs
-        that won. The four-colour palette had to survive being reduced,
-        flipped, and blurred down to pure light.
+        The brand started from a sketch of a person broadcasting concentric
+        rings, on the idea that knowledge travels like an electromagnetic wave.
+        That sketch became the mark: a C drawn as four nested arcs radiating
+        from a centre, so the letter and the transmission are the same shape.
+        The construction was geometric rather than decorative, built on
+        overlapping circles and axes, tested against Open Sans, Roboto, Segoe
+        UI and Inter, with a four-colour palette that had to survive being
+        reduced, flipped and blurred down to pure light.
       </p>
       <p>
         <a href="https://coursify.me/" target="_blank" rel="noopener">
