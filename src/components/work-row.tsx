@@ -61,7 +61,7 @@ export function WorkRow({
       /* Container query, not a viewport one: in the split layout this row lives
          in a pane roughly half the window, so keying off the window would hold
          the thumbnail column at widths that cannot carry it. */
-      className="work-row group grid grid-cols-1 border-t border-border py-8 no-underline hover:no-underline @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-center @min-[600px]:gap-x-8"
+      className="work-row group grid grid-cols-1 border-t border-border py-8 no-underline hover:no-underline @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8"
     >
       {/* Thumbnail — uniform frame so the mismatched screenshots stop clashing.
           DOM order keeps it first so the stacked (sub-600px) card still leads

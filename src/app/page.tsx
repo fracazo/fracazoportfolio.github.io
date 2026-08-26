@@ -313,7 +313,12 @@ export default function Home() {
               <p className="mt-1 mb-0 text-body text-text-body">
                 {group.context}
               </p>
-              <ul role="list" className="m-0 mt-4 flex list-none flex-col p-0">
+              <ul
+                role="list"
+                /* Rows draw their own border-t divider; this closes the group
+                   after its last row so the list doesn't trail off open. */
+                className="m-0 mt-4 flex list-none flex-col border-b border-border p-0"
+              >
                 {group.full.map((work, index) => (
                   <li key={work.href}>
                     <WorkRow
