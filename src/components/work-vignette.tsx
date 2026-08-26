@@ -54,6 +54,8 @@ export function WorkVignette({ kind }: { kind: WorkVignetteKind }) {
       <CoursifyScene mode={mode} />
     ) : kind === "mr-summary" ? (
       <MrSummaryScene mode={mode} />
+    ) : kind === "mymix" ? (
+      <MymixScene mode={mode} />
     ) : (
       <BirthGuideScene mode={mode} />
     );
@@ -439,6 +441,82 @@ function MrSummaryScene({ mode }: { mode: SceneMode }) {
         </div>
       </div>
     </>
+  );
+}
+
+/* ---- MyMix: four picks lock in and the price range narrows to one ---- */
+
+/* Each row is one inclusion: pill widths echo the builder's uneven option
+   labels, `pick` is the option that gets chosen, `dims` grey out after an
+   earlier pick removes them, nodding at the constraint logic. */
+const MYMIX_ROWS: Array<{
+  pills: number[];
+  pick: number;
+  dims?: number[];
+}> = [
+  { pills: [44, 52, 48], pick: 1 },
+  { pills: [50, 38, 36, 38], pick: 1, dims: [3] },
+  { pills: [56, 48], pick: 1 },
+  { pills: [42, 50, 62], pick: 2, dims: [0] },
+];
+
+function MymixScene({ mode }: { mode: SceneMode }) {
+  const shown = mode === "settled" || mode === "play";
+  const delay = (ms: number) => (mode === "play" ? `${ms}ms` : "0ms");
+  // One pick every 320ms; a row's casualties grey out just after its pick.
+  const pickAt = (row: number) => 200 + row * 320;
+
+  return (
+    <div className="vignette-card absolute inset-x-[7%] inset-y-[8%] rounded-lg bg-surface px-3.5 py-3">
+      <div className="flex h-full flex-col justify-between">
+        {MYMIX_ROWS.map((row, rowIndex) => (
+          <div key={rowIndex} className="flex items-center gap-1.5">
+            {row.pills.map((width, pillIndex) => {
+              const picked = shown && pillIndex === row.pick;
+              const dimmed = shown && row.dims?.includes(pillIndex);
+              return (
+                <span
+                  key={pillIndex}
+                  className="h-[13px] rounded-[5px] border"
+                  style={{
+                    width,
+                    borderColor: picked ? "var(--accent)" : "var(--border)",
+                    background: picked
+                      ? "color-mix(in srgb, var(--accent) 22%, var(--surface))"
+                      : "var(--surface)",
+                    opacity: dimmed ? 0.35 : 1,
+                    transition:
+                      "border-color 200ms ease, background 200ms ease, opacity 300ms ease",
+                    transitionDelay: delay(
+                      dimmed ? pickAt(rowIndex) + 140 : pickAt(rowIndex),
+                    ),
+                  }}
+                />
+              );
+            })}
+          </div>
+        ))}
+
+        {/* The price band: a full-width range that narrows one step per pick
+            until only the mix's own price is left. steps() makes the width
+            jump with each selection instead of gliding. */}
+        <div className="flex h-[15px] items-center justify-center rounded-[5px] bg-panel-2 px-1">
+          <span
+            className="h-[7px] rounded-full bg-accent"
+            style={{
+              width: shown ? "10%" : "88%",
+              /* The stepped narrowing only runs forward; resetting (and
+                 settling back after an aborted hover) snaps, so an
+                 interrupted step transition can't strand the band. */
+              transition:
+                mode === "play"
+                  ? "width 1280ms steps(4, jump-end) 320ms"
+                  : "width 150ms ease",
+            }}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 

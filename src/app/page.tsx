@@ -116,10 +116,12 @@ const workGroups = [
         metric: "500,000+ items",
       },
       {
-        stub: "stub:vodafone",
-        title: "MyMix",
+        href: "/case-studies/vodafone-mymix",
+        vignette: "mymix" as const,
+        title: "Vodafone",
         tagline:
           "Letting prepaid customers build their own recharge, in four taps.",
+        metric: "72 combinations · 4 taps",
       },
     ],
   },

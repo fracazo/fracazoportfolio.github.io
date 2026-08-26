@@ -7,7 +7,8 @@ export type WorkVignetteKind =
   | "wiki"
   | "birthguide"
   | "coursify"
-  | "mr-summary";
+  | "mr-summary"
+  | "mymix";
 
 /* Standalone scenes ARE the thumbnail: the row renders no screenshot behind
    them, they rest in their settled composition, and hover replays the
@@ -18,4 +19,5 @@ export const VIGNETTE_REPLACES_IMAGE: Record<WorkVignetteKind, boolean> = {
   birthguide: false,
   coursify: true,
   "mr-summary": true,
+  mymix: true,
 };
