@@ -78,6 +78,7 @@ const workGroups = [
           src: "/images/62dc26d29e21732abffdaacd_work4-p-1080.png",
           alt: "Qantas Entertainment App",
         },
+        video: { src: "/videos/qantas-entertainment-spotlights.mp4" },
         title: "A Unified In-flight Entertainment Experience",
         tagline:
           "Reimagining in-flight entertainment as a cohesive product ecosystem.",
