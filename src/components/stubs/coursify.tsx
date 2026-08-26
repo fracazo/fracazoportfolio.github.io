@@ -32,8 +32,8 @@ export function CoursifyStub() {
         That sketch became the mark: a C drawn as four nested arcs radiating
         from a centre, so the letter and the transmission are the same shape.
         The construction was geometric rather than decorative, built on
-        overlapping circles and axes, tested against Open Sans, Roboto, Segoe
-        UI and Inter, with a four-colour palette that had to survive being
+        overlapping circles and axes, tested against Open Sans, Roboto and
+        Segoe UI, with a four-colour palette that had to survive being
         reduced, flipped and blurred down to pure light.
       </p>
       <p>
