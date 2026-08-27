@@ -195,7 +195,7 @@ const productDesign = [
   },
   {
     title: "Build a website with GitLab Pages",
-    meta: "GitLab · March 2025",
+    meta: "GitLab · 2025",
     links: [
       {
         href: "https://about.gitlab.com/blog/build-a-new-website-in-a-few-easy-steps-with-gitlab-pages/",
