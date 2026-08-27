@@ -185,7 +185,7 @@ const productDesign = [
   },
   {
     title: "Embedded views: The future of work tracking in GitLab",
-    meta: "GitLab · August 2025",
+    meta: "GitLab · 2025",
     links: [
       {
         href: "https://about.gitlab.com/blog/embedded-views-the-future-of-work-tracking-in-gitlab/",
