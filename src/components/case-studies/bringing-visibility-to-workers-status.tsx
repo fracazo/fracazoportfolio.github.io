@@ -58,7 +58,7 @@ export function BringingVisibilityToWorkersStatusContent({
 
         <div className="summary-card">
           <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-          <p>A new design that drives user behaviour. The new feature informs and educates support workers on how to keep their availability updated. It automatically sets support workers who have not been active on the platform for over 30 days to "not looking for work". This leads to more responsiveness from workers to clients on the Hireup platform.</p>
+          <p>Clients were messaging workers who had quietly left the platform, because nothing ever updated an absent worker's availability. This design made availability honest. Workers inactive for 30 days are switched to "not looking for work" automatically, and the app teaches workers what their status means and how to keep it current. Response rate rose from 39.1% to 45.8%, and connection rate from 3% to 5%.</p>
         </div>
 
         <div className="case-study-section">
@@ -135,7 +135,7 @@ export function BringingVisibilityToWorkersStatusContent({
 
           <h3>My Account</h3>
           <p><strong>Surface toggle on my account</strong></p>
-          <p>There was a debate on where to place this feature in our software, the PM suggested creating a new module with a switch where users could easily interact with it directly from the home screen, but I argued that it should stay in "My Account" to maintain consistency and reduce cognitive load. To help guide my arguments, I developed themes such as scalability, future-proofing, and consistency. By focusing on these principles, I was able to articulate my thoughts clearly and convince the team to keep the feature where it was. This experience taught me the importance of having a strong set of principles to guide decision-making in software design.</p>
+          <p>There was a debate on where the control should live. The PM suggested a new home-screen module with the switch, so workers could reach it in one tap. I argued for keeping the toggle in "My Account", on three grounds. Availability is a setting, and workers already look for settings in My Account, so a second surface for the same control would create two places to check and keep in sync. The home screen's job was answering "what is my status right now", and the avatar signifier below does that on every page without carrying the control. And once one setting earns a home-screen module, every future setting has a claim to the same space. The team agreed, and the shipped design pairs the signifier on the home page with the toggle in My Account.</p>
           <img src="/images/62fb817e7d3362906fa43868_My-Account.png" alt="My Account design" />
 
           <h3>Copywriting with empathy</h3>

@@ -5,7 +5,7 @@ import { ExternalLinkIcon } from "@/components/icons";
 import { SiteFooter } from "@/components/site-footer";
 
 const title = "Driving Engagement Through a Unified Entertainment Experience - Alex Fracazo";
-const description = "Reimagining in-flight entertainment as a cohesive product ecosystem.";
+const description = "Making the entertainment app useful before and after the flight, not just on board.";
 
 export const metadata: Metadata = {
   title,

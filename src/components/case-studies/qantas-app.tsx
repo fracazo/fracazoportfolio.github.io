@@ -69,7 +69,7 @@ export function QantasAppContent({
 
           <h3>Team & Context</h3>
           <img src="/images/62d8b0123816d7fee7a5344b_Screen-Shot-2022-07-21-at-11.46.45-am.webp" alt="Team structure" className="img-small" />
-          <p>I had heaps of fun working with these folks, under the Qantas Digital Direct Team. I was leading the design for the Entertainment Squad. I had also collaborated with the Travel Squad, Emerging Channels Squad, Loyalty Squad, and Smart Retail Squad.</p>
+          <p>I led design for the Entertainment Squad under the Qantas Digital Direct team, and collaborated with the Travel, Emerging Channels, Loyalty and Smart Retail squads.</p>
           
           <h4>Key milestones</h4>
           <ul>
@@ -175,7 +175,7 @@ export function QantasAppContent({
 
           <h3>Home Page Integration</h3>
           <p>During this process, the Qantas Airways app was also improved by another team on the Travel Squad. Their objective was to surface the itinerary page on the home page so that users wouldn't need to tap on a card to see what's important for their flight.</p>
-          <p>This project directly benefited us when released. The entertainment design pattern I designed worked perfectly with this change, users would see what entertainment was available for their flight on the Qantas Airways app home page, which had a huge impact on our team metrics.</p>
+          <p>When their change shipped, the entertainment pattern slotted into the new home page as it was. Entertainment for your flight moved from a card tap away to the first screen 1.17 million monthly users see, and the download growth below owes a lot to that placement.</p>
 
           <h3>Design Evolution</h3>
           <ul>
@@ -192,7 +192,7 @@ export function QantasAppContent({
           <ol>
             <li>Entertainment is now on the Qantas Airways app home page</li>
             <li>Informing <strong>1.17 million active monthly users</strong> of the entertainment offering for their flight</li>
-            <li>App Store downloads: Start of the project (2017) = +58%, After redesign (~2018) = <strong>+70%</strong></li>
+            <li>App Store downloads: year-on-year growth of +58% at the start of the project (2017) rose to <strong>+70%</strong> after the redesign (~2018)</li>
           </ol>
 
           <img src="/images/62de769d97f4602e89070492_user-flow.webp" alt="Final user flow" className="img-full" />
@@ -200,7 +200,7 @@ export function QantasAppContent({
           <h3>Key Takeaways</h3>
           <p>Beyond building a simple design pattern, we allow passengers to discover what's showing on board their next flight. This feature delivers awareness of what entertainment is available when travelling with Qantas and further strengthens the passengers' engagement with the app and the Qantas brand.</p>
           <img src="/images/62df2cccc02b82ce55e9b9f3_conclusion.webp" alt="Conclusion" />
-          <p>After many months working across all stages of this project, see also the Qantas Entertainment app redesign case study, which was fundamental to the success of the business. I'm excited to see how many improvements we made as a team, creating something really exciting, and a product we are all proud of.</p>
+          <p>This work is one half of the story. The other half is the Qantas Entertainment app redesign, where the same strategy continues inside the streaming app itself.</p>
 
         </div>
 

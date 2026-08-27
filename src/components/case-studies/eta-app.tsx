@@ -210,7 +210,7 @@ export function EtaAppContent({
           <h3>Design Details</h3>
           <p>The design principles that I focused on most for this project were accessibility and inclusion, as it is an application that people from different cultures and age groups can use. Some of the guidelines I had in mind while creating the user interface were:</p>
           <blockquote>The app provides a utility so the <strong>interface should feel native and simple</strong> to the device the person is using</blockquote>
-          <p>The colours used in the design were adapted from the <strong>Home Affairs Brand guidelines to create customer empathy</strong> through the visual and brand connection.</p>
+          <p>The colours were adapted from the <strong>Home Affairs brand guidelines</strong>, so the app reads as the same government service people already know from the web, which matters when you are asking for someone's passport.</p>
           <p>The preferred typeface from the Brand Guidelines was Helvetica Neue, but since the App is heavy on data, I chose to use the <strong>device's native fonts</strong> to minimise the screen load so that the app feels lightweight <strong>as user actions should be quick to respond.</strong></p>
           <img src="/images/62ca98319e6ac4a404da4d49_Screen-Shot-2022-07-10-at-7.13.01-pm.png" alt="Design details" className="img-small" />
 
@@ -236,7 +236,7 @@ export function EtaAppContent({
           <img src="/images/62cab1f7ca69f3a06ca60419_Submission.webp" alt="Submission" />
 
           <h3>Copywriting & Microcopy</h3>
-          <p>Microcopy played a huge role in product design, many rounds of copy review went into this project. Some guidelines used in the designs and development were related to title style capitalisation.</p>
+          <p>Testing showed most misunderstandings could be resolved by changing text and descriptions, so the copy carried real weight in this app. Every screen went through rounds of review against shared guidelines, down to title-style capitalisation.</p>
 
           <h2>Outcomes & Learnings</h2>
 
@@ -248,11 +248,11 @@ export function EtaAppContent({
 
           <h3>Implementation</h3>
           <img src="/images/62cab39b903d34450f12a591_Screen-Shot-2022-07-10-at-9.10.01-pm.webp" alt="Building phase" className="img-small" />
-          <p>Working with engineers is a big part of my role which I love. For this project, I've used Sketch, Abstract and Zeplin, which work great for syncing files and providing developers with assets.</p>
+          <p>I worked alongside the engineers through the build. Sketch, Abstract and Zeplin kept files, versions and assets in sync between design and development.</p>
           <p>Assets were created for <strong>Android and iOS</strong></p>
           
           <h4>Delightful Details</h4>
-          <p>There's a user expectation of how these types of UIs operate, so there aren't many opportunities to take a conceptually unique approach. My solution was to design a "standard" step-by-step app that included fun details where possible, such as loading state and user feedback animations.</p>
+          <p>There's a user expectation of how these types of UIs operate, so there aren't many opportunities to take a conceptually unique approach. My solution was to design a "standard" step-by-step app, and save the personality for moments where it could not cost clarity, like the loading states and user feedback animations.</p>
           <img src="/images/62c94c07a33caa58679afdc3_NFC-Entrant.gif" alt="NFC animation" className="img-small" />
 
           <h3>Key Learnings</h3>

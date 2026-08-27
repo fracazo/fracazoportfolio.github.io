@@ -53,7 +53,7 @@ export function QantasEntertainmentAppContent({
               </div>
             </div>
           </div>
-          <p className="case-intro">Reimagining in-flight entertainment as a cohesive product ecosystem.</p>
+          <p className="case-intro">The entertainment app only worked on board, connected to the Qantas network. This redesign made it useful before and after the flight, and tripled advertising revenue.</p>
         </header>
 
         <div className="summary-card">
@@ -65,7 +65,7 @@ export function QantasEntertainmentAppContent({
           <h2>Understanding the Opportunity</h2>
 
           <h3>User Insights</h3>
-          <p>Having an in-depth understanding of the traveller's flight journey – pre-flight, during, and after – laid the foundations for building an effective customer experience. I held multiple workshops, conducted qualitative interviews and tested our initial assumptions via face-to-face conversations and prototypes. My desire to make the app experience as smooth and effortless as possible drove our team's design thinking, and also led to the implementation of interesting features.</p>
+          <p>Having an in-depth understanding of the traveller's flight journey (pre-flight, during, and after) laid the foundations for building an effective customer experience. I held multiple workshops, conducted qualitative interviews and tested our initial assumptions via face-to-face conversations and prototypes. One goal anchored the team's design thinking, letting travellers get to their entertainment with as little effort as possible. The features that follow all trace back to it.</p>
 
           <h3>Current State Analysis</h3>
           <p>The Qantas Entertainment app is used to stream entertainment to a customer's personal device, it allows the user to watch or listen to various forms of media.</p>

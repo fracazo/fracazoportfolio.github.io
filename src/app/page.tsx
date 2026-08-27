@@ -17,7 +17,7 @@ const workGroups = [
   {
     id: "knowledge-products",
     title: "Knowledge products",
-    context: "Building tools people use and love.",
+    context: "Building tools people rely on every day.",
     full: [
       {
         href: "/case-studies/glql",
@@ -81,7 +81,7 @@ const workGroups = [
         video: { src: "/videos/qantas-entertainment-spotlights.mp4" },
         title: "A Unified In-flight Entertainment Experience",
         tagline:
-          "Reimagining in-flight entertainment as a cohesive product ecosystem.",
+          "Making the entertainment app useful before and after the flight, not just on board.",
         metric: "Ad revenue 225k → 675k",
       },
       {

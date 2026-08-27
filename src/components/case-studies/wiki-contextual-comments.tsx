@@ -55,13 +55,13 @@ export function WikiContextualCommentsContent({
                 </div>
               </div>
             </div>
-            <p className="case-intro">Designed a contextual commenting system for GitLab Wiki that lets users comment on specific sections of content without the visual clutter seen in Confluence. Completed a full design spike, conducted extensive competitor analysis across Google Docs, Notion, Confluence, and Coda, and delivered designs that are now in active engineering development.</p>
+            <p className="case-intro">GitLab Wiki had comments, but they sat at the bottom of the page with no connection to the text they discussed, and the real conversations happened in Slack. I designed a commenting system that ties a discussion to the exact line it refers to, without the cluttered pages Confluence users complain about. The designs are now in engineering development.</p>
           </header>
 
           <ul className="case-stats" role="list">
-            <li><span className="case-stat-value">5</span><span className="case-stat-label">competitor products analysed in depth</span></li>
-            <li><span className="case-stat-value">3</span><span className="case-stat-label">interaction models explored and tested</span></li>
-            <li><span className="case-stat-value">2025</span><span className="case-stat-label">in active engineering development</span></li>
+            <li><span className="case-stat-value">#1</span><span className="case-stat-label">most-requested gap in competitive comparisons</span></li>
+            <li><span className="case-stat-value">1</span><span className="case-stat-label">panel unifying contextual and general comments</span></li>
+            <li><span className="case-stat-value">In Dev</span><span className="case-stat-label">designs complete, engineering build underway</span></li>
           </ul>
 
           <div className="summary-card">
@@ -155,7 +155,7 @@ export function WikiContextualCommentsContent({
             <p className="img-caption">The hybrid approach in the product: highlighted passages anchor to threads in a unified right-side comments panel, with general comments in the same feed.</p>
 
             <h3>MVC scope</h3>
-            <p>After the design critique session (linked below), we aligned on a clear MVC scope:</p>
+            <p>After the design critique session (linked below), we aligned on a clear scope for the MVC, the minimal viable change:</p>
 
             <ul>
               <li>Sidebar comments panel (right side)</li>
