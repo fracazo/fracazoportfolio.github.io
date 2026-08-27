@@ -69,7 +69,7 @@ const workGroups = [
   {
     id: "consumer-at-scale",
     title: "Consumer at scale",
-    context: "Products used by millions of Australians.",
+    context: "Products used by millions in Australia and Brazil.",
     full: [],
     compact: [
       {
