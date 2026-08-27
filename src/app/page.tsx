@@ -198,12 +198,12 @@ const productDesign = [
 const designEngineering = [
   {
     title: "BirthGuide",
-    meta: "Solo build · 2026",
+    meta: "Consumer product · 2026",
     links: [{ href: "https://birthguide.com.au", label: "Site" }],
   },
   {
     title: "Birth Plans",
-    meta: "Solo build · 2026",
+    meta: "Web app · 2026",
     links: [{ href: "https://birthplans.app", label: "Site" }],
   },
   {
