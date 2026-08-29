@@ -359,28 +359,6 @@ export default function Home() {
         </section>
       </div>
 
-      {/* How I Work */}
-      <section
-        aria-labelledby="how-i-work-title"
-        className="mx-auto w-full max-w-[640px]"
-      >
-        <h2 id="how-i-work-title" className="h2">
-          How I work
-        </h2>
-        <p className="text mb-0">I do my best work on problems that are:</p>
-        <ul className="mt-2 list-disc ps-5 text-text-body">
-          <li className="my-1.5">unclear or under-defined</li>
-          <li className="my-1.5">shared across multiple teams</li>
-          <li className="my-1.5">
-            constrained by legacy systems or organisational complexity
-          </li>
-        </ul>
-        <p className="text mt-6">
-          I close the loop. I prototype, build, and ship the thing, using
-          AI-assisted tooling to move faster through the code.
-        </p>
-      </section>
-
       {/* Writing */}
       <section
         aria-labelledby="writing-title"
