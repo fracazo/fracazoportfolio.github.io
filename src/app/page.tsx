@@ -225,20 +225,13 @@ const designEngineering = [
   },
   {
     title: "Contrast Lab",
-    meta: "Raycast extension · 2026",
+    meta: "2026",
     links: [
       {
         href: "https://www.raycast.com/fracazo/contrast-lab",
         label: "Raycast Store",
       },
       { href: "https://github.com/fracazo/contrast-lab", label: "GitHub" },
-    ],
-  },
-  {
-    title: "Triage Agent",
-    meta: "TypeScript and MCP · 2026",
-    links: [
-      { href: "https://github.com/fracazo/triage-agent", label: "GitHub" },
     ],
   },
 ];
