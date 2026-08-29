@@ -48,7 +48,7 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
             key={item.title}
             onMouseEnter={item.image ? () => setPreview(item.image) : undefined}
             onMouseLeave={item.image ? () => setPreview(undefined) : undefined}
-            className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1.5 border-b border-border px-0.5 py-3.5"
+            className="flex items-baseline justify-between gap-4 border-b border-border px-0.5 py-3.5"
           >
             <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
               <span className="text-body font-medium text-text">
@@ -80,7 +80,7 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
               </span>
             </div>
             {item.meta && (
-              <span className="ms-auto text-meta whitespace-nowrap text-muted opacity-70">
+              <span className="flex-none text-meta whitespace-nowrap text-muted opacity-70">
                 {item.meta}
               </span>
             )}
