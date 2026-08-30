@@ -5,7 +5,8 @@ import { ThemeToggle } from "./theme-toggle";
  * Sidebar-free, menu-free chrome: a single centred content column with the
  * theme toggle floating in the corner. Used by the landing page, where the
  * hero is the first thing on the page and navigation lives in the work rows
- * and the footer. Every other page still uses AppShell.
+ * and the footer, and by the reading pages (writing, about, case studies),
+ * which carry their own back pill. Utility pages still use AppShell.
  */
 export function PlainShell({ children }: { children: ReactNode }) {
   return (
