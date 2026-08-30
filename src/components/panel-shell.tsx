@@ -10,8 +10,14 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { ArrowLeftIcon, CloseIcon } from "./icons";
+import Link from "next/link";
+import { ArrowLeftIcon, CloseIcon, ExpandIcon } from "./icons";
 import { panelRegistry } from "./panel-registry";
+import {
+  clearReturnContext,
+  readReturnContext,
+  saveReturnContext,
+} from "./panel-return";
 
 /** Below this the split has no room, so the panel becomes a full-screen sheet. */
 const SPLIT_MIN = 1200;
@@ -47,6 +53,24 @@ export function PanelShell({ children }: { children: ReactNode }) {
     el: null,
     top: 0,
   });
+  /** Panel-body scroll to apply on the next open, from a full-page return. */
+  const pendingBodyScroll = useRef(0);
+
+  // The panel's history entry carries { panel }, so mounting on that entry
+  // means arriving back at an open panel: browser back from the full page the
+  // expand control opened, or a reload mid-panel. Reopen it, and when the
+  // saved context matches, put both columns back where the reader left them.
+  useEffect(() => {
+    const href = window.history.state?.panel;
+    if (typeof href !== "string" || !(href in panelRegistry)) return;
+    const ctx = readReturnContext();
+    clearReturnContext();
+    if (ctx?.panel === href) {
+      savedScroll.current = ctx.index;
+      pendingBodyScroll.current = ctx.body;
+    }
+    setActive(href);
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia(`(min-width: ${SPLIT_MIN}px)`);
@@ -151,9 +175,29 @@ export function PanelShell({ children }: { children: ReactNode }) {
     }
   }, [isOpen, split]);
 
-  // Swapping entries resets the panel's own scroll without collapsing the split.
+  // Swapping entries resets the panel's own scroll without collapsing the
+  // split. A return from the full page restores the reading depth instead;
+  // the entry's content arrives via dynamic import, so the pane may not be
+  // tall enough yet, and the restore waits on it rather than clamping to 0.
   useEffect(() => {
-    if (active && panelRef.current) panelRef.current.scrollTop = 0;
+    const pane = panelRef.current;
+    if (!active || !pane) return;
+    const target = pendingBodyScroll.current;
+    pendingBodyScroll.current = 0;
+    pane.scrollTop = target;
+    if (!target) return;
+    let tries = 60;
+    let raf = 0;
+    const settle = () => {
+      if (tries-- <= 0) return;
+      if (pane.scrollHeight - pane.clientHeight >= target) {
+        pane.scrollTop = target;
+        return;
+      }
+      raf = requestAnimationFrame(settle);
+    };
+    raf = requestAnimationFrame(settle);
+    return () => cancelAnimationFrame(raf);
   }, [active]);
 
   const entry = active ? panelRegistry[active] : null;
@@ -214,6 +258,17 @@ export function PanelShell({ children }: { children: ReactNode }) {
             <PanelChrome
               onClose={() => window.history.back()}
               label={split ? "Close" : "Back"}
+              // Stubs have no page of their own; everything else keyed by a
+              // route can be reopened there. Pointless on the full-screen
+              // sheet, which already fills the page.
+              fullHref={split && active.startsWith("/") ? active : undefined}
+              onExpand={() =>
+                saveReturnContext({
+                  panel: active,
+                  index: indexRef.current?.scrollTop ?? 0,
+                  body: panelRef.current?.scrollTop ?? 0,
+                })
+              }
             />
             {Content && <Content />}
           </div>
@@ -223,36 +278,78 @@ export function PanelShell({ children }: { children: ReactNode }) {
   );
 }
 
+const chromeRow =
+  "sticky top-0 z-10 -mx-6 flex bg-bg/85 px-6 py-3 backdrop-blur-md min-[700px]:-mx-10 min-[700px]:px-10";
+
+/** Icon segment inside the capsule. 44px target, per the touch guidance. */
+const chromeSegment =
+  "group relative inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-muted transition-colors hover:bg-panel-2 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+
+const chromeTooltip =
+  "pointer-events-none invisible absolute end-0 top-[calc(100%+8px)] z-20 whitespace-nowrap rounded-lg border border-border bg-card px-2.5 py-1.5 text-meta font-medium text-text opacity-0 shadow-elevated transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-visible:visible group-focus-visible:opacity-100";
+
 /**
- * Sticky dismiss control. 44px minimum target, per the touch guidance.
- * Close sits top right, the way a panel beside its index dismisses; Back sits
- * top left, the way a full-screen sheet steps back.
+ * Sticky dismiss controls. In the split, a capsule of icon buttons sits top
+ * right, the way a panel beside its index dismisses: expand to the entry's
+ * real page, then close. Each explains itself in a tooltip, since neither has
+ * a text label. The full-screen sheet keeps a labelled Back pill top left,
+ * the way a sheet steps back.
  */
 function PanelChrome({
   onClose,
   label,
+  fullHref,
+  onExpand,
 }: {
   onClose: () => void;
   label: string;
+  /** Route of the entry's real page; when set, an expand control links to it. */
+  fullHref?: string;
+  /** Fires as the expand control is followed, to save the reading context. */
+  onExpand?: () => void;
 }) {
-  return (
-    <div
-      className={`sticky top-0 z-10 -mx-6 flex bg-bg/85 px-6 py-3 backdrop-blur-md min-[700px]:-mx-10 min-[700px]:px-10 ${
-        label === "Close" ? "justify-end" : "justify-start"
-      }`}
-    >
-      <button
-        type="button"
-        onClick={onClose}
-        className="inline-flex h-11 min-w-11 cursor-pointer items-center gap-2 rounded-full border border-border px-4 text-meta text-muted transition-colors hover:bg-panel-2 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-      >
-        {label === "Back" ? (
+  if (label === "Back") {
+    return (
+      <div className={`${chromeRow} justify-start`}>
+        <button
+          type="button"
+          onClick={onClose}
+          className="inline-flex h-11 min-w-11 cursor-pointer items-center gap-2 rounded-full border border-border px-4 text-meta text-muted transition-colors hover:bg-panel-2 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
           <ArrowLeftIcon size={14} />
-        ) : (
-          <CloseIcon size={14} />
+          Back
+        </button>
+      </div>
+    );
+  }
+  return (
+    <div className={`${chromeRow} justify-end`}>
+      <div className="flex items-center rounded-full border border-border">
+        {fullHref && (
+          <Link
+            href={fullHref}
+            aria-label="Open in full page"
+            onClick={onExpand}
+            className={chromeSegment}
+          >
+            <span className={chromeTooltip} aria-hidden="true">
+              Open in full page
+            </span>
+            <ExpandIcon size={16} />
+          </Link>
         )}
-        {label}
-      </button>
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className={chromeSegment}
+        >
+          <span className={chromeTooltip} aria-hidden="true">
+            Close
+          </span>
+          <CloseIcon size={16} />
+        </button>
+      </div>
     </div>
   );
 }
