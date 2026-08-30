@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { GlqlContent } from "@/components/case-studies/glql";
-import { ExternalLinkIcon } from "@/components/icons";
-import { SiteFooter } from "@/components/site-footer";
 
 const title = "GLQL / Embedded Views - Alex Fracazo";
 const description =
@@ -35,24 +33,6 @@ export default function Glql() {
               </nav>
         }
       />
-
-      {/* Work with me */}
-      <section className="section case-study-content" aria-label="Work with Alex">
-        <div className="case-cta">
-          <h2>Work with me</h2>
-          <p>I'm available for product design roles and contract engagements, hybrid in Melbourne or remote (UTC+10). If the way I work resonates, let's talk.</p>
-          <div className="case-cta-actions">
-            <a href="mailto:fracazo@duck.com" className="btn btn-primary">Email me</a>
-            <a href="/resume" className="btn btn-ghost">Work history</a>
-            <a href="https://www.linkedin.com/in/fracazo" target="_blank" rel="noopener" className="btn btn-ghost">LinkedIn<ExternalLinkIcon size={14} className="opacity-70" /></a>
-          </div>
-        </div>
-        <div className="case-next">
-          <a href="/case-studies/wiki-contextual-comments"><span className="case-next-label">Next case study</span><span className="case-next-title">Wiki Contextual Comments</span></a>
-        </div>
-        </section>
-
-      <SiteFooter />
     </CaseStudyShell>
   );
 }

@@ -4,17 +4,15 @@ import { MymixBuilder } from "./mymix-builder";
 /**
  * Body of the Vodafone MyMix case study, without the route chrome.
  *
- * Same split as the other studies: the route supplies breadcrumb and tail,
+ * Same split as the other studies: the route supplies the breadcrumb,
  * the panel renders the body alone. Facts come from the original 2015-16
  * project artefacts (workshop capture, testing decks, journey PDFs, both
  * prototypes), not from memory.
  */
 export function VodafoneMymixContent({
   breadcrumb,
-  tail,
 }: {
   breadcrumb?: ReactNode;
-  tail?: ReactNode;
 } = {}) {
   return (
     <section className="section case-study-content">
@@ -344,8 +342,6 @@ export function VodafoneMymixContent({
             keep.
           </p>
         </div>
-
-        {tail}
       </div>
     </section>
   );

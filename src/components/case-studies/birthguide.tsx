@@ -4,15 +4,13 @@ import type { ReactNode } from "react";
  * Body of the birthguide case study, without the route chrome.
  *
  * Lives apart from the route so the same content can render inside the work
- * panel on the home page. `breadcrumb` and `tail` are slots the route fills
- * and the panel leaves empty, since neither belongs beside the index.
+ * panel on the home page. `breadcrumb` is a slot the route fills and the
+ * panel leaves empty, since it doesn't belong beside the index.
  */
 export function BirthguideContent({
   breadcrumb,
-  tail,
 }: {
   breadcrumb?: ReactNode;
-  tail?: ReactNode;
 } = {}) {
   return (
       <section className="section case-study-content">
@@ -234,8 +232,6 @@ export function BirthguideContent({
             </ul>
             <p>I have written the process up separately, on how I actually work with an AI agent, what stays mine, and where the craft still has to come from a person: <a href="/writing/building-birthguide-with-ai">Building BirthGuide as a solo designer using AI</a>.</p>
           </div>
-
-        {tail}
 
         </div>
       </section>

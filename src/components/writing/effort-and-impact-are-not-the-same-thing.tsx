@@ -12,10 +12,6 @@ export function EffortAndImpactContent({ back }: { back?: ReactNode } = {}) {
         tags={["Mentoring", "Design", "Career"]}
         title={title}
         meta="4 min read"
-        prev={{
-          href: "/writing/titles-are-a-trap",
-          title: "Titles are a trap. And the inner critic knows it.",
-        }}
       >
         <p>
           One of my mentees once spent six weeks on a research document. It was

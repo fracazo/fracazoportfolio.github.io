@@ -13,10 +13,6 @@ export function BuildingBirthguideWithAiContent({ back }: { back?: ReactNode } =
         tags={["AI", "Design engineering", "BirthGuide", "Solo building"]}
         title={title}
         meta="7 min read"
-        next={{
-          href: "/writing/titles-are-a-trap",
-          title: "Titles are a trap. And the inner critic knows it.",
-        }}
       >
         <p>
           I&rsquo;m a designer who started my career in 2005 as a web designer,{" "}

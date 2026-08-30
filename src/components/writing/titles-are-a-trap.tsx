@@ -12,14 +12,6 @@ export function TitlesAreATrapContent({ back }: { back?: ReactNode } = {}) {
         tags={["Career", "Design", "Impostor syndrome"]}
         title={title}
         meta="5 min read"
-        prev={{
-          href: "/writing/building-birthguide-with-ai",
-          title: "Building BirthGuide as a solo designer using AI",
-        }}
-        next={{
-          href: "/writing/effort-and-impact-are-not-the-same-thing",
-          title: "Effort and impact are not the same thing",
-        }}
       >
         <p>
           For most of my career I have been waiting. Waiting to feel senior

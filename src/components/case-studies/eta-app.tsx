@@ -5,15 +5,13 @@ import { ExternalLinkIcon } from "@/components/icons";
  * Body of the eta-app case study, without the route chrome.
  *
  * Lives apart from the route so the same content can render inside the work
- * panel on the home page. `breadcrumb` and `tail` are slots the route fills
- * and the panel leaves empty, since neither belongs beside the index.
+ * panel on the home page. `breadcrumb` is a slot the route fills and the
+ * panel leaves empty, since it doesn't belong beside the index.
  */
 export function EtaAppContent({
   breadcrumb,
-  tail,
 }: {
   breadcrumb?: ReactNode;
-  tail?: ReactNode;
 } = {}) {
   return (
       <section className="section case-study-content">
