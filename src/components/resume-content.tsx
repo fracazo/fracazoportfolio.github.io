@@ -7,7 +7,17 @@ const RESUME_PDF = "/files/Alex Fracazo - Resume.pdf";
 const experience = [
   {
     company: "GitLab",
-    href: null,
+    caseStudies: [
+      { title: "GLQL / Embedded Views", href: "/case-studies/glql" },
+      {
+        title: "Wiki Contextual Comments",
+        href: "/case-studies/wiki-contextual-comments",
+      },
+      {
+        title: "Summarize Merge Requests with AI",
+        href: "/case-studies/mr-summary-ai",
+      },
+    ],
     role: "Senior Product Designer",
     context:
       "Paired with the senior product manager to define the roadmap for Knowledge, covering Wiki, GLQL (GitLab Query Language), Pages, and text editors.",
@@ -22,7 +32,12 @@ const experience = [
   },
   {
     company: "Hireup",
-    href: "/case-studies/bringing-visibility-to-workers-status",
+    caseStudies: [
+      {
+        title: "Worker Status Visibility",
+        href: "/case-studies/bringing-visibility-to-workers-status",
+      },
+    ],
     role: "Principal Product Designer",
     context:
       "Australia's largest disability support marketplace. Designer on the iOS and Android app team.",
@@ -37,7 +52,20 @@ const experience = [
   },
   {
     company: "Outware Mobile, later Arq Group",
-    href: null,
+    caseStudies: [
+      {
+        title: "A Unified In-flight Entertainment Experience",
+        href: "/case-studies/qantas-entertainment-app",
+      },
+      {
+        title: "Increasing App Adoption Through Entertainment",
+        href: "/case-studies/qantas-app",
+      },
+      {
+        title: "Reducing Friction in Government Visa Applications",
+        href: "/case-studies/eta-app",
+      },
+    ],
     role: "Lead Product Designer",
     context:
       "Led product design across web, mobile, and wearable for Qantas, Telstra, NAB, and Endeavour Group. Managed designers and established research practices across teams.",
@@ -51,7 +79,7 @@ const experience = [
   },
   {
     company: "Vodafone",
-    href: null,
+    caseStudies: [{ title: "MyMix", href: "/case-studies/vodafone-mymix" }],
     role: "Senior Product Designer",
     context: null,
     period: "2015 – 2016",
@@ -63,7 +91,7 @@ const experience = [
   },
   {
     company: "B2W Digital",
-    href: null,
+    caseStudies: null,
     role: "Senior Product Designer",
     context: "LATAM's largest e-commerce company.",
     period: "2013 – 2015",
@@ -265,13 +293,7 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
                   {job.period} · {job.location}
                 </p>
                 <h3 className="text-subhead font-semibold text-text">
-                  {job.href ? (
-                    <Link href={job.href} className="text-brand">
-                      {job.company}
-                    </Link>
-                  ) : (
-                    job.company
-                  )}
+                  {job.company}
                 </h3>
                 <p className="mt-0.5 text-meta text-muted">
                   {job.role}
@@ -293,6 +315,30 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
                     <li key={point}>{point}</li>
                   ))}
                 </ul>
+                {job.caseStudies && (
+                  <div className="mt-4">
+                    <p className="text-meta font-semibold tracking-[0.06em] text-muted uppercase">
+                      {job.caseStudies.length > 1
+                        ? "Case studies"
+                        : "Case study"}
+                    </p>
+                    <ul className="m-0 mt-0.5 list-none p-0">
+                      {job.caseStudies.map((study) => (
+                        <li key={study.href}>
+                          {/* Body-size and padded: these are content links, and
+                              a meta-size inline run was too small to read or
+                              tap on a phone. */}
+                          <Link
+                            href={study.href}
+                            className="inline-block py-2 text-body text-brand no-underline touch-manipulation hover:underline"
+                          >
+                            {study.title}&nbsp;&rarr;
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </article>
             ))}
           </div>
