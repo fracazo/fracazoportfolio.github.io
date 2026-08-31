@@ -15,9 +15,11 @@ export type LinkRowItem = {
 };
 
 /**
- * Row list where a single piece of work points at several destinations
- * (case study, issue, blog post, video). Unlike RowList the row itself is not
- * clickable, because there is no single obvious target.
+ * Row list where a piece of work points at one or more destinations
+ * (case study, issue, blog post, video). A row with exactly one destination
+ * is one full-row link, like RowList: the meta-size label alone was a
+ * hopeless touch target. Only when a row has several destinations do the
+ * links stay separate, with their hit areas padded out instead.
  */
 export function LinkRowList({ items }: { items: LinkRowItem[] }) {
   const [preview, setPreview] = useState<LinkRowItem["image"]>();
@@ -43,49 +45,106 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
   return (
     <div onMouseMove={hasPreviews ? movePreview : undefined}>
       <ul role="list" className="m-0 list-none border-t border-border p-0">
-        {items.map((item) => (
-          <li
-            key={item.title}
-            onMouseEnter={item.image ? () => setPreview(item.image) : undefined}
-            onMouseLeave={item.image ? () => setPreview(undefined) : undefined}
-            className="flex items-baseline justify-between gap-4 border-b border-border px-0.5 py-3.5"
-          >
-            <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
-              <span className="text-body font-medium text-text">
-                {item.title}
-              </span>
-              <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                {item.links.map((link) =>
-                  link.href.startsWith("/") ? (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="text-meta text-muted no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
-                    >
-                      {link.label}&nbsp;&rarr;
-                    </Link>
+        {items.map((item) => {
+          const single = item.links.length === 1 ? item.links[0] : null;
+          const rowLayout =
+            "flex items-baseline justify-between gap-4 px-0.5 py-3.5";
+          const meta = item.meta && (
+            <span className="flex-none text-meta whitespace-nowrap text-muted opacity-70">
+              {item.meta}
+            </span>
+          );
+
+          // Single-destination row: title, label and meta travel together
+          // inside the one anchor, so hover colors title and label as a unit.
+          const singleBody = single && (
+            <>
+              <span className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span className="text-body font-medium text-text transition-colors duration-150 group-hover:text-brand">
+                  {item.title}
+                </span>
+                <span className="inline-flex items-center gap-1 text-meta text-muted transition-colors duration-150 group-hover:text-brand">
+                  {single.label}
+                  {single.href.startsWith("/") ? (
+                    <>&nbsp;&rarr;</>
                   ) : (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener"
-                      className="inline-flex items-center gap-1 text-meta text-muted no-underline transition-colors duration-150 hover:text-brand hover:no-underline"
-                    >
-                      {link.label}
-                      <ExternalLinkIcon size={12} className="opacity-70" />
-                    </a>
-                  ),
-                )}
+                    <ExternalLinkIcon size={12} className="opacity-70" />
+                  )}
+                </span>
               </span>
-            </div>
-            {item.meta && (
-              <span className="flex-none text-meta whitespace-nowrap text-muted opacity-70">
-                {item.meta}
-              </span>
-            )}
-          </li>
-        ))}
+              {meta}
+            </>
+          );
+          const singleClass = `group ${rowLayout} touch-manipulation no-underline hover:no-underline`;
+
+          // Multi-destination link: the visible label stays meta-size while
+          // padding grows the tap target; the negative margins hand the space
+          // back to the layout. ±4px horizontal fits inside the 12px gap
+          // between links, so neighbouring hit areas never overlap.
+          const multiLinkClass =
+            "-mx-1 -my-3 px-1 py-3 text-meta text-muted no-underline transition-colors duration-150 touch-manipulation hover:text-brand hover:no-underline";
+
+          return (
+            <li
+              key={item.title}
+              onMouseEnter={
+                item.image ? () => setPreview(item.image) : undefined
+              }
+              onMouseLeave={item.image ? () => setPreview(undefined) : undefined}
+              className="border-b border-border"
+            >
+              {single ? (
+                single.href.startsWith("/") ? (
+                  <Link href={single.href} className={singleClass}>
+                    {singleBody}
+                  </Link>
+                ) : (
+                  <a
+                    href={single.href}
+                    target="_blank"
+                    rel="noopener"
+                    className={singleClass}
+                  >
+                    {singleBody}
+                  </a>
+                )
+              ) : (
+                <div className={rowLayout}>
+                  <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <span className="text-body font-medium text-text">
+                      {item.title}
+                    </span>
+                    <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      {item.links.map((link) =>
+                        link.href.startsWith("/") ? (
+                          <Link
+                            key={link.href}
+                            href={link.href}
+                            className={multiLinkClass}
+                          >
+                            {link.label}&nbsp;&rarr;
+                          </Link>
+                        ) : (
+                          <a
+                            key={link.href}
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener"
+                            className={`inline-flex items-center gap-1 ${multiLinkClass}`}
+                          >
+                            {link.label}
+                            <ExternalLinkIcon size={12} className="opacity-70" />
+                          </a>
+                        ),
+                      )}
+                    </span>
+                  </div>
+                  {meta}
+                </div>
+              )}
+            </li>
+          );
+        })}
       </ul>
 
       {hasPreviews && (
