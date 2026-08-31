@@ -56,12 +56,6 @@ export function WikiContextualCommentsContent({
             <p className="case-intro">GitLab Wiki had comments, but they sat at the bottom of the page with no connection to the text they discussed, and the real conversations happened in Slack. I designed a commenting system that ties a discussion to the exact line it refers to, without the cluttered pages Confluence users complain about. The designs are now in engineering development.</p>
           </header>
 
-          <ul className="case-stats" role="list">
-            <li><span className="case-stat-value">#1</span><span className="case-stat-label">most-requested gap in competitive comparisons</span></li>
-            <li><span className="case-stat-value">1</span><span className="case-stat-label">panel unifying contextual and general comments</span></li>
-            <li><span className="case-stat-value">In Dev</span><span className="case-stat-label">designs complete, engineering build underway</span></li>
-          </ul>
-
           <div className="summary-card">
             <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
             <p>GitLab Wiki had a comments section at the bottom of every page, but discussions about specific content happened scattered across Slack, email, and meetings. There was no way to tie a conversation to the exact line of text it referred to. This was a well-understood competitive gap against Confluence and Notion. I was assigned a design spike to solve it, and what started as a scoped exploration became a full design system: a hybrid sidebar and contextual comment approach that addressed the "messy page" problem that Confluence users consistently complained about.</p>
