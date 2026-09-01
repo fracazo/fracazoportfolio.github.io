@@ -62,7 +62,7 @@ const workGroups = [
         title: "Making Site Status Visible in GitLab Pages",
         tagline:
           "Status spread across screens and DNS hidden until something broke. I wrote the diagnosis and got another team to ship the fix.",
-        metric: "Self-initiated · 3 lookups → 1",
+        metric: "Monetisation foundation · Cross-team delivery",
       },
       {
         href: "/case-studies/mr-summary-ai",
