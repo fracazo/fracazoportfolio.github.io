@@ -59,7 +59,7 @@ const workGroups = [
       {
         href: "/case-studies/gitlab-pages",
         vignette: "pages" as const,
-        title: "GitLab Pages Redesign",
+        title: "Making Site Status Visible in GitLab Pages",
         tagline:
           "Status spread across screens and DNS hidden until something broke. I wrote the diagnosis and got another team to ship the fix.",
       },

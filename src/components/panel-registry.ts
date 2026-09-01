@@ -87,7 +87,7 @@ export const panelRegistry: Record<
     ),
   },
   "/case-studies/gitlab-pages": {
-    title: "GitLab Pages Redesign",
+    title: "Making Site Status Visible in GitLab Pages",
     load: dynamic(() =>
       import("@/components/case-studies/gitlab-pages").then(
         (m) => m.GitlabPagesContent,

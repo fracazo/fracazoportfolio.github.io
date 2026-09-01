@@ -20,7 +20,7 @@ export function GitlabPagesContent({
         {breadcrumb}
 
           <header className="case-header">
-            <h1 className="case-title">GitLab Pages Redesign</h1>
+            <h1 className="case-title">Making Site Status Visible in GitLab Pages</h1>
             <div className="case-metadata-card">
               <div className="metadata-content">
                 <div className="metadata-item">
