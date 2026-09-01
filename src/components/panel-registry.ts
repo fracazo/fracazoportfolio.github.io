@@ -86,6 +86,14 @@ export const panelRegistry: Record<
       ),
     ),
   },
+  "/case-studies/gitlab-pages": {
+    title: "GitLab Pages Redesign",
+    load: dynamic(() =>
+      import("@/components/case-studies/gitlab-pages").then(
+        (m) => m.GitlabPagesContent,
+      ),
+    ),
+  },
   "/case-studies/birthguide": {
     title: "BirthGuide",
     load: dynamic(() =>

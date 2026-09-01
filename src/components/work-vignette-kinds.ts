@@ -9,7 +9,8 @@ export type WorkVignetteKind =
   | "coursify"
   | "mr-summary"
   | "mymix"
-  | "bemdireto";
+  | "bemdireto"
+  | "pages";
 
 /* Standalone scenes ARE the thumbnail: the row renders no screenshot behind
    them, they rest in their settled composition, and hover replays the
@@ -22,4 +23,5 @@ export const VIGNETTE_REPLACES_IMAGE: Record<WorkVignetteKind, boolean> = {
   "mr-summary": true,
   mymix: true,
   bemdireto: true,
+  pages: true,
 };

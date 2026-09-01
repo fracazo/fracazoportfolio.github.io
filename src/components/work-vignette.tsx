@@ -67,6 +67,8 @@ export function WorkVignette({ kind }: { kind: WorkVignetteKind }) {
       <MymixScene mode={mode} />
     ) : kind === "bemdireto" ? (
       <BemDiretoScene mode={mode} />
+    ) : kind === "pages" ? (
+      <PagesScene mode={mode} />
     ) : (
       <BirthGuideScene mode={mode} />
     );
@@ -313,6 +315,128 @@ function WikiScene({ mode }: { mode: SceneMode }) {
             transitionDelay: delay(1050),
           }}
         />
+      </div>
+    </div>
+  );
+}
+
+/* ---- Pages: the site's status arrives first, then its domain checks out ---- */
+
+/* Tab label widths echo "Overview", "Pages deployments", "Domain & settings". */
+const PAGES_TABS = [34, 58, 62];
+
+function PagesScene({ mode }: { mode: SceneMode }) {
+  const shown = mode === "settled" || mode === "play";
+  const delay = (ms: number) => (mode === "play" ? `${ms}ms` : "0ms");
+
+  return (
+    <div className="vignette-card absolute inset-x-[7%] inset-y-[9%] rounded-lg bg-surface p-3">
+      {/* Three tabs; the active underline draws under the first. */}
+      <div className="flex items-end gap-3 border-b border-border pb-1.5">
+        {PAGES_TABS.map((width, i) => (
+          <div key={i} className="relative pb-1">
+            <span
+              className="block h-1.5 rounded-full bg-border"
+              style={{ width, opacity: i === 0 ? 1 : 0.6 }}
+            />
+            {i === 0 && (
+              <span
+                className="absolute inset-x-0 -bottom-[7px] h-[2px] rounded-full bg-accent"
+                style={{
+                  transform: `scaleX(${shown ? 1 : 0})`,
+                  transformOrigin: "left",
+                  transition: "transform 300ms ease",
+                  transitionDelay: delay(100),
+                }}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* "Your site is live at": the one answer the old page buried. */}
+      <div
+        className="vignette-card mt-2.5 flex items-center gap-2 rounded-md bg-surface px-2.5 py-2"
+        style={{
+          opacity: shown ? 1 : 0,
+          transform: shown ? "none" : "translateY(6px)",
+          transition: "opacity 250ms ease, transform 250ms ease",
+          transitionDelay: delay(400),
+        }}
+      >
+        <span className="size-2 shrink-0 rounded-full bg-accent" />
+        <div className="flex min-w-0 flex-1 flex-col gap-1.5">
+          <div className="flex items-center gap-1.5">
+            <span className="h-1.5 w-[30%] shrink-0 rounded-full bg-border" />
+            {/* The address fills in, like the URL resolving. */}
+            <span
+              className="h-2 rounded-sm bg-accent/25"
+              style={{
+                width: shown ? "46%" : "0%",
+                transition: "width 350ms ease",
+                transitionDelay: delay(650),
+              }}
+            />
+          </div>
+          <span className="h-1.5 w-[58%] rounded-full bg-border" />
+        </div>
+        {/* Visit site */}
+        <span
+          className="h-4 w-9 shrink-0 rounded border border-border"
+          style={{
+            opacity: shown ? 1 : 0,
+            transform: `scale(${shown ? 1 : 0.8})`,
+            transition: "opacity 200ms ease, transform 200ms ease",
+            transitionDelay: delay(900),
+          }}
+        />
+      </div>
+
+      {/* A custom domain whose DNS check flips from pending to verified. */}
+      <div
+        className="mt-2.5 flex items-center justify-between px-2.5 py-1.5"
+        style={{
+          opacity: shown ? 1 : 0,
+          transition: "opacity 250ms ease",
+          transitionDelay: delay(500),
+        }}
+      >
+        <div className="flex flex-col gap-1.5">
+          <span className="h-1.5 w-20 rounded-full bg-border" />
+          <span className="h-1.5 w-12 rounded-full bg-border" />
+        </div>
+        <span className="relative size-3.5 shrink-0">
+          <span
+            className="absolute inset-0 rounded-full border-2 border-border"
+            style={{
+              opacity: shown ? 0 : 1,
+              transition: "opacity 200ms ease",
+              transitionDelay: delay(1150),
+            }}
+          />
+          <svg
+            className="absolute inset-0"
+            viewBox="0 0 14 14"
+            width="14"
+            height="14"
+            style={{
+              opacity: shown ? 1 : 0,
+              transform: `scale(${shown ? 1 : 0.5})`,
+              transition: "opacity 200ms ease, transform 200ms ease",
+              transitionDelay: delay(1150),
+            }}
+          >
+            <circle cx="7" cy="7" r="7" fill="var(--accent)" />
+            <path
+              d="M4 7.2 6.2 9.3 10 5.3"
+              fill="none"
+              stroke="var(--panel)"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
       </div>
     </div>
   );

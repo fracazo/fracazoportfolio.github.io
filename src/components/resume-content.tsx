@@ -17,6 +17,7 @@ const experience = [
         title: "Summarize Merge Requests with AI",
         href: "/case-studies/mr-summary-ai",
       },
+      { title: "GitLab Pages Redesign", href: "/case-studies/gitlab-pages" },
     ],
     role: "Senior Product Designer",
     context:

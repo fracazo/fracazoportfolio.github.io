@@ -57,6 +57,13 @@ const workGroups = [
         metric: "50,000 students",
       },
       {
+        href: "/case-studies/gitlab-pages",
+        vignette: "pages" as const,
+        title: "GitLab Pages Redesign",
+        tagline:
+          "Status spread across screens and DNS hidden until something broke. I wrote the diagnosis and got another team to ship the fix.",
+      },
+      {
         href: "/case-studies/mr-summary-ai",
         vignette: "mr-summary" as const,
         title: "Summarize Merge Requests with AI",
@@ -189,16 +196,6 @@ const productDesign = [
     links: [
       {
         href: "https://about.gitlab.com/blog/embedded-views-the-future-of-work-tracking-in-gitlab/",
-        label: "Blog post",
-      },
-    ],
-  },
-  {
-    title: "Build a website with GitLab Pages",
-    meta: "GitLab · 2025",
-    links: [
-      {
-        href: "https://about.gitlab.com/blog/build-a-new-website-in-a-few-easy-steps-with-gitlab-pages/",
         label: "Blog post",
       },
     ],
