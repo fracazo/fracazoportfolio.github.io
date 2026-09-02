@@ -58,14 +58,14 @@ export function WikiContextualCommentsContent({
 
           <div className="summary-card">
             <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-            <p>GitLab Wiki had a comments section at the bottom of every page, but discussions about specific content happened scattered across Slack, email, and meetings. There was no way to tie a conversation to the exact line of text it referred to. This was a well-understood competitive gap against Confluence and Notion. I was assigned a design spike to solve it, and what started as a scoped exploration became a full design system: a hybrid sidebar and contextual comment approach that addressed the "messy page" problem that Confluence users consistently complained about.</p>
+            <p>GitLab Wiki had a comments section at the bottom of every page, but discussions about specific content happened scattered across Slack, email, and meetings. There was no way to tie a conversation to the exact line of text it referred to. My UX scorecard run on Wiki had flagged how hard comments were to follow on long pages, and a competitor scan showed every major Wiki alternative already had contextual comments. I took both findings to the PM, the problem went on the roadmap, and the design spike that came out of it grew into a full design system: a hybrid sidebar and contextual comment approach that addressed the "messy page" problem that Confluence users consistently complained about.</p>
           </div>
 
           <div className="case-study-section">
             <h2>My Role and Context</h2>
 
             <h3>Starting from a spike</h3>
-            <p>This work began as a product design spike, issue #509789, created by the PM to scope the problem before committing to a full design cycle. It wasn't a cold start, though. Wiki was one of the products I graded with GitLab's UX scorecard each milestone, a structured evaluation of how well a product's main jobs hold up, and the issue lists from those runs fed the roadmap this spike came out of. I was assigned to it and took ownership of the design direction from day one. There was no brief beyond the problem statement. I had to define the constraints, conduct the competitor research, propose the architecture, and get cross-functional alignment, all while keeping the PM and two senior engineers in the loop asynchronously.</p>
+            <p>This work began as a product design spike, issue #509789, created by the PM to scope the problem before committing to a full design cycle. The spike existed because I had argued for it. My UX scorecard run on Wiki, GitLab's structured evaluation of how well a product's main jobs hold up, had flagged how hard it was to follow comments on long content, and a scan of the main competitors showed every one of them already had contextual comments. I took both findings to the PM, and that is what put the problem on the roadmap. I was assigned the spike and took ownership of the design direction from day one. There was no brief beyond the problem statement. I had to define the constraints, deepen the competitor research, propose the architecture, and get cross-functional alignment, all while keeping the PM and two senior engineers in the loop asynchronously.</p>
 
             <p>The challenge wasn't just designing a commenting feature. It was deciding where comments should live in an interface that already had comments at the bottom, a sidebar navigation on the right, and a full-width reading area. Adding a new discussion layer to this without breaking the existing mental model required thinking about the wiki layout as a whole, not just as a UI component.</p>
 
@@ -97,7 +97,7 @@ export function WikiContextualCommentsContent({
             <h2>Design Explorations</h2>
 
             <h3>Competitive analysis</h3>
-            <p>Before sketching anything, I mapped how five products handled the intersection of contextual and general comments. The key distinction I was looking for: which products had both, and how did they manage the tension between them.</p>
+            <p>The scan that helped put this on the roadmap had answered a yes-or-no question, whether the main competitors had contextual comments at all. Before sketching anything, I went deeper and mapped how five products handled the intersection of contextual and general comments. The key distinction I was looking for: which products had both, and how did they manage the tension between them.</p>
 
             <ul>
               <li><strong>Google Docs and Notion:</strong> Excellent inline commenting experience. You highlight text, a comment icon appears, and the thread opens in a right-side panel anchored to that text. Clean and intuitive. The limitation: neither product has a general comments section. All discussions are contextual. That doesn't work for GitLab Wiki, where page-level discussions already exist and are widely used.</li>
@@ -238,6 +238,7 @@ export function WikiContextualCommentsContent({
               <li><a href="https://gitlab.com/gitlab-org/gitlab/-/work_items/509789" target="_blank" rel="noopener">GitLab issue 509789<ExternalLinkIcon size={12} className="external-mark" /></a>, the design spike this work came from</li>
               <li><a href="https://youtu.be/67UZDRRE7gQ" target="_blank" rel="noopener">Design critique<ExternalLinkIcon size={12} className="external-mark" /></a>, video</li>
             </ul>
+            <p>The scorecard run, the roadmap discussion, and most of the research behind this work sit in confidential GitLab issues and epics, so they cannot be linked here.</p>
           </div>
 
         </div>{/* /case-study-main */}
