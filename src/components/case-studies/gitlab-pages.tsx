@@ -65,7 +65,7 @@ export function GitlabPagesContent({
             <h2>My Role and Context</h2>
 
             <h3>Starting from the product, not a brief</h3>
-            <p>I was the product designer for the Knowledge group, which owned Wiki, GLQL and Pages. Pages had a small, dedicated engineering team and no roadmap pressure on its interface, which is exactly the condition under which usability debt builds up unnoticed. I decided it deserved a designer&rsquo;s attention before a customer escalation or a competitor forced the question.</p>
+            <p>I was the product designer for the Knowledge group, which owned Wiki, GLQL and Pages. Pages had a small, dedicated engineering team and no roadmap pressure on its interface, which is exactly the condition under which usability debt builds up unnoticed. I decided it deserved a designer&rsquo;s attention before a customer escalation or a competitor forced the question. So I ran GitLab&rsquo;s UX scorecard on it, a structured evaluation of a product&rsquo;s main jobs that repeats each milestone. That run surfaced the site-status problems documented below, and the issue list it produced is what I took to the PM to argue Pages onto the roadmap.</p>
 
             <p>I opened issue 511049 on 31 December 2024 with a written diagnosis and a proposal, tagged the Pages engineers and the PM, and asked for their critique. There was no brief, no research budget and no allocated engineering time. What I had was the product itself, a docs site I was maintaining on it, and engineers willing to tell me where I was wrong.</p>
 
