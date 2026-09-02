@@ -224,6 +224,7 @@ DISPLAY AS table`}</pre>
               <li><a href="https://about.gitlab.com/blog/embedded-views-the-future-of-work-tracking-in-gitlab/" target="_blank" rel="noopener">Blog post<ExternalLinkIcon size={12} className="external-mark" /></a>, about.gitlab.com</li>
               <li><a href="https://docs.gitlab.com/user/glql/" target="_blank" rel="noopener">Documentation<ExternalLinkIcon size={12} className="external-mark" /></a>, docs.gitlab.com</li>
             </ul>
+            <p>The scorecard run and the research studies behind these decisions sit in confidential GitLab issues and epics, so they cannot be linked here.</p>
           </div>
 
         </div>{/* /case-study-main */}

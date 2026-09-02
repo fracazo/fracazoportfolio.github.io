@@ -58,7 +58,7 @@ export function GitlabPagesContent({
 
           <div className="summary-card">
             <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-            <p>Pages is the first thing many people deploy on GitLab, and its settings page was working against that. Site status, domains and deployments were split across four blocks on two pages, so the one question every site owner has, is it live and where, took three separate lookups. I diagnosed the problem, proposed a tab-based structure that answers that question first, and argued every decision the same way: what problem it solves, how it affects the person using it, and why it beats the alternative. Five weeks of review with the Pages engineers, the PM and the technical writer got it ready to build. When the Pages team&rsquo;s capacity went elsewhere, I locked in written sign-off from every stakeholder and took the finished design to the UX Paper Cuts team, who shipped it as eleven merge requests in GitLab 18.1. The PM approved it as the foundation for anything the company later wants to build or charge for in Pages. The issue closed in 2026 because Pages stopped being a priority, not because the work didn&rsquo;t land.</p>
+            <p>Pages is the first thing many people deploy on GitLab, and its settings page was working against that. Site status, domains and deployments were split across four blocks on two pages, so the one question every site owner has, is it live and where, took three separate lookups. I surfaced the problem in a UX scorecard run, proposed a tab-based structure that answers that question first, and argued every decision the same way: what problem it solves, how it affects the person using it, and why it beats the alternative. Five weeks of review with the Pages engineers, the PM and the technical writer got it ready to build. When the Pages team&rsquo;s capacity went elsewhere, I locked in written sign-off from every stakeholder and took the finished design to the UX Paper Cuts team, who shipped it as eleven merge requests in GitLab 18.1. The PM approved it as the foundation for anything the company later wants to build or charge for in Pages. The issue closed in 2026 because Pages stopped being a priority, not because the work didn&rsquo;t land.</p>
           </div>
 
           <div className="case-study-section">
@@ -230,6 +230,7 @@ export function GitlabPagesContent({
               <li><a href="https://gitlab.com/gitlab-org/gitlab/-/merge_requests/191809" target="_blank" rel="noopener">Pages live block<ExternalLinkIcon size={12} className="external-mark" /></a>, the &ldquo;Your Pages site is live at&rdquo; block</li>
               <li><a href="https://about.gitlab.com/blog/build-a-new-website-in-a-few-easy-steps-with-gitlab-pages/" target="_blank" rel="noopener">Build a new website in a few easy steps with GitLab Pages<ExternalLinkIcon size={12} className="external-mark" /></a>, GitLab Blog, 2025</li>
             </ul>
+            <p>The scorecard run that started this work, and the roadmap discussion around it, live in confidential GitLab issues and epics, so only the public artifacts are linked above.</p>
           </div>
 
         </div>{/* /case-study-main */}
