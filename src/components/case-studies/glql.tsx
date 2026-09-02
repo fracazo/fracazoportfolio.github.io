@@ -75,6 +75,7 @@ export function GlqlContent({
           <div className="case-study-section">
             <h2>My role</h2>
             <p>I owned four products across the Knowledge group as its designer, embedded with engineering. GLQL sat with an engineering-led team that had been shipping without research or a shared way of deciding what users actually needed. So the first job was not a screen. It was earning the right to be in the room, and making design useful fast enough that it sped the team up instead of slowing it down.</p>
+            <p>My way in was a UX scorecard run, GitLab&apos;s standing process where a designer walks a product&apos;s main jobs as a new user would and grades the experience. Scoring GLQL that way turned my concerns into an issue list the engineers could argue with line by line, and it is what I took to the PM to make the case for proper research.</p>
           </div>
 
           <div className="case-study-section">
@@ -88,7 +89,7 @@ export function GlqlContent({
                 <source src="/images/Screen_Recording_2024-08-05_at_17.15.37.mov" type="video/mp4" />
                 Your browser does not support the video element.
               </video>
-              <figcaption className="glql-video-caption">Early prototype recording (Aug 2024), produced with Himanshu Kapoor before any design refinements, showing the raw capability of GLQL. Used internally to gather early feedback and build cross-functional alignment on what the feature could become.</figcaption>
+              <figcaption className="glql-video-caption">Early prototype recording (Aug 2024), produced with one of the GLQL engineers before any design refinements, showing the raw capability of GLQL. Used internally to gather early feedback and build cross-functional alignment on what the feature could become.</figcaption>
             </figure>
           </div>
 
