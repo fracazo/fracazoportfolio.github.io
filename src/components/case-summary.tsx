@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Chip } from "./chip";
+import { ExternalLinkIcon } from "./icons";
 import { caseSummaries } from "./case-study-summaries";
 
 /** A phone screen at phone width, centred. Inline so it beats the image's
@@ -85,13 +86,27 @@ export function CaseSummary({
             ))}
           </ul>
 
-          <Link
-            href={`${href}/full`}
-            onClick={onExpand}
-            className="btn btn-primary mt-8 inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
-          >
-            Read the full case study
-          </Link>
+          <div className="mt-8 flex flex-wrap items-center gap-2.5">
+            <Link
+              href={`${href}/full`}
+              onClick={onExpand}
+              className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
+            >
+              Read the full case study
+            </Link>
+            {summary.links?.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
+              >
+                {link.label}
+                <ExternalLinkIcon size={14} />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>

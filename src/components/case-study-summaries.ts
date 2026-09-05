@@ -32,6 +32,8 @@ export type CaseSummaryData = {
   call: string;
   /** What happened, with numbers where they exist. */
   outcomes: string[];
+  /** Live products to visit, shown as secondary buttons beside the read-more. */
+  links?: { href: string; label: string }[];
 };
 
 export const caseSummaries: Record<string, CaseSummaryData> = {
@@ -118,11 +120,10 @@ export const caseSummaries: Record<string, CaseSummaryData> = {
     meta: ["Founder, sole builder", "BirthGuide", "2026"],
     media: [
       {
-        video: "/images/birthguide-demo-compressed.mp4",
-        portrait: true,
-        alt: "The interactive birth plan page in use: top five priorities first, tap-to-call contacts, and a working hospital bag checklist",
+        src: "/images/birthguide-landing.png",
+        alt: "The BirthGuide landing page after the inversion: the headline Feel calm and prepared for labour and birth, then two cards side by side, The program marked Start here with an Explore the program free button, and Birth plan with a Go to birthplans.app button",
         caption:
-          "The birth plan page in use: top priorities first, tap-to-call contacts, a working hospital bag checklist.",
+          "The landing page after the inversion: the program leads, and the birth plan is the free tool beside it.",
       },
     ],
     call:
@@ -130,8 +131,8 @@ export const caseSummaries: Record<string, CaseSummaryData> = {
     outcomes: [
       "The eight-module program went live on 13 August 2026 after full clinical review.",
       "The old route and its paywall were deleted outright, a net removal of 660 lines.",
-      "No first sale yet. I have a validated understanding of what people value and no evidence yet that they will pay for it in this form.",
     ],
+    links: [{ href: "https://birthplans.app", label: "Visit birthplans.app" }],
   },
 
   "/case-studies/bringing-visibility-to-workers-status": {
