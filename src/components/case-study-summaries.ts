@@ -134,7 +134,6 @@ export const caseSummaries: Record<string, CaseSummaryData> = {
       "The plan builder moved to its own site with a different interface: tap through your choices and the plan builds itself beside you. See it at [birthplans.app](https://birthplans.app).",
       "The old route and its paywall were deleted outright, a net removal of 660 lines.",
     ],
-    links: [{ href: "https://birthplans.app", label: "Visit birthplans.app" }],
   },
 
   "/case-studies/bringing-visibility-to-workers-status": {
