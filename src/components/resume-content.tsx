@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { DownloadIcon, ExternalLinkIcon } from "@/components/icons";
+import { BrandStrip } from "@/components/brand-strip";
 
 const RESUME_PDF = "/files/Alex Fracazo - Resume.pdf";
 
@@ -209,10 +210,17 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
         {/* Header */}
         <header>
           <h1 className="h1">Work history</h1>
-          <p className="mt-1 text-meta text-muted">
+          {/* Pull against .h1's 32px bottom margin so the line reads as the
+              heading's caption, not a new block. Same move as the home hero. */}
+          <p className="-mt-5 text-meta text-muted">
             I work end to end, from research and strategy through to a working
             product.
           </p>
+          {/* Client marks sit with the work history, where they are evidence
+              for the claim above them rather than decoration on the home page.
+              No heading: the strip's own aria-label ("Previously worked with")
+              names it for readers the logos can't reach. */}
+          <BrandStrip className="mt-5" />
           <p className="mt-5 text-body text-text-body">
             I&rsquo;m a designer who makes hard things work inside big, messy
             organisations. Most recently at GitLab, where a feature I

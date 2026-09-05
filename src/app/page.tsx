@@ -1,6 +1,5 @@
 import { AvatarGreeting } from "@/components/avatar-greeting";
 import { PlainShell } from "@/components/plain-shell";
-import { BrandStrip } from "@/components/brand-strip";
 import { PanelLink } from "@/components/panel-link";
 import { PanelShell } from "@/components/panel-shell";
 import { WorkRow } from "@/components/work-row";
@@ -17,7 +16,8 @@ const workGroups = [
   {
     id: "knowledge-products",
     title: "Knowledge products",
-    context: "Building tools people rely on every day.",
+    context:
+      "I design the tools developers use every day at GitLab, and products people learn with.",
     full: [
       {
         href: "/case-studies/glql",
@@ -43,7 +43,7 @@ const workGroups = [
         title: "BirthGuide",
         tagline:
           "The users were there to learn, not to get a document. So the learning became the product.",
-        outcome: "Shipped in 10 days · Model inverted in 26",
+        outcome: "Founder · Sole builder",
         vignette: "birthguide" as const,
       },
     ],
@@ -77,7 +77,8 @@ const workGroups = [
   {
     id: "consumer-at-scale",
     title: "Consumer at scale",
-    context: "Products used by millions in Australia and Brazil.",
+    context:
+      "I designed entertainment, recharge and commerce flows for Qantas, Vodafone and Brazil's largest retailers.",
     full: [],
     compact: [
       {
@@ -142,7 +143,7 @@ const workGroups = [
     id: "marketplaces",
     title: "Marketplaces",
     context:
-      "Two-sided platforms where supply and demand both need designing.",
+      "I designed both sides of two-sided platforms, for disability support in Australia and real estate in Brazil.",
     full: [
       {
         href: "/case-studies/bringing-visibility-to-workers-status",
@@ -283,19 +284,12 @@ export default function Home() {
                 Work history
               </PanelLink>
             </div>
-            {/* Client marks close the hero without a heading: the strip's own
-                aria-label ("Previously worked with") names it for readers the
-                logos can't reach. */}
-            {/* Same 64px above the strip as the section gap below it: the
-                marks float between hero and work rather than crowding either. */}
-            <BrandStrip className="mt-16" />
           </div>
         </div>
       </section>
 
       {/* The case studies reveal as their own block. No section heading: the
-          group labels carry the structure, and the main grid's gap-16 gives
-          the brand strip its clearance from the first group. */}
+          group labels carry the structure. */}
       <div className="reveal-after mx-auto grid w-full max-w-[640px] gap-10">
         <section
           id="Work"
