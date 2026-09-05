@@ -102,8 +102,12 @@ export function CaseSummary({
         <div className="case-study-section">
           <h2>The call</h2>
           <p>{summary.call}</p>
+        </div>
 
-          <h2 className="mt-10">What happened</h2>
+        {/* Its own section so the break before it matches every other
+            section break in a case study, rather than a hand-set margin. */}
+        <div className="case-study-section">
+          <h2>What happened</h2>
           <ul>
             {summary.outcomes.map((outcome) => (
               <li key={outcome}>{withLinks(outcome)}</li>
