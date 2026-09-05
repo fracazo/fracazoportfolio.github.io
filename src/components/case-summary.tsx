@@ -4,6 +4,30 @@ import { Chip } from "./chip";
 import { ExternalLinkIcon } from "./icons";
 import { caseSummaries } from "./case-study-summaries";
 
+/**
+ * Renders an outcome line, turning `[label](href)` into a link. Kept this
+ * small on purpose: the summaries are data, and a link is the only markup
+ * they need.
+ */
+function withLinks(text: string) {
+  const parts: ReactNode[] = [];
+  const pattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let last = 0;
+  for (const match of text.matchAll(pattern)) {
+    const [whole, label, href] = match;
+    const at = match.index ?? 0;
+    if (at > last) parts.push(text.slice(last, at));
+    parts.push(
+      <a key={at} href={href} target="_blank" rel="noopener noreferrer">
+        {label}
+      </a>,
+    );
+    last = at + whole.length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
+
 /** A phone screen at phone width, centred. Inline so it beats the image's
     own full-width rule without a specificity fight. */
 const portraitStyle = { maxWidth: 320, marginInline: "auto", display: "block" } as const;
@@ -82,7 +106,7 @@ export function CaseSummary({
           <h2 className="mt-10">What happened</h2>
           <ul>
             {summary.outcomes.map((outcome) => (
-              <li key={outcome}>{outcome}</li>
+              <li key={outcome}>{withLinks(outcome)}</li>
             ))}
           </ul>
 

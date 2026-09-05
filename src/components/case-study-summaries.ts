@@ -30,7 +30,8 @@ export type CaseSummaryData = {
   media: CaseSummaryMedia[];
   /** The key decision, its reason, and the alternative it beat. First person. */
   call: string;
-  /** What happened, with numbers where they exist. */
+  /** What happened, with numbers where they exist. Inline links as
+      `[label](https://…)`, the one bit of markup the summaries allow. */
   outcomes: string[];
   /** Live products to visit, shown as secondary buttons beside the read-more. */
   links?: { href: string; label: string }[];
@@ -129,7 +130,8 @@ export const caseSummaries: Record<string, CaseSummaryData> = {
     call:
       "I shipped a birth plan generator in ten days and sold it for six months. Session recordings, then a round of emails to people who paid and people who didn’t, said the same thing: the value was the learning wrapped around the questionnaire, not the document at the end. Payment was the only difference between the two groups, which told me this was a business model problem, not a pricing problem. If I had only asked non-converters I would have run a price test and shipped a discount. So I inverted the model in twenty-six days. The teaching became the paid product, one paywall before module two and never again, and the plan builder moved to its own site as a free tool instead of being deleted.",
     outcomes: [
-      "The eight-module program went live on 13 August 2026 after full clinical review.",
+      "The eight-module program went live at [birthguide.com.au](https://birthguide.com.au) on 13 August 2026, after full clinical review.",
+      "The plan builder moved to its own site with a different interface: tap through your choices and the plan builds itself beside you. See it at [birthplans.app](https://birthplans.app).",
       "The old route and its paywall were deleted outright, a net removal of 660 lines.",
     ],
     links: [{ href: "https://birthplans.app", label: "Visit birthplans.app" }],
