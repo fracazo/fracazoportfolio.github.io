@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CaseSummary } from "@/components/case-summary";
 import { ExternalLinkIcon } from "@/components/icons";
 
 /**
@@ -65,6 +66,8 @@ export function MrSummaryAiContent({
           <div className="case-study-section">
             <blockquote>Three shipped versions taught us the AI was in the wrong role. The fix was not a better summary, it was helping the author write a better description.</blockquote>
           </div>
+
+          <CaseSummary href="/case-studies/mr-summary-ai" variant="page" />
 
           <div className="case-study-section">
             <h2>The challenge</h2>

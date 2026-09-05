@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CaseSummary } from "@/components/case-summary";
 import { ExternalLinkIcon } from "@/components/icons";
 
 /**
@@ -56,10 +57,7 @@ export function GitlabPagesContent({
             <p className="case-intro">GitLab Pages had spread the state of your site across four disconnected blocks. Deployment status was ambiguous, and DNS and SSL problems stayed hidden until something broke. I wrote the diagnosis, proposed the fix, and when my own team could not build it, convinced another team to pick it up. Most of it shipped in GitLab 18.1.</p>
           </header>
 
-          <div className="summary-card">
-            <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-            <p>Pages is the first thing many people deploy on GitLab, and its settings page was working against that. Site status, domains and deployments were split across four blocks on two pages, so the one question every site owner has, is it live and where, took three separate lookups. I surfaced the problem in a UX scorecard run, proposed a tab-based structure that answers that question first, and argued every decision the same way: what problem it solves, how it affects the person using it, and why it beats the alternative. Five weeks of review with the Pages engineers, the PM and the technical writer got it ready to build. When the Pages team&rsquo;s capacity went elsewhere, I locked in written sign-off from every stakeholder and took the finished design to the UX Paper Cuts team, who shipped it as eleven merge requests in GitLab 18.1. The PM approved it as the foundation for anything the company later wants to build or charge for in Pages. The issue closed in 2026 because Pages stopped being a priority, not because the work didn&rsquo;t land.</p>
-          </div>
+          <CaseSummary href="/case-studies/gitlab-pages" variant="page" />
 
           <div className="case-study-section">
             <h2>My Role and Context</h2>

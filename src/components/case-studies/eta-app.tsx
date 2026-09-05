@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CaseSummary } from "@/components/case-summary";
 import { ExternalLinkIcon } from "@/components/icons";
 
 /**
@@ -55,11 +56,7 @@ export function EtaAppContent({
           <p className="case-intro">Automating data entry to improve completion and reduce user effort in a high-stakes service.</p>
         </header>
 
-        <div className="summary-card">
-          <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-          <p>The Department of Home Affairs was finding it difficult to manage the ETA visa data mismatch, due to the time it took to update the traveller data and interact with airlines/gates.</p>
-          <p>I designed the app <strong>from 0 to 1</strong>: no mobile product existed before this project, only the web form. The finished app won <strong>Gold at the Sydney Design Awards</strong>.</p>
-        </div>
+        <CaseSummary href="/case-studies/eta-app" variant="page" />
 
         <div className="case-study-section">
           <h2>Discovery & Research</h2>

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CaseSummary } from "@/components/case-summary";
 
 /**
  * Body of the birthguide case study, without the route chrome.
@@ -56,10 +57,7 @@ export function BirthguideContent({
             <p className="case-intro">I shipped a birth plan generator in ten days and sold it for six months. Then session recordings and a round of user emails told me the document was not the thing people valued. The teaching wrapped around it was. So I inverted the business model: the learning became the paid product, and the birth plan builder moved to its own site as a free tool. This is the case study of getting the thesis right, then finding a better one underneath it.</p>
           </header>
 
-          <div className="summary-card">
-            <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-            <p>BirthGuide is a consumer birth planning product I designed, specified, and shipped alone: live and taking Stripe payments ten days after I named it. The first paying customer confirmed the design thesis, sharing her plan with her birth team and never downloading a PDF. She did not confirm the business thesis. Session recordings, then a round of emails to payers and non-payers alike, said the same thing: the value was the learning, not the document. So I inverted the model in twenty-six days. The teaching became the paid product, and the plan builder moved to its own site as a free tool.</p>
-          </div>
+          <CaseSummary href="/case-studies/birthguide" variant="page" />
 
           <div className="case-study-section">
             <h2>Part one: the product I shipped first</h2>

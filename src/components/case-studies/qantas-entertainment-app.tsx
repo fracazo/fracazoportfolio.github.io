@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CaseSummary } from "@/components/case-summary";
 
 /**
  * Body of the qantas-entertainment-app case study, without the route chrome.
@@ -54,10 +55,7 @@ export function QantasEntertainmentAppContent({
           <p className="case-intro">The entertainment app only worked on board, connected to the Qantas network. This redesign made it useful before and after the flight, and tripled advertising revenue.</p>
         </header>
 
-        <div className="summary-card">
-          <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-          <p>With every passenger carrying a smartphone, tablet or laptop, Qantas saw an opportunity to transform the travel experience by installing inflight Wi-Fi on some aircraft. During my time working at Qantas, I was the lead product designer on the Entertainment squad. We identified 2 hypotheses that could increase app usage.</p>
-        </div>
+        <CaseSummary href="/case-studies/qantas-entertainment-app" variant="page" />
 
         <div className="case-study-section">
           <h2>Understanding the Opportunity</h2>

@@ -13,6 +13,8 @@ import {
 import Link from "next/link";
 import { ArrowLeftIcon, CloseIcon, ExpandIcon } from "./icons";
 import { panelRegistry } from "./panel-registry";
+import { CaseSummary } from "./case-summary";
+import { hasCaseSummary } from "./case-study-summaries";
 import {
   clearReturnContext,
   readReturnContext,
@@ -202,8 +204,22 @@ export function PanelShell({ children }: { children: ReactNode }) {
 
   const entry = active ? panelRegistry[active] : null;
   const Content = entry?.load;
+  // A case study opens as its summary, not the whole study: the panel is the
+  // skim layer, and the full read is one click away on the route. Everything
+  // else registered (stubs, about, résumé, writing) still renders in full.
+  const summarised = Boolean(active && hasCaseSummary(active));
 
   const splitOpen = Boolean(active) && split;
+
+  /** Captures both columns' scroll so the trip back reopens the split here. */
+  const saveContext = () => {
+    if (!active) return;
+    saveReturnContext({
+      panel: active,
+      index: indexRef.current?.scrollTop ?? 0,
+      body: panelRef.current?.scrollTop ?? 0,
+    });
+  };
 
   /*
    * `children` is rendered in exactly one place and the layout changes by
@@ -262,15 +278,13 @@ export function PanelShell({ children }: { children: ReactNode }) {
               // route can be reopened there. Pointless on the full-screen
               // sheet, which already fills the page.
               fullHref={split && active.startsWith("/") ? active : undefined}
-              onExpand={() =>
-                saveReturnContext({
-                  panel: active,
-                  index: indexRef.current?.scrollTop ?? 0,
-                  body: panelRef.current?.scrollTop ?? 0,
-                })
-              }
+              onExpand={saveContext}
             />
-            {Content && <Content />}
+            {summarised ? (
+              <CaseSummary href={active} variant="panel" onExpand={saveContext} />
+            ) : (
+              Content && <Content />
+            )}
           </div>
         )}
       </div>

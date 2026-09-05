@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CaseSummary } from "@/components/case-summary";
 import { ExternalLinkIcon } from "@/components/icons";
 
 /**
@@ -56,10 +57,7 @@ export function WikiContextualCommentsContent({
             <p className="case-intro">GitLab Wiki had comments, but they sat at the bottom of the page with no connection to the text they discussed, and the real conversations happened in Slack. I designed a commenting system that ties a discussion to the exact line it refers to, without the cluttered pages Confluence users complain about. The designs are now in engineering development.</p>
           </header>
 
-          <div className="summary-card">
-            <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-            <p>GitLab Wiki had a comments section at the bottom of every page, but discussions about specific content happened scattered across Slack, email, and meetings. There was no way to tie a conversation to the exact line of text it referred to. My UX scorecard run on Wiki had flagged how hard comments were to follow on long pages, and a competitor scan showed every major Wiki alternative already had contextual comments. I took both findings to the PM, the problem went on the roadmap, and the design spike that came out of it grew into a full design system: a hybrid sidebar and contextual comment approach that addressed the "messy page" problem that Confluence users consistently complained about.</p>
-          </div>
+          <CaseSummary href="/case-studies/wiki-contextual-comments" variant="page" />
 
           <div className="case-study-section">
             <h2>My Role and Context</h2>

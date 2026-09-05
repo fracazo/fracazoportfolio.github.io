@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CaseSummary } from "@/components/case-summary";
 
 /**
  * Body of the bringing-visibility-to-workers-status case study, without the route chrome.
@@ -54,10 +55,7 @@ export function BringingVisibilityToWorkersStatusContent({
           <p className="case-intro">Redesigned availability visibility across iOS and Android at Hireup, Australia's largest disability support platform. The change lifted response rate from 39.1% to 45.8%, grew connection rate from 3% to 5%, and drove +46% inactive worker reactivations.</p>
         </header>
 
-        <div className="summary-card">
-          <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-          <p>Clients were messaging workers who had quietly left the platform, because nothing ever updated an absent worker's availability. This design made availability honest. Workers inactive for 30 days are switched to "not looking for work" automatically, and the app teaches workers what their status means and how to keep it current. Response rate rose from 39.1% to 45.8%, and connection rate from 3% to 5%.</p>
-        </div>
+        <CaseSummary href="/case-studies/bringing-visibility-to-workers-status" variant="page" />
 
         <div className="case-study-section">
           <h2>Understanding the Problem</h2>

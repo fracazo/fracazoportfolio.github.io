@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CaseSummary } from "@/components/case-summary";
 import { ExternalLinkIcon } from "@/components/icons";
 
 /**
@@ -65,6 +66,8 @@ export function GlqlContent({
           <div className="case-study-section">
             <blockquote>Adoption grew about a third in the first weeks after GA, driven by discoverability I designed.</blockquote>
           </div>
+
+          <CaseSummary href="/case-studies/glql" variant="page" />
 
           <div className="case-study-section">
             <h2>The challenge</h2>

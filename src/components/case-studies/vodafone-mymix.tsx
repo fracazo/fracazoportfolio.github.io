@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CaseSummary } from "@/components/case-summary";
 import { MymixBuilder } from "./mymix-builder";
 
 /**
@@ -65,17 +66,7 @@ export function VodafoneMymixContent({
           </p>
         </header>
 
-        <div className="summary-card">
-          <h2><img src="/images/bookmark.svg" alt="" width="24" /> Summary</h2>
-          <p>
-            Vodafone wanted to break an industry norm: instead of choosing the
-            least-bad prepaid bundle, customers would pick every inclusion
-            themselves. The interaction model had an executive answer before it
-            had a design answer, so we built both hypotheses as working
-            prototypes, tested them with customers, and let the session
-            recordings make the argument we couldn&rsquo;t win in a showcase.
-          </p>
-        </div>
+        <CaseSummary href="/case-studies/vodafone-mymix" variant="page" />
 
         <div className="case-study-section">
           <h2>The Challenge</h2>
