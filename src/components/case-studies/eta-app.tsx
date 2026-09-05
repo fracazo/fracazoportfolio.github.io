@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { CaseSummary } from "@/components/case-summary";
 import { ExternalLinkIcon } from "@/components/icons";
 
 /**
@@ -56,7 +55,6 @@ export function EtaAppContent({
           <p className="case-intro">Automating data entry to improve completion and reduce user effort in a high-stakes service.</p>
         </header>
 
-        <CaseSummary href="/case-studies/eta-app" variant="page" />
 
         <div className="case-study-section">
           <h2>Discovery & Research</h2>

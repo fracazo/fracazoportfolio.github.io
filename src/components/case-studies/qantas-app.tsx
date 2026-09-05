@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { CaseSummary } from "@/components/case-summary";
 
 /**
  * Body of the qantas-app case study, without the route chrome.
@@ -55,7 +54,6 @@ export function QantasAppContent({
           <p className="case-intro">Using entertainment features to drive a 70% increase in app downloads.</p>
         </header>
 
-        <CaseSummary href="/case-studies/qantas-app" variant="page" />
 
         <div className="case-study-section">
           <h2>The Challenge</h2>

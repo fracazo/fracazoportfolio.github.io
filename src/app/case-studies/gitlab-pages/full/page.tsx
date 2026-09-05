@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
-import { CaseSummary } from "@/components/case-summary";
+import { GitlabPagesContent } from "@/components/case-studies/gitlab-pages";
 
 const title = "Making Site Status Visible in GitLab Pages - Alex Fracazo";
 const description =
@@ -23,23 +23,14 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * The summary as a page: what the panel shows, at full width. The complete
- * study is one click on from here, at /full, so the expand control means the
- * same thing on a case study as it does on About or Work history.
- */
-export default function Page() {
+export default function GitlabPages() {
   return (
-    <CaseStudyShell>
-      <CaseSummary
-        href="/case-studies/gitlab-pages"
-       
+    <CaseStudyShell backHref="/case-studies/gitlab-pages">
+      <GitlabPagesContent
         breadcrumb={
-          <nav className="breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a>
-            <span className="breadcrumb-sep"> &gt; </span>
-            <span>Making Site Status Visible in GitLab Pages</span>
-          </nav>
+              <nav className="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/case-studies/gitlab-pages">Making Site Status Visible in GitLab Pages</a><span className="breadcrumb-sep"> &gt; </span><span>Full case study</span>
+              </nav>
         }
       />
     </CaseStudyShell>

@@ -10,10 +10,17 @@ import { PlainShell } from "./plain-shell";
  * way back. The standalone route and the panel keep rendering the same
  * content rather than diverging.
  */
-export function CaseStudyShell({ children }: { children: ReactNode }) {
+export function CaseStudyShell({
+  children,
+  backHref,
+}: {
+  children: ReactNode;
+  /** Where the back pill lands when there is no panel to return to. */
+  backHref?: string;
+}) {
   return (
     <PlainShell>
-      <BackToSite />
+      <BackToSite href={backHref} />
       <div className="mx-auto grid w-full max-w-[800px] gap-16 pt-24 max-md:pt-20 [&>*]:min-w-0">
         {children}
       </div>

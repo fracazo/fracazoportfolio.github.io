@@ -29,7 +29,10 @@ export function BackToSite({
       onClick={(e) => {
         if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return;
         const ctx = readReturnContext();
-        if (ctx && sameRoute(ctx.panel, window.location.pathname)) {
+        // The complete study lives under its summary's route, so it returns
+        // to the same panel the summary came from.
+        const here = window.location.pathname.replace(/\/full\/?$/, "");
+        if (ctx && sameRoute(ctx.panel, here)) {
           e.preventDefault();
           window.history.back();
         }

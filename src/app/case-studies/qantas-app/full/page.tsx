@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
-import { CaseSummary } from "@/components/case-summary";
+import { QantasAppContent } from "@/components/case-studies/qantas-app";
 
 const title = "Increasing App Adoption by Integrating Entertainment Services - Alex Fracazo";
 const description = "Using entertainment features to drive a 70% increase in app downloads.";
@@ -22,23 +22,14 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * The summary as a page: what the panel shows, at full width. The complete
- * study is one click on from here, at /full, so the expand control means the
- * same thing on a case study as it does on About or Work history.
- */
-export default function Page() {
+export default function QantasApp() {
   return (
-    <CaseStudyShell>
-      <CaseSummary
-        href="/case-studies/qantas-app"
-       
+    <CaseStudyShell backHref="/case-studies/qantas-app">
+      <QantasAppContent
         breadcrumb={
-          <nav className="breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a>
-            <span className="breadcrumb-sep"> &gt; </span>
-            <span>Qantas App</span>
-          </nav>
+            <nav className="breadcrumb" aria-label="Breadcrumb">
+              <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/case-studies/qantas-app">Qantas App</a><span className="breadcrumb-sep"> &gt; </span><span>Full case study</span>
+            </nav>
         }
       />
     </CaseStudyShell>

@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { CaseSummary } from "@/components/case-summary";
 
 /**
  * Body of the bringing-visibility-to-workers-status case study, without the route chrome.
@@ -55,7 +54,6 @@ export function BringingVisibilityToWorkersStatusContent({
           <p className="case-intro">Redesigned availability visibility across iOS and Android at Hireup, Australia's largest disability support platform. The change lifted response rate from 39.1% to 45.8%, grew connection rate from 3% to 5%, and drove +46% inactive worker reactivations.</p>
         </header>
 
-        <CaseSummary href="/case-studies/bringing-visibility-to-workers-status" variant="page" />
 
         <div className="case-study-section">
           <h2>Understanding the Problem</h2>

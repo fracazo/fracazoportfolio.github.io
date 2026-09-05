@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
-import { CaseSummary } from "@/components/case-summary";
+import { BringingVisibilityToWorkersStatusContent } from "@/components/case-studies/bringing-visibility-to-workers-status";
 
 const title = "Changing Booking Behaviour Through Worker Status Visibility - Alex Fracazo";
 const description = "Reducing uncertainty in a two-sided marketplace and increasing successful bookings by 12%.";
@@ -22,23 +22,14 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * The summary as a page: what the panel shows, at full width. The complete
- * study is one click on from here, at /full, so the expand control means the
- * same thing on a case study as it does on About or Work history.
- */
-export default function Page() {
+export default function BringingVisibilityToWorkersStatus() {
   return (
-    <CaseStudyShell>
-      <CaseSummary
-        href="/case-studies/bringing-visibility-to-workers-status"
-       
+    <CaseStudyShell backHref="/case-studies/bringing-visibility-to-workers-status">
+      <BringingVisibilityToWorkersStatusContent
         breadcrumb={
-          <nav className="breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a>
-            <span className="breadcrumb-sep"> &gt; </span>
-            <span>Worker Status Visibility</span>
-          </nav>
+            <nav className="breadcrumb" aria-label="Breadcrumb">
+              <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/case-studies/bringing-visibility-to-workers-status">Worker Status Visibility</a><span className="breadcrumb-sep"> &gt; </span><span>Full case study</span>
+            </nav>
         }
       />
     </CaseStudyShell>

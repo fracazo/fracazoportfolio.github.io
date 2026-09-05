@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { CaseSummary } from "@/components/case-summary";
 import { MymixBuilder } from "./mymix-builder";
 
 /**
@@ -66,7 +65,6 @@ export function VodafoneMymixContent({
           </p>
         </header>
 
-        <CaseSummary href="/case-studies/vodafone-mymix" variant="page" />
 
         <div className="case-study-section">
           <h2>The Challenge</h2>

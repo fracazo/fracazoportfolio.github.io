@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { CaseSummary } from "@/components/case-summary";
 import { ExternalLinkIcon } from "@/components/icons";
 
 /**
@@ -57,7 +56,6 @@ export function WikiContextualCommentsContent({
             <p className="case-intro">GitLab Wiki had comments, but they sat at the bottom of the page with no connection to the text they discussed, and the real conversations happened in Slack. I designed a commenting system that ties a discussion to the exact line it refers to, without the cluttered pages Confluence users complain about. The designs are now in engineering development.</p>
           </header>
 
-          <CaseSummary href="/case-studies/wiki-contextual-comments" variant="page" />
 
           <div className="case-study-section">
             <h2>My Role and Context</h2>

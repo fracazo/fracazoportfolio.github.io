@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
-import { CaseSummary } from "@/components/case-summary";
+import { GlqlContent } from "@/components/case-studies/glql";
 
 const title = "GLQL / Embedded Views - Alex Fracazo";
 const description =
@@ -23,23 +23,14 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * The summary as a page: what the panel shows, at full width. The complete
- * study is one click on from here, at /full, so the expand control means the
- * same thing on a case study as it does on About or Work history.
- */
-export default function Page() {
+export default function Glql() {
   return (
-    <CaseStudyShell>
-      <CaseSummary
-        href="/case-studies/glql"
-       
+    <CaseStudyShell backHref="/case-studies/glql">
+      <GlqlContent
         breadcrumb={
-          <nav className="breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a>
-            <span className="breadcrumb-sep"> &gt; </span>
-            <span>GLQL / Embedded Views</span>
-          </nav>
+              <nav className="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/case-studies/glql">GLQL / Embedded Views</a><span className="breadcrumb-sep"> &gt; </span><span>Full case study</span>
+              </nav>
         }
       />
     </CaseStudyShell>

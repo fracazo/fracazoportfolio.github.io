@@ -281,7 +281,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
               onExpand={saveContext}
             />
             {summarised ? (
-              <CaseSummary href={active} variant="panel" onExpand={saveContext} />
+              <CaseSummary href={active} onExpand={saveContext} />
             ) : (
               Content && <Content />
             )}

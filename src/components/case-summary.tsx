@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { Chip } from "./chip";
 import { caseSummaries } from "./case-study-summaries";
 
@@ -7,48 +8,44 @@ import { caseSummaries } from "./case-study-summaries";
 const portraitStyle = { maxWidth: 320, marginInline: "auto", display: "block" } as const;
 
 /**
- * The summary block of a case study.
+ * The summary of a case study.
  *
- * Two surfaces, one source. In the panel it stands in for the whole study:
- * title, meta chips, the shipped screens, the call, what happened, and a
- * button to the route. On the route it sits where the summary card used to,
- * without the title (the page has its h1) and without the button (the reader
- * is already there). Typography rides on `.case-study-section` so it matches
- * the study around it.
+ * Two surfaces, one source. The panel shows it beside the index; the study's
+ * route shows the same thing at full width, so the expand control means what
+ * it means everywhere else on the site. Either way the button leads on to
+ * the complete study at `/full`. Typography rides on `.case-study-section`
+ * so it matches the study it summarises.
  */
 export function CaseSummary({
   href,
-  variant,
+  breadcrumb,
   onExpand,
 }: {
-  /** Route of the study, which is also its key in the summaries map. */
+  /** Route of the study's summary, which is also its key in the summaries map. */
   href: string;
-  variant: "panel" | "page";
+  /** Slot the route fills and the panel leaves empty. */
+  breadcrumb?: ReactNode;
   /** Fires as the read-more button is followed, to save the panel's context. */
   onExpand?: () => void;
 }) {
   const summary = caseSummaries[href];
   if (!summary) return null;
-  const inPanel = variant === "panel";
 
   return (
-    <section
-      className={inPanel ? "section case-study-content" : undefined}
-      aria-label={inPanel ? undefined : "Summary"}
-    >
+    <section className="section case-study-content">
       <div className="case-study-main">
-        {inPanel && (
-          <header className="case-header">
-            <h1 className="case-title">{summary.title}</h1>
-            <ul role="list" className="m-0 mt-5 flex list-none flex-wrap gap-2 p-0">
-              {summary.meta.map((item) => (
-                <li key={item} className="flex">
-                  <Chip>{item}</Chip>
-                </li>
-              ))}
-            </ul>
-          </header>
-        )}
+        {breadcrumb}
+
+        <header className="case-header">
+          <h1 className="case-title">{summary.title}</h1>
+          <ul role="list" className="m-0 mt-5 flex list-none flex-wrap gap-2 p-0">
+            {summary.meta.map((item) => (
+              <li key={item} className="flex">
+                <Chip>{item}</Chip>
+              </li>
+            ))}
+          </ul>
+        </header>
 
         {summary.media.map((item) => (
           <figure key={item.src ?? item.video} className="m-0">
@@ -69,7 +66,6 @@ export function CaseSummary({
                 alt={item.alt}
                 className="case-study-image"
                 style={item.portrait ? portraitStyle : undefined}
-                loading={inPanel ? "eager" : "lazy"}
               />
             )}
             {item.caption && (
@@ -89,15 +85,13 @@ export function CaseSummary({
             ))}
           </ul>
 
-          {inPanel && (
-            <Link
-              href={href}
-              onClick={onExpand}
-              className="btn btn-primary mt-8 inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
-            >
-              Read the full case study
-            </Link>
-          )}
+          <Link
+            href={`${href}/full`}
+            onClick={onExpand}
+            className="btn btn-primary mt-8 inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
+          >
+            Read the full case study
+          </Link>
         </div>
       </div>
     </section>

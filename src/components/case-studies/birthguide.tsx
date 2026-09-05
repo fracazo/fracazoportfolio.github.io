@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { CaseSummary } from "@/components/case-summary";
 
 /**
  * Body of the birthguide case study, without the route chrome.
@@ -57,7 +56,6 @@ export function BirthguideContent({
             <p className="case-intro">I shipped a birth plan generator in ten days and sold it for six months. Then session recordings and a round of user emails told me the document was not the thing people valued. The teaching wrapped around it was. So I inverted the business model: the learning became the paid product, and the birth plan builder moved to its own site as a free tool. This is the case study of getting the thesis right, then finding a better one underneath it.</p>
           </header>
 
-          <CaseSummary href="/case-studies/birthguide" variant="page" />
 
           <div className="case-study-section">
             <h2>Part one: the product I shipped first</h2>

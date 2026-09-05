@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
-import { CaseSummary } from "@/components/case-summary";
+import { EtaAppContent } from "@/components/case-studies/eta-app";
 
 const title = "Reducing Friction in Government Visa Applications - Alex Fracazo";
 const description = "Automating data entry to improve completion and reduce user effort in a high-stakes service.";
@@ -22,23 +22,14 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * The summary as a page: what the panel shows, at full width. The complete
- * study is one click on from here, at /full, so the expand control means the
- * same thing on a case study as it does on About or Work history.
- */
-export default function Page() {
+export default function EtaApp() {
   return (
-    <CaseStudyShell>
-      <CaseSummary
-        href="/case-studies/eta-app"
-       
+    <CaseStudyShell backHref="/case-studies/eta-app">
+      <EtaAppContent
         breadcrumb={
-          <nav className="breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a>
-            <span className="breadcrumb-sep"> &gt; </span>
-            <span>ETA App</span>
-          </nav>
+            <nav className="breadcrumb" aria-label="Breadcrumb">
+              <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/case-studies/eta-app">ETA App</a><span className="breadcrumb-sep"> &gt; </span><span>Full case study</span>
+            </nav>
         }
       />
     </CaseStudyShell>

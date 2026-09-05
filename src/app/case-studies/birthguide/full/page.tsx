@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
-import { CaseSummary } from "@/components/case-summary";
+import { BirthguideContent } from "@/components/case-studies/birthguide";
 
 const title = "I built a birth plan generator. My users were using it to learn. - Alex Fracazo";
 const description = "Shipped in ten days, sold for six months, then the research said the document was not the valuable part. How I inverted the business model in twenty-six days.";
@@ -22,23 +22,14 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * The summary as a page: what the panel shows, at full width. The complete
- * study is one click on from here, at /full, so the expand control means the
- * same thing on a case study as it does on About or Work history.
- */
-export default function Page() {
+export default function Birthguide() {
   return (
-    <CaseStudyShell>
-      <CaseSummary
-        href="/case-studies/birthguide"
-       
+    <CaseStudyShell backHref="/case-studies/birthguide">
+      <BirthguideContent
         breadcrumb={
-          <nav className="breadcrumb" aria-label="Breadcrumb">
-            <a href="/">Home</a>
-            <span className="breadcrumb-sep"> &gt; </span>
-            <span>BirthGuide</span>
-          </nav>
+              <nav className="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/case-studies/birthguide">BirthGuide</a><span className="breadcrumb-sep"> &gt; </span><span>Full case study</span>
+              </nav>
         }
       />
     </CaseStudyShell>

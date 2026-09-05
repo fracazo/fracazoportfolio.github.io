@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { CaseSummary } from "@/components/case-summary";
 import { ExternalLinkIcon } from "@/components/icons";
 
 /**
@@ -57,7 +56,6 @@ export function GitlabPagesContent({
             <p className="case-intro">GitLab Pages had spread the state of your site across four disconnected blocks. Deployment status was ambiguous, and DNS and SSL problems stayed hidden until something broke. I wrote the diagnosis, proposed the fix, and when my own team could not build it, convinced another team to pick it up. Most of it shipped in GitLab 18.1.</p>
           </header>
 
-          <CaseSummary href="/case-studies/gitlab-pages" variant="page" />
 
           <div className="case-study-section">
             <h2>My Role and Context</h2>
