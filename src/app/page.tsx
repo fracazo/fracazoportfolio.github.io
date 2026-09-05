@@ -10,8 +10,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { ExternalLinkIcon } from "@/components/icons";
 
 /* Work is grouped by the kind of problem, not by date. Each group leads with
-   the full case studies and follows with compact rows, so the weight change
-   lands once per group rather than alternating down the page. */
+   the full case studies and follows with compact rows. Both row kinds share
+   one padding, so the order is editorial rather than a visual weight change. */
 const workGroups = [
   {
     id: "knowledge-products",

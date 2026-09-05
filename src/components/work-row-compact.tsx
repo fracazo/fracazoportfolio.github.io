@@ -31,11 +31,11 @@ type WorkRowCompactProps = {
 };
 
 /**
- * The lighter of the two work card weights. Same top border and title
- * hierarchy as `WorkRow`, but an optional thumbnail and shorter vertical
- * padding so it sits under the full cards without looking like a full card
- * with a missing image. Rows with no detail page render as a plain div rather
- * than a dead link.
+ * The second work row variant. Same top border, padding, title hierarchy and
+ * thumbnail column as `WorkRow`, so the two sit in one list at one rhythm.
+ * Differs in what it can hold: an optional thumbnail, a stub for work with no
+ * route, and a todo marker. Rows with no detail page render as a plain div
+ * rather than a dead link.
  */
 export function WorkRowCompact({
   href,

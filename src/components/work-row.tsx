@@ -62,7 +62,7 @@ export function WorkRow({
       /* Container query, not a viewport one: in the split layout this row lives
          in a pane roughly half the window, so keying off the window would hold
          the thumbnail column at widths that cannot carry it. */
-      className="work-row group grid grid-cols-1 border-t border-border py-8 no-underline hover:no-underline @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8"
+      className="work-row group grid grid-cols-1 border-t border-border py-5 no-underline hover:no-underline @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8"
     >
       {/* Thumbnail — uniform frame so the mismatched screenshots stop clashing.
           DOM order keeps it first so the stacked (sub-600px) card still leads
@@ -94,12 +94,12 @@ export function WorkRow({
           they sit right under the tagline; as a separate grid row they could
           not start until the image's full height, leaving a dead gap. They
           may wrap inside the ~328px column, which is the accepted trade. */}
-      <div className="work-row-body mt-5 min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1 @min-[600px]:mt-0">
-        <h3 className="m-0 text-subhead font-semibold text-text transition-colors duration-200 group-hover:text-brand">
+      <div className="work-row-body mt-4 min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1 @min-[600px]:mt-0">
+        <h3 className="m-0 text-subhead-sm font-semibold text-text transition-colors duration-200 group-hover:text-brand">
           {title}
         </h3>
         {tagline && (
-          <p className="mt-1.5 mb-0 text-body leading-[1.3] font-normal text-text-body">
+          <p className="mt-1 mb-0 text-body leading-[1.3] font-normal text-text-body">
             {tagline}
           </p>
         )}
