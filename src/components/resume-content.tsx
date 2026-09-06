@@ -5,7 +5,43 @@ import { BrandStrip } from "@/components/brand-strip";
 
 const RESUME_PDF = "/files/Alex Fracazo - Resume.pdf";
 
-const experience = [
+/* One-line facts under the summary. Mirrors the Focus / Stack / Languages
+   strip on the PDF so both versions lead with the same framing. */
+const facts = [
+  {
+    label: "Focus",
+    value: "AI products · Developer tools · Design systems · Zero to one",
+  },
+  {
+    label: "Stack",
+    value: "TypeScript · React · Next.js · Tailwind · Supabase · Anthropic SDK",
+  },
+  {
+    label: "Languages",
+    value:
+      "Portuguese native, English professional, Spanish elementary · Australian and Brazilian citizen",
+  },
+];
+
+type CaseStudy = { title: string; href: string };
+
+/* A client engagement inside a forward-deployed role. Rendered as its own
+   sub-entry so the client and product read before the outcome. */
+type Client = { name: string; project: string; text: string };
+
+type Job = {
+  company: string;
+  caseStudies: CaseStudy[] | null;
+  role: string;
+  context: string | null;
+  period: string;
+  location: string;
+  outcome: string | null;
+  points: string[];
+  clients?: Client[];
+};
+
+const experience: Job[] = [
   {
     company: "GitLab",
     caseStudies: [
@@ -21,15 +57,14 @@ const experience = [
       { title: "Making Site Status Visible in GitLab Pages", href: "/case-studies/gitlab-pages" },
     ],
     role: "Senior Product Designer",
-    context:
-      "Paired with the senior product manager to define the roadmap for Knowledge, covering Wiki, GLQL (GitLab Query Language), Pages, and text editors.",
-    period: "2022 – 2026",
-    location: "Remote, global",
-    outcome: "+33% adoption · code in production",
+    context: null,
+    period: "Nov 2022 – Jul 2026",
+    location: "Remote",
+    outcome: "+33% weekly users · code in production",
     points: [
-      "Led GLQL from research through GA launch: 33% adoption growth and shipped my own code to production via merge requests.",
-      "Led the Wiki UX transformation, shipping the sidebar redesign to production through code contributions, and finalising the contextual comments design system now in engineering development.",
-      "Ran usability studies and a survey on AI code review that exposed trust and control problems, driving a full product pivot to an author-facing writing assistant.",
+      "Built GLQL (GitLab Query Language), an in-product query language for tracking work, from research to general availability. Interviewed customers, scoped with the product manager and engineering, and shipped production code via merge requests. Grew weekly users from 600 to 801, a 33% increase, by surfacing it inside the editor at the moment of writing.",
+      "Surveyed and ran usability studies on AI code review that exposed trust and control problems, then reframed the product around the author. The resulting writing assistant shipped and reached broad adoption with no critical feedback.",
+      "Established an AI-assisted research and prototyping pipeline: analysed anonymised product data, generated interview guides, synthesised transcripts, then produced user flows, wireframes and working responsive prototypes across desktop, tablet and mobile. Mentored designers across the design org and ran critiques.",
     ],
   },
   {
@@ -43,17 +78,16 @@ const experience = [
     role: "Principal Product Designer",
     context:
       "Australia's largest disability support marketplace. Designer on the iOS and Android app team.",
-    period: "2021 – 2022",
+    period: "Mar 2021 – Oct 2022",
     location: "Sydney",
-    outcome: "Connection rate 3% → 5% (+67% relative)",
+    outcome: "Connection rate 3% → 5% · booking rate +12%",
     points: [
-      "Found through data analysis that 39.1% of clients were messaging inactive workers, dragging down platform-wide connection rates.",
-      "Designed an availability visibility system across iOS and Android that lifted connection rate from 3% to 5% (+67% relative), response rate from 39.1% to 45.8%, and drove +46% inactive worker reactivations.",
-      "Redesigned the core booking experience, achieving a +12% increase in booking rates.",
+      "Discovered that 39.1% of clients were messaging inactive workers, then introduced a worker availability system across iOS and Android with engineering. Connection rate rose from 3% to 5%, response rate from 39.1% to 45.8%, with 46% more inactive workers reactivated.",
+      "Streamlined the core booking flow, lifting booking rate 12%.",
     ],
   },
   {
-    company: "Outware Mobile, later Arq Group",
+    company: "Arq Group and Outware Mobile",
     caseStudies: [
       {
         title: "A Unified In-flight Entertainment Experience",
@@ -68,15 +102,34 @@ const experience = [
         href: "/case-studies/eta-app",
       },
     ],
-    role: "Lead Product Designer",
+    role: "Forward Deployed Product Designer",
     context:
-      "Led product design across web, mobile, and wearable for Qantas, Telstra, NAB, and Endeavour Group. Managed designers and established research practices across teams.",
-    period: "2016 – 2020",
+      "Embedded with client product teams to take work from discovery through to launch.",
+    period: "Jul 2016 – Jun 2020",
     location: "Sydney",
-    outcome: "+70% app downloads · Sydney Design Awards Gold",
-    points: [
-      "Led Qantas Entertainment app redesign, increasing app downloads +70%.",
-      "Designed the Australian ETA visa app from 0 to 1, Gold at the Sydney Design Awards.",
+    outcome: "Tripled ad revenue · Sydney Design Awards Gold",
+    points: [],
+    clients: [
+      {
+        name: "Qantas",
+        project: "Entertainment app",
+        text: "Redesigned the app to work before and after the flight, extending it beyond the on-board Qantas network. Tripled advertising revenue from partner offers, 225k to 675k, and raised the App Store rating from 2.1 to 4.5.",
+      },
+      {
+        name: "Department of Home Affairs",
+        project: "Electronic Travel Authority app, zero to one",
+        text: "Investigated visa processing and data accuracy with Home Affairs and SITA staff, then reframed the problem from form design to data capture. Designed an iOS and Android flow that reads the passport chip over NFC and captures a live face image, removing manual entry. Won Gold at the Sydney Design Awards.",
+      },
+      {
+        name: "Telstra",
+        project: "Design system",
+        text: "Standardised components and usage guidance across product teams, cutting duplicated design and build effort on new projects.",
+      },
+      {
+        name: "Endeavour Group",
+        project: "BWS app, zero to one",
+        text: "Launched a liquor retail app on iOS and Android from concept, and coached the in-house design team through working directly with engineers.",
+      },
     ],
   },
   {
@@ -84,23 +137,35 @@ const experience = [
     caseStudies: [{ title: "MyMix", href: "/case-studies/vodafone-mymix" }],
     role: "Senior Product Designer",
     context: null,
-    period: "2015 – 2016",
+    period: "Jun 2015 – Aug 2016",
     location: "Sydney",
     outcome: null,
     points: [
-      "Led UX for the self-service team across web and native apps, and established user research and testing processes across multiple products.",
+      "Created MyMix, a personalised prepaid plan builder, and instituted research and testing practices across the self-service team on web and native apps.",
     ],
   },
   {
     company: "B2W Digital",
     caseStudies: null,
     role: "Senior Product Designer",
-    context: "LATAM's largest e-commerce company.",
-    period: "2013 – 2015",
+    context: null,
+    period: "Jun 2013 – May 2015",
     location: "Rio de Janeiro",
-    outcome: "1 design system · 3 apps unified",
+    outcome: "3 apps · 1 design system",
     points: [
-      "Designed a responsive white-label e-commerce platform supporting multiple branded stores, and created an internal design system that improved consistency across 3 native apps.",
+      "Developed a responsive white-label platform for multiple store brands at LATAM's largest e-commerce company, and consolidated three native apps onto a single design system.",
+    ],
+  },
+  {
+    company: "Artia",
+    caseStudies: null,
+    role: "Frontend Engineer",
+    context: null,
+    period: "Sep 2009 – Jun 2011",
+    location: "Joinville, Brazil",
+    outcome: null,
+    points: [
+      "Programmed my own interface designs in Haml, Sass, Ruby on Rails and jQuery on an agile team.",
     ],
   },
 ];
@@ -113,7 +178,7 @@ const projects = [
     href: "https://birthguide.com.au",
     year: "Solo build · 2026",
     context:
-      "A consumer birth-planning product for Australian first-time parents, designed and built solo, end-to-end, on Next.js, React 19, Supabase, and Stripe using AI-powered tools (Claude, Claude Code). Parents answer a guided questionnaire and receive an interactive birth plan with a QR code midwives scan on their phone, plus a printable partner summary.",
+      "A consumer birth-planning product for Australian first-time parents, live with paying users. Designed and built solo, end-to-end, on Next.js, React 19, Supabase, Stripe and the Anthropic SDK. Parents answer a guided questionnaire and receive an interactive birth plan with a QR code midwives scan on their phone, plus a printable partner summary.",
     points: [
       "Reframed the category from ‘printable template’ to ‘labour communication tool’ after research revealed the partner is the primary plan reader during active labour.",
       "Validated real usage with Clarity session recordings, and built free tools, guides, and an AI chat assistant as an organic acquisition strategy.",
@@ -151,32 +216,36 @@ const projects = [
 
 const skills = [
   {
+    label: "Front end",
+    value: "TypeScript, JavaScript, React, Next.js, Tailwind CSS, HTML, CSS",
+  },
+  {
+    label: "Platform",
+    value: "Supabase, PostgreSQL, Stripe, Vercel, Git",
+  },
+  {
+    label: "AI",
+    value:
+      "Anthropic SDK, Claude Code, Cursor, Model Context Protocol (MCP), structured outputs, evals and guardrails",
+  },
+  {
     label: "Design",
     value:
-      "UX research, product strategy, interaction design, design systems, prototyping, iOS and Android",
+      "Figma, design systems, interaction design, prototyping, WCAG 2 and APCA contrast",
   },
   {
-    label: "Build and ship",
+    label: "Research and analytics",
     value:
-      "Next.js, React, TypeScript, Tailwind CSS, Supabase, Stripe, Vercel, Git",
+      "User interviews, usability testing, A/B testing, GA4, Microsoft Clarity",
   },
-  {
-    label: "AI tools",
-    value: "Claude, Claude Code, Cursor, OpenCode, Claude Design",
-  },
-  { label: "Analytics", value: "GA4, Clarity, cohort analysis, A/B testing" },
 ];
 
 const education = [
   {
     title: "UX Master Certificate (UXMC)",
-    detail: "Nielsen Norman Group, 2021 · Interaction, Research, Management",
+    detail: "Nielsen Norman Group, 2021",
   },
-  { title: "MBA", detail: "d.MBA, 2020" },
-  {
-    title: "User Experience Design Immersive",
-    detail: "General Assembly, Sydney, 2015",
-  },
+  { title: "MBA for Designers", detail: "d.MBA, 2020" },
   {
     title: "Interaction Design",
     detail: "Faber-Ludens Institute, Brazil, 2010–2012",
@@ -184,11 +253,12 @@ const education = [
   {
     title: "Publication",
     detail:
-      "“Build a new website in a few easy steps with GitLab Pages”, GitLab Blog, 2025",
+      "“Embedded views: the future of work tracking in GitLab”, GitLab Blog, 2025",
   },
   {
-    title: "Design Mentor",
-    detail: "Springboard and CareerFoundry, 2020–2021",
+    title: "Publication",
+    detail:
+      "“Build a new website in a few easy steps with GitLab Pages”, GitLab Blog, 2025",
   },
 ];
 
@@ -222,12 +292,23 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
               names it for readers the logos can't reach. */}
           <BrandStrip className="mt-5" />
           <p className="mt-5 text-body text-text-body">
-            I&rsquo;m a designer who makes hard things work inside big, messy
-            organisations. Most recently at GitLab, where a feature I
-            redesigned saw 33% more use after launch. Before that: Qantas,
-            Vodafone, and the Australian Government&rsquo;s ETA visa app, which
-            I led design on and which won Gold at the Sydney Design Awards.
+            Product designer and front-end developer who has built products at
+            GitLab, Qantas, Vodafone and Telstra. Took GitLab&rsquo;s
+            in-product query language from research to launch, grew weekly
+            users 33%, and shipped my own merge requests to production. Founded
+            and shipped BirthGuide, live with paying users, built solo on
+            Next.js, Supabase and the Anthropic SDK. Four years forward
+            deployed into enterprise and federal government teams.
           </p>
+
+          <dl className="mt-5 flex flex-col gap-1.5 text-meta text-muted">
+            {facts.map((fact) => (
+              <div key={fact.label} className="flex gap-2">
+                <dt className="shrink-0 font-medium text-text">{fact.label}</dt>
+                <dd className="m-0">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
 
           <div className="mt-6 flex flex-wrap items-center gap-2.5">
             <a
@@ -254,12 +335,111 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
               LinkedIn
               <ExternalLinkIcon size={13} className="opacity-70" />
             </a>
+            <span aria-hidden className="text-border">
+              ·
+            </span>
+            <a
+              href="https://github.com/fracazo"
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-1"
+            >
+              GitHub
+              <ExternalLinkIcon size={13} className="opacity-70" />
+            </a>
           </p>
         </header>
 
-        {/* Products */}
+        {/* Experience */}
         <section className="mt-14 border-t border-border pt-10">
-          <h2 className={sectionLabel}>Products</h2>
+          <h2 className={sectionLabel}>Experience</h2>
+          <div className="flex flex-col gap-9">
+            {experience.map((job) => (
+              <article key={`${job.company}-${job.period}`}>
+                <p className="mb-1.5 text-meta tracking-[0.02em] text-muted">
+                  {job.period} · {job.location}
+                </p>
+                <h3 className="text-subhead font-semibold text-text">
+                  {job.company}
+                </h3>
+                <p className="mt-0.5 text-meta text-muted">
+                  {job.role}
+                </p>
+                {job.context && (
+                  <p className="mt-0.5 text-meta text-muted">
+                    {job.context}
+                  </p>
+                )}
+                {job.outcome && (
+                  <p className="mt-2.5">
+                    <span className="inline-flex items-center rounded-full bg-accent/10 px-2.5 py-1 text-meta font-medium text-accent">
+                      {job.outcome}
+                    </span>
+                  </p>
+                )}
+                {job.points.length > 0 && (
+                  <ul className="mt-2.5 list-disc space-y-1.5 pl-[18px] text-body text-text-body">
+                    {job.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                )}
+                {job.clients && (
+                  <ul className="m-0 mt-4 flex list-none flex-col gap-4 p-0">
+                    {job.clients.map((client) => (
+                      <li key={client.name}>
+                        <p className="text-meta text-muted">
+                          <span className="font-medium text-text">
+                            {client.name}
+                          </span>{" "}
+                          · {client.project}
+                        </p>
+                        <p className="mt-1 text-body text-text-body">
+                          {client.text}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {job.caseStudies && (
+                  <div className="mt-4">
+                    <p className="text-meta font-semibold tracking-[0.06em] text-muted uppercase">
+                      {job.caseStudies.length > 1
+                        ? "Case studies"
+                        : "Case study"}
+                    </p>
+                    <ul className="m-0 mt-0.5 list-none p-0">
+                      {job.caseStudies.map((study) => (
+                        <li key={study.href}>
+                          {/* Body-size and padded: these are content links, and
+                              a meta-size inline run was too small to read or
+                              tap on a phone. */}
+                          <Link
+                            href={study.href}
+                            className="inline-block py-2 text-body text-brand no-underline touch-manipulation hover:underline"
+                          >
+                            {study.title}&nbsp;&rarr;
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+          <p className="mt-8 text-meta text-muted">
+            <span className="font-medium text-text">Earlier:</span> Bem Direto
+            (2012–2013), first designer at Brazil&rsquo;s first real estate
+            marketplace for agents · Smartia (2011–2012), Brazil&rsquo;s first
+            car insurance comparison platform · Sitevip (2005–2009), front-end
+            coder in an agency.
+          </p>
+        </section>
+
+        {/* Projects */}
+        <section className="mt-14 border-t border-border pt-10">
+          <h2 className={sectionLabel}>Projects</h2>
           <div className="flex flex-col gap-9">
             {projects.map((project) => (
               <article key={project.name}>
@@ -292,75 +472,6 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
           </div>
         </section>
 
-        {/* Experience */}
-        <section className="mt-14 border-t border-border pt-10">
-          <h2 className={sectionLabel}>Experience</h2>
-          <div className="flex flex-col gap-9">
-            {experience.map((job) => (
-              <article key={`${job.company}-${job.period}`}>
-                <p className="mb-1.5 text-meta tracking-[0.02em] text-muted">
-                  {job.period} · {job.location}
-                </p>
-                <h3 className="text-subhead font-semibold text-text">
-                  {job.company}
-                </h3>
-                <p className="mt-0.5 text-meta text-muted">
-                  {job.role}
-                </p>
-                {job.context && (
-                  <p className="mt-0.5 text-meta text-muted">
-                    {job.context}
-                  </p>
-                )}
-                {job.outcome && (
-                  <p className="mt-2.5">
-                    <span className="inline-flex items-center rounded-full bg-accent/10 px-2.5 py-1 text-meta font-medium text-accent">
-                      {job.outcome}
-                    </span>
-                  </p>
-                )}
-                <ul className="mt-2.5 list-disc space-y-1.5 pl-[18px] text-body text-text-body">
-                  {job.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-                {job.caseStudies && (
-                  <div className="mt-4">
-                    <p className="text-meta font-semibold tracking-[0.06em] text-muted uppercase">
-                      {job.caseStudies.length > 1
-                        ? "Case studies"
-                        : "Case study"}
-                    </p>
-                    <ul className="m-0 mt-0.5 list-none p-0">
-                      {job.caseStudies.map((study) => (
-                        <li key={study.href}>
-                          {/* Body-size and padded: these are content links, and
-                              a meta-size inline run was too small to read or
-                              tap on a phone. */}
-                          <Link
-                            href={study.href}
-                            className="inline-block py-2 text-body text-brand no-underline touch-manipulation hover:underline"
-                          >
-                            {study.title}&nbsp;&rarr;
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </article>
-            ))}
-          </div>
-          <p className="mt-8 text-meta text-muted">
-            <span className="font-medium text-text">Earlier:</span> Bem Direto
-            (2012–2013), first designer at Brazil&rsquo;s first real estate
-            marketplace for agents · Smartia (2011–2012), Brazil&rsquo;s first
-            car insurance comparison platform · Artia (2009–2011), built my own
-            UI in Haml, Sass, and Rails · Sitevip (2005–2009), front-end coder
-            in a fast-paced agency.
-          </p>
-        </section>
-
         {/* Skills */}
         <section className="mt-14 border-t border-border pt-10">
           <h2 className={sectionLabel}>Skills</h2>
@@ -378,13 +489,13 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
           </div>
         </section>
 
-        {/* Education & more */}
+        {/* Education & publications */}
         <section className="mt-14 border-t border-border pt-10">
-          <h2 className={sectionLabel}>Education &amp; more</h2>
+          <h2 className={sectionLabel}>Education &amp; publications</h2>
           <ul className="m-0 list-none divide-y divide-border p-0">
             {education.map((item) => (
               <li
-                key={item.title}
+                key={item.detail}
                 className="flex flex-col gap-0.5 py-3.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
               >
                 <span className="text-meta font-medium text-text">
