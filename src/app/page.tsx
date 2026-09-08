@@ -216,6 +216,13 @@ const designEngineering = [
     links: [{ href: "https://birthplans.app", label: "Site" }],
   },
   {
+    title: "Agent-native design system",
+    meta: "npm package · 2026",
+    links: [
+      { href: "https://github.com/fracazo/design-system", label: "GitHub" },
+    ],
+  },
+  {
     title: "Don Draper",
     meta: "Claude Code skill · 2026",
     links: [
