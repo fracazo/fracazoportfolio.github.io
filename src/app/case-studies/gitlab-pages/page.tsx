@@ -4,7 +4,7 @@ import { CaseSummary } from "@/components/case-summary";
 
 const title = "Making Site Status Visible in GitLab Pages - Alex Fracazo";
 const description =
-  "Diagnosing why GitLab Pages spread site status across four screens, proposing a tab-based fix, and getting it shipped by a team that wasn't mine.";
+  "Diagnosing why GitLab Pages spread site status across four screens, then shipping the fix through UX Paper Cuts in one release, with no delivery team assigned and no roadmap slot used.";
 
 export const metadata: Metadata = {
   title,

@@ -53,7 +53,7 @@ export function GitlabPagesContent({
                 </div>
               </div>
             </div>
-            <p className="case-intro">GitLab Pages had spread the state of your site across four disconnected blocks. Deployment status was ambiguous, and DNS and SSL problems stayed hidden until something broke. I wrote the diagnosis, proposed the fix, and when my own team could not build it, convinced another team to pick it up. Most of it shipped in GitLab 18.1.</p>
+            <p className="case-intro">GitLab Pages had spread the state of your site across four disconnected blocks. Deployment status was ambiguous, and DNS and SSL problems stayed hidden until something broke. I found it during a scorecard pass, wrote the diagnosis and designed the fix. No delivery team was assigned to Pages that release, so instead of waiting for roadmap space I took the design to the UX Paper Cuts program and broke it into merge requests that could each ship on their own. Eleven of them landed in GitLab 18.1, the redesign live inside one monthly cycle without using a roadmap slot. The deployments work went further, into a new revenue point for GitLab: a way to buy more deployment space when a project hits its limit.</p>
           </header>
 
 
@@ -89,7 +89,7 @@ export function GitlabPagesContent({
             </ul>
 
             <h3>Why it mattered beyond tidiness</h3>
-            <p>Pages is often the first thing someone deploys on GitLab. It is the demo, the docs site, the personal blog. A confusing settings page there is a confusing first impression of GitLab as a deployment platform. The PM later framed the same point commercially: a coherent Pages surface is the foundation for anything the company might want to charge for in Pages, because there is finally a sensible place to put it.</p>
+            <p>Pages is often the first thing someone deploys on GitLab. It is the demo, the docs site, the personal blog. A confusing settings page there is a confusing first impression of GitLab as a deployment platform. The PM later framed the same point commercially: a coherent Pages surface is the foundation for anything the company might want to charge for in Pages, because there is finally a sensible place to put it. That turned out to be literal. The deployment limit on the redesigned page became the place where GitLab could sell more capacity.</p>
           </div>
 
           <div className="case-study-section">
@@ -158,7 +158,7 @@ export function GitlabPagesContent({
                 <img src="/images/gitlab-pages-deployments.png" alt="Pages deployments tab with the main site in its own block, additional deployments at 2 of 100 below it, a toggle to show stopped deployments, and pagination" />
                 <img src="/images/gitlab-pages-deployments-limit.png" alt="Pages deployments tab at 99 of 100, with the badge in red, a Reached pages deployment limit usage bar and a Manage deployment limit link" />
               </div>
-              <figcaption>The Pages deployments tab. Left: the main site separated from merge request previews, with a toggle for stopped deployments. Right: the limit reached, shown as a red badge, a usage bar and a link to manage it, before the next pipeline fails rather than after.</figcaption>
+              <figcaption>The Pages deployments tab. Left: the main site separated from merge request previews, with a toggle for stopped deployments. Right: the limit reached, shown as a red badge, a usage bar and a link to manage it, before the next pipeline fails rather than after. That link is where the revenue work described below begins.</figcaption>
             </figure>
 
             <figure className="pages-figure-pair">
@@ -183,21 +183,22 @@ export function GitlabPagesContent({
 
             <p>That would have meant the design sitting in the backlog indefinitely. I kept the issue warm instead: resolved every open design thread, kept the designs updated as related questions came in, and when a duplicate issue for the deployment limit badge appeared I folded it in rather than letting the work fragment.</p>
 
-            <h3>Finding a team that could build it</h3>
-            <p>The way in was the UX Paper Cuts team, a small group under the foundations department that ships focused interface improvements each milestone. In late April my manager asked in the issue whether the work was completely ready for implementation, because the Paper Cuts leadership wanted to know if it was a worthwhile effort for that team to take on. I said the designs were reviewed and every thread resolved, then asked the Pages engineers and the PM directly for a final sign-off so the Paper Cuts team wasn&rsquo;t walking into an unsettled debate. This was the lock-in step: a direct request for agreement, in writing, from each person who could later reopen the discussion.</p>
+            <h3>Going around the roadmap, not through it</h3>
+            <p>Waiting for roadmap space would have meant a slot in some future quarter, if Pages ever got one. The route I took instead was the UX Paper Cuts team, a small group under the foundations department that ships focused interface improvements each milestone without needing a roadmap allocation. The design already fit their brief: reviewed, scoped, and splittable into small changes. In late April I took it to them, and the question that came back through my manager in the issue was whether the work was completely ready for implementation, because the Paper Cuts leadership wanted to know if it was worth that team&rsquo;s time. I said the designs were reviewed and every thread resolved, then asked the Pages engineers and the PM directly for a final sign-off so the Paper Cuts team wasn&rsquo;t walking into an unsettled debate. This was the lock-in step: a direct request for agreement, in writing, from each person who could later reopen the discussion.</p>
 
             <p>The PM re-reviewed and approved the proposal without further changes, citing the strategic value beyond the immediate fix. Two of the engineers signed off. The third was on leave and the PM confirmed that shouldn&rsquo;t block a start. A Paper Cuts engineer picked it up for the 18.1 milestone.</p>
 
             <h3>Shipping in slices</h3>
-            <p>They broke the design into eleven merge requests over ten days in May 2025, each with a before-and-after screenshot linked back to the issue. In order: the help link copy, migrating the deployments list to the standard CRUD component, reorganising each deployment row, cleaning up loading, empty and error states, the tabs, the domain settings copy, the delete block, inline domain verification status, the live block on the overview, moving settings into the CRUD component, and a final spacing fix. Working from a complete set of specified states meant none of those merge requests came back with a design question.</p>
+            <p>Paper Cuts ships small changes, so the redesign had to become small changes. I broke it into slices that could each be reviewed and merged on their own, none of them blocked on another, and the Paper Cuts engineer shipped them as eleven merge requests over ten days in May 2025, each with a before-and-after screenshot linked back to the issue. In order: the help link copy, migrating the deployments list to the standard CRUD component, reorganising each deployment row, cleaning up loading, empty and error states, the tabs, the domain settings copy, the delete block, inline domain verification status, the live block on the overview, moving settings into the CRUD component, and a final spacing fix. Working from a complete set of specified states meant none of those merge requests came back with a design question, and the whole redesign went from first merge to release inside one monthly cycle.</p>
 
-            <p>Not everything landed. The dedicated Pages deployments tab was scoped out of the tabs merge request, and the dropdown migration and set-primary-domain flow were deferred from the verification work. Those remain open.</p>
+            <p>One part of the design is missing from that public list on purpose. The dedicated Pages deployments tab was split out of the Paper Cuts track because it had stopped being a paper cut. By then the deployment limit had become a commercial question, and that work moved into confidential issues.</p>
           </div>
 
           <div className="case-study-section">
             <h2>Outcomes</h2>
 
             <h3>What shipped</h3>
+            <p>Eleven merge requests in release 18.1, without a delivery team assigned to Pages and without a roadmap slot. It is the same instinct I use on my own products, find the problem, fix it, ship it in pieces, applied inside a company with a monthly release train.</p>
             <ul>
               <li>Tab-based Pages page with the overview and domain &amp; settings tabs, live in GitLab 18.1 (June 2025)</li>
               <li>&ldquo;Your Pages site is live at&rdquo; block with deploy job, author and time</li>
@@ -210,12 +211,13 @@ export function GitlabPagesContent({
             <h3>What it led to</h3>
             <p>Within a month one of the Pages engineers had used the new interface in earnest and opened two follow-up issues with feedback, which is the outcome you want: a real user of the feature filing real paper cuts against the new baseline instead of the old one. The question I raised about whether &ldquo;Use unique domain&rdquo; should be on by default was spun out into its own issue, and the permissions split between Pages maintainers and developers was queued behind this work. I also wrote a GitLab blog post, &ldquo;Build a new website in a few easy steps with GitLab Pages&rdquo;, walking through the new experience end to end.</p>
 
+            <p>The bigger consequence stayed out of public view. Pages projects have a limit on parallel deployments, and the redesign made approaching it visible for the first time. At 80% the deployments block turns amber and says which merge request previews are about to expire, so you can wait for cleanup or delete them before a pipeline fails. At 100% it turns red and says the pipeline is blocked and why. The &ldquo;Manage deployment limit&rdquo; link on that block opens a page that did not exist before: a dedicated deployment limit page where a project that has reached its limit can purchase more deployment space. I designed that page and the flow through it. It is a new revenue point built on a settings page that, six months earlier, nobody had a roadmap slot for. The issue behind it is confidential, so the design is not shown here.</p>
             <p>The issue itself was closed as complete in early 2026, when the PM and I agreed Pages would not be prioritised again soon and the Paper Cuts work had covered the bulk of it. It closed because the product moved on, not because the design didn&rsquo;t ship.</p>
 
             <h3>What I&rsquo;d approach differently</h3>
             <p>I would attach a metric to the proposal on day one. The diagnosis was sound and the reviewers agreed with it, but the issue never carried a number: time to find the site address, support requests about unverified domains, the share of Pages projects that add a custom domain. Greever&rsquo;s warning that projects without goals languish is what happened once the design was ready and nobody was measuring the cost of not building it. A metric would have turned the capacity conversation in February into a trade-off instead of a preference.</p>
 
-            <p>I would lock in agreement in February, not April. When I marked the designs final I asked for a last review, which invites more comments. The right ask was the direct one: do we agree to move forward with this? That explicit yes only came two months later, when a build team appeared and my manager asked whether the work was ready. Asking for it the day the design was finished would have given me a decision to carry to other teams straight away, rather than a well-liked idea.</p>
+            <p>I would go to Paper Cuts in February, not April. When I marked the designs final I asked for a last review, which invites more comments. The right ask was the direct one: do we agree to move forward with this? That explicit yes only came two months later, once I had a build route and my manager asked whether the work was ready. Asking for it the day the design was finished would have given me a decision to carry straight to Paper Cuts, and the build itself took ten days once it started. The slow part of this story was never the shipping. It was the two months I spent treating the roadmap as the only door.</p>
           </div>
 
           <div className="case-study-section">

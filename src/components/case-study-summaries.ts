@@ -56,11 +56,11 @@ export const caseSummaries: Record<string, CaseSummaryData> = {
       },
     ],
     call:
-      "Pages had spread the state of a site across four blocks on two pages, so finding out whether it was live took three lookups. I surfaced that in a UX scorecard run, then reorganised the page around the question: a live block first, then three tabs for overview, deployments, and domains and settings. The bigger argument, folding Pages deployments into GitLab’s Environments, I chose to lose. The engineers were right that it would create cross-team dependencies, and if the redesign depended on it nothing would ship. Prefixing everything with “Pages deployment” costs one word and keeps the two systems distinguishable.",
+      "Pages had spread the state of a site across four blocks on two pages, so finding out whether it was live took three lookups. I surfaced that in a UX scorecard run, then reorganised the page around the question: a live block first, then three tabs for overview, deployments, and domains and settings. The bigger argument, folding Pages deployments into GitLab’s Environments, I chose to lose. The engineers were right that it would create cross-team dependencies, and if the redesign depended on it nothing would ship. Prefixing everything with “Pages deployment” costs one word and keeps the two systems distinguishable. No delivery team was assigned to Pages that release, so rather than wait for roadmap space I took the finished design to the UX Paper Cuts program and split it into merge requests that could each ship on their own.",
     outcomes: [
-      "Shipped in GitLab 18.1 in June 2025, as eleven merge requests built by a team that wasn’t mine.",
+      "Eleven merge requests shipped in GitLab 18.1, the redesign live inside one monthly cycle with no roadmap slot used.",
       "Within a month a Pages engineer was filing paper cuts against the new baseline instead of the old one.",
-      "The PM approved it as the foundation for anything GitLab later builds or charges for in Pages.",
+      "The deployment limit became a new revenue point: I designed the flow for buying more deployment space when a project hits it, in confidential issues.",
     ],
   },
 
