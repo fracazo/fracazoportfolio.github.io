@@ -269,7 +269,7 @@ export default function Home() {
           <div className="reveal-group">
             <AvatarGreeting />
             <h1 id="hero-title" className="h1">
-              I build software that respects the person using it.
+              I ship software people keep using.
             </h1>
             {/* Pull against .h1's 32px bottom margin so the mission caption
                 reads as part of the headline, not a new block. */}
