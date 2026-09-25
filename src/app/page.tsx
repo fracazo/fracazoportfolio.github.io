@@ -42,7 +42,7 @@ const workGroups = [
         },
         title: "BirthGuide",
         tagline:
-          "The users were there to learn, not to get a document. So the learning became the product.",
+          "Birth plans had to be printed. I made one that lives online and goes to the hospital on your phone.",
         outcome: "Founder · Sole builder",
         vignette: "birthguide" as const,
       },
