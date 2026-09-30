@@ -20,7 +20,7 @@ export function SiteFooter({
       <footer role="contentinfo">
         <div className="grid gap-2">
           <p id="footer-title" className="text mt-0 text-text">
-            Based in Melbourne. Working globally.
+            Hybrid or remote (UTC+10). Working globally.
           </p>
           {links !== null && (
             <p className="text mt-2">

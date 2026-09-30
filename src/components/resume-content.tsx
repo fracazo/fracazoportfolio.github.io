@@ -511,7 +511,7 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
 
         {/* Footer */}
         <footer className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-8 text-meta text-muted">
-          <span>Melbourne or remote (UTC+10)</span>
+          <span>Hybrid or remote (UTC+10)</span>
           <a
             href={RESUME_PDF}
             download

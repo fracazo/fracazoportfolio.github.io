@@ -6,17 +6,17 @@ import { SiteFooter } from "@/components/site-footer";
 
 export const metadata: Metadata = {
   title: "Contact - Alex Fracazo Product Designer",
-  description: "Contact Alex Fracazo, product designer based in Melbourne.",
+  description: "Contact Alex Fracazo, product designer working hybrid or remote.",
   openGraph: {
     title: "Contact - Alex Fracazo Product Designer",
-    description: "Contact Alex Fracazo, product designer based in Melbourne.",
+    description: "Contact Alex Fracazo, product designer working hybrid or remote.",
     images: ["/images/opengraph.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact - Alex Fracazo Product Designer",
-    description: "Contact Alex Fracazo, product designer based in Melbourne.",
+    description: "Contact Alex Fracazo, product designer working hybrid or remote.",
     images: ["/images/opengraph.jpg"],
   },
 };
