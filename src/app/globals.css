@@ -157,6 +157,9 @@
 
   /* Sidebar collapses below 980px: desk: = sidebar visible */
   --breakpoint-desk: 61.25rem;
+
+  /* Reading column for pages and the home feed: max-w-content */
+  --container-content: 700px;
 }
 
 /* OpenDyslexic (dyslexia-friendly mode) – TTF loads reliably from CDN */
@@ -737,7 +740,7 @@
      old stylesheet so that content renders identically. New pages should
      use utilities/components instead. */
   .section {
-    max-width: 640px;
+    max-width: var(--container-content);
     width: 100%;
     margin: 0 auto;
   }
@@ -2011,7 +2014,7 @@
 }
 
 /* Work rows inside the split.
-   The row is 640px wide whether it is the whole page or one pane, so a
+   The row is 700px wide whether it is the whole page or one pane, so a
    container query cannot tell the two apart. In open space a 280px thumbnail
    reads as an editorial card; filling a 720px pane it reads as a poster. The
    index pane flags split mode and the rows shrink back to a list. */

@@ -263,7 +263,7 @@ export default function Home() {
       {/* Hero */}
       <section
         aria-labelledby="hero-title"
-        className="mx-auto w-full max-w-[640px]"
+        className="mx-auto w-full max-w-content"
       >
         <div className="grid grid-cols-1 items-start gap-6 text-left">
           <div className="reveal-group">
@@ -297,7 +297,7 @@ export default function Home() {
 
       {/* The case studies reveal as their own block. No section heading: the
           group labels carry the structure. */}
-      <div className="reveal-after mx-auto grid w-full max-w-[640px] gap-10">
+      <div className="reveal-after mx-auto grid w-full max-w-content gap-10">
         <section
           id="Work"
           aria-label="Selected projects"
@@ -361,7 +361,7 @@ export default function Home() {
       {/* Writing */}
       <section
         aria-labelledby="writing-title"
-        className="mx-auto w-full max-w-[640px]"
+        className="mx-auto w-full max-w-content"
       >
         <div className="grid gap-4">
           <h2 id="writing-title" className="h2">
@@ -374,7 +374,7 @@ export default function Home() {
       {/* Working with Alex */}
       <section
         aria-labelledby="testimonials-title"
-        className="mx-auto w-full max-w-[640px] pt-12 pb-12"
+        className="mx-auto w-full max-w-content pt-12 pb-12"
       >
         <h2 id="testimonials-title" className="h3 mb-6 font-medium text-muted">
           Working with Alex

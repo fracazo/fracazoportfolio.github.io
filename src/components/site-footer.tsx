@@ -15,7 +15,7 @@ export function SiteFooter({
   return (
     <section
       aria-labelledby="footer-title"
-      className={`mx-auto w-full max-w-[640px]${className ? ` ${className}` : ""}`}
+      className={`mx-auto w-full max-w-content${className ? ` ${className}` : ""}`}
     >
       <footer role="contentinfo">
         <div className="grid gap-2">

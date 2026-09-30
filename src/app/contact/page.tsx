@@ -30,7 +30,7 @@ const socialIconClass =
 export default function Contact() {
   return (
     <AppShell>
-      <section className="mx-auto w-full max-w-[640px]">
+      <section className="mx-auto w-full max-w-content">
         <div className="pt-24 text-left max-md:pt-14">
           <h1 className="h1 mb-3">Let&rsquo;s talk</h1>
           <p className="text">

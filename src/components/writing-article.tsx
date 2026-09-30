@@ -23,7 +23,7 @@ export function WritingArticle({
     <>
       {back}
 
-      <article className="mx-auto w-full max-w-[640px] pt-24 max-md:pt-20">
+      <article className="mx-auto w-full max-w-content pt-24 max-md:pt-20">
         <div className="writing-tags">
           {tags.map((tag) => (
             <span key={tag} className="writing-tag">

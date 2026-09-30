@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <AppShell>
-      <section className="mx-auto w-full max-w-[640px]">
+      <section className="mx-auto w-full max-w-content">
         <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 py-12 text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
