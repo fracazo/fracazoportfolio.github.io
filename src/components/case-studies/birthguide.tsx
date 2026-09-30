@@ -77,10 +77,13 @@ export function BirthguideContent({
             <h3>Designing for the moment of use, not the moment of planning</h3>
             <p>Most birth plan tools are designed for a person at a desk at 32 weeks with time to think. BirthGuide was designed for a labour ward at 2am, a partner fumbling with a phone, and a midwife with thirty seconds. During active labour the birthing parent cannot read their own plan, so the partner becomes the primary reader. That constraint drove every hierarchy decision.</p>
 
-            <video autoPlay loop muted playsInline style={{ width: "100%", maxWidth: "320px", borderRadius: "12px", display: "block", margin: "1.5rem auto 0", background: "#000" }}>
-              <source src="/images/birthguide-demo-compressed.mp4" type="video/mp4" />
-            </video>
-            <p className="img-caption">The interactive birth plan page in use. Top five priorities first, tap-to-call contacts, and a working hospital bag checklist.</p>
+            <iframe
+              src="https://www.birthguide.com.au/plan/your-name"
+              title="Example BirthGuide birth plan, live"
+              loading="lazy"
+              style={{ width: "100%", maxWidth: "375px", height: "720px", border: "1px solid var(--border)", borderRadius: "12px", display: "block", margin: "1.5rem auto 24px", background: "#000" }}
+            />
+            <p className="img-caption">The example birth plan, live. Top five priorities first, tap-to-call contacts, and a working hospital bag checklist. <a href="https://www.birthguide.com.au/plan/your-name" target="_blank" rel="noopener noreferrer">Open it full screen</a>.</p>
 
             <h3>Repositioning: from kit to page</h3>
             <p>The first version sold a "birth plan kit" with four downloadable outputs listed as equals. Writing the landing copy exposed the problem: the interactive page was the most differentiated output and it was buried as one of four.</p>
@@ -184,6 +187,9 @@ export function BirthguideContent({
                 </tbody>
               </table>
             </div>
+
+            <img src="/images/birthguide-landing.png" alt="The BirthGuide landing page after the inversion: the headline Feel calm and prepared for labour and birth, then two cards side by side, The program marked Start here with an Explore the program free button, and Birth plan with a Go to birthplans.app button" />
+            <p className="img-caption">The landing page after the inversion: the program leads, and the birth plan is the free tool beside it.</p>
           </div>
 
           <div className="case-study-section">

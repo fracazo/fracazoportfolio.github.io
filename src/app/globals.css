@@ -1069,6 +1069,8 @@
     color: var(--muted);
     text-align: center;
     margin-top: -8px;
+    /* Paragraphs carry a reading-width max-width; center the box, not just its text. */
+    margin-inline: auto;
   }
 
   /* Comparison table in long-form content. Scrolls inside its own wrapper so a
