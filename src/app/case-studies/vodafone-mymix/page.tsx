@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
-import { CaseSummary } from "@/components/case-summary";
+import { VodafoneMymixContent } from "@/components/case-studies/vodafone-mymix";
 
 const title = "Letting Prepaid Customers Design Their Own Recharge - Alex Fracazo";
 const description =
@@ -23,17 +23,10 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * The summary as a page: what the panel shows, at full width. The complete
- * study is one click on from here, at /full, so the expand control means the
- * same thing on a case study as it does on About or Work history.
- */
-export default function Page() {
+export default function VodafoneMymix() {
   return (
     <CaseStudyShell>
-      <CaseSummary
-        href="/case-studies/vodafone-mymix"
-       
+      <VodafoneMymixContent
         breadcrumb={
           <nav className="breadcrumb" aria-label="Breadcrumb">
             <a href="/">Home</a>

@@ -1,38 +1,6 @@
-import type { Metadata } from "next";
-import { CaseStudyShell } from "@/components/case-study-shell";
-import { GitlabPagesContent } from "@/components/case-studies/gitlab-pages";
+import { RedirectTo } from "@/components/redirect-to";
 
-const title = "Making Site Status Visible in GitLab Pages - Alex Fracazo";
-const description =
-  "Diagnosing why GitLab Pages spread site status across four screens, then shipping the fix through UX Paper Cuts in one release, with no delivery team assigned and no roadmap slot used.";
-
-export const metadata: Metadata = {
-  title,
-  description,
-  openGraph: {
-    title,
-    description,
-    images: ["/images/opengraph.jpg"],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: ["/images/opengraph.jpg"],
-  },
-};
-
-export default function GitlabPages() {
-  return (
-    <CaseStudyShell backHref="/case-studies/gitlab-pages">
-      <GitlabPagesContent
-        breadcrumb={
-              <nav className="breadcrumb" aria-label="Breadcrumb">
-                <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/case-studies/gitlab-pages">Making Site Status Visible in GitLab Pages</a><span className="breadcrumb-sep"> &gt; </span><span>Full case study</span>
-              </nav>
-        }
-      />
-    </CaseStudyShell>
-  );
+/** The study used to sit here behind a summary. It now lives at its own route. */
+export default function Page() {
+  return <RedirectTo href="/case-studies/gitlab-pages" />;
 }

@@ -1,37 +1,6 @@
-import type { Metadata } from "next";
-import { CaseStudyShell } from "@/components/case-study-shell";
-import { BirthguideContent } from "@/components/case-studies/birthguide";
+import { RedirectTo } from "@/components/redirect-to";
 
-const title = "I built a birth plan generator. My users were using it to learn. - Alex Fracazo";
-const description = "Shipped in ten days, sold for six months, then the research said the document was not the valuable part. How I inverted the business model in twenty-six days.";
-
-export const metadata: Metadata = {
-  title,
-  description,
-  openGraph: {
-    title,
-    description,
-    images: ["/images/opengraph.jpg"],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: ["/images/opengraph.jpg"],
-  },
-};
-
-export default function Birthguide() {
-  return (
-    <CaseStudyShell backHref="/case-studies/birthguide">
-      <BirthguideContent
-        breadcrumb={
-              <nav className="breadcrumb" aria-label="Breadcrumb">
-                <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><a href="/case-studies/birthguide">BirthGuide</a><span className="breadcrumb-sep"> &gt; </span><span>Full case study</span>
-              </nav>
-        }
-      />
-    </CaseStudyShell>
-  );
+/** The study used to sit here behind a summary. It now lives at its own route. */
+export default function Page() {
+  return <RedirectTo href="/case-studies/birthguide" />;
 }
