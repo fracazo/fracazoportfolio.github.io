@@ -14,6 +14,67 @@ import { ExternalLinkIcon } from "@/components/icons";
    one padding, so the order is editorial rather than a visual weight change. */
 const workGroups = [
   {
+    id: "knowledge-products",
+    title: "Knowledge products",
+    context:
+      "I design the tools developers use every day at GitLab, and products people learn with.",
+    full: [
+      {
+        href: "/case-studies/glql",
+        title: "GLQL: Embedded Views for Work Tracking",
+        tagline:
+          "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
+        outcome: "+33% adoption post-GA",
+        vignette: "glql" as const,
+      },
+      {
+        href: "/case-studies/wiki-contextual-comments",
+        title: "GitLab Wiki: Contextual Comments",
+        tagline:
+          "Tying a discussion to the exact line it refers to, closing a competitive gap against Confluence and Notion.",
+        vignette: "wiki" as const,
+      },
+      {
+        href: "/case-studies/birthguide",
+        image: {
+          src: "/images/birthguide-hero.svg",
+          alt: "The BirthGuide mark: a winding route icon above the wordmark and birthguide.com.au",
+        },
+        title: "BirthGuide",
+        tagline:
+          "Birth plans had to be printed. I made one that lives online and goes to the hospital on your phone.",
+        outcome: "Founder · Sole builder",
+        vignette: "birthguide" as const,
+      },
+    ],
+    compact: [
+      {
+        stub: "stub:coursify",
+        vignette: "coursify" as const,
+        title: "Coursify.me",
+        tagline:
+          "An online course platform: create courses, tutorials and ebooks, and sell them.",
+        metric: "50,000 students",
+      },
+      {
+        href: "/case-studies/gitlab-pages",
+        vignette: "pages" as const,
+        title: "Making Site Status Visible in GitLab Pages",
+        tagline:
+          "Status spread across screens and DNS hidden until something broke. With no delivery team on Pages, I took the fix through Paper Cuts and shipped it in one release.",
+        metric: "Monetisation foundation · Cross-team delivery",
+      },
+      {
+        href: "/case-studies/mr-summary-ai",
+        vignette: "mr-summary" as const,
+        title: "Summarize Merge Requests with AI",
+        tagline:
+          "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
+        metric: "3 shipped iterations",
+      },
+    ],
+  },
+  {
     id: "consumer-at-scale",
     title: "Consumer at scale",
     context:
@@ -75,67 +136,6 @@ const workGroups = [
         tagline:
           "Letting prepaid customers build their own recharge, in four taps.",
         metric: "72 combinations · 4 taps",
-      },
-    ],
-  },
-  {
-    id: "knowledge-products",
-    title: "Knowledge products",
-    context:
-      "I design the tools developers use every day at GitLab, and products people learn with.",
-    full: [
-      {
-        href: "/case-studies/glql",
-        title: "GLQL: Embedded Views for Work Tracking",
-        tagline:
-          "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
-        outcome: "+33% adoption post-GA",
-        vignette: "glql" as const,
-      },
-      {
-        href: "/case-studies/wiki-contextual-comments",
-        title: "GitLab Wiki: Contextual Comments",
-        tagline:
-          "Tying a discussion to the exact line it refers to, closing a competitive gap against Confluence and Notion.",
-        vignette: "wiki" as const,
-      },
-      {
-        href: "/case-studies/birthguide",
-        image: {
-          src: "/images/birthguide-hero.svg",
-          alt: "The BirthGuide mark: a winding route icon above the wordmark and birthguide.com.au",
-        },
-        title: "BirthGuide",
-        tagline:
-          "Birth plans had to be printed. I made one that lives online and goes to the hospital on your phone.",
-        outcome: "Founder · Sole builder",
-        vignette: "birthguide" as const,
-      },
-    ],
-    compact: [
-      {
-        stub: "stub:coursify",
-        vignette: "coursify" as const,
-        title: "Coursify.me",
-        tagline:
-          "An online course platform: create courses, tutorials and ebooks, and sell them.",
-        metric: "50,000 students",
-      },
-      {
-        href: "/case-studies/gitlab-pages",
-        vignette: "pages" as const,
-        title: "Making Site Status Visible in GitLab Pages",
-        tagline:
-          "Status spread across screens and DNS hidden until something broke. With no delivery team on Pages, I took the fix through Paper Cuts and shipped it in one release.",
-        metric: "Monetisation foundation · Cross-team delivery",
-      },
-      {
-        href: "/case-studies/mr-summary-ai",
-        vignette: "mr-summary" as const,
-        title: "Summarize Merge Requests with AI",
-        tagline:
-          "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
-        metric: "3 shipped iterations",
       },
     ],
   },
