@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { BeforeAfterToggle } from "@/components/before-after-toggle";
 import { ExternalLinkIcon } from "@/components/icons";
 
 /**
@@ -75,8 +76,16 @@ export function GitlabPagesContent({
             <h3>Four blocks, one question</h3>
             <p>The Pages settings page was a stack of unrelated sections. Global settings at the top, with a maximum size field, a Force HTTPS checkbox and a &ldquo;Use unique domain&rdquo; checkbox nobody could explain. Then a block called &ldquo;Access pages&rdquo; listing URLs. Then a separate &ldquo;Domains&rdquo; block listing some of the same URLs again, with different actions. Then a red &ldquo;Remove pages&rdquo; box. Deployments lived on a different page altogether.</p>
 
-            <img src="/images/gitlab-pages-before.png" alt="The old GitLab Pages settings page: a maximum size field, Force HTTPS and Use unique domain checkboxes, a primary domain dropdown, an Access pages block listing two URLs, a Domains block repeating one of them with a not-verified warning, and a red Remove pages box" />
-            <p className="img-caption">Before: settings, access URLs, domains and a danger zone stacked on one page, with deployments somewhere else entirely.</p>
+            <BeforeAfterToggle
+              before={{
+                src: "/images/gitlab-pages-before.png",
+                alt: "The old GitLab Pages settings page: a maximum size field, Force HTTPS and Use unique domain checkboxes, a primary domain dropdown, an Access pages block listing two URLs, a Domains block repeating one of them with a not-verified warning, and a red Remove pages box",
+              }}
+              after={{
+                src: "/images/gitlab-pages-after-overview.png",
+                alt: "The redesigned GitLab Pages overview tab: three tabs (Overview, Pages deployments, Domain and settings), a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and a Recent pages deployments list showing a 2/100 limit badge and four active merge request previews",
+              }}
+            />
 
             <p>The specific problems I documented:</p>
 
