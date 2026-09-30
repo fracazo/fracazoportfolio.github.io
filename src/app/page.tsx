@@ -20,6 +20,14 @@ const workGroups = [
       "I design the tools developers use every day at GitLab, and products people learn with.",
     full: [
       {
+        href: "/case-studies/gitlab-pages",
+        title: "Making Site Status Visible in GitLab Pages",
+        tagline:
+          "Status spread across screens and DNS hidden until something broke. With no delivery team on Pages, I took the fix through Paper Cuts and shipped it in one release.",
+        outcome: "Monetisation foundation · Cross-team delivery",
+        vignette: "pages" as const,
+      },
+      {
         href: "/case-studies/glql",
         title: "GLQL: Embedded Views for Work Tracking",
         tagline:
@@ -55,14 +63,6 @@ const workGroups = [
         tagline:
           "An online course platform: create courses, tutorials and ebooks, and sell them.",
         metric: "50,000 students",
-      },
-      {
-        href: "/case-studies/gitlab-pages",
-        vignette: "pages" as const,
-        title: "Making Site Status Visible in GitLab Pages",
-        tagline:
-          "Status spread across screens and DNS hidden until something broke. With no delivery team on Pages, I took the fix through Paper Cuts and shipped it in one release.",
-        metric: "Monetisation foundation · Cross-team delivery",
       },
       {
         href: "/case-studies/mr-summary-ai",
