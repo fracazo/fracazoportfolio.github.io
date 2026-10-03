@@ -104,29 +104,19 @@ export function GlqlContent({
             <div className="glql-syntax-group">
               <div className="glql-syntax-card">
                 <div className="glql-syntax-label">Option 1: YAML frontmatter + query <span className="glql-syntax-tag glql-syntax-tag--current">Current</span></div>
-                <pre className="glql-code">{`---
-display: table
-fields: state, title, labels("workflow")
----
-project = "gitlab-org/gitlab" and milestone = "17.4" and label = "group::knowledge"`}</pre>
+                <img className="glql-syntax-img" src="/images/glql-syntax-frontmatter.png" width={541} height={231} alt={`GLQL with YAML frontmatter, marked deprecated: a --- fenced block with display: table and fields: state, title, labels("workflow"), then the query project = "gitlab-org/gitlab" and milestone = "17.4" and label = "group::knowledge"`} />
                 <p className="glql-syntax-note">Presentation options live in YAML frontmatter above the query. The query itself is a plain expression. Separation is visual but the two live inside the same code block.</p>
               </div>
 
               <div className="glql-syntax-card">
-                <div className="glql-syntax-label">Option 2: Pure YAML, query as a property <span className="glql-syntax-tag glql-syntax-tag--winner">Plain-language winner</span></div>
-                <pre className="glql-code">{`display: table
-fields: state, title, labels("workflow")
-filter: project = "gitlab-org/gitlab" and milestone = "17.4" and label = "group::knowledge"`}</pre>
-                <p className="glql-syntax-note">The entire block is YAML. The query becomes a <code>filter:</code> property. No frontmatter delimiter needed. Reads top-to-bottom like a configuration file.</p>
+                <div className="glql-syntax-label">Option 2: Mix YAML, query as a property <span className="glql-syntax-tag glql-syntax-tag--winner">Plain-language winner</span></div>
+                <img className="glql-syntax-img" src="/images/glql-syntax-mix-yaml.png" width={520} height={192} alt={`The winning mix YAML syntax: display: table, fields: state, title, labels("workflow"), and query: type = Issue AND group = "gitlab-org" AND assignee = currentUser() AND state = opened`} />
+                <p className="glql-syntax-note">Every line is a key and a value. The query becomes a <code>query:</code> property next to the display settings, with no frontmatter delimiter. Reads like a sentence and behaves predictably.</p>
               </div>
 
               <div className="glql-syntax-card">
                 <div className="glql-syntax-label">Option 3: SQL-style syntax</div>
-                <pre className="glql-code">{`SELECT state, title, labels("workflow")
-WHERE project = "gitlab-org/gitlab"
-  AND milestone = "17.4"
-  AND label = "group::knowledge"
-DISPLAY AS table`}</pre>
+                <img className="glql-syntax-img" src="/images/glql-syntax-sql.png" width={478} height={164} alt={`SQL-style GLQL: SELECT state, title, labels("workflow") WHERE project = "gitlab-org/gitlab" AND milestone = "17.4" AND label = "group::knowledge" DISPLAY AS table`} />
                 <p className="glql-syntax-note">Full SQL-adjacent syntax. Familiar to data-literate users but risks importing SQL expectations that GLQL doesn&apos;t fully support.</p>
               </div>
             </div>
@@ -194,14 +184,31 @@ DISPLAY AS table`}</pre>
           </div>
 
           <div className="case-study-section">
-            <h2>The vision: a visual query builder</h2>
-            <p>From day one the goal was the person who does not want to learn a query language. The syntax made GLQL usable. This was the vision that would have made it effortless.</p>
-            <p>A visual builder, where one click drops in a smart template and you see a live view of your own work immediately, then adjust only if you want to. Outcome first, settings second.</p>
+            <h2>Duo embed: ask for the view, keep the query</h2>
+            <p>From day one the goal was to make GLQL easy for non-technical people while giving full control to the technical users GitLab is built for. The syntax served both, but it was still writing. Someone new to it had to know which fields existed and how to combine them before they saw anything useful.</p>
+            <p>The view builder I designed lowered that barrier. It opened on a live result, so you saw your work before touching a single setting. But assembling a view was still friction.</p>
+            <p>At the same time, GitLab was rolling out Duo&apos;s AI agents. So I brought Duo into the view builder and called it Duo embed. You pick it from the editor&apos;s insert menu and describe the view you want in plain language, like &quot;show me issues and epics with the Brouns label across my most important projects.&quot; Duo builds the GLQL query and renders the live table in place, before you insert anything.</p>
 
-            <img src="/images/builder-final.gif" alt="An embeddable view adding without needing to write code" />
-            <p className="img-caption">The vision in motion: adding an embeddable view and seeing live results immediately, without writing a query.</p>
+            <figure className="glql-video-figure">
+              <video controls playsInline preload="metadata" className="glql-proto-video">
+                <source src="/images/glql-duo-embed.mp4" type="video/mp4" />
+                Your browser does not support the video element.
+              </video>
+              <figcaption className="glql-video-caption">Final Duo embed prototype: a plain-language prompt becomes a live embedded view, with the generated query one tab away.</figcaption>
+            </figure>
 
-            <p>The research said this was the right direction for non-technical users. The work then grew into a platform-wide initiative beyond our team&apos;s scope, so it did not ship from us. I documented it fully so the thinking would not be lost, and I still believe it is where this should go.</p>
+            <img src="/images/glql-duo-flow.png" alt="The four-step flow: Duo embed in the editor's insert menu, an empty prompt in the Embedded view with Duo dialog, the prompt turned into filters with a live table, and the Query code tab showing the generated GLQL" />
+            <p className="img-caption">The whole flow starts where people already write: one item in the insert menu, one prompt, a live view, and the query behind it.</p>
+
+            <img src="/images/glql-duo-result.png" alt="A plain-language prompt turned into editable filter tokens for label and author, with a live GLQL table of results below" />
+            <p className="img-caption">The prompt becomes filters you can see and change, with the live result underneath and a display switch for table, list, or ordered list.</p>
+
+            <p>It is never a black box. The filters Duo generated show up as tokens you can remove or swap, and the Query code tab shows the exact GLQL it wrote. A power user can edit it line by line. Everyone else can ignore it. Because there is a real query underneath every answer, you can always see how you were understood and correct it.</p>
+
+            <img src="/images/glql-duo-query-code.png" alt="The Query code tab of the same dialog showing the generated GLQL, editable, above the same live table" />
+            <p className="img-caption">Same view, Query code tab: the generated GLQL is right there to read, edit, and rerun.</p>
+
+            <p>The language stayed the foundation. The prompt became the fastest way in.</p>
           </div>
 
           <div className="case-study-section">
