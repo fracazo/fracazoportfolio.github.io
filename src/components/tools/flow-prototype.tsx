@@ -42,6 +42,13 @@ export function FlowPrototypeContent({
             of widening the page. */}
         <div className="mt-8 grid min-w-0 [&>*]:min-w-0">
           <CopyCommand command="npx skills add fracazo/flow-prototype" />
+          {/* The command runs npm, so it needs an agent with a terminal:
+              Claude Code, Cursor and Codex can run it; Figma Make cannot. */}
+          <p className="mt-3 mb-0 text-body text-text-body">
+            To use it, copy the command above and paste it into your coding
+            agent. It works with Claude Code, Cursor, Codex or any other agent
+            that can run terminal commands.
+          </p>
         </div>
 
         <div className="case-study-section">
@@ -80,19 +87,6 @@ export function FlowPrototypeContent({
             edge pointing at a screen that does not exist, a screen with no
             reason to exist, a dead end. It lists them instead of crashing.
           </p>
-
-          <h2>Get started</h2>
-          <ol>
-            <li>Install the skill with the command above.</li>
-            <li>
-              Copy the skill&rsquo;s <code>template/</code> folder into an empty
-              project and run <code>npm install</code>.
-            </li>
-            <li>
-              Replace <code>flows.md</code> with your product, then ask your
-              agent to build the screens.
-            </li>
-          </ol>
         </div>
       </div>
     </section>
