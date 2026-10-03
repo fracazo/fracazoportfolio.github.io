@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Chip } from "./chip";
 import { PanelLink } from "./panel-link";
 import { WorkRow } from "./work-row";
-import { VignetteStage } from "./work-vignette";
+import { HERO_LOOP_MS, HeroStage } from "./hero-scenes";
 import type { WorkVignetteKind } from "./work-vignette-kinds";
 
 export type FeaturedItem = {
@@ -16,8 +16,8 @@ export type FeaturedItem = {
   vignette: WorkVignetteKind;
 };
 
-/* One pass of the longest scene plus a held final frame, so every scene
-   reads finished for a beat before it replays. */
+/* Loop for scenes without their own length (the scaled thumbnail scenes):
+   one pass plus a held final frame, so each reads finished before replaying. */
 const LOOP_MS = 4500;
 /* Small lead-in so the first play starts after the page reveal settles. */
 const FIRST_PLAY_MS = 400;
@@ -57,10 +57,12 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setTimeout(
       () => setPlayToken((token) => token + 1),
-      playToken === 0 ? FIRST_PLAY_MS : LOOP_MS,
+      playToken === 0
+        ? FIRST_PLAY_MS
+        : (HERO_LOOP_MS[items[selected].vignette] ?? LOOP_MS),
     );
     return () => clearTimeout(timer);
-  }, [onScreen, playToken]);
+  }, [onScreen, playToken, items, selected]);
 
   const select = (index: number) => {
     if (index === selected) return;
@@ -123,7 +125,7 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
               className="vignette-fade absolute inset-0"
               style={{ opacity: index === selected ? 1 : 0 }}
             >
-              <VignetteStage
+              <HeroStage
                 kind={item.vignette}
                 playToken={index === selected ? playToken : 0}
               />
