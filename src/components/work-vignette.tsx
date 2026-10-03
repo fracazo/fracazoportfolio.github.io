@@ -563,7 +563,7 @@ function FlowScene({ mode }: { mode: SceneMode }) {
           return (
             <g key={x}>
               <path
-                d={`M ${from} ${FLOW_PHONE_TOP - 4} C ${from} 22, ${to} 22, ${to} ${FLOW_PHONE_TOP - 6}`}
+                d={`M ${from} ${FLOW_PHONE_TOP - 4} C ${from} 22, ${to} 22, ${to} ${FLOW_PHONE_TOP - 9}`}
                 fill="none"
                 stroke="var(--accent)"
                 strokeWidth="1.5"
@@ -575,13 +575,10 @@ function FlowScene({ mode }: { mode: SceneMode }) {
                   transitionDelay: delay(reachedAt[i + 1] - 500),
                 }}
               />
+              {/* Solid head, tip on the screen; the arc stops at its base. */}
               <path
-                d={`M ${to - 3.5} ${FLOW_PHONE_TOP - 10} L ${to} ${FLOW_PHONE_TOP - 5} L ${to + 3.5} ${FLOW_PHONE_TOP - 10}`}
-                fill="none"
-                stroke="var(--accent)"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                d={`M ${to - 4.5} ${FLOW_PHONE_TOP - 10} L ${to + 4.5} ${FLOW_PHONE_TOP - 10} L ${to} ${FLOW_PHONE_TOP - 3} Z`}
+                fill="var(--accent)"
                 style={{
                   opacity: shown ? 1 : 0,
                   transition: "opacity 150ms ease",

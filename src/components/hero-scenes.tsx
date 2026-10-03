@@ -31,6 +31,7 @@ export function HeroStage({
 export const HERO_LOOP_MS: Partial<Record<WorkVignetteKind, number>> = {
   glql: 7600,
   pages: 6800,
+  flow: 8400,
 };
 
 type HeroScene = (props: { t: number }) => ReactNode;
@@ -38,6 +39,7 @@ type HeroScene = (props: { t: number }) => ReactNode;
 const HERO_SCENES: Partial<Record<WorkVignetteKind, HeroScene>> = {
   glql: GlqlHeroScene,
   pages: PagesHeroScene,
+  flow: FlowHeroScene,
 };
 
 /* 16:10 like the stage, at about its rendered width, so text sits near 1:1. */
@@ -490,5 +492,306 @@ function PagesHeroScene({ t }: { t: number }) {
         </div>
       </div>
     </div>
+  );
+}
+
+/* ---- Flow prototype: Live walks one path, then Map shows every screen ---- */
+
+/* The map canvas, in the scene body's own pixels: at scale 1 the whole map
+   fits the body, and Live is the same canvas zoomed onto one screen. */
+const FLOW_BODY_W = 504;
+const FLOW_BODY_H = 258;
+const FLOW_PHONE_W = 69;
+const FLOW_PHONE_H = 150;
+const FLOW_PHONE_TOP = 70;
+const FLOW_LIVE_SCALE = 1.35;
+/* Live frames a little above the screen's centre, so the edge leaving it
+   (and its arrowhead on the next screen) stays in view while it walks. */
+const FLOW_LIVE_LIFT = 18;
+const FLOW_SCREENS = [
+  { x: 30, beat: "1.1", title: "Welcome", action: "Continue" },
+  { x: 155, beat: "1.2", title: "Your email", action: "Continue" },
+  { x: 280, beat: "1.3", title: "Check your inbox", action: "Verify" },
+  { x: 405, beat: "1.4", title: "You're in", action: "Open app" },
+];
+/* Tap on screen i, then the camera follows the edge to screen i + 1. */
+const FLOW_STEP_MS = 1300;
+const FLOW_FIRST_TAP = 700;
+const flowTapAt = (i: number) => FLOW_FIRST_TAP + i * FLOW_STEP_MS;
+const flowArriveAt = (i: number) => (i === 0 ? 0 : flowTapAt(i - 1) + 300);
+const FLOW_MAP_AT = flowTapAt(FLOW_SCREENS.length - 1);
+
+function FlowHeroScene({ t }: { t: number }) {
+  const mapView = t >= FLOW_MAP_AT;
+  // The screen the Live camera is on: the last one it has arrived at.
+  let current = 0;
+  FLOW_SCREENS.forEach((_, i) => {
+    if (t >= flowArriveAt(i)) current = i;
+  });
+  const focus = FLOW_SCREENS[current];
+  const cx = focus.x + FLOW_PHONE_W / 2;
+  const cy = FLOW_PHONE_TOP + FLOW_PHONE_H / 2 - FLOW_LIVE_LIFT;
+  const camera = mapView
+    ? "translate(0px, 0px) scale(1)"
+    : `translate(${FLOW_BODY_W / 2 - FLOW_LIVE_SCALE * cx}px, ${
+        FLOW_BODY_H / 2 - FLOW_LIVE_SCALE * cy
+      }px) scale(${FLOW_LIVE_SCALE})`;
+
+  return (
+    <div className="vignette-card absolute inset-4 flex flex-col rounded-xl bg-surface p-3">
+      <div className="flex h-7 items-center justify-between">
+        <div className="leading-tight">
+          <div className="text-meta text-muted">Flow map</div>
+          <div className="text-meta font-semibold text-text">Onboarding</div>
+        </div>
+        <div className="flex rounded-full bg-panel-2 p-0.5 text-meta">
+          {["Map", "Live"].map((label) => {
+            const on = (label === "Map") === mapView;
+            return (
+              <span
+                key={label}
+                className={`rounded-full px-3 py-0.5 ${on ? "bg-text text-surface" : "text-muted"}`}
+                style={{ transition: "background-color 250ms ease, color 250ms ease" }}
+              >
+                {label}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+
+      <div
+        className="relative mt-2 overflow-hidden rounded-lg bg-panel-2"
+        style={{ width: FLOW_BODY_W, height: FLOW_BODY_H }}
+      >
+        <div
+          className="absolute top-0 left-0 origin-top-left"
+          style={{
+            width: FLOW_BODY_W,
+            height: FLOW_BODY_H,
+            transform: camera,
+            transition: "transform 700ms cubic-bezier(0.65, 0, 0.35, 1)",
+          }}
+        >
+          <svg
+            className="absolute inset-0"
+            width={FLOW_BODY_W}
+            height={FLOW_BODY_H}
+            viewBox={`0 0 ${FLOW_BODY_W} ${FLOW_BODY_H}`}
+          >
+            {/* The template's back edge: dotted, from 1.2 home to 1.1. */}
+            <path
+              d={flowArc(1, 0, 30)}
+              fill="none"
+              stroke="var(--muted)"
+              strokeOpacity="0.6"
+              strokeWidth="1.5"
+              strokeDasharray="2 4"
+              strokeLinecap="round"
+            />
+            <path d={flowArrowHead(0)} fill="var(--muted)" fillOpacity="0.6" />
+            {FLOW_SCREENS.slice(0, -1).map((_, i) => (
+              <g key={i}>
+                <path
+                  d={flowArc(i, i + 1, 40)}
+                  fill="none"
+                  stroke="var(--muted)"
+                  strokeOpacity="0.6"
+                  strokeWidth="1.5"
+                />
+                {/* The walked path draws over the edge as the camera
+                    follows it. */}
+                <path
+                  d={flowArc(i, i + 1, 40)}
+                  fill="none"
+                  stroke="var(--accent)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  pathLength={1}
+                  strokeDasharray="1"
+                  style={{
+                    strokeDashoffset: t >= flowTapAt(i) ? 0 : 1,
+                    transition: "stroke-dashoffset 600ms ease",
+                  }}
+                />
+                <path
+                  d={flowArrowHead(i + 1)}
+                  fill={t >= flowArriveAt(i + 1) ? "var(--accent)" : "var(--muted)"}
+                  fillOpacity={t >= flowArriveAt(i + 1) ? 1 : 0.6}
+                  style={{ transition: "fill 200ms ease, fill-opacity 200ms ease" }}
+                />
+              </g>
+            ))}
+          </svg>
+
+          {FLOW_SCREENS.map((screen, i) => (
+            <FlowPhone
+              key={screen.beat}
+              index={i}
+              visited={t >= flowArriveAt(i)}
+              tapped={t >= flowTapAt(i) && t < flowTapAt(i) + 400}
+            />
+          ))}
+        </div>
+
+        {/* Fixed map chrome: the edge legend and zoom controls. */}
+        <div
+          className="absolute top-2 left-2 flex gap-1.5 text-meta"
+          style={{ opacity: mapView ? 1 : 0, transition: "opacity 300ms ease" }}
+        >
+          {[
+            { label: "happy", dash: undefined },
+            { label: "back", dash: "2 3" },
+          ].map((edge) => (
+            <span
+              key={edge.label}
+              className="inline-flex items-center gap-1.5 rounded-full bg-surface px-2 py-0.5 text-text-body"
+            >
+              <svg width="14" height="2" viewBox="0 0 14 2">
+                <line
+                  x1="0"
+                  y1="1"
+                  x2="14"
+                  y2="1"
+                  stroke="var(--muted)"
+                  strokeWidth="1.5"
+                  strokeDasharray={edge.dash}
+                />
+              </svg>
+              {edge.label}
+            </span>
+          ))}
+        </div>
+        <div
+          className="absolute right-2 bottom-2 flex flex-col overflow-hidden rounded-md bg-surface text-meta leading-none text-muted"
+          style={{ opacity: mapView ? 1 : 0, transition: "opacity 300ms ease" }}
+        >
+          {["+", "−"].map((sign) => (
+            <span key={sign} className="flex size-5 items-center justify-center">
+              {sign}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* An edge from the top centre of screen `from` to the top centre of `to`,
+   bowing up to `peak`: the flow map's lane shape. */
+/* Arrowheads are solid triangles whose tip touches the target screen; the
+   edge ends at the triangle's base so the line never pokes through it. */
+const FLOW_HEAD_TIP = FLOW_PHONE_TOP - 2;
+const FLOW_HEAD_LEN = 8;
+const FLOW_HEAD_HALF = 5;
+
+function flowArc(from: number, to: number, peak: number) {
+  const x1 = FLOW_SCREENS[from].x + FLOW_PHONE_W / 2;
+  const x2 = FLOW_SCREENS[to].x + FLOW_PHONE_W / 2;
+  const start = FLOW_PHONE_TOP - 4;
+  const end = FLOW_HEAD_TIP - FLOW_HEAD_LEN + 1;
+  return `M ${x1} ${start} C ${x1} ${peak}, ${x2} ${peak}, ${x2} ${end}`;
+}
+
+function flowArrowHead(to: number) {
+  const x = FLOW_SCREENS[to].x + FLOW_PHONE_W / 2;
+  const base = FLOW_HEAD_TIP - FLOW_HEAD_LEN;
+  return `M ${x - FLOW_HEAD_HALF} ${base} L ${x + FLOW_HEAD_HALF} ${base} L ${x} ${FLOW_HEAD_TIP} Z`;
+}
+
+function FlowPhone({
+  index,
+  visited,
+  tapped,
+}: {
+  index: number;
+  visited: boolean;
+  tapped: boolean;
+}) {
+  const screen = FLOW_SCREENS[index];
+  return (
+    <>
+      <div
+        className="absolute rounded-[14px] border-2 bg-surface"
+        style={{
+          left: screen.x,
+          top: FLOW_PHONE_TOP,
+          width: FLOW_PHONE_W,
+          height: FLOW_PHONE_H,
+          borderColor: visited ? "var(--accent)" : "var(--border)",
+          transition: "border-color 250ms ease",
+        }}
+      >
+        <span className="absolute top-1.5 left-1/2 h-[5px] w-[18px] -translate-x-1/2 rounded-full bg-text" />
+        <div className="absolute inset-x-[7px] top-[18px]">
+          <span className="block h-[3px] w-5 rounded-full bg-border" />
+          <span className="mt-1 block text-[8px] leading-[10px] font-semibold text-text">
+            {screen.title}
+          </span>
+          <FlowScreenBody index={index} />
+        </div>
+        <span className="absolute inset-x-[7px] bottom-[10px] flex h-3 items-center justify-center rounded-full bg-text text-[6px] font-medium text-surface">
+          {screen.action}
+        </span>
+        {/* Tap: a ring pulses out from the primary action. */}
+        <span
+          className="absolute bottom-[4px] left-1/2 size-6 -translate-x-1/2 rounded-full border-2 border-accent"
+          style={{
+            opacity: tapped ? 1 : 0,
+            transform: `translateX(-50%) scale(${tapped ? 1.4 : 0.6})`,
+            transition: tapped
+              ? "opacity 100ms ease, transform 400ms ease-out"
+              : "opacity 250ms ease, transform 0ms",
+          }}
+        />
+      </div>
+      <div
+        className="absolute flex items-center gap-1 text-meta whitespace-nowrap text-text"
+        style={{ left: screen.x, top: FLOW_PHONE_TOP + FLOW_PHONE_H + 6 }}
+      >
+        <span className="size-1.5 rounded-full bg-accent" />
+        {screen.beat}
+      </div>
+    </>
+  );
+}
+
+/* Just enough of each screen to tell them apart: copy, a field, a code, a
+   done mark. */
+function FlowScreenBody({ index }: { index: number }) {
+  if (index === 0) {
+    return (
+      <div className="mt-1.5 flex flex-col gap-1">
+        <span className="h-[3px] w-full rounded-full bg-border" />
+        <span className="h-[3px] w-[70%] rounded-full bg-border" />
+      </div>
+    );
+  }
+  if (index === 1) {
+    return (
+      <span className="mt-2 block h-3 rounded-[3px] border border-border" />
+    );
+  }
+  if (index === 2) {
+    return (
+      <div className="mt-2 flex gap-1">
+        {[0, 1, 2, 3].map((box) => (
+          <span key={box} className="h-3.5 flex-1 rounded-[3px] border border-border" />
+        ))}
+      </div>
+    );
+  }
+  return (
+    <svg className="mt-3" viewBox="0 0 16 16" width="16" height="16">
+      <circle cx="8" cy="8" r="8" fill="var(--accent)" />
+      <path
+        d="M4.6 8.2 7 10.5 11.4 5.8"
+        fill="none"
+        stroke="var(--panel)"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
