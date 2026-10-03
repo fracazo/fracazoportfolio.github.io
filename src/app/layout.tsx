@@ -26,25 +26,25 @@ const youngSerif = Young_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://alexfracazo.com"),
-  title: "Alex Fracazo - Design, Product and Engineering",
+  title: "Alex Fracazo - Product Designer",
   description:
-    "I make complex things simple. Product designer, end to end, from research through to a working product.",
+    "I make complex things simple. A boring product designer, end to end. Obvious over clever, every time.",
   icons: {
     shortcut: "/images/favicon.svg",
     apple: "/images/webclip.svg",
   },
   openGraph: {
-    title: "Alex Fracazo - Design, Product and Engineering",
+    title: "Alex Fracazo - Product Designer",
     description:
-      "I make complex things simple. Product designer, end to end, from research through to a working product.",
+      "I make complex things simple. A boring product designer, end to end. Obvious over clever, every time.",
     images: ["/images/opengraph.jpg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alex Fracazo - Design, Product and Engineering",
+    title: "Alex Fracazo - Product Designer",
     description:
-      "I make complex things simple. Product designer, end to end, from research through to a working product.",
+      "I make complex things simple. A boring product designer, end to end. Obvious over clever, every time.",
     images: ["/images/opengraph.jpg"],
   },
 };

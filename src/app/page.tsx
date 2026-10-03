@@ -295,8 +295,8 @@ export default function Home() {
             {/* Pull against .h1's 32px bottom margin so the mission caption
                 reads as part of the headline, not a new block. */}
             <p className="-mt-5 text-body text-text-body">
-              👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo, a product
-              designer who gets the simple answer shipped.
+              👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo, a boring
+              product designer. Obvious over clever, every time.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <PanelLink
