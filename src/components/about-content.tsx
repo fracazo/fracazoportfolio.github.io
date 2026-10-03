@@ -110,10 +110,16 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
           <h1 className="h1">About me</h1>
 
           <div className="writing-body">
+            <p>
+              Home first: a farm in Minas Gerais. Later, Cuiabá, at the edge of
+              the Pantanal. Portuguese at home, English much later. Maybe
+              that&rsquo;s why I like things said simply.
+            </p>
+
             <PhotoStrip
               photos={pantanalPhotos}
               label="Photos from the Pantanal, Mato Grosso"
-              caption="Home first: the Pantanal, out past Cuiaba."
+              caption="The Pantanal, out past Cuiabá."
             />
 
             <p>
@@ -126,7 +132,8 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
                 width={640}
                 height={446}
               />{" "}
-              and building websites out of table layouts, in an agency in Mato
+              websites in Photoshop and building them out of table layouts, in
+              an agency in Mato
               Grosso, Brazil. Then tableless. Then Haml and Sass at Artia, the
               first product management software built in Brazil.
             </p>
@@ -194,7 +201,10 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
             </p>
 
             <p>
-              Fifteen years followed. Vodafone, Qantas, Woolworths, NAB, Hireup.
+              Then came Vodafone, Qantas, Woolworths, NAB and Hireup. Along the
+              way, a government visa app that won a Sydney Design Award, and a
+              disability support marketplace where one simple change moved
+              connections from 3% to 5%.
             </p>
 
             <figure className="my-8">
@@ -211,7 +221,8 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
             <p>
               Then GitLab, where I owned Wiki, GLQL, Pages, and the text
               editors, and spent as much time on what to build as on how it
-              looked.
+              looked. I was back in the code there too, shipping some of my own
+              changes to production.
             </p>
 
             <figure className="my-8">
@@ -224,8 +235,6 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
                 className="block w-full rounded-[var(--radius)]"
               />
             </figure>
-
-            <p>Two years ago I started coding again.</p>
 
             <figure className="my-8">
               <img
@@ -241,13 +250,14 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
             </figure>
 
             <p>
-              By directing AI and reviewing what comes back, which is close
-              enough to the work I did in 2009 that it feels familiar.
+              Now I build by directing AI and reviewing what comes back, which
+              is close enough to the work I did in 2009 that it feels familiar.
             </p>
 
             <p>
               The through line is the same as the shop. Go and look at the
-              thing. The answer is usually standing right there.
+              thing. The answer is usually simpler than anyone expected, and
+              it&rsquo;s usually standing right there.
             </p>
           </div>
         </div>
