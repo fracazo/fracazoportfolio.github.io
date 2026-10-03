@@ -5,7 +5,7 @@ import { FlowPrototypeContent } from "@/components/tools/flow-prototype";
 
 const title = "Flow prototype - Alex Fracazo";
 const description =
-  "A Claude Code skill: a clickable prototype of every screen in a product, on any device. Map shows every screen; Live walks one path.";
+  "A Claude Code skill that puts every screen of a prototype on one zoomable canvas, connected by the paths between them, on any device.";
 
 export const metadata: Metadata = {
   title,

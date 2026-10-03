@@ -746,15 +746,34 @@ function FlowHeroScene({ t }: { t: number }) {
             </span>
           ))}
         </div>
+        {/* Zoom controls arrive just before the zoom out, and "−" presses
+            as the camera pulls back: the canvas is something you zoom. */}
         <div
           className="absolute right-2 bottom-2 flex flex-col overflow-hidden rounded-md bg-surface text-meta leading-none text-muted"
-          style={{ opacity: mapView ? 1 : 0, transition: "opacity 300ms ease" }}
+          style={{
+            opacity: t >= FLOW_MAP_AT - 400 ? 1 : 0,
+            transition: "opacity 250ms ease",
+          }}
         >
-          {["+", "−"].map((sign) => (
-            <span key={sign} className="flex size-5 items-center justify-center">
-              {sign}
-            </span>
-          ))}
+          {["+", "−"].map((sign) => {
+            const pressed =
+              sign === "−" && t >= FLOW_MAP_AT - 150 && t < FLOW_MAP_AT + 350;
+            return (
+              <span
+                key={sign}
+                className="flex size-5 items-center justify-center"
+                style={{
+                  background: pressed
+                    ? "color-mix(in oklab, var(--accent) 30%, transparent)"
+                    : undefined,
+                  color: pressed ? "var(--text)" : undefined,
+                  transition: "background-color 150ms ease, color 150ms ease",
+                }}
+              >
+                {sign}
+              </span>
+            );
+          })}
         </div>
       </div>
     </div>

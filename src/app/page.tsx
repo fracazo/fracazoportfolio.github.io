@@ -34,7 +34,7 @@ const featuredWork: FeaturedItem[] = [
         href: "/tools/flow-prototype",
         title: "Flow prototype",
         tagline:
-          "A clickable prototype of every screen in a product, on any device, built by your coding agent from one markdown file.",
+          "Every screen your coding agent builds, connected on one canvas you can zoom in and out of. Works on any device.",
         outcome: "Claude Code skill",
         vignette: "flow",
       },

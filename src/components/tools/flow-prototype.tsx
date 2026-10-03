@@ -26,16 +26,17 @@ export function FlowPrototypeContent({
           </p>
           <h1 className="case-title">Flow prototype</h1>
           <p className="case-intro">
-            A clickable prototype of every screen in a product, built by your
-            coding agent from one markdown file. Map shows every screen at
-            once. Live walks one path, screen by screen, in the device&rsquo;s
-            own frame.
+            AI coding tools can build a prototype, but they show it to you one
+            screen at a time. Flow prototype puts every screen on one canvas,
+            connected by the paths between them, so you can zoom out to see
+            the whole product and zoom in to check any single screen. Live then
+            walks one path, screen by screen, in the device&rsquo;s own frame.
           </p>
         </header>
 
         <LoopingHeroStage
           kind="flow"
-          label="Animation: the Live view walks an onboarding flow one screen at a time, then zooms out to the map of every screen and the path between them."
+          label="Animation: the Live view walks an onboarding flow one screen at a time, then the canvas zooms out to show every screen and the paths connecting them."
         />
 
         {/* min-w-0 lets the command scroll inside its box on phones instead
@@ -56,7 +57,8 @@ export function FlowPrototypeContent({
           <ul>
             <li>
               <strong>Map</strong>{" "}
-              puts every screen of every flow on one page.
+              is a canvas with every screen of every flow on it. Zoom out to
+              see how the whole product connects, zoom in to read one screen.
               Flows are rows, screens sit left to right, and the edges between
               them are coloured by type: happy, branch, refusal, back, sheet and
               inline.
