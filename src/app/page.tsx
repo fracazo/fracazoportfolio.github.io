@@ -10,8 +10,9 @@ import { LinkRowList } from "@/components/link-row-list";
 import { SiteFooter } from "@/components/site-footer";
 import { ExternalLinkIcon } from "@/components/icons";
 
-/* The hero's lead case studies, in stage order. Each needs a standalone
-   vignette: the stage plays it large. */
+/* The hero's lead work, in stage order: two case studies and a tool. Each
+   needs a standalone vignette for the narrow layouts and, ideally, a hero
+   scene (hero-scenes.tsx) for the stage. */
 const featuredWork: FeaturedItem[] = [
       {
         href: "/case-studies/gitlab-pages",
@@ -28,6 +29,14 @@ const featuredWork: FeaturedItem[] = [
           "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
         outcome: "+33% adoption post-GA",
         vignette: "glql",
+      },
+      {
+        href: "/tools/flow-prototype",
+        title: "Flow prototype",
+        tagline:
+          "A clickable prototype of every screen in a product, on any device, built by your coding agent from one markdown file.",
+        outcome: "Claude Code skill",
+        vignette: "flow",
       },
 ];
 

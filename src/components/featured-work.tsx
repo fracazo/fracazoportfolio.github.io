@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Chip } from "./chip";
 import { PanelLink } from "./panel-link";
 import { WorkRow } from "./work-row";
-import { HERO_LOOP_MS, HeroStage } from "./hero-scenes";
+import { HeroStage, useScenePlayback } from "./hero-scenes";
 import type { WorkVignetteKind } from "./work-vignette-kinds";
 
 export type FeaturedItem = {
@@ -15,12 +15,6 @@ export type FeaturedItem = {
   outcome?: string;
   vignette: WorkVignetteKind;
 };
-
-/* Loop for scenes without their own length (the scaled thumbnail scenes):
-   one pass plus a held final frame, so each reads finished before replaying. */
-const LOOP_MS = 4500;
-/* Small lead-in so the first play starts after the page reveal settles. */
-const FIRST_PLAY_MS = 400;
 
 /**
  * Home-page hero for the lead case studies: a list on the leading edge and
@@ -35,42 +29,17 @@ const FIRST_PLAY_MS = 400;
  */
 export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
   const [selected, setSelected] = useState(0);
-  const [playToken, setPlayToken] = useState(0);
-  const [onScreen, setOnScreen] = useState(false);
   const stageRef = useRef<HTMLDivElement>(null);
-
-  // Only loop while the stage is visible. display:none (narrow layout)
-  // never intersects, so the hidden stage never runs a timer.
-  useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage || typeof IntersectionObserver === "undefined") return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setOnScreen(entry.isIntersecting),
-      { threshold: 0.25 },
-    );
-    observer.observe(stage);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!onScreen) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setTimeout(
-      () => setPlayToken((token) => token + 1),
-      playToken === 0
-        ? FIRST_PLAY_MS
-        : (HERO_LOOP_MS[items[selected].vignette] ?? LOOP_MS),
-    );
-    return () => clearTimeout(timer);
-  }, [onScreen, playToken, items, selected]);
+  const { playToken, replay } = useScenePlayback(
+    stageRef,
+    items[selected].vignette,
+  );
 
   const select = (index: number) => {
     if (index === selected) return;
     setSelected(index);
-    // Bumping the token replays the new scene now and restarts the loop clock.
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setPlayToken((token) => token + 1);
-    }
+    // Replays the new scene now and restarts the loop clock.
+    replay();
   };
 
   return (

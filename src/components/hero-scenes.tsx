@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type RefObject,
+} from "react";
 import { VignetteStage } from "./work-vignette";
 import type { WorkVignetteKind } from "./work-vignette-kinds";
 
@@ -25,6 +32,83 @@ export function HeroStage({
   const scene = HERO_SCENES[kind];
   if (!scene) return <VignetteStage kind={kind} playToken={playToken} />;
   return <HeroCanvas scene={scene} playToken={playToken} />;
+}
+
+/* Loop for scenes without their own length (the scaled thumbnail scenes):
+   one pass plus a held final frame, so each reads finished before replaying. */
+const DEFAULT_LOOP_MS = 4500;
+/* Small lead-in so the first play starts after the page reveal settles. */
+const FIRST_PLAY_MS = 400;
+
+const prefersReducedMotion = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/**
+ * Drives a stage's playToken: plays once the stage is on screen, then loops
+ * every `loopMs` while it stays there. `replay` restarts the scene and the
+ * loop clock now (the hero calls it on selection). Reduced motion never
+ * plays, so the stage rests on its settled frame.
+ */
+export function useScenePlayback(
+  stageRef: RefObject<HTMLElement | null>,
+  kind: WorkVignetteKind,
+) {
+  const [playToken, setPlayToken] = useState(0);
+  const [onScreen, setOnScreen] = useState(false);
+  const loopMs = HERO_LOOP_MS[kind] ?? DEFAULT_LOOP_MS;
+
+  // display:none never intersects, so a hidden stage never runs a timer.
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setOnScreen(entry.isIntersecting),
+      { threshold: 0.25 },
+    );
+    observer.observe(stage);
+    return () => observer.disconnect();
+  }, [stageRef]);
+
+  useEffect(() => {
+    if (!onScreen || prefersReducedMotion()) return;
+    const timer = window.setTimeout(
+      () => setPlayToken((token) => token + 1),
+      playToken === 0 ? FIRST_PLAY_MS : loopMs,
+    );
+    return () => clearTimeout(timer);
+  }, [onScreen, playToken, loopMs]);
+
+  const replay = useCallback(() => {
+    if (!prefersReducedMotion()) setPlayToken((token) => token + 1);
+  }, []);
+
+  return { playToken, replay };
+}
+
+/**
+ * A framed stage that plays one hero scene on its own, looping while on
+ * screen: the tool pages use it above their write-up. `label` describes the
+ * animation for screen readers, since the scene itself is aria-hidden.
+ */
+export function LoopingHeroStage({
+  kind,
+  label,
+}: {
+  kind: WorkVignetteKind;
+  label: string;
+}) {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const { playToken } = useScenePlayback(stageRef, kind);
+  return (
+    <div
+      ref={stageRef}
+      role="img"
+      aria-label={label}
+      className="thumb-frame relative aspect-[16/10] overflow-hidden rounded-card bg-panel-2"
+    >
+      <HeroStage kind={kind} playToken={playToken} />
+    </div>
+  );
 }
 
 /** How long each hero scene's loop runs, including its held final frame. */

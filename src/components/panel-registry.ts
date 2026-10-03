@@ -132,6 +132,14 @@ export const panelRegistry: Record<
       ),
     ),
   },
+  "/tools/flow-prototype": {
+    title: "Flow prototype",
+    load: dynamic(() =>
+      import("@/components/tools/flow-prototype").then(
+        (m) => m.FlowPrototypeContent,
+      ),
+    ),
+  },
   "/case-studies/bringing-visibility-to-workers-status": {
     title: "Worker Status Visibility",
     load: dynamic(() =>
