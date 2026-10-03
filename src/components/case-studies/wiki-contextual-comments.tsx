@@ -191,11 +191,11 @@ export function WikiContextualCommentsContent({
             <h2>Cross-functional Process</h2>
 
             <h3>Working async with engineers</h3>
-            <p>This project involved two senior engineers with strong opinions about the implementation: Janis Altherr, who had deep familiarity with the wiki frontend, and Alexandru Croitor, who raised early engineering concerns about comment state management.</p>
+            <p>This project involved two senior engineers with strong opinions about the implementation: a senior frontend engineer with deep familiarity with the wiki frontend, and a second senior engineer who raised early concerns about comment state management.</p>
 
-            <p>Janis had been thinking about the wiki layout problem independently and came to the design critique with a concrete suggestion: auto-collapse the super sidebar when a wiki page is opened and position a wiki-specific sidebar on the left. His thinking aligned closely with my own direction, which accelerated the layout decision significantly. Getting alignment from an engineer who had already thought through the constraints saved multiple back-and-forth cycles.</p>
+            <p>The frontend engineer had been thinking about the wiki layout problem independently and came to the design critique with a concrete suggestion: auto-collapse the super sidebar when a wiki page is opened and position a wiki-specific sidebar on the left. Their thinking aligned closely with my own direction, which accelerated the layout decision significantly. Getting alignment from an engineer who had already thought through the constraints saved multiple back-and-forth cycles.</p>
 
-            <p>Alexandru raised a question about whether the new comment box should open in the sidebar or as a modal when the floating comment button was clicked. Janis weighed in directly in the issue thread, noting that a modal was slightly easier from an engineering standpoint but that building a shared store was a better long-term investment regardless. The discussion concluded in the issue without needing a meeting, and the design decision was made based on the ultimate UX vision rather than the short-term engineering convenience.</p>
+            <p>The second engineer asked whether the new comment box should open in the sidebar or as a modal when the floating comment button was clicked. The frontend engineer weighed in directly in the issue thread, noting that a modal was slightly easier from an engineering standpoint but that building a shared store was a better long-term investment regardless. The discussion concluded in the issue without needing a meeting, and the design decision was made based on the ultimate UX vision rather than the short-term engineering convenience.</p>
 
             <h3>Handling hard questions</h3>
             <p>Two significant edge case questions came up during the cross-functional review:</p>
