@@ -29,14 +29,6 @@ const featuredWork: FeaturedItem[] = [
         outcome: "+33% adoption post-GA",
         vignette: "glql",
       },
-      {
-        href: "/case-studies/mr-summary-ai",
-        title: "Summarize Merge Requests with AI",
-        tagline:
-          "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
-        vignette: "mr-summary",
-        outcome: "3 shipped iterations",
-      },
 ];
 
 /* Work is grouped by the kind of problem, not by date. Each group leads with
@@ -77,6 +69,14 @@ const workGroups = [
         tagline:
           "An online course platform: create courses, tutorials and ebooks, and sell them.",
         metric: "50,000 students",
+      },
+      {
+        href: "/case-studies/mr-summary-ai",
+        vignette: "mr-summary" as const,
+        title: "Summarize Merge Requests with AI",
+        tagline:
+          "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
+        metric: "3 shipped iterations",
       },
     ],
   },
