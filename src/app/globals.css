@@ -158,8 +158,12 @@
   /* Sidebar collapses below 980px: desk: = sidebar visible */
   --breakpoint-desk: 61.25rem;
 
-  /* Reading column for pages and the home feed: max-w-content */
+  /* Reading column for pages and long-form text: max-w-content */
   --container-content: 700px;
+  /* Home page column: the featured hero needs room for its stage, and every
+     other home section shares the width so text aligns on the left edge and
+     thumbnails on the right. Prose inside stays at max-w-content. */
+  --container-home: 1040px;
 }
 
 /* OpenDyslexic (dyslexia-friendly mode) – TTF loads reliably from CDN */
@@ -2014,8 +2018,8 @@
 }
 
 /* Work rows inside the split.
-   The row is 700px wide whether it is the whole page or one pane, so a
-   container query cannot tell the two apart. In open space a 280px thumbnail
+   A pane can be as wide as the home column, so a container query cannot
+   tell the whole page and one pane apart. In open space a 280px thumbnail
    reads as an editorial card; filling a 720px pane it reads as a poster. The
    index pane flags split mode and the rows shrink back to a list. */
 [data-panel-split] .work-row,

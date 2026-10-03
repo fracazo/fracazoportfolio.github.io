@@ -44,11 +44,13 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
 
   return (
     <div onMouseMove={hasPreviews ? movePreview : undefined}>
-      <ul role="list" className="m-0 list-none border-t border-border p-0">
+      <ul role="list" className="m-0 flex list-none flex-col gap-1 p-0">
         {items.map((item) => {
           const single = item.links.length === 1 ? item.links[0] : null;
+          // The negative margin keeps the text on the column's left edge
+          // while the hover pill reaches past it, as on the work rows.
           const rowLayout =
-            "flex items-baseline justify-between gap-4 px-0.5 py-3.5";
+            "-mx-5 flex items-baseline justify-between gap-4 rounded-card px-5 py-3.5";
           const meta = item.meta && (
             <span className="flex-none text-meta whitespace-nowrap text-muted opacity-70">
               {item.meta}
@@ -75,7 +77,9 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
               {meta}
             </>
           );
-          const singleClass = `group ${rowLayout} touch-manipulation no-underline hover:no-underline`;
+          // Only single-destination rows get the hover pill: a multi-link row
+          // is not one target, so filling it would promise a click it lacks.
+          const singleClass = `group ${rowLayout} touch-manipulation no-underline transition-colors duration-200 hover:bg-panel-2 hover:no-underline`;
 
           // Multi-destination link: the visible label stays meta-size while
           // padding grows the tap target; the negative margins hand the space
@@ -91,7 +95,6 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
                 item.image ? () => setPreview(item.image) : undefined
               }
               onMouseLeave={item.image ? () => setPreview(undefined) : undefined}
-              className="border-b border-border"
             >
               {single ? (
                 single.href.startsWith("/") ? (

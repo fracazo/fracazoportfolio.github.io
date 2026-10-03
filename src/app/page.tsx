@@ -4,10 +4,40 @@ import { PanelLink } from "@/components/panel-link";
 import { PanelShell } from "@/components/panel-shell";
 import { WorkRow } from "@/components/work-row";
 import { WorkRowCompact } from "@/components/work-row-compact";
+import { FeaturedWork, type FeaturedItem } from "@/components/featured-work";
 import { RowList } from "@/components/row-list";
 import { LinkRowList } from "@/components/link-row-list";
 import { SiteFooter } from "@/components/site-footer";
 import { ExternalLinkIcon } from "@/components/icons";
+
+/* The hero's lead case studies, in stage order. Each needs a standalone
+   vignette: the stage plays it large. */
+const featuredWork: FeaturedItem[] = [
+      {
+        href: "/case-studies/gitlab-pages",
+        title: "Making Site Status Visible in GitLab Pages",
+        tagline:
+          "Status spread across screens and DNS hidden until something broke. With no delivery team on Pages, I took the fix through Paper Cuts and shipped it in one release.",
+        outcome: "Monetisation foundation · Cross-team delivery",
+        vignette: "pages",
+      },
+      {
+        href: "/case-studies/glql",
+        title: "GLQL: Embedded Views for Work Tracking",
+        tagline:
+          "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
+        outcome: "+33% adoption post-GA",
+        vignette: "glql",
+      },
+      {
+        href: "/case-studies/mr-summary-ai",
+        title: "Summarize Merge Requests with AI",
+        tagline:
+          "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
+        vignette: "mr-summary",
+        outcome: "3 shipped iterations",
+      },
+];
 
 /* Work is grouped by the kind of problem, not by date. Each group leads with
    the full case studies and follows with compact rows. Both row kinds share
@@ -19,22 +49,6 @@ const workGroups = [
     context:
       "I design the tools developers use every day at GitLab, and products people learn with.",
     full: [
-      {
-        href: "/case-studies/gitlab-pages",
-        title: "Making Site Status Visible in GitLab Pages",
-        tagline:
-          "Status spread across screens and DNS hidden until something broke. With no delivery team on Pages, I took the fix through Paper Cuts and shipped it in one release.",
-        outcome: "Monetisation foundation · Cross-team delivery",
-        vignette: "pages" as const,
-      },
-      {
-        href: "/case-studies/glql",
-        title: "GLQL: Embedded Views for Work Tracking",
-        tagline:
-          "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
-        outcome: "+33% adoption post-GA",
-        vignette: "glql" as const,
-      },
       {
         href: "/case-studies/wiki-contextual-comments",
         title: "GitLab Wiki: Contextual Comments",
@@ -63,14 +77,6 @@ const workGroups = [
         tagline:
           "An online course platform: create courses, tutorials and ebooks, and sell them.",
         metric: "50,000 students",
-      },
-      {
-        href: "/case-studies/mr-summary-ai",
-        vignette: "mr-summary" as const,
-        title: "Summarize Merge Requests with AI",
-        tagline:
-          "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
-        metric: "3 shipped iterations",
       },
     ],
   },
@@ -263,7 +269,7 @@ export default function Home() {
       {/* Hero */}
       <section
         aria-labelledby="hero-title"
-        className="mx-auto w-full max-w-content"
+        className="mx-auto w-full max-w-home"
       >
         <div className="grid grid-cols-1 items-start gap-6 text-left">
           <div className="reveal-group">
@@ -295,9 +301,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Featured: the lead case studies get a list-and-stage hero. */}
+      <section
+        aria-labelledby="featured-title"
+        className="reveal-after @container mx-auto w-full max-w-home"
+      >
+        <h2
+          id="featured-title"
+          className="m-0 mb-4 text-meta font-medium leading-none tracking-[0.06em] text-muted uppercase"
+        >
+          Featured
+        </h2>
+        <FeaturedWork items={featuredWork} />
+      </section>
+
       {/* The case studies reveal as their own block. No section heading: the
           group labels carry the structure. */}
-      <div className="reveal-after mx-auto grid w-full max-w-content gap-10">
+      <div className="reveal-after mx-auto grid w-full max-w-home gap-10">
         <section
           id="Work"
           aria-label="Selected projects"
@@ -318,14 +338,12 @@ export default function Home() {
               >
                 {group.title}
               </h3>
-              <p className="mt-1 mb-0 text-body text-text-body">
+              <p className="mt-1 mb-0 max-w-content text-body text-text-body">
                 {group.context}
               </p>
               <ul
                 role="list"
-                /* Rows draw their own border-t divider; this closes the group
-                   after its last row so the list doesn't trail off open. */
-                className="m-0 mt-4 flex list-none flex-col border-b border-border p-0"
+                className="m-0 mt-4 flex list-none flex-col gap-1 p-0"
               >
                 {group.full.map((work, index) => (
                   <li key={work.href}>
@@ -361,7 +379,7 @@ export default function Home() {
       {/* Writing */}
       <section
         aria-labelledby="writing-title"
-        className="mx-auto w-full max-w-content"
+        className="mx-auto w-full max-w-home"
       >
         <div className="grid gap-4">
           <h2 id="writing-title" className="h2">
@@ -374,12 +392,12 @@ export default function Home() {
       {/* Working with Alex */}
       <section
         aria-labelledby="testimonials-title"
-        className="mx-auto w-full max-w-content pt-12 pb-12"
+        className="mx-auto w-full max-w-home pt-12 pb-12"
       >
         <h2 id="testimonials-title" className="h3 mb-6 font-medium text-muted">
           Working with Alex
         </h2>
-        <div className="flex flex-col gap-6">
+        <div className="flex max-w-content flex-col gap-6">
           <blockquote className="m-0 border-s-2 border-border ps-4">
             <p className="m-0 mb-2 text-body text-text-body">
               &ldquo;Alex consistently demonstrated strong design leadership and
@@ -505,7 +523,11 @@ export default function Home() {
         </p>
       </section>
 
-      <SiteFooter />
+      {/* SiteFooter centres its own 700px column; here it sits on the home
+          column's left edge instead. */}
+      <div className="mx-auto w-full max-w-home">
+        <SiteFooter className="!ml-0" />
+      </div>
     </PlainShell>
     </PanelShell>
   );

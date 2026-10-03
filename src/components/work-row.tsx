@@ -35,8 +35,9 @@ type WorkRowProps = {
  * uniform framed thumbnail on the trailing edge, and the outcome chips
  * spanning the card below both.
  * Used on both the landing page and /work. The title is white and shifts
- * to brand on hover with no underline. Stacks to one column below `desk`; a
- * top border draws the divider between rows.
+ * to brand on hover with no underline. Stacks to one column below `desk`.
+ * Hover fills the row as a pill, matching the featured hero's selection; the
+ * negative margin keeps the text on the column's left edge.
  */
 export function WorkRow({
   href,
@@ -62,7 +63,7 @@ export function WorkRow({
       /* Container query, not a viewport one: in the split layout this row lives
          in a pane roughly half the window, so keying off the window would hold
          the thumbnail column at widths that cannot carry it. */
-      className="work-row group grid grid-cols-1 border-t border-border py-5 no-underline hover:no-underline @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8"
+      className="work-row group -mx-5 grid grid-cols-1 rounded-card px-5 py-5 no-underline transition-colors duration-200 hover:bg-panel-2 hover:no-underline @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8"
     >
       {/* Thumbnail — uniform frame so the mismatched screenshots stop clashing.
           DOM order keeps it first so the stacked (sub-600px) card still leads

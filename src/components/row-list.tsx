@@ -11,7 +11,8 @@ export type RowItem = {
   image?: { src: string };
 };
 
-/** Compact bordered row list ("More case studies", homepage Writing list). */
+/** Compact row list (homepage Writing list). Rows fill as a pill on hover,
+    matching the work rows. */
 export function RowList({ items }: { items: RowItem[] }) {
   const [preview, setPreview] = useState<RowItem["image"]>();
   const floatRef = useRef<HTMLDivElement>(null);
@@ -35,16 +36,16 @@ export function RowList({ items }: { items: RowItem[] }) {
 
   return (
     <div onMouseMove={hasPreviews ? movePreview : undefined}>
-      <ul role="list" className="m-0 list-none p-0">
+      <ul role="list" className="m-0 flex list-none flex-col gap-1 p-0">
         {items.map((item) => (
-          <li key={item.href} className="border-b border-border">
+          <li key={item.href}>
             <PanelLink
               href={item.href}
               onMouseEnter={
                 item.image ? () => setPreview(item.image) : undefined
               }
               onMouseLeave={item.image ? () => setPreview(undefined) : undefined}
-              className="row-link group flex items-baseline justify-between gap-4 px-0.5 py-3.5 text-body font-medium text-text no-underline hover:no-underline"
+              className="row-link group -mx-5 flex items-baseline justify-between gap-4 rounded-card px-5 py-3.5 text-body font-medium text-text no-underline transition-colors duration-200 hover:bg-panel-2 hover:no-underline"
             >
               <span className="group-hover:text-brand">{item.name}</span>
               {item.meta && (

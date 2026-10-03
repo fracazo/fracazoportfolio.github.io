@@ -120,13 +120,19 @@ export function WorkRowCompact({
      thumb frame at its image's height instead of stretching to match a taller
      text column. */
   const rowClass =
-    "work-row-compact grid grid-cols-1 border-t border-border py-5 @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8";
+    "work-row-compact grid grid-cols-1 py-5 @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8";
+
+  /* Hover pill, as on WorkRow and the featured hero. The negative margin
+     keeps the text on the column's left edge; the button needs its width
+     widened to match, since w-full alone would stop 40px short. */
+  const pill =
+    "-mx-5 rounded-card px-5 transition-colors duration-200 hover:bg-panel-2";
 
   if (stub) {
     return (
       <PanelButton
         panelKey={stub}
-        className={`group ${rowClass} w-full cursor-pointer text-start`}
+        className={`group ${rowClass} ${pill} w-[calc(100%+2.5rem)] cursor-pointer text-start`}
       >
         {thumb}
         {content}
@@ -146,7 +152,7 @@ export function WorkRowCompact({
   return (
     <PanelLink
       href={href}
-      className={`group ${rowClass} no-underline hover:no-underline`}
+      className={`group ${rowClass} ${pill} no-underline hover:no-underline`}
     >
       {thumb}
       {content}
