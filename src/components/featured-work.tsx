@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Chip } from "./chip";
 import { PanelLink } from "./panel-link";
 import { WorkRow } from "./work-row";
@@ -13,17 +13,8 @@ export type FeaturedItem = {
   tagline: string;
   /** "·"-separated facts; each becomes a Chip, as in WorkRow. */
   outcome?: string;
-} & (
-  | { vignette: WorkVignetteKind; image?: never; video?: never }
-  /** A screen recording: the narrow rows always play it, and the stage does
-      too unless a vignette with a hero scene is given. The still is the
-      reduced-motion frame and the poster while the clip loads. */
-  | {
-      vignette?: WorkVignetteKind;
-      image: { src: string; alt: string; srcSet?: string; sizes?: string };
-      video: { src: string };
-    }
-);
+  vignette: WorkVignetteKind;
+};
 
 /**
  * Home-page hero for the lead case studies: a list on the leading edge and
@@ -103,18 +94,10 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
               className="vignette-fade absolute inset-0"
               style={{ opacity: index === selected ? 1 : 0 }}
             >
-              {item.vignette ? (
-                <HeroStage
-                  kind={item.vignette}
-                  playToken={index === selected ? playToken : 0}
-                />
-              ) : item.video ? (
-                <StageVideo
-                  src={item.video.src}
-                  image={item.image}
-                  playing={index === selected && playToken > 0}
-                />
-              ) : null}
+              <HeroStage
+                kind={item.vignette}
+                playToken={index === selected ? playToken : 0}
+              />
             </div>
           ))}
         </div>
@@ -130,58 +113,6 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
           </li>
         ))}
       </ul>
-    </>
-  );
-}
-
-/**
- * A recorded stage item. It plays from the start each time it is selected
- * and loops natively, so the playback loop's later ticks leave it running.
- * Unselected or reduced motion, it rests on the still.
- */
-function StageVideo({
-  src,
-  image,
-  playing,
-}: {
-  src: string;
-  image: { src: string; alt: string; srcSet?: string; sizes?: string };
-  playing: boolean;
-}) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.currentTime = 0;
-    if (playing) video.play().catch(() => {});
-    else video.pause();
-  }, [playing]);
-
-  return (
-    <>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={image.src}
-        alt={image.alt}
-        srcSet={image.srcSet}
-        sizes="(min-width: 980px) 560px, 58vw"
-        className="h-full w-full object-cover"
-      />
-      <video
-        ref={videoRef}
-        src={src}
-        poster={image.src}
-        muted
-        loop
-        playsInline
-        preload="none"
-        aria-hidden="true"
-        tabIndex={-1}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 motion-reduce:hidden ${
-          playing ? "opacity-100" : "opacity-0"
-        }`}
-      />
     </>
   );
 }

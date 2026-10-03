@@ -12,7 +12,6 @@ export type WorkVignetteKind =
   | "bemdireto"
   | "pages"
   | "flow"
-  /* Hero stage only: the Hireup row keeps its screen recording. */
   | "hireup";
 
 /* Standalone scenes ARE the thumbnail: the row renders no screenshot behind
@@ -28,5 +27,5 @@ export const VIGNETTE_REPLACES_IMAGE: Record<WorkVignetteKind, boolean> = {
   bemdireto: true,
   pages: true,
   flow: true,
-  hireup: false,
+  hireup: true,
 };

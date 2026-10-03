@@ -13,7 +13,8 @@ export type { WorkVignetteKind };
  * Hover scenes for work-row thumbnails. Each project gets its own vignette
  * animating that product's core moment: GLQL renders a typed query into an
  * embedded view, Wiki pins a comment to a highlighted line, BirthGuide draws
- * its winding route through the stages.
+ * its winding route through the stages, Hireup turns a worker's status on
+ * and lists them for clients again.
  *
  * Standalone kinds (see VIGNETTE_REPLACES_IMAGE) are the thumbnail itself:
  * they rest settled, so reduced motion, the split-panel list, and the no-JS
@@ -156,6 +157,8 @@ function Scene({ kind, mode }: { kind: WorkVignetteKind; mode: SceneMode }) {
     <PagesScene mode={mode} />
   ) : kind === "flow" ? (
     <FlowScene mode={mode} />
+  ) : kind === "hireup" ? (
+    <HireupScene mode={mode} />
   ) : (
     <BirthGuideScene mode={mode} />
   );
@@ -1004,5 +1007,102 @@ function BirthGuideScene({ mode }: { mode: SceneMode }) {
         Stage by stage
       </div>
     </>
+  );
+}
+
+/* ---- Hireup: the status flips on, and the worker is listed again ---- */
+
+function HireupScene({ mode }: { mode: SceneMode }) {
+  const open = mode === "settled" || mode === "play";
+  const delay = (ms: number) => (mode === "play" ? `${ms}ms` : "0ms");
+  const tone = (ms: number) => ({
+    transition: "background-color 250ms ease, border-color 250ms ease",
+    transitionDelay: delay(ms),
+  });
+
+  return (
+    <div className="absolute inset-0 flex items-center gap-4 px-[22px]">
+      {/* Worker app: the avatar badge and the status card. */}
+      <div className="vignette-card relative h-[145px] w-[82px] shrink-0 rounded-[14px] bg-surface px-2 pt-4">
+        <span className="absolute top-1.5 left-1/2 h-[4px] w-[16px] -translate-x-1/2 rounded-full bg-text" />
+        <div className="flex items-center justify-between">
+          <span className="h-2 w-8 rounded-full bg-text/70" />
+          <span className="flex items-center gap-0.5">
+            <span
+              className={`size-3 rounded-full border ${
+                open ? "border-accent bg-accent/30" : "border-border bg-panel-2"
+              }`}
+              style={tone(400)}
+            />
+            <span className="size-3 rounded-full bg-accent/25" />
+          </span>
+        </div>
+        <div
+          className={`mt-3 rounded-md p-1.5 ${open ? "bg-accent/15" : "bg-panel-2"}`}
+          style={tone(400)}
+        >
+          <div className="flex items-center justify-between gap-1">
+            <span className="h-1.5 w-8 rounded-full bg-text/60" />
+            <span
+              className={`relative h-[9px] w-[16px] shrink-0 rounded-full ${
+                open ? "bg-accent" : "bg-border"
+              }`}
+              style={tone(300)}
+            >
+              <span
+                className="absolute top-[1.5px] left-[1.5px] size-[6px] rounded-full bg-surface"
+                style={{
+                  transform: open ? "translateX(7px)" : "none",
+                  transition: "transform 200ms ease",
+                  transitionDelay: delay(300),
+                }}
+              />
+            </span>
+          </div>
+          <span className="mt-1.5 block h-1 w-full rounded-full bg-border" />
+          <span className="mt-1 block h-1 w-[70%] rounded-full bg-border" />
+        </div>
+        <span className="mt-3 block h-1.5 w-10 rounded-full bg-border" />
+        <span className="mt-1.5 block h-6 rounded-md bg-panel-2" />
+      </div>
+
+      {/* Client search: the worker slides back into the results. */}
+      <div className="vignette-card min-w-0 flex-1 rounded-lg bg-surface p-2">
+        <span className="block h-1.5 w-16 rounded-full bg-text/60" />
+        <div className="mt-2">
+          {[true, false, false].map((isNew, i) => (
+            <div
+              key={i}
+              className="overflow-hidden"
+              style={{
+                height: isNew && !open ? 0 : 26,
+                transition: "height 300ms ease",
+                transitionDelay: delay(isNew ? 900 : 0),
+              }}
+            >
+              <div
+                className={`flex h-[26px] items-center gap-1.5 ${i < 2 ? "border-b border-border" : ""}`}
+                style={
+                  isNew
+                    ? {
+                        opacity: open ? 1 : 0,
+                        transition: "opacity 250ms ease",
+                        transitionDelay: delay(1050),
+                      }
+                    : undefined
+                }
+              >
+                <span
+                  className={`size-3.5 shrink-0 rounded-full ${isNew ? "bg-accent/40" : "bg-panel-2"}`}
+                />
+                <span className="h-1.5 flex-1 rounded-full bg-border" />
+                {isNew && <span className="size-1.5 shrink-0 rounded-full bg-accent" />}
+                <span className="h-3 w-7 shrink-0 rounded border border-border" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

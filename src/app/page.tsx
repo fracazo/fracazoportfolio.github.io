@@ -11,8 +11,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { ExternalLinkIcon, LinkedInIcon } from "@/components/icons";
 
 /* The hero's lead work, in stage order: two case studies and a tool. Each
-   needs either a screen recording (image + video) or a standalone vignette
-   with, ideally, a hero scene (hero-scenes.tsx) for the stage. */
+   needs a standalone vignette for the narrow layouts and, ideally, a hero
+   scene (hero-scenes.tsx) for the stage. */
 const featuredWork: FeaturedItem[] = [
       {
         href: "/case-studies/bringing-visibility-to-workers-status",
@@ -20,14 +20,6 @@ const featuredWork: FeaturedItem[] = [
         tagline:
           "Reducing uncertainty in a two-sided marketplace by making availability honest.",
         outcome: "+12% bookings · Connection rate 3% → 5%",
-        image: {
-          src: "/images/62fbf14400d70051caf1b477_hireup-project-p-1080.png",
-          alt: "Hireup brand with arrows that connects both the customer and the worker",
-          srcSet:
-            "/images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-500.png 500w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-800.png 800w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080.png 1080w",
-          sizes: "(min-width: 980px) 280px, 92vw",
-        },
-        video: { src: "/videos/hireup-status-cycle.mp4" },
         vignette: "hireup",
       },
       {
