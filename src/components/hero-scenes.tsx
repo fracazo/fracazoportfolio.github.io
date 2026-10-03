@@ -30,12 +30,16 @@ export function HeroStage({
 /** How long each hero scene's loop runs, including its held final frame. */
 export const HERO_LOOP_MS: Partial<Record<WorkVignetteKind, number>> = {
   glql: 7600,
+  pages: 6800,
+  "mr-summary": 7000,
 };
 
 type HeroScene = (props: { t: number }) => ReactNode;
 
 const HERO_SCENES: Partial<Record<WorkVignetteKind, HeroScene>> = {
   glql: GlqlHeroScene,
+  pages: PagesHeroScene,
+  "mr-summary": MrSummaryHeroScene,
 };
 
 /* 16:10 like the stage, at about its rendered width, so text sits near 1:1. */
@@ -316,6 +320,318 @@ function GlqlHeroScene({ t }: { t: number }) {
             </span>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+/* Typed text: how many characters of `text` show at time `t`. */
+function typed(t: number, start: number, text: string, charMs: number) {
+  return text.slice(
+    0,
+    Math.max(0, Math.min(text.length, Math.floor((t - start) / charMs))),
+  );
+}
+
+/* ---- Pages: status first, then deployments, with a new one going live ---- */
+
+const PAGES_URL = "https://docs.company.com";
+const PAGES_CUE = {
+  status: 200,
+  url: 500,
+  visit: 500 + PAGES_URL.length * 30 + 100,
+  list: 1700,
+  deploying: 2900,
+  live: 4000,
+};
+const PAGES_TABS = ["Overview", "Pages deployments", "Domain & settings"];
+/* Newest first. mr4 is the deployment that lands during the scene. */
+const PAGES_DEPLOYS = ["mr4", "mr3", "mr2", "mr1"];
+const PAGES_ROW_H = 38;
+
+function PagesHeroScene({ t }: { t: number }) {
+  const deploying = t >= PAGES_CUE.deploying;
+  const live = t >= PAGES_CUE.live;
+  const count = live ? 4 : 3;
+
+  return (
+    <div className="vignette-card absolute inset-4 rounded-xl bg-surface p-3.5">
+      {/* Overview leads: the redesign's answer to "is my site up?" */}
+      <div className="flex gap-5 border-b border-border text-meta">
+        {PAGES_TABS.map((tab, i) => (
+          <span
+            key={tab}
+            className={`relative pb-2 ${i === 0 ? "font-semibold text-text" : "text-muted"}`}
+          >
+            {tab}
+            {i === 0 && (
+              <span className="absolute inset-x-0 -bottom-px h-[2px] rounded-full bg-accent" />
+            )}
+          </span>
+        ))}
+      </div>
+
+      <div
+        className="mt-3 flex items-center gap-3 rounded-lg border border-border px-3 py-2.5"
+        style={reveal(t, PAGES_CUE.status)}
+      >
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-1 text-meta whitespace-nowrap">
+            <span className="font-semibold text-text">
+              Your pages site is live at
+            </span>
+            <span className="font-semibold text-accent">
+              {typed(t, PAGES_CUE.url, PAGES_URL, 30)}
+            </span>
+          </div>
+          <div className="mt-0.5 text-meta whitespace-nowrap text-muted">
+            Deploy job {live ? 788 : 787} by Alex ·{" "}
+            {live ? "just now" : "3 minutes ago"}
+          </div>
+        </div>
+        <span
+          className="shrink-0 rounded-md border border-border px-2.5 py-1 text-meta text-text"
+          style={reveal(t, PAGES_CUE.visit, "scale(0.9)")}
+        >
+          Visit site
+        </span>
+      </div>
+
+      <div
+        className="mt-3 rounded-lg border border-border"
+        style={reveal(t, PAGES_CUE.list)}
+      >
+        <div className="flex items-center gap-2 border-b border-border px-3 py-2 text-meta">
+          <span className="font-semibold text-text">
+            Recent pages deployments
+          </span>
+          {/* The deployment limit, visible where people deploy. */}
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-panel-2 px-2 text-muted">
+            <svg viewBox="0 0 12 12" width="11" height="11">
+              <circle
+                cx="6"
+                cy="6"
+                r="4.5"
+                fill="none"
+                stroke="var(--border)"
+                strokeWidth="2"
+              />
+              <circle
+                cx="6"
+                cy="6"
+                r="4.5"
+                fill="none"
+                stroke="var(--accent)"
+                strokeWidth="2"
+                strokeDasharray={`${Math.max(2, (count / 100) * 28.3)} 28.3`}
+                transform="rotate(-90 6 6)"
+              />
+            </svg>
+            <span className="tabular-nums">{count}/100</span>
+          </span>
+        </div>
+        {/* Three rows show; the new deployment opens at the top and pushes
+            the oldest out of view. */}
+        <div className="overflow-hidden" style={{ height: PAGES_ROW_H * 3 }}>
+          {PAGES_DEPLOYS.map((name, i) => {
+            const isNew = i === 0;
+            const active = !isNew || live;
+            return (
+              <div
+                key={name}
+                className="overflow-hidden"
+                style={{
+                  height: isNew && !deploying ? 0 : PAGES_ROW_H,
+                  transition: "height 350ms ease",
+                }}
+              >
+                <div
+                  className="grid h-full grid-cols-[40px_1fr_auto] items-center gap-x-3 border-b border-border px-3 text-meta"
+                  style={
+                    isNew
+                      ? undefined
+                      : reveal(t, PAGES_CUE.list + 150 + i * 90, "translateY(4px)")
+                  }
+                >
+                  <span className="text-accent">{name}</span>
+                  <span className="flex min-w-0 items-center gap-2 whitespace-nowrap">
+                    <span
+                      className={`inline-flex items-center gap-1 rounded-full px-2 leading-[18px] ${
+                        active ? "bg-accent/20 text-text" : "bg-panel-2 text-muted"
+                      }`}
+                    >
+                      {active ? (
+                        <svg viewBox="0 0 12 12" width="10" height="10">
+                          <circle cx="6" cy="6" r="6" fill="var(--accent)" />
+                          <path
+                            d="M3.5 6.2 5.3 8 8.6 4.6"
+                            fill="none"
+                            stroke="var(--panel)"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      ) : (
+                        <span className="size-2.5 animate-spin rounded-full border-2 border-border border-t-accent" />
+                      )}
+                      {active ? "Active" : "Deploying"}
+                    </span>
+                    <span className="text-muted">docs.gitlab.io/{name}</span>
+                  </span>
+                  <span className="text-muted">
+                    {active ? "Expires in 23 hours" : "Just now"}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="px-3 py-2 text-meta text-accent">
+          Show more pages deployments
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---- MR summary: the author asks Duo to draft the description, and keeps it ---- */
+
+const MR_SUMMARY =
+  "Adds four functions to the codebase: add, subtract, multiply and divide. Each takes two numbers and returns the result, and divide guards against zero.";
+const MR_WORDS = MR_SUMMARY.split(" ");
+const MR_WORD_MS = 55;
+const MR_CUE = {
+  press: 600,
+  stream: 950,
+  footer: 950 + MR_WORDS.length * MR_WORD_MS + 250,
+  save: 950 + MR_WORDS.length * MR_WORD_MS + 1500,
+};
+
+function MrSummaryHeroScene({ t }: { t: number }) {
+  const pressed = t >= MR_CUE.press && t < MR_CUE.press + 300;
+  const streaming = t >= MR_CUE.stream && t < MR_CUE.footer;
+  const words = Math.max(
+    0,
+    Math.min(MR_WORDS.length, Math.floor((t - MR_CUE.stream) / MR_WORD_MS)),
+  );
+  const saving = t >= MR_CUE.save && t < MR_CUE.save + 300;
+  const saved = t >= MR_CUE.save + 300;
+
+  return (
+    <div className="vignette-card absolute inset-4 rounded-xl bg-surface p-3.5">
+      <div className="text-meta font-semibold text-text">
+        Edit merge request !136466
+      </div>
+      <div className="mt-1 flex items-center gap-1.5 font-mono text-meta whitespace-nowrap text-muted">
+        <span className="rounded-sm bg-panel-2 px-1.5 text-text-body">
+          adding-more-functions
+        </span>
+        <span>into</span>
+        <span className="rounded-sm bg-panel-2 px-1.5 text-text-body">main</span>
+        <span className="ml-auto">
+          4 files · <span className="text-accent">+42</span> −3
+        </span>
+      </div>
+
+      <div className="mt-3 flex items-center gap-2 text-meta">
+        <span className="font-semibold text-text">Description</span>
+        <span className="ml-auto rounded-full border border-border px-2 text-muted">
+          Experiment
+        </span>
+        <span
+          className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1 text-text"
+          style={{
+            background: pressed ? "color-mix(in oklab, var(--accent) 20%, transparent)" : undefined,
+            transform: pressed ? "scale(0.96)" : "none",
+            transition: "transform 150ms ease, background-color 150ms ease",
+          }}
+        >
+          <svg viewBox="0 0 12 12" width="11" height="11">
+            <path
+              d="M6 0 7.3 4.7 12 6 7.3 7.3 6 12 4.7 7.3 0 6 4.7 4.7Z"
+              fill="var(--accent)"
+            />
+          </svg>
+          Summarize my code changes
+        </span>
+      </div>
+
+      {/* The description editor. The draft lands here, in the author's own
+          field, rather than in a panel beside the reviewer. */}
+      <div
+        className="mt-2 rounded-lg border"
+        style={{
+          borderColor: streaming ? "var(--accent)" : "var(--border)",
+          transition: "border-color 250ms ease",
+        }}
+      >
+        <div className="flex h-7 items-center gap-2.5 border-b border-border px-3">
+          {[18, 10, 10, 10, 14, 10, 10, 12].map((width, i) => (
+            <span
+              key={i}
+              className="h-1.5 rounded-full bg-border"
+              style={{ width }}
+            />
+          ))}
+        </div>
+        <div className="flex h-[150px] flex-col px-3 pt-2.5 pb-2">
+          <p className="m-0 text-meta leading-[1.55]">
+            {words === 0 ? (
+              <span className="text-muted">
+                Describe the goal of the changes and what reviewers should be
+                aware of.
+              </span>
+            ) : (
+              <span className="text-text">
+                {MR_WORDS.slice(0, words).join(" ")}
+              </span>
+            )}
+            {streaming && words > 0 && (
+              <span className="vignette-caret ml-0.5 inline-block h-3.5 w-px bg-current align-middle text-text" />
+            )}
+          </p>
+          <div
+            className="mt-auto flex items-center gap-2 text-meta"
+            style={reveal(t, MR_CUE.footer, "translateY(4px)")}
+          >
+            <span className="text-muted">Generated by AI ·</span>
+            <span className="text-accent">Leave feedback</span>
+            <span className="ml-auto flex items-center gap-2">
+              {saved ? (
+                <span className="inline-flex items-center gap-1.5 text-text-body">
+                  <svg viewBox="0 0 12 12" width="11" height="11">
+                    <circle cx="6" cy="6" r="6" fill="var(--accent)" />
+                    <path
+                      d="M3.5 6.2 5.3 8 8.6 4.6"
+                      fill="none"
+                      stroke="var(--panel)"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  Saved to description
+                </span>
+              ) : (
+                <>
+                  <span className="rounded-md border border-border px-2 py-0.5 text-text">
+                    Regenerate
+                  </span>
+                  <span
+                    className="rounded-md bg-accent px-2.5 py-0.5 text-panel"
+                    style={{
+                      transform: saving ? "scale(0.94)" : "none",
+                      transition: "transform 150ms ease",
+                    }}
+                  >
+                    Save
+                  </span>
+                </>
+              )}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
