@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { CopyCommand } from "@/components/copy-command";
 import { LoopingHeroStage } from "@/components/hero-scenes";
-import { ExternalLinkIcon } from "@/components/icons";
 
 /**
  * Body of the Flow prototype tool page, without the route chrome, so the same
@@ -41,36 +40,29 @@ export function FlowPrototypeContent({
 
         {/* min-w-0 lets the command scroll inside its box on phones instead
             of widening the page. */}
-        <div className="mt-8 grid min-w-0 gap-3 [&>*]:min-w-0">
+        <div className="mt-8 grid min-w-0 [&>*]:min-w-0">
           <CopyCommand command="npx skills add fracazo/flow-prototype" />
-          <p className="m-0 text-meta">
-            <a
-              href="https://skills.sh/fracazo/flow-prototype"
-              target="_blank"
-              rel="noopener"
-            >
-              skills.sh/fracazo/flow-prototype
-              <ExternalLinkIcon size={12} className="external-mark" />
-            </a>
-          </p>
         </div>
 
         <div className="case-study-section">
           <h2>What you get</h2>
           <ul>
             <li>
-              <strong>Map</strong> puts every screen of every flow on one page.
+              <strong>Map</strong>{" "}
+              puts every screen of every flow on one page.
               Flows are rows, screens sit left to right, and the edges between
               them are coloured by type: happy, branch, refusal, back, sheet and
               inline.
             </li>
             <li>
-              <strong>Live</strong> shows one screen at the product&rsquo;s real
+              <strong>Live</strong>{" "}
+              shows one screen at the product&rsquo;s real
               size, with why the screen exists and where it can go next. Arrow
               keys follow the path forward and back.
             </li>
             <li>
-              <strong>Any device.</strong> iPhone, Android, web, watch or TV.
+              <strong>Any device.</strong>{" "}
+              iPhone, Android, web, watch or TV.
               The frame matches the device&rsquo;s real size and never gets
               stretched.
             </li>
