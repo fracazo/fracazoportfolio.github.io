@@ -259,8 +259,9 @@ export default function Home() {
             {/* Pull against .h1's 32px bottom margin so the mission caption
                 reads as part of the headline, not a new block. */}
             <p className="-mt-5 text-body text-text-body">
-              👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo, a boring
-              product designer. Obvious over clever, every time.
+              👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo, a product
+              designer who picks the obvious answer over the clever one. Boring
+              on purpose, easy to use.
             </p>
             {/* Phones: the three can't share a 327px line without crushing
                 padding, so pair the panel links and give the outbound one the

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://alexfracazo.com"),
   title: "Alex Fracazo - Product Designer",
   description:
-    "I make complex things simple. A boring product designer, end to end. Obvious over clever, every time.",
+    "I make complex things simple. A product designer who picks the obvious answer over the clever one. Boring on purpose, easy to use.",
   icons: {
     shortcut: "/images/favicon.svg",
     apple: "/images/webclip.svg",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Alex Fracazo - Product Designer",
     description:
-      "I make complex things simple. A boring product designer, end to end. Obvious over clever, every time.",
+      "I make complex things simple. A product designer who picks the obvious answer over the clever one. Boring on purpose, easy to use.",
     images: ["/images/opengraph.jpg"],
     type: "website",
   },
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Alex Fracazo - Product Designer",
     description:
-      "I make complex things simple. A boring product designer, end to end. Obvious over clever, every time.",
+      "I make complex things simple. A product designer who picks the obvious answer over the clever one. Boring on purpose, easy to use.",
     images: ["/images/opengraph.jpg"],
   },
 };
