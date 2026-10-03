@@ -154,6 +154,8 @@ function Scene({ kind, mode }: { kind: WorkVignetteKind; mode: SceneMode }) {
     <BemDiretoScene mode={mode} />
   ) : kind === "pages" ? (
     <PagesScene mode={mode} />
+  ) : kind === "flow" ? (
+    <FlowScene mode={mode} />
   ) : (
     <BirthGuideScene mode={mode} />
   );
@@ -529,6 +531,93 @@ function PagesScene({ mode }: { mode: SceneMode }) {
         </span>
       </div>
     </div>
+  );
+}
+
+/* ---- Flow prototype: the path walks screen to screen across the map ---- */
+
+/* Three phone frames in a row, each arc running top centre to top centre,
+   the way the flow map draws its happy-path edges. */
+const FLOW_PHONES = [32, 114, 196];
+const FLOW_PHONE_W = 52;
+const FLOW_PHONE_TOP = 52;
+const FLOW_ARC_LEN = 110;
+
+function FlowScene({ mode }: { mode: SceneMode }) {
+  const shown = mode === "settled" || mode === "play";
+  const delay = (ms: number) => (mode === "play" ? `${ms}ms` : "0ms");
+  // Each screen is reached a beat after the arc into it finishes drawing.
+  const reachedAt = [150, 750, 1300];
+
+  return (
+    <>
+      <svg
+        className="absolute inset-0"
+        viewBox={`0 0 ${CANVAS_W} ${CANVAS_H}`}
+        width={CANVAS_W}
+        height={CANVAS_H}
+      >
+        {FLOW_PHONES.slice(0, -1).map((x, i) => {
+          const from = x + FLOW_PHONE_W / 2;
+          const to = FLOW_PHONES[i + 1] + FLOW_PHONE_W / 2;
+          return (
+            <g key={x}>
+              <path
+                d={`M ${from} ${FLOW_PHONE_TOP - 4} C ${from} 22, ${to} 22, ${to} ${FLOW_PHONE_TOP - 6}`}
+                fill="none"
+                stroke="var(--accent)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeDasharray={FLOW_ARC_LEN}
+                style={{
+                  strokeDashoffset: shown ? 0 : FLOW_ARC_LEN,
+                  transition: "stroke-dashoffset 450ms ease",
+                  transitionDelay: delay(reachedAt[i + 1] - 500),
+                }}
+              />
+              <path
+                d={`M ${to - 3.5} ${FLOW_PHONE_TOP - 10} L ${to} ${FLOW_PHONE_TOP - 5} L ${to + 3.5} ${FLOW_PHONE_TOP - 10}`}
+                fill="none"
+                stroke="var(--accent)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{
+                  opacity: shown ? 1 : 0,
+                  transition: "opacity 150ms ease",
+                  transitionDelay: delay(reachedAt[i + 1] - 80),
+                }}
+              />
+            </g>
+          );
+        })}
+      </svg>
+
+      {FLOW_PHONES.map((x, i) => (
+        <div
+          key={x}
+          className="vignette-card absolute rounded-[10px] bg-surface"
+          style={{
+            left: x,
+            top: FLOW_PHONE_TOP,
+            width: FLOW_PHONE_W,
+            height: 104,
+            outline: "1.5px solid var(--accent)",
+            outlineColor: shown ? "var(--accent)" : "transparent",
+            outlineOffset: 2,
+            transition: "outline-color 200ms ease",
+            transitionDelay: delay(reachedAt[i]),
+          }}
+        >
+          <span className="absolute top-1.5 left-1/2 h-1.5 w-4 -translate-x-1/2 rounded-full bg-border" />
+          <span className="absolute top-5 left-2 h-1.5 w-[60%] rounded-full bg-border" />
+          <span className="absolute top-8 left-2 h-1 w-[72%] rounded-full bg-border" />
+          <span className="absolute top-10.5 left-2 h-1 w-[48%] rounded-full bg-border" />
+          {/* The screen's primary action, the tap that moves the path on. */}
+          <span className="absolute inset-x-2 bottom-3 h-2.5 rounded-full bg-accent/30" />
+        </div>
+      ))}
+    </>
   );
 }
 

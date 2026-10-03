@@ -10,7 +10,8 @@ export type WorkVignetteKind =
   | "mr-summary"
   | "mymix"
   | "bemdireto"
-  | "pages";
+  | "pages"
+  | "flow";
 
 /* Standalone scenes ARE the thumbnail: the row renders no screenshot behind
    them, they rest in their settled composition, and hover replays the
@@ -24,4 +25,5 @@ export const VIGNETTE_REPLACES_IMAGE: Record<WorkVignetteKind, boolean> = {
   mymix: true,
   bemdireto: true,
   pages: true,
+  flow: true,
 };
