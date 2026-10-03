@@ -1401,6 +1401,9 @@
   .before-after {
     margin: 24px 0 32px;
   }
+  .before-after .img-caption {
+    margin-top: 12px;
+  }
   .before-after-switch {
     display: flex;
     width: fit-content;
@@ -1465,40 +1468,6 @@
   @media (prefers-reduced-motion: reduce) {
     .case-study-section .before-after-frame img {
       transition: none;
-    }
-  }
-
-  /* ---- GitLab Pages case study: paired design screens side by side ---- */
-  .pages-figure-pair {
-    margin: 24px 0 32px;
-  }
-  .pages-figure-pair-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    align-items: start;
-  }
-  .pages-figure-pair-grid img {
-    width: 100%;
-    max-width: 100%;
-    max-height: none;
-    margin: 0;
-    padding: 0;
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    display: block;
-  }
-  .pages-figure-pair figcaption {
-    margin-top: 10px;
-    font-size: var(--text-meta-size);
-    color: var(--muted);
-    line-height: 1.6;
-    font-style: italic;
-  }
-  @media (max-width: 640px) {
-    .pages-figure-pair-grid {
-      grid-template-columns: 1fr;
     }
   }
 

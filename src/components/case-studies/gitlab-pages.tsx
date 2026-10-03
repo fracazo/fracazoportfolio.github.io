@@ -64,7 +64,7 @@ export function GitlabPagesContent({
             <h3>Starting from the product, not a brief</h3>
             <p>I was the product designer for the Knowledge group, which owned Wiki, GLQL and Pages. Pages had a small, dedicated engineering team and no roadmap pressure on its interface, which is exactly the condition under which usability debt builds up unnoticed. I decided it deserved a designer&rsquo;s attention before a customer escalation or a competitor forced the question. So I ran GitLab&rsquo;s UX scorecard on it, a structured evaluation of a product&rsquo;s main jobs that repeats each milestone. That run surfaced the site-status problems documented below, and the issue list it produced is what I took to the PM to argue Pages onto the roadmap.</p>
 
-            <p>I opened issue 511049 on 31 December 2024 with a written diagnosis and a proposal, tagged the Pages engineers and the PM, and asked for their critique. There was no brief, no research budget and no allocated engineering time. What I had was the product itself, a docs site I was maintaining on it, and engineers willing to tell me where I was wrong.</p>
+            <p>On 31 December 2024 I opened <a href="https://gitlab.com/gitlab-org/gitlab/-/issues/511049" target="_blank" rel="noopener">Revamp GitLab Pages<ExternalLinkIcon size={12} className="external-mark" /></a>, an issue with a written diagnosis and a proposal, tagged the Pages engineers and the PM, and asked for their critique. There was no brief, no research budget and no allocated engineering time. What I had was the product itself, a docs site I was maintaining on it, and engineers willing to tell me where I was wrong.</p>
 
             <h3>Who was in the room</h3>
             <p>The work ran entirely asynchronously in the issue and its design threads. The people who shaped it: two backend engineers who knew Pages best, the engineer who had just shipped the primary domain feature, the engineer taking over the Rails work, the PM, and the technical writer who reviewed every line of interface copy. An engineer from a different team built it.</p>
@@ -125,7 +125,7 @@ export function GitlabPagesContent({
 
             <p>The two backend engineers pushed back, and their reasons were good. Environments was heading toward Kubernetes and user-owned infrastructure. The feature overlap was tiny. Merging them would create cross-team dependencies that would stop the Pages team iterating at all, and most of the review-app benefit was already available with one line in the CI config. I still think the user-facing point stands. But I also knew that if I made the redesign depend on that outcome, nothing would ship.</p>
 
-            <p>Greever draws a line between agreement on the details and support to move forward. I did not need the engineers to agree with me about Environments. I needed their support for the redesign. So I did two things. I wrote the unification down as a recommended future iteration in the final proposal, explicitly out of scope, so the argument was on the record without blocking anything. And I solved the confusion I could solve: terminology. Every instance of &ldquo;deployment&rdquo; in Pages became &ldquo;Pages deployment&rdquo;. &ldquo;Latest deployment&rdquo; became &ldquo;Latest Pages deployment&rdquo;, the tab is &ldquo;Pages deployments&rdquo;, the limit reads &ldquo;Pages deployments: 2/100&rdquo;. It costs one word and it tells users which of the two systems they are looking at.</p>
+            <p>Agreement on the details and support to move forward are not the same thing. I did not need the engineers to agree with me about Environments. I needed their support for the redesign. So I did two things. I wrote the unification down as a recommended future iteration in the final proposal, explicitly out of scope, so the argument was on the record without blocking anything. And I solved the confusion I could solve: terminology. Every instance of &ldquo;deployment&rdquo; in Pages became &ldquo;Pages deployment&rdquo;. &ldquo;Latest deployment&rdquo; became &ldquo;Latest Pages deployment&rdquo;, the tab is &ldquo;Pages deployments&rdquo;, the limit reads &ldquo;Pages deployments: 2/100&rdquo;. It costs one word and it tells users which of the two systems they are looking at.</p>
           </div>
 
           <div className="case-study-section">
@@ -144,39 +144,59 @@ export function GitlabPagesContent({
             <p className="img-caption">After: the Overview tab. The first thing on the page is whether the site is live and where. Deployments are labelled as Pages deployments to keep them distinct from Environments.</p>
 
             <h3>Designing for the tiers</h3>
-            <p>The design covered the states the engineers would need, not just the happy path. Nine screens in total, handed over as a set so nothing had to be guessed during implementation.</p>
+            <p>The design covered the states the engineers would need, not just the happy path: each tier, each domain state, the deployment limit, and the menus behind every row, so nothing had to be guessed during implementation.</p>
 
-            <figure className="pages-figure-pair">
-              <div className="pages-figure-pair-grid">
-                <img src="/images/gitlab-pages-overview-alert.png" alt="Overview tab with a Domain setup needed alert under the live block, listing the two steps to verify the custom domain and an Edit domain button" />
-                <img src="/images/gitlab-pages-overview-prompt.png" alt="Overview tab where the live block shows the GitLab-provided address and a one-line prompt to add a custom domain" />
-              </div>
-              <figcaption>The &ldquo;hidden until something broke&rdquo; problem, solved on the first screen. Left: a custom domain that isn&rsquo;t verified yet gets an alert with the exact steps. Right: with no custom domain, the live block offers to add one, instead of a settings field nobody finds.</figcaption>
-            </figure>
+            <BeforeAfterToggle
+              labels={["Domain not verified", "No custom domain"]}
+              before={{
+                src: "/images/gitlab-pages-overview-alert.png",
+                alt: "Overview tab with a Domain setup needed alert under the live block, listing the two steps to verify the custom domain and an Edit domain button",
+              }}
+              after={{
+                src: "/images/gitlab-pages-overview-prompt.png",
+                alt: "Overview tab where the live block shows the GitLab-provided address and a one-line prompt to add a custom domain",
+              }}
+              caption={<>The &ldquo;hidden until something broke&rdquo; problem, solved on the first screen. A custom domain that isn&rsquo;t verified yet gets an alert with the exact steps. With no custom domain, the live block offers to add one, instead of a settings field nobody finds.</>}
+            />
 
-            <figure className="pages-figure-pair">
-              <div className="pages-figure-pair-grid">
-                <img src="/images/gitlab-pages-overview-free.png" alt="Overview tab on the Free tier with an empty state explaining parallel deployments and an Upgrade to Premium button" />
-                <img src="/images/gitlab-pages-overview-premium.png" alt="Overview tab on the Premium tier with the same empty state and a Learn more link instead of an upgrade button" />
-              </div>
-              <figcaption>The same empty state for two tiers. Free (left) explains what parallel deployments are and offers the upgrade. Premium (right) gets the explanation without the upsell.</figcaption>
-            </figure>
+            <BeforeAfterToggle
+              labels={["Free", "Premium"]}
+              before={{
+                src: "/images/gitlab-pages-overview-free.png",
+                alt: "Overview tab on the Free tier with an empty state explaining parallel deployments and an Upgrade to Premium button",
+              }}
+              after={{
+                src: "/images/gitlab-pages-overview-premium.png",
+                alt: "Overview tab on the Premium tier with the same empty state and a Learn more link instead of an upgrade button",
+              }}
+              caption={<>The same empty state for two tiers. Free explains what parallel deployments are and offers the upgrade. Premium gets the explanation without the upsell.</>}
+            />
 
-            <figure className="pages-figure-pair">
-              <div className="pages-figure-pair-grid">
-                <img src="/images/gitlab-pages-deployments.png" alt="Pages deployments tab with the main site in its own block, additional deployments at 2 of 100 below it, a toggle to show stopped deployments, and pagination" />
-                <img src="/images/gitlab-pages-deployments-limit.png" alt="Pages deployments tab at 99 of 100, with the badge in red, a Reached pages deployment limit usage bar and a Manage deployment limit link" />
-              </div>
-              <figcaption>The Pages deployments tab. Left: the main site separated from merge request previews, with a toggle for stopped deployments. Right: the limit reached, shown as a red badge, a usage bar and a link to manage it, before the next pipeline fails rather than after. That link is where the revenue work described below begins.</figcaption>
-            </figure>
+            <BeforeAfterToggle
+              labels={["Within limit", "Limit reached"]}
+              before={{
+                src: "/images/gitlab-pages-deployments.png",
+                alt: "Pages deployments tab with the main site in its own block, additional deployments at 2 of 100 below it, a toggle to show stopped deployments, and pagination",
+              }}
+              after={{
+                src: "/images/gitlab-pages-deployments-limit.png",
+                alt: "Pages deployments tab at 99 of 100, with the badge in red, a Reached pages deployment limit usage bar and a Manage deployment limit link",
+              }}
+              caption={<>The Pages deployments tab. Within the limit, the main site sits apart from merge request previews, with a toggle for stopped deployments. At the limit, a red badge, a usage bar and a link to manage it appear before the next pipeline fails rather than after. That link is where the revenue work described below begins.</>}
+            />
 
-            <figure className="pages-figure-pair">
-              <div className="pages-figure-pair-grid">
-                <img src="/images/gitlab-pages-settings.png" alt="Domains and settings tab: three domains listed with a Primary domain badge, DNS check results inline, a verification alert with an Edit domain button, Force HTTPS and Use unique domain settings with explanatory copy, and a Delete Pages block" />
-                <img src="/images/gitlab-pages-settings-menu.png" alt="The same tab with a domain's row menu open, showing Set as primary, Edit domain and Remove" />
-              </div>
-              <figcaption>Domains &amp; settings, resting and with a row menu open. Each domain carries its role and its DNS check inline. The settings copy explains what each option does, and the danger zone says what gets deleted and how to get it back.</figcaption>
-            </figure>
+            <BeforeAfterToggle
+              labels={["Resting", "Row menu open"]}
+              before={{
+                src: "/images/gitlab-pages-settings.png",
+                alt: "Domains and settings tab: three domains listed with a Primary domain badge, DNS check results inline, a verification alert with an Edit domain button, Force HTTPS and Use unique domain settings with explanatory copy, and a Delete Pages block",
+              }}
+              after={{
+                src: "/images/gitlab-pages-settings-menu.png",
+                alt: "The same tab with a domain's row menu open, showing Set as primary, Edit domain and Remove",
+              }}
+              caption={<>Domains &amp; settings. Each domain carries its role and its DNS check inline. The settings copy explains what each option does, and the danger zone says what gets deleted and how to get it back.</>}
+            />
 
             <p>Loading, empty and error states for the deployments list were specified alongside these so they could be cleaned up in the same pass.</p>
 
@@ -224,7 +244,7 @@ export function GitlabPagesContent({
             <p>The issue itself was closed as complete in early 2026, when the PM and I agreed Pages would not be prioritised again soon and the Paper Cuts work had covered the bulk of it. It closed because the product moved on, not because the design didn&rsquo;t ship.</p>
 
             <h3>What I&rsquo;d approach differently</h3>
-            <p>I would attach a metric to the proposal on day one. The diagnosis was sound and the reviewers agreed with it, but the issue never carried a number: time to find the site address, support requests about unverified domains, the share of Pages projects that add a custom domain. Greever&rsquo;s warning that projects without goals languish is what happened once the design was ready and nobody was measuring the cost of not building it. A metric would have turned the capacity conversation in February into a trade-off instead of a preference.</p>
+            <p>I would attach a metric to the proposal on day one. The diagnosis was sound and the reviewers agreed with it, but the issue never carried a number: time to find the site address, support requests about unverified domains, the share of Pages projects that add a custom domain. A project without a goal stalls, and that is what happened here: once the design was ready, nobody was measuring the cost of not building it. A metric would have turned the capacity conversation in February into a trade-off instead of a preference.</p>
 
             <p>I would go to Paper Cuts in February, not April. When I marked the designs final I asked for a last review, which invites more comments. The right ask was the direct one: do we agree to move forward with this? That explicit yes only came two months later, once I had a build route and my manager asked whether the work was ready. Asking for it the day the design was finished would have given me a decision to carry straight to Paper Cuts, and the build itself took ten days once it started. The slow part of this story was never the shipping. It was the two months I spent treating the roadmap as the only door.</p>
           </div>
@@ -232,7 +252,7 @@ export function GitlabPagesContent({
           <div className="case-study-section">
             <h2>Links</h2>
             <ul>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/511049" target="_blank" rel="noopener">GitLab issue 511049<ExternalLinkIcon size={12} className="external-mark" /></a>, the diagnosis, proposal and full design discussion</li>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/511049" target="_blank" rel="noopener">Revamp GitLab Pages<ExternalLinkIcon size={12} className="external-mark" /></a>, the diagnosis, proposal and full design discussion</li>
               <li><a href="https://gitlab.com/gitlab-org/gitlab/-/merge_requests/191744" target="_blank" rel="noopener">Pages: Add tabs<ExternalLinkIcon size={12} className="external-mark" /></a>, the merge request that landed the new structure, one of eleven in 18.1</li>
               <li><a href="https://gitlab.com/gitlab-org/gitlab/-/merge_requests/191809" target="_blank" rel="noopener">Pages live block<ExternalLinkIcon size={12} className="external-mark" /></a>, the &ldquo;Your Pages site is live at&rdquo; block</li>
               <li><a href="https://about.gitlab.com/blog/build-a-new-website-in-a-few-easy-steps-with-gitlab-pages/" target="_blank" rel="noopener">Build a new website in a few easy steps with GitLab Pages<ExternalLinkIcon size={12} className="external-mark" /></a>, GitLab Blog, 2025</li>
