@@ -12,6 +12,8 @@ type WorkRowProps = {
   /** Screenshot thumbnail; omitted when a standalone vignette is the thumb. */
   image?: { src: string; alt: string; srcSet?: string; sizes?: string };
   title: string;
+  /** Context line above the title, e.g. "Hireup · 2022". */
+  meta?: string;
   tagline?: string;
   /** "·"-separated facts; each becomes a Chip, matching the /work cards. */
   outcome?: string;
@@ -43,6 +45,7 @@ export function WorkRow({
   href,
   image,
   title,
+  meta,
   tagline,
   outcome,
   video,
@@ -96,6 +99,7 @@ export function WorkRow({
           not start until the image's full height, leaving a dead gap. They
           may wrap inside the ~328px column, which is the accepted trade. */}
       <div className="work-row-body mt-4 min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1 @min-[600px]:mt-0">
+        {meta && <p className="m-0 mb-1 text-meta text-muted">{meta}</p>}
         <h3 className="m-0 text-subhead-sm font-semibold text-text transition-colors duration-200 group-hover:text-brand">
           {title}
         </h3>

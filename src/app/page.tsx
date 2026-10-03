@@ -40,191 +40,141 @@ const featuredWork: FeaturedItem[] = [
       },
 ];
 
-/* Work is grouped by the kind of problem, not by date. Each group leads with
-   the full case studies and follows with compact rows. Both row kinds share
-   one padding, so the order is editorial rather than a visual weight change. */
-const workGroups = [
+/* Every full case study outside Featured, newest first. The meta line names
+   the company and year, so the list needs no category labels to scan. */
+const caseStudies = [
   {
-    id: "knowledge-products",
-    title: "Knowledge products",
-    context:
-      "I design the tools developers use every day at GitLab, and products people learn with.",
-    full: [
-      {
-        href: "/case-studies/wiki-contextual-comments",
-        title: "GitLab Wiki: Contextual Comments",
-        tagline:
-          "Tying a discussion to the exact line it refers to, closing a competitive gap against Confluence and Notion.",
-        vignette: "wiki" as const,
-      },
-      {
-        href: "/case-studies/birthguide",
-        image: {
-          src: "/images/birthguide-hero.svg",
-          alt: "The BirthGuide mark: a winding route icon above the wordmark and birthguide.com.au",
-        },
-        title: "BirthGuide",
-        tagline:
-          "Birth plans had to be printed. I made one that lives online and goes to the hospital on your phone.",
-        outcome: "Founder · Sole builder",
-        vignette: "birthguide" as const,
-      },
-    ],
-    compact: [
-      {
-        stub: "stub:coursify",
-        vignette: "coursify" as const,
-        title: "Coursify.me",
-        tagline:
-          "An online course platform: create courses, tutorials and ebooks, and sell them.",
-        metric: "50,000 students",
-      },
-      {
-        href: "/case-studies/mr-summary-ai",
-        vignette: "mr-summary" as const,
-        title: "Summarize Merge Requests with AI",
-        tagline:
-          "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
-        metric: "3 shipped iterations",
-      },
-    ],
-  },
-  {
-    id: "consumer-at-scale",
-    title: "Consumer at scale",
-    context:
-      "I designed entertainment, recharge and commerce flows for Qantas, Vodafone and Brazil's largest retailers.",
-    full: [],
-    compact: [
-      {
-        href: "/case-studies/qantas-entertainment-app",
-        image: {
-          src: "/images/62dc26d29e21732abffdaacd_work4-p-1080.png",
-          alt: "Qantas Entertainment App",
-        },
-        video: { src: "/videos/qantas-entertainment-spotlights.mp4" },
-        title: "A Unified In-flight Entertainment Experience",
-        tagline:
-          "Making the entertainment app useful before and after the flight, not just on board.",
-        metric: "Ad revenue 225k → 675k",
-      },
-      {
-        href: "/case-studies/qantas-app",
-        image: {
-          src: "/images/62dc1d83920df32baae28d6b_work2-p-1080.png",
-          alt: "Qantas Airways App",
-        },
-        video: { src: "/videos/qantas-app-kangaroo.mp4" },
-        title: "Increasing App Adoption Through Entertainment",
-        tagline:
-          "Using entertainment features to pull travellers into the main Qantas app.",
-        metric: "+70% downloads",
-      },
-      {
-        href: "/case-studies/eta-app",
-        image: {
-          src: "/images/62dc274f132cbe543717e126_work1-p-2000.jpg",
-          alt: "The Australian Government ETA visa app",
-        },
-        video: { src: "/videos/eta-face-scan.mp4" },
-        title: "Reducing Friction in Government Visa Applications",
-        tagline:
-          "Automating data entry to improve completion and reduce user effort in a high-stakes service.",
-        metric: "From 0 to 1 · Gold, Sydney Design Awards",
-      },
-      {
-        stub: "stub:b2w",
-        image: {
-          src: "/images/b2w-americanas-app.jpg",
-          alt: "A hand holding an iPhone running the americanas.com app, showing the deal of the day",
-        },
-        video: { src: "/videos/b2w-mobile-shopping.mp4" },
-        title: "Mobile for Americanas, Submarino and Shoptime",
-        tagline:
-          "Rebuilding mobile for three of Brazil's largest e-commerce brands.",
-        metric: "500,000+ items",
-      },
-      {
-        href: "/case-studies/vodafone-mymix",
-        vignette: "mymix" as const,
-        title: "Vodafone",
-        tagline:
-          "Letting prepaid customers build their own recharge, in four taps.",
-        metric: "72 combinations · 4 taps",
-      },
-    ],
-  },
-  {
-    id: "marketplaces",
-    title: "Marketplaces",
-    context:
-      "I designed both sides of two-sided platforms, for disability support in Australia and real estate in Brazil.",
-    full: [
-      {
-        href: "/case-studies/bringing-visibility-to-workers-status",
-        image: {
-          src: "/images/62fbf14400d70051caf1b477_hireup-project-p-1080.png",
-          alt: "Hireup brand with arrows that connects both the customer and the worker",
-          srcSet:
-            "/images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-500.png 500w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-800.png 800w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080.png 1080w",
-          sizes: "(min-width: 980px) 280px, 92vw",
-        },
-        video: { src: "/videos/hireup-status-cycle.mp4" },
-        title: "Worker Status Visibility",
-        tagline:
-          "Reducing uncertainty in a two-sided marketplace by making availability honest.",
-        outcome: "+12% bookings · Connection rate 3% → 5%",
-      },
-    ],
-    compact: [
-      {
-        stub: "stub:bem-direto",
-        vignette: "bemdireto" as const,
-        title: "Bem Direto",
-        tagline:
-          "Brazil's first real estate marketplace for agents, designed from scratch.",
-        metric: "First designer · From 0 to 1",
-      },
-    ],
-  },
-];
-
-const productDesign = [
-  {
-    title: "UX Forum: Rich Links",
-    meta: "GitLab · 2026",
-    links: [
-      { href: "https://www.youtube.com/watch?v=wuM58BBGSg0", label: "Video" },
-    ],
-  },
-  {
-    title: "Wiki Sidebar Redesign",
-    meta: "GitLab · 2026",
-    links: [
-      {
-        href: "https://gitlab.com/gitlab-org/gitlab/-/work_items/590402",
-        label: "GitLab issue",
-      },
-    ],
-  },
-  {
-    title: "Embedded views: The future of work tracking in GitLab",
-    meta: "GitLab · 2025",
-    links: [
-      {
-        href: "https://about.gitlab.com/blog/embedded-views-the-future-of-work-tracking-in-gitlab/",
-        label: "Blog post",
-      },
-    ],
-  },
-];
-
-const designEngineering = [
-  {
+    href: "/case-studies/birthguide",
+    image: {
+      src: "/images/birthguide-hero.svg",
+      alt: "The BirthGuide mark: a winding route icon above the wordmark and birthguide.com.au",
+    },
+    meta: "Founder · 2026",
     title: "BirthGuide",
-    meta: "Consumer product · 2026",
-    links: [{ href: "https://birthguide.com.au", label: "Site" }],
+    tagline:
+      "Birth plans had to be printed. I made one that lives online and goes to the hospital on your phone.",
+    outcome: "Sole builder",
+    vignette: "birthguide" as const,
   },
+  {
+    href: "/case-studies/wiki-contextual-comments",
+    meta: "GitLab · 2025",
+    title: "GitLab Wiki: Contextual Comments",
+    tagline:
+      "Tying a discussion to the exact line it refers to, closing a competitive gap against Confluence and Notion.",
+    vignette: "wiki" as const,
+  },
+  {
+    href: "/case-studies/mr-summary-ai",
+    meta: "GitLab · 2023–2024",
+    title: "Summarize Merge Requests with AI",
+    tagline:
+      "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
+    outcome: "3 shipped iterations",
+    vignette: "mr-summary" as const,
+  },
+  {
+    href: "/case-studies/bringing-visibility-to-workers-status",
+    image: {
+      src: "/images/62fbf14400d70051caf1b477_hireup-project-p-1080.png",
+      alt: "Hireup brand with arrows that connects both the customer and the worker",
+      srcSet:
+        "/images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-500.png 500w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080-p-800.png 800w, /images/62fbf14400d70051caf1b477_hireup-project-p-1080.png 1080w",
+      sizes: "(min-width: 980px) 280px, 92vw",
+    },
+    video: { src: "/videos/hireup-status-cycle.mp4" },
+    meta: "Hireup · 2022",
+    title: "Worker Status Visibility",
+    tagline:
+      "Reducing uncertainty in a two-sided marketplace by making availability honest.",
+    outcome: "+12% bookings · Connection rate 3% → 5%",
+  },
+  {
+    href: "/case-studies/eta-app",
+    image: {
+      src: "/images/62dc274f132cbe543717e126_work1-p-2000.jpg",
+      alt: "The Australian Government ETA visa app",
+    },
+    video: { src: "/videos/eta-face-scan.mp4" },
+    meta: "Department of Home Affairs · 2020",
+    title: "Reducing Friction in Government Visa Applications",
+    tagline:
+      "Automating data entry to improve completion and reduce user effort in a high-stakes service.",
+    outcome: "From 0 to 1 · Gold, Sydney Design Awards",
+  },
+  {
+    href: "/case-studies/qantas-entertainment-app",
+    image: {
+      src: "/images/62dc26d29e21732abffdaacd_work4-p-1080.png",
+      alt: "Qantas Entertainment App",
+    },
+    video: { src: "/videos/qantas-entertainment-spotlights.mp4" },
+    meta: "Qantas · 2018",
+    title: "A Unified In-flight Entertainment Experience",
+    tagline:
+      "Making the entertainment app useful before and after the flight, not just on board.",
+    outcome: "Ad revenue 225k → 675k",
+  },
+  {
+    href: "/case-studies/qantas-app",
+    image: {
+      src: "/images/62dc1d83920df32baae28d6b_work2-p-1080.png",
+      alt: "Qantas Airways App",
+    },
+    video: { src: "/videos/qantas-app-kangaroo.mp4" },
+    meta: "Qantas · 2016",
+    title: "Increasing App Adoption Through Entertainment",
+    tagline:
+      "Using entertainment features to pull travellers into the main Qantas app.",
+    outcome: "+70% downloads",
+  },
+  {
+    href: "/case-studies/vodafone-mymix",
+    meta: "Vodafone · 2015–2016",
+    title: "MyMix",
+    tagline:
+      "Letting prepaid customers build their own recharge, in four taps.",
+    outcome: "72 combinations · 4 taps",
+    vignette: "mymix" as const,
+  },
+];
+
+/* Work with no full case study. Each row opens a short stub in the panel. */
+const earlierWork = [
+  {
+    stub: "stub:b2w",
+    image: {
+      src: "/images/b2w-americanas-app.jpg",
+      alt: "A hand holding an iPhone running the americanas.com app, showing the deal of the day",
+    },
+    video: { src: "/videos/b2w-mobile-shopping.mp4" },
+    meta: "B2W Digital · 2013–2015",
+    title: "Mobile for Americanas, Submarino and Shoptime",
+    tagline:
+      "Rebuilding mobile for three of Brazil's largest e-commerce brands.",
+    metric: "500,000+ items",
+  },
+  {
+    stub: "stub:coursify",
+    vignette: "coursify" as const,
+    meta: "Co-founder · 2012–2014",
+    title: "Coursify.me",
+    tagline:
+      "An online course platform: create courses, tutorials and ebooks, and sell them.",
+    metric: "50,000 students",
+  },
+  {
+    stub: "stub:bem-direto",
+    vignette: "bemdireto" as const,
+    meta: "First designer · 2012–2013",
+    title: "Bem Direto",
+    tagline:
+      "Brazil's first real estate marketplace for agents, designed from scratch.",
+    metric: "From 0 to 1",
+  },
+];
+
+const built = [
   {
     title: "Birth Plans",
     meta: "Web app · 2026",
@@ -258,6 +208,27 @@ const designEngineering = [
       {
         href: "https://www.raycast.com/fracazo/contrast-lab",
         label: "Raycast Store",
+      },
+    ],
+  },
+];
+
+/* Talks and posts published elsewhere; they sit under Writing with the essays. */
+const talks = [
+  {
+    title: "UX Forum: Rich Links",
+    meta: "GitLab · 2026",
+    links: [
+      { href: "https://www.youtube.com/watch?v=wuM58BBGSg0", label: "Video" },
+    ],
+  },
+  {
+    title: "Embedded views: The future of work tracking in GitLab",
+    meta: "GitLab · 2025",
+    links: [
+      {
+        href: "https://about.gitlab.com/blog/embedded-views-the-future-of-work-tracking-in-gitlab/",
+        label: "Blog post",
       },
     ],
   },
@@ -330,64 +301,59 @@ export default function Home() {
         <FeaturedWork items={featuredWork} />
       </section>
 
-      {/* The case studies reveal as their own block. No section heading: the
-          group labels carry the structure. */}
-      <div className="reveal-after mx-auto grid w-full max-w-home gap-10">
+      {/* The rest of the work reveals as its own block, sorted by what a click
+          gives you: a full case study, a short stub, or something to try. */}
+      <div className="reveal-after mx-auto grid w-full max-w-home gap-22">
         <section
           id="Work"
-          aria-label="Selected projects"
+          aria-labelledby="case-studies-title"
           /* Containment context for the work cards. They size off this column
              rather than the window, so they stay correct once the column becomes
              one half of a split rather than the whole page. */
-          className="@container grid w-full gap-4"
+          className="@container w-full"
         >
-          {workGroups.map((group, groupIndex) => (
-            <section
-              key={group.id}
-              aria-labelledby={`${group.id}-title`}
-              className="mt-22 first:mt-0"
-            >
-              <h3
-                id={`${group.id}-title`}
-                className="m-0 text-meta font-medium leading-none tracking-[0.06em] text-muted uppercase"
-              >
-                {group.title}
-              </h3>
-              <p className="mt-1 mb-0 max-w-content text-body text-text-body">
-                {group.context}
-              </p>
-              <ul
-                role="list"
-                className="m-0 mt-4 flex list-none flex-col gap-1 p-0"
-              >
-                {group.full.map((work, index) => (
-                  <li key={work.href}>
-                    <WorkRow
-                      {...work}
-                      priority={groupIndex === 0 && index === 0}
-                    />
-                  </li>
-                ))}
-                {group.compact.map((work) => (
-                  <li key={work.title}>
-                    <WorkRowCompact {...work} />
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
-          <div className="mt-22">
-            <p className="mb-1 text-meta font-medium tracking-[0.06em] text-muted uppercase">
-              Product design
-            </p>
-            <LinkRowList items={productDesign} />
-          </div>
-          <div className="mt-22">
-            <p className="mb-1 text-meta font-medium tracking-[0.06em] text-muted uppercase">
-              Design engineering with AI
-            </p>
-            <LinkRowList items={designEngineering} />
-          </div>
+          <h2
+            id="case-studies-title"
+            className="m-0 mb-4 text-meta font-medium leading-none tracking-[0.06em] text-muted uppercase"
+          >
+            Case studies
+          </h2>
+          <ul role="list" className="m-0 flex list-none flex-col gap-1 p-0">
+            {caseStudies.map((work) => (
+              <li key={work.href}>
+                <WorkRow {...work} />
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section
+          aria-labelledby="earlier-work-title"
+          className="@container w-full"
+        >
+          <h2
+            id="earlier-work-title"
+            className="m-0 mb-4 text-meta font-medium leading-none tracking-[0.06em] text-muted uppercase"
+          >
+            Earlier work
+          </h2>
+          <ul role="list" className="m-0 flex list-none flex-col gap-1 p-0">
+            {earlierWork.map((work) => (
+              <li key={work.title}>
+                <WorkRowCompact {...work} />
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section aria-labelledby="built-title" className="w-full">
+          <h2
+            id="built-title"
+            className="m-0 mb-1 text-meta font-medium leading-none tracking-[0.06em] text-muted uppercase"
+          >
+            Things I&rsquo;ve built
+          </h2>
+          <LinkRowList items={built} />
         </section>
       </div>
 
@@ -398,9 +364,12 @@ export default function Home() {
       >
         <div className="grid gap-4">
           <h2 id="writing-title" className="h2">
-            Writing
+            Writing and talks
           </h2>
-          <RowList items={writing} />
+          <div>
+            <RowList items={writing} />
+            <LinkRowList items={talks} />
+          </div>
         </div>
       </section>
 

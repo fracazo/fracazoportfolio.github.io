@@ -12,6 +12,8 @@ type WorkRowCompactProps = {
   /** Omitted when no detail page exists; the row then renders unlinked. */
   href?: string;
   title: string;
+  /** Context line above the title, e.g. "B2W Digital · 2013–2015". */
+  meta?: string;
   tagline?: string;
   /** "·"-separated facts; each becomes a Chip, matching `WorkRow`. */
   metric?: string;
@@ -40,6 +42,7 @@ type WorkRowCompactProps = {
 export function WorkRowCompact({
   href,
   title,
+  meta,
   tagline,
   metric,
   todo,
@@ -84,6 +87,7 @@ export function WorkRowCompact({
         thumb ? " mt-4 @min-[600px]:mt-0" : ""
       }`}
     >
+      {meta && <p className="m-0 mb-1 text-meta text-muted">{meta}</p>}
       <h3
         className={`m-0 text-subhead-sm font-semibold text-text ${
           href ? "transition-colors duration-200 group-hover:text-brand" : ""
