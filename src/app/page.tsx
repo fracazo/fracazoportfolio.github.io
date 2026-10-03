@@ -290,13 +290,13 @@ export default function Home() {
           <div className="reveal-group">
             <AvatarGreeting />
             <h1 id="hero-title" className="h1">
-              I ship software people keep using.
+              I make complex things simple.
             </h1>
             {/* Pull against .h1's 32px bottom margin so the mission caption
                 reads as part of the headline, not a new block. */}
             <p className="-mt-5 text-body text-text-body">
-              👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo. This is my
-              mission.
+              👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo, a product
+              designer who gets the simple answer shipped.
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <PanelLink
