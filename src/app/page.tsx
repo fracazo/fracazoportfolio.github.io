@@ -8,7 +8,7 @@ import { FeaturedWork, type FeaturedItem } from "@/components/featured-work";
 import { RowList } from "@/components/row-list";
 import { LinkRowList } from "@/components/link-row-list";
 import { SiteFooter } from "@/components/site-footer";
-import { ExternalLinkIcon } from "@/components/icons";
+import { ExternalLinkIcon, LinkedInIcon } from "@/components/icons";
 
 /* The hero's lead work, in stage order: two case studies and a tool. Each
    needs a standalone vignette for the narrow layouts and, ideally, a hero
@@ -269,19 +269,33 @@ export default function Home() {
               👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo, a boring
               product designer. Obvious over clever, every time.
             </p>
-            <div className="mt-6 flex flex-wrap gap-2.5">
+            {/* Phones: the three can't share a 327px line without crushing
+                padding, so pair the panel links and give the outbound one the
+                full row. sm+ goes back to a single inline row. */}
+            <div className="mt-6 grid grid-cols-2 gap-2.5 sm:flex sm:flex-wrap">
               <PanelLink
                 href="/about"
-                className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
+                className="btn btn-primary inline-flex items-center justify-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
               >
                 About me
               </PanelLink>
               <PanelLink
                 href="/resume"
-                className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
+                className="btn btn-primary inline-flex items-center justify-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
               >
                 Work history
               </PanelLink>
+              <a
+                href="https://www.linkedin.com/in/fracazo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary col-span-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
+              >
+                <LinkedInIcon size={16} />
+                Get in touch
+                <span className="sr-only"> (opens LinkedIn in a new tab)</span>
+                <ExternalLinkIcon size={13} className="opacity-70" />
+              </a>
             </div>
           </div>
         </div>
