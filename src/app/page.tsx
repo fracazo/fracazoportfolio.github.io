@@ -238,6 +238,13 @@ const designEngineering = [
     ],
   },
   {
+    title: "Triage Agent",
+    meta: "Support-triage agent · 2026",
+    links: [
+      { href: "https://github.com/fracazo/triage-agent", label: "GitHub" },
+    ],
+  },
+  {
     title: "Don Draper",
     meta: "Claude Code skill · 2026",
     links: [
@@ -246,13 +253,12 @@ const designEngineering = [
   },
   {
     title: "Contrast Lab",
-    meta: "2026",
+    meta: "Raycast extension · 2026",
     links: [
       {
         href: "https://www.raycast.com/fracazo/contrast-lab",
         label: "Raycast Store",
       },
-      { href: "https://github.com/fracazo/contrast-lab", label: "GitHub" },
     ],
   },
 ];

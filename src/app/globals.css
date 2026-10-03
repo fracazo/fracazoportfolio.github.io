@@ -1248,19 +1248,17 @@
     color: var(--accent);
     border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   }
-  .glql-code {
-    font-family: var(--font-mono);
-    font-size: var(--text-meta-size);
-    line-height: 1.65;
-    color: var(--text);
-    background: var(--panel-2);
-    border: 1px solid var(--border);
-    border-radius: calc(var(--radius) - 4px);
-    padding: 14px 16px;
+  /* Syntax snippets are exported slides with transparent edges and an
+     overhanging badge, so drop the white panel every case-study image gets.
+     Each img carries its @2x width so the code text matches across cards. */
+  .case-study-section img.glql-syntax-img {
+    height: auto;
+    max-height: none;
     margin: 0 0 12px;
-    white-space: pre;
-    overflow-x: auto;
-    display: block;
+    background: transparent;
+    padding: 0;
+    outline: none;
+    border-radius: 0;
   }
   .glql-syntax-note {
     font-size: var(--text-meta-size);
