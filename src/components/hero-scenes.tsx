@@ -117,6 +117,7 @@ export const HERO_LOOP_MS: Partial<Record<WorkVignetteKind, number>> = {
   glql: 7600,
   pages: 6800,
   flow: 8400,
+  hireup: 8400,
 };
 
 type HeroScene = (props: { t: number }) => ReactNode;
@@ -125,6 +126,7 @@ const HERO_SCENES: Partial<Record<WorkVignetteKind, HeroScene>> = {
   glql: GlqlHeroScene,
   pages: PagesHeroScene,
   flow: FlowHeroScene,
+  hireup: HireupHeroScene,
 };
 
 /* 16:10 like the stage, at about its rendered width, so text sits near 1:1. */
@@ -897,5 +899,273 @@ function FlowScreenBody({ index }: { index: number }) {
         strokeLinejoin="round"
       />
     </svg>
+  );
+}
+
+/* ---- Hireup: a returning worker sees their status, turns it on, and a
+   client can find and message them again ---- */
+
+const HIREUP_CUE = {
+  welcome: 300,
+  tapAvatar: 1300,
+  sheet: 1500,
+  tapToggle: 2600,
+  open: 2750,
+  tapClose: 3800,
+  close: 4000,
+  // The client side: the worker is back in search, then gets a message.
+  listed: 4500,
+  message: 5500,
+  notify: 5900,
+};
+/* Already in the client's results before the worker comes back. */
+const HIREUP_OTHERS = [
+  { initials: "PS", name: "Priya S.", meta: "4km away · replies in a day" },
+  { initials: "TW", name: "Tom W.", meta: "6km away · replies in 2 days" },
+];
+const HIREUP_ROW_H = 52;
+
+function HireupHeroScene({ t }: { t: number }) {
+  const sheetUp = t >= HIREUP_CUE.sheet && t < HIREUP_CUE.close;
+  const open = t >= HIREUP_CUE.open;
+  const listed = t >= HIREUP_CUE.listed;
+  const messaged = t >= HIREUP_CUE.message;
+  const notified = t >= HIREUP_CUE.notify;
+  const tapped = (at: number) => t >= at && t < at + 400;
+
+  return (
+    <div className="vignette-card absolute inset-4 flex gap-4 rounded-xl bg-surface p-3.5">
+      {/* Worker app */}
+      <div className="relative w-[178px] shrink-0 overflow-hidden rounded-[22px] border-2 border-border bg-panel-2">
+        <span className="absolute top-1.5 left-1/2 z-30 h-[5px] w-[30px] -translate-x-1/2 rounded-full bg-text" />
+
+        {/* Home: the avatar carries the status on every page. */}
+        <div className="absolute inset-0 px-3 pt-6">
+          <div className="flex items-center justify-between border-b border-border pb-2">
+            <span className="text-subhead-sm leading-none font-semibold text-text">
+              Hi Valdir
+            </span>
+            <span className="relative flex items-center rounded-full bg-surface p-0.5">
+              <HireupBadge open={open} />
+              <span className="flex size-6 items-center justify-center rounded-full bg-accent/25 text-[9px] font-semibold text-text">
+                VJ
+              </span>
+              <HireupTap tapped={tapped(HIREUP_CUE.tapAvatar)} />
+            </span>
+          </div>
+          <div className="mt-2.5 text-meta font-semibold text-text">
+            Good afternoon!
+          </div>
+          {/* Return-to-app comms: why the status changed while away. */}
+          <div
+            className="mt-2 overflow-hidden rounded-lg bg-surface text-[11px] leading-[14px] text-text-body"
+            style={{
+              ...reveal(t, HIREUP_CUE.welcome),
+              maxHeight: open ? 0 : 80,
+              padding: open ? "0 10px" : "8px 10px",
+              transition:
+                "opacity 250ms ease, transform 250ms ease, max-height 300ms ease, padding 300ms ease",
+            }}
+          >
+            <span className="font-semibold text-text">Welcome back.</span>{" "}
+            While you were away we set you to not open for work.
+          </div>
+          <div className="mt-2.5 text-meta font-semibold text-text">
+            Jobs for you
+          </div>
+          <div className="mt-1.5 rounded-lg bg-surface p-2.5">
+            <span className="block h-[5px] w-[85%] rounded-full bg-border" />
+            <span className="mt-1.5 block h-[5px] w-[60%] rounded-full bg-border" />
+            <span className="mt-2.5 block h-[4px] w-[45%] rounded-full bg-border/70" />
+          </div>
+        </div>
+
+        {/* My Account sheet: the toggle lives with the other settings. */}
+        <div
+          className="absolute inset-x-0 top-5 bottom-0 z-10 rounded-t-[14px] bg-surface px-3 pt-2.5 shadow-[0_-4px_14px_rgb(0_0_0/0.12)]"
+          style={{
+            transform: sheetUp ? "none" : "translateY(105%)",
+            transition: "transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+          }}
+        >
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center border-b border-border pb-2 text-meta">
+            <span />
+            <span className="font-semibold text-text">My Account</span>
+            <span className="relative justify-self-end text-accent">
+              Close
+              <HireupTap tapped={tapped(HIREUP_CUE.tapClose)} />
+            </span>
+          </div>
+          <span className="mt-3 flex size-10 items-center justify-center rounded-full bg-accent/25 text-[13px] font-semibold text-text">
+            VJ
+          </span>
+          <div className="mt-1.5 text-meta font-semibold text-text">
+            Valdir Junior
+          </div>
+          <div
+            className={`mt-2 rounded-lg p-2.5 transition-colors duration-300 ${
+              open ? "bg-accent/15" : "bg-panel-2"
+            }`}
+          >
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[11px] leading-[14px] font-semibold text-text">
+                {open ? "You are open for work" : "You are not open for work"}
+              </span>
+              <span
+                className={`relative h-[16px] w-[28px] shrink-0 rounded-full transition-colors duration-200 ${
+                  open ? "bg-accent" : "bg-border"
+                }`}
+              >
+                <span
+                  className="absolute top-[2px] left-[2px] size-3 rounded-full bg-surface transition-transform duration-200"
+                  style={{ transform: open ? "translateX(12px)" : "none" }}
+                />
+                <HireupTap tapped={tapped(HIREUP_CUE.tapToggle)} />
+              </span>
+            </div>
+            <p className="mt-1 mb-0 text-[11px] leading-[14px] text-text-body">
+              {open
+                ? "Your profile appears in search, and you will receive job alerts."
+                : "Clients will know you are not looking for work, and might be slow to reply."}
+            </p>
+          </div>
+        </div>
+
+        {/* The payoff: a client gets in touch. It lands low so the avatar
+            badge stays visible in the settled frame. */}
+        <div
+          className="absolute inset-x-2 bottom-2 z-20 rounded-lg bg-surface px-2.5 py-2 text-[11px] leading-[14px] shadow-[0_4px_14px_rgb(0_0_0/0.16)]"
+          style={{
+            opacity: notified ? 1 : 0,
+            transform: notified ? "none" : "translateY(12px)",
+            transition: "opacity 250ms ease, transform 300ms ease",
+          }}
+        >
+          <div className="font-semibold text-text">Sarah sent a message</div>
+          <div className="text-text-body">Hi Valdir, are you free on Tuesdays?</div>
+        </div>
+      </div>
+
+      {/* Client search */}
+      <div className="flex min-w-0 flex-1 flex-col">
+        <div className="text-meta text-muted">Client search</div>
+        <div className="mt-0.5 text-meta font-semibold text-text">
+          Support workers near Greenwich
+        </div>
+        <div className="mt-2.5 rounded-lg border border-border">
+          {[null, ...HIREUP_OTHERS].map((worker, i) => {
+            const isValdir = worker === null;
+            return (
+              <div
+                key={worker?.name ?? "valdir"}
+                className="overflow-hidden"
+                style={{
+                  height: isValdir && !listed ? 0 : HIREUP_ROW_H,
+                  transition: "height 350ms ease",
+                }}
+              >
+                <div
+                  className={`flex h-full items-center gap-2.5 px-3 ${
+                    i < HIREUP_OTHERS.length ? "border-b border-border" : ""
+                  }`}
+                  style={
+                    isValdir
+                      ? { ...reveal(t, HIREUP_CUE.listed + 100) }
+                      : undefined
+                  }
+                >
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-accent/25 text-[10px] font-semibold text-text">
+                    {worker?.initials ?? "VJ"}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="flex items-center gap-1.5 text-meta font-semibold whitespace-nowrap text-text">
+                      {worker?.name ?? "Valdir J."}
+                      {isValdir && (
+                        <span className="rounded-full bg-accent/20 px-1.5 text-[10px] leading-[16px] font-medium">
+                          Open for work
+                        </span>
+                      )}
+                    </span>
+                    <span className="block truncate text-[11px] text-muted">
+                      {worker?.meta ?? "3km away · replies in a day"}
+                    </span>
+                  </span>
+                  <span
+                    className={`shrink-0 rounded-md border px-2 text-[11px] leading-[20px] transition-colors duration-200 ${
+                      isValdir && messaged
+                        ? "border-accent bg-accent text-surface"
+                        : "border-border text-text"
+                    }`}
+                  >
+                    {isValdir && messaged ? "Sent" : "Message"}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* The bag signifier beside the avatar: crossed out while not open for work,
+   checked and in the accent once open. */
+function HireupBadge({ open }: { open: boolean }) {
+  return (
+    <span
+      className={`mr-0.5 flex size-6 items-center justify-center rounded-full transition-colors duration-300 ${
+        open ? "bg-accent/20" : "bg-panel-2"
+      }`}
+    >
+      <svg viewBox="0 0 14 14" width="13" height="13" fill="none">
+        <rect
+          x="2"
+          y="4"
+          width="10"
+          height="8"
+          rx="1.5"
+          stroke={open ? "var(--accent)" : "var(--muted)"}
+          strokeWidth="1.4"
+        />
+        <path
+          d="M5 4V3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1"
+          stroke={open ? "var(--accent)" : "var(--muted)"}
+          strokeWidth="1.4"
+        />
+        {open ? (
+          <path
+            d="M5 8l1.4 1.4L9 6.8"
+            stroke="var(--accent)"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        ) : (
+          <path
+            d="M5.5 6.5l3 3M8.5 6.5l-3 3"
+            stroke="var(--muted)"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+          />
+        )}
+      </svg>
+    </span>
+  );
+}
+
+/* Tap: a ring pulses out from the centre of its parent, as in Flow. */
+function HireupTap({ tapped }: { tapped: boolean }) {
+  return (
+    <span
+      className="pointer-events-none absolute top-1/2 left-1/2 size-6 rounded-full border-2 border-accent"
+      style={{
+        opacity: tapped ? 1 : 0,
+        transform: `translate(-50%, -50%) scale(${tapped ? 1.4 : 0.6})`,
+        transition: tapped
+          ? "opacity 100ms ease, transform 400ms ease-out"
+          : "opacity 250ms ease, transform 0ms",
+      }}
+    />
   );
 }

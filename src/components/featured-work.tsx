@@ -15,10 +15,11 @@ export type FeaturedItem = {
   outcome?: string;
 } & (
   | { vignette: WorkVignetteKind; image?: never; video?: never }
-  /** A screen recording instead of a coded scene: the still is the
+  /** A screen recording: the narrow rows always play it, and the stage does
+      too unless a vignette with a hero scene is given. The still is the
       reduced-motion frame and the poster while the clip loads. */
   | {
-      vignette?: never;
+      vignette?: WorkVignetteKind;
       image: { src: string; alt: string; srcSet?: string; sizes?: string };
       video: { src: string };
     }
@@ -107,13 +108,13 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
                   kind={item.vignette}
                   playToken={index === selected ? playToken : 0}
                 />
-              ) : (
+              ) : item.video ? (
                 <StageVideo
                   src={item.video.src}
                   image={item.image}
                   playing={index === selected && playToken > 0}
                 />
-              )}
+              ) : null}
             </div>
           ))}
         </div>

@@ -11,7 +11,9 @@ export type WorkVignetteKind =
   | "mymix"
   | "bemdireto"
   | "pages"
-  | "flow";
+  | "flow"
+  /* Hero stage only: the Hireup row keeps its screen recording. */
+  | "hireup";
 
 /* Standalone scenes ARE the thumbnail: the row renders no screenshot behind
    them, they rest in their settled composition, and hover replays the
@@ -26,4 +28,5 @@ export const VIGNETTE_REPLACES_IMAGE: Record<WorkVignetteKind, boolean> = {
   bemdireto: true,
   pages: true,
   flow: true,
+  hireup: false,
 };

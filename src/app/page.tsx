@@ -28,6 +28,7 @@ const featuredWork: FeaturedItem[] = [
           sizes: "(min-width: 980px) 280px, 92vw",
         },
         video: { src: "/videos/hireup-status-cycle.mp4" },
+        vignette: "hireup",
       },
       {
         href: "/case-studies/glql",
