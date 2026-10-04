@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { TextLink } from "./text-link";
 import type { ReactNode } from "react";
 
 /**
@@ -27,15 +27,15 @@ export function SiteFooter({
               {links ?? (
                 <>
                   You can find me on{" "}
-                  <a href="https://github.com/fracazo" target="_blank">
-                    GitHub
-                  </a>
-                  ,{" "}
-                  <a href="https://www.linkedin.com/in/fracazo" target="_blank">
+                  <TextLink href="https://github.com/fracazo">GitHub</TextLink>,{" "}
+                  <TextLink href="https://www.linkedin.com/in/fracazo">
                     LinkedIn
-                  </a>
-                  , read my <Link href="/resume">work history</Link>, or{" "}
-                  <a href="mailto:fracazo@duck.com">reach me by email</a>.
+                  </TextLink>
+                  , read my <TextLink href="/resume">work history</TextLink>, or{" "}
+                  <TextLink href="mailto:fracazo@duck.com">
+                    reach me by email
+                  </TextLink>
+                  .
                 </>
               )}
             </p>

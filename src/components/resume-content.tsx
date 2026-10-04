@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { DownloadIcon, ExternalLinkIcon, LinkedInIcon } from "@/components/icons";
+import { DownloadIcon, ExternalLinkIcon } from "@/components/icons";
+import { LinkedInButton } from "@/components/linkedin-button";
 
 const RESUME_PDF = "/files/Alex Fracazo - Resume.pdf";
 
@@ -325,22 +326,12 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
             <a
               href={RESUME_PDF}
               download
-              className="btn btn-primary inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
+              className="btn btn-primary inline-flex items-center justify-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline max-sm:w-full"
             >
               <DownloadIcon size={16} />
               Download résumé (PDF)
             </a>
-            <a
-              href="https://www.linkedin.com/in/fracazo"
-              target="_blank"
-              rel="noopener"
-              className="btn inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
-            >
-              <LinkedInIcon size={16} />
-              Connect with me on LinkedIn
-              <span className="sr-only"> (opens in a new tab)</span>
-              <ExternalLinkIcon size={13} className="opacity-70" />
-            </a>
+            <LinkedInButton secondary />
           </div>
 
           <p className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-meta text-muted">

@@ -1,4 +1,5 @@
 import { HoverJoke } from "@/components/hover-joke";
+import { LinkedInButton } from "@/components/linkedin-button";
 import { PhotoCarousel, type CarouselPhoto } from "@/components/photo-carousel";
 import { PhotoStrip, type StripPhoto } from "@/components/photo-strip";
 
@@ -260,6 +261,8 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
               it&rsquo;s usually standing right there.
             </p>
           </div>
+
+          <LinkedInButton className="mt-10" />
         </div>
       </section>
     </>

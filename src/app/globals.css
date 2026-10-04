@@ -576,6 +576,61 @@
     }
   }
 
+  /* Inline prose links (TextLink). On hover or keyboard focus an underline
+     wipes in from the left and the mark moves the way it points: → slides
+     on, ↗ lifts out, the envelope rises. Motion that agrees with the mark,
+     so hovering confirms where the link goes rather than changing its
+     meaning. Single line only (TextLink is nowrap), which is what lets the
+     underline be one absolutely placed bar. Reduced motion: the underline
+     still appears, instantly, and nothing moves. */
+  .text-link {
+    --text-link-ease: cubic-bezier(0.62, 0.05, 0.01, 0.99);
+    white-space: nowrap;
+  }
+  .text-link:hover {
+    text-decoration: none;
+  }
+  .text-link-label {
+    position: relative;
+  }
+  .text-link-label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1.5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--text-link-ease);
+  }
+  .text-link:is(:hover, :focus-visible) .text-link-label::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .text-link-mark {
+    transition: transform 0.5s var(--text-link-ease);
+  }
+  .text-link:is(:hover, :focus-visible) .text-link-mark[data-mark="internal"] {
+    transform: translateX(2px);
+  }
+  .text-link:is(:hover, :focus-visible) .text-link-mark[data-mark="external"] {
+    transform: translate(1.5px, -1.5px);
+  }
+  .text-link:is(:hover, :focus-visible) .text-link-mark[data-mark="email"] {
+    transform: translateY(-1.5px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .text-link-label::after,
+    .text-link-mark {
+      transition: none;
+    }
+    .text-link:is(:hover, :focus-visible) .text-link-mark {
+      transform: none;
+    }
+  }
+
   /* Buttons — muted, filled. The fill is opaque (--btn-surface) so the dot
      field never shows through the label. Accent still only appears on
      interaction, mixed into that same surface. Base = secondary (Résumé,

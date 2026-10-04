@@ -1,6 +1,6 @@
 import { AvatarGreeting } from "@/components/avatar-greeting";
+import { BrandStrip } from "@/components/brand-strip";
 import { PlainShell } from "@/components/plain-shell";
-import { PanelLink } from "@/components/panel-link";
 import { PanelShell } from "@/components/panel-shell";
 import { WorkRow } from "@/components/work-row";
 import { WorkRowCompact } from "@/components/work-row-compact";
@@ -8,7 +8,8 @@ import { FeaturedWork, type FeaturedItem } from "@/components/featured-work";
 import { RowList } from "@/components/row-list";
 import { LinkRowList } from "@/components/link-row-list";
 import { SiteFooter } from "@/components/site-footer";
-import { ExternalLinkIcon, LinkedInIcon } from "@/components/icons";
+import { TextLink } from "@/components/text-link";
+import { ExternalLinkIcon } from "@/components/icons";
 
 /* The hero's lead work, in stage order: two case studies and a tool. Each
    needs a standalone vignette for the narrow layouts and, ideally, a hero
@@ -167,7 +168,14 @@ const earlierWork = [
   },
 ];
 
+/* Every tool, Featured or not: this is the complete list of what I've built,
+   so Flow prototype appears here as well as on the stage. */
 const built = [
+  {
+    title: "Flow prototype",
+    meta: "Claude Code skill · 2026",
+    links: [{ href: "/tools/flow-prototype", label: "Details" }],
+  },
   {
     title: "Birth Plans",
     meta: "Web app · 2026",
@@ -244,7 +252,7 @@ const writing = [
 export default function Home() {
   return (
     <PanelShell>
-    <PlainShell>
+    <PlainShell wide>
       {/* Hero */}
       <section
         aria-labelledby="hero-title"
@@ -256,44 +264,56 @@ export default function Home() {
             <h1 id="hero-title" className="h1">
               I make complex things simple.
             </h1>
-            {/* Pull against .h1's 32px bottom margin so the mission caption
-                reads as part of the headline, not a new block. */}
-            <p className="-mt-5 text-body text-text-body">
+            {/* Pull against .h1's 32px bottom margin so the greeting reads as
+                part of the headline. One step up from body, in the primary
+                colour, so it stays with the H1 rather than the paragraph. */}
+            <p className="-mt-5 text-subhead text-text-primary">
               👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo, a product
-              designer who picks the obvious answer over the clever one. Boring
-              on purpose, easy to use.
+              designer who picks the obvious answer over the clever one.
             </p>
-            {/* Phones: the three can't share a 327px line without crushing
-                padding, so pair the panel links and give the outbound one the
-                full row. sm+ goes back to a single inline row. */}
-            <div className="mt-6 grid grid-cols-2 gap-2.5 sm:flex sm:flex-wrap">
-              <PanelLink
-                href="/about"
-                className="btn btn-primary inline-flex items-center justify-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
-              >
-                About me
-              </PanelLink>
-              <PanelLink
-                href="/resume"
-                className="btn btn-primary inline-flex items-center justify-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
-              >
-                Work history
-              </PanelLink>
-              <a
-                href="https://www.linkedin.com/in/fracazo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary col-span-2 inline-flex items-center justify-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
-              >
-                <LinkedInIcon size={16} />
-                Get in touch
-                <span className="sr-only"> (opens LinkedIn in a new tab)</span>
-                <ExternalLinkIcon size={13} className="opacity-70" />
-              </a>
+            {/* The explanation of the claim above, at reading size. Its links
+                replace the old About me / Work history / Get in touch buttons;
+                the first two open the same panels, so /about stays reachable
+                from home. */}
+            <div className="mt-5 flex flex-col gap-4 text-body text-text-body">
+              <p>
+                I choose the obvious solution, then sweat the details until it
+                works. Some call it{" "}
+                <TextLink href="https://capwatkins.com/blog/the-boring-designer">
+                  boring design
+                </TextLink>
+                .{" "}
+                {/* Clever vs boring starts its own line where there is room;
+                    on phones the forced break stranded "boring design." on a
+                    short line, so they wrap naturally. */}
+                <br className="max-sm:hidden" />
+                Clever design makes people stop and figure it out. Boring
+                design lets them get on with their day.
+              </p>
+              <p>
+                Read my{" "}
+                <TextLink href="/resume" panel>
+                  work history
+                </TextLink>
+                , a bit{" "}
+                <TextLink href="/about" panel>
+                  more about me
+                </TextLink>
+                , or <TextLink href="mailto:fracazo@duck.com">get in touch</TextLink>
+                .
+              </p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Client marks, edge to edge of the page (or of the index pane when a
+          panel is open), outside the 1040px column. -mx-6 cancels main's
+          gutter; the strip's own px-6 keeps the marks off the edge. Hairlines
+          in the faintest border token mark the bleed as deliberate without
+          boxing the marks in. -my-6 tightens main's 64px section gap to 40px
+          outside the rules; py-6 is the air inside them. */}
+      <BrandStrip className="reveal-after -mx-6 -my-6 border-y border-border-muted px-6 py-6" />
 
       {/* Featured: the lead case studies get a list-and-stage hero. */}
       <section
@@ -387,9 +407,9 @@ export default function Home() {
         className="mx-auto w-full max-w-home pt-12 pb-12"
       >
         <h2 id="testimonials-title" className="h3 mb-6 font-medium text-muted">
-          Working with Alex
+          Working with me
         </h2>
-        <div className="flex max-w-content flex-col gap-6">
+        <div className="flex flex-col gap-6">
           <blockquote className="m-0 border-s-2 border-border ps-4">
             <p className="m-0 mb-2 text-body text-text-body">
               &ldquo;Alex consistently demonstrated strong design leadership and

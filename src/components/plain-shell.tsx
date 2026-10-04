@@ -8,7 +8,15 @@ import { ThemeToggle } from "./theme-toggle";
  * and the footer, and by the reading pages (writing, about, case studies),
  * which carry their own back pill. Utility pages still use AppShell.
  */
-export function PlainShell({ children }: { children: ReactNode }) {
+export function PlainShell({
+  children,
+  wide = false,
+}: {
+  children: ReactNode;
+  /* Drops the 1200px cap so a child can bleed to the pane edge. Only for
+     pages whose sections each carry their own max width (the landing page). */
+  wide?: boolean;
+}) {
   return (
     <div className="min-h-dvh">
       <div className="fixed top-4 end-4 z-50">
@@ -17,7 +25,9 @@ export function PlainShell({ children }: { children: ReactNode }) {
 
       <main
         id="content"
-        className="mx-auto grid w-full max-w-[1200px] gap-16 px-6 pb-18 [&>*]:min-w-0"
+        className={`mx-auto grid w-full gap-16 px-6 pb-18 [&>*]:min-w-0 ${
+          wide ? "" : "max-w-[1200px]"
+        }`}
       >
         {children}
       </main>
