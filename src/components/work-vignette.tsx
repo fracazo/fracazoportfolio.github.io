@@ -938,8 +938,14 @@ function BemDiretoScene({ mode }: { mode: SceneMode }) {
 
 /* ---- BirthGuide: the printed plan becomes one on your phone ---- */
 
-const BIRTHGUIDE_PAPER = { w: 92, h: 128, radius: 3, x: 0 };
-const BIRTHGUIDE_PHONE = { w: 78, h: 142, radius: 14, x: -40 };
+/* The page tilts like a sheet on a desk, then squares up as the phone. */
+const BIRTHGUIDE_PAPER = { w: 96, h: 128, radius: 4, x: 0, tilt: -4 };
+const BIRTHGUIDE_PHONE = { w: 78, h: 142, radius: 14, x: -40, tilt: 0 };
+/* Sheets under the top one: offset and turned a little more each. */
+const BIRTHGUIDE_STACK = [
+  { dx: 4, dy: 3, tilt: -1 },
+  { dx: 8, dy: 6, tilt: 2 },
+];
 
 function BirthGuideScene({ mode }: { mode: SceneMode }) {
   // Settled shows the finished beat: the plan on the phone, link shared.
@@ -947,18 +953,41 @@ function BirthGuideScene({ mode }: { mode: SceneMode }) {
   const delay = (ms: number) => (mode === "play" ? `${ms}ms` : "0ms");
   const shape = online ? BIRTHGUIDE_PHONE : BIRTHGUIDE_PAPER;
   const morph = "450ms cubic-bezier(0.2, 0.8, 0.2, 1)";
+  const place = (x: number, y: number, tilt: number) =>
+    `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${tilt}deg)`;
 
   return (
     <>
-      {/* One object: an A4 page that reshapes into a phone. */}
+      {/* The rest of the printout: it gathers under the top sheet and goes. */}
+      {BIRTHGUIDE_STACK.map((sheet, i) => (
+        <div
+          key={i}
+          className="vignette-card absolute top-1/2 left-1/2 bg-surface"
+          style={{
+            width: BIRTHGUIDE_PAPER.w,
+            height: BIRTHGUIDE_PAPER.h,
+            borderRadius: BIRTHGUIDE_PAPER.radius,
+            opacity: online ? 0 : 1,
+            transform: online
+              ? place(BIRTHGUIDE_PHONE.x, 0, 0)
+              : place(sheet.dx, sheet.dy, sheet.tilt),
+            transition: `transform ${morph}, opacity 300ms ease`,
+            transitionDelay: delay(250),
+            zIndex: BIRTHGUIDE_STACK.length - i,
+          }}
+        />
+      ))}
+
+      {/* The top sheet reshapes into the phone. Its content is the plan:
+          a title, the info box, then rows of preference tiles. */}
       <div
-        className="vignette-card absolute top-1/2 left-1/2 overflow-hidden bg-surface px-2.5"
+        className="vignette-card absolute top-1/2 left-1/2 z-10 overflow-hidden bg-surface px-2"
         style={{
           width: shape.w,
           height: shape.h,
           borderRadius: shape.radius,
-          paddingTop: online ? 18 : 12,
-          transform: `translate(calc(-50% + ${shape.x}px), -50%)`,
+          paddingTop: online ? 17 : 10,
+          transform: place(shape.x, 0, shape.tilt),
           transition: ["width", "height", "border-radius", "padding-top", "transform"]
             .map((prop) => `${prop} ${morph}`)
             .join(", "),
@@ -974,18 +1003,22 @@ function BirthGuideScene({ mode }: { mode: SceneMode }) {
             transitionDelay: delay(600),
           }}
         />
-        <span className="block h-2 w-10 rounded-full bg-text/70" />
-        <span className="mt-2.5 block h-1 w-full rounded-full bg-border" />
-        <span className="mt-1 block h-1 w-[75%] rounded-full bg-border" />
-        <span className="mt-2.5 block h-5 rounded-md bg-panel-2" />
-        <span className="mt-1.5 block h-5 rounded-md bg-panel-2" />
-        <span className="mt-2.5 block h-1 w-full rounded-full bg-border" />
-        <span className="mt-1 block h-1 w-[60%] rounded-full bg-border" />
+        <span className="mx-auto block h-2 w-12 rounded-full bg-text/70" />
+        <span className="mt-2 block h-4 rounded-[3px] border border-border" />
+        <div className="mt-2 flex flex-col gap-1.5">
+          {[0, 1, 2].map((row) => (
+            <div key={row} className="grid grid-cols-3 gap-1">
+              {[0, 1, 2].map((tile) => (
+                <span key={tile} className="block h-4 rounded-[3px] bg-panel-2" />
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* The payoff: a link, ready to send to the midwife. */}
       <div
-        className="vignette-card absolute top-1/2 left-1/2 flex items-center gap-1.5 rounded-full bg-surface py-1.5 pr-3 pl-2"
+        className="vignette-card absolute top-1/2 left-1/2 z-10 flex items-center gap-1.5 rounded-full bg-surface py-1.5 pr-3 pl-2"
         style={{
           opacity: online ? 1 : 0,
           transform: `translate(14px, -50%) scale(${online ? 1 : 0.85})`,
