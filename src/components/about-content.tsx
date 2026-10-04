@@ -112,19 +112,20 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
 
           <div className="writing-body">
             <p>
-              Home first: a farm in Minas Gerais. Later, Cuiabá, at the edge of
-              the Pantanal. Portuguese at home, English much later. Maybe
-              that&rsquo;s why I like things said simply.
+              I grew up on a farm in Minas Gerais, Brazil. Later we moved to
+              Cuiabá, near the Pantanal. English is my second language, and I
+              think that&rsquo;s part of why I like simple words and simple
+              design.
             </p>
 
             <PhotoStrip
               photos={pantanalPhotos}
               label="Photos from the Pantanal, Mato Grosso"
-              caption="The Pantanal, out past Cuiabá."
+              caption="The Pantanal, near Cuiabá."
             />
 
             <p>
-              I started in 2005 by{" "}
+              I started in 2005 at an agency in Mato Grosso,{" "}
               <HoverJoke
                 id="photoshop-joke"
                 word="designing"
@@ -133,49 +134,49 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
                 width={640}
                 height={446}
               />{" "}
-              websites in Photoshop and building them out of table layouts, in
-              an agency in Mato
-              Grosso, Brazil. Then tableless. Then Haml and Sass at Artia, the
-              first product management software built in Brazil.
+              websites in Photoshop and building them with table layouts. Later
+              I moved to tableless layouts, and then to Haml and Sass at Artia,
+              the first product management software built in Brazil.
             </p>
 
             <PhotoCarousel photos={artiaPhotos} />
 
             <p>
-              Small agile team, everyone doing a bit of everything, design was
-              my specialty and the code was just part of the job.
+              It was a small agile team where everyone did a bit of everything.
+              Design was my specialty, and code was just part of the job.
             </p>
 
             <p>
               In 2013 I joined B2W, the biggest e-commerce company in South
-              America, on the mobile team. The mobile team was the corner nobody
-              visited. The company had no responsive website. The native app
-              sold about one product a day, and that was considered normal.
+              America, on the mobile team. Nobody paid much attention to mobile
+              back then. The company had no responsive website, and the native
+              app sold about one product a day. Everyone thought that was
+              normal.
             </p>
 
             <p>
-              There was a physical store nearby with a café, and employees got a
-              discount, so I went for coffee most days. Walking back one
-              afternoon I saw someone using our app while standing in the shop.
+              There was a physical store near the office with a café, and
+              employees got a discount, so I went for coffee most days. Walking
+              back one afternoon, I saw a woman using our app inside the shop.
               I asked if she ever bought through it. She said no, never. The app
               only took credit cards, and she paid by boleto, which let her
               split the cost into instalments.
             </p>
 
             <p>
-              Two minutes of conversation explained a number our analytics never
-              had.
+              That two-minute conversation explained something our analytics
+              never showed us.
             </p>
 
             <p>
-              Getting boleto into a native app meant going outside my team. The
-              web team was already rebuilding the site for small screens, so I
-              took the finding to them and made the case for prioritising the
-              payment work, then we brought it into the app through a webview. I
-              rebuilt the app around the flat design language iOS 7 had just
+              Adding boleto to the app meant working outside my team. The web
+              team was already rebuilding the site for small screens, so I took
+              the finding to them and made the case for prioritising the payment
+              work. Then we brought it into the app through a webview. I also
+              rebuilt the app around the flat design style that iOS 7 had just
               introduced. We were the first native app in Brazil built for iOS
-              7, and Apple featured us in the App Store. 50 products on the
-              first day.
+              7, and Apple featured us in the App Store. On the first day, we
+              sold 50 products.
             </p>
 
             <figure className="relative my-8 w-full overflow-hidden rounded-card bg-panel pt-[56.25%]">
@@ -190,22 +191,23 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
             </figure>
 
             <p>
-              Then months of making it faster, which mattered more than the
-              redesign did. Mobile revenue grew ten times over the following
-              year.
+              Then we spent months making the app faster, which mattered more
+              than the redesign. Mobile revenue grew ten times over the
+              following year.
             </p>
 
             <p>
-              I left Brazil not long after and moved to Australia to study UX
-              properly. I wanted to understand why that conversation worked when
-              a year of data hadn&rsquo;t.
+              Not long after, I left Brazil and moved to Australia to study UX
+              properly. I wanted to understand why that one conversation worked
+              when a year of data hadn&rsquo;t.
             </p>
 
             <p>
-              Then came Vodafone, Qantas, Woolworths, NAB and Hireup. Along the
-              way, a government visa app that won a Sydney Design Award, and a
-              disability support marketplace where one simple change moved
-              connections from 3% to 5%.
+              In Australia I worked with Vodafone, Qantas, Telstra, Endeavour
+              Group and Hireup. Along the way, I worked on a government visa app
+              that won a Sydney Design Award, and a disability support
+              marketplace where one simple change moved connections from 3% to
+              5%.
             </p>
 
             <figure className="my-8">
@@ -220,10 +222,10 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
             </figure>
 
             <p>
-              Then GitLab, where I owned Wiki, GLQL, Pages, and the text
-              editors, and spent as much time on what to build as on how it
-              looked. I was back in the code there too, shipping some of my own
-              changes to production.
+              Then GitLab, where I owned Wiki, GLQL, Pages and the text editors.
+              I spent as much time on what to build as on how it looked, and I
+              was back in the code too, shipping some of my own changes to
+              production.
             </p>
 
             <figure className="my-8">
@@ -251,13 +253,13 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
             </figure>
 
             <p>
-              Now I build by directing AI and reviewing what comes back, which
-              is close enough to the work I did in 2009 that it feels familiar.
+              Now I build by directing AI and reviewing what it gives back. It
+              feels familiar, because it&rsquo;s close to the work I did in 2009.
             </p>
 
             <p>
-              The through line is the same as the shop. Go and look at the
-              thing. The answer is usually simpler than anyone expected, and
+              Looking back, the lesson is the same one I learned at the shop: go
+              and look at the thing. The answer is usually simpler than anyone expected, and
               it&rsquo;s usually standing right there.
             </p>
           </div>
