@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { DownloadIcon, ExternalLinkIcon } from "@/components/icons";
-import { BrandStrip } from "@/components/brand-strip";
+import { DownloadIcon, ExternalLinkIcon, LinkedInIcon } from "@/components/icons";
 
 const RESUME_PDF = "/files/Alex Fracazo - Resume.pdf";
 
@@ -39,6 +38,8 @@ type Job = {
   outcome: string | null;
   points: string[];
   clients?: Client[];
+  /* Role-wide line that reads after the client entries. */
+  closing?: string;
 };
 
 const experience: Job[] = [
@@ -46,15 +47,15 @@ const experience: Job[] = [
     company: "GitLab",
     caseStudies: [
       { title: "GLQL / Embedded Views", href: "/case-studies/glql" },
-      {
-        title: "Wiki Contextual Comments",
-        href: "/case-studies/wiki-contextual-comments",
-      },
+      { title: "Making Site Status Visible in GitLab Pages", href: "/case-studies/gitlab-pages" },
       {
         title: "Summarize Merge Requests with AI",
         href: "/case-studies/mr-summary-ai",
       },
-      { title: "Making Site Status Visible in GitLab Pages", href: "/case-studies/gitlab-pages" },
+      {
+        title: "Wiki Contextual Comments",
+        href: "/case-studies/wiki-contextual-comments",
+      },
     ],
     role: "Senior Product Designer",
     context: null,
@@ -63,7 +64,8 @@ const experience: Job[] = [
     outcome: "+33% weekly users · code in production",
     points: [
       "Built GLQL (GitLab Query Language), an in-product query language for tracking work, from research to general availability. Interviewed customers, scoped with the product manager and engineering, and shipped production code via merge requests. Grew weekly users from 600 to 801, a 33% increase, by surfacing it inside the editor at the moment of writing.",
-      "Surveyed and ran usability studies on AI code review that exposed trust and control problems, then reframed the product around the author. The resulting writing assistant shipped and reached broad adoption with no critical feedback.",
+      "Found site status, deployment and DNS problems in GitLab Pages through my own UX scorecards, designed the fix, and shipped it through the Paper Cuts team as eleven merge requests in one release.",
+      "Surveyed and ran usability studies on AI code review that exposed trust and control problems, then reframed the product around the author. The resulting writing assistant shipped to general availability and is still in the product.",
       "Established an AI-assisted research and prototyping pipeline: analysed anonymised product data, generated interview guides, synthesised transcripts, then produced user flows, wireframes and working responsive prototypes across desktop, tablet and mobile. Mentored designers across the design org and ran critiques.",
     ],
   },
@@ -77,7 +79,7 @@ const experience: Job[] = [
     ],
     role: "Principal Product Designer",
     context:
-      "Australia's largest disability support marketplace. Designer on the iOS and Android app team.",
+      "Australia's largest disability support marketplace. Led design for the iOS and Android apps.",
     period: "Mar 2021 – Oct 2022",
     location: "Sydney",
     outcome: "Connection rate 3% → 5% · booking rate +12%",
@@ -102,13 +104,14 @@ const experience: Job[] = [
         href: "/case-studies/eta-app",
       },
     ],
-    role: "Forward Deployed Product Designer",
+    role: "Forward Deployed Product Designer (Team Lead)",
     context:
       "Embedded with client product teams to take work from discovery through to launch.",
     period: "Jul 2016 – Jun 2020",
     location: "Sydney",
     outcome: "Tripled ad revenue · Sydney Design Awards Gold",
     points: [],
+    closing: "Mentored designers and established research practices across teams.",
     clients: [
       {
         name: "Qantas",
@@ -151,8 +154,10 @@ const experience: Job[] = [
     context: null,
     period: "Jun 2013 – May 2015",
     location: "Rio de Janeiro",
-    outcome: "3 apps · 1 design system",
+    outcome: "Featured by Apple · mobile revenue 10x",
     points: [
+      "Found through a two-minute conversation with a shopper why the app barely sold: it only took credit cards, and most customers paid by boleto. Worked with the web team to bring boleto into the app.",
+      "Rebuilt the app for iOS 7, the first native app in Brazil designed for it. Apple featured it in the App Store, and mobile revenue grew ten times over the following year.",
       "Developed a responsive white-label platform for multiple store brands at LATAM's largest e-commerce company, and consolidated three native apps onto a single design system.",
     ],
   },
@@ -174,11 +179,18 @@ const experience: Job[] = [
    reads as one flagship product followed by a shipping record. */
 const projects = [
   {
+    name: "Flow Prototype",
+    href: "/tools/flow-prototype",
+    year: "Claude Code skill · 2026",
+    context:
+      "Designing with AI, you lose the canvas. Write your product’s flows in plain markdown and get a map of every screen plus a clickable prototype in the real device frame, for iPhone, Android, web, watch or TV. Installs with one command.",
+  },
+  {
     name: "BirthGuide",
     href: "https://birthguide.com.au",
     year: "Solo build · 2026",
     context:
-      "A consumer birth-planning product for Australian first-time parents, live with paying users. Designed and built solo, end-to-end, on Next.js, React 19, Supabase, Stripe and the Anthropic SDK. Parents answer a guided questionnaire and receive an interactive birth plan with a QR code midwives scan on their phone, plus a printable partner summary.",
+      "A consumer birth-planning product for Australian first-time parents, live with paying users. Designed and built solo, end to end, on Next.js, React 19, Supabase, Stripe and the Anthropic SDK. Parents answer a guided questionnaire and receive an interactive birth plan with a QR code midwives scan on their phone, plus a printable partner summary.",
     points: [
       "Reframed the category from ‘printable template’ to ‘labour communication tool’ after research revealed the partner is the primary plan reader during active labour.",
       "Validated real usage with Clarity session recordings, and built free tools, guides, and an AI chat assistant as an organic acquisition strategy.",
@@ -282,29 +294,28 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
           <h1 className="h1">Work history</h1>
           {/* Pull against .h1's 32px bottom margin so the line reads as the
               heading's caption, not a new block. Same move as the home hero. */}
-          <p className="-mt-5 text-meta text-muted">
-            I work end to end, from research and strategy through to a working
-            product.
-          </p>
-          {/* Client marks sit with the work history, where they are evidence
-              for the claim above them rather than decoration on the home page.
-              No heading: the strip's own aria-label ("Previously worked with")
-              names it for readers the logos can't reach. */}
-          <BrandStrip className="mt-5" />
-          <p className="mt-5 text-body text-text-body">
-            Product designer and front-end developer who has built products at
-            GitLab, Qantas, Vodafone and Telstra. Took GitLab&rsquo;s
-            in-product query language from research to launch, grew weekly
-            users 33%, and shipped my own merge requests to production. Founded
-            and shipped BirthGuide, live with paying users, built solo on
-            Next.js, Supabase and the Anthropic SDK. Four years forward
-            deployed into enterprise and federal government teams.
-          </p>
+          <div className="flex flex-col gap-3 text-body text-text-body">
+            <p>
+              Product designer who makes complex things simple, from research
+              through to a working product.
+            </p>
+            <p>
+              Built at GitLab, Qantas, Vodafone and Telstra. Took
+              GitLab&rsquo;s in-product query language from research to launch,
+              grew weekly users 33%, and shipped my own code to production. Four
+              years forward deployed into enterprise and federal government
+              teams.
+            </p>
+            <p>Founded BirthGuide, live with paying users, built solo.</p>
+          </div>
 
-          <dl className="mt-5 flex flex-col gap-1.5 text-meta text-muted">
+          {/* Two-column grid so every value starts on the same line and the
+              list scans down one edge. `contents` lets each dt/dd pair sit
+              directly in the grid while keeping the row wrapper. */}
+          <dl className="mt-5 grid grid-cols-[max-content_1fr] gap-x-3 gap-y-1.5 text-meta text-muted">
             {facts.map((fact) => (
-              <div key={fact.label} className="flex gap-2">
-                <dt className="shrink-0 font-medium text-text">{fact.label}</dt>
+              <div key={fact.label} className="contents">
+                <dt className="font-medium text-text">{fact.label}</dt>
                 <dd className="m-0">{fact.value}</dd>
               </div>
             ))}
@@ -319,22 +330,21 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
               <DownloadIcon size={16} />
               Download résumé (PDF)
             </a>
-          </div>
-
-          <p className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-meta text-muted">
-            <a href="mailto:fracazo@duck.com">fracazo@duck.com</a>
-            <span aria-hidden className="text-border">
-              ·
-            </span>
             <a
               href="https://www.linkedin.com/in/fracazo"
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-1"
+              className="btn inline-flex items-center gap-2 px-4 py-2.5 whitespace-nowrap no-underline hover:no-underline"
             >
-              LinkedIn
+              <LinkedInIcon size={16} />
+              Connect with me on LinkedIn
+              <span className="sr-only"> (opens in a new tab)</span>
               <ExternalLinkIcon size={13} className="opacity-70" />
             </a>
+          </div>
+
+          <p className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-meta text-muted">
+            <a href="mailto:fracazo@duck.com">fracazo@duck.com</a>
             <span aria-hidden className="text-border">
               ·
             </span>
@@ -400,6 +410,9 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
                       </li>
                     ))}
                   </ul>
+                )}
+                {job.closing && (
+                  <p className="mt-4 text-body text-text-body">{job.closing}</p>
                 )}
                 {job.caseStudies && (
                   <div className="mt-4">
