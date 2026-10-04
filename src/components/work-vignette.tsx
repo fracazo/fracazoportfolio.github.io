@@ -6,15 +6,15 @@ import {
   type WorkVignetteKind,
 } from "./work-vignette-kinds";
 import { useScrollPlay } from "./use-scroll-play";
-import { HireupMark, TanukiMark } from "./scene-marks";
+import { BirthGuideMark, HireupMark, TanukiMark } from "./scene-marks";
 
 export type { WorkVignetteKind };
 
 /**
  * Hover scenes for work-row thumbnails. Each project gets its own vignette
  * animating that product's core moment: GLQL renders a typed query into an
- * embedded view, Wiki pins a comment to a highlighted line, BirthGuide draws
- * its winding route through the stages, Hireup turns a worker's status on
+ * embedded view, Wiki pins a comment to a highlighted line, BirthGuide turns
+ * a lesson's choice into a row on the plan, Hireup turns a worker's status on
  * and lists them for clients again.
  *
  * Standalone kinds (see VIGNETTE_REPLACES_IMAGE) are the thumbnail itself:
@@ -936,80 +936,127 @@ function BemDiretoScene({ mode }: { mode: SceneMode }) {
   );
 }
 
-/* ---- BirthGuide: the winding route draws through its stages ---- */
+/* ---- BirthGuide: learn a choice, decide, and the plan builds itself ---- */
 
-/* Dots sit on the two cubic segments' endpoints, so they are on-path by
-   construction rather than measured. */
-const ROUTE_D = "M 28 112 C 92 112 92 36 132 36 C 172 36 176 96 214 84";
-const ROUTE_DOTS: Array<[number, number]> = [
-  [28, 112],
-  [132, 36],
-  [214, 84],
+/* The plan's colour code, from the product: want, if needed, avoid. Semantic
+   status colours, not theme tokens, so they read the same in both modes. */
+const PLAN_WANT = "#4f9d69";
+const PLAN_IF_NEEDED = "#d19a3c";
+const PLAN_AVOID = "#c4554d";
+const BIRTHGUIDE_CHOICES = [
+  { label: "Want", color: PLAN_WANT },
+  { label: "If needed", color: PLAN_IF_NEEDED },
+  { label: "Avoid", color: PLAN_AVOID },
 ];
+/* Choices made in earlier lessons, already on the plan. */
+const BIRTHGUIDE_EARLIER = [
+  { label: "Skin to skin straight away", color: PLAN_WANT },
+  { label: "Epidural", color: PLAN_IF_NEEDED },
+];
+const BIRTHGUIDE_CUE = { choices: 450, tap: 1300, toPlan: 1700 };
 
 function BirthGuideScene({ mode }: { mode: SceneMode }) {
-  const active = mode === "play";
-  const pathRef = useRef<SVGPathElement>(null);
-  const [length, setLength] = useState(0);
-
-  useEffect(() => {
-    if (pathRef.current) setLength(pathRef.current.getTotalLength());
-  }, []);
+  // Settled shows the finished beat: chosen, and on the plan.
+  const shown = mode === "settled" || mode === "play";
+  const delay = (ms: number) => (mode === "play" ? `${ms}ms` : "0ms");
 
   return (
-    <>
-      <svg
-        viewBox="0 0 240 148"
-        className="absolute inset-x-[8%] top-[4%] h-[78%] w-[84%]"
-        fill="none"
-      >
-        <path
-          ref={pathRef}
-          d={ROUTE_D}
-          stroke="var(--brand)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          style={{
-            strokeDasharray: length || 1,
-            strokeDashoffset: active ? 0 : length || 1,
-            opacity: length ? 1 : 0,
-            transition: active
-              ? "stroke-dashoffset 900ms ease 150ms"
-              : "stroke-dashoffset 400ms ease",
-          }}
-        />
-        {ROUTE_DOTS.map(([x, y], i) => (
-          <circle
-            key={i}
-            cx={x}
-            cy={y}
-            r="5"
-            fill={
-              i === ROUTE_DOTS.length - 1 ? "var(--brand)" : "var(--surface)"
-            }
-            stroke="var(--brand)"
-            strokeWidth="2"
-            style={{
-              opacity: active ? 1 : 0,
-              transform: `scale(${active ? 1 : 0.4})`,
-              transformOrigin: `${x}px ${y}px`,
-              transition: "opacity 220ms ease, transform 220ms ease",
-              transitionDelay: active ? `${250 + i * 350}ms` : "0ms",
-            }}
-          />
-        ))}
-      </svg>
-      <div
-        className="absolute right-[9%] bottom-[9%] font-mono text-meta text-muted"
-        style={{
-          opacity: active ? 1 : 0,
-          transition: "opacity 300ms ease",
-          transitionDelay: active ? "1150ms" : "0ms",
-        }}
-      >
-        Stage by stage
+    <div className="absolute inset-0 flex items-center gap-3 px-[18px]">
+      {/* The lesson on the phone: learn, then decide. */}
+      <div className="vignette-card relative h-[150px] w-[122px] shrink-0 rounded-[14px] bg-surface px-2 pt-4">
+        <span className="absolute top-1.5 left-1/2 h-[4px] w-[16px] -translate-x-1/2 rounded-full bg-text" />
+        <div className="flex items-center gap-1 text-[7px] leading-none text-muted">
+          <BirthGuideMark size={10} />
+          Module 3 · Lesson 2
+        </div>
+        <div className="mt-2 text-[6.5px] leading-none font-semibold tracking-[0.06em] text-birthguide uppercase">
+          Learn
+        </div>
+        <div className="mt-1 text-[10px] leading-[12px] font-semibold text-text">
+          Delayed cord clamping
+        </div>
+        <span className="mt-1.5 block h-1 w-full rounded-full bg-border" />
+        <span className="mt-1 block h-1 w-[82%] rounded-full bg-border" />
+        <span className="mt-1.5 inline-block rounded-sm bg-panel-2 px-1 text-[6.5px] leading-[10px] text-muted">
+          Source: WHO
+        </span>
+        <div className="mt-2 text-[6.5px] leading-none font-semibold tracking-[0.06em] text-birthguide uppercase">
+          Decide
+        </div>
+        <div className="mt-1 flex gap-[3px]">
+          {BIRTHGUIDE_CHOICES.map((choice, i) => {
+            const picked = shown && i === 0;
+            return (
+              <span
+                key={choice.label}
+                className="relative rounded-full border px-1 text-[7px] leading-[12px] whitespace-nowrap"
+                style={{
+                  borderColor: picked ? choice.color : "var(--border)",
+                  background: picked ? choice.color : "transparent",
+                  color: picked ? "#fff" : "var(--text)",
+                  opacity: shown ? 1 : 0,
+                  transform: shown ? "none" : "translateY(3px)",
+                  transition:
+                    "opacity 200ms ease, transform 200ms ease, background-color 200ms ease, border-color 200ms ease, color 200ms ease",
+                  transitionDelay: picked
+                    ? `${delay(BIRTHGUIDE_CUE.choices)}, ${delay(BIRTHGUIDE_CUE.choices)}, ${delay(BIRTHGUIDE_CUE.tap)}, ${delay(BIRTHGUIDE_CUE.tap)}, ${delay(BIRTHGUIDE_CUE.tap)}`
+                    : delay(BIRTHGUIDE_CUE.choices + i * 90),
+                }}
+              >
+                {choice.label}
+              </span>
+            );
+          })}
+        </div>
       </div>
-    </>
+
+      {/* The plan beside it: the choice lands as a colour-coded row. */}
+      <div className="vignette-card min-w-0 flex-1 rounded-lg bg-surface p-2.5">
+        <div className="text-[10px] leading-none font-semibold text-text">
+          Your birth plan
+        </div>
+        <div className="mt-0.5 truncate text-[7px] leading-[10px] text-muted">
+          birthguide.com.au/plan/your-name
+        </div>
+        <div className="mt-2 flex flex-col">
+          {[null, ...BIRTHGUIDE_EARLIER].map((row) => {
+            const isNew = row === null;
+            const color = row?.color ?? PLAN_WANT;
+            return (
+              <div
+                key={row?.label ?? "new"}
+                className="overflow-hidden"
+                style={{
+                  height: isNew && !shown ? 0 : 29,
+                  transition: "height 300ms ease",
+                  transitionDelay: delay(isNew ? BIRTHGUIDE_CUE.toPlan : 0),
+                }}
+              >
+                <div
+                  className="flex h-[25px] items-center rounded-[4px] border-l-2 px-1.5 text-[8px] leading-[10px] text-text"
+                  style={{
+                    borderColor: color,
+                    background: `color-mix(in srgb, ${color} 14%, transparent)`,
+                    ...(isNew
+                      ? {
+                          opacity: shown ? 1 : 0,
+                          transform: shown ? "none" : "translateX(-8px)",
+                          transition: "opacity 250ms ease, transform 300ms ease",
+                          transitionDelay: delay(BIRTHGUIDE_CUE.toPlan + 120),
+                        }
+                      : undefined),
+                  }}
+                >
+                  <span className="line-clamp-2">
+                    {row?.label ?? "Delayed cord clamping"}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 /**
  * Company marks drawn into the product scenes, where the real app would show
  * them: in the header chrome. They tell a reader the scene recreates shipped
- * client work, not a side project. Both are decorative (the scenes are
+ * client work, not a side project. All are decorative (the scenes are
  * aria-hidden); the company is named in text beside every scene.
  */
 
@@ -46,6 +46,28 @@ export function TanukiMark({ size = 14 }: { size?: number }) {
         d="M15.03 34.38a34.34 34.34 0 0 0-13.68-6.15l-.1.27a18.9 18.9 0 0 0 6.27 21.83l.04.03.09.07 15.47 11.6 14.24-10.75-22.33-16.9z"
         fill="#FC6D26"
       />
+    </svg>
+  );
+}
+
+/* BirthGuide's app icon: its route mark in white on the rose tile, as in the
+   site header. */
+export function BirthGuideMark({ size = 14 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} className="shrink-0">
+      <rect width="24" height="24" rx="6" style={{ fill: "var(--birthguide)" }} />
+      <g
+        transform="translate(4 4) scale(0.667)"
+        fill="none"
+        stroke="#fff"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="6" cy="19" r="3" />
+        <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" />
+        <circle cx="18" cy="5" r="3" />
+      </g>
     </svg>
   );
 }

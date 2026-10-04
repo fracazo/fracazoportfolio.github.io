@@ -20,7 +20,7 @@ export type WorkVignetteKind =
 export const VIGNETTE_REPLACES_IMAGE: Record<WorkVignetteKind, boolean> = {
   glql: true,
   wiki: true,
-  birthguide: false,
+  birthguide: true,
   coursify: true,
   "mr-summary": true,
   mymix: true,

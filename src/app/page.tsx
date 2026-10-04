@@ -50,10 +50,6 @@ const featuredWork: FeaturedItem[] = [
 const caseStudies = [
   {
     href: "/case-studies/birthguide",
-    image: {
-      src: "/images/birthguide-hero.svg",
-      alt: "The BirthGuide mark: a winding route icon above the wordmark and birthguide.com.au",
-    },
     meta: "Founder · 2026",
     title: "BirthGuide",
     tagline:
