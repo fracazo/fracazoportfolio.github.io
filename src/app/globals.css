@@ -991,6 +991,75 @@
     margin: 0 0 32px;
     max-width: 64ch;
   }
+
+  /* Award lockup under the case intro: mark, title, rule, detail. Sized at
+     meta scale and dimmed so it supports the intro instead of competing
+     with the title; it lifts to full strength on hover. */
+  .award-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 200ms ease;
+  }
+  a.award-badge:hover {
+    opacity: 1;
+  }
+  .award-badge-mark {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  .award-badge-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .award-badge-title {
+    font-size: var(--text-meta-size);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--accent);
+  }
+  .award-badge-detail {
+    font-size: var(--text-meta-size);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: var(--muted);
+    padding-top: 4px;
+  }
+  /* Home row version: one quiet muted line, no rule, so it reads as a
+     footnote to the row rather than a second headline */
+  .award-badge-sm {
+    gap: 6px;
+    color: var(--muted);
+    opacity: 1;
+  }
+  .award-badge-sm .award-badge-mark {
+    width: 12px;
+    height: 12px;
+  }
+  .award-badge-sm .award-badge-text {
+    flex-direction: row;
+  }
+  .award-badge-sm .award-badge-title,
+  .award-badge-sm .award-badge-detail {
+    font-size: var(--text-meta-size);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 0;
+    border: 0;
+  }
+  .award-badge-sm .award-badge-detail::before {
+    content: "\00a0·\00a0";
+  }
   .case-study-image {
     width: 100%;
     border-radius: var(--radius);

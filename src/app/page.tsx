@@ -90,11 +90,12 @@ const caseStudies = [
       alt: "The Australian Government ETA visa app",
     },
     video: { src: "/videos/eta-face-scan.mp4" },
-    meta: "Department of Home Affairs · 2020",
+    meta: "Department of Home Affairs · 2020–2021",
     title: "Reducing Friction in Government Visa Applications",
     tagline:
       "Automating data entry to improve completion and reduce user effort in a high-stakes service.",
-    outcome: "From 0 to 1 · Gold, Sydney Design Awards",
+    outcome: "From 0 to 1",
+    award: { title: "Sydney Design Awards", detail: "Gold 2021" },
   },
   {
     href: "/case-studies/qantas-entertainment-app",

@@ -1,4 +1,5 @@
 import { PanelLink } from "./panel-link";
+import { AwardBadge, type Award } from "./award-badge";
 import { Chip } from "./chip";
 import { HoverVideo } from "./hover-video";
 import { WorkVignette } from "./work-vignette";
@@ -17,6 +18,9 @@ type WorkRowProps = {
   tagline?: string;
   /** "·"-separated facts; each becomes a Chip, matching the /work cards. */
   outcome?: string;
+  /** Optional award lockup under the chips. Rendered without a link, since
+      the whole row is already one. */
+  award?: Award;
   /** Optional hover clip: fades in over the still and plays while the row is
       hovered (or, on touch, while the row sits mid-viewport). Keyboard and
       reduced-motion users keep the still. */
@@ -48,6 +52,7 @@ export function WorkRow({
   meta,
   tagline,
   outcome,
+  award,
   video,
   priority = false,
   vignette,
@@ -113,6 +118,11 @@ export function WorkRow({
             {metrics.map((metric) => (
               <Chip key={metric}>{metric}</Chip>
             ))}
+          </div>
+        )}
+        {award && (
+          <div className="mt-2.5">
+            <AwardBadge title={award.title} detail={award.detail} size="sm" />
           </div>
         )}
       </div>

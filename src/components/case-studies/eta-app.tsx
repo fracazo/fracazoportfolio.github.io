@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { AwardBadge } from "@/components/award-badge";
 import { ExternalLinkIcon } from "@/components/icons";
 
 /**
@@ -40,19 +41,24 @@ export function EtaAppContent({
                 <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
                 <div className="metadata-text">
                   <p className="metadata-label">Role</p>
-                  <p className="metadata-value">Lead Product Designer · Award-winning team</p>
+                  <p className="metadata-value">Lead Product Designer</p>
                 </div>
               </div>
               <div className="metadata-item">
                 <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clipRule="evenodd"/></svg>
                 <div className="metadata-text">
                   <p className="metadata-label">Year</p>
-                  <p className="metadata-value">2020</p>
+                  <p className="metadata-value">2020–2021</p>
                 </div>
               </div>
             </div>
           </div>
           <p className="case-intro">Automating data entry to improve completion and reduce user effort in a high-stakes service.</p>
+          <AwardBadge
+            title="Sydney Design Awards"
+            detail="Gold 2021 · Government Services"
+            href="https://betterfutureawards.com/syd21/project.asp?ID=22007"
+          />
         </header>
 
 
@@ -234,7 +240,7 @@ export function EtaAppContent({
           <h2>Outcomes & Learnings</h2>
 
           <h3>Recognition</h3>
-          <p>The ETA app won <strong>Gold at the Sydney Design Awards</strong>. The award went to the project team at Outware Mobile, where I was the lead product designer.</p>
+          <p>The ETA app won <strong>Gold at the 2021 Sydney Design Awards</strong> in the Digital, Government Services category. The award went to the joint team from Home Affairs, SITA and Arq Group. I was the lead product designer at Arq Group.</p>
           <ul>
             <li><a href="https://betterfutureawards.com/syd21/project.asp?ID=22007" target="_blank" rel="noopener">The award listing<ExternalLinkIcon size={12} className="external-mark" /></a>, betterfutureawards.com</li>
           </ul>
