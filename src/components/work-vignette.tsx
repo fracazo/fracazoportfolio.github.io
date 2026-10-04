@@ -948,8 +948,9 @@ const BIRTHGUIDE_STACK = [
 ];
 
 function BirthGuideScene({ mode }: { mode: SceneMode }) {
-  // Settled shows the finished beat: the plan on the phone, link shared.
-  const online = mode === "settled" || mode === "play";
+  // Rests on the printed stack; only a play turns it into the phone, and
+  // leaving the row folds it back to paper.
+  const online = mode === "play";
   const delay = (ms: number) => (mode === "play" ? `${ms}ms` : "0ms");
   const shape = online ? BIRTHGUIDE_PHONE : BIRTHGUIDE_PAPER;
   const morph = "450ms cubic-bezier(0.2, 0.8, 0.2, 1)";
