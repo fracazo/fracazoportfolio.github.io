@@ -11,20 +11,14 @@ import { SiteFooter } from "@/components/site-footer";
 import { TextLink } from "@/components/text-link";
 import { ExternalLinkIcon } from "@/components/icons";
 
-/* The hero's lead work, in stage order: two case studies and a tool. Each
+/* The hero's lead work, in stage order: two case studies and a tool. The
+   meta line names the client, so the stage reads as shipped work. Each
    needs a standalone vignette for the narrow layouts and, ideally, a hero
    scene (hero-scenes.tsx) for the stage. */
 const featuredWork: FeaturedItem[] = [
       {
-        href: "/case-studies/bringing-visibility-to-workers-status",
-        title: "Worker Status Visibility",
-        tagline:
-          "Reducing uncertainty in a two-sided marketplace by making availability honest.",
-        outcome: "+12% bookings · Connection rate 3% → 5%",
-        vignette: "hireup",
-      },
-      {
         href: "/case-studies/glql",
+        meta: "GitLab · 2024–2025",
         title: "GLQL: Embedded Views for Work Tracking",
         tagline:
           "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
@@ -32,7 +26,17 @@ const featuredWork: FeaturedItem[] = [
         vignette: "glql",
       },
       {
+        href: "/case-studies/bringing-visibility-to-workers-status",
+        meta: "Hireup · 2022",
+        title: "Worker Status Visibility",
+        tagline:
+          "Reducing uncertainty in a two-sided marketplace by making availability honest.",
+        outcome: "+12% bookings · Connection rate 3% → 5%",
+        vignette: "hireup",
+      },
+      {
         href: "/tools/flow-prototype",
+        meta: "Personal project · 2026",
         title: "Flow prototype",
         tagline:
           "Every screen your coding agent builds, connected on one canvas you can zoom in and out of. Works on any device.",

@@ -9,6 +9,7 @@ import {
   type RefObject,
 } from "react";
 import { VignetteStage } from "./work-vignette";
+import { HireupMark, TanukiMark } from "./scene-marks";
 import type { WorkVignetteKind } from "./work-vignette-kinds";
 
 /**
@@ -254,7 +255,10 @@ function GlqlHeroScene({ t }: { t: number }) {
     <div className="vignette-card absolute inset-4 rounded-xl bg-surface p-3.5">
       {/* Panel title and the two tabs; the underline slides between them. */}
       <div className="flex items-center justify-between border-b border-border pb-2.5">
-        <span className="text-meta font-semibold text-text">
+        {/* GitLab's own mark in the panel chrome: the scene is the shipped
+            product, not a mock-up. */}
+        <span className="flex items-center gap-2 text-meta font-semibold text-text">
+          <TanukiMark size={15} />
           Embedded view with Duo
         </span>
         <div className="relative flex gap-4 text-meta">
@@ -946,7 +950,7 @@ function HireupHeroScene({ t }: { t: number }) {
             </span>
             <span className="relative flex items-center rounded-full bg-surface p-0.5">
               <HireupBadge open={open} />
-              <span className="flex size-6 items-center justify-center rounded-full bg-accent/25 text-[9px] font-semibold text-text">
+              <span className="flex size-6 items-center justify-center rounded-full bg-hireup/25 text-[9px] font-semibold text-text">
                 VJ
               </span>
               <HireupTap tapped={tapped(HIREUP_CUE.tapAvatar)} />
@@ -990,12 +994,12 @@ function HireupHeroScene({ t }: { t: number }) {
           <div className="grid grid-cols-[1fr_auto_1fr] items-center border-b border-border pb-2 text-meta">
             <span />
             <span className="font-semibold text-text">My Account</span>
-            <span className="relative justify-self-end text-accent">
+            <span className="relative justify-self-end text-hireup">
               Close
               <HireupTap tapped={tapped(HIREUP_CUE.tapClose)} />
             </span>
           </div>
-          <span className="mt-3 flex size-10 items-center justify-center rounded-full bg-accent/25 text-[13px] font-semibold text-text">
+          <span className="mt-3 flex size-10 items-center justify-center rounded-full bg-hireup/25 text-[13px] font-semibold text-text">
             VJ
           </span>
           <div className="mt-1.5 text-meta font-semibold text-text">
@@ -1003,7 +1007,7 @@ function HireupHeroScene({ t }: { t: number }) {
           </div>
           <div
             className={`mt-2 rounded-lg p-2.5 transition-colors duration-300 ${
-              open ? "bg-accent/15" : "bg-panel-2"
+              open ? "bg-hireup/15" : "bg-panel-2"
             }`}
           >
             <div className="flex items-center justify-between gap-2">
@@ -1012,7 +1016,7 @@ function HireupHeroScene({ t }: { t: number }) {
               </span>
               <span
                 className={`relative h-[16px] w-[28px] shrink-0 rounded-full transition-colors duration-200 ${
-                  open ? "bg-accent" : "bg-border"
+                  open ? "bg-hireup" : "bg-border"
                 }`}
               >
                 <span
@@ -1047,7 +1051,12 @@ function HireupHeroScene({ t }: { t: number }) {
 
       {/* Client search */}
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="text-meta text-muted">Client search</div>
+        {/* Hireup's own mark in the web app's header: the scene is the
+            shipped product, not a mock-up. */}
+        <div className="flex items-center gap-1.5 text-meta text-muted">
+          <HireupMark size={13} />
+          Client search
+        </div>
         <div className="mt-0.5 text-meta font-semibold text-text">
           Support workers near Greenwich
         </div>
@@ -1073,14 +1082,18 @@ function HireupHeroScene({ t }: { t: number }) {
                       : undefined
                   }
                 >
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-accent/25 text-[10px] font-semibold text-text">
+                  <span
+                    className={`flex size-7 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold text-text ${
+                      isValdir ? "bg-hireup/25" : "bg-panel-2"
+                    }`}
+                  >
                     {worker?.initials ?? "VJ"}
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="flex items-center gap-1.5 text-meta font-semibold whitespace-nowrap text-text">
                       {worker?.name ?? "Valdir J."}
                       {isValdir && (
-                        <span className="rounded-full bg-accent/20 px-1.5 text-[10px] leading-[16px] font-medium">
+                        <span className="rounded-full bg-hireup/20 px-1.5 text-[10px] leading-[16px] font-medium">
                           Open for work
                         </span>
                       )}
@@ -1092,7 +1105,7 @@ function HireupHeroScene({ t }: { t: number }) {
                   <span
                     className={`shrink-0 rounded-md border px-2 text-[11px] leading-[20px] transition-colors duration-200 ${
                       isValdir && messaged
-                        ? "border-accent bg-accent text-surface"
+                        ? "border-hireup bg-hireup text-on-hireup"
                         : "border-border text-text"
                     }`}
                   >
@@ -1109,12 +1122,12 @@ function HireupHeroScene({ t }: { t: number }) {
 }
 
 /* The bag signifier beside the avatar: crossed out while not open for work,
-   checked and in the accent once open. */
+   checked and in the hireup once open. */
 function HireupBadge({ open }: { open: boolean }) {
   return (
     <span
       className={`mr-0.5 flex size-6 items-center justify-center rounded-full transition-colors duration-300 ${
-        open ? "bg-accent/20" : "bg-panel-2"
+        open ? "bg-hireup/20" : "bg-panel-2"
       }`}
     >
       <svg viewBox="0 0 14 14" width="13" height="13" fill="none">
@@ -1124,18 +1137,18 @@ function HireupBadge({ open }: { open: boolean }) {
           width="10"
           height="8"
           rx="1.5"
-          stroke={open ? "var(--accent)" : "var(--muted)"}
+          stroke={open ? "var(--hireup)" : "var(--muted)"}
           strokeWidth="1.4"
         />
         <path
           d="M5 4V3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1"
-          stroke={open ? "var(--accent)" : "var(--muted)"}
+          stroke={open ? "var(--hireup)" : "var(--muted)"}
           strokeWidth="1.4"
         />
         {open ? (
           <path
             d="M5 8l1.4 1.4L9 6.8"
-            stroke="var(--accent)"
+            stroke="var(--hireup)"
             strokeWidth="1.4"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -1157,7 +1170,7 @@ function HireupBadge({ open }: { open: boolean }) {
 function HireupTap({ tapped }: { tapped: boolean }) {
   return (
     <span
-      className="pointer-events-none absolute top-1/2 left-1/2 size-6 rounded-full border-2 border-accent"
+      className="pointer-events-none absolute top-1/2 left-1/2 size-6 rounded-full border-2 border-hireup"
       style={{
         opacity: tapped ? 1 : 0,
         transform: `translate(-50%, -50%) scale(${tapped ? 1.4 : 0.6})`,

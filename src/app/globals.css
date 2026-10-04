@@ -29,6 +29,11 @@
   --accent: #c8855a;
   /* Warm near-white for the rare text/icon that sits on an --accent fill */
   --on-accent: #faf7f2;
+  /* Hireup's product blue, for the Hireup scenes only: they recreate the
+     shipped app, so its own colour marks it as real client work. Lifted in
+     dark mode so the mark and the open state stay legible on espresso. */
+  --hireup: #8f94ff;
+  --on-hireup: #1a1612;
 
   /* Legacy aliases → warm system */
   --bg: var(--background);
@@ -74,6 +79,8 @@
 :root.light {
   /* Warm paper — light mode */
   --background: #faf8f2;
+  --hireup: #1b22e6;
+  --on-hireup: #ffffff;
   --surface: #fffdf8;
   --text-primary: #1c1917;
   --text-secondary: #57534e;
@@ -115,6 +122,8 @@
   --color-border-muted: var(--border-muted);
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
+  --color-hireup: var(--hireup);
+  --color-on-hireup: var(--on-hireup);
 
   /* Legacy aliases — bg-bg, bg-panel, bg-panel-2, text-text, text-muted,
      text-brand, border-border, bg-card, ring/outline-ring, text-text-body */

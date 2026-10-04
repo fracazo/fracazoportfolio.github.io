@@ -9,6 +9,8 @@ import type { WorkVignetteKind } from "./work-vignette-kinds";
 
 export type FeaturedItem = {
   href: string;
+  /** Company and year, e.g. "GitLab · 2025": names the client up front. */
+  meta: string;
   title: string;
   tagline: string;
   /** "·"-separated facts; each becomes a Chip, as in WorkRow. */
@@ -61,6 +63,9 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
                     isSelected ? "bg-panel-2" : "bg-transparent"
                   }`}
                 >
+                  <p className="m-0 mb-1 text-meta text-muted">
+                    {item.meta}
+                  </p>
                   <h3 className="m-0 text-subhead-sm font-semibold text-text transition-colors duration-200 group-hover:text-brand">
                     {item.title}
                   </h3>

@@ -6,6 +6,7 @@ import {
   type WorkVignetteKind,
 } from "./work-vignette-kinds";
 import { useScrollPlay } from "./use-scroll-play";
+import { HireupMark, TanukiMark } from "./scene-marks";
 
 export type { WorkVignetteKind };
 
@@ -314,7 +315,9 @@ function GlqlScene({ mode }: { mode: SceneMode }) {
           transition: "opacity 250ms ease, transform 250ms ease",
         }}
       >
-        <div className="font-mono text-meta text-muted">3 issues</div>
+        <div className="flex items-center gap-1.5 font-mono text-meta text-muted">
+          <TanukiMark size={10} />3 issues
+        </div>
         <div className="mt-1.5 flex flex-col gap-2">
           {[68, 54, 61].map((width, i) => (
             <div
@@ -1030,22 +1033,22 @@ function HireupScene({ mode }: { mode: SceneMode }) {
           <span className="flex items-center gap-0.5">
             <span
               className={`size-3 rounded-full border ${
-                open ? "border-accent bg-accent/30" : "border-border bg-panel-2"
+                open ? "border-hireup bg-hireup/30" : "border-border bg-panel-2"
               }`}
               style={tone(400)}
             />
-            <span className="size-3 rounded-full bg-accent/25" />
+            <span className="size-3 rounded-full bg-hireup/25" />
           </span>
         </div>
         <div
-          className={`mt-3 rounded-md p-1.5 ${open ? "bg-accent/15" : "bg-panel-2"}`}
+          className={`mt-3 rounded-md p-1.5 ${open ? "bg-hireup/15" : "bg-panel-2"}`}
           style={tone(400)}
         >
           <div className="flex items-center justify-between gap-1">
             <span className="h-1.5 w-8 rounded-full bg-text/60" />
             <span
               className={`relative h-[9px] w-[16px] shrink-0 rounded-full ${
-                open ? "bg-accent" : "bg-border"
+                open ? "bg-hireup" : "bg-border"
               }`}
               style={tone(300)}
             >
@@ -1068,7 +1071,10 @@ function HireupScene({ mode }: { mode: SceneMode }) {
 
       {/* Client search: the worker slides back into the results. */}
       <div className="vignette-card min-w-0 flex-1 rounded-lg bg-surface p-2">
-        <span className="block h-1.5 w-16 rounded-full bg-text/60" />
+        <div className="flex items-center gap-1.5">
+          <HireupMark size={10} />
+          <span className="h-1.5 w-16 rounded-full bg-text/60" />
+        </div>
         <div className="mt-2">
           {[true, false, false].map((isNew, i) => (
             <div
@@ -1093,10 +1099,10 @@ function HireupScene({ mode }: { mode: SceneMode }) {
                 }
               >
                 <span
-                  className={`size-3.5 shrink-0 rounded-full ${isNew ? "bg-accent/40" : "bg-panel-2"}`}
+                  className={`size-3.5 shrink-0 rounded-full ${isNew ? "bg-hireup/40" : "bg-panel-2"}`}
                 />
                 <span className="h-1.5 flex-1 rounded-full bg-border" />
-                {isNew && <span className="size-1.5 shrink-0 rounded-full bg-accent" />}
+                {isNew && <span className="size-1.5 shrink-0 rounded-full bg-hireup" />}
                 <span className="h-3 w-7 shrink-0 rounded border border-border" />
               </div>
             </div>
