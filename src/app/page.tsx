@@ -269,7 +269,7 @@ export default function Home() {
                 colour, so it stays with the H1 rather than the paragraph. */}
             <p className="-mt-5 text-subhead text-text-primary">
               👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo, a product
-              designer who picks the obvious answer over the clever one.
+              designer who picks the obvious answer.
             </p>
             {/* The explanation of the claim above, at reading size. Its links
                 replace the old About me / Work history / Get in touch buttons;
@@ -277,18 +277,14 @@ export default function Home() {
                 from home. */}
             <div className="mt-5 flex flex-col gap-4 text-body text-text-body">
               <p>
-                I choose the obvious solution, then sweat the details until it
-                works. Some call it{" "}
+                Then I sweat the details until it works. Some call it{" "}
                 <TextLink href="https://capwatkins.com/blog/the-boring-designer">
                   boring design
                 </TextLink>
-                .{" "}
-                {/* Clever vs boring starts its own line where there is room;
-                    on phones the forced break stranded "boring design." on a
-                    short line, so they wrap naturally. */}
-                <br className="max-sm:hidden" />
-                Clever design makes people stop and figure it out. Boring
-                design lets them get on with their day.
+                . It&rsquo;s the opposite of design that&rsquo;s too clever or
+                too complicated. That kind of design makes people stop and
+                figure things out. Boring design lets them get on with their
+                day.
               </p>
               <p>
                 Read my{" "}
