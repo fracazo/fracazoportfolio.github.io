@@ -34,8 +34,6 @@
      dark mode so the mark and the open state stay legible on espresso. */
   --hireup: #8f94ff;
   --on-hireup: #1a1612;
-  /* BirthGuide's rose, for its scene only, on the same terms as --hireup. */
-  --birthguide: #e0a0a6;
 
   /* Legacy aliases → warm system */
   --bg: var(--background);
@@ -83,7 +81,6 @@
   --background: #faf8f2;
   --hireup: #1b22e6;
   --on-hireup: #ffffff;
-  --birthguide: #b0606a;
   --surface: #fffdf8;
   --text-primary: #1c1917;
   --text-secondary: #57534e;
@@ -127,7 +124,6 @@
   --color-on-accent: var(--on-accent);
   --color-hireup: var(--hireup);
   --color-on-hireup: var(--on-hireup);
-  --color-birthguide: var(--birthguide);
 
   /* Legacy aliases — bg-bg, bg-panel, bg-panel-2, text-text, text-muted,
      text-brand, border-border, bg-card, ring/outline-ring, text-text-body */

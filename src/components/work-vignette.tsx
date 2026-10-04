@@ -6,7 +6,7 @@ import {
   type WorkVignetteKind,
 } from "./work-vignette-kinds";
 import { useScrollPlay } from "./use-scroll-play";
-import { BirthGuideMark, HireupMark, TanukiMark } from "./scene-marks";
+import { HireupMark, TanukiMark } from "./scene-marks";
 
 export type { WorkVignetteKind };
 
@@ -936,24 +936,10 @@ function BemDiretoScene({ mode }: { mode: SceneMode }) {
   );
 }
 
-/* ---- BirthGuide: learn a choice, decide, and the plan builds itself ---- */
+/* ---- BirthGuide: a lesson's choice lands on the plan ---- */
 
-/* The plan's colour code, from the product: want, if needed, avoid. Semantic
-   status colours, not theme tokens, so they read the same in both modes. */
-const PLAN_WANT = "#4f9d69";
-const PLAN_IF_NEEDED = "#d19a3c";
-const PLAN_AVOID = "#c4554d";
-const BIRTHGUIDE_CHOICES = [
-  { label: "Want", color: PLAN_WANT },
-  { label: "If needed", color: PLAN_IF_NEEDED },
-  { label: "Avoid", color: PLAN_AVOID },
-];
-/* Choices made in earlier lessons, already on the plan. */
-const BIRTHGUIDE_EARLIER = [
-  { label: "Skin to skin straight away", color: PLAN_WANT },
-  { label: "Epidural", color: PLAN_IF_NEEDED },
-];
-const BIRTHGUIDE_CUE = { choices: 450, tap: 1300, toPlan: 1700 };
+/* Bar widths for the plan rows already there from earlier lessons. */
+const BIRTHGUIDE_EARLIER = [62, 48];
 
 function BirthGuideScene({ mode }: { mode: SceneMode }) {
   // Settled shows the finished beat: chosen, and on the plan.
@@ -961,95 +947,69 @@ function BirthGuideScene({ mode }: { mode: SceneMode }) {
   const delay = (ms: number) => (mode === "play" ? `${ms}ms` : "0ms");
 
   return (
-    <div className="absolute inset-0 flex items-center gap-3 px-[18px]">
-      {/* The lesson on the phone: learn, then decide. */}
-      <div className="vignette-card relative h-[150px] w-[122px] shrink-0 rounded-[14px] bg-surface px-2 pt-4">
+    <div className="absolute inset-0 flex items-center gap-4 px-[22px]">
+      {/* The lesson: a little teaching, then three choices. */}
+      <div className="vignette-card relative h-[145px] w-[82px] shrink-0 rounded-[14px] bg-surface px-2 pt-4">
         <span className="absolute top-1.5 left-1/2 h-[4px] w-[16px] -translate-x-1/2 rounded-full bg-text" />
-        <div className="flex items-center gap-1 text-[7px] leading-none text-muted">
-          <BirthGuideMark size={10} />
-          Module 3 · Lesson 2
-        </div>
-        <div className="mt-2 text-[6.5px] leading-none font-semibold tracking-[0.06em] text-birthguide uppercase">
-          Learn
-        </div>
-        <div className="mt-1 text-[10px] leading-[12px] font-semibold text-text">
-          Delayed cord clamping
-        </div>
-        <span className="mt-1.5 block h-1 w-full rounded-full bg-border" />
-        <span className="mt-1 block h-1 w-[82%] rounded-full bg-border" />
-        <span className="mt-1.5 inline-block rounded-sm bg-panel-2 px-1 text-[6.5px] leading-[10px] text-muted">
-          Source: WHO
-        </span>
-        <div className="mt-2 text-[6.5px] leading-none font-semibold tracking-[0.06em] text-birthguide uppercase">
-          Decide
-        </div>
-        <div className="mt-1 flex gap-[3px]">
-          {BIRTHGUIDE_CHOICES.map((choice, i) => {
+        <span className="block h-2 w-12 rounded-full bg-text/70" />
+        <span className="mt-2.5 block h-1 w-full rounded-full bg-border" />
+        <span className="mt-1 block h-1 w-full rounded-full bg-border" />
+        <span className="mt-1 block h-1 w-[70%] rounded-full bg-border" />
+        <div className="mt-4 flex flex-col gap-1">
+          {[0, 1, 2].map((i) => {
             const picked = shown && i === 0;
             return (
               <span
-                key={choice.label}
-                className="relative rounded-full border px-1 text-[7px] leading-[12px] whitespace-nowrap"
+                key={i}
+                className={`block h-3 rounded-full border ${
+                  picked ? "border-accent bg-accent" : "border-border"
+                }`}
                 style={{
-                  borderColor: picked ? choice.color : "var(--border)",
-                  background: picked ? choice.color : "transparent",
-                  color: picked ? "#fff" : "var(--text)",
-                  opacity: shown ? 1 : 0,
-                  transform: shown ? "none" : "translateY(3px)",
                   transition:
-                    "opacity 200ms ease, transform 200ms ease, background-color 200ms ease, border-color 200ms ease, color 200ms ease",
-                  transitionDelay: picked
-                    ? `${delay(BIRTHGUIDE_CUE.choices)}, ${delay(BIRTHGUIDE_CUE.choices)}, ${delay(BIRTHGUIDE_CUE.tap)}, ${delay(BIRTHGUIDE_CUE.tap)}, ${delay(BIRTHGUIDE_CUE.tap)}`
-                    : delay(BIRTHGUIDE_CUE.choices + i * 90),
+                    "background-color 200ms ease, border-color 200ms ease",
+                  transitionDelay: delay(i === 0 ? 500 : 0),
                 }}
-              >
-                {choice.label}
-              </span>
+              />
             );
           })}
         </div>
       </div>
 
-      {/* The plan beside it: the choice lands as a colour-coded row. */}
-      <div className="vignette-card min-w-0 flex-1 rounded-lg bg-surface p-2.5">
-        <div className="text-[10px] leading-none font-semibold text-text">
-          Your birth plan
-        </div>
-        <div className="mt-0.5 truncate text-[7px] leading-[10px] text-muted">
-          birthguide.com.au/plan/your-name
-        </div>
-        <div className="mt-2 flex flex-col">
-          {[null, ...BIRTHGUIDE_EARLIER].map((row) => {
-            const isNew = row === null;
-            const color = row?.color ?? PLAN_WANT;
+      {/* The plan: the choice slides in as a new row. */}
+      <div className="vignette-card min-w-0 flex-1 rounded-lg bg-surface p-2">
+        <span className="block h-1.5 w-16 rounded-full bg-text/60" />
+        <div className="mt-2">
+          {[null, ...BIRTHGUIDE_EARLIER].map((width, i) => {
+            const isNew = width === null;
             return (
               <div
-                key={row?.label ?? "new"}
+                key={i}
                 className="overflow-hidden"
                 style={{
-                  height: isNew && !shown ? 0 : 29,
+                  height: isNew && !shown ? 0 : 26,
                   transition: "height 300ms ease",
-                  transitionDelay: delay(isNew ? BIRTHGUIDE_CUE.toPlan : 0),
+                  transitionDelay: delay(isNew ? 900 : 0),
                 }}
               >
                 <div
-                  className="flex h-[25px] items-center rounded-[4px] border-l-2 px-1.5 text-[8px] leading-[10px] text-text"
-                  style={{
-                    borderColor: color,
-                    background: `color-mix(in srgb, ${color} 14%, transparent)`,
-                    ...(isNew
+                  className={`flex h-[26px] items-center gap-1.5 ${i < 2 ? "border-b border-border" : ""}`}
+                  style={
+                    isNew
                       ? {
                           opacity: shown ? 1 : 0,
-                          transform: shown ? "none" : "translateX(-8px)",
-                          transition: "opacity 250ms ease, transform 300ms ease",
-                          transitionDelay: delay(BIRTHGUIDE_CUE.toPlan + 120),
+                          transition: "opacity 250ms ease",
+                          transitionDelay: delay(1050),
                         }
-                      : undefined),
-                  }}
+                      : undefined
+                  }
                 >
-                  <span className="line-clamp-2">
-                    {row?.label ?? "Delayed cord clamping"}
-                  </span>
+                  <span
+                    className={`h-3.5 w-[3px] shrink-0 rounded-full ${isNew ? "bg-accent" : "bg-border"}`}
+                  />
+                  <span
+                    className="h-1.5 rounded-full bg-border"
+                    style={{ width: `${width ?? 70}%` }}
+                  />
                 </div>
               </div>
             );
