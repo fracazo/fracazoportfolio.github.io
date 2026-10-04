@@ -14,7 +14,7 @@ export type { WorkVignetteKind };
  * Hover scenes for work-row thumbnails. Each project gets its own vignette
  * animating that product's core moment: GLQL renders a typed query into an
  * embedded view, Wiki pins a comment to a highlighted line, BirthGuide turns
- * a lesson's choice into a row on the plan, Hireup turns a worker's status on
+ * a printed plan into one on your phone, Hireup turns a worker's status on
  * and lists them for clients again.
  *
  * Standalone kinds (see VIGNETTE_REPLACES_IMAGE) are the thumbnail itself:
@@ -936,87 +936,74 @@ function BemDiretoScene({ mode }: { mode: SceneMode }) {
   );
 }
 
-/* ---- BirthGuide: a lesson's choice lands on the plan ---- */
+/* ---- BirthGuide: the printed plan becomes one on your phone ---- */
 
-/* Bar widths for the plan rows already there from earlier lessons. */
-const BIRTHGUIDE_EARLIER = [62, 48];
+const BIRTHGUIDE_PAPER = { w: 92, h: 128, radius: 3, x: 0 };
+const BIRTHGUIDE_PHONE = { w: 78, h: 142, radius: 14, x: -40 };
 
 function BirthGuideScene({ mode }: { mode: SceneMode }) {
-  // Settled shows the finished beat: chosen, and on the plan.
-  const shown = mode === "settled" || mode === "play";
+  // Settled shows the finished beat: the plan on the phone, link shared.
+  const online = mode === "settled" || mode === "play";
   const delay = (ms: number) => (mode === "play" ? `${ms}ms` : "0ms");
+  const shape = online ? BIRTHGUIDE_PHONE : BIRTHGUIDE_PAPER;
+  const morph = "450ms cubic-bezier(0.2, 0.8, 0.2, 1)";
 
   return (
-    <div className="absolute inset-0 flex items-center gap-4 px-[22px]">
-      {/* The lesson: a little teaching, then three choices. */}
-      <div className="vignette-card relative h-[145px] w-[82px] shrink-0 rounded-[14px] bg-surface px-2 pt-4">
-        <span className="absolute top-1.5 left-1/2 h-[4px] w-[16px] -translate-x-1/2 rounded-full bg-text" />
-        <span className="block h-2 w-12 rounded-full bg-text/70" />
+    <>
+      {/* One object: an A4 page that reshapes into a phone. */}
+      <div
+        className="vignette-card absolute top-1/2 left-1/2 overflow-hidden bg-surface px-2.5"
+        style={{
+          width: shape.w,
+          height: shape.h,
+          borderRadius: shape.radius,
+          paddingTop: online ? 18 : 12,
+          transform: `translate(calc(-50% + ${shape.x}px), -50%)`,
+          transition: ["width", "height", "border-radius", "padding-top", "transform"]
+            .map((prop) => `${prop} ${morph}`)
+            .join(", "),
+          transitionDelay: delay(350),
+        }}
+      >
+        {/* The phone's notch fades in as the page becomes a screen. */}
+        <span
+          className="absolute top-1.5 left-1/2 h-[4px] w-[16px] -translate-x-1/2 rounded-full bg-text"
+          style={{
+            opacity: online ? 1 : 0,
+            transition: "opacity 200ms ease",
+            transitionDelay: delay(600),
+          }}
+        />
+        <span className="block h-2 w-10 rounded-full bg-text/70" />
         <span className="mt-2.5 block h-1 w-full rounded-full bg-border" />
-        <span className="mt-1 block h-1 w-full rounded-full bg-border" />
-        <span className="mt-1 block h-1 w-[70%] rounded-full bg-border" />
-        <div className="mt-4 flex flex-col gap-1">
-          {[0, 1, 2].map((i) => {
-            const picked = shown && i === 0;
-            return (
-              <span
-                key={i}
-                className={`block h-3 rounded-full border ${
-                  picked ? "border-accent bg-accent" : "border-border"
-                }`}
-                style={{
-                  transition:
-                    "background-color 200ms ease, border-color 200ms ease",
-                  transitionDelay: delay(i === 0 ? 500 : 0),
-                }}
-              />
-            );
-          })}
-        </div>
+        <span className="mt-1 block h-1 w-[75%] rounded-full bg-border" />
+        <span className="mt-2.5 block h-5 rounded-md bg-panel-2" />
+        <span className="mt-1.5 block h-5 rounded-md bg-panel-2" />
+        <span className="mt-2.5 block h-1 w-full rounded-full bg-border" />
+        <span className="mt-1 block h-1 w-[60%] rounded-full bg-border" />
       </div>
 
-      {/* The plan: the choice slides in as a new row. */}
-      <div className="vignette-card min-w-0 flex-1 rounded-lg bg-surface p-2">
-        <span className="block h-1.5 w-16 rounded-full bg-text/60" />
-        <div className="mt-2">
-          {[null, ...BIRTHGUIDE_EARLIER].map((width, i) => {
-            const isNew = width === null;
-            return (
-              <div
-                key={i}
-                className="overflow-hidden"
-                style={{
-                  height: isNew && !shown ? 0 : 26,
-                  transition: "height 300ms ease",
-                  transitionDelay: delay(isNew ? 900 : 0),
-                }}
-              >
-                <div
-                  className={`flex h-[26px] items-center gap-1.5 ${i < 2 ? "border-b border-border" : ""}`}
-                  style={
-                    isNew
-                      ? {
-                          opacity: shown ? 1 : 0,
-                          transition: "opacity 250ms ease",
-                          transitionDelay: delay(1050),
-                        }
-                      : undefined
-                  }
-                >
-                  <span
-                    className={`h-3.5 w-[3px] shrink-0 rounded-full ${isNew ? "bg-accent" : "bg-border"}`}
-                  />
-                  <span
-                    className="h-1.5 rounded-full bg-border"
-                    style={{ width: `${width ?? 70}%` }}
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      {/* The payoff: a link, ready to send to the midwife. */}
+      <div
+        className="vignette-card absolute top-1/2 left-1/2 flex items-center gap-1.5 rounded-full bg-surface py-1.5 pr-3 pl-2"
+        style={{
+          opacity: online ? 1 : 0,
+          transform: `translate(14px, -50%) scale(${online ? 1 : 0.85})`,
+          transition: "opacity 250ms ease, transform 250ms ease",
+          transitionDelay: delay(900),
+        }}
+      >
+        <svg viewBox="0 0 16 16" width="12" height="12" fill="none" className="shrink-0">
+          <path
+            d="M6.5 9.5l3-3M7 4.5l1-1a2.5 2.5 0 0 1 3.5 3.5l-1 1M9 11.5l-1 1A2.5 2.5 0 0 1 4.5 9l1-1"
+            stroke="var(--accent)"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+          />
+        </svg>
+        <span className="h-1.5 w-14 rounded-full bg-accent/40" />
       </div>
-    </div>
+    </>
   );
 }
 
