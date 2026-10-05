@@ -410,6 +410,35 @@ export default function Home() {
         <div className="flex flex-col gap-6">
           <blockquote className="m-0 border-s-2 border-border ps-4">
             <p className="m-0 mb-2 text-body text-text-body">
+              &ldquo;He led the design for a new feature, GLQL, showcasing a deft
+              approach to greenfield design. As the only designer working
+              directly in his feature area, Alex was a consistent advocate for
+              UX, collaborating with product and engineering but pushing back
+              when needed to ensure quality outcomes.&rdquo;
+            </p>
+            <footer className="m-0 flex items-center gap-2.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/testimonial-nick-leonard.jpg"
+                alt=""
+                width={36}
+                height={36}
+                loading="lazy"
+                decoding="async"
+                className="h-9 w-9 flex-none rounded-full object-cover"
+              />
+              <cite className="text-meta not-italic">
+                <span className="block font-medium text-text">
+                  Nick Leonard
+                </span>
+                <span className="block text-muted opacity-70">
+                  Product Designer at GitLab
+                </span>
+              </cite>
+            </footer>
+          </blockquote>
+          <blockquote className="m-0 border-s-2 border-border ps-4">
+            <p className="m-0 mb-2 text-body text-text-body">
               &ldquo;Alex consistently demonstrated strong design leadership and
               strategic thinking. He translated complex technical constraints
               into clear, user-centred direction that directly shaped product
