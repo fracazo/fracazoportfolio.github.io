@@ -263,14 +263,15 @@ export default function Home() {
           <div className="reveal-group">
             <AvatarGreeting />
             <h1 id="hero-title" className="h1">
-              I make complex things simple.
+              I take new ideas from zero to one.
             </h1>
             {/* Pull against .h1's 32px bottom margin so the greeting reads as
                 part of the headline. One step up from body, in the primary
                 colour, so it stays with the H1 rather than the paragraph. */}
             <p className="-mt-5 text-subhead text-text-primary">
               👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo, a product
-              designer who picks the obvious answer.
+              designer. New ideas don&rsquo;t come with patterns, so I start
+              with what people already understand.
             </p>
             {/* The explanation of the claim above, at reading size. Its links
                 replace the old About me / Work history / Get in touch buttons;
@@ -278,7 +279,7 @@ export default function Home() {
                 from home. */}
             <div className="mt-5 flex flex-col gap-4 text-body text-text-body">
               <p>
-                Then I sweat the details until it works. Some call it{" "}
+                Then I sweat the details and never over-engineer. Some call it{" "}
                 <TextLink href="https://capwatkins.com/blog/the-boring-designer">
                   boring design
                 </TextLink>
