@@ -10,7 +10,7 @@ const RESUME_PDF = "/files/Alex Fracazo - Resume.pdf";
 const facts = [
   {
     label: "Focus",
-    value: "AI products · Developer tools · Design systems · Zero to one",
+    value: "Zero to one · AI products · Developer tools · Design systems",
   },
   {
     label: "Stack",
@@ -64,7 +64,7 @@ const experience: Job[] = [
     location: "Remote",
     outcome: "+33% weekly users · code in production",
     points: [
-      "Built GLQL (GitLab Query Language), an in-product query language for tracking work, from research to general availability. Interviewed customers, scoped with the product manager and engineering, and shipped production code via merge requests. Grew weekly users from 600 to 801, a 33% increase, by surfacing it inside the editor at the moment of writing.",
+      "Built GLQL (GitLab Query Language), an in-product query language for tracking work, and took it from a tool made for technical users to one that works for everyone, from research to general availability. Interviewed customers, scoped with the product manager and engineering, and shipped production code via merge requests. Grew weekly users from 600 to 801, a 33% increase, by surfacing it inside the editor at the moment of writing.",
       "Found site status, deployment and DNS problems in GitLab Pages through my own UX scorecards, designed the fix, and shipped it through the Paper Cuts team as eleven merge requests in one release.",
       "Surveyed and ran usability studies on AI code review that exposed trust and control problems, then reframed the product around the author. The resulting writing assistant shipped to general availability and is still in the product.",
       "Established an AI-assisted research and prototyping pipeline: analysed anonymised product data, generated interview guides, synthesised transcripts, then produced user flows, wireframes and working responsive prototypes across desktop, tablet and mobile. Mentored designers across the design org and ran critiques.",
@@ -157,7 +157,7 @@ const experience: Job[] = [
     location: "Rio de Janeiro",
     outcome: "Featured by Apple · mobile revenue 10x",
     points: [
-      "Found through a two-minute conversation with a shopper why the app barely sold: it only took credit cards, and most customers paid by boleto. Worked with the web team to bring boleto into the app.",
+      "Found through a two-minute conversation with a shopper why the app barely sold: it only took credit cards, and many customers paid by boleto. Worked with the web team to bring boleto into the app.",
       "Rebuilt the app for iOS 7, the first native app in Brazil designed for it. Apple featured it in the App Store, and mobile revenue grew ten times over the following year.",
       "Developed a responsive white-label platform for multiple store brands at LATAM's largest e-commerce company, and consolidated three native apps onto a single design system.",
     ],
@@ -297,8 +297,8 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
               heading's caption, not a new block. Same move as the home hero. */}
           <div className="flex flex-col gap-3 text-body text-text-body">
             <p>
-              Product designer who makes complex things simple, from research
-              through to a working product.
+              Product designer who takes new ideas from zero to one, from
+              research through to a working product.
             </p>
             <p>
               Built at GitLab, Qantas, Vodafone and Telstra. Took
@@ -433,8 +433,8 @@ export function ResumeContent({ back }: { back?: ReactNode } = {}) {
             ))}
           </div>
           <p className="mt-8 text-meta text-muted">
-            <span className="font-medium text-text">Earlier:</span> Bem Direto
-            (2012–2013), first designer at Brazil&rsquo;s first real estate
+            <span className="font-medium text-text">Earlier:</span>{" "}
+            Bem Direto (2012–2013), first designer at Brazil&rsquo;s first real estate
             marketplace for agents · Smartia (2011–2012), Brazil&rsquo;s first
             car insurance comparison platform · Sitevip (2005–2009), front-end
             coder in an agency.

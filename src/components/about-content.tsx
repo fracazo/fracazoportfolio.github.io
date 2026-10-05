@@ -255,10 +255,16 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
             <p>
               Now I build by directing AI and reviewing what it gives back. It
               feels familiar, because it&rsquo;s close to the work I did in 2009.
+              When I couldn&rsquo;t see the whole flow of what an agent was
+              building, I made Flow Prototype to put every screen on one canvas.
             </p>
 
             <p>
-              Looking back, the lesson is the same one I learned at the shop: go
+              Looking back, most of my work has been firsts: Brazil&rsquo;s first
+              product management software, Brazil&rsquo;s first app built for
+              iOS 7, a government app built from zero, and AI features before
+              there were patterns for them. New ideas don&rsquo;t come with
+              patterns, so the lesson is the same one I learned at the shop: go
               and look at the thing. The answer is usually simpler than anyone expected, and
               it&rsquo;s usually standing right there.
             </p>
