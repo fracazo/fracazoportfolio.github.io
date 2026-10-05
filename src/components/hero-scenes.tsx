@@ -46,13 +46,15 @@ const prefersReducedMotion = () =>
 
 /**
  * Drives a stage's playToken: plays once the stage is on screen, then loops
- * every `loopMs` while it stays there. `replay` restarts the scene and the
- * loop clock now (the hero calls it on selection). Reduced motion never
- * plays, so the stage rests on its settled frame.
+ * every `loopMs` while it stays there. With `loop: false` it plays once and
+ * holds the final frame. `replay` restarts the scene (and the loop clock)
+ * now; the hero calls it on selection. Reduced motion never plays, so the
+ * stage rests on its settled frame.
  */
 export function useScenePlayback(
   stageRef: RefObject<HTMLElement | null>,
   kind: WorkVignetteKind,
+  { loop = true }: { loop?: boolean } = {},
 ) {
   const [playToken, setPlayToken] = useState(0);
   const [onScreen, setOnScreen] = useState(false);
@@ -72,12 +74,13 @@ export function useScenePlayback(
 
   useEffect(() => {
     if (!onScreen || prefersReducedMotion()) return;
+    if (!loop && playToken !== 0) return;
     const timer = window.setTimeout(
       () => setPlayToken((token) => token + 1),
       playToken === 0 ? FIRST_PLAY_MS : loopMs,
     );
     return () => clearTimeout(timer);
-  }, [onScreen, playToken, loopMs]);
+  }, [onScreen, playToken, loopMs, loop]);
 
   const replay = useCallback(() => {
     if (!prefersReducedMotion()) setPlayToken((token) => token + 1);

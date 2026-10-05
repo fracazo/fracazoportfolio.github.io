@@ -579,7 +579,8 @@
      refuses to start; this covers a setting change mid-scene. */
   @media (prefers-reduced-motion: reduce) {
     .work-vignette,
-    .work-vignette * {
+    .work-vignette *,
+    .featured-plate-slide {
       transition: none !important;
       animation: none !important;
     }
