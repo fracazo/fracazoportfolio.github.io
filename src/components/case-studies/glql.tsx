@@ -53,7 +53,7 @@ export function GlqlContent({
                 </div>
               </div>
             </div>
-            <p className="case-intro">Turning a query language built by engineers into something a non-technical person could actually use, without taking any power away from the experts.</p>
+            <p className="case-intro">GLQL was powerful, but you had to write YAML to use it. I made it work for people who had only ever used filters, without taking any power away from the experts.</p>
           </header>
 
           <ul className="case-stats" role="list">
@@ -63,20 +63,21 @@ export function GlqlContent({
           </ul>
 
           <div className="case-study-section">
-            <blockquote>Adoption grew about a third in the first weeks after GA, driven by discoverability I designed.</blockquote>
+            <blockquote>Adoption grew about a third in the first weeks after GA. The team shipped something worth using, and the discoverability work I led helped people find it.</blockquote>
           </div>
 
 
           <div className="case-study-section">
             <h2>The challenge</h2>
-            <p>GLQL launched as an experimental engineering feature. Powerful, and built with no user input. The job it was meant to serve was easy to say and hard to do: let someone track work progress without stitching it together by hand across boards, milestones, and issues.</p>
+            <p>GLQL started as an experimental feature and a strong proof of concept. It was a technical solution designed for technical people, and it worked. The job it was meant to serve was easy to say and hard to do: let someone track work progress without stitching it together by hand across boards, milestones, and issues.</p>
+            <p>Many of the people with that job were not the people it was first built for. They were used to filters and boards, not writing code, and asking them to start from YAML was a big step.</p>
             <p>The catch showed up fast. The same tool had to serve two people with opposite instincts. A project manager who never wants to see a line of code, and a power user who expects a query to behave exactly like the ones they already write. Most query tools pick one of those people and lose the other.</p>
           </div>
 
           <div className="case-study-section">
             <h2>My role</h2>
-            <p>I owned four products across the Knowledge group as its designer, embedded with engineering. GLQL sat with an engineering-led team that had been shipping without research or a shared way of deciding what users actually needed. So the first job was not a screen. It was earning the right to be in the room, and making design useful fast enough that it sped the team up instead of slowing it down.</p>
-            <p>My way in was a UX scorecard run, GitLab&apos;s standing process where a designer walks a product&apos;s main jobs as a new user would and grades the experience. Scoring GLQL that way turned my concerns into an issue list the engineers could argue with line by line, and it is what I took to the PM to make the case for proper research.</p>
+            <p>I owned four products across the Knowledge group as its designer, embedded with engineering. The GLQL team had built something powerful quickly, and research had not been part of how it got there yet. So my first job was not a screen. It was making design useful fast enough that it sped the team up instead of slowing it down.</p>
+            <p>My way in was a UX scorecard run, GitLab&apos;s standing process where a designer walks a product&apos;s main jobs as a new user would and grades the experience. Scoring GLQL that way turned my concerns into an issue list the team could work through line by line, and it is what I took to the PM to make the case for proper research.</p>
           </div>
 
           <div className="case-study-section">
@@ -90,14 +91,14 @@ export function GlqlContent({
                 <source src="/images/Screen_Recording_2024-08-05_at_17.15.37.mov" type="video/mp4" />
                 Your browser does not support the video element.
               </video>
-              <figcaption className="glql-video-caption">Early prototype recording (Aug 2024), produced with one of the GLQL engineers before any design refinements, showing the raw capability of GLQL. Used internally to gather early feedback and build cross-functional alignment on what the feature could become.</figcaption>
+              <figcaption className="glql-video-caption">Early prototype recording (Aug 2024), made with one of the GLQL engineers to show what GLQL could already do before any design work. We used it internally to gather feedback and agree on what the feature could become.</figcaption>
             </figure>
           </div>
 
           <div className="case-study-section">
             <h2>Decision one: the syntax is the UX</h2>
-            <p>Three syntax options were on the table, and the engineering instinct was to move toward SQL. Clean, familiar, a tidy separation of concerns.</p>
-            <p>My argument was that the syntax is the first thing a user touches, so it is the interface, and we should not lock it on instinct before testing it.</p>
+            <p>Three syntax options were on the table, and SQL was the natural pick. Clean, familiar to the technical users GLQL was first built for, with a tidy separation of concerns.</p>
+            <p>My argument was that the syntax is the first thing a user touches, so it is the interface, and we should test it with the people we wanted to reach before locking it in.</p>
             <p>We tested it.</p>
             <p>The plain-language option won, and we shipped it with full backward compatibility.</p>
 
@@ -213,11 +214,12 @@ export function GlqlContent({
 
           <div className="case-study-section">
             <h2>Outcomes and what I learned</h2>
-            <p>Adoption grew about a third in the early weeks, driven by the discoverability work. The result I am prouder of is quieter and lasts longer: I joined a team with no research process and no design practice and left it with both, which made the projects after this one, the Wiki sidebar and contextual comments, faster and less contentious to build.</p>
+            <p>Adoption grew about a third in the early weeks, on the back of a solid product from the whole team and a discoverability push that put it in front of people. The result I am prouder of is quieter and lasts longer. Research became part of how the team decided what to build, which made the projects after this one, the Wiki sidebar and contextual comments, faster to agree on and build.</p>
 
             <p>What I would carry into the next one:</p>
             <ul>
-              <li>The syntax is the UX. The first thing a user touches is the interface, whatever engineering calls it.</li>
+              <li>Keep what works and refine the details. The query language was sound. Most of the design work was making it approachable.</li>
+              <li>The syntax is the UX. Whatever a user touches first is the interface.</li>
               <li>Outcome first, settings second.</li>
               <li>Errors are part of the design, not cleanup.</li>
               <li>Design for the person who does not want to learn the tool.</li>

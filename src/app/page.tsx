@@ -21,7 +21,7 @@ const featuredWork: FeaturedItem[] = [
         meta: "GitLab · 2024–2025",
         title: "GLQL: Embedded Views for Work Tracking",
         tagline:
-          "Turning an engineer-built query language into a usable product, through research that overturned the team’s assumptions.",
+          "Making a YAML query language work for people who had only ever used filters, through research that changed the team’s direction.",
         outcome: "+33% adoption post-GA",
         vignette: "glql",
       },

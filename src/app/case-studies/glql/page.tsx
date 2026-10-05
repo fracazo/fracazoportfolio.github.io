@@ -4,7 +4,7 @@ import { GlqlContent } from "@/components/case-studies/glql";
 
 const title = "GLQL / Embedded Views - Alex Fracazo";
 const description =
-  "Turning a query language built by engineers into something a non-technical person could actually use, without taking any power away from the experts.";
+  "GLQL was powerful, but you had to write YAML to use it. I made it work for people who had only ever used filters, without taking any power away from the experts.";
 
 export const metadata: Metadata = {
   title,
