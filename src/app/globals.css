@@ -621,14 +621,8 @@
   .text-link-mark {
     transition: transform 0.5s var(--text-link-ease);
   }
-  .text-link:is(:hover, :focus-visible) .text-link-mark[data-mark="internal"] {
-    transform: translateX(2px);
-  }
   .text-link:is(:hover, :focus-visible) .text-link-mark[data-mark="external"] {
     transform: translate(1.5px, -1.5px);
-  }
-  .text-link:is(:hover, :focus-visible) .text-link-mark[data-mark="email"] {
-    transform: translateY(-1.5px);
   }
   @media (prefers-reduced-motion: reduce) {
     .text-link-label::after,
