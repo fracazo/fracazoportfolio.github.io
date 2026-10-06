@@ -297,7 +297,10 @@ export default function Home() {
                 <TextLink href="/about" panel>
                   more about me
                 </TextLink>
-                , or <TextLink href="mailto:fracazo@duck.com">get in touch</TextLink>
+                , or{" "}
+                <TextLink href="https://www.linkedin.com/in/fracazo">
+                  connect on LinkedIn
+                </TextLink>
                 .
               </p>
             </div>
