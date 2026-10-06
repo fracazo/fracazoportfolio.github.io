@@ -263,7 +263,7 @@ export default function Home() {
           <div className="reveal-group">
             <AvatarGreeting />
             <h1 id="hero-title" className="h1">
-              I take new ideas from zero to one.
+              I take new ideas from zero to one
             </h1>
             {/* Pull against .h1's 32px bottom margin so the greeting reads as
                 part of the headline. One step up from body, in the primary
