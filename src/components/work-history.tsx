@@ -31,10 +31,6 @@ const brands = {
     name: "Vodafone",
     logo: { src: "/images/brands/vodafone.png", w: 69, h: 17 },
   },
-  woolworths: {
-    name: "Woolworths",
-    logo: { src: "/images/brands/woolworths.png", w: 60, h: 12 },
-  },
   qantas: {
     name: "Qantas",
     logo: { src: "/images/brands/qantas.svg", w: 66, h: 14 },
@@ -78,7 +74,8 @@ type Entry = {
   brand: Brand;
   /** Short timeline label; omit to keep the entry off the line. */
   label?: string;
-  /** Year as shown in the entry's meta line. */
+  /** Year as shown in the meta line. Case studies and stubs show the date
+      from their own card instead (see yearsOf). */
   year: string;
   title: string;
   text?: string;
@@ -306,19 +303,6 @@ const roles: Role[] = [
         title: "Qantas app",
         work: work.qantasApp,
       },
-      {
-        id: "woolworths-driver",
-        brand: brands.woolworths,
-        label: "Driver app",
-        year: "2016",
-        title: "Woolworths driver app",
-        image: {
-          src: "/images/work/woolworths-driver.png",
-          alt: "Woolworths driver app dashboard with the next delivery",
-          fit: "top",
-        },
-        text: "Replaced PDAs and paper for delivery drivers, with geofencing to cut wrong deliveries.",
-      },
     ],
     closing: {
       title: "Leading teams",
@@ -405,6 +389,28 @@ const timelineNames: Record<string, string> = {
   "side-projects": "Own work",
 };
 
+/* The years an entry shows. Case studies and stubs carry their own date
+   line ("Qantas · 2017–2018"), so read it from there: one source, so the
+   card and the order can never disagree. */
+function yearsOf(entry: Entry) {
+  const meta = entry.work?.meta ?? entry.stub?.meta;
+  return meta ? meta.split("·").pop()!.trim() : entry.year;
+}
+
+/* Newest first by the last year shown, then by the later start. Ties keep
+   their written order, which follows the month the work happened. */
+function sortKey(entry: Entry) {
+  const years = yearsOf(entry).match(/\d{4}/g)!.map(Number);
+  return [years[years.length - 1], years[0]] as const;
+}
+for (const role of roles) {
+  role.entries.sort((a, b) => {
+    const [aEnd, aStart] = sortKey(a);
+    const [bEnd, bStart] = sortKey(b);
+    return bEnd - aEnd || bStart - aStart;
+  });
+}
+
 /* Oldest first for the line. Employers bracket their own run of stops. */
 const chronological = [...roles].reverse();
 const stops: TimelineStop[] = chronological.flatMap((role) => {
@@ -414,7 +420,7 @@ const stops: TimelineStop[] = chronological.flatMap((role) => {
     id: entry.id,
     brand: entry.brand,
     label: entry.label!,
-    name: `${entry.title}, ${entry.brand.name}, ${entry.year}`,
+    name: `${entry.title}, ${entry.brand.name}, ${yearsOf(entry)}`,
   }));
 });
 const employers: TimelineEmployer[] = chronological.map((role) => ({
@@ -458,7 +464,7 @@ function EntryItem({ entry }: { entry: Entry }) {
         }`}
       >
         <p className="m-0 mb-1 text-meta text-muted">
-          {entry.brand.name} · {entry.year}
+          {entry.brand.name} · {yearsOf(entry)}
         </p>
         <h3 className="m-0 text-subhead-sm font-semibold text-text">
           {entry.title}

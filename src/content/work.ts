@@ -91,7 +91,7 @@ export const work = {
   },
   qantasEntertainment: {
     href: "/work/qantas-entertainment-app",
-    meta: "Qantas · 2018",
+    meta: "Qantas · 2017–2018",
     title: "A Unified In-flight Entertainment Experience",
     tagline:
       "Making the entertainment app useful before and after the flight, not just on board.",
