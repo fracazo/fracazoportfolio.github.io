@@ -65,7 +65,7 @@ export default function Contact() {
               </a>
             </li>
             <li>
-              <Link href="/resume" className={socialLinkClass}>
+              <Link href="/work" className={socialLinkClass}>
                 <svg
                   width="20"
                   height="20"

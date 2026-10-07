@@ -1,37 +1,6 @@
-import type { Metadata } from "next";
-import { CaseStudyShell } from "@/components/case-study-shell";
-import { QantasAppContent } from "@/components/case-studies/qantas-app";
+import { RedirectTo } from "@/components/redirect-to";
 
-const title = "Increasing App Adoption by Integrating Entertainment Services - Alex Fracazo";
-const description = "Using entertainment features to drive a 70% increase in app downloads.";
-
-export const metadata: Metadata = {
-  title,
-  description,
-  openGraph: {
-    title,
-    description,
-    images: ["/images/opengraph.jpg"],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: ["/images/opengraph.jpg"],
-  },
-};
-
-export default function QantasApp() {
-  return (
-    <CaseStudyShell>
-      <QantasAppContent
-        breadcrumb={
-            <nav className="breadcrumb" aria-label="Breadcrumb">
-              <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><span>Qantas App</span>
-            </nav>
-        }
-      />
-    </CaseStudyShell>
-  );
+/** Case studies moved under /work, next to the work history they belong to. */
+export default function Page() {
+  return <RedirectTo href="/work/qantas-app" />;
 }

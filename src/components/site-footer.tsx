@@ -31,7 +31,7 @@ export function SiteFooter({
                   <TextLink href="https://www.linkedin.com/in/fracazo">
                     LinkedIn
                   </TextLink>
-                  , read my <TextLink href="/resume">work history</TextLink>, or{" "}
+                  , read my <TextLink href="/work">work history</TextLink>, or{" "}
                   <TextLink href="mailto:fracazo@duck.com">
                     reach me by email
                   </TextLink>

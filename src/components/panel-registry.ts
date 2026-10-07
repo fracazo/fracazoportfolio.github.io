@@ -34,12 +34,6 @@ export const panelRegistry: Record<
       import("@/components/about-content").then((m) => m.AboutContent),
     ),
   },
-  "/resume": {
-    title: "Work history",
-    load: dynamic(() =>
-      import("@/components/resume-content").then((m) => m.ResumeContent),
-    ),
-  },
   "/writing/titles-are-a-trap": {
     title: "Titles are a trap",
     load: dynamic(() =>
@@ -64,7 +58,7 @@ export const panelRegistry: Record<
       ),
     ),
   },
-  "/case-studies/vodafone-mymix": {
+  "/work/vodafone-mymix": {
     title: "MyMix",
     load: dynamic(() =>
       import("@/components/case-studies/vodafone-mymix").then(
@@ -72,13 +66,13 @@ export const panelRegistry: Record<
       ),
     ),
   },
-  "/case-studies/glql": {
+  "/work/glql": {
     title: "GLQL / Embedded Views",
     load: dynamic(() =>
       import("@/components/case-studies/glql").then((m) => m.GlqlContent),
     ),
   },
-  "/case-studies/wiki-contextual-comments": {
+  "/work/wiki-contextual-comments": {
     title: "Wiki Contextual Comments",
     load: dynamic(() =>
       import("@/components/case-studies/wiki-contextual-comments").then(
@@ -86,7 +80,7 @@ export const panelRegistry: Record<
       ),
     ),
   },
-  "/case-studies/gitlab-pages": {
+  "/work/gitlab-pages": {
     title: "Making Site Status Visible in GitLab Pages",
     load: dynamic(() =>
       import("@/components/case-studies/gitlab-pages").then(
@@ -94,7 +88,7 @@ export const panelRegistry: Record<
       ),
     ),
   },
-  "/case-studies/birthguide": {
+  "/work/birthguide": {
     title: "BirthGuide",
     load: dynamic(() =>
       import("@/components/case-studies/birthguide").then(
@@ -102,7 +96,7 @@ export const panelRegistry: Record<
       ),
     ),
   },
-  "/case-studies/mr-summary-ai": {
+  "/work/mr-summary-ai": {
     title: "Summarize Merge Requests with AI",
     load: dynamic(() =>
       import("@/components/case-studies/mr-summary-ai").then(
@@ -110,13 +104,13 @@ export const panelRegistry: Record<
       ),
     ),
   },
-  "/case-studies/eta-app": {
+  "/work/eta-app": {
     title: "Reducing Friction in Government Visa Applications",
     load: dynamic(() =>
       import("@/components/case-studies/eta-app").then((m) => m.EtaAppContent),
     ),
   },
-  "/case-studies/qantas-app": {
+  "/work/qantas-app": {
     title: "Increasing App Adoption Through Entertainment",
     load: dynamic(() =>
       import("@/components/case-studies/qantas-app").then(
@@ -124,7 +118,7 @@ export const panelRegistry: Record<
       ),
     ),
   },
-  "/case-studies/qantas-entertainment-app": {
+  "/work/qantas-entertainment-app": {
     title: "A Unified In-flight Entertainment Experience",
     load: dynamic(() =>
       import("@/components/case-studies/qantas-entertainment-app").then(
@@ -140,7 +134,7 @@ export const panelRegistry: Record<
       ),
     ),
   },
-  "/case-studies/bringing-visibility-to-workers-status": {
+  "/work/bringing-visibility-to-workers-status": {
     title: "Worker Status Visibility",
     load: dynamic(() =>
       import("@/components/case-studies/bringing-visibility-to-workers-status").then(

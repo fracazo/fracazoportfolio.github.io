@@ -1,6 +1,6 @@
 import { RedirectTo } from "@/components/redirect-to";
 
-/** The work history moved to /work, where it also indexes the case studies. */
+/** There was never an index here; the work history is the index now. */
 export default function Page() {
   return <RedirectTo href="/work" />;
 }

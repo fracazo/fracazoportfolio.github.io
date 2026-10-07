@@ -53,12 +53,13 @@ const prefersReducedMotion = () =>
  */
 export function useScenePlayback(
   stageRef: RefObject<HTMLElement | null>,
-  kind: WorkVignetteKind,
+  /* Undefined when the stage shows footage instead of a scene. */
+  kind: WorkVignetteKind | undefined,
   { loop = true }: { loop?: boolean } = {},
 ) {
   const [playToken, setPlayToken] = useState(0);
   const [onScreen, setOnScreen] = useState(false);
-  const loopMs = HERO_LOOP_MS[kind] ?? DEFAULT_LOOP_MS;
+  const loopMs = (kind && HERO_LOOP_MS[kind]) ?? DEFAULT_LOOP_MS;
 
   // display:none never intersects, so a hidden stage never runs a timer.
   useEffect(() => {

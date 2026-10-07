@@ -1,38 +1,6 @@
-import type { Metadata } from "next";
-import { CaseStudyShell } from "@/components/case-study-shell";
-import { GlqlContent } from "@/components/case-studies/glql";
+import { RedirectTo } from "@/components/redirect-to";
 
-const title = "GLQL / Embedded Views - Alex Fracazo";
-const description =
-  "GLQL was powerful, but you had to write YAML to use it. I made it work for people who had only ever used filters, without taking any power away from the experts.";
-
-export const metadata: Metadata = {
-  title,
-  description,
-  openGraph: {
-    title,
-    description,
-    images: ["/images/opengraph.jpg"],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: ["/images/opengraph.jpg"],
-  },
-};
-
-export default function Glql() {
-  return (
-    <CaseStudyShell>
-      <GlqlContent
-        breadcrumb={
-              <nav className="breadcrumb" aria-label="Breadcrumb">
-                <a href="/">Home</a><span className="breadcrumb-sep"> &gt; </span><span>GLQL / Embedded Views</span>
-              </nav>
-        }
-      />
-    </CaseStudyShell>
-  );
+/** Case studies moved under /work, next to the work history they belong to. */
+export default function Page() {
+  return <RedirectTo href="/work/glql" />;
 }

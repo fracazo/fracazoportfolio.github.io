@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Chip } from "./chip";
 import { PanelLink } from "./panel-link";
 import { WorkRow } from "./work-row";
@@ -15,7 +15,11 @@ export type FeaturedItem = {
   tagline: string;
   /** "·"-separated facts; each becomes a Chip, as in WorkRow. */
   outcome?: string;
-  vignette: WorkVignetteKind;
+  /** A drawn scene for the stage. Work with real product footage passes
+      `image` and `video` instead, and the stage plays the clip. */
+  vignette?: WorkVignetteKind;
+  image?: { src: string; alt: string };
+  video?: { src: string };
 };
 
 /* How long the pointer has to rest on a project before the stage switches,
@@ -263,10 +267,18 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
                   transition: `opacity 250ms ease, transform ${slide}`,
                 }}
               >
-                <HeroStage
-                  kind={item.vignette}
-                  playToken={index === selected ? playToken : 0}
-                />
+                {item.vignette ? (
+                  <HeroStage
+                    kind={item.vignette}
+                    playToken={index === selected ? playToken : 0}
+                  />
+                ) : item.image && item.video ? (
+                  <FootageStage
+                    image={item.image}
+                    video={item.video}
+                    playing={index === selected}
+                  />
+                ) : null}
               </div>
             );
           })}
@@ -283,6 +295,72 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
           </li>
         ))}
       </ul>
+    </>
+  );
+}
+
+/**
+ * The stage for work shown as real product footage rather than a drawn
+ * scene: the still rests underneath, and the clip plays while its project is
+ * selected and on screen. Reduced motion keeps the still. The clip is only
+ * fetched once it first plays.
+ */
+function FootageStage({
+  image,
+  video,
+  playing,
+}: {
+  image: { src: string; alt: string };
+  video: { src: string };
+  playing: boolean;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [onScreen, setOnScreen] = useState(false);
+
+  // display:none never intersects, so the hidden wide layout never plays.
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setOnScreen(entry.isIntersecting),
+      { threshold: 0.25 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (playing && onScreen && !reduced) {
+      el.play().catch(() => {});
+    } else {
+      el.pause();
+      if (!playing) el.currentTime = 0;
+    }
+  }, [playing, onScreen]);
+
+  return (
+    <>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={image.src}
+        alt={image.alt}
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <video
+        ref={videoRef}
+        src={video.src}
+        poster={image.src}
+        muted
+        loop
+        playsInline
+        preload="none"
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
+      />
     </>
   );
 }
