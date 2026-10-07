@@ -58,7 +58,6 @@ export function GlqlContent({
 
           <ul className="case-stats" role="list">
             <li><span className="case-stat-value">+33%</span><span className="case-stat-label">adoption growth in the first weeks after launch</span></li>
-            <li><span className="case-stat-value">94%</span><span className="case-stat-label">balanced scorecard score</span></li>
             <li><span className="case-stat-value">0</span><span className="case-stat-label">critical bugs at launch</span></li>
           </ul>
 
@@ -77,8 +76,9 @@ export function GlqlContent({
           <div className="case-study-section">
             <h2>The vision</h2>
             <p>Where we wanted to end up: you describe what you want to see in plain words, GitLab Duo (GitLab&apos;s AI assistant) writes the query, and the live view appears in front of you. If you want to, you open the query and edit it. Nobody has to learn the language to get value from it, and the people who already know it keep full control.</p>
-            <p>That end point set the order of the work. An AI-written query is only useful if a person can read it and fix it, so the language had to be readable first. People had to find embedded views and trust them before a prompt could do anything for them. And every answer had to be a real query underneath, so the experts lost nothing along the way.</p>
-            <p>So the work went in three steps: make the language readable, make it easy to start, then let people ask for what they want. The rest of this case study follows those steps.</p>
+            <p>None of that was possible without the language. A query language is what let one view pull work from across groups and projects, and it was the only way to trial the feature at all. It was also what the AI would eventually write, so it had to be one a person could read and fix.</p>
+            <p>The first release tested one narrow question. Can people query issues from other projects and see them as a table or a list? If the answer was yes, everything else in the vision had something to stand on.</p>
+            <p>From there the work went in three steps: make the language readable, make it easy to start, then let people ask for what they want. The rest of this case study follows those steps.</p>
           </div>
 
           <div className="case-study-section">
@@ -213,6 +213,17 @@ export function GlqlContent({
             <p className="img-caption">Same view, Query code tab: the generated GLQL is right there to read, edit, and rerun.</p>
 
             <p>This is where the first two steps paid off. Duo could only write queries people could check because the language was readable, and power users kept their control because every answer was a real query. The language stayed the foundation. The prompt became the fastest way in.</p>
+          </div>
+
+          <div className="case-study-section">
+            <h2>Next steps of the vision</h2>
+            <p>Each next step came out of something the first release or the research taught us.</p>
+            <ul>
+              <li><strong>More than issues.</strong> The first release proved people wanted to pull issues from other projects into one view. The same need applied to the rest of their work, like epics, so the next step was widening what a view could show.</li>
+              <li><strong>Start from a prompt, not a blank query.</strong> People already began from someone else&apos;s example. Letting Duo write that example for them was the shortest path to a first working view.</li>
+              <li><strong>Error messages that guide.</strong> People found their way by running a query and reading the error. Clearer errors help everyone who still writes queries by hand.</li>
+              <li><strong>The query always stays editable.</strong> An AI answer has to be something you can check and fix, and power users had to keep the control they came for.</li>
+            </ul>
           </div>
 
           <div className="case-study-section">
