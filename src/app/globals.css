@@ -634,6 +634,42 @@
     }
   }
 
+  /* Work timeline: hovering or focusing a stop stretches its dashed stem
+     and carries the label out with it. `transform` composes with the label's
+     own `translate` centring, so the two never fight. */
+  .timeline-stem,
+  .timeline-label {
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .group:is(:hover, :focus-visible) .timeline-stem {
+    transform: scaleY(1.6);
+  }
+  .group:is(:hover, :focus-visible) .timeline-label[data-dir="up"] {
+    transform: translateY(-16px);
+  }
+  .group:is(:hover, :focus-visible) .timeline-label[data-dir="down"] {
+    transform: translateY(16px);
+  }
+  /* An entry reached from the timeline flashes once, so the eye lands on
+     it rather than hunting the screen it scrolled to. */
+  .work-entry {
+    scroll-margin-top: 24px;
+    border-radius: var(--radius-card, 12px);
+  }
+  .work-entry:target {
+    animation: work-entry-flash 2.6s ease-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-stem,
+    .timeline-label {
+      transition: none;
+    }
+    .work-entry:target {
+      animation: none;
+      background: var(--panel-2);
+    }
+  }
+
   /* Buttons — muted, filled. The fill is opaque (--btn-surface) so the dot
      field never shows through the label. Accent still only appears on
      interaction, mixed into that same surface. Base = secondary (Résumé,
@@ -2404,5 +2440,15 @@
   }
   .mymix-detent {
     font-size: 10px;
+  }
+}
+
+@keyframes work-entry-flash {
+  0%,
+  50% {
+    background: color-mix(in oklab, var(--accent) 16%, transparent);
+  }
+  100% {
+    background: transparent;
   }
 }
