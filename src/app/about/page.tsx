@@ -43,7 +43,9 @@ export default function About() {
         }
       />
 
-      <SiteFooter />
+      <div className="mx-auto w-full max-w-home">
+        <SiteFooter className="!ml-0" />
+      </div>
     </PlainShell>
   );
 }
