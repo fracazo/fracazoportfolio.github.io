@@ -90,7 +90,7 @@ export function WorkRowCompact({
       {meta && <p className="m-0 mb-1 text-meta text-muted">{meta}</p>}
       <h3
         className={`m-0 text-subhead-sm font-semibold text-text ${
-          href ? "transition-colors duration-200 group-hover:text-brand" : ""
+          href ? "transition-colors duration-200 group-hover:text-brand group-active:text-brand" : ""
         }`}
       >
         {title}
@@ -130,7 +130,7 @@ export function WorkRowCompact({
      keeps the text on the column's left edge; the button needs its width
      widened to match, since w-full alone would stop 40px short. */
   const pill =
-    "-mx-5 rounded-card px-5 transition-colors duration-200 hover:bg-panel-2";
+    "-mx-5 rounded-card px-5 transition-colors duration-200 hover:bg-panel-2 active:bg-panel-2";
 
   if (stub) {
     return (

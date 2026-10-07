@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { FlowPrototypeContent } from "@/components/tools/flow-prototype";
 
@@ -27,15 +26,7 @@ export const metadata: Metadata = {
 export default function FlowPrototype() {
   return (
     <CaseStudyShell>
-      <FlowPrototypeContent
-        breadcrumb={
-          <nav className="breadcrumb" aria-label="Breadcrumb">
-            <Link href="/">Home</Link>
-            <span className="breadcrumb-sep"> &gt; </span>
-            <span>Flow prototype</span>
-          </nav>
-        }
-      />
+      <FlowPrototypeContent />
     </CaseStudyShell>
   );
 }

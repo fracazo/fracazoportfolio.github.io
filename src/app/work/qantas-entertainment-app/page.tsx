@@ -1,10 +1,11 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { QantasEntertainmentAppContent } from "@/components/case-studies/qantas-entertainment-app";
 
-const title = "Driving Engagement Through a Unified Entertainment Experience - Alex Fracazo";
-const description = "Making the entertainment app useful before and after the flight, not just on board.";
+const title =
+  "Driving Engagement Through a Unified Entertainment Experience - Alex Fracazo";
+const description =
+  "Making the entertainment app useful before and after the flight, not just on board.";
 
 export const metadata: Metadata = {
   title,
@@ -26,13 +27,7 @@ export const metadata: Metadata = {
 export default function QantasEntertainmentApp() {
   return (
     <CaseStudyShell>
-      <QantasEntertainmentAppContent
-        breadcrumb={
-            <nav className="breadcrumb" aria-label="Breadcrumb">
-              <Link href="/">Home</Link><span className="breadcrumb-sep"> &gt; </span><Link href="/work">Work history</Link><span className="breadcrumb-sep"> &gt; </span><span>Qantas Entertainment</span>
-            </nav>
-        }
-      />
+      <QantasEntertainmentAppContent />
     </CaseStudyShell>
   );
 }

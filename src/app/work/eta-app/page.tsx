@@ -1,10 +1,11 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { EtaAppContent } from "@/components/case-studies/eta-app";
 
-const title = "Reducing Friction in Government Visa Applications - Alex Fracazo";
-const description = "Automating data entry to improve completion and reduce user effort in a high-stakes service.";
+const title =
+  "Reducing Friction in Government Visa Applications - Alex Fracazo";
+const description =
+  "Automating data entry to improve completion and reduce user effort in a high-stakes service.";
 
 export const metadata: Metadata = {
   title,
@@ -26,13 +27,7 @@ export const metadata: Metadata = {
 export default function EtaApp() {
   return (
     <CaseStudyShell>
-      <EtaAppContent
-        breadcrumb={
-            <nav className="breadcrumb" aria-label="Breadcrumb">
-              <Link href="/">Home</Link><span className="breadcrumb-sep"> &gt; </span><Link href="/work">Work history</Link><span className="breadcrumb-sep"> &gt; </span><span>ETA App</span>
-            </nav>
-        }
-      />
+      <EtaAppContent />
     </CaseStudyShell>
   );
 }

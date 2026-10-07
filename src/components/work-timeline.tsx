@@ -97,15 +97,24 @@ function Mark({ brand }: { brand: Brand }) {
 export function WorkTimeline({
   stops,
   employers,
+  hrefBase = "",
+  sweep = false,
+  label = "Career timeline",
 }: {
   stops: TimelineStop[];
   employers: TimelineEmployer[];
+  /** Page the stops jump into; empty means this page (the work history). */
+  hrefBase?: string;
+  /** Play one magnification wave along the line the first time it is seen. */
+  sweep?: boolean;
+  label?: string;
 }) {
   /* Arriving from another page with a #entry (the home page's Earlier work
      rows) lands at the top: the router does not scroll to the hash after a
      page change, and its own scroll reset cancels a smooth one. Jump there
      instantly once the router is done. */
   useEffect(() => {
+    if (hrefBase) return;
     const id = decodeURIComponent(window.location.hash.slice(1));
     if (!id) return;
     const jump = () => {
@@ -126,20 +135,32 @@ export function WorkTimeline({
       clearTimeout(timer);
       clearTimeout(retry);
     };
-  }, []);
+  }, [hrefBase]);
 
   return (
-    <nav aria-label="Career timeline" className="@container">
+    <nav aria-label={label} className="@container">
       {/* Wide: the whole career on one line, magnified by the pointer. */}
       <div className="hidden @min-[720px]:block">
-        <Track stops={stops} employers={employers} drive="pointer" />
+        <Track
+          stops={stops}
+          employers={employers}
+          drive="pointer"
+          hrefBase={hrefBase}
+          sweep={sweep}
+        />
       </div>
 
       {/* Narrow (phones, and the split pane): the same line in a strip the
           thumb scrubs sideways. The stop at the centre is magnified, so the
           Dock effect follows the scroll instead of a pointer. */}
       <div className="@min-[720px]:hidden">
-        <Track stops={stops} employers={employers} drive="scroll" />
+        <Track
+          stops={stops}
+          employers={employers}
+          drive="scroll"
+          hrefBase={hrefBase}
+          sweep={sweep}
+        />
       </div>
     </nav>
   );
@@ -148,6 +169,11 @@ export function WorkTimeline({
 /* Width of one stop's column on the scrolling strip; an employer with a
    single stop gets two, as on the wide line. */
 const STRIP_STOP_PX = 72;
+/* How long the wide line's one-time sweep takes, end to end. */
+const SWEEP_MS = 2600;
+
+const prefersReducedMotion = () =>
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /**
  * The line itself, shared by both layouts. `pointer` fits every stop into
@@ -159,10 +185,14 @@ function Track({
   stops,
   employers,
   drive,
+  hrefBase,
+  sweep,
 }: {
   stops: TimelineStop[];
   employers: TimelineEmployer[];
   drive: "pointer" | "scroll";
+  hrefBase: string;
+  sweep: boolean;
 }) {
   const strip = drive === "scroll";
   const height = strip ? STRIP_HEIGHT : HEIGHT;
@@ -207,12 +237,15 @@ function Track({
   };
 
   /* The strip opens on the newest work, at the right-hand end, and keeps
-     the centre stop magnified as it scrolls (one update per frame). */
+     the centre stop magnified as it scrolls (one update per frame). With
+     `sweep` it opens on the oldest instead and glides to the newest the
+     first time it comes into view, unless the reader touches it first. */
   useEffect(() => {
     if (!strip) return;
     const scroller = scrollerRef.current;
     if (!scroller) return;
-    scroller.scrollLeft = scroller.scrollWidth;
+    const glide = sweep && !prefersReducedMotion();
+    scroller.scrollLeft = glide ? 0 : scroller.scrollWidth;
     let frame = 0;
     const onScroll = () => {
       cancelAnimationFrame(frame);
@@ -221,13 +254,69 @@ function Track({
     onScroll();
     scroller.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+
+    let touched = false;
+    const touch = () => {
+      touched = true;
+    };
+    scroller.addEventListener("pointerdown", touch, { passive: true });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        if (!touched) {
+          scroller.scrollTo({ left: scroller.scrollWidth, behavior: "smooth" });
+        }
+      },
+      { threshold: 0.8 },
+    );
+    if (glide) observer.observe(scroller);
+
     return () => {
       cancelAnimationFrame(frame);
+      observer.disconnect();
       scroller.removeEventListener("scroll", onScroll);
+      scroller.removeEventListener("pointerdown", touch);
       window.removeEventListener("resize", onScroll);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [strip]);
+  }, [strip, sweep]);
+
+  /* The wide line's sweep: one magnification wave travels left to right
+     the first time the line is mostly on screen, then settles. A real
+     pointer on the line takes over at once. */
+  const pointerOn = useRef(false);
+  useEffect(() => {
+    if (strip || !sweep || prefersReducedMotion()) return;
+    const list = listRef.current;
+    if (!list) return;
+    let frame = 0;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        const start = performance.now();
+        const tick = (now: number) => {
+          if (pointerOn.current) return;
+          const t = Math.min(1, (now - start) / SWEEP_MS);
+          // Ease in and out, so the wave gathers, travels, and lands.
+          const eased = t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+          const box = list.getBoundingClientRect();
+          magnify(box.left - FALLOFF_PX + (box.width + 2 * FALLOFF_PX) * eased);
+          if (t < 1) frame = requestAnimationFrame(tick);
+          else rest();
+        };
+        frame = requestAnimationFrame(tick);
+      },
+      { threshold: 0.6 },
+    );
+    observer.observe(list);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [strip, sweep]);
 
   const line = (
     <>
@@ -240,9 +329,14 @@ function Track({
           ? {}
           : {
               onPointerMove: (event: React.PointerEvent) => {
-                if (event.pointerType === "mouse") magnify(event.clientX);
+                if (event.pointerType !== "mouse") return;
+                pointerOn.current = true;
+                magnify(event.clientX);
               },
-              onPointerLeave: rest,
+              onPointerLeave: () => {
+                pointerOn.current = false;
+                rest();
+              },
               onFocus: (event: React.FocusEvent) => {
                 const li = (event.target as HTMLElement).closest("li");
                 if (!li) return;
@@ -280,20 +374,18 @@ function Track({
                 className="pointer-events-none absolute inset-y-0 left-1/2 w-px bg-border-muted"
               />
               <a
-                href={`#${stop.id}`}
+                href={`${hrefBase}#${stop.id}`}
                 className="group absolute inset-0 block no-underline hover:no-underline focus-visible:outline-none"
                 /* A tap that lands off-centre first brings the stop to the
                    middle, so it is magnified as the page moves to it. */
                 onClick={
-                  strip
+                  strip && !hrefBase
                     ? (event) =>
-                        event.currentTarget
-                          .closest("li")
-                          ?.scrollIntoView({
-                            inline: "center",
-                            block: "nearest",
-                            behavior: "smooth",
-                          })
+                        event.currentTarget.closest("li")?.scrollIntoView({
+                          inline: "center",
+                          block: "nearest",
+                          behavior: "smooth",
+                        })
                     : undefined
                 }
               >

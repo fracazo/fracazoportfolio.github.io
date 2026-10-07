@@ -3,7 +3,6 @@ import { BackToSite } from "@/components/back-to-site";
 import { EffortAndImpactContent } from "@/components/writing/effort-and-impact-are-not-the-same-thing";
 import { PlainShell } from "@/components/plain-shell";
 
-
 export const metadata: Metadata = {
   title: "Effort and impact are not the same thing Alex Fracazo",
   description:
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Effort and impact are not the same thing Alex Fracazo",
     description:
-    "Why effort and impact are not the same thing, and the four words that changed how I mentor designers.",
+      "Why effort and impact are not the same thing, and the four words that changed how I mentor designers.",
     images: ["/images/opengraph.jpg"],
     type: "article",
   },
@@ -19,15 +18,15 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Effort and impact are not the same thing Alex Fracazo",
     description:
-    "Why effort and impact are not the same thing, and the four words that changed how I mentor designers.",
+      "Why effort and impact are not the same thing, and the four words that changed how I mentor designers.",
     images: ["/images/opengraph.jpg"],
   },
 };
 
 export default function Page() {
   return (
-    <PlainShell>
-      <EffortAndImpactContent back={<BackToSite />} />
+    <PlainShell back={<BackToSite />}>
+      <EffortAndImpactContent />
     </PlainShell>
   );
 }

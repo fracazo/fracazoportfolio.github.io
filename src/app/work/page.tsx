@@ -3,6 +3,7 @@ import { PanelShell } from "@/components/panel-shell";
 import { PlainShell } from "@/components/plain-shell";
 import { SiteFooter } from "@/components/site-footer";
 import { WorkHistory } from "@/components/work-history";
+import { BackToSite } from "@/components/back-to-site";
 
 const title = "Work history - Alex Fracazo";
 const description =
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
 export default function Work() {
   return (
     <PanelShell>
-      <PlainShell wide>
+      <PlainShell wide back={<BackToSite />}>
         <WorkHistory
           footer={
             <div className="mx-auto w-full max-w-home">

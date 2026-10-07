@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
-import { ThemeToggle } from "./theme-toggle";
 import { HomeIcon, CloseIcon, MenuIcon } from "./icons";
 
 const navLinks = [
@@ -107,9 +106,6 @@ export function AppShell({
             )}
           </div>
 
-          <div className="mt-auto grid gap-2.5">
-            <ThemeToggle />
-          </div>
         </aside>
 
         {open && (

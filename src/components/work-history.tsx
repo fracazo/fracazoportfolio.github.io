@@ -422,23 +422,38 @@ for (const role of roles) {
   });
 }
 
-/* Oldest first for the line. Employers bracket their own run of stops. */
-const chronological = [...roles].reverse();
-const stops: TimelineStop[] = chronological.flatMap((role) => {
-  const onLine = [...role.entries].reverse().filter((entry) => entry.label);
-  return onLine.map((entry) => ({
-    weight: onLine.length === 1 ? 2 : 1,
-    id: entry.id,
-    brand: entry.brand,
-    label: entry.label!,
-    name: `${entry.title}, ${entry.brand.name}, ${yearsOf(entry)}`,
+/* Oldest first for the line. Employers bracket their own run of stops.
+   `only` limits the line to some roles (the home page's earlier years). */
+function timelineFor(only?: string[]) {
+  const chronological = [...roles]
+    .reverse()
+    .filter((role) => !only || only.includes(role.id));
+  const stops: TimelineStop[] = chronological.flatMap((role) => {
+    const onLine = [...role.entries].reverse().filter((entry) => entry.label);
+    return onLine.map((entry) => ({
+      weight: onLine.length === 1 ? 2 : 1,
+      id: entry.id,
+      brand: entry.brand,
+      label: entry.label!,
+      name: `${entry.title}, ${entry.brand.name}, ${yearsOf(entry)}`,
+    }));
+  });
+  const employers: TimelineEmployer[] = chronological.map((role) => ({
+    name: timelineNames[role.id] ?? role.company,
+    years: role.years,
+    span: role.entries.filter((entry) => entry.label).length,
   }));
-});
-const employers: TimelineEmployer[] = chronological.map((role) => ({
-  name: timelineNames[role.id] ?? role.company,
-  years: role.years,
-  span: role.entries.filter((entry) => entry.label).length,
-}));
+  return { stops, employers };
+}
+const { stops, employers } = timelineFor();
+
+/** The years before Hireup, for the home page's Earlier work. */
+export const earlierTimeline = timelineFor([
+  "brazil",
+  "b2w",
+  "vodafone",
+  "arq",
+]);
 
 /* Icons for the short team lines under a role, in place of bullets. */
 const closingIcons = {
@@ -457,50 +472,51 @@ function EntryItem({ entry }: { entry: Entry }) {
   /* Same grid as WorkRow (text leading, framed 280px thumb trailing) so
      these sit in one rhythm with the case study rows, minus the hover pill:
      there is nowhere further to go. */
+  const thumb = entry.vignette ? (
+    <WorkVignette kind={entry.vignette} />
+  ) : entry.image ? (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={entry.image.src}
+      alt={entry.image.alt}
+      loading="lazy"
+      className={`h-full w-full ${
+        entry.image.fit === "contain"
+          ? "object-contain p-1 @min-[600px]:p-3"
+          : "object-cover"
+      }`}
+    />
+  ) : null;
+
+  /* Phones: date and title beside a small thumb, the description full
+     width below, so the text keeps the whole column and the list stays
+     short. From 600px: the WorkRow grid, text leading and a 280px thumb
+     trailing, so these sit in one rhythm with the case study rows. */
   return (
     /* work-row-compact: the hook WorkVignette listens on for row hover. */
-    <div className="work-row-compact grid grid-cols-1 py-5 @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8">
-      {entry.vignette && (
-        <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
-          <div className="relative aspect-[16/10] overflow-hidden">
-            <WorkVignette kind={entry.vignette} />
-          </div>
+    <div
+      className={`work-row-compact grid py-5 @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:gap-x-8 ${
+        thumb ? "grid-cols-[minmax(0,1fr)_88px] gap-x-4" : "grid-cols-1"
+      }`}
+    >
+      {thumb && (
+        <div className="thumb-frame col-start-2 row-start-1 self-start overflow-hidden rounded-[8px] bg-panel-2 @min-[600px]:row-span-2 @min-[600px]:rounded-card">
+          <div className="relative aspect-[16/10] overflow-hidden">{thumb}</div>
         </div>
       )}
-      {entry.image && (
-        <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
-          <div className="relative aspect-[16/10] overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={entry.image.src}
-              alt={entry.image.alt}
-              loading="lazy"
-              className={`h-full w-full ${
-                entry.image.fit === "contain"
-                  ? "object-contain p-3"
-                  : "object-cover"
-              }`}
-            />
-          </div>
-        </div>
-      )}
-      <div
-        className={`min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1 ${
-          entry.image || entry.vignette ? "mt-4 @min-[600px]:mt-0" : ""
-        }`}
-      >
+      <div className="col-start-1 row-start-1 min-w-0 self-center @min-[600px]:self-start">
         <p className="m-0 mb-1 text-meta text-muted">
           {entry.brand.name} · {yearsOf(entry)}
         </p>
         <h3 className="m-0 text-subhead-sm font-semibold text-text">
           {entry.title}
         </h3>
-        {entry.text && (
-          <p className="m-0 mt-1 text-body leading-[1.3] text-text-body">
-            {entry.text}
-          </p>
-        )}
       </div>
+      {entry.text && (
+        <p className="col-[1/-1] row-start-2 m-0 mt-2 text-body leading-[1.3] text-text-body @min-[600px]:col-[1] @min-[600px]:mt-1">
+          {entry.text}
+        </p>
+      )}
     </div>
   );
 }
@@ -593,11 +609,6 @@ export function WorkHistory({ footer }: { footer?: ReactNode }) {
   return (
     <>
       <header className="mx-auto w-full max-w-home pt-24 max-md:pt-20">
-        <nav className="breadcrumb" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
-          <span className="breadcrumb-sep"> &gt; </span>
-          <span>Work history</span>
-        </nav>
         <h1 className="h1">Work history</h1>
         {/* Same 12px under the title as the home hero: pull against .h1's
             32px bottom margin. */}

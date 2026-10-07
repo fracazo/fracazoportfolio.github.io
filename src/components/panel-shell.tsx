@@ -11,8 +11,9 @@ import {
   type ReactNode,
 } from "react";
 import Link from "next/link";
-import { ArrowLeftIcon, CloseIcon, ExpandIcon } from "./icons";
+import { CloseIcon, ExpandIcon } from "./icons";
 import { panelRegistry } from "./panel-registry";
+import { BackBar } from "./back-bar";
 import {
   clearReturnContext,
   readReturnContext,
@@ -314,16 +315,10 @@ function PanelChrome({
 }) {
   if (label === "Back") {
     return (
-      <div className={`${chromeRow} justify-start`}>
-        <button
-          type="button"
-          onClick={onClose}
-          className="inline-flex h-11 min-w-11 cursor-pointer items-center gap-2 rounded-full border border-border px-4 text-meta text-muted transition-colors hover:bg-panel-2 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        >
-          <ArrowLeftIcon size={14} />
-          Back
-        </button>
-      </div>
+      <BackBar
+        onClick={onClose}
+        className="-mx-6 px-6 min-[700px]:-mx-10 min-[700px]:px-10"
+      />
     );
   }
   return (

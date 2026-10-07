@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { GitlabPagesContent } from "@/components/case-studies/gitlab-pages";
@@ -27,13 +26,7 @@ export const metadata: Metadata = {
 export default function GitlabPages() {
   return (
     <CaseStudyShell>
-      <GitlabPagesContent
-        breadcrumb={
-              <nav className="breadcrumb" aria-label="Breadcrumb">
-                <Link href="/">Home</Link><span className="breadcrumb-sep"> &gt; </span><Link href="/work">Work history</Link><span className="breadcrumb-sep"> &gt; </span><span>Making Site Status Visible in GitLab Pages</span>
-              </nav>
-        }
-      />
+      <GitlabPagesContent />
     </CaseStudyShell>
   );
 }

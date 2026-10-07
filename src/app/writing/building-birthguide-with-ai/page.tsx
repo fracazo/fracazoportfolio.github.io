@@ -3,7 +3,6 @@ import { BackToSite } from "@/components/back-to-site";
 import { BuildingBirthguideWithAiContent } from "@/components/writing/building-birthguide-with-ai";
 import { PlainShell } from "@/components/plain-shell";
 
-
 export const metadata: Metadata = {
   title: "Building BirthGuide as a solo designer using AI, Alex Fracazo",
   description:
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Building BirthGuide as a solo designer using AI, Alex Fracazo",
     description:
-    "How I built BirthGuide from zero to production as a solo designer using AI tools.",
+      "How I built BirthGuide from zero to production as a solo designer using AI tools.",
     images: ["/images/opengraph.jpg"],
     type: "article",
   },
@@ -19,15 +18,15 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Building BirthGuide as a solo designer using AI, Alex Fracazo",
     description:
-    "How I built BirthGuide from zero to production as a solo designer using AI tools.",
+      "How I built BirthGuide from zero to production as a solo designer using AI tools.",
     images: ["/images/opengraph.jpg"],
   },
 };
 
 export default function Page() {
   return (
-    <PlainShell>
-      <BuildingBirthguideWithAiContent back={<BackToSite />} />
+    <PlainShell back={<BackToSite />}>
+      <BuildingBirthguideWithAiContent />
     </PlainShell>
   );
 }

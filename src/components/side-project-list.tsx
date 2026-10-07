@@ -25,10 +25,10 @@ export function SideProjectList({ items }: { items: SideProject[] }) {
               href={link.href}
               target="_blank"
               rel="noopener"
-              className="group -mx-5 grid grid-cols-1 rounded-card px-5 py-4 no-underline transition-colors duration-200 hover:bg-panel-2 hover:no-underline @min-[600px]:grid-cols-[minmax(0,1fr)_11rem] @min-[600px]:gap-x-8"
+              className="group -mx-5 grid grid-cols-1 rounded-card px-5 py-4 no-underline transition-colors duration-200 hover:bg-panel-2 active:bg-panel-2 hover:no-underline @min-[600px]:grid-cols-[minmax(0,1fr)_11rem] @min-[600px]:gap-x-8"
             >
               <span className="min-w-0">
-                <span className="block text-subhead-sm font-semibold text-text transition-colors duration-200 group-hover:text-brand">
+                <span className="block text-subhead-sm font-semibold text-text transition-colors duration-200 group-hover:text-brand group-active:text-brand">
                   {project.title}
                 </span>
                 <span className="mt-1 block text-body leading-[1.3] text-text-body">
@@ -39,7 +39,7 @@ export function SideProjectList({ items }: { items: SideProject[] }) {
                   baseline by matching the title's line box. */}
               <span className="mt-2 flex items-baseline gap-3 text-meta text-muted @min-[600px]:mt-0 @min-[600px]:flex-col @min-[600px]:items-end @min-[600px]:gap-0.5 @min-[600px]:pt-[0.2em] @min-[600px]:text-right">
                 <span>{kind}</span>
-                <span className="inline-flex items-center gap-1 transition-colors duration-200 group-hover:text-brand">
+                <span className="inline-flex items-center gap-1 transition-colors duration-200 group-hover:text-brand group-active:text-brand">
                   {link.label}
                   <span className="sr-only"> (opens in a new tab)</span>
                   <ExternalLinkIcon

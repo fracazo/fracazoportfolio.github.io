@@ -62,10 +62,10 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
           const singleBody = single && (
             <>
               <span className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
-                <span className="text-body font-medium text-text transition-colors duration-150 group-hover:text-brand">
+                <span className="text-body font-medium text-text transition-colors duration-150 group-hover:text-brand group-active:text-brand">
                   {item.title}
                 </span>
-                <span className="inline-flex items-center gap-1 text-meta text-muted transition-colors duration-150 group-hover:text-brand">
+                <span className="inline-flex items-center gap-1 text-meta text-muted transition-colors duration-150 group-hover:text-brand group-active:text-brand">
                   {single.label}
                   {single.href.startsWith("/") ? (
                     <ArrowRightIcon size={12} className="opacity-70" />
@@ -79,7 +79,7 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
           );
           // Only single-destination rows get the hover pill: a multi-link row
           // is not one target, so filling it would promise a click it lacks.
-          const singleClass = `group ${rowLayout} touch-manipulation no-underline transition-colors duration-200 hover:bg-panel-2 hover:no-underline`;
+          const singleClass = `group ${rowLayout} touch-manipulation no-underline transition-colors duration-200 hover:bg-panel-2 active:bg-panel-2 hover:no-underline`;
 
           // Multi-destination link: the visible label stays meta-size while
           // padding grows the tap target; the negative margins hand the space

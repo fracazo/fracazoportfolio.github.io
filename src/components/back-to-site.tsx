@@ -1,16 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowLeftIcon } from "./icons";
+import { BackBar } from "./back-bar";
 import { readReturnContext, sameRoute } from "./panel-return";
 
 /**
- * The fixed back pill used by the standalone routes.
- *
- * It is `position: fixed`, which is exactly why it is a route concern rather
- * than page content: inside a panel it would pin to the window instead of the
- * pane and float over the index. Content components take it as a slot the
- * route fills and the panel leaves empty.
+ * The back header used by the standalone routes: the same BackBar the
+ * panel's full-screen sheet shows. It is route chrome rather than page
+ * content, so pages hand it to PlainShell's `back` slot and the panel never
+ * renders it.
  *
  * When this page was reached through the panel's expand control, the pill
  * steps back through history instead of loading the index from the top, so
@@ -18,13 +15,11 @@ import { readReturnContext, sameRoute } from "./panel-return";
  */
 export function BackToSite({
   href = "/",
-  label = "Back",
 }: {
   href?: string;
-  label?: string;
 }) {
   return (
-    <Link
+    <BackBar
       href={href}
       onClick={(e) => {
         if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return;
@@ -34,10 +29,10 @@ export function BackToSite({
           window.history.back();
         }
       }}
-      className="fixed top-5 left-5 z-50 inline-flex items-center gap-1.5 rounded-full border border-border bg-card/80 px-3 py-1.5 text-meta font-medium text-muted no-underline backdrop-blur-md transition-colors hover:border-border hover:text-text hover:no-underline"
-    >
-      <ArrowLeftIcon size={14} />
-      {label}
-    </Link>
+      /* Overlaid on the page's own top padding rather than stacked above
+         it (the negative margin hands its height back), so page layouts
+         keep their spacing; it still sticks as the page scrolls. */
+      className="z-40 -mb-[68px] px-6"
+    />
   );
 }

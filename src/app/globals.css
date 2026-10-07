@@ -952,7 +952,8 @@
   }
 
   .case-header {
-    padding: 12px 0 24px;
+    /* No top padding: the title starts where every other page's does. */
+    padding: 0 0 24px;
     max-width: 100%;
   }
   .case-title {
@@ -2430,6 +2431,10 @@
   opacity: 0.35;
 }
 .mymix-reset {
+  /* 13px label, 44px-tall hit area on touch; the padding is given back so
+     the row does not grow. */
+  padding: 14px 8px;
+  margin: -14px -8px;
   font-size: var(--text-meta-size);
   background: none;
   border: 0;

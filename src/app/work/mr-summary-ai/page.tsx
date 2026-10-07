@@ -1,10 +1,10 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { MrSummaryAiContent } from "@/components/case-studies/mr-summary-ai";
 
 const title = "Summarize Merge Requests with AI - Alex Fracazo";
-const description = "How three iterations and a Qualtrics survey reshaped an AI feature from reviewer-facing summary to author-facing writing assistant.";
+const description =
+  "How three iterations and a Qualtrics survey reshaped an AI feature from reviewer-facing summary to author-facing writing assistant.";
 
 export const metadata: Metadata = {
   title,
@@ -26,13 +26,7 @@ export const metadata: Metadata = {
 export default function MrSummaryAi() {
   return (
     <CaseStudyShell>
-      <MrSummaryAiContent
-        breadcrumb={
-              <nav className="breadcrumb" aria-label="Breadcrumb">
-                <Link href="/">Home</Link><span className="breadcrumb-sep"> &gt; </span><Link href="/work">Work history</Link><span className="breadcrumb-sep"> &gt; </span><span>Summarize MR with AI</span>
-              </nav>
-        }
-      />
+      <MrSummaryAiContent />
     </CaseStudyShell>
   );
 }

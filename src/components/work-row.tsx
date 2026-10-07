@@ -71,7 +71,7 @@ export function WorkRow({
       /* Container query, not a viewport one: in the split layout this row lives
          in a pane roughly half the window, so keying off the window would hold
          the thumbnail column at widths that cannot carry it. */
-      className="work-row group -mx-5 grid grid-cols-1 rounded-card px-5 py-5 no-underline transition-colors duration-200 hover:bg-panel-2 hover:no-underline @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8"
+      className="work-row group -mx-5 grid grid-cols-1 rounded-card px-5 py-5 no-underline transition-colors duration-200 hover:bg-panel-2 active:bg-panel-2 hover:no-underline @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8"
     >
       {/* Thumbnail — uniform frame so the mismatched screenshots stop clashing.
           DOM order keeps it first so the stacked (sub-600px) card still leads
@@ -105,7 +105,7 @@ export function WorkRow({
           may wrap inside the ~328px column, which is the accepted trade. */}
       <div className="work-row-body mt-4 min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1 @min-[600px]:mt-0">
         {meta && <p className="m-0 mb-1 text-meta text-muted">{meta}</p>}
-        <h3 className="m-0 text-subhead-sm font-semibold text-text transition-colors duration-200 group-hover:text-brand">
+        <h3 className="m-0 text-subhead-sm font-semibold text-text transition-colors duration-200 group-hover:text-brand group-active:text-brand">
           {title}
         </h3>
         {tagline && (
