@@ -558,8 +558,9 @@ export function WorkHistory({ footer }: { footer?: ReactNode }) {
         </nav>
         <h1 className="h1">Work history</h1>
         <p className="m-0 max-w-[620px] text-body text-text-body">
-          Twenty years of taking new ideas from zero to one, from Brazil&rsquo;s
-          first real estate marketplace to GitLab.
+          Taking new ideas from zero to one: Brazil&rsquo;s first real estate
+          marketplace, a Qantas app featured at Apple&rsquo;s WWDC, a
+          government visa app built during COVID, and AI features at GitLab.
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-2.5">
           <a
