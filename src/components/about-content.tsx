@@ -106,16 +106,16 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
   return (
     <>
       {back}
-      <section className="mx-auto w-full max-w-content">
+      <section className="mx-auto w-full max-w-home">
         <div className="pt-24 text-left max-md:pt-20">
           <h1 className="h1">About me</h1>
 
           <div className="writing-body">
-            <p>
+            {/* Same pull against .h1's 32px bottom margin as the home hero. */}
+            <p className="-mt-5">
               I grew up on a farm in Minas Gerais, Brazil. Later we moved to
-              Cuiabá, near the Pantanal. English is my second language, and I
-              think that&rsquo;s part of why I like simple words and simple
-              design.
+              Cuiabá, near the Pantanal. English is my second language, and
+              that&rsquo;s part of why I like simple words and simple design.
             </p>
 
             <PhotoStrip
