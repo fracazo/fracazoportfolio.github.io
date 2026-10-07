@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 /* The career at a glance: every project as a stop on one line, oldest on
    the left, laid out like the 2020 portfolio timeline. Each stop is an
@@ -114,6 +114,33 @@ export function WorkTimeline({
       item.style.setProperty("--m", Math.exp(-distance * distance).toFixed(3));
     }
   };
+  /* Arriving from another page with a #entry (the home page's Earlier work
+     rows) lands at the top: the router does not scroll to the hash after a
+     page change, and its own scroll reset cancels a smooth one. Jump there
+     instantly once the router is done. */
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    const jump = () => {
+      const entry = document.getElementById(id);
+      if (!entry) return;
+      entry.scrollIntoView({ block: "start", behavior: "instant" });
+      // :target does not update on a router navigation, so flash by class.
+      entry.classList.add("is-arrived");
+    };
+    // On a fresh load something resets the scroll after the first jump, so
+    // check again shortly and repeat if it was undone.
+    const timer = window.setTimeout(jump, 50);
+    const retry = window.setTimeout(() => {
+      const entry = document.getElementById(id);
+      if (entry && Math.abs(entry.getBoundingClientRect().top) > 120) jump();
+    }, 450);
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(retry);
+    };
+  }, []);
+
   const rest = () => {
     const list = listRef.current;
     if (!list) return;

@@ -81,6 +81,9 @@ type Entry = {
   year: string;
   title: string;
   text?: string;
+  /** Screen from the old portfolio decks. `top` crops a tall phone screen
+      from its top edge, where the UI is; `contain` shows a wide one whole. */
+  image?: { src: string; alt: string; fit?: "contain" | "top" };
   work?: WorkEntry;
   stub?: StubEntry;
 };
@@ -209,6 +212,10 @@ const roles: Role[] = [
         label: "Tram displays",
         year: "2020",
         title: "Tram Tracker displays",
+        image: {
+          src: "/images/work/yarra-trams-display.jpg",
+          alt: "A Yarra Trams stop display showing routes and a Grand Prix shuttle notice, beside a tram in Melbourne",
+        },
         text: "Service standards for disruption and special-event messages, so people on unfamiliar journeys know what is happening.",
       },
       {
@@ -217,6 +224,10 @@ const roles: Role[] = [
         label: "Symptom tracker",
         year: "2020",
         title: "Beat Covid-19 Now",
+        image: {
+          src: "/images/work/beat-covid-screens.jpg",
+          alt: "Beat Covid-19 Now app screens: a daily check-in and a live map",
+        },
         text: "A daily symptom tracker that maps emerging COVID-19 hotspots for health authorities, designed with a Swinburne professor of global health.",
       },
       {
@@ -233,23 +244,25 @@ const roles: Role[] = [
         label: "Media app",
         year: "2019",
         title: "Isentia media monitoring app",
+        image: {
+          src: "/images/work/isentia-feed.jpg",
+          alt: "The Isentia app feed of media mentions",
+          fit: "top",
+        },
         text: "Discovery to launch on iOS and Android in four months, so client teams can act together as a story breaks.",
       },
       {
         id: "telstra",
         brand: brands.telstra,
         label: "Design system",
-        year: "2018",
+        year: "2018–2019",
         title: "Telstra design language system",
+        image: {
+          src: "/images/work/telstra-design-system.jpg",
+          alt: "Telstra design language colour and component sheet",
+          fit: "top",
+        },
         text: "Workshops and guidance so distributed teams across Telstra adopted one system, not just set it up.",
-      },
-      {
-        id: "qantas-watch",
-        brand: brands.qantas,
-        label: "Apple Watch",
-        year: "2018",
-        title: "Qantas Apple Watch app",
-        text: "A proof of concept for boarding information at a glance on watchOS 4, featured at WWDC.",
       },
       {
         id: "qantas-chatbot",
@@ -257,6 +270,11 @@ const roles: Role[] = [
         label: "Chatbot",
         year: "2018",
         title: "Qantas concierge chatbot",
+        image: {
+          src: "/images/work/qantas-chatbot.png",
+          alt: "Qantas concierge chatbot conversation screens",
+          fit: "contain",
+        },
         text: "Resolved 60% of queries on its own and cut live chat waits from 2 hours to 45 minutes.",
       },
       {
@@ -265,6 +283,10 @@ const roles: Role[] = [
         label: "Alexa skill",
         year: "2017",
         title: "Qantas Alexa skill",
+        image: {
+          src: "/images/work/qantas-alexa.jpg",
+          alt: "An Amazon Echo answering a question about a Qantas flight",
+        },
         text: "A voice skill for travel and loyalty, one of 24 launch partners for Alexa in Australia and New Zealand.",
       },
       {
@@ -289,15 +311,12 @@ const roles: Role[] = [
         label: "Driver app",
         year: "2016",
         title: "Woolworths driver app",
+        image: {
+          src: "/images/work/woolworths-driver.png",
+          alt: "Woolworths driver app dashboard with the next delivery",
+          fit: "top",
+        },
         text: "Replaced PDAs and paper for delivery drivers, with geofencing to cut wrong deliveries.",
-      },
-      {
-        id: "woolworths-shopping",
-        brand: brands.woolworths,
-        label: "Shopping app",
-        year: "2016",
-        title: "Woolworths shopping app",
-        text: "Rebuilt on a component system. Conversion up 20%, App Store rating from 1.2 to 3.2.",
       },
     ],
     closing: {
@@ -398,8 +417,7 @@ const stops: TimelineStop[] = chronological.flatMap((role) => {
   }));
 });
 const employers: TimelineEmployer[] = chronological.map((role) => ({
-  name:
-    timelineNames[role.id] ?? role.company,
+  name: timelineNames[role.id] ?? role.company,
   years: role.years,
   span: role.entries.filter((entry) => entry.label).length,
 }));
@@ -411,19 +429,45 @@ const sectionLabel =
 function EntryItem({ entry }: { entry: Entry }) {
   if (entry.work) return <WorkRow {...entry.work} />;
   if (entry.stub) return <WorkRowCompact {...entry.stub} />;
+  /* Same grid as WorkRow (text leading, framed 280px thumb trailing) so
+     these sit in one rhythm with the case study rows, minus the hover pill:
+     there is nowhere further to go. */
   return (
-    <div className="py-4">
-      <p className="m-0 mb-1 text-meta text-muted">
-        {entry.brand.name} · {entry.year}
-      </p>
-      <h3 className="m-0 text-subhead-sm font-semibold text-text">
-        {entry.title}
-      </h3>
-      {entry.text && (
-        <p className="m-0 mt-1 max-w-[620px] text-body leading-[1.3] text-text-body">
-          {entry.text}
-        </p>
+    <div className="grid grid-cols-1 py-5 @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8">
+      {entry.image && (
+        <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
+          <div className="relative aspect-[16/10] overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={entry.image.src}
+              alt={entry.image.alt}
+              loading="lazy"
+              className={`h-full w-full ${
+                entry.image.fit === "contain"
+                  ? "object-contain p-3"
+                  : "object-cover"
+              }`}
+            />
+          </div>
+        </div>
       )}
+      <div
+        className={`min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1 ${
+          entry.image ? "mt-4 @min-[600px]:mt-0" : ""
+        }`}
+      >
+        <p className="m-0 mb-1 text-meta text-muted">
+          {entry.brand.name} · {entry.year}
+        </p>
+        <h3 className="m-0 text-subhead-sm font-semibold text-text">
+          {entry.title}
+        </h3>
+        {entry.text && (
+          <p className="m-0 mt-1 text-body leading-[1.3] text-text-body">
+            {entry.text}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
@@ -470,7 +514,12 @@ function RoleSection({ role }: { role: Role }) {
       )}
 
       {role.also && (
-        <p className="m-0 mt-4 max-w-[620px] text-meta text-muted">
+        /* Its own anchor, so links to roles named only here (Smartia,
+           Sitevip) land on this line, not the top of the section. */
+        <p
+          id={`${role.id}-also`}
+          className="work-entry m-0 mt-4 -mx-5 max-w-[660px] px-5 py-2 text-meta text-muted"
+        >
           {role.also}
         </p>
       )}

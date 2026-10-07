@@ -692,11 +692,13 @@
     scroll-margin-top: 24px;
     border-radius: var(--radius-card, 12px);
   }
-  .work-entry:target {
+  .work-entry:target,
+  .work-entry.is-arrived {
     animation: work-entry-flash 2.6s ease-out;
   }
   @media (prefers-reduced-motion: reduce) {
-    .work-entry:target {
+    .work-entry:target,
+    .work-entry.is-arrived {
       animation: none;
       background: var(--panel-2);
     }

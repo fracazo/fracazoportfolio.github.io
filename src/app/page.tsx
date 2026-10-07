@@ -10,7 +10,7 @@ import { LinkRowList } from "@/components/link-row-list";
 import { SiteFooter } from "@/components/site-footer";
 import { TextLink } from "@/components/text-link";
 import { ExternalLinkIcon } from "@/components/icons";
-import { stubs, work } from "@/content/work";
+import { work } from "@/content/work";
 
 /* The hero's lead work, in stage order: two case studies and a tool. The
    meta line names the client, so the stage reads as shipped work. Each
@@ -22,33 +22,36 @@ const featuredWork: FeaturedItem[] = [work.glql, work.hireup, work.flow];
    else, GitLab included, is listed on /work. */
 const caseStudies = [work.eta, work.qantasEntertainment, work.qantasApp];
 
-/* Older roles as one-line rows, no thumbnails. Rows with somewhere to go
-   link there (a case study, or a stub in the panel); the rest are plain. */
+/* Older roles as one-line rows, no thumbnails. Every row links to its entry
+   in the work history, so they all behave the same. */
 const earlierWork = [
   {
+    href: "/work#telstra",
     title: "Telstra",
-    meta: "Design system · 2016–2020",
+    meta: "Design system · 2018–2019",
     tagline:
       "Standardised components and usage guidance across product teams.",
   },
   {
-    href: work.mymix.href,
+    href: "/work#mymix",
     title: "Vodafone",
     meta: "MyMix · 2015–2016",
     tagline: "A personalised prepaid plan builder, in four taps.",
   },
   {
-    stub: stubs.bemDireto.stub,
+    href: "/work#bem-direto",
     title: "Bem Direto",
     meta: "First designer · 2012–2013",
     tagline: "Brazil’s first real estate marketplace for agents.",
   },
   {
+    href: "/work#brazil-also",
     title: "Smartia",
     meta: "2011–2012",
     tagline: "Brazil’s first car insurance comparison platform.",
   },
   {
+    href: "/work#brazil-also",
     title: "Sitevip",
     meta: "Front-end coder · 2005–2009",
     tagline: "Front-end coder in an agency.",
