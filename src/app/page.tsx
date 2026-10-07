@@ -182,7 +182,7 @@ export default function Home() {
               sweep
               label="Earlier work timeline"
             />
-            <p className="text mt-6 max-w-[620px] text-body text-text-body">
+            <p className="text mt-6 max-w-[620px] text-body text-text-body max-md:mt-2">
               Before Hireup and GitLab, I designed for Qantas, Telstra, Vodafone
               and the Australian Government. Before that, the first versions of
               startups in Brazil. It&rsquo;s all in my{" "}
