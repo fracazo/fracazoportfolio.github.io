@@ -217,7 +217,7 @@ export default function Home() {
           >
             Working with me
           </h2>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-10">
             <blockquote className="m-0 border-s-2 border-border ps-4">
               <p className="m-0 mb-2 text-body text-text-body">
                 &ldquo;He led the design for a new feature, GLQL, showcasing a
