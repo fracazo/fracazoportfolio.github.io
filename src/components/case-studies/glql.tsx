@@ -20,7 +20,7 @@ export function GlqlContent({
         {breadcrumb}
 
           <header className="case-header">
-            <h1 className="case-title">GLQL / Embedded Views</h1>
+            <h1 className="case-title">GLQL (GitLab Query Language): Embedded Views for Work Tracking</h1>
             <div className="case-metadata-card">
               <div className="metadata-content">
                 <div className="metadata-item">
@@ -53,7 +53,7 @@ export function GlqlContent({
                 </div>
               </div>
             </div>
-            <p className="case-intro">GLQL was powerful, but you had to write YAML to use it. I made it work for people who had only ever used filters, without taking any power away from the experts.</p>
+            <p className="case-intro">GitLab Query Language (GLQL) was powerful, but you had to write queries by hand to use it. I made it work for people who had only ever used filters, without taking any power away from the experts.</p>
           </header>
 
           <ul className="case-stats" role="list">

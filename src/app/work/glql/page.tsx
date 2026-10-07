@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { GlqlContent } from "@/components/case-studies/glql";
 
-const title = "GLQL / Embedded Views - Alex Fracazo";
+const title = "GLQL (GitLab Query Language): Embedded Views for Work Tracking - Alex Fracazo";
 const description =
-  "GLQL was powerful, but you had to write YAML to use it. I made it work for people who had only ever used filters, without taking any power away from the experts.";
+  "GitLab Query Language (GLQL) was powerful, but you had to write queries by hand to use it. I made it work for people who had only ever used filters, without taking any power away from the experts.";
 
 export const metadata: Metadata = {
   title,

@@ -67,7 +67,7 @@ export const panelRegistry: Record<
     ),
   },
   "/work/glql": {
-    title: "GLQL / Embedded Views",
+    title: "GLQL (GitLab Query Language): Embedded Views for Work Tracking",
     load: dynamic(() =>
       import("@/components/case-studies/glql").then((m) => m.GlqlContent),
     ),
