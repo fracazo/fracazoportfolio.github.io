@@ -28,7 +28,7 @@ export default function Experiments() {
   return (
     <AppShell>
       <section className="mx-auto w-full max-w-content">
-        <h1 className="h1 mt-24 max-md:mt-14">Prototypes and experiments</h1>
+        <h1 className="h1 mt-24 mb-3 max-md:mt-14">Prototypes and experiments</h1>
         <p className="text">Prototypes built in Xcode with SwiftUI.</p>
 
         <div className="mt-12 flex flex-col gap-12">

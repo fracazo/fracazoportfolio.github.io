@@ -1059,6 +1059,11 @@
   }
 
   /* Case intro reads as a deck paragraph above the 17px body */
+  /* A subtitle straight under the title sits 12px below it, as on the
+     home hero; .case-title carries no bottom margin of its own. */
+  .case-title + .case-intro {
+    margin-top: 12px;
+  }
   .case-intro {
     color: var(--text-body);
     line-height: 1.6;

@@ -557,7 +557,9 @@ export function WorkHistory({ footer }: { footer?: ReactNode }) {
           <span>Work history</span>
         </nav>
         <h1 className="h1">Work history</h1>
-        <p className="m-0 max-w-[620px] text-body text-text-body">
+        {/* Same 12px under the title as the home hero: pull against .h1's
+            32px bottom margin. */}
+        <p className="-mt-5 mb-0 max-w-[620px] text-body text-text-body">
           Taking new ideas from zero to one: Brazil&rsquo;s first real estate
           marketplace, a Qantas app featured at Apple&rsquo;s WWDC, a
           government visa app built during COVID, and AI features at GitLab.
