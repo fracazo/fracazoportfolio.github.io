@@ -32,50 +32,82 @@ const brandMarks = [
   { name: "GitLab", src: "/images/brands/gitlab.svg", w: 97, h: 21 },
 ];
 
+function BrandMark({ brand }: { brand: (typeof brandMarks)[number] }) {
+  return (
+    <span
+      role="img"
+      aria-label={brand.name}
+      style={{
+        width: brand.w,
+        height: brand.h,
+        backgroundColor: "currentColor",
+        WebkitMaskImage: `url(${brand.src})`,
+        maskImage: `url(${brand.src})`,
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskPosition: "center",
+        maskPosition: "center",
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+      }}
+    />
+  );
+}
+
 /**
- * Row of client marks, monochrome and theme-aware.
+ * Row of client marks, monochrome and theme-aware. Always one line: where all
+ * six fit, a static row; anywhere narrower, the same marks roll slowly past,
+ * so the strip stays one mark tall instead of stacking into rows and pushing
+ * the work down.
  *
- * Carries its own containment context so it spreads edge to edge wherever it
- * is placed, including inside one pane of a split, rather than keying off the
- * window. Spacing around it belongs to the caller via `className`.
+ * Carries its own containment context so it switches on its own width,
+ * including inside one pane of a split, rather than keying off the window.
+ * Vertical spacing belongs to the caller via `className`.
  */
 export function BrandStrip({ className = "" }: { className?: string }) {
   return (
     <div className={`@container ${className}`}>
       <ul
         aria-label="Previously worked with"
-        /* Equal cells, each mark centred in its own, so the row squares off at
-           both edges and every mark gets the same air. Columns follow the
-           strip's own width, not the window, so a split pane gets the layout
-           its width allows: six once each cell clears the widest mark by
-           ~55px, three in a pane or tablet, two on a phone. 6 / 3 / 2 all
-           divide six, so no row is ever left with a stray mark. Capped at
-           1200px so on wide screens the outer marks stay near the content
-           column instead of drifting to the window edges. */
-        className="mx-auto my-0 grid max-w-[1200px] list-none grid-cols-2 items-center gap-x-6 gap-y-8 p-0 text-text-tertiary @min-[520px]:grid-cols-3 @min-[1040px]:grid-cols-6"
+        /* Six equal cells, each mark centred in its own, so the row squares off
+           at both edges and every mark gets the same air. Shown once each cell
+           clears the widest mark by ~55px. Capped at 1200px so on wide screens
+           the outer marks stay near the content column instead of drifting to
+           the window edges. */
+        className="mx-auto my-0 hidden max-w-[1200px] list-none grid-cols-6 items-center gap-x-6 p-0 px-6 text-text-tertiary @min-[1040px]:grid"
       >
         {brandMarks.map((brand) => (
           <li key={brand.name} className="flex justify-center">
-            <span
-              role="img"
-              aria-label={brand.name}
-              style={{
-                width: brand.w,
-                height: brand.h,
-                backgroundColor: "currentColor",
-                WebkitMaskImage: `url(${brand.src})`,
-                maskImage: `url(${brand.src})`,
-                WebkitMaskRepeat: "no-repeat",
-                maskRepeat: "no-repeat",
-                WebkitMaskPosition: "center",
-                maskPosition: "center",
-                WebkitMaskSize: "contain",
-                maskSize: "contain",
-              }}
-            />
+            <BrandMark brand={brand} />
           </li>
         ))}
       </ul>
+
+      {/* Narrower than that, the marks roll. The track holds the set twice and
+          slides by exactly one set, so the loop has no seam; the copy is
+          hidden from assistive tech so the marks are announced once. No
+          controls: it is decoration that also says who I worked with, and
+          reduced motion stops it (see .brand-marquee in globals.css). */}
+      <div className="brand-marquee overflow-hidden text-text-tertiary @min-[1040px]:hidden">
+        <div className="brand-marquee-track flex w-max">
+          {[false, true].map((isCopy) => (
+            <ul
+              key={String(isCopy)}
+              aria-label={isCopy ? undefined : "Previously worked with"}
+              aria-hidden={isCopy || undefined}
+              /* pe matches the gap so the space between the last mark and the
+                 copy's first equals every other gap. */
+              className="m-0 flex list-none items-center gap-14 p-0 pe-14"
+            >
+              {brandMarks.map((brand) => (
+                <li key={brand.name} className="flex flex-none">
+                  <BrandMark brand={brand} />
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

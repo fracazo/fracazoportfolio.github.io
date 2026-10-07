@@ -88,9 +88,10 @@ export default function Home() {
               {/* The explanation of the claim above, at reading size. Its links
                 replace the old About me / Work history / Get in touch buttons.
                 Work history is a full page (it is the index of all the work);
-                About opens in the panel. */}
+                About opens in the panel. On phones the boring-design paragraph
+                is dropped to get to the work sooner; the links stay. */}
               <div className="mt-5 flex flex-col gap-4 text-body text-text-body">
-                <p>
+                <p className="max-sm:hidden">
                   Then I sweat the details and never over-engineer. Some call it{" "}
                   <TextLink href="https://capwatkins.com/blog/the-boring-designer">
                     boring design
@@ -121,8 +122,10 @@ export default function Home() {
           gutter; the strip's own px-6 keeps the marks off the edge. Hairlines
           in the faintest border token mark the bleed as deliberate without
           boxing the marks in. -my-6 tightens main's 64px section gap to 40px
-          outside the rules; py-6 is the air inside them. */}
-        <BrandStrip className="reveal-after -mx-6 -my-6 border-y border-border-muted px-6 py-6" />
+          outside the rules; py-6 is the air inside them. No side padding: the
+          strip pads its static row itself and lets the rolling one run to the
+          edges. */}
+        <BrandStrip className="reveal-after -mx-6 -my-6 border-y border-border-muted py-6" />
 
         {/* Featured: the lead case studies get a list-and-stage hero. */}
         <section
