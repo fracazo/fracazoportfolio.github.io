@@ -2406,3 +2406,42 @@
     font-size: 10px;
   }
 }
+
+/* ========================
+   Brand strip: rolling single line (narrow widths)
+   The track holds the marks twice; sliding it by half (one full set) lands the
+   copy exactly where the original started, so the loop is seamless. Moves right
+   to left, with the reading direction, slowly enough to read each mark. The edges fade so marks drift in
+   and out rather than being cut by the viewport.
+   ======================== */
+@keyframes brand-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.brand-marquee {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+.brand-marquee-track {
+  animation: brand-marquee 40s linear infinite;
+}
+/* Reduced motion: a still row that can be swiped sideways, without the copy. */
+@media (prefers-reduced-motion: reduce) {
+  .brand-marquee {
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-inline: 1.5rem;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .brand-marquee-track {
+    animation: none;
+  }
+  .brand-marquee-track > [aria-hidden="true"] {
+    display: none;
+  }
+}
