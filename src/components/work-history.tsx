@@ -79,11 +79,9 @@ type Entry = {
   year: string;
   title: string;
   text?: string;
-  /** Screen from the old portfolio decks. `peek` sets a tall phone screen
-      upright in the middle of the frame, rising from the bottom edge, so
-      its top half reads at a useful size; `contain` shows a wide one whole;
+  /** Screen from the old portfolio decks. `contain` shows a wide one whole;
       the default fills the frame. */
-  image?: { src: string; alt: string; fit?: "contain" | "peek" };
+  image?: { src: string; alt: string; fit?: "contain" };
   work?: WorkEntry;
   stub?: StubEntry;
 };
@@ -245,9 +243,8 @@ const roles: Role[] = [
         year: "2019",
         title: "Isentia media monitoring app",
         image: {
-          src: "/images/work/isentia-feed.jpg",
-          alt: "The Isentia app feed of media mentions",
-          fit: "peek",
+          src: "/images/work/isentia-app.jpg",
+          alt: "Two Isentia app screens: the feeds list, and a Telstra news item with its video",
         },
         text: "Discovery to launch on iOS and Android in four months, so client teams can act together as a story breaks.",
       },
@@ -445,29 +442,17 @@ function EntryItem({ entry }: { entry: Entry }) {
       {entry.image && (
         <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
           <div className="relative aspect-[16/10] overflow-hidden">
-            {entry.image.fit === "peek" ? (
-              /* Rounded top corners and a hairline, like a phone screen
-                 held up to the frame; the bottom runs off the edge. */
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={entry.image.src}
-                alt={entry.image.alt}
-                loading="lazy"
-                className="absolute top-[9%] left-1/2 w-[38%] -translate-x-1/2 rounded-t-[14px] shadow-[0_0_0_1px_var(--border)]"
-              />
-            ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={entry.image.src}
-                alt={entry.image.alt}
-                loading="lazy"
-                className={`h-full w-full ${
-                  entry.image.fit === "contain"
-                    ? "object-contain p-3"
-                    : "object-cover"
-                }`}
-              />
-            )}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={entry.image.src}
+              alt={entry.image.alt}
+              loading="lazy"
+              className={`h-full w-full ${
+                entry.image.fit === "contain"
+                  ? "object-contain p-3"
+                  : "object-cover"
+              }`}
+            />
           </div>
         </div>
       )}
@@ -574,8 +559,8 @@ export function WorkHistory({ footer }: { footer?: ReactNode }) {
             32px bottom margin. */}
         <p className="-mt-5 mb-0 max-w-[620px] text-body text-text-body">
           Taking new ideas from zero to one: Brazil&rsquo;s first real estate
-          marketplace, a Qantas app featured at Apple&rsquo;s WWDC, a
-          government visa app built during COVID, and AI features at GitLab.
+          marketplace, a Qantas app featured at Apple&rsquo;s WWDC, a government
+          visa app built during COVID, and AI features at GitLab.
         </p>
         <div className="mt-6 flex flex-wrap items-center gap-2.5">
           <a
