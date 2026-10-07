@@ -634,22 +634,58 @@
     }
   }
 
-  /* Work timeline: hovering or focusing a stop stretches its dashed stem
-     and carries the label out with it. `transform` composes with the label's
-     own `translate` centring, so the two never fight. */
-  .timeline-stem,
+  /* Work timeline, Dock-style. Each stop carries --m, its magnification
+     (0 at rest, 1 under the pointer), set from JS on pointer move. At rest
+     the marks sit at half size and the labels are hidden, so the line stays
+     calm; magnified stops grow from the line outward and show their label.
+     Without JS, :hover magnifies the one stop under the pointer. */
+  .timeline-stop {
+    --m: 0;
+  }
+  .timeline-stop:hover,
+  .timeline-stop:focus-within {
+    --m: 1;
+  }
   .timeline-label {
-    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: scale(calc(0.5 + 0.5 * var(--m)));
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  .group:is(:hover, :focus-visible) .timeline-stem {
-    transform: scaleY(1.6);
+  .timeline-stem {
+    transform: scaleY(calc(0.55 + 0.45 * var(--m)));
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  .group:is(:hover, :focus-visible) .timeline-label[data-dir="up"] {
-    transform: translateY(-16px);
+  .timeline-dot {
+    transform: scale(calc(1 + 0.6 * var(--m)));
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  .group:is(:hover, :focus-visible) .timeline-label[data-dir="down"] {
-    transform: translateY(16px);
+  /* Marks rest in the faint text colour and darken as they grow. */
+  .timeline-mark {
+    opacity: calc(0.7 + 0.3 * var(--m));
   }
+  /* Labels only read once a stop is well magnified. */
+  .timeline-text {
+    opacity: calc((var(--m) - 0.5) * 3);
+    transition: opacity 0.2s ease;
+  }
+  /* While the pointer is on the line, follow it closely; on leave, settle. */
+  .timeline-dock[data-active] :is(.timeline-label, .timeline-stem, .timeline-dot) {
+    transition-duration: 0.09s;
+  }
+  /* No hover on touch: show every stop at a readable size instead. */
+  @media (hover: none) {
+    .timeline-stop {
+      --m: 0.75;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-label,
+    .timeline-stem,
+    .timeline-dot,
+    .timeline-text {
+      transition: none;
+    }
+  }
+
   /* An entry reached from the timeline flashes once, so the eye lands on
      it rather than hunting the screen it scrolled to. */
   .work-entry {
@@ -660,10 +696,6 @@
     animation: work-entry-flash 2.6s ease-out;
   }
   @media (prefers-reduced-motion: reduce) {
-    .timeline-stem,
-    .timeline-label {
-      transition: none;
-    }
     .work-entry:target {
       animation: none;
       background: var(--panel-2);

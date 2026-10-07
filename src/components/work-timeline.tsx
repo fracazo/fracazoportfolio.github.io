@@ -1,9 +1,15 @@
+"use client";
+
+import { useRef } from "react";
+
 /* The career at a glance: every project as a stop on one line, oldest on
    the left, laid out like the 2020 portfolio timeline. Each stop is an
    anchor into the work history below, so the line doubles as its index.
 
-   Pure CSS: hover and focus grow the stem and lift the label, and the jump
-   is a plain #anchor, so it all works without JavaScript. */
+   At rest every stop is small (a dot, a stem, a tiny mark) so the whole
+   career fits on one line; near the pointer the stops magnify like the
+   macOS Dock and their labels fade in. The jump is a plain #anchor, so it
+   works without JavaScript (CSS :hover then magnifies the one stop). */
 
 export type Brand = {
   name: string;
@@ -33,17 +39,22 @@ export type TimelineEmployer = {
   span: number;
 };
 
-/* Geometry, in px. The line sits at LINE_Y; stems reach STEM px off it. The
-   hover growth lives in globals.css under .timeline-stem. */
+/* Geometry, in px. The line sits at LINE_Y; stems reach STEM px off it at
+   full magnification. The scaling itself lives in globals.css under
+   .timeline-stop, driven by the --m variable (0 at rest, 1 under the
+   pointer). */
 const HEIGHT = 236;
 const LINE_Y = 118;
 const STEM = 26;
+/* How far the magnification reaches either side of the pointer: about one
+   and a half stops, so the neighbours swell too, as in the Dock. */
+const FALLOFF_PX = 72;
 
 function Mark({ brand }: { brand: Brand }) {
   if (brand.hideMark) return null;
   if (!brand.logo) {
     return (
-      <span className="block text-meta font-semibold text-text-body transition-colors duration-200 group-hover:text-text group-focus-visible:text-text">
+      <span className="timeline-mark block text-meta font-semibold whitespace-nowrap text-text">
         {brand.name}
       </span>
     );
@@ -51,7 +62,7 @@ function Mark({ brand }: { brand: Brand }) {
   return (
     <span
       aria-hidden="true"
-      className="mx-auto block text-text-tertiary transition-colors duration-200 group-hover:text-text group-focus-visible:text-text"
+      className="timeline-mark mx-auto block text-text"
       style={{
         width: brand.logo.w,
         height: brand.logo.h,
@@ -85,17 +96,54 @@ export function WorkTimeline({
   employers: TimelineEmployer[];
 }) {
   const columns = stops.map((stop) => `minmax(0, ${stop.weight}fr)`).join(" ");
+  const listRef = useRef<HTMLOListElement>(null);
+  const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
+
+  /* Dock magnification: every stop grows by how close it is to the pointer,
+     on a gaussian falloff, so the hovered stop is full size, its neighbours
+     half way, and the rest stay small. Written straight to a CSS variable
+     per stop, so following the pointer never re-renders React. */
+  const magnify = (x: number) => {
+    const list = listRef.current;
+    if (!list) return;
+    list.dataset.active = "";
+    for (const item of itemRefs.current) {
+      if (!item) continue;
+      const box = item.getBoundingClientRect();
+      const distance = (x - (box.left + box.width / 2)) / FALLOFF_PX;
+      item.style.setProperty("--m", Math.exp(-distance * distance).toFixed(3));
+    }
+  };
+  const rest = () => {
+    const list = listRef.current;
+    if (!list) return;
+    delete list.dataset.active;
+    for (const item of itemRefs.current) item?.style.setProperty("--m", "0");
+  };
+
   return (
     <nav aria-label="Career timeline" className="@container">
       {/* Wide: the line. */}
       <div className="hidden @min-[720px]:block">
         <ol
+          ref={listRef}
           role="list"
-          className="relative m-0 grid list-none p-0"
+          className="timeline-dock relative m-0 grid list-none p-0"
           style={{
             gridTemplateColumns: columns,
             height: HEIGHT,
           }}
+          onPointerMove={(event) => {
+            if (event.pointerType === "mouse") magnify(event.clientX);
+          }}
+          onPointerLeave={rest}
+          onFocus={(event) => {
+            const li = (event.target as HTMLElement).closest("li");
+            if (!li) return;
+            const box = li.getBoundingClientRect();
+            magnify(box.left + box.width / 2);
+          }}
+          onBlur={rest}
         >
           {/* The line itself. */}
           <li
@@ -109,8 +157,16 @@ export function WorkTimeline({
             return (
               <li
                 key={stop.id}
-                className={`relative ${index % 2 === 0 ? "bg-panel-2/40" : ""}`}
+                ref={(el) => {
+                  itemRefs.current[index] = el;
+                }}
+                className="timeline-stop relative"
               >
+                {/* Hairline through the stop, the fine grid behind the line. */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-y-0 left-1/2 w-px bg-border-muted"
+                />
                 <a
                   href={`#${stop.id}`}
                   className="group absolute inset-0 block no-underline hover:no-underline focus-visible:outline-none"
@@ -119,31 +175,31 @@ export function WorkTimeline({
                   {/* Dot on the line. */}
                   <span
                     aria-hidden="true"
-                    className="absolute left-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent transition-transform duration-200 group-hover:scale-150 group-focus-visible:scale-150 group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-bg"
+                    className="timeline-dot absolute left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-bg"
                     style={{ top: LINE_Y }}
                   />
-                  {/* Dashed stem: grows on hover, carrying the label with it. */}
+                  {/* Dashed stem: stretches with magnification. */}
                   <span
                     aria-hidden="true"
                     className={`timeline-stem absolute left-1/2 w-0 border-l border-dashed border-accent/70 ${
                       up ? "origin-bottom" : "origin-top"
                     }`}
-                    style={up ? { bottom: HEIGHT - LINE_Y + 6, height: STEM } : { top: LINE_Y + 6, height: STEM }}
+                    style={up ? { bottom: HEIGHT - LINE_Y + 5, height: STEM } : { top: LINE_Y + 5, height: STEM }}
                   />
                   <span
                     aria-hidden="true"
-                    className={`timeline-label absolute left-1/2 flex w-[calc(200%-8px)] max-w-28 -translate-x-1/2 flex-col items-center gap-1 text-center ${
-                      up ? "justify-end" : "justify-start"
+                    className={`timeline-label absolute left-1/2 flex w-28 -translate-x-1/2 flex-col items-center gap-1 text-center ${
+                      up ? "origin-bottom justify-end" : "origin-top justify-start"
                     }`}
                     data-dir={up ? "up" : "down"}
                     style={
                       up
-                        ? { bottom: HEIGHT - LINE_Y + 6 + STEM + 6 }
-                        : { top: LINE_Y + 6 + STEM + 6 }
+                        ? { bottom: HEIGHT - LINE_Y + 5 + STEM + 4 }
+                        : { top: LINE_Y + 5 + STEM + 4 }
                     }
                   >
                     {showMark && <Mark brand={stop.brand} />}
-                    <span className="block text-meta leading-tight text-muted transition-colors duration-200 group-hover:text-text group-focus-visible:text-text">
+                    <span className="timeline-text block text-meta leading-tight text-text">
                       {stop.label}
                     </span>
                   </span>
