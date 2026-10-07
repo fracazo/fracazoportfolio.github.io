@@ -135,7 +135,7 @@ export const work = {
   },
   flow: {
     href: "/tools/flow-prototype",
-    meta: "Claude Code skill · 2026",
+    meta: "Personal project · 2026",
     title: "Flow prototype",
     tagline:
       "Every screen your coding agent builds, connected on one canvas you can zoom in and out of. Works on any device.",
