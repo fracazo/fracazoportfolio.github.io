@@ -491,11 +491,14 @@ function EntryItem({ entry }: { entry: Entry }) {
   /* Phones: date and title beside a small thumb, the description full
      width below, so the text keeps the whole column and the list stays
      short. From 600px: the WorkRow grid, text leading and a 280px thumb
-     trailing, so these sit in one rhythm with the case study rows. */
+     trailing, so these sit in one rhythm with the case study rows. The
+     thumb spans both rows there; `auto 1fr` keeps the first row to the
+     title's height and gives the thumb's extra height to the second, so
+     the description sits right under the title. */
   return (
     /* work-row-compact: the hook WorkVignette listens on for row hover. */
     <div
-      className={`work-row-compact grid py-5 @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:gap-x-8 ${
+      className={`work-row-compact grid py-5 @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:grid-rows-[auto_1fr] @min-[600px]:gap-x-8 ${
         thumb ? "grid-cols-[minmax(0,1fr)_88px] gap-x-4" : "grid-cols-1"
       }`}
     >
