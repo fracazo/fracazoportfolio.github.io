@@ -278,18 +278,6 @@ const roles: Role[] = [
         text: "Resolved 60% of queries on its own and cut live chat waits from 2 hours to 45 minutes.",
       },
       {
-        id: "qantas-alexa",
-        brand: brands.qantas,
-        label: "Alexa skill",
-        year: "2017",
-        title: "Qantas Alexa skill",
-        image: {
-          src: "/images/work/qantas-alexa.jpg",
-          alt: "An Amazon Echo answering a question about a Qantas flight",
-        },
-        text: "A voice skill for travel and loyalty, one of 24 launch partners for Alexa in Australia and New Zealand.",
-      },
-      {
         id: "qantas-entertainment",
         brand: brands.qantas,
         label: "Entertainment",

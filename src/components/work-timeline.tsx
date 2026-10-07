@@ -27,9 +27,9 @@ export type TimelineStop = {
   /** Anchor id of the entry this stop jumps to. */
   id: string;
   brand: Brand;
-  /** Short label under the logo, e.g. "Alexa skill". */
+  /** Short label under the logo, e.g. "Chatbot". */
   label: string;
-  /** Full name for screen readers, e.g. "Qantas Alexa skill, 2017". */
+  /** Full name for screen readers, e.g. "Qantas concierge chatbot, 2018". */
   name: string;
 };
 
