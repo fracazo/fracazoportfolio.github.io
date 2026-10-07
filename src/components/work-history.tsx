@@ -111,7 +111,7 @@ const roles: Role[] = [
     company: "Side projects",
     role: "Founder and solo builder",
     period: "2026",
-    location: "Sydney",
+    location: "Melbourne",
     years: "2026",
     entries: [
       {
