@@ -71,7 +71,7 @@ export const work = {
     meta: "Hireup · 2022",
     title: "Worker Status Visibility",
     tagline:
-      "On Australia’s largest disability support marketplace, 39% of people were messaging workers who had stopped taking jobs. I made availability visible, so they reach someone who answers.",
+      "Reducing uncertainty in a two-sided marketplace by making availability honest.",
     outcome: "+12% bookings · Connection rate 3% → 5%",
     vignette: "hireup",
   },
@@ -80,7 +80,7 @@ export const work = {
     meta: "Department of Home Affairs · 2020–2021",
     title: "Reducing Friction in Government Visa Applications",
     tagline:
-      "Visa data was only as accurate as what people typed. The app reads the passport chip and scans the traveller’s face instead, so there is almost nothing to type.",
+      "Automating data entry to improve completion and reduce user effort in a high-stakes service.",
     outcome: "From 0 to 1",
     image: {
       src: "/images/62dc274f132cbe543717e126_work1-p-2000.jpg",
@@ -139,6 +139,7 @@ export const work = {
     title: "Flow prototype",
     tagline:
       "Every screen your coding agent builds, connected on one canvas you can zoom in and out of. Works on any device.",
+    outcome: "Claude Code skill",
     vignette: "flow",
   },
 } satisfies Record<string, WorkEntry>;

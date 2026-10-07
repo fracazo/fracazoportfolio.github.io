@@ -3,38 +3,55 @@ import { BrandStrip } from "@/components/brand-strip";
 import { PlainShell } from "@/components/plain-shell";
 import { PanelShell } from "@/components/panel-shell";
 import { FeaturedWork, type FeaturedItem } from "@/components/featured-work";
+import { WorkRow } from "@/components/work-row";
+import { WorkRowCompact } from "@/components/work-row-compact";
 import { RowList } from "@/components/row-list";
 import { LinkRowList } from "@/components/link-row-list";
 import { SiteFooter } from "@/components/site-footer";
 import { TextLink } from "@/components/text-link";
 import { ExternalLinkIcon } from "@/components/icons";
-import { work } from "@/content/work";
+import { stubs, work } from "@/content/work";
 
-/* The three highlights, in stage order. Everything else lives on /work, so
-   the home page stays a short answer to "what kind of designer is this".
-   The meta line names the client, so the stage reads as shipped work. Each
-   needs either a vignette (with, ideally, a hero scene in hero-scenes.tsx)
-   or real footage (image + video) for the stage. */
-const featuredWork: FeaturedItem[] = [work.glql, work.hireup, work.eta];
+/* The hero's lead work, in stage order: two case studies and a tool. The
+   meta line names the client, so the stage reads as shipped work. Each
+   needs a standalone vignette for the narrow layouts and, ideally, a hero
+   scene (hero-scenes.tsx) for the stage. */
+const featuredWork: FeaturedItem[] = [work.glql, work.hireup, work.flow];
 
-/* A short pick of what I build on the side; the full list is on /work. */
-const built = [
+/* The Australian case studies outside Featured, newest first. Everything
+   else, GitLab included, is listed on /work. */
+const caseStudies = [work.eta, work.qantasEntertainment, work.qantasApp];
+
+/* Older roles as one-line rows, no thumbnails. Rows with somewhere to go
+   link there (a case study, or a stub in the panel); the rest are plain. */
+const earlierWork = [
   {
-    title: "BirthGuide",
-    meta: "Founder · 2026",
-    links: [{ href: "/work/birthguide", label: "Case study" }],
+    title: "Telstra",
+    meta: "Design system · 2016–2020",
+    tagline:
+      "Standardised components and usage guidance across product teams.",
   },
   {
-    title: "Flow prototype",
-    meta: "Claude Code skill · 2026",
-    links: [{ href: "/tools/flow-prototype", label: "Details" }],
+    href: work.mymix.href,
+    title: "Vodafone",
+    meta: "MyMix · 2015–2016",
+    tagline: "A personalised prepaid plan builder, in four taps.",
   },
   {
-    title: "Agent-native design system",
-    meta: "npm package · 2026",
-    links: [
-      { href: "https://github.com/fracazo/design-system", label: "GitHub" },
-    ],
+    stub: stubs.bemDireto.stub,
+    title: "Bem Direto",
+    meta: "First designer · 2012–2013",
+    tagline: "Brazil’s first real estate marketplace for agents.",
+  },
+  {
+    title: "Smartia",
+    meta: "2011–2012",
+    tagline: "Brazil’s first car insurance comparison platform.",
+  },
+  {
+    title: "Sitevip",
+    meta: "Front-end coder · 2005–2009",
+    tagline: "Front-end coder in an agency.",
   },
 ];
 
@@ -150,6 +167,43 @@ export default function Home() {
         </h2>
         <FeaturedWork items={featuredWork} />
       </section>
+
+      <div className="reveal-after mx-auto grid w-full max-w-home gap-22">
+        <section
+          id="Work"
+          aria-labelledby="case-studies-title"
+          /* Containment context for the work cards, so they size off this
+             column rather than the window (it halves when the panel opens). */
+          className="@container w-full"
+        >
+          <h2 id="case-studies-title" className="m-0 mb-4 text-meta font-medium leading-none tracking-[0.06em] text-muted uppercase">
+            Case studies
+          </h2>
+          <ul role="list" className="m-0 flex list-none flex-col gap-1 p-0">
+            {caseStudies.map((entry) => (
+              <li key={entry.href}>
+                <WorkRow {...entry} />
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section aria-labelledby="earlier-work-title" className="@container w-full">
+          <h2 id="earlier-work-title" className="m-0 mb-4 text-meta font-medium leading-none tracking-[0.06em] text-muted uppercase">
+            Earlier work
+          </h2>
+          <ul role="list" className="m-0 flex list-none flex-col p-0">
+            {earlierWork.map((entry) => (
+              <li key={entry.title}>
+                <WorkRowCompact {...entry} />
+              </li>
+            ))}
+          </ul>
+          <p className="text mt-3 text-body text-text-body">
+            Everything else is in my <TextLink href="/work">work history</TextLink>.
+          </p>
+        </section>
+      </div>
 
       {/* Working with Alex */}
       <section
@@ -311,20 +365,6 @@ export default function Home() {
             Read full recommendations on LinkedIn
             <ExternalLinkIcon size={13} className="opacity-70" />
           </a>
-        </p>
-      </section>
-
-      {/* A short pick of side projects; the rest are on the work history. */}
-      <section aria-labelledby="built-title" className="mx-auto w-full max-w-home">
-        <h2
-          id="built-title"
-          className="m-0 mb-1 text-meta font-medium leading-none tracking-[0.06em] text-muted uppercase"
-        >
-          Things I build on the side
-        </h2>
-        <LinkRowList items={built} />
-        <p className="text mt-3 text-body text-text-body">
-          More in my <TextLink href="/work">work history</TextLink>.
         </p>
       </section>
 
