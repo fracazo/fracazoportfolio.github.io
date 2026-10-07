@@ -476,26 +476,27 @@ function EntryItem({ entry }: { entry: Entry }) {
     />
   ) : null;
 
-  /* Phones: date and title beside a small thumb, the description full
-     width below, so the text keeps the whole column and the list stays
-     short. From 600px: the WorkRow grid, text leading and a 280px thumb
+  /* Phones: a 136px thumb floated top right, with the date, title and
+     description wrapping around it, so the text keeps most of the column
+     and the list stays short. From 600px: the WorkRow grid, text leading and a 280px thumb
      trailing, so these sit in one rhythm with the case study rows. The
      thumb spans both rows there; `auto 1fr` keeps the first row to the
      title's height and gives the thumb's extra height to the second, so
      the description sits right under the title. */
   return (
-    /* work-row-compact: the hook WorkVignette listens on for row hover. */
-    <div
-      className={`work-row-compact grid py-5 @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:grid-rows-[auto_1fr] @min-[600px]:gap-x-8 ${
-        thumb ? "grid-cols-[minmax(0,1fr)_88px] gap-x-4" : "grid-cols-1"
-      }`}
-    >
+    /* work-row-compact: the hook WorkVignette listens on for row hover.
+       flow-root contains the phone layout's float. */
+    <div className="work-row-compact flow-root py-5 @min-[600px]:grid @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:grid-rows-[auto_1fr] @min-[600px]:gap-x-8">
       {thumb && (
-        <div className="thumb-frame col-start-2 row-start-1 self-start overflow-hidden rounded-[8px] bg-panel-2 @min-[600px]:row-span-2 @min-[600px]:rounded-card">
+        /* Phones: floated top right, so the date, title and the start of
+           the description run beside it and the rest wraps underneath.
+           A float means nothing to a grid item, so from 600px the same
+           box simply takes the trailing column. */
+        <div className="thumb-frame float-right mb-2 ml-4 w-[136px] overflow-hidden rounded-[10px] bg-panel-2 @min-[600px]:float-none @min-[600px]:col-start-2 @min-[600px]:row-span-2 @min-[600px]:row-start-1 @min-[600px]:m-0 @min-[600px]:w-auto @min-[600px]:self-start @min-[600px]:rounded-card">
           <div className="relative aspect-[16/10] overflow-hidden">{thumb}</div>
         </div>
       )}
-      <div className="col-start-1 row-start-1 min-w-0 self-center @min-[600px]:self-start">
+      <div className="min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1">
         <p className="m-0 mb-1 text-meta text-muted">
           {entry.brand.name} · {yearsOf(entry)}
         </p>
@@ -504,7 +505,7 @@ function EntryItem({ entry }: { entry: Entry }) {
         </h3>
       </div>
       {entry.text && (
-        <p className="col-[1/-1] row-start-2 m-0 mt-2 text-body leading-[1.3] text-text-body @min-[600px]:col-[1] @min-[600px]:mt-1">
+        <p className="m-0 mt-2 text-body leading-[1.3] text-text-body @min-[600px]:col-start-1 @min-[600px]:row-start-2 @min-[600px]:mt-1">
           {entry.text}
         </p>
       )}
