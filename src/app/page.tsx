@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AvatarGreeting } from "@/components/avatar-greeting";
 import { BrandStrip } from "@/components/brand-strip";
 import { PlainShell } from "@/components/plain-shell";
@@ -182,12 +183,26 @@ export default function Home() {
               sweep
               label="Earlier work timeline"
             />
-            <p className="text mt-6 max-w-[620px] text-body text-text-body max-md:mt-2">
+            <p className="text mt-6 max-w-[620px] text-body text-text-body max-md:hidden">
               Before Hireup and GitLab, I designed for Qantas, Telstra, Vodafone
               and the Australian Government. Before that, the first versions of
               startups in Brazil. It&rsquo;s all in my{" "}
               <TextLink href="/work">work history</TextLink>.
             </p>
+            {/* Phones have no timeline (it needs the width), so the section
+                says what is behind it and offers one clear way there. */}
+            <div className="md:hidden">
+              <p className="text mt-2 text-body text-text-body">
+                I&rsquo;ve designed for airlines, telcos, government, public
+                transport, health and e&#8209;commerce, in Australia and Brazil.
+              </p>
+              <Link
+                href="/work"
+                className="btn mt-5 inline-flex w-full items-center justify-center px-4 py-2.5 no-underline hover:no-underline"
+              >
+                See my work history
+              </Link>
+            </div>
           </section>
         </div>
 
