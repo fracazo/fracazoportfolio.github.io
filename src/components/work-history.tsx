@@ -546,12 +546,13 @@ function RoleSection({ role }: { role: Role }) {
               const Icon = closingIcons[line.icon];
               return (
                 <li key={line.text} className="flex items-start gap-3.5">
-                  {/* Tile height matches the first line box, so the icon
-                      centres on the opening line, not the whole item. */}
+                  {/* The text's leading above the cap height is trimmed, so
+                      the tops of its capitals sit level with the tile's top
+                      edge: tile and text start on one line. */}
                   <span className="flex size-8 flex-none items-center justify-center rounded-lg bg-panel-2 text-brand">
                     <Icon size={16} />
                   </span>
-                  <span className="pt-[3px] text-body text-text-body">
+                  <span className="block text-body text-text-body [text-box:trim-start_cap_alphabetic]">
                     {line.text}
                   </span>
                 </li>
