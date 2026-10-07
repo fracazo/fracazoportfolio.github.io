@@ -9,6 +9,7 @@ import {
 } from "@/content/work";
 import { DownloadIcon } from "./icons";
 import { LinkedInButton } from "./linkedin-button";
+import { SideProjectList } from "./side-project-list";
 import { WorkRow } from "./work-row";
 import { WorkRowCompact } from "./work-row-compact";
 import {
@@ -525,25 +526,10 @@ function RoleSection({ role }: { role: Role }) {
       )}
 
       {role.id === "side-projects" && (
-        <ul role="list" className="m-0 mt-4 flex list-none flex-col gap-3 p-0">
-          {sideProjects.map((project) => (
-            <li key={project.title} className="max-w-[620px]">
-              <a
-                href={project.links[0].href}
-                target="_blank"
-                rel="noopener"
-                className="text-body font-medium text-text no-underline hover:text-brand hover:no-underline"
-              >
-                {project.title}
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
-              <span className="text-body text-text-body">
-                {" "}
-                {project.description}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-8">
+          <h3 className={sectionLabel}>Also built</h3>
+          <SideProjectList items={sideProjects} />
+        </div>
       )}
     </section>
   );
