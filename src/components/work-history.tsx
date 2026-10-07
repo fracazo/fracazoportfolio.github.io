@@ -79,9 +79,11 @@ type Entry = {
   year: string;
   title: string;
   text?: string;
-  /** Screen from the old portfolio decks. `top` crops a tall phone screen
-      from its top edge, where the UI is; `contain` shows a wide one whole. */
-  image?: { src: string; alt: string; fit?: "contain" | "top" };
+  /** Screen from the old portfolio decks. `peek` sets a tall phone screen
+      upright in the middle of the frame, rising from the bottom edge, so
+      its top half reads at a useful size; `contain` shows a wide one whole;
+      the default fills the frame. */
+  image?: { src: string; alt: string; fit?: "contain" | "peek" };
   work?: WorkEntry;
   stub?: StubEntry;
 };
@@ -245,7 +247,7 @@ const roles: Role[] = [
         image: {
           src: "/images/work/isentia-feed.jpg",
           alt: "The Isentia app feed of media mentions",
-          fit: "top",
+          fit: "peek",
         },
         text: "Discovery to launch on iOS and Android in four months, so client teams can act together as a story breaks.",
       },
@@ -256,9 +258,8 @@ const roles: Role[] = [
         year: "2018–2019",
         title: "Telstra design language system",
         image: {
-          src: "/images/work/telstra-design-system.jpg",
-          alt: "Telstra design language colour and component sheet",
-          fit: "top",
+          src: "/images/work/telstra-sketch-library.png",
+          alt: "The My Telstra global Sketch library open on its future vision patterns page",
         },
         text: "Workshops and guidance so distributed teams across Telstra adopted one system, not just set it up.",
       },
@@ -444,17 +445,29 @@ function EntryItem({ entry }: { entry: Entry }) {
       {entry.image && (
         <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
           <div className="relative aspect-[16/10] overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={entry.image.src}
-              alt={entry.image.alt}
-              loading="lazy"
-              className={`h-full w-full ${
-                entry.image.fit === "contain"
-                  ? "object-contain p-3"
-                  : "object-cover"
-              }`}
-            />
+            {entry.image.fit === "peek" ? (
+              /* Rounded top corners and a hairline, like a phone screen
+                 held up to the frame; the bottom runs off the edge. */
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={entry.image.src}
+                alt={entry.image.alt}
+                loading="lazy"
+                className="absolute top-[9%] left-1/2 w-[38%] -translate-x-1/2 rounded-t-[14px] shadow-[0_0_0_1px_var(--border)]"
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={entry.image.src}
+                alt={entry.image.alt}
+                loading="lazy"
+                className={`h-full w-full ${
+                  entry.image.fit === "contain"
+                    ? "object-contain p-3"
+                    : "object-cover"
+                }`}
+              />
+            )}
           </div>
         </div>
       )}
