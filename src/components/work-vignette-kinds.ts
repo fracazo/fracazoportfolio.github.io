@@ -12,7 +12,8 @@ export type WorkVignetteKind =
   | "bemdireto"
   | "pages"
   | "flow"
-  | "hireup";
+  | "hireup"
+  | "telstra";
 
 /* Standalone scenes ARE the thumbnail: the row renders no screenshot behind
    them, they rest in their settled composition, and hover replays the
@@ -28,4 +29,5 @@ export const VIGNETTE_REPLACES_IMAGE: Record<WorkVignetteKind, boolean> = {
   pages: true,
   flow: true,
   hireup: true,
+  telstra: true,
 };

@@ -7,11 +7,13 @@ import {
   type StubEntry,
   type WorkEntry,
 } from "@/content/work";
-import { DownloadIcon } from "./icons";
+import { CompassIcon, DownloadIcon, LightbulbIcon, UsersIcon } from "./icons";
 import { LinkedInButton } from "./linkedin-button";
 import { SideProjectList } from "./side-project-list";
 import { WorkRow } from "./work-row";
 import { WorkRowCompact } from "./work-row-compact";
+import { WorkVignette } from "./work-vignette";
+import type { WorkVignetteKind } from "./work-vignette-kinds";
 import {
   WorkTimeline,
   type Brand,
@@ -82,6 +84,8 @@ type Entry = {
   /** Screen from the old portfolio decks. `contain` shows a wide one whole;
       the default fills the frame. */
   image?: { src: string; alt: string; fit?: "contain" };
+  /** Animated scene in place of an image (see WorkVignette). */
+  vignette?: WorkVignetteKind;
   work?: WorkEntry;
   stub?: StubEntry;
 };
@@ -98,7 +102,10 @@ type Role = {
   /** Newest first, as they read in the history. */
   entries: Entry[];
   /** Short trailing lines, e.g. the team work under Arq. */
-  closing?: { title: string; lines: string[] };
+  closing?: {
+    title: string;
+    lines: { icon: keyof typeof closingIcons; text: string }[];
+  };
   also?: string;
 };
 
@@ -254,11 +261,8 @@ const roles: Role[] = [
         label: "Design system",
         year: "2018–2019",
         title: "Telstra design language system",
-        image: {
-          src: "/images/work/telstra-sketch-library.png",
-          alt: "The My Telstra global Sketch library open on its future vision patterns page",
-        },
-        text: "Workshops and guidance so distributed teams across Telstra adopted one system, not just set it up.",
+        vignette: "telstra",
+        text: "The design system was a core pillar of Telstra’s Vision 2022: one visual language across every Telstra app and site. I ran workshops on best practices and team alignment, so distributed teams could adopt the system in their own products.",
       },
       {
         id: "qantas-chatbot",
@@ -305,9 +309,18 @@ const roles: Role[] = [
     closing: {
       title: "Leading teams",
       lines: [
-        "Quarterly hackathons with Qantas from 2017: 120 ideas explored, more than 20 concepts in production.",
-        "Skill Share, a platform that connects designers with experienced colleagues for advice outside formal mentoring.",
-        "A career planning tool designers use to assess their skills against their peers and plan their next goals.",
+        {
+          icon: "idea",
+          text: "Quarterly hackathons with Qantas from 2017: 120 ideas explored, more than 20 concepts in production.",
+        },
+        {
+          icon: "people",
+          text: "Skill Share, a platform that connects designers with experienced colleagues for advice outside formal mentoring.",
+        },
+        {
+          icon: "direction",
+          text: "A career planning tool designers use to assess their skills against their peers and plan their next goals.",
+        },
       ],
     },
   },
@@ -427,6 +440,13 @@ const employers: TimelineEmployer[] = chronological.map((role) => ({
   span: role.entries.filter((entry) => entry.label).length,
 }));
 
+/* Icons for the short team lines under a role, in place of bullets. */
+const closingIcons = {
+  idea: LightbulbIcon,
+  people: UsersIcon,
+  direction: CompassIcon,
+};
+
 /* Same small-caps label the home page uses over its sections. */
 const sectionLabel =
   "m-0 mb-3 text-meta font-medium leading-none tracking-[0.06em] text-muted uppercase";
@@ -438,7 +458,15 @@ function EntryItem({ entry }: { entry: Entry }) {
      these sit in one rhythm with the case study rows, minus the hover pill:
      there is nowhere further to go. */
   return (
-    <div className="grid grid-cols-1 py-5 @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8">
+    /* work-row-compact: the hook WorkVignette listens on for row hover. */
+    <div className="work-row-compact grid grid-cols-1 py-5 @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8">
+      {entry.vignette && (
+        <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
+          <div className="relative aspect-[16/10] overflow-hidden">
+            <WorkVignette kind={entry.vignette} />
+          </div>
+        </div>
+      )}
       {entry.image && (
         <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
           <div className="relative aspect-[16/10] overflow-hidden">
@@ -458,7 +486,7 @@ function EntryItem({ entry }: { entry: Entry }) {
       )}
       <div
         className={`min-w-0 @min-[600px]:col-start-1 @min-[600px]:row-start-1 ${
-          entry.image ? "mt-4 @min-[600px]:mt-0" : ""
+          entry.image || entry.vignette ? "mt-4 @min-[600px]:mt-0" : ""
         }`}
       >
         <p className="m-0 mb-1 text-meta text-muted">
@@ -510,10 +538,25 @@ function RoleSection({ role }: { role: Role }) {
       {role.closing && (
         <div className="mt-6">
           <h3 className={sectionLabel}>{role.closing.title}</h3>
-          <ul className="m-0 max-w-[620px] list-disc space-y-1.5 ps-[18px] text-body text-text-body">
-            {role.closing.lines.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
+          <ul
+            role="list"
+            className="m-0 flex max-w-[620px] list-none flex-col gap-4 p-0"
+          >
+            {role.closing.lines.map((line) => {
+              const Icon = closingIcons[line.icon];
+              return (
+                <li key={line.text} className="flex items-start gap-3.5">
+                  {/* Tile height matches the first line box, so the icon
+                      centres on the opening line, not the whole item. */}
+                  <span className="flex size-8 flex-none items-center justify-center rounded-lg bg-panel-2 text-brand">
+                    <Icon size={16} />
+                  </span>
+                  <span className="pt-[3px] text-body text-text-body">
+                    {line.text}
+                  </span>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

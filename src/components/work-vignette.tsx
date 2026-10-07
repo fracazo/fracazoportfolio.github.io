@@ -160,6 +160,8 @@ function Scene({ kind, mode }: { kind: WorkVignetteKind; mode: SceneMode }) {
     <FlowScene mode={mode} />
   ) : kind === "hireup" ? (
     <HireupScene mode={mode} />
+  ) : kind === "telstra" ? (
+    <TelstraScene mode={mode} />
   ) : (
     <BirthGuideScene mode={mode} />
   );
@@ -1138,5 +1140,142 @@ function HireupScene({ mode }: { mode: SceneMode }) {
         </div>
       </div>
     </div>
+  );
+}
+
+/* ---- Telstra: one design system, adopted screen by screen ---- */
+
+/* Three product screens built by different teams, each with its own idea of
+   a header and a primary button. The library on the left is the system; as
+   its line reaches each screen, that screen's header and button snap to the
+   system's. The settled frame is the point: every product looks like one. */
+const TELSTRA_SCREENS = [
+  { x: 108, header: 12, button: { w: 22, radius: 1 } },
+  { x: 164, header: 6, button: { w: 34, radius: 3 } },
+  { x: 220, header: 10, button: { w: 26, radius: 0 } },
+];
+const TELSTRA_SCREEN = { top: 46, w: 46, h: 100 };
+/* The system's own values, which every screen adopts. */
+const TELSTRA_SYSTEM = { header: 8, buttonW: 30 };
+/* The library card, level with the screens. */
+const TELSTRA_LIBRARY = { x: 16, w: 68 };
+/* The rail the system travels along: up out of the library, across above
+   the screens, down into each. One line, so it reads as one source. */
+const TELSTRA_RAIL_Y = 28;
+const TELSTRA_CORNER = 6;
+
+function TelstraScene({ mode }: { mode: SceneMode }) {
+  const shown = mode === "settled" || mode === "play";
+  const delay = (ms: number) => (mode === "play" ? `${ms}ms` : "0ms");
+  // Each line draws in turn; its screen adopts the system as it lands.
+  const lineAt = (i: number) => 150 + i * 420;
+  const adoptAt = (i: number) => lineAt(i) + 380;
+
+  return (
+    <>
+      <svg
+        className="absolute inset-0"
+        viewBox={`0 0 ${CANVAS_W} ${CANVAS_H}`}
+        width={CANVAS_W}
+        height={CANVAS_H}
+      >
+        {TELSTRA_SCREENS.map((screen, i) => {
+          const fromX = TELSTRA_LIBRARY.x + TELSTRA_LIBRARY.w / 2;
+          const toX = screen.x + TELSTRA_SCREEN.w / 2;
+          const r = TELSTRA_CORNER;
+          const y = TELSTRA_RAIL_Y;
+          return (
+            <path
+              key={screen.x}
+              d={`M ${fromX} ${TELSTRA_SCREEN.top - 4} V ${y + r} Q ${fromX} ${y} ${fromX + r} ${y} H ${toX - r} Q ${toX} ${y} ${toX} ${y + r} V ${TELSTRA_SCREEN.top - 4}`}
+              pathLength={1}
+              fill="none"
+              stroke="var(--accent)"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray="1"
+              style={{
+                strokeDashoffset: shown ? 0 : 1,
+                transition: "stroke-dashoffset 380ms ease",
+                transitionDelay: delay(lineAt(i)),
+              }}
+            />
+          );
+        })}
+      </svg>
+
+      {/* The library: the system's button, toggle and card, set out once. */}
+      <div
+        className="vignette-card absolute rounded-lg bg-surface"
+        style={{
+          left: TELSTRA_LIBRARY.x,
+          top: TELSTRA_SCREEN.top,
+          width: TELSTRA_LIBRARY.w,
+          height: TELSTRA_SCREEN.h,
+        }}
+      >
+        <span className="absolute top-2.5 left-2.5 h-1.5 w-7 rounded-full bg-border" />
+        <span
+          className="absolute left-2.5 h-2 rounded-full bg-accent"
+          style={{ top: 26, width: TELSTRA_SYSTEM.buttonW }}
+        />
+        <span
+          className="absolute left-2.5 h-2.5 w-5 rounded-full bg-accent/30"
+          style={{ top: 44 }}
+        >
+          <span className="absolute top-0.5 right-0.5 size-1.5 rounded-full bg-accent" />
+        </span>
+        <span
+          className="absolute inset-x-2.5 rounded-[3px] bg-panel-2"
+          style={{ top: 64, height: 18 }}
+        />
+        <span
+          className="absolute left-2.5 h-1 w-9 rounded-full bg-border"
+          style={{ top: 90 }}
+        />
+      </div>
+
+      {TELSTRA_SCREENS.map((screen, i) => {
+        const transition = (props: string[]) =>
+          props.map((p) => `${p} 260ms ease`).join(", ");
+        return (
+          <div
+            key={screen.x}
+            className="vignette-card absolute overflow-hidden rounded-[8px] bg-surface"
+            style={{
+              left: screen.x,
+              top: TELSTRA_SCREEN.top,
+              width: TELSTRA_SCREEN.w,
+              height: TELSTRA_SCREEN.h,
+            }}
+          >
+            {/* Header band: each team's own height until the system's. */}
+            <span
+              className="absolute inset-x-0 top-0 bg-panel-2"
+              style={{
+                height: shown ? TELSTRA_SYSTEM.header : screen.header,
+                transition: transition(["height"]),
+                transitionDelay: delay(adoptAt(i)),
+              }}
+            />
+            <span className="absolute top-[18px] left-2 h-1.5 w-[62%] rounded-full bg-border" />
+            <span className="absolute top-[28px] left-2 h-1 w-[74%] rounded-full bg-border" />
+            <span className="absolute top-[34px] left-2 h-1 w-[50%] rounded-full bg-border" />
+            {/* Primary button: grey and off-shape, then the system's pill. */}
+            <span
+              className="absolute bottom-3 left-2 h-2"
+              style={{
+                width: shown ? TELSTRA_SYSTEM.buttonW : screen.button.w,
+                borderRadius: shown ? 999 : screen.button.radius,
+                background: shown ? "var(--accent)" : "var(--border)",
+                transition: transition(["width", "border-radius", "background"]),
+                transitionDelay: delay(adoptAt(i)),
+              }}
+            />
+          </div>
+        );
+      })}
+    </>
   );
 }
