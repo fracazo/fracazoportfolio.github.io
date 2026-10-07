@@ -630,7 +630,9 @@ export function WorkHistory({ footer }: { footer?: ReactNode }) {
         </div>
       </header>
 
-      <div className="mx-auto w-full max-w-home">
+      {/* Phones leave the timeline out (it needs the width); hiding the
+          wrapper too keeps the page's section gap from doubling. */}
+      <div className="mx-auto w-full max-w-home max-md:hidden">
         <WorkTimeline stops={stops} employers={employers} />
       </div>
 

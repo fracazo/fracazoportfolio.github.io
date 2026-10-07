@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { PageTransition } from "./page-transition";
 import { ThemeToggle } from "./theme-toggle";
 
 /**
@@ -26,22 +27,24 @@ export function PlainShell({
   wide?: boolean;
 }) {
   return (
-    <div className="min-h-dvh">
-      {themeToggle && (
-        <div className="fixed top-4 end-4 z-50">
-          <ThemeToggle side="bottom" className="hover:bg-panel-2" />
-        </div>
-      )}
-      {back}
+    <PageTransition>
+      <div className="min-h-dvh">
+        {themeToggle && (
+          <div className="fixed top-4 end-4 z-50">
+            <ThemeToggle side="bottom" className="hover:bg-panel-2" />
+          </div>
+        )}
+        {back}
 
-      <main
-        id="content"
-        className={`mx-auto grid w-full gap-16 px-6 pb-18 [&>*]:min-w-0 ${
-          wide ? "" : "max-w-[1200px]"
-        }`}
-      >
-        {children}
-      </main>
-    </div>
+        <main
+          id="content"
+          className={`mx-auto grid w-full gap-16 px-6 pb-18 [&>*]:min-w-0 ${
+            wide ? "" : "max-w-[1200px]"
+          }`}
+        >
+          {children}
+        </main>
+      </div>
+    </PageTransition>
   );
 }

@@ -8,10 +8,9 @@ import { useEffect, useRef } from "react";
 
    At rest every stop is small (a dot, a stem, a tiny mark) so the whole
    career fits on one line; near the pointer the stops magnify like the
-   macOS Dock and their labels fade in. On a phone the same line scrolls
-   sideways and the stop at the centre is the magnified one. The jump is a
-   plain #anchor, so it works without JavaScript (CSS :hover then magnifies
-   the one stop). */
+   macOS Dock and their labels fade in. Narrow columns (phones, the split
+   pane) leave it out. The jump is a plain #anchor, so it works without
+   JavaScript (CSS :hover then magnifies the one stop). */
 
 export type Brand = {
   name: string;
@@ -47,10 +46,6 @@ export type TimelineEmployer = {
    pointer). */
 const HEIGHT = 236;
 const LINE_Y = 118;
-/* The strip hangs every label below the line (each stop has its own 72px,
-   so nothing needs to alternate), which halves its height. */
-const STRIP_HEIGHT = 124;
-const STRIP_LINE_Y = 22;
 const STEM = 26;
 /* How far the magnification reaches either side of the pointer: about one
    and a half stops, so the neighbours swell too, as in the Dock. */
@@ -139,25 +134,14 @@ export function WorkTimeline({
 
   return (
     <nav aria-label={label} className="@container">
-      {/* Wide: the whole career on one line, magnified by the pointer. */}
+      {/* The whole career on one line, magnified by the pointer. Below
+          720px of column (phones, the split pane) it is left out: the
+          line needs the width to read, and the history below carries
+          the same entries. */}
       <div className="hidden @min-[720px]:block">
         <Track
           stops={stops}
           employers={employers}
-          drive="pointer"
-          hrefBase={hrefBase}
-          sweep={sweep}
-        />
-      </div>
-
-      {/* Narrow (phones, and the split pane): the same line in a strip the
-          thumb scrubs sideways. The stop at the centre is magnified, so the
-          Dock effect follows the scroll instead of a pointer. */}
-      <div className="@min-[720px]:hidden">
-        <Track
-          stops={stops}
-          employers={employers}
-          drive="scroll"
           hrefBase={hrefBase}
           sweep={sweep}
         />
@@ -166,9 +150,6 @@ export function WorkTimeline({
   );
 }
 
-/* Width of one stop's column on the scrolling strip; an employer with a
-   single stop gets two, as on the wide line. */
-const STRIP_STOP_PX = 72;
 /* How long the wide line's one-time sweep takes, end to end. */
 const SWEEP_MS = 2600;
 
@@ -176,35 +157,23 @@ const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /**
- * The line itself, shared by both layouts. `pointer` fits every stop into
- * the column and magnifies around the mouse; `scroll` lays stops at a fixed
- * width in a horizontal strip, snaps them to the centre, and magnifies
- * around the centre as it scrolls.
+ * The line itself: every stop fits the column, and the stops around the
+ * pointer magnify.
  */
 function Track({
   stops,
   employers,
-  drive,
   hrefBase,
   sweep,
 }: {
   stops: TimelineStop[];
   employers: TimelineEmployer[];
-  drive: "pointer" | "scroll";
   hrefBase: string;
   sweep: boolean;
 }) {
-  const strip = drive === "scroll";
-  const height = strip ? STRIP_HEIGHT : HEIGHT;
-  const lineY = strip ? STRIP_LINE_Y : LINE_Y;
-  const columns = stops
-    .map((stop) =>
-      strip
-        ? `${STRIP_STOP_PX * stop.weight}px`
-        : `minmax(0, ${stop.weight}fr)`,
-    )
-    .join(" ");
-  const scrollerRef = useRef<HTMLDivElement>(null);
+  const height = HEIGHT;
+  const lineY = LINE_Y;
+  const columns = stops.map((stop) => `minmax(0, ${stop.weight}fr)`).join(" ");
   const listRef = useRef<HTMLOListElement>(null);
   const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
 
@@ -229,65 +198,13 @@ function Track({
     delete list.dataset.active;
     for (const item of itemRefs.current) item?.style.setProperty("--m", "0");
   };
-  const magnifyCentre = () => {
-    const scroller = scrollerRef.current;
-    if (!scroller) return;
-    const box = scroller.getBoundingClientRect();
-    magnify(box.left + box.width / 2);
-  };
-
-  /* The strip opens on the newest work, at the right-hand end, and keeps
-     the centre stop magnified as it scrolls (one update per frame). With
-     `sweep` it opens on the oldest instead and glides to the newest the
-     first time it comes into view, unless the reader touches it first. */
-  useEffect(() => {
-    if (!strip) return;
-    const scroller = scrollerRef.current;
-    if (!scroller) return;
-    const glide = sweep && !prefersReducedMotion();
-    scroller.scrollLeft = glide ? 0 : scroller.scrollWidth;
-    let frame = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(magnifyCentre);
-    };
-    onScroll();
-    scroller.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-
-    let touched = false;
-    const touch = () => {
-      touched = true;
-    };
-    scroller.addEventListener("pointerdown", touch, { passive: true });
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        observer.disconnect();
-        if (!touched) {
-          scroller.scrollTo({ left: scroller.scrollWidth, behavior: "smooth" });
-        }
-      },
-      { threshold: 0.8 },
-    );
-    if (glide) observer.observe(scroller);
-
-    return () => {
-      cancelAnimationFrame(frame);
-      observer.disconnect();
-      scroller.removeEventListener("scroll", onScroll);
-      scroller.removeEventListener("pointerdown", touch);
-      window.removeEventListener("resize", onScroll);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [strip, sweep]);
 
   /* The wide line's sweep: one magnification wave travels left to right
      the first time the line is mostly on screen, then settles. A real
      pointer on the line takes over at once. */
   const pointerOn = useRef(false);
   useEffect(() => {
-    if (strip || !sweep || prefersReducedMotion()) return;
+    if (!sweep || prefersReducedMotion()) return;
     const list = listRef.current;
     if (!list) return;
     let frame = 0;
@@ -316,7 +233,7 @@ function Track({
       cancelAnimationFrame(frame);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [strip, sweep]);
+  }, [sweep]);
 
   const line = (
     <>
@@ -325,26 +242,22 @@ function Track({
         role="list"
         className="timeline-dock relative m-0 grid list-none p-0"
         style={{ gridTemplateColumns: columns, height }}
-        {...(strip
-          ? {}
-          : {
-              onPointerMove: (event: React.PointerEvent) => {
-                if (event.pointerType !== "mouse") return;
-                pointerOn.current = true;
-                magnify(event.clientX);
-              },
-              onPointerLeave: () => {
-                pointerOn.current = false;
-                rest();
-              },
-              onFocus: (event: React.FocusEvent) => {
-                const li = (event.target as HTMLElement).closest("li");
-                if (!li) return;
-                const box = li.getBoundingClientRect();
-                magnify(box.left + box.width / 2);
-              },
-              onBlur: rest,
-            })}
+        onPointerMove={(event) => {
+          if (event.pointerType !== "mouse") return;
+          pointerOn.current = true;
+          magnify(event.clientX);
+        }}
+        onPointerLeave={() => {
+          pointerOn.current = false;
+          rest();
+        }}
+        onFocus={(event) => {
+          const li = (event.target as HTMLElement).closest("li");
+          if (!li) return;
+          const box = li.getBoundingClientRect();
+          magnify(box.left + box.width / 2);
+        }}
+        onBlur={rest}
       >
         {/* The line itself. */}
         <li
@@ -353,20 +266,17 @@ function Track({
           style={{ top: lineY }}
         />
         {stops.map((stop, index) => {
-          const up = !strip && index % 2 === 0;
-          // On the strip only a few stops are in view, so every stop
-          // carries its brand; the wide line shows it once per run.
+          const up = index % 2 === 0;
+          // The brand shows once per run of its stops.
           const showMark =
-            strip ||
-            index === 0 ||
-            stops[index - 1].brand.name !== stop.brand.name;
+            index === 0 || stops[index - 1].brand.name !== stop.brand.name;
           return (
             <li
               key={stop.id}
               ref={(el) => {
                 itemRefs.current[index] = el;
               }}
-              className={`timeline-stop relative ${strip ? "snap-center" : ""}`}
+              className="timeline-stop relative"
             >
               {/* Hairline through the stop, the fine grid behind the line. */}
               <span
@@ -376,18 +286,6 @@ function Track({
               <a
                 href={`${hrefBase}#${stop.id}`}
                 className="group absolute inset-0 block no-underline hover:no-underline focus-visible:outline-none"
-                /* A tap that lands off-centre first brings the stop to the
-                   middle, so it is magnified as the page moves to it. */
-                onClick={
-                  strip && !hrefBase
-                    ? (event) =>
-                        event.currentTarget.closest("li")?.scrollIntoView({
-                          inline: "center",
-                          block: "nearest",
-                          behavior: "smooth",
-                        })
-                    : undefined
-                }
               >
                 <span className="sr-only">{stop.name}</span>
                 {/* Dot on the line. */}
@@ -442,26 +340,14 @@ function Track({
         {employers.map((employer) => (
           <li
             key={employer.name}
-            className={`min-w-0 border-t border-border pt-2 ${strip ? "" : "text-center"}`}
+            className="min-w-0 border-t border-border pt-2 text-center"
             style={{ gridColumn: `span ${employer.span}` }}
           >
-            {/* On the strip an employer can run far wider than the screen,
-                so its name rides along under the centre stop (sticky at
-                the scrollport's middle) for as long as its range is there. */}
-            <span
-              className={
-                strip
-                  ? "sticky inline-block -translate-x-1/2 text-center whitespace-nowrap"
-                  : "block"
-              }
-              style={strip ? { left: "50%" } : undefined}
-            >
-              <span className="block truncate text-meta font-medium text-text-body">
-                {employer.name}
-              </span>
-              <span className="block truncate text-meta text-muted">
-                {employer.years}
-              </span>
+            <span className="block truncate text-meta font-medium text-text-body">
+              {employer.name}
+            </span>
+            <span className="block truncate text-meta text-muted">
+              {employer.years}
             </span>
           </li>
         ))}
@@ -469,28 +355,5 @@ function Track({
     </>
   );
 
-  if (!strip) return line;
-
-  /* The strip bleeds to the screen edges (-mx-6 cancels the page gutter)
-     and fades out at both, saying "there is more this way". Half-width
-     padding at each end lets the first and last stops reach the centre. */
-  return (
-    <div
-      ref={scrollerRef}
-      className="-mx-6 snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      style={{
-        maskImage:
-          "linear-gradient(to right, transparent, black 14%, black 86%, transparent)",
-        WebkitMaskImage:
-          "linear-gradient(to right, transparent, black 14%, black 86%, transparent)",
-      }}
-    >
-      <div
-        className="w-max"
-        style={{ paddingInline: `calc(50% - ${STRIP_STOP_PX / 2}px)` }}
-      >
-        {line}
-      </div>
-    </div>
-  );
+  return line;
 }

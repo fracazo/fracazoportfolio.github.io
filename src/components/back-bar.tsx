@@ -30,7 +30,12 @@ export function BackBar({
       className={`sticky top-0 z-10 flex justify-start bg-bg/85 py-3 backdrop-blur-md ${className}`}
     >
       {href ? (
-        <Link href={href} onClick={onClick} className={pill}>
+        <Link
+          href={href}
+          onClick={onClick}
+          transitionTypes={["nav-back"]}
+          className={pill}
+        >
           <ArrowLeftIcon size={14} />
           Back
         </Link>

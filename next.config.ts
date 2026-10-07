@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
   // URL keeps working after cutover (GitHub Pages also serves /work from
   // work.html, so clean internal links work too).
   trailingSlash: false,
+  experimental: {
+    // Page-to-page slides via React's <ViewTransition> (see
+    // components/page-transition.tsx).
+    viewTransition: true,
+  },
   images: {
     // Pages can't run the Next image optimizer; serve images as-is.
     unoptimized: true,

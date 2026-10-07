@@ -2496,3 +2496,55 @@
     background: transparent;
   }
 }
+
+/* Page transitions (components/page-transition.tsx). Forward: the new page
+   slides in from the right on the panel's curve and timing (.panel-enter),
+   the old one eases a quarter left and fades, as a stack pushes. Back runs
+   the same in reverse, with the leaving page kept on top. The rest of the
+   document (background) swaps without a crossfade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+::view-transition-new(.page-forward) {
+  animation: page-from-right 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+::view-transition-old(.page-forward) {
+  animation: page-to-left 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+::view-transition-new(.page-back) {
+  animation: page-from-left 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+::view-transition-old(.page-back) {
+  z-index: 1;
+  animation: page-to-right 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+@keyframes page-from-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+@keyframes page-to-left {
+  to {
+    transform: translateX(-25%);
+    opacity: 0;
+  }
+}
+@keyframes page-from-left {
+  from {
+    transform: translateX(-25%);
+    opacity: 0;
+  }
+}
+@keyframes page-to-right {
+  to {
+    transform: translateX(100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
