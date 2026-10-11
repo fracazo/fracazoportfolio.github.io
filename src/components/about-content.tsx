@@ -115,7 +115,7 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
             <p className="-mt-5">
               I grew up on a farm in Minas Gerais, Brazil. Later we moved to
               Cuiabá, near the Pantanal. English is my second language, and
-              that&rsquo;s part of why I like plain words and design that feels easy.
+              that&rsquo;s part of why I like simple English and design that feels easy.
             </p>
 
             <PhotoStrip
