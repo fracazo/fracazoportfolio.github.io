@@ -133,7 +133,7 @@ export function BringingVisibilityToWorkersStatusContent({
           <img src="/images/62fb817e7d3362906fa43868_My-Account.png" alt="My Account design" />
 
           <h3>Copywriting with empathy</h3>
-          <p>I've recommended changing the microcopy from "Looking for support work / Not looking for support work" to a more direct and simple, plain language that is easy to understand for everyone.</p>
+          <p>I've recommended changing the microcopy from "Looking for support work / Not looking for support work" to more direct, plain language that is easy for everyone to understand.</p>
           <img src="/images/62fc90125c97db0ee5c84b53_open-for-work---not-open-for-work.gif" alt="Copywriting animation" className="img-xs" />
 
           <p><strong>Thought process and design evolution</strong></p>

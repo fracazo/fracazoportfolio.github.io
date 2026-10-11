@@ -192,7 +192,7 @@ export function QantasAppContent({
           <img src="/images/62de769d97f4602e89070492_user-flow.webp" alt="Final user flow" className="img-full" />
 
           <h3>Key Takeaways</h3>
-          <p>Beyond building a simple design pattern, we allow passengers to discover what's showing on board their next flight. This feature delivers awareness of what entertainment is available when travelling with Qantas and further strengthens the passengers' engagement with the app and the Qantas brand.</p>
+          <p>Beyond making the pattern easy to use, we let passengers discover what's showing on board their next flight. This feature delivers awareness of what entertainment is available when travelling with Qantas and further strengthens the passengers' engagement with the app and the Qantas brand.</p>
           <img src="/images/62df2cccc02b82ce55e9b9f3_conclusion.webp" alt="Conclusion" />
           <p>This work is one half of the story. The other half is the Qantas Entertainment app redesign, where the same strategy continues inside the streaming app itself.</p>
 

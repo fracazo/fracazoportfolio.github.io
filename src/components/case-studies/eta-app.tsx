@@ -208,7 +208,7 @@ export function EtaAppContent({
 
           <h3>Design Details</h3>
           <p>The design principles that I focused on most for this project were accessibility and inclusion, as it is an application that people from different cultures and age groups can use. Some of the guidelines I had in mind while creating the user interface were:</p>
-          <blockquote>The app provides a utility so the <strong>interface should feel native and simple</strong> to the device the person is using</blockquote>
+          <blockquote>The app provides a utility so the <strong>interface should feel native to the device and easy to use</strong></blockquote>
           <p>The colours were adapted from the <strong>Home Affairs brand guidelines</strong>, so the app reads as the same government service people already know from the web, which matters when you are asking for someone's passport.</p>
           <p>The preferred typeface from the Brand Guidelines was Helvetica Neue, but since the App is heavy on data, I chose to use the <strong>device's native fonts</strong> to minimise the screen load so that the app feels lightweight <strong>as user actions should be quick to respond.</strong></p>
           <img src="/images/62ca98319e6ac4a404da4d49_Screen-Shot-2022-07-10-at-7.13.01-pm.png" alt="Design details" className="img-small" />

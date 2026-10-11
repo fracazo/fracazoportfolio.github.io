@@ -115,7 +115,7 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
             <p className="-mt-5">
               I grew up on a farm in Minas Gerais, Brazil. Later we moved to
               Cuiabá, near the Pantanal. English is my second language, and
-              that&rsquo;s part of why I like simple words and simple design.
+              that&rsquo;s part of why I like plain words and design that feels easy.
             </p>
 
             <PhotoStrip
@@ -265,7 +265,7 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
               iOS 7, a government app built from zero, and AI features before
               there were patterns for them. New ideas don&rsquo;t come with
               patterns, so the lesson is the same one I learned at the shop: go
-              and look at the thing. The answer is usually simpler than anyone expected, and
+              and look at the thing. The answer is usually easier to find than anyone expected, and
               it&rsquo;s usually standing right there.
             </p>
           </div>
