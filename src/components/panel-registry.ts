@@ -105,7 +105,7 @@ export const panelRegistry: Record<
     ),
   },
   "/work/eta-app": {
-    title: "Reducing Friction in Government Visa Applications",
+    title: "Replacing a visa form with a passport scan",
     load: dynamic(() =>
       import("@/components/case-studies/eta-app").then((m) => m.EtaAppContent),
     ),

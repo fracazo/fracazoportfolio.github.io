@@ -3,9 +3,9 @@ import { CaseStudyShell } from "@/components/case-study-shell";
 import { EtaAppContent } from "@/components/case-studies/eta-app";
 
 const title =
-  "Reducing Friction in Government Visa Applications - Alex Fracazo";
+  "Replacing a visa form with a passport scan - Alex Fracazo";
 const description =
-  "Automating data entry to improve completion and reduce user effort in a high-stakes service.";
+  "An app that reads the passport chip, so travellers to Australia stop typing their details into a long form.";
 
 export const metadata: Metadata = {
   title,

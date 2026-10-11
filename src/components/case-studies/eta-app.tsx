@@ -19,7 +19,7 @@ export function EtaAppContent({
         <div className="case-study-main">
         {breadcrumb}
         <header className="case-header">
-          <h1 className="case-title">Reducing Friction in Government Visa Applications</h1>
+          <h1 className="case-title">Replacing a visa form with a passport scan</h1>
           <div className="case-metadata-card">
             <img src="/images/62dc274f132cbe543717e126_work1-p-2000.jpg" alt="ETA App" className="case-hero-image" />
             <div className="metadata-content">
@@ -53,7 +53,7 @@ export function EtaAppContent({
               </div>
             </div>
           </div>
-          <p className="case-intro">Automating data entry to improve completion and reduce user effort in a high-stakes service.</p>
+          <p className="case-intro">Travellers to Australia typed their passport details into a long web form, and every typo caused trouble at the border. We built an app that reads the passport chip instead.</p>
           <AwardBadge
             title="Sydney Design Awards"
             detail="Gold 2021 · Government Services"
@@ -63,40 +63,11 @@ export function EtaAppContent({
 
 
         <div className="case-study-section">
-          <h2>Discovery & Research</h2>
-          
-          <h3>Known Facts</h3>
-          <p>An ETA is an electronically stored authority equivalent to an e-visa, which is linked to a passport number.</p>
-          <img src="/images/62ca9453bd099acc44edfcac_Screen-Shot-2015-08-23-at-2.02.32-PM.png" alt="Australian Government ETA website" />
-          <p className="img-caption">Australian Government ETA website</p>
-          <p>When the project started, the Department of Home Affairs offered an <strong>ETA product (web-based website)</strong> as the primary entry point for users to apply for the ETA, to facilitate clients <strong>from nominated countries</strong> visiting Australia <strong>for short-term tourist or limited business activities.</strong> The process could take anywhere from a <strong>week to two months</strong>.</p>
-
-          <h3>User Immersion</h3>
-          <p>I wanted to meet with those who were significantly involved in the visa approval process: the border control and management providers. Therefore, I contacted the key stakeholders in Sydney, SITA and the Department of Home Affairs. I gained access to relevant and high-security data and also interviewed some of their staff. Some data analysed:</p>
-          <ul>
-            <li>Quantity of ETAs processed</li>
-            <li>% of data success rate, and ETAs not completed</li>
-            <li>Average % of processing time of ETAs</li>
-            <li>Data accuracy recorded from the last year</li>
-          </ul>
-
-          <h3>Problem Analysis</h3>
-          <p>Before visiting Australia, people need to apply for a visa and manually fill out a multi-page form on the ETA website with the following information:</p>
-          <ul>
-            <li><strong>Passport</strong> information</li>
-            <li><strong>Identity</strong> details</li>
-            <li><strong>Personal</strong> information</li>
-            <li>Visitor <strong>integrity</strong> information</li>
-          </ul>
-          <img src="/images/62c93ec16128094ec8c19b4b_Screen-Shot-2022-07-09-at-6.39.18-pm.png" alt="ETA form" />
-
-          <h3>Competitive Landscape</h3>
-          <p>We also analysed worldwide business trends on e-visas and found out that:</p>
-          <blockquote>Malaysia was the first country from APAC to collect biometrics from visa applicants and is now expected to have the largest market share in the Asia-Pacific e-visa market.</blockquote>
-          <p>Countries that have additional support for e-visas have helped the market share grow in the region.</p>
-
-          <h3>Key Insights</h3>
-          <p>The need for smart processes that <strong>eliminate manual entries</strong> and support operators and the demand for flexibility and scalability, are expected to be the key drivers for the future.</p>
+          <h2>Context</h2>
+          <p>An ETA is Australia&rsquo;s e-visa for short tourist and business trips. Approval could take a week or two months.</p>
+          <p>I was the lead product designer at Arq Group. We worked with the Department of Home Affairs and SITA, the company behind the border systems.</p>
+          <img src="/images/62c93ec16128094ec8c19b4b_Screen-Shot-2022-07-09-at-6.39.18-pm.png" alt="The old ETA web form" />
+          <p className="img-caption">The old web form. Every field typed by hand.</p>
 
           <h2>Defining the Solution</h2>
 

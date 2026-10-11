@@ -78,9 +78,9 @@ export const work = {
   eta: {
     href: "/work/eta-app",
     meta: "Department of Home Affairs · 2020–2021",
-    title: "Reducing Friction in Government Visa Applications",
+    title: "Replacing a visa form with a passport scan",
     tagline:
-      "Automating data entry to improve completion and reduce user effort in a high-stakes service.",
+      "An app that reads the passport chip, so travellers to Australia stop typing their details into a long form.",
     outcome: "From 0 to 1",
     image: {
       src: "/images/62dc274f132cbe543717e126_work1-p-2000.jpg",
