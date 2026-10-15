@@ -14,15 +14,25 @@ import { work } from "@/content/work";
 import { WorkTimeline } from "@/components/work-timeline";
 import { earlierTimeline } from "@/components/work-history";
 
+/* The home page drops the years from each card's meta line ("Qantas · 2016"
+   becomes "Qantas"); /work keeps them. */
+function withoutYears<T extends { meta: string }>(entry: T): T {
+  return { ...entry, meta: entry.meta.split(" · ")[0] };
+}
+
 /* The hero's lead work, in stage order: two case studies and a tool. The
    meta line names the client, so the stage reads as shipped work. Each
    needs a standalone vignette for the narrow layouts and, ideally, a hero
    scene (hero-scenes.tsx) for the stage. */
-const featuredWork: FeaturedItem[] = [work.glql, work.hireup, work.flow];
+const featuredWork: FeaturedItem[] = [work.glql, work.hireup, work.flow].map(
+  withoutYears,
+);
 
 /* The Australian case studies outside Featured, newest first. Everything
    else, GitLab included, is listed on /work. */
-const caseStudies = [work.eta, work.qantasEntertainment, work.qantasApp];
+const caseStudies = [work.eta, work.qantasEntertainment, work.qantasApp].map(
+  withoutYears,
+);
 
 /* Talks and posts published elsewhere; they sit under Writing with the essays. */
 const talks = [
