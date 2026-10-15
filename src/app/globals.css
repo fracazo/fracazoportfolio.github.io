@@ -2216,7 +2216,7 @@
 }
 @keyframes panel-sheet-in {
   from {
-    transform: translateX(calc(100% + var(--sheet-inset)));
+    transform: translateX(100%);
   }
   to {
     transform: none;
@@ -2227,45 +2227,155 @@
     transform: none;
   }
   to {
-    transform: translateX(calc(100% + var(--sheet-inset)));
+    transform: translateX(100%);
   }
 }
 .panel-enter {
   animation: panel-in 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
 }
 
-/* Wide sheet. A window laid over the page it was opened from, inset on three
-   sides and leaving a strip of the page showing down the left edge. That
-   strip is the way back, so the page stays recognisable under it, but a
-   wash and a slight blur push it back: its text sits right beside the case
-   study's and would otherwise compete with it. */
+/* Wide sheet. A drawer laid over the page it was opened from, anchored to
+   the top, right and bottom edges and leaving a strip of the page showing
+   down the left. That strip is the way back, so the page stays recognisable
+   under it, but a wash and a slight blur push it back: its text sits right
+   beside the case study's and would otherwise compete with it.
+
+   The material is warm glass: the page colour at 90% over a heavy backdrop
+   blur, so the sheet reads as a surface of its own rather than a hole cut in
+   the page. Its only edge is a 1px highlight along the top and left, light
+   catching the glass, instead of a border drawn all the way round. Dark mode
+   keeps the highlight faint: a bright line on espresso reads as a stroke. */
 :root {
-  --sheet-gutter: 56px;
-  --sheet-inset: 8px;
-  --sheet-shadow: 0 24px 64px -16px rgb(0 0 0 / 0.6);
+  --sheet-gutter: 48px;
+  --sheet-radius: 28px;
+  --sheet-glass: color-mix(in srgb, var(--bg) 90%, transparent);
+  --sheet-highlight: rgb(255 245 230 / 0.07);
+  --sheet-shadow: 0 8px 40px rgb(0 0 0 / 0.45);
+  --sheet-shadow-hover: 0 12px 52px rgb(0 0 0 / 0.55);
   --sheet-scrim: rgb(0 0 0 / 0.5);
 }
 :root.light {
-  --sheet-shadow:
-    0 24px 64px -16px rgb(60 40 20 / 0.22), 0 2px 6px rgb(60 40 20 / 0.06);
+  --sheet-highlight: rgb(255 255 255 / 0.9);
+  --sheet-shadow: 0 8px 40px rgb(60 40 20 / 0.12);
+  --sheet-shadow-hover: 0 12px 52px rgb(60 40 20 / 0.18);
   /* Espresso, not black, so the paper reads as shaded rather than grey. */
   --sheet-scrim: rgb(40 30 20 / 0.2);
 }
 .panel-sheet {
   position: fixed;
   z-index: 50;
-  inset: var(--sheet-inset) var(--sheet-inset) var(--sheet-inset)
-    var(--sheet-gutter);
-  border: 1px solid var(--border);
-  border-radius: 20px;
+  inset: 0 0 0 var(--sheet-gutter);
+  border-radius: var(--sheet-radius) 0 0 var(--sheet-radius);
   box-shadow: var(--sheet-shadow);
   animation: panel-sheet-in 400ms cubic-bezier(0.32, 0.72, 0, 1) both;
   /* `translate`, not `transform`: the entry animation holds `transform` for
-     good, and a transition on the same property would never show. */
-  transition: translate 240ms cubic-bezier(0.32, 0.72, 0, 1);
+     good, and a transition on the same property would never show. Moving the
+     sheet rather than its left edge keeps the text from reflowing mid-hover. */
+  transition:
+    translate 200ms cubic-bezier(0.32, 0.72, 0, 1),
+    box-shadow 200ms ease;
+}
+/* The glass is its own layer under the content rather than the frame's
+   background. A rounded element with a backdrop filter stops Chromium from
+   applying the masks on the edge-blur layers inside it, which turns their
+   graded blur into a hard-edged band. */
+.panel-sheet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--sheet-glass);
+  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(22px);
+}
+/* Above the content, so full-bleed blocks cannot paint over the edge. */
+.panel-sheet::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  border-radius: inherit;
+  box-shadow: inset 1px 1px 0 0 var(--sheet-highlight);
+  pointer-events: none;
 }
 .panel-sheet.panel-sheet-exit {
   animation: panel-sheet-out 280ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+/* The scroller, not the frame, clips to the rounded corners, for the same
+   reason the glass is a separate layer. The sheet's own scrollbar would draw a hard rail down the glass, so it is hidden; the
+   content scrolls by wheel, trackpad and keyboard as before. */
+.panel-scroll {
+  border-radius: inherit;
+  scrollbar-width: none;
+}
+.panel-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Dissolving edges. Content passes under the controls at the top and off
+   the bottom of the sheet through a ramp of blur rather than a hard cut. Four
+   layers, each blurring harder over a shorter band from the edge; a wash of
+   the glass colour under them keeps the controls legible over busy images. */
+/* Starts clear of the rounded corner, where there is only gutter beneath. */
+.panel-edge-blur {
+  position: absolute;
+  inset-inline: var(--sheet-radius) 0;
+  z-index: 20;
+  pointer-events: none;
+}
+.panel-edge-blur--top {
+  top: 0;
+  height: 88px;
+  background: linear-gradient(to bottom, var(--sheet-glass), transparent);
+}
+.panel-edge-blur--bottom {
+  bottom: 0;
+  height: 64px;
+}
+.panel-edge-blur i {
+  position: absolute;
+  inset: 0;
+}
+.panel-edge-blur i:nth-child(1) {
+  backdrop-filter: blur(0.5px);
+  --stop: 100%;
+}
+.panel-edge-blur i:nth-child(2) {
+  backdrop-filter: blur(1px);
+  --stop: 75%;
+}
+.panel-edge-blur i:nth-child(3) {
+  backdrop-filter: blur(2px);
+  --stop: 50%;
+}
+.panel-edge-blur i:nth-child(4) {
+  backdrop-filter: blur(4px);
+  --stop: 25%;
+}
+.panel-edge-blur--top i {
+  mask-image: linear-gradient(to bottom, #000, transparent var(--stop));
+}
+.panel-edge-blur--bottom i {
+  mask-image: linear-gradient(to top, #000, transparent var(--stop));
+}
+
+/* Content entry: once the sheet has landed, the leading blocks ease out of a
+   light blur one after another. Panel-shell tags the blocks and sets their
+   index. */
+@keyframes panel-reveal {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+.panel-reveal-item {
+  animation: panel-reveal 700ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  animation-delay: calc(180ms + var(--reveal-i, 0) * 70ms);
 }
 
 /* The return strip covers the whole page behind the sheet, so a click
@@ -2306,14 +2416,16 @@
 }
 @media (hover: hover) {
   .panel-return-strip:hover + .panel-sheet:not(.panel-sheet-exit) {
-    translate: 12px 0;
+    translate: 8px 0;
+    box-shadow: var(--sheet-shadow-hover);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .panel-enter,
   .panel-sheet,
-  .panel-return-strip {
+  .panel-return-strip,
+  .panel-reveal-item {
     animation: none !important;
     transition: none !important;
   }

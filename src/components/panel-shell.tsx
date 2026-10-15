@@ -219,39 +219,53 @@ export function PanelShell({ children }: { children: ReactNode }) {
       )}
 
       {active && (
+        // The frame carries the material (glass, highlight edge, shadow) and
+        // the overlays that sit above the scrolling content: the dissolving
+        // edges and, on the wide sheet, the controls. The scroller inside it
+        // holds only the content.
         <div
-          ref={panelRef}
-          tabIndex={-1}
           role="dialog"
           aria-modal="true"
           aria-label={entry?.title}
           onAnimationEnd={finishClose}
-          className={[
-            "panel-body overflow-y-auto overscroll-contain bg-bg outline-none",
+          className={
             wide
-              ? "panel-sheet px-10"
-              : "panel-enter fixed inset-0 z-50 px-6",
-            closing ? "panel-sheet-exit" : "",
-          ].join(" ")}
+              ? `panel-sheet${closing ? " panel-sheet-exit" : ""}`
+              : "panel-enter fixed inset-0 z-50 bg-bg"
+          }
         >
-          <PanelChrome
-            onClose={close}
-            label={wide ? "Close" : "Back"}
-            // Stubs have no page of their own; everything else keyed by a
-            // route can be reopened there. Pointless on the full-screen
-            // sheet, which already fills the page.
-            fullHref={wide && active.startsWith("/") ? active : undefined}
-            onExpand={saveContext}
-          />
-          {Content && <Content />}
+          {wide && (
+            <>
+              <EdgeBlur edge="top" />
+              <EdgeBlur edge="bottom" />
+              <SheetControls
+                onClose={close}
+                // Stubs have no page of their own; everything else keyed by a
+                // route can be reopened there.
+                fullHref={active.startsWith("/") ? active : undefined}
+                onExpand={saveContext}
+              />
+            </>
+          )}
+          <div
+            ref={panelRef}
+            tabIndex={-1}
+            className={
+              wide
+                ? "panel-body panel-scroll h-full overflow-y-auto overscroll-contain px-10 pt-20 pb-16 outline-none"
+                : "panel-body h-full overflow-y-auto overscroll-contain px-6 outline-none"
+            }
+          >
+            {!wide && <BackBar onClick={close} className="-mx-6 px-6" />}
+            <Reveal key={active} enabled={wide}>
+              {Content && <Content />}
+            </Reveal>
+          </div>
         </div>
       )}
     </PanelContext.Provider>
   );
 }
-
-const chromeRow =
-  "sticky top-0 z-10 -mx-6 flex bg-bg/85 px-6 py-3 backdrop-blur-md min-[700px]:-mx-10 min-[700px]:px-10";
 
 /** Icon segment inside the capsule. 44px target, per the touch guidance. */
 const chromeSegment =
@@ -261,60 +275,125 @@ const chromeTooltip =
   "pointer-events-none invisible absolute end-0 top-[calc(100%+8px)] z-20 whitespace-nowrap rounded-lg border border-border bg-card px-2.5 py-1.5 text-meta font-medium text-text opacity-0 shadow-elevated transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-visible:visible group-focus-visible:opacity-100";
 
 /**
- * Sticky dismiss controls. On the wide sheet, a capsule of icon buttons sits
- * top right: expand to the entry's real page, then close. Each explains itself
- * in a tooltip, since neither has a text label. The full-screen sheet keeps a labelled Back pill top left,
- * the way a sheet steps back.
+ * The wide sheet's dismiss controls: a capsule of icon buttons pinned top
+ * right, over the content rather than in its flow, so the content can pass
+ * beneath it into the blurred edge. Expand to the entry's real page, then
+ * close. Each explains itself in a tooltip, since neither has a text label.
+ * (The full-screen sheet uses the site's labelled Back pill instead.)
  */
-function PanelChrome({
+function SheetControls({
   onClose,
-  label,
   fullHref,
   onExpand,
 }: {
   onClose: () => void;
-  label: string;
   /** Route of the entry's real page; when set, an expand control links to it. */
   fullHref?: string;
   /** Fires as the expand control is followed, to save the reading context. */
   onExpand?: () => void;
 }) {
-  if (label === "Back") {
-    return (
-      <BackBar
-        onClick={onClose}
-        className="-mx-6 px-6 min-[700px]:-mx-10 min-[700px]:px-10"
-      />
-    );
-  }
   return (
-    <div className={`${chromeRow} justify-end`}>
-      <div className="flex items-center rounded-full border border-border">
-        {fullHref && (
-          <Link
-            href={fullHref}
-            aria-label="Open in full page"
-            onClick={onExpand}
-            className={chromeSegment}
-          >
-            <span className={chromeTooltip} aria-hidden="true">
-              Open in full page
-            </span>
-            <ExpandIcon size={16} />
-          </Link>
-        )}
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
+    <div className="absolute end-4 top-3 z-30 flex items-center rounded-full border border-border bg-bg/60">
+      {fullHref && (
+        <Link
+          href={fullHref}
+          aria-label="Open in full page"
+          onClick={onExpand}
           className={chromeSegment}
         >
           <span className={chromeTooltip} aria-hidden="true">
-            Close
+            Open in full page
           </span>
-          <CloseIcon size={16} />
-        </button>
-      </div>
+          <ExpandIcon size={16} />
+        </Link>
+      )}
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close"
+        className={chromeSegment}
+      >
+        <span className={chromeTooltip} aria-hidden="true">
+          Close
+        </span>
+        <CloseIcon size={16} />
+      </button>
+    </div>
+  );
+}
+
+/**
+ * A graded blur along one edge of the sheet, so content dissolves into the
+ * edge instead of being cut off by it. Each layer blurs harder over a shorter
+ * band; stacked, the blur ramps up smoothly toward the edge, which a single
+ * blurred band with a gradient mask cannot do.
+ */
+function EdgeBlur({ edge }: { edge: "top" | "bottom" }) {
+  return (
+    <div className={`panel-edge-blur panel-edge-blur--${edge}`} aria-hidden="true">
+      <i />
+      <i />
+      <i />
+      <i />
+    </div>
+  );
+}
+
+/** How many leading blocks take part in the entry stagger; the rest start below the fold. */
+const REVEAL_COUNT = 6;
+
+/**
+ * Brings the content in block by block, each one easing out of a light blur,
+ * once the sheet has landed. The content arrives through a dynamic import and
+ * every entry nests its blocks differently, so the blocks are found at
+ * runtime: the first element with more than one child is the column, and its
+ * children are the blocks. Until they are tagged the content stays hidden, so
+ * nothing paints sharp and then blurs.
+ */
+function Reveal({
+  enabled,
+  children,
+}: {
+  enabled: boolean;
+  children: ReactNode;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  // Only ever mounted after a click, so the media query is safe to read here.
+  const [ready, setReady] = useState(
+    () =>
+      !enabled ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+
+  useEffect(() => {
+    const root = ref.current;
+    if (ready || !root) return;
+    let tries = 60;
+    let raf = 0;
+    const find = () => {
+      let column: Element = root;
+      while (column.children.length === 1) column = column.children[0];
+      if (column.children.length > 1) {
+        [...column.children].slice(0, REVEAL_COUNT).forEach((el, i) => {
+          (el as HTMLElement).style.setProperty("--reveal-i", String(i));
+          el.classList.add("panel-reveal-item");
+        });
+        setReady(true);
+        return;
+      }
+      // Content still loading; give up gracefully rather than stay hidden.
+      if (tries-- <= 0) return setReady(true);
+      raf = requestAnimationFrame(find);
+    };
+    raf = requestAnimationFrame(find);
+    return () => cancelAnimationFrame(raf);
+    // Runs once per mount: the parent keys it on the entry.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <div ref={ref} className={ready ? undefined : "opacity-0"}>
+      {children}
     </div>
   );
 }
