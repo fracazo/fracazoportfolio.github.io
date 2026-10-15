@@ -98,8 +98,8 @@ export default function Home() {
               </p>
               {/* The explanation of the claim above, at reading size. Its links
                 replace the old About me / Work history / Get in touch buttons.
-                Work history is a full page (it is the index of all the work);
-                About opens in the panel. On phones the boring-design paragraph
+                Work history is a full page (it is the index of all the work).
+                On phones the boring-design paragraph
                 is dropped to get to the work sooner; the links stay. */}
               <div className="mt-5 flex flex-col gap-4 text-body text-text-body">
                 <p className="max-sm:hidden">
@@ -113,11 +113,7 @@ export default function Home() {
                   day.
                 </p>
                 <p>
-                  Read my <TextLink href="/work">work history</TextLink>, a bit{" "}
-                  <TextLink href="/about" panel>
-                    more about me
-                  </TextLink>
-                  , or{" "}
+                  Read my <TextLink href="/work">work history</TextLink> or{" "}
                   <TextLink href="https://www.linkedin.com/in/fracazo">
                     connect on LinkedIn
                   </TextLink>
