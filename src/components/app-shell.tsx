@@ -44,7 +44,7 @@ export function AppShell({
           type="button"
           aria-label="Toggle menu"
           onClick={() => setOpen(true)}
-          className="fixed top-4 start-4 z-90 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border bg-surface/80 text-text backdrop-blur-[8px] transition-[color,background-color,transform] duration-150 hover:bg-surface active:scale-[0.96] focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring desk:hidden"
+          className="fixed top-4 start-4 z-90 flex h-10 w-10 cursor-pointer items-center justify-center glass glass-interactive rounded-full text-text focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring desk:hidden"
         >
           <MenuIcon />
         </button>

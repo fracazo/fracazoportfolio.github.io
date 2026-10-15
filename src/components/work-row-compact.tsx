@@ -130,7 +130,7 @@ export function WorkRowCompact({
      keeps the text on the column's left edge; the button needs its width
      widened to match, since w-full alone would stop 40px short. */
   const pill =
-    "-mx-5 rounded-card px-5 transition-colors duration-200 hover:bg-panel-2 active:bg-panel-2";
+    "glass-row -mx-5 rounded-card px-5 transition-[color,background-color,box-shadow] duration-200 hover:bg-panel-2 active:bg-panel-2";
 
   if (stub) {
     return (

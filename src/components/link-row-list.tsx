@@ -79,7 +79,7 @@ export function LinkRowList({ items }: { items: LinkRowItem[] }) {
           );
           // Only single-destination rows get the hover pill: a multi-link row
           // is not one target, so filling it would promise a click it lacks.
-          const singleClass = `group ${rowLayout} touch-manipulation no-underline transition-colors duration-200 hover:bg-panel-2 active:bg-panel-2 hover:no-underline`;
+          const singleClass = `glass-row group ${rowLayout} touch-manipulation no-underline transition-[color,background-color,box-shadow] duration-200 hover:bg-panel-2 active:bg-panel-2 hover:no-underline`;
 
           // Multi-destination link: the visible label stays meta-size while
           // padding grows the tap target; the negative margins hand the space

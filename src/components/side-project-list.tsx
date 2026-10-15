@@ -25,7 +25,7 @@ export function SideProjectList({ items }: { items: SideProject[] }) {
               href={link.href}
               target="_blank"
               rel="noopener"
-              className="group -mx-5 grid grid-cols-1 rounded-card px-5 py-4 no-underline transition-colors duration-200 hover:bg-panel-2 active:bg-panel-2 hover:no-underline @min-[600px]:grid-cols-[minmax(0,1fr)_11rem] @min-[600px]:gap-x-8"
+              className="glass-row group -mx-5 grid grid-cols-1 rounded-card px-5 py-4 no-underline transition-[color,background-color,box-shadow] duration-200 hover:bg-panel-2 active:bg-panel-2 hover:no-underline @min-[600px]:grid-cols-[minmax(0,1fr)_11rem] @min-[600px]:gap-x-8"
             >
               <span className="min-w-0">
                 <span className="block text-subhead-sm font-semibold text-text transition-colors duration-200 group-hover:text-brand group-active:text-brand">

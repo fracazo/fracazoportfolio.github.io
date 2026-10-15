@@ -12,7 +12,7 @@ export type CarouselPhoto = {
 };
 
 const navButtonClass =
-  "flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border bg-card/80 text-muted backdrop-blur-md transition-colors duration-200 hover:text-text disabled:cursor-default disabled:opacity-40 disabled:hover:text-muted";
+  "flex h-10 w-10 cursor-pointer items-center justify-center glass glass-interactive rounded-full text-muted hover:text-text disabled:cursor-default disabled:opacity-40 disabled:hover:text-muted";
 
 /**
  * PhotoCarousel — one photo at a time with prev/next controls and dots.

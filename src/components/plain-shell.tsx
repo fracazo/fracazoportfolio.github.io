@@ -31,7 +31,7 @@ export function PlainShell({
       <div className="min-h-dvh">
         {themeToggle && (
           <div className="fixed top-4 end-4 z-50">
-            <ThemeToggle side="bottom" className="hover:bg-panel-2" />
+            <ThemeToggle side="bottom" className="glass glass-interactive" />
           </div>
         )}
         {back}

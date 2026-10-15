@@ -39,7 +39,7 @@ export function CopyCommand({ command }: { command: string }) {
   };
 
   return (
-    <div className="flex w-full min-w-0 items-center gap-3 rounded-card border border-border bg-panel-2 py-2 pr-2 pl-4">
+    <div className="flex w-full min-w-0 items-center gap-3 glass rounded-card py-2 pr-2 pl-4">
       <code
         ref={codeRef}
         className="min-w-0 flex-1 overflow-x-auto font-mono text-meta whitespace-nowrap text-text"

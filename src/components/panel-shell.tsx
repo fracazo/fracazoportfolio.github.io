@@ -284,14 +284,14 @@ export function PanelShell({ children }: { children: ReactNode }) {
 }
 
 const chromeRow =
-  "sticky top-0 z-10 -mx-6 flex bg-bg/85 px-6 py-3 backdrop-blur-md min-[700px]:-mx-10 min-[700px]:px-10";
+  "sticky top-0 z-10 -mx-6 flex bg-linear-to-b from-bg from-30% to-transparent px-6 py-3 min-[700px]:-mx-10 min-[700px]:px-10";
 
 /** Icon segment inside the capsule. 44px target, per the touch guidance. */
 const chromeSegment =
-  "group relative inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-muted transition-colors hover:bg-panel-2 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "group relative inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-muted transition-colors hover:bg-text/8 hover:text-text active:bg-text/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 const chromeTooltip =
-  "pointer-events-none invisible absolute end-0 top-[calc(100%+8px)] z-20 whitespace-nowrap rounded-lg border border-border bg-card px-2.5 py-1.5 text-meta font-medium text-text opacity-0 shadow-elevated transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-visible:visible group-focus-visible:opacity-100";
+  "pointer-events-none invisible absolute end-0 top-[calc(100%+8px)] z-20 whitespace-nowrap glass rounded-lg px-2.5 py-1.5 text-meta font-medium text-text opacity-0 transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-visible:visible group-focus-visible:opacity-100";
 
 /**
  * Sticky dismiss controls. In the split, a capsule of icon buttons sits top
@@ -323,7 +323,7 @@ function PanelChrome({
   }
   return (
     <div className={`${chromeRow} justify-end`}>
-      <div className="flex items-center rounded-full border border-border">
+      <div className="glass flex items-center rounded-full">
         {fullHref && (
           <Link
             href={fullHref}
