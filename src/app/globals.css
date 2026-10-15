@@ -829,8 +829,11 @@
   .rail-dock:is(:hover, :focus-within) .rail-group + .rail-group {
     margin-top: 8px;
   }
-  /* The brand over its run, shown only while the rail is open. */
+  /* The brand over its run, shown only while the rail is open. Like the
+     dots it carries --m, so the brands near the pointer magnify as on the
+     line at the top: larger and at full strength. */
   .rail-mark {
+    --m: 0;
     display: flex;
     height: 0;
     overflow: visible;
@@ -845,16 +848,24 @@
     transition:
       height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
       margin-bottom 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-      opacity 0.2s ease;
+      opacity 0.2s ease,
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .rail-dock:is(:hover, :focus-within) .rail-mark {
+    pointer-events: auto;
+    cursor: pointer;
     height: 14px;
     margin-bottom: 2px;
-    opacity: 0.45;
-    transition-delay: 0s, 0s, 0.08s;
+    opacity: calc(0.45 + 0.55 * var(--m));
+    transform: scale(calc(0.72 + 0.38 * var(--m)));
+    transition-delay: 0s, 0s, 0.08s, 0s;
   }
   .rail-dock:is(:hover, :focus-within) .rail-mark[data-current] {
     opacity: 1;
+    transform: scale(calc(0.9 + 0.2 * var(--m)));
+  }
+  .rail-dock[data-active] .rail-mark {
+    transition-duration: 0.3s, 0.3s, 0.09s, 0.09s;
   }
   /* The selected brand at rest: on its dot's line, a step larger than the
      brands in the open rail. */

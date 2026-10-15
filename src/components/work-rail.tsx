@@ -126,7 +126,10 @@ export function WorkRail({
     const list = listRef.current;
     if (!list) return;
     list.dataset.active = "";
-    for (const item of list.querySelectorAll<HTMLElement>(".rail-stop")) {
+    // Dots and brands alike, so a brand under the pointer swells too.
+    for (const item of list.querySelectorAll<HTMLElement>(
+      ".rail-stop, .rail-mark",
+    )) {
       const box = item.getBoundingClientRect();
       const distance = (y - (box.top + box.height / 2)) / FALLOFF_PX;
       item.style.setProperty("--m", Math.exp(-distance * distance).toFixed(3));
@@ -136,7 +139,9 @@ export function WorkRail({
     const list = listRef.current;
     if (!list) return;
     delete list.dataset.active;
-    for (const item of list.querySelectorAll<HTMLElement>(".rail-stop"))
+    for (const item of list.querySelectorAll<HTMLElement>(
+      ".rail-stop, .rail-mark",
+    ))
       item.style.setProperty("--m", "0");
   };
 
@@ -174,13 +179,18 @@ export function WorkRail({
           return (
             <div key={group.stops[0].id} className="rail-group">
               {!brand.hideMark && (
-                <div
+                /* A brand is a jump too, to its newest entry. Pointer
+                   only: the dots below already give keyboards and screen
+                   readers every entry, so it stays out of the tab order. */
+                <a
+                  href={`#${group.stops[0].id}`}
                   aria-hidden="true"
-                  className="rail-mark"
+                  tabIndex={-1}
+                  className="rail-mark no-underline hover:no-underline"
                   data-current={holdsCurrent ? "" : undefined}
                 >
                   <Mark brand={brand} />
-                </div>
+                </a>
               )}
               <ol role="list" className="m-0 list-none p-0">
                 {group.stops.map((stop) => {
