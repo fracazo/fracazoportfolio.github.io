@@ -396,7 +396,7 @@ function ShareButton({ url, title }: { url: string; title?: string }) {
       type="button"
       onClick={share}
       aria-label="Share"
-      className="glass glass-interactive inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-muted hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="glass glass-interactive inline-flex h-12 w-12 cursor-pointer items-center justify-center rounded-full text-muted hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       {copied ? <CheckIcon size={16} /> : <ShareIcon size={16} />}
       <CopiedAnnouncement copied={copied} />

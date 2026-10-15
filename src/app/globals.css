@@ -766,6 +766,33 @@
     }
   }
 
+  /* Phone controls (tab bar, the sheet's Back and Share) at the size and
+     weight of native iOS toolbar buttons: 48px targets, 20px icons, and a
+     near-solid fill with the glass rim, so the edge reads against the page
+     instead of dissolving into it. */
+  @media (max-width: 767px) {
+    .tab-bar,
+    .back-pill-dock--sheet .glass {
+      --glass-fill: color-mix(in oklab, var(--panel-2) 92%, transparent);
+      --glass-fill-hover: var(--panel-2);
+    }
+    .tab-bar-item,
+    .back-pill-dock--sheet .back-pill {
+      height: 48px;
+      min-width: 48px;
+      font-size: var(--text-body-size);
+    }
+    .tab-bar[data-compact] .tab-bar-item,
+    .back-pill-dock--sheet .back-pill[data-compact] {
+      padding-inline: 14px;
+    }
+    .tab-bar-item svg,
+    .back-pill-dock--sheet svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
   /* Framed thumbnail (work rows + row-list hover preview). The hairline is an
      inset shadow so it follows the rounded corners instead of clipping into a
      square like `outline` does, plus a drop that lifts light screenshots off
