@@ -651,15 +651,6 @@
       opacity: 0.45;
     }
   }
-  /* The split-panel list shrinks thumbs to 88px: overlay vignettes have no
-     stage to play on there (the component also bails in JS, this is the
-     belt-and-braces), while standalone ones ARE the thumbnail and stay,
-     scaled down like an image. A positive class rather than
-     .work-vignette:not(.work-vignette-standalone): the build pipeline strips
-     the :not() from the compiled selector, which hid the standalone thumbs. */
-  [data-panel-split] .work-vignette-overlay {
-    display: none;
-  }
   /* Blanket kill switch: scene transitions live in inline styles, and
      !important is what lets the stylesheet beat them. The JS gate already
      refuses to start; this covers a setting change mid-scene. */
@@ -2210,19 +2201,11 @@
   }
 }
 
-/* Side panel motion. Both panes travel leftward together: the panel enters
-   from the right edge while the index slides from where it was sitting into
-   its half. The index starts at +50% of its pane, which is exactly the
-   distance its centred column has to cover, so the first painted frame leaves
-   it where the eye last saw it and nothing jumps. */
-@keyframes panel-index-in {
-  from {
-    transform: translateX(50%);
-  }
-  to {
-    transform: none;
-  }
-}
+/* Panel motion. The full-screen sheet (phones) and the wide sheet both enter
+   from the right edge; the wide sheet also leaves the way it came. Real
+   classes rather than Tailwind arbitrary values: the commas inside
+   cubic-bezier() break that parser, which silently dropped the curve and left
+   the motion linear. */
 @keyframes panel-in {
   from {
     transform: translateX(100%);
@@ -2231,20 +2214,100 @@
     transform: none;
   }
 }
-/* Real classes rather than Tailwind arbitrary values: the commas inside
-   cubic-bezier() break that parser, which silently dropped the curve and left
-   the motion linear. Both panes share one duration and one easing so they
-   travel together. */
+@keyframes panel-sheet-in {
+  from {
+    transform: translateX(calc(100% + var(--sheet-inset)));
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes panel-sheet-out {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(calc(100% + var(--sheet-inset)));
+  }
+}
 .panel-enter {
   animation: panel-in 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
 }
-.panel-index-enter {
-  animation: panel-index-in 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+
+/* Wide sheet. A window laid over the page it was opened from, inset on three
+   sides and leaving a strip of the page showing down the left edge. That
+   strip is the way back, so the page under it has to read as the page you
+   came from, not as a backdrop: undimmed in light mode, only washed in dark,
+   where nothing else separates the sheet from it. */
+:root {
+  --sheet-gutter: 56px;
+  --sheet-inset: 8px;
+  /* Dark: a shadow has nothing to fall on, so the page behind takes a light
+     wash instead and the sheet's edge does the separating. */
+  --sheet-shadow: 0 24px 64px -16px rgb(0 0 0 / 0.6);
+  --sheet-scrim: rgb(0 0 0 / 0.35);
 }
+:root.light {
+  --sheet-shadow:
+    0 24px 64px -16px rgb(60 40 20 / 0.22), 0 2px 6px rgb(60 40 20 / 0.06);
+  --sheet-scrim: transparent;
+}
+.panel-sheet {
+  position: fixed;
+  z-index: 50;
+  inset: var(--sheet-inset) var(--sheet-inset) var(--sheet-inset)
+    var(--sheet-gutter);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--sheet-shadow);
+  animation: panel-sheet-in 400ms cubic-bezier(0.32, 0.72, 0, 1) both;
+  /* `translate`, not `transform`: the entry animation holds `transform` for
+     good, and a transition on the same property would never show. */
+  transition: translate 240ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.panel-sheet.panel-sheet-exit {
+  animation: panel-sheet-out 280ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* The return strip covers the whole page behind the sheet, so a click
+   anywhere outside it goes back. Hovering it eases the sheet aside to show a
+   little more of the page, and the cursor turns into the return arrow
+   (Phosphor arrow-u-up-left, haloed so it reads on both themes). */
+.panel-return-strip {
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  background: var(--sheet-scrim);
+  animation: panel-scrim-in 400ms ease both;
+  cursor:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='-16 -16 288 288'%3E%3Cpath d='M232,144a64.07,64.07,0,0,1-64,64H80a8,8,0,0,1,0-16h88a48,48,0,0,0,0-96H51.31l34.35,34.34a8,8,0,0,1-11.32,11.32l-48-48a8,8,0,0,1,0-11.32l48-48A8,8,0,0,1,85.66,45.66L51.31,80H168A64.07,64.07,0,0,1,232,144Z' fill='black' stroke='white' stroke-width='20' stroke-linejoin='round' paint-order='stroke'/%3E%3C/svg%3E") 5 12,
+    pointer;
+}
+@keyframes panel-scrim-in {
+  from {
+    opacity: 0;
+  }
+}
+.panel-return-strip.is-closing {
+  animation: panel-scrim-out 280ms ease both;
+}
+@keyframes panel-scrim-out {
+  to {
+    opacity: 0;
+  }
+}
+@media (hover: hover) {
+  .panel-return-strip:hover + .panel-sheet:not(.panel-sheet-exit) {
+    translate: 12px 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .panel-enter,
-  .panel-index-enter {
+  .panel-sheet,
+  .panel-return-strip {
     animation: none !important;
+    transition: none !important;
   }
 }
 /* Caret blink for the work-row hover vignette. step-end holds each state for
@@ -2271,70 +2334,6 @@
 .panel-body :is(main, article) {
   max-width: none;
   padding-inline: 0;
-}
-
-/* Work rows inside the split.
-   A pane can be as wide as the home column, so a container query cannot
-   tell the whole page and one pane apart. In open space a 280px thumbnail
-   reads as an editorial card; filling a 720px pane it reads as a poster. The
-   index pane flags split mode and the rows shrink back to a list. */
-[data-panel-split] .work-row,
-[data-panel-split] .work-row-compact {
-  grid-template-columns: 1fr 88px;
-  align-items: center;
-  gap: 16px;
-  padding-block: 14px;
-}
-/* Pin the placement here too. The rows' own column assignments live behind the
-   same @min-[600px] container query as their 280px layout; a pane narrower
-   than that leaves auto-placement in charge, which drops the DOM-first
-   thumbnail into the 1fr track and blows it up to pane width. */
-[data-panel-split] :is(.work-row, .work-row-compact) .thumb-frame {
-  grid-column-start: 2;
-  grid-row-start: 1;
-}
-[data-panel-split] .work-row-body {
-  grid-column-start: 1;
-  grid-row-start: 1;
-  /* The stacked layout's image-to-text gap; the columns don't need it. */
-  margin-top: 0;
-}
-/* The chips flow inline under the tagline; at list density they tighten up. */
-[data-panel-split] .work-row-chips {
-  margin-top: 8px;
-}
-[data-panel-split] .work-row h3,
-[data-panel-split] .work-row-compact h3 {
-  font-size: var(--text-subhead-sm-size);
-}
-/* One line of supporting copy is enough at list density. */
-[data-panel-split] :is(.work-row, .work-row-compact) p {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-}
-
-/* Selected state. Without it there is no way to tell which entry produced the
-   content in the panel. A faint wash, bled to the pane's edges the way a
-   master-detail list highlights its open row; stopped at the content column
-   it read as a cropped box. The wash lives on a pseudo-element so the row's
-   own box (and its top-border divider) stays in the column. In the split the
-   index pane is exactly half the viewport, so 25vw - 50% of the row is the
-   run from the row's edge to the pane's; the pane's overflow-x clips the
-   scrollbar's worth of error. Split-scoped: as a full-screen sheet the panel
-   covers the index, so the selection never shows there. */
-[data-panel-split] :is(.work-row, .work-row-compact, .row-link)[data-selected] {
-  position: relative;
-}
-[data-panel-split]
-  :is(.work-row, .work-row-compact, .row-link)[data-selected]::before {
-  content: "";
-  position: absolute;
-  inset-block: 0;
-  inset-inline: calc(50% - 25vw);
-  background: var(--panel-2);
-  z-index: -1;
 }
 
 /* PhotoStrip breaks out of the text column using viewport units, which is
