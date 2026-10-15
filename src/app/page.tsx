@@ -97,8 +97,7 @@ export default function Home() {
               </p>
               {/* The explanation of the claim above, at reading size. Its links
                 replace the old About me / Work history / Get in touch buttons.
-                Work history is a full page (it is the index of all the work);
-                About opens in the panel. */}
+                Work history is a full page (it is the index of all the work). */}
               <div className="mt-5 flex flex-col gap-4 text-body text-text-body">
                 <p>
                   I sweat the details on every feature and iterate fast on
@@ -107,11 +106,7 @@ export default function Home() {
                   on my own.
                 </p>
                 <p>
-                  Read my <TextLink href="/work">work history</TextLink>, a bit{" "}
-                  <TextLink href="/about" panel>
-                    more about me
-                  </TextLink>
-                  , or{" "}
+                  Read my <TextLink href="/work">work history</TextLink> or{" "}
                   <TextLink href="https://www.linkedin.com/in/fracazo">
                     connect on LinkedIn
                   </TextLink>
