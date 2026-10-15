@@ -763,6 +763,164 @@
     }
   }
 
+  /* The vertical rail (work-rail.tsx): the career line stood upright in
+     the left margin once you jump to a job point. Hidden until then, and
+     wherever the margin is too narrow for it or the split pane is open.
+     Its right edge sits a fixed gap left of the 1040px column. */
+  .work-rail {
+    --rail-w: 132px;
+    /* Rows share what is left of the viewport after the header bar and
+       the brand marks, so the whole career fits without scrolling. */
+    --rail-row: clamp(14px, calc((100vh - 380px) / 19), 22px);
+    position: fixed;
+    top: 64px;
+    bottom: 24px;
+    left: calc(50% - var(--container-home) / 2 - 28px - var(--rail-w));
+    z-index: 5;
+    display: none;
+    width: var(--rail-w);
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-6px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      visibility 0s linear 0.3s;
+  }
+  .work-rail[data-shown] {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      visibility 0s;
+  }
+  @media (min-width: 1400px) and (min-height: 640px) {
+    .work-rail {
+      display: flex;
+    }
+  }
+  [data-panel-split] .work-rail {
+    display: none;
+  }
+  .rail-dock {
+    width: 100%;
+  }
+  /* At rest the rail is just the line, its dots and the employer you are
+     reading, whose brand sits on the selected dot's line (.rail-inline-mark).
+     Pointing at the rail (or tabbing into it) opens the gaps back up and
+     brings every brand in over its own run of dots, the selected one at
+     full strength, the rest muted. No project names: brand and dot only. */
+  .rail-group + .rail-group {
+    margin-top: 4px;
+    transition: margin-top 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .rail-dock:is(:hover, :focus-within) .rail-group + .rail-group {
+    margin-top: 8px;
+  }
+  /* The brand over its run, shown only while the rail is open. Like the
+     dots it carries --m, so the brands near the pointer magnify as on the
+     line at the top: larger and at full strength. */
+  .rail-mark {
+    --m: 0;
+    display: flex;
+    height: 0;
+    overflow: visible;
+    pointer-events: none;
+    align-items: center;
+    justify-content: flex-end;
+    padding-inline-end: 28px;
+    margin-bottom: 0;
+    opacity: 0;
+    transform: scale(0.72);
+    transform-origin: right center;
+    transition:
+      height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      margin-bottom 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 0.2s ease,
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .rail-dock:is(:hover, :focus-within) .rail-mark {
+    pointer-events: auto;
+    cursor: pointer;
+    height: 14px;
+    margin-bottom: 2px;
+    opacity: calc(0.45 + 0.55 * var(--m));
+    transform: scale(calc(0.72 + 0.38 * var(--m)));
+    transition-delay: 0s, 0s, 0.08s, 0s;
+  }
+  .rail-dock:is(:hover, :focus-within) .rail-mark[data-current] {
+    opacity: 1;
+    transform: scale(calc(0.9 + 0.2 * var(--m)));
+  }
+  .rail-dock[data-active] .rail-mark {
+    transition-duration: 0.3s, 0.3s, 0.09s, 0.09s;
+  }
+  /* The selected brand at rest: on its dot's line, a step larger than the
+     brands in the open rail. */
+  .rail-inline-mark {
+    position: absolute;
+    top: 50%;
+    right: 28px;
+    pointer-events: none;
+    transform: translateY(-50%) scale(0.9);
+    transform-origin: right center;
+    transition: opacity 0.2s ease;
+  }
+  .rail-dock:is(:hover, :focus-within) .rail-inline-mark {
+    opacity: 0;
+  }
+  .rail-stop {
+    --m: 0;
+  }
+  .rail-stop:hover,
+  .rail-stop:focus-within {
+    --m: 1;
+  }
+  .rail-link {
+    height: var(--rail-row);
+  }
+  .rail-dot {
+    /* Firmer than the hairline so each stop still reads at rest. */
+    background: color-mix(in oklab, var(--text) 35%, transparent);
+    transform: scale(calc(1 + 0.7 * var(--m)));
+    transition:
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+      background-color 0.25s ease;
+  }
+  .rail-stop:hover .rail-dot,
+  .rail-link[aria-current] .rail-dot {
+    background: var(--accent);
+  }
+  .rail-link[aria-current] .rail-dot {
+    transform: scale(1.7);
+    box-shadow: 0 0 0 3px var(--bg);
+  }
+  .rail-dock[data-active] .rail-dot {
+    transition-duration: 0.09s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .work-rail,
+    .work-rail[data-shown],
+    .rail-dot,
+    .rail-mark,
+    .rail-inline-mark {
+      transition: none;
+      transform: none;
+    }
+    .rail-link[aria-current] .rail-dot {
+      transform: scale(1.7);
+    }
+    .rail-mark {
+      transform: scale(0.72);
+    }
+    .rail-inline-mark {
+      transform: translateY(-50%) scale(0.9);
+    }
+  }
+
   /* An entry reached from the timeline flashes once, so the eye lands on
      it rather than hunting the screen it scrolled to. */
   .work-entry {

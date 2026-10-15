@@ -51,7 +51,7 @@ const STEM = 26;
    and a half stops, so the neighbours swell too, as in the Dock. */
 const FALLOFF_PX = 72;
 
-function Mark({ brand }: { brand: Brand }) {
+export function Mark({ brand }: { brand: Brand }) {
   if (brand.hideMark) return null;
   if (!brand.logo) {
     return (
