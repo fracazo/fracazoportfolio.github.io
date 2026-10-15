@@ -190,9 +190,16 @@ export function WorkRail({
                       <a
                         href={`#${stop.id}`}
                         aria-current={isCurrent ? "location" : undefined}
-                        className="group rail-link flex items-center justify-end no-underline hover:no-underline focus-visible:outline-none"
+                        className="group rail-link relative flex items-center justify-end no-underline hover:no-underline focus-visible:outline-none"
                       >
                         <span className="sr-only">{stop.name}</span>
+                        {/* At rest the selected brand sits on its own dot's
+                            line, so brand and dot read as one. */}
+                        {isCurrent && !stop.brand.hideMark && (
+                          <span aria-hidden="true" className="rail-inline-mark">
+                            <Mark brand={stop.brand} />
+                          </span>
+                        )}
                         <span
                           aria-hidden="true"
                           className="flex w-4 flex-none justify-center"
