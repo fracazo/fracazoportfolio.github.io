@@ -272,10 +272,10 @@ export function PanelShell({ children }: { children: ReactNode }) {
 
 /** Icon segment inside the capsule. 44px target, per the touch guidance. */
 const chromeSegment =
-  "group relative inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-muted transition-colors hover:bg-panel-2 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "group relative inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-muted transition-colors hover:bg-text/8 hover:text-text active:bg-text/12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 const chromeTooltip =
-  "pointer-events-none invisible absolute end-0 top-[calc(100%+8px)] z-20 whitespace-nowrap rounded-lg border border-border bg-card px-2.5 py-1.5 text-meta font-medium text-text opacity-0 shadow-elevated transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-visible:visible group-focus-visible:opacity-100";
+  "pointer-events-none invisible absolute end-0 top-[calc(100%+8px)] z-20 whitespace-nowrap glass rounded-lg px-2.5 py-1.5 text-meta font-medium text-text opacity-0 transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-visible:visible group-focus-visible:opacity-100";
 
 /** Shown on the icon and tooltip after a copy, before it settles back. */
 const COPIED_MS = 2000;
@@ -337,7 +337,7 @@ function SheetControls({
   shareUrl?: string;
 }) {
   return (
-    <div className="absolute end-4 top-3 z-30 flex items-center rounded-full border border-border bg-bg/60">
+    <div className="glass absolute end-4 top-3 z-30 flex items-center rounded-full">
       {shareUrl && <CopyLinkButton key={shareUrl} url={shareUrl} />}
       <button
         type="button"
@@ -392,7 +392,7 @@ function ShareButton({ url, title }: { url: string; title?: string }) {
       type="button"
       onClick={share}
       aria-label="Share"
-      className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-border text-muted transition-colors hover:bg-panel-2 hover:text-text active:bg-panel-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="glass glass-interactive inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full text-muted hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       {copied ? <CheckIcon size={16} /> : <ShareIcon size={16} />}
       <CopiedAnnouncement copied={copied} />

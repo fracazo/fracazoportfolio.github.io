@@ -114,7 +114,7 @@ export function WorkRow({
           </p>
         )}
         {metrics.length > 0 && (
-          <div className="work-row-chips mt-3 flex flex-wrap gap-1.5">
+          <div className="work-row-chips mt-3 flex flex-wrap gap-1.5 *:transition-colors *:duration-200 group-hover:*:bg-bg group-active:*:bg-bg group-data-selected:*:bg-bg">
             {metrics.map((metric) => (
               <Chip key={metric}>{metric}</Chip>
             ))}

@@ -109,7 +109,7 @@ export function WorkRowCompact({
           separate grid row they could not start until the image's full
           height, leaving a dead gap. They may wrap in the ~328px column. */}
       {metrics.length > 0 && (
-        <div className="work-row-chips mt-3 flex flex-wrap gap-1.5">
+        <div className="work-row-chips mt-3 flex flex-wrap gap-1.5 *:transition-colors *:duration-200 group-hover:*:bg-bg group-active:*:bg-bg group-data-selected:*:bg-bg">
           {metrics.map((fact) => (
             <Chip key={fact}>{fact}</Chip>
           ))}
