@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AvatarGreeting } from "@/components/avatar-greeting";
+import { Avatar } from "@/components/avatar";
 import { BrandStrip } from "@/components/brand-strip";
 import { PlainShell } from "@/components/plain-shell";
 import { PanelShell } from "@/components/panel-shell";
@@ -84,7 +84,7 @@ export default function Home() {
         >
           <div className="grid grid-cols-1 items-start gap-6 text-left">
             <div className="reveal-group">
-              <AvatarGreeting />
+              <Avatar />
               <h1 id="hero-title" className="h1">
                 I take products from idea to working software
               </h1>
