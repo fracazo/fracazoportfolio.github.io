@@ -1,13 +1,13 @@
 /**
  * The reading context captured when the panel expands to the full page, so
  * the trip back (browser back or the full page's Back pill) can reopen the
- * split exactly where the reader left it. sessionStorage on purpose: the
+ * sheet exactly where the reader left it. sessionStorage on purpose: the
  * context belongs to this tab's own back/forward trail.
  */
 export type PanelReturnContext = {
   /** Panel registry key, which is also the full page's route. */
   panel: string;
-  /** Scroll offset of the index column. */
+  /** Scroll offset of the page behind the sheet. */
   index: number;
   /** Scroll offset of the panel body. */
   body: number;

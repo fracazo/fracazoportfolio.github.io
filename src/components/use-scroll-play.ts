@@ -45,9 +45,6 @@ export function useScrollPlay(
         if (window.matchMedia(hoverQuery).matches) return;
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
           return;
-        /* The split-panel list shrinks thumbs to 88px: no stage to play on,
-           same bail as the hover path. */
-        if (row.closest("[data-panel-split]")) return;
         timer = window.setTimeout(() => setActive(true), SCROLL_INTENT_MS);
       },
       { rootMargin: MID_BAND },

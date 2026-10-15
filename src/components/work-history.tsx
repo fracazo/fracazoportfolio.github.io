@@ -11,6 +11,7 @@ import { CompassIcon, DownloadIcon, LightbulbIcon, UsersIcon } from "./icons";
 import { LinkedInButton } from "./linkedin-button";
 import { SideProjectList } from "./side-project-list";
 import { WorkRow } from "./work-row";
+import { WorkRail } from "./work-rail";
 import { WorkRowCompact } from "./work-row-compact";
 import { WorkVignette } from "./work-vignette";
 import type { WorkVignetteKind } from "./work-vignette-kinds";
@@ -624,9 +625,13 @@ export function WorkHistory({ footer }: { footer?: ReactNode }) {
 
       {/* Phones leave the timeline out (it needs the width); hiding the
           wrapper too keeps the page's section gap from doubling. */}
-      <div className="mx-auto w-full max-w-home max-md:hidden">
+      <div className="mx-auto w-full max-w-home max-md:hidden" data-work-line>
         <WorkTimeline stops={stops} employers={employers} />
       </div>
+
+      {/* Once you jump to a job point, the same line stands upright in the
+          margin and keeps your place (wide screens only). */}
+      <WorkRail stops={stops} lineSelector="[data-work-line]" />
 
       <div className="mx-auto flex w-full max-w-home flex-col gap-22">
         {roles.map((role) => (

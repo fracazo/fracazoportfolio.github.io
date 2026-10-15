@@ -197,7 +197,6 @@ function useRowHover(rootRef: RefObject<HTMLDivElement | null>) {
     if (!row) return;
     let timer: number | undefined;
     const enter = () => {
-      if (row.closest("[data-panel-split]")) return;
       if (!window.matchMedia(HOVER_QUERY).matches) return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       timer = window.setTimeout(() => setActive(true), HOVER_INTENT_MS);
