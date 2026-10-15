@@ -45,7 +45,7 @@ export function RowList({ items }: { items: RowItem[] }) {
                 item.image ? () => setPreview(item.image) : undefined
               }
               onMouseLeave={item.image ? () => setPreview(undefined) : undefined}
-              className="glass-row row-link group -mx-5 flex items-baseline justify-between gap-4 rounded-card px-5 py-3.5 text-body font-medium text-text no-underline transition-[color,background-color,box-shadow] duration-200 hover:bg-panel-2 active:bg-panel-2 hover:no-underline"
+              className="row-link group -mx-5 flex items-baseline justify-between gap-4 rounded-card px-5 py-3.5 text-body font-medium text-text no-underline transition-colors duration-200 hover:bg-panel-2 active:bg-panel-2 hover:no-underline"
             >
               <span className="group-hover:text-brand group-active:text-brand">{item.name}</span>
               {item.meta && (

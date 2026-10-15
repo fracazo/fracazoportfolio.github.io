@@ -71,7 +71,7 @@ export function WorkRow({
       /* Container query, not a viewport one: in the split layout this row lives
          in a pane roughly half the window, so keying off the window would hold
          the thumbnail column at widths that cannot carry it. */
-      className="glass-row work-row group -mx-5 grid grid-cols-1 rounded-card px-5 py-5 no-underline transition-[color,background-color,box-shadow] duration-200 hover:bg-panel-2 active:bg-panel-2 hover:no-underline @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8"
+      className="work-row group -mx-5 grid grid-cols-1 rounded-card px-5 py-5 no-underline transition-colors duration-200 hover:bg-panel-2 active:bg-panel-2 hover:no-underline @min-[600px]:grid-cols-[1fr_280px] @min-[600px]:items-start @min-[600px]:gap-x-8"
     >
       {/* Thumbnail — uniform frame so the mismatched screenshots stop clashing.
           DOM order keeps it first so the stacked (sub-600px) card still leads
@@ -114,7 +114,7 @@ export function WorkRow({
           </p>
         )}
         {metrics.length > 0 && (
-          <div className="work-row-chips mt-3 flex flex-wrap gap-1.5">
+          <div className="work-row-chips mt-3 flex flex-wrap gap-1.5 *:transition-colors *:duration-200 group-hover:*:bg-bg group-active:*:bg-bg group-data-selected:*:bg-bg">
             {metrics.map((metric) => (
               <Chip key={metric}>{metric}</Chip>
             ))}

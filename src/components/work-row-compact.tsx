@@ -109,7 +109,7 @@ export function WorkRowCompact({
           separate grid row they could not start until the image's full
           height, leaving a dead gap. They may wrap in the ~328px column. */}
       {metrics.length > 0 && (
-        <div className="work-row-chips mt-3 flex flex-wrap gap-1.5">
+        <div className="work-row-chips mt-3 flex flex-wrap gap-1.5 *:transition-colors *:duration-200 group-hover:*:bg-bg group-active:*:bg-bg group-data-selected:*:bg-bg">
           {metrics.map((fact) => (
             <Chip key={fact}>{fact}</Chip>
           ))}
@@ -130,7 +130,7 @@ export function WorkRowCompact({
      keeps the text on the column's left edge; the button needs its width
      widened to match, since w-full alone would stop 40px short. */
   const pill =
-    "glass-row -mx-5 rounded-card px-5 transition-[color,background-color,box-shadow] duration-200 hover:bg-panel-2 active:bg-panel-2";
+    "-mx-5 rounded-card px-5 transition-colors duration-200 hover:bg-panel-2 active:bg-panel-2";
 
   if (stub) {
     return (
