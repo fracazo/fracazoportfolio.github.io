@@ -2236,21 +2236,20 @@
 
 /* Wide sheet. A window laid over the page it was opened from, inset on three
    sides and leaving a strip of the page showing down the left edge. That
-   strip is the way back, so the page under it has to read as the page you
-   came from, not as a backdrop: undimmed in light mode, only washed in dark,
-   where nothing else separates the sheet from it. */
+   strip is the way back, so the page stays recognisable under it, but a
+   wash and a slight blur push it back: its text sits right beside the case
+   study's and would otherwise compete with it. */
 :root {
   --sheet-gutter: 56px;
   --sheet-inset: 8px;
-  /* Dark: a shadow has nothing to fall on, so the page behind takes a light
-     wash instead and the sheet's edge does the separating. */
   --sheet-shadow: 0 24px 64px -16px rgb(0 0 0 / 0.6);
-  --sheet-scrim: rgb(0 0 0 / 0.35);
+  --sheet-scrim: rgb(0 0 0 / 0.5);
 }
 :root.light {
   --sheet-shadow:
     0 24px 64px -16px rgb(60 40 20 / 0.22), 0 2px 6px rgb(60 40 20 / 0.06);
-  --sheet-scrim: transparent;
+  /* Espresso, not black, so the paper reads as shaded rather than grey. */
+  --sheet-scrim: rgb(40 30 20 / 0.2);
 }
 .panel-sheet {
   position: fixed;
@@ -2280,6 +2279,8 @@
   inset: 0;
   z-index: 49;
   background: var(--sheet-scrim);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   animation: panel-scrim-in 400ms ease both;
   cursor:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23a2988c' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 14 4 9l5-5'/%3E%3Cpath d='M4 9h10.5a5.5 5.5 0 0 1 0 11H11'/%3E%3C/svg%3E") 10 10,
