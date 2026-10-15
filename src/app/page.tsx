@@ -86,31 +86,25 @@ export default function Home() {
             <div className="reveal-group">
               <AvatarGreeting />
               <h1 id="hero-title" className="h1">
-                I take new ideas from zero to one
+                I take products from idea to working software
               </h1>
               {/* Pull against .h1's 32px bottom margin so the greeting reads as
                 part of the headline. One step up from body, in the primary
                 colour, so it stays with the H1 rather than the paragraph. */}
               <p className="-mt-5 text-subhead text-text-primary">
                 👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo, a product
-                designer. New ideas don&rsquo;t come with patterns, so I start
-                with what people already understand.
+                designer.
               </p>
               {/* The explanation of the claim above, at reading size. Its links
                 replace the old About me / Work history / Get in touch buttons.
                 Work history is a full page (it is the index of all the work);
-                About opens in the panel. On phones the boring-design paragraph
-                is dropped to get to the work sooner; the links stay. */}
+                About opens in the panel. */}
               <div className="mt-5 flex flex-col gap-4 text-body text-text-body">
-                <p className="max-sm:hidden">
-                  Then I sweat the details and never over-engineer. Some call it{" "}
-                  <TextLink href="https://capwatkins.com/blog/the-boring-designer">
-                    boring design
-                  </TextLink>
-                  . It&rsquo;s the opposite of design that&rsquo;s too clever or
-                  too complicated. That kind of design makes people stop and
-                  figure things out. Boring design lets them get on with their
-                  day.
+                <p>
+                  I sweat the details on every feature and iterate fast on
+                  feedback. I&rsquo;ve designed onboarding flows, navigation and
+                  new features across whole products, and shipped a few of them
+                  on my own.
                 </p>
                 <p>
                   Read my <TextLink href="/work">work history</TextLink>, a bit{" "}
