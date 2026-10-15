@@ -817,25 +817,49 @@
   .rail-dock {
     width: 100%;
   }
+  /* At rest the rail is just the line, its dots and the employer you are
+     reading: the other brands fold away so the selection stands alone.
+     Pointing at the rail (or tabbing into it) opens the gaps back up and
+     brings every brand in, muted. */
   .rail-group + .rail-group {
+    margin-top: 4px;
+    transition: margin-top 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .rail-dock:is(:hover, :focus-within) .rail-group + .rail-group {
     margin-top: 8px;
   }
-  /* The brand, once per employer, right-aligned over its labels. Muted
-     until the employer holds the entry you are reading. */
+  /* The brand, once per employer, right-aligned over its labels. */
   .rail-mark {
     display: flex;
-    height: 14px;
+    height: 0;
+    overflow: visible;
+    pointer-events: none;
     align-items: center;
     justify-content: flex-end;
     padding-inline-end: 28px;
-    margin-bottom: 2px;
-    opacity: 0.45;
+    margin-bottom: 0;
+    opacity: 0;
     transform: scale(0.72);
     transform-origin: right center;
-    transition: opacity 0.25s ease;
+    transition:
+      height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      margin-bottom 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 0.2s ease,
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
+  .rail-mark[data-current],
+  .rail-dock:is(:hover, :focus-within) .rail-mark {
+    height: 14px;
+    margin-bottom: 2px;
+  }
+  /* The selected brand reads a step larger than the rest. */
   .rail-mark[data-current] {
     opacity: 1;
+    transform: scale(0.9);
+  }
+  .rail-dock:is(:hover, :focus-within) .rail-mark:not([data-current]) {
+    opacity: 0.45;
+    transition-delay: 0s, 0s, 0.08s, 0s;
   }
   .rail-stop {
     --m: 0;
@@ -892,6 +916,12 @@
     }
     .rail-link[aria-current] .rail-dot {
       transform: scale(1.7);
+    }
+    .rail-mark {
+      transform: scale(0.72);
+    }
+    .rail-mark[data-current] {
+      transform: scale(0.9);
     }
   }
 
