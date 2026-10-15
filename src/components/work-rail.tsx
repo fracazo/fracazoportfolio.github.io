@@ -7,11 +7,14 @@ import { Mark, type TimelineStop } from "./work-timeline";
    jump to a job point (a stop on the line at the top, or arriving with a
    #entry), and only while that line is off screen, so the two never show
    together. From then on it keeps your place: the entry you are reading
-   lights its dot and label as you scroll, and every other stop is a jump.
+   lights its dot and its brand as you scroll, and every other stop is a
+   jump.
 
-   Same language as the line at the top: a hairline, clay dots, the brand
-   mark once per employer, and Dock magnification near the pointer, here
-   running up and down. Wide screens only (globals.css, .work-rail): it
+   Brands and dots only, no project names: the history beside it already
+   names the entry, so the rail stays quiet. Same language as the line at
+   the top otherwise: a hairline, clay dots, the brand mark once per
+   employer, and Dock magnification near the pointer, here running up and
+   down. Wide screens only (globals.css, .work-rail): it
    needs the margin beside the column, and the split pane hides it. */
 
 /* How far the magnification reaches above and below the pointer. */
@@ -187,15 +190,9 @@ export function WorkRail({
                       <a
                         href={`#${stop.id}`}
                         aria-current={isCurrent ? "location" : undefined}
-                        className="group rail-link flex items-center justify-end gap-3 no-underline hover:no-underline focus-visible:outline-none"
+                        className="group rail-link flex items-center justify-end no-underline hover:no-underline focus-visible:outline-none"
                       >
                         <span className="sr-only">{stop.name}</span>
-                        <span
-                          aria-hidden="true"
-                          className="rail-label block truncate text-meta leading-none"
-                        >
-                          {stop.label}
-                        </span>
                         <span
                           aria-hidden="true"
                           className="flex w-4 flex-none justify-center"

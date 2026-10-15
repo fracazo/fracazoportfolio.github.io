@@ -820,7 +820,7 @@
   /* At rest the rail is just the line, its dots and the employer you are
      reading: the other brands fold away so the selection stands alone.
      Pointing at the rail (or tabbing into it) opens the gaps back up and
-     brings every brand in, muted. */
+     brings every brand in, muted. No project names: brand and dot only. */
   .rail-group + .rail-group {
     margin-top: 4px;
     transition: margin-top 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -887,28 +887,12 @@
     transform: scale(1.7);
     box-shadow: 0 0 0 3px var(--bg);
   }
-  /* Labels read only near the pointer, except the entry you are reading. */
-  .rail-label {
-    color: var(--text-body);
-    opacity: calc((var(--m) - 0.35) * 2.5);
-    transform: translateX(calc(4px * (1 - var(--m))));
-    transition:
-      opacity 0.2s ease,
-      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  .rail-link[aria-current] .rail-label {
-    color: var(--text);
-    font-weight: 500;
-    opacity: 1;
-    transform: none;
-  }
-  .rail-dock[data-active] :is(.rail-label, .rail-dot) {
+  .rail-dock[data-active] .rail-dot {
     transition-duration: 0.09s;
   }
   @media (prefers-reduced-motion: reduce) {
     .work-rail,
     .work-rail[data-shown],
-    .rail-label,
     .rail-dot,
     .rail-mark {
       transition: none;
