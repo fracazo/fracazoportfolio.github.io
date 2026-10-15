@@ -2240,15 +2240,16 @@
    under it, but a wash and a slight blur push it back: its text sits right
    beside the case study's and would otherwise compete with it.
 
-   The material is warm glass: the page colour at 90% over a heavy backdrop
+   The material is warm glass: the page colour at 97% over a heavy backdrop
    blur, so the sheet reads as a surface of its own rather than a hole cut in
-   the page. Its only edge is a 1px highlight along the top and left, light
+   the page. Any thinner and the page's cards ghost through behind the
+   text. Its only edge is a 1px highlight along the top and left, light
    catching the glass, instead of a border drawn all the way round. Dark mode
    keeps the highlight faint: a bright line on espresso reads as a stroke. */
 :root {
   --sheet-gutter: 48px;
   --sheet-radius: 28px;
-  --sheet-glass: color-mix(in srgb, var(--bg) 90%, transparent);
+  --sheet-glass: color-mix(in srgb, var(--bg) 97%, transparent);
   --sheet-highlight: rgb(255 245 230 / 0.07);
   --sheet-shadow: 0 8px 40px rgb(0 0 0 / 0.45);
   --sheet-shadow-hover: 0 12px 52px rgb(0 0 0 / 0.55);
@@ -2442,23 +2443,20 @@
   }
 }
 
-/* Panel body. Content components carry their own centring and gutters, tuned
-   for a full page rather than a 720px pane, so in the panel they landed at
-   three different insets (a case study flush to the edge, an essay at 40px, a
-   résumé at 74px). The panel owns the gutter instead, and the wrappers below
-   are flattened so every kind of content lines up with the index beside it.
+/* Panel body. The sheet is nearly the full viewport wide, so the content
+   keeps the reading column it has on its own page (800px for a case study,
+   700px for an essay) and sits centred in the sheet; stretched to the sheet
+   it ran cards and stat rows out into empty space. The sheet owns the side
+   gutter, so the content's own is dropped rather than doubled.
    Scoped to .panel-body, so the standalone routes are untouched. */
-.panel-body :is(.case-study-content, .case-study-main) {
-  max-width: none;
-}
 .panel-body :is(main, article) {
-  max-width: none;
   padding-inline: 0;
 }
 
 /* PhotoStrip breaks out of the text column using viewport units, which is
-   right on a full page and wrong in a pane: 100vw is twice the pane width, so
-   the strip overhangs the divider. Inside the panel it stays in the column.
+   right on a full page and wrong in the sheet: 100vw is wider than the
+   sheet, so the strip overhangs its edges. Inside the sheet it stays in the
+   column.
    Same failure mode as a position:fixed control in a pane. */
 .panel-body .photo-strip-row {
   margin-inline: 0;

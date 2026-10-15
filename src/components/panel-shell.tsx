@@ -369,7 +369,6 @@ function Reveal({
     const root = ref.current;
     if (ready || !root) return;
     let tries = 60;
-    let raf = 0;
     const find = () => {
       let column: Element = root;
       while (column.children.length === 1) column = column.children[0];
@@ -383,10 +382,12 @@ function Reveal({
       }
       // Content still loading; give up gracefully rather than stay hidden.
       if (tries-- <= 0) return setReady(true);
-      raf = requestAnimationFrame(find);
+      timer = window.setTimeout(find, 16);
     };
-    raf = requestAnimationFrame(find);
-    return () => cancelAnimationFrame(raf);
+    // Timers, not animation frames: frames pause in a hidden tab, and a pause
+    // here would leave the content invisible rather than merely unanimated.
+    let timer = window.setTimeout(find, 0);
+    return () => clearTimeout(timer);
     // Runs once per mount: the parent keys it on the entry.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
