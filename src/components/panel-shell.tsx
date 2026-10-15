@@ -10,15 +10,9 @@ import {
   type AnimationEvent,
   type ReactNode,
 } from "react";
-import Link from "next/link";
-import { CloseIcon, ExpandIcon } from "./icons";
+import { CheckIcon, CloseIcon, LinkIcon, ShareIcon } from "./icons";
 import { panelRegistry } from "./panel-registry";
 import { BackBar } from "./back-bar";
-import {
-  clearReturnContext,
-  readReturnContext,
-  saveReturnContext,
-} from "./panel-return";
 
 /**
  * From here up the panel is a sheet laid over the page, with a strip of the
@@ -31,6 +25,23 @@ type PanelApi = {
   open: (href: string, trigger?: HTMLElement) => void;
   active: string | null;
 };
+
+/**
+ * The address bar follows the sheet: an entry keyed by a route shows that
+ * route, so the URL is the entry's real, shareable page. Stubs have no page
+ * of their own and keep the URL of the page underneath (`base`).
+ */
+function urlFor(href: string, base: string) {
+  return href.startsWith("/") ? href : base;
+}
+
+/** The panel's history entry: which entry is open, over which page. */
+function panelState(): { panel: string; base: string } | null {
+  const state = window.history.state;
+  const href = state?.panel;
+  if (typeof href !== "string" || !(href in panelRegistry)) return null;
+  return { panel: href, base: typeof state.base === "string" ? state.base : "/" };
+}
 
 const PanelContext = createContext<PanelApi>({ open: () => {}, active: null });
 
@@ -47,23 +58,14 @@ export function PanelShell({ children }: { children: ReactNode }) {
   const panelRef = useRef<HTMLDivElement>(null);
   /** Element that opened the panel, refocused on close. */
   const opener = useRef<HTMLElement | null>(null);
-  /** Panel-body scroll to apply on the next open, from a full-page return. */
-  const pendingBodyScroll = useRef(0);
 
-  // The panel's history entry carries { panel }, so mounting on that entry
-  // means arriving back at an open panel: browser back from the full page the
-  // expand control opened, or a reload mid-panel. Reopen it, and when the
-  // saved context matches, put the page and the sheet back where they were.
+  // Mounting on the panel's history entry means arriving back at an open
+  // panel: browser back from a page a link inside the sheet led to, or a
+  // reload on a stub (a route entry reloads as its full page instead, since
+  // the URL is that page's). Reopen it.
   useEffect(() => {
-    const href = window.history.state?.panel;
-    if (typeof href !== "string" || !(href in panelRegistry)) return;
-    const ctx = readReturnContext();
-    clearReturnContext();
-    if (ctx?.panel === href) {
-      window.scrollTo({ top: ctx.index, behavior: "instant" });
-      pendingBodyScroll.current = ctx.body;
-    }
-    setActive(href);
+    const state = panelState();
+    if (state) setActive(state.panel);
   }, []);
 
   useEffect(() => {
@@ -87,14 +89,18 @@ export function PanelShell({ children }: { children: ReactNode }) {
       if (active) {
         // Swapping entries replaces the entry rather than stacking one, so a
         // single back press still closes the panel however many you viewed.
-        window.history.replaceState({ panel: href }, "");
+        const base = panelState()?.base ?? "/";
+        window.history.replaceState({ panel: href, base }, "", urlFor(href, base));
       } else {
         opener.current =
           trigger ?? (document.activeElement as HTMLElement | null);
-        // A history entry so the browser back button closes the panel. The URL
-        // is deliberately unchanged: a shareable sheet URL would make the
-        // sheet a load state, and the sheet is only ever a response to a click.
-        window.history.pushState({ panel: href }, "");
+        // A history entry so the browser back button closes the panel, with
+        // the entry's own route in the address bar. The sheet never becomes
+        // a load state: only the index pages host it, so loading that URL
+        // (reload, shared link, new tab) gets the entry's full page.
+        const { pathname, search, hash } = window.location;
+        const base = pathname + search + hash;
+        window.history.pushState({ panel: href, base }, "", urlFor(href, base));
       }
       setClosing(false);
       setActive(href);
@@ -105,9 +111,16 @@ export function PanelShell({ children }: { children: ReactNode }) {
   // Every close goes through history (the strip, the close button, Escape,
   // the back button, the system back gesture) and lands here. The wide sheet
   // slides back out before it unmounts; the full-screen sheet and reduced
-  // motion just go.
+  // motion just go. Forward onto the panel's entry reopens it, so the sheet
+  // always matches the URL.
   useEffect(() => {
     const onPop = () => {
+      const state = panelState();
+      if (state) {
+        setClosing(false);
+        setActive(state.panel);
+        return;
+      }
       const animate =
         window.matchMedia(`(min-width: ${SHEET_MIN}px)`).matches &&
         !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -154,43 +167,29 @@ export function PanelShell({ children }: { children: ReactNode }) {
     };
   }, [isOpen]);
 
-  // Swapping entries resets the panel's own scroll. A return from the full
-  // page restores the reading depth instead; the entry's content arrives via
-  // dynamic import, so the sheet may not be tall enough yet, and the restore
-  // waits on it rather than clamping to 0.
+  // Swapping entries resets the panel's own scroll.
   useEffect(() => {
-    const pane = panelRef.current;
-    if (!active || !pane) return;
-    const target = pendingBodyScroll.current;
-    pendingBodyScroll.current = 0;
-    pane.scrollTop = target;
-    if (!target) return;
-    let tries = 60;
-    let raf = 0;
-    const settle = () => {
-      if (tries-- <= 0) return;
-      if (pane.scrollHeight - pane.clientHeight >= target) {
-        pane.scrollTop = target;
-        return;
-      }
-      raf = requestAnimationFrame(settle);
-    };
-    raf = requestAnimationFrame(settle);
-    return () => cancelAnimationFrame(raf);
+    if (active && panelRef.current) panelRef.current.scrollTop = 0;
   }, [active]);
 
   const entry = active ? panelRegistry[active] : null;
   const Content = entry?.load;
 
-  /** Captures the page and sheet scroll so the trip back reopens it here. */
-  const saveContext = () => {
-    if (!active) return;
-    saveReturnContext({
-      panel: active,
-      index: window.scrollY,
-      body: panelRef.current?.scrollTop ?? 0,
-    });
-  };
+  // The tab title follows the address bar, so tabs and the history list name
+  // the entry that is open.
+  const entryTitle = entry?.title;
+  useEffect(() => {
+    if (!entryTitle) return;
+    const previous = document.title;
+    document.title = `${entryTitle} - Alex Fracazo`;
+    return () => {
+      document.title = previous;
+    };
+  }, [entryTitle]);
+
+  /** Absolute URL of the open entry's page; stubs have none to share. */
+  const shareUrl =
+    active?.startsWith("/") ? new URL(active, window.location.origin).href : undefined;
 
   const close = () => {
     if (!closing) window.history.back();
@@ -238,13 +237,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
             <>
               <EdgeBlur edge="top" />
               <EdgeBlur edge="bottom" />
-              <SheetControls
-                onClose={close}
-                // Stubs have no page of their own; everything else keyed by a
-                // route can be reopened there.
-                fullHref={active.startsWith("/") ? active : undefined}
-                onExpand={saveContext}
-              />
+              <SheetControls onClose={close} shareUrl={shareUrl} />
             </>
           )}
           <div
@@ -256,7 +249,17 @@ export function PanelShell({ children }: { children: ReactNode }) {
                 : "panel-body h-full overflow-y-auto overscroll-contain px-6 outline-none"
             }
           >
-            {!wide && <BackBar onClick={close} className="-mx-6 px-6" />}
+            {!wide && (
+              <BackBar
+                onClick={close}
+                className="-mx-6 px-6"
+                end={
+                  shareUrl && (
+                    <ShareButton key={shareUrl} url={shareUrl} title={entry?.title} />
+                  )
+                }
+              />
+            )}
             <Reveal key={active} enabled={wide}>
               {Content && <Content />}
             </Reveal>
@@ -274,39 +277,68 @@ const chromeSegment =
 const chromeTooltip =
   "pointer-events-none invisible absolute end-0 top-[calc(100%+8px)] z-20 whitespace-nowrap rounded-lg border border-border bg-card px-2.5 py-1.5 text-meta font-medium text-text opacity-0 shadow-elevated transition-opacity duration-200 group-hover:visible group-hover:opacity-100 group-focus-visible:visible group-focus-visible:opacity-100";
 
+/** Shown on the icon and tooltip after a copy, before it settles back. */
+const COPIED_MS = 2000;
+
 /**
- * The wide sheet's dismiss controls: a capsule of icon buttons pinned top
- * right, over the content rather than in its flow, so the content can pass
- * beneath it into the blurred edge. Expand to the entry's real page, then
- * close. Each explains itself in a tooltip, since neither has a text label.
- * (The full-screen sheet uses the site's labelled Back pill instead.)
+ * Copies a URL, falling back to a hidden textarea where the async clipboard
+ * is unavailable or refused. `copied` stays true for COPIED_MS afterwards.
+ * Callers key the button by URL, so a different entry starts out uncopied.
+ */
+function useCopyLink(url: string) {
+  const [copied, setCopied] = useState(false);
+  const timer = useRef<number>(undefined);
+  useEffect(() => () => window.clearTimeout(timer.current), []);
+
+  const copy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      const field = document.createElement("textarea");
+      field.value = url;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.append(field);
+      field.select();
+      document.execCommand("copy");
+      field.remove();
+    }
+    setCopied(true);
+    window.clearTimeout(timer.current);
+    timer.current = window.setTimeout(() => setCopied(false), COPIED_MS);
+  }, [url]);
+
+  return { copied, copy };
+}
+
+/** Says "Link copied" to assistive tech; the icon swap is the visual cue. */
+function CopiedAnnouncement({ copied }: { copied: boolean }) {
+  return (
+    <span className="sr-only" role="status">
+      {copied ? "Link copied" : ""}
+    </span>
+  );
+}
+
+/**
+ * The wide sheet's controls: a capsule of icon buttons pinned top right,
+ * over the content rather than in its flow, so the content can pass beneath
+ * it into the blurred edge. Copy the entry's link, then close. Each explains
+ * itself in a tooltip, since neither has a text label. (The full-screen
+ * sheet uses the site's labelled Back pill instead.)
  */
 function SheetControls({
   onClose,
-  fullHref,
-  onExpand,
+  shareUrl,
 }: {
   onClose: () => void;
-  /** Route of the entry's real page; when set, an expand control links to it. */
-  fullHref?: string;
-  /** Fires as the expand control is followed, to save the reading context. */
-  onExpand?: () => void;
+  /** Absolute URL of the entry's page; when set, a copy control offers it. */
+  shareUrl?: string;
 }) {
   return (
     <div className="absolute end-4 top-3 z-30 flex items-center rounded-full border border-border bg-bg/60">
-      {fullHref && (
-        <Link
-          href={fullHref}
-          aria-label="Open in full page"
-          onClick={onExpand}
-          className={chromeSegment}
-        >
-          <span className={chromeTooltip} aria-hidden="true">
-            Open in full page
-          </span>
-          <ExpandIcon size={16} />
-        </Link>
-      )}
+      {shareUrl && <CopyLinkButton key={shareUrl} url={shareUrl} />}
       <button
         type="button"
         onClick={onClose}
@@ -319,6 +351,52 @@ function SheetControls({
         <CloseIcon size={16} />
       </button>
     </div>
+  );
+}
+
+function CopyLinkButton({ url }: { url: string }) {
+  const { copied, copy } = useCopyLink(url);
+  return (
+    <button
+      type="button"
+      onClick={copy}
+      aria-label="Copy link"
+      className={chromeSegment}
+    >
+      <span className={chromeTooltip} aria-hidden="true">
+        {copied ? "Link copied" : "Copy link"}
+      </span>
+      {copied ? <CheckIcon size={16} /> : <LinkIcon size={16} />}
+      <CopiedAnnouncement copied={copied} />
+    </button>
+  );
+}
+
+/**
+ * The full-screen sheet's share control, at the far end of its Back bar.
+ * Phones get the system share sheet (which carries Copy too); where there is
+ * none, it copies the link instead.
+ */
+function ShareButton({ url, title }: { url: string; title?: string }) {
+  const { copied, copy } = useCopyLink(url);
+  const share = async () => {
+    if (typeof navigator.share !== "function") return copy();
+    try {
+      await navigator.share({ title, url });
+    } catch {
+      /* dismissed: nothing to do */
+    }
+  };
+  return (
+    <button
+      type="button"
+      onClick={share}
+      aria-label="Share"
+      className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-border text-muted transition-colors hover:bg-panel-2 hover:text-text active:bg-panel-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    >
+      {copied ? <CheckIcon size={16} /> : <ShareIcon size={16} />}
+      <CopiedAnnouncement copied={copied} />
+    </button>
   );
 }
 

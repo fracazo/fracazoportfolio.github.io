@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { MouseEventHandler } from "react";
+import type { MouseEventHandler, ReactNode } from "react";
 import { ArrowLeftIcon } from "./icons";
 
 /* The labelled Back pill: 44px tall, per the touch guidance. */
@@ -14,20 +14,23 @@ const pill =
  *
  * Pass `href` for a page (a real link, with `onClick` free to intercept it)
  * or only `onClick` for the sheet (a button). `className` sets the row's
- * horizontal padding and placement for its container.
+ * horizontal padding and placement for its container. `end` holds an
+ * optional control on the far side of the row.
  */
 export function BackBar({
   href,
   onClick,
   className = "",
+  end,
 }: {
   href?: string;
   onClick?: MouseEventHandler<HTMLElement>;
   className?: string;
+  end?: ReactNode;
 }) {
   return (
     <div
-      className={`sticky top-0 z-10 flex justify-start bg-bg/85 py-3 backdrop-blur-md ${className}`}
+      className={`sticky top-0 z-10 flex items-center justify-between bg-bg/85 py-3 backdrop-blur-md ${className}`}
     >
       {href ? (
         <Link
@@ -45,6 +48,7 @@ export function BackBar({
           Back
         </button>
       )}
+      {end}
     </div>
   );
 }

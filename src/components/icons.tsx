@@ -90,13 +90,29 @@ export function MenuIcon(props: IconProps) {
   );
 }
 
-export function ExpandIcon(props: IconProps) {
+export function LinkIcon(props: IconProps) {
   return (
     <svg {...base({ size: 14, ...props })}>
-      <path d="M15 3h6v6" />
-      <path d="m21 3-7 7" />
-      <path d="M9 21H3v-6" />
-      <path d="m3 21 7-7" />
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+    </svg>
+  );
+}
+
+export function CheckIcon(props: IconProps) {
+  return (
+    <svg {...base({ size: 14, ...props })}>
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+
+export function ShareIcon(props: IconProps) {
+  return (
+    <svg {...base({ size: 14, ...props })}>
+      <path d="M12 3v12" />
+      <path d="m8 7 4-4 4 4" />
+      <path d="M20 14v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-5" />
     </svg>
   );
 }

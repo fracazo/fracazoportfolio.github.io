@@ -4,11 +4,11 @@ import { PlainShell } from "./plain-shell";
 
 /**
  * Case study chrome: a sidebar-free reading page, matching the writing
- * articles. The full page is reached from the panel's expand control or a
- * shared link, and either way the reader came for the study, not the site
- * nav: the fixed back pill carries the way back, to the work history the
- * studies live under (or to the open panel it was expanded from). The standalone route and the panel keep rendering the same
- * content rather than diverging.
+ * articles. The full page is what a shared link, a reload or a new tab lands
+ * on, and the reader came for the study, not the site nav: the fixed back
+ * pill carries the way back, to the work history the studies live under.
+ * The standalone route and the panel keep rendering the same content rather
+ * than diverging.
  */
 export function CaseStudyShell({
   children,
