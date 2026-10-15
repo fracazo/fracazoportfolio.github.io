@@ -9,7 +9,8 @@ import {
   type RefObject,
 } from "react";
 import { VignetteStage } from "./work-vignette";
-import { HireupMark, TanukiMark } from "./scene-marks";
+import { GlqlScene, GLQL_LOOP_MS } from "./glql-scene";
+import { HireupMark } from "./scene-marks";
 import type { WorkVignetteKind } from "./work-vignette-kinds";
 
 /**
@@ -118,7 +119,7 @@ export function LoopingHeroStage({
 
 /** How long each hero scene's loop runs, including its held final frame. */
 export const HERO_LOOP_MS: Partial<Record<WorkVignetteKind, number>> = {
-  glql: 7600,
+  glql: GLQL_LOOP_MS,
   pages: 6800,
   flow: 8400,
   hireup: 8400,
@@ -211,212 +212,10 @@ function reveal(t: number, at: number, from = "translateY(6px)") {
   };
 }
 
-/* ---- GLQL: ask Duo in plain language, get filters, a table, and the query ---- */
-
-const GLQL_PROMPT = "Show me Jamie's UX issues";
-const GLQL_TYPE_START = 200;
-const GLQL_CHAR_MS = 45;
-const GLQL_TYPED = GLQL_TYPE_START + GLQL_PROMPT.length * GLQL_CHAR_MS;
-const GLQL_CUE = {
-  think: GLQL_TYPED + 150,
-  filters: GLQL_TYPED + 550,
-  generated: GLQL_TYPED + 850,
-  table: GLQL_TYPED + 1150,
-  // The Query code tab shows the GLQL Duo wrote: the view is inspectable,
-  // not a black box.
-  code: GLQL_TYPED + 2700,
-  back: GLQL_TYPED + 4600,
-};
-const GLQL_FILTERS = [
-  { key: "Label", value: "~UX" },
-  { key: "Author", value: "Jamie" },
-];
-const GLQL_CODE = [
-  ["display", "table"],
-  ["fields", "state, title, assignee, labels"],
-  ["query", 'label = "UX" and author = "jamie"'],
-];
-const GLQL_ROWS = [
-  { open: true, title: 78 },
-  { open: true, title: 64 },
-  { open: true, title: 72 },
-  { open: false, title: 56 },
-];
+/* ---- GLQL: a query in a comment renders a live embedded view ---- */
 
 function GlqlHeroScene({ t }: { t: number }) {
-  const chars = Math.max(
-    0,
-    Math.min(
-      GLQL_PROMPT.length,
-      Math.floor((t - GLQL_TYPE_START) / GLQL_CHAR_MS),
-    ),
-  );
-  const typing = t >= GLQL_TYPE_START && t < GLQL_TYPED;
-  const codeTab = t >= GLQL_CUE.code && t < GLQL_CUE.back;
-  const thinking = t >= GLQL_CUE.think && t < GLQL_CUE.filters;
-
-  return (
-    <div className="vignette-card absolute inset-4 rounded-xl bg-surface p-3.5">
-      {/* Panel title and the two tabs; the underline slides between them. */}
-      <div className="flex items-center justify-between border-b border-border pb-2.5">
-        {/* GitLab's own mark in the panel chrome: the scene is the shipped
-            product, not a mock-up. */}
-        <span className="flex items-center gap-2 text-meta font-semibold text-text">
-          <TanukiMark size={15} />
-          Embedded view with Duo
-        </span>
-        <div className="relative flex gap-4 text-meta">
-          <span className={codeTab ? "text-muted" : "text-text"}>Duo</span>
-          <span className={codeTab ? "text-text" : "text-muted"}>
-            Query code
-          </span>
-          <span
-            className="absolute -bottom-[11px] left-0 h-[2px] rounded-full bg-accent"
-            style={{
-              width: codeTab ? 74 : 26,
-              transform: `translateX(${codeTab ? 42 : 0}px)`,
-              transition: "transform 300ms ease, width 300ms ease",
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Ask and answer share one slot: the Duo prompt with its generated
-          filters, or the GLQL it compiled to. */}
-      <div className="relative mt-3 h-[76px]">
-        <div
-          className="absolute inset-0"
-          style={{
-            opacity: codeTab ? 0 : 1,
-            transition: "opacity 250ms ease",
-          }}
-        >
-          <div className="flex h-9 items-center gap-2 rounded-lg border border-border px-3 text-meta">
-            <svg
-              viewBox="0 0 12 12"
-              width="12"
-              height="12"
-              className="shrink-0"
-              style={{
-                transform: `scale(${thinking ? 1.3 : 1}) rotate(${thinking ? 45 : 0}deg)`,
-                transition: "transform 300ms ease",
-              }}
-            >
-              <path
-                d="M6 0 7.3 4.7 12 6 7.3 7.3 6 12 4.7 7.3 0 6 4.7 4.7Z"
-                fill="var(--accent)"
-              />
-            </svg>
-            <span className="whitespace-nowrap text-text">
-              {GLQL_PROMPT.slice(0, chars)}
-            </span>
-            {typing && (
-              <span className="vignette-caret -ml-1.5 inline-block h-3.5 w-px bg-current text-text" />
-            )}
-            <span className="ml-auto flex size-6 items-center justify-center rounded-md bg-accent">
-              <svg viewBox="0 0 12 12" width="10" height="10">
-                <path
-                  d="M2 6h8M7 3l3 3-3 3"
-                  fill="none"
-                  stroke="var(--panel)"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
-          </div>
-          <div className="mt-2.5 flex items-center gap-2">
-            {GLQL_FILTERS.map((filter, i) => (
-              <span
-                key={filter.key}
-                className="inline-flex items-center gap-1.5 rounded-md border border-border px-2 py-0.5 text-meta whitespace-nowrap"
-                style={reveal(t, GLQL_CUE.filters + i * 140, "scale(0.92)")}
-              >
-                <span className="text-muted">{filter.key} is</span>
-                <span className="rounded-sm bg-accent/20 px-1 text-text">
-                  {filter.value}
-                </span>
-              </span>
-            ))}
-            <span
-              className="ml-auto text-meta text-muted"
-              style={reveal(t, GLQL_CUE.generated, "none")}
-            >
-              Generated by AI
-            </span>
-          </div>
-        </div>
-
-        <div
-          className="absolute inset-0 rounded-lg bg-panel-2 px-3 py-2 font-mono text-meta leading-[1.5]"
-          style={{
-            opacity: codeTab ? 1 : 0,
-            transition: "opacity 250ms ease",
-          }}
-        >
-          {GLQL_CODE.map(([key, value], i) => (
-            <div
-              key={key}
-              className="whitespace-nowrap"
-              style={
-                codeTab
-                  ? reveal(t, GLQL_CUE.code + 150 + i * 160, "translateX(-4px)")
-                  : undefined
-              }
-            >
-              <span className="text-accent">{key}</span>
-              <span className="text-muted">: </span>
-              <span className="text-text">{value}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* The embedded view itself. */}
-      <div
-        className="mt-2.5 rounded-lg border border-border"
-        style={reveal(t, GLQL_CUE.table)}
-      >
-        <div className="flex items-center justify-between px-3 pt-2 pb-1.5 text-meta">
-          <span className="font-semibold text-text">GLQL table</span>
-          <span className="text-muted">{GLQL_ROWS.length} items</span>
-        </div>
-        <div className="grid grid-cols-[64px_1fr_76px_56px] gap-x-3 border-y border-border bg-panel-2 px-3 py-1 text-meta text-muted">
-          <span>State</span>
-          <span>Title</span>
-          <span>Assignee</span>
-          <span>Labels</span>
-        </div>
-        {GLQL_ROWS.map((row, i) => (
-          <div
-            key={i}
-            className="grid h-6 grid-cols-[64px_1fr_76px_56px] items-center gap-x-3 px-3"
-            style={reveal(t, GLQL_CUE.table + 120 + i * 90, "translateY(4px)")}
-          >
-            <span
-              className={`w-fit rounded-full px-2 text-meta leading-[18px] ${
-                row.open ? "bg-accent/20 text-text" : "bg-border text-muted"
-              }`}
-            >
-              {row.open ? "Open" : "Closed"}
-            </span>
-            <span
-              className="h-2 rounded-full bg-border"
-              style={{ width: `${row.title}%` }}
-            />
-            <span className="flex items-center gap-1.5 text-meta text-text-body">
-              <span className="size-3.5 rounded-full bg-accent/40" />
-              Jamie
-            </span>
-            <span className="w-fit rounded-sm bg-accent/20 px-1 text-meta text-text">
-              ~UX
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  return <GlqlScene t={t} />;
 }
 
 /* Typed text: how many characters of `text` show at time `t`. */

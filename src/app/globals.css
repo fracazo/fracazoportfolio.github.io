@@ -565,6 +565,92 @@
   .vignette-caret {
     animation: vignette-blink 1s step-end infinite;
   }
+  /* The GLQL scene is drawn in GitLab's own Pajamas colours, not the site's:
+     it shows the shipped product. GitLab dark on the site's dark mode,
+     GitLab light on its light mode. Scoped here so nothing else uses them. */
+  .glql-scene {
+    --gl-page: #1f1e24;
+    --gl-subtle: #28272d;
+    --gl-border: #3a383f;
+    --gl-border-muted: #333238;
+    --gl-text-strong: #ececef;
+    --gl-text: #dcdcde;
+    --gl-text-subtle: #a4a3a8;
+    --gl-page-shadow: 0 2px 10px rgb(0 0 0 / 0.35);
+    --gl-badge-neutral: #3a383f;
+    --gl-badge-neutral-text: #dcdcde;
+    --gl-success-bg: #0d532a;
+    --gl-success-text: #91d4a8;
+    --gl-info-bg: #033464;
+    --gl-info-text: #9dc7f1;
+    --gl-health-ok: #52b87a;
+    --gl-health-attention: #e9be74;
+    --gl-health-risk: #f57f6c;
+    --gl-code-key: #ac93e6;
+    --gl-code-string: #91d4a8;
+    --gl-code-ref: #63a6e9;
+    --gl-skeleton: #333238;
+    --gl-id-1-bg: #660e00;
+    --gl-id-1-text: #fcb5aa;
+    --gl-id-2-bg: #453894;
+    --gl-id-2-text: #e1d8f9;
+    --gl-id-3-bg: #2f2a6b;
+    --gl-id-3-text: #d1d1f0;
+    --gl-id-4-bg: #033464;
+    --gl-id-4-text: #cbe2f9;
+    --gl-id-5-bg: #0d532a;
+    --gl-id-5-text: #c3e6cd;
+    --gl-id-6-bg: #5c2900;
+    --gl-id-6-text: #f5d9a8;
+    --gl-id-7-bg: #4c4b51;
+    --gl-id-7-text: #ececef;
+  }
+  .light .glql-scene {
+    --gl-page: #ffffff;
+    --gl-subtle: #fbfafd;
+    --gl-border: #dcdcde;
+    --gl-border-muted: #ececef;
+    --gl-text-strong: #28272d;
+    --gl-text: #3a383f;
+    --gl-text-subtle: #626168;
+    --gl-page-shadow: 0 2px 10px rgb(40 39 45 / 0.08);
+    --gl-badge-neutral: #ececef;
+    --gl-badge-neutral-text: #535158;
+    --gl-success-bg: #c3e6cd;
+    --gl-success-text: #24663b;
+    --gl-info-bg: #cbe2f9;
+    --gl-info-text: #0b5cad;
+    --gl-health-ok: #108548;
+    --gl-health-attention: #9e5400;
+    --gl-health-risk: #c91c00;
+    --gl-code-key: #6e49cb;
+    --gl-code-string: #217645;
+    --gl-code-ref: #1f75cb;
+    --gl-skeleton: #ececef;
+    --gl-id-1-bg: #fcf1ef;
+    --gl-id-1-text: #a31700;
+    --gl-id-2-bg: #f4f0ff;
+    --gl-id-2-text: #5943b6;
+    --gl-id-3-bg: #f1f1ff;
+    --gl-id-3-text: #3f3fa5;
+    --gl-id-4-bg: #e9f3fc;
+    --gl-id-4-text: #0b5cad;
+    --gl-id-5-bg: #ecf4ee;
+    --gl-id-5-text: #24663b;
+    --gl-id-6-bg: #fdf1dd;
+    --gl-id-6-text: #9e5400;
+    --gl-id-7-bg: #f0f0f0;
+    --gl-id-7-text: #535158;
+  }
+  .glql-skeleton {
+    background: var(--gl-skeleton);
+    animation: glql-pulse 1s ease-in-out infinite alternate;
+  }
+  @keyframes glql-pulse {
+    to {
+      opacity: 0.45;
+    }
+  }
   /* The split-panel list shrinks thumbs to 88px: overlay vignettes have no
      stage to play on there (the component also bails in JS, this is the
      belt-and-braces), while standalone ones ARE the thumbnail and stay,

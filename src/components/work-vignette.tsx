@@ -6,6 +6,7 @@ import {
   type WorkVignetteKind,
 } from "./work-vignette-kinds";
 import { useScrollPlay } from "./use-scroll-play";
+import { GlqlRowScene } from "./glql-scene";
 import { HireupMark, TanukiMark } from "./scene-marks";
 
 export type { WorkVignetteKind };
@@ -236,114 +237,10 @@ function useCanvasScale(
   return scale;
 }
 
-/* ---- GLQL: a plain-language ask becomes filters, then an embedded view ---- */
-
-const GLQL_PROMPT = "Show me Jamie's UX issues";
-/* The filters Duo derives from the prompt, as the "Label is ~UX" tokens. */
-const GLQL_FILTERS = ["Label ~UX", "Author Jamie"];
+/* ---- GLQL: a query in a comment renders a live embedded view ---- */
 
 function GlqlScene({ mode }: { mode: SceneMode }) {
-  const [chars, setChars] = useState(GLQL_PROMPT.length);
-  // 0: prompt only, 1: filters generated, 2: table rendered.
-  const [stage, setStage] = useState(2);
-
-  useEffect(() => {
-    let timer: number | undefined;
-    if (mode === "settled" || mode === "hidden") {
-      setChars(GLQL_PROMPT.length);
-      setStage(2);
-    } else if (mode === "reset") {
-      setChars(0);
-      setStage(0);
-    } else if (chars < GLQL_PROMPT.length) {
-      timer = window.setTimeout(() => setChars((n) => n + 1), 40);
-    } else if (stage < 2) {
-      // A beat for Duo to "think", then a shorter one before the table.
-      timer = window.setTimeout(() => setStage((s) => s + 1), stage === 0 ? 350 : 450);
-    }
-    return () => clearTimeout(timer);
-  }, [mode, chars, stage]);
-
-  const rendered = stage === 2;
-
-  return (
-    <>
-      <div className="vignette-card absolute inset-x-[7%] top-[8%] rounded-lg bg-surface px-3 py-1.5">
-        <div className="flex items-center gap-1.5 text-meta whitespace-nowrap">
-          {/* Duo sparkle: marks the prompt as an AI ask, not query syntax. */}
-          <svg
-            viewBox="0 0 12 12"
-            width="10"
-            height="10"
-            className="shrink-0"
-            style={{
-              transform: `scale(${mode === "play" && stage === 0 && chars === GLQL_PROMPT.length ? 1.25 : 1})`,
-              transition: "transform 250ms ease",
-            }}
-          >
-            <path
-              d="M6 0 7.3 4.7 12 6 7.3 7.3 6 12 4.7 7.3 0 6 4.7 4.7Z"
-              fill="var(--accent)"
-            />
-          </svg>
-          <span className="text-text">{GLQL_PROMPT.slice(0, chars)}</span>
-          {chars === 0 && <span className="text-muted">&nbsp;</span>}
-          {mode === "play" && chars < GLQL_PROMPT.length && (
-            <span className="vignette-caret -ml-1 inline-block h-3 w-px bg-current align-middle text-text" />
-          )}
-        </div>
-        <div className="mt-1 flex gap-1.5">
-          {GLQL_FILTERS.map((filter, i) => (
-            <span
-              key={filter}
-              className="rounded-sm bg-accent/15 px-1.5 font-mono text-[10px] leading-4 whitespace-nowrap text-text"
-              style={{
-                opacity: stage >= 1 ? 1 : 0,
-                transform: stage >= 1 ? "none" : "scale(0.9)",
-                transition: "opacity 200ms ease, transform 200ms ease",
-                transitionDelay: stage >= 1 && mode === "play" ? `${i * 120}ms` : "0ms",
-              }}
-            >
-              {filter}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div
-        className="vignette-card absolute inset-x-[7%] bottom-[8%] rounded-lg bg-surface px-3 pt-1.5 pb-2.5"
-        style={{
-          opacity: rendered ? 1 : 0,
-          transform: rendered ? "none" : "translateY(6px)",
-          transition: "opacity 250ms ease, transform 250ms ease",
-        }}
-      >
-        <div className="flex items-center gap-1.5 font-mono text-meta text-muted">
-          <TanukiMark size={10} />3 issues
-        </div>
-        <div className="mt-1.5 flex flex-col gap-2">
-          {[68, 54, 61].map((width, i) => (
-            <div
-              key={width}
-              className="flex items-center gap-2"
-              style={{
-                opacity: rendered ? 1 : 0,
-                transform: rendered ? "none" : "translateY(4px)",
-                transition: "opacity 250ms ease, transform 250ms ease",
-                transitionDelay: rendered ? `${100 + i * 90}ms` : "0ms",
-              }}
-            >
-              <span className="size-1.5 shrink-0 rounded-full bg-accent" />
-              <span
-                className="h-1.5 rounded-full bg-border"
-                style={{ width: `${width}%` }}
-              />
-              <span className="ml-auto h-1.5 w-6 shrink-0 rounded-full bg-border" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
-  );
+  return <GlqlRowScene mode={mode} canvasWidth={CANVAS_W} />;
 }
 
 /* ---- Wiki: a highlight sweeps a line, a comment pins to it ---- */
