@@ -772,6 +772,129 @@
     }
   }
 
+  /* The vertical rail (work-rail.tsx): the career line stood upright in
+     the left margin once you jump to a job point. Hidden until then, and
+     wherever the margin is too narrow for it or the split pane is open.
+     Its right edge sits a fixed gap left of the 1040px column. */
+  .work-rail {
+    --rail-w: 132px;
+    /* Rows share what is left of the viewport after the header bar and
+       the brand marks, so the whole career fits without scrolling. */
+    --rail-row: clamp(14px, calc((100vh - 380px) / 19), 22px);
+    position: fixed;
+    top: 64px;
+    bottom: 24px;
+    left: calc(50% - var(--container-home) / 2 - 28px - var(--rail-w));
+    z-index: 5;
+    display: none;
+    width: var(--rail-w);
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-6px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      visibility 0s linear 0.3s;
+  }
+  .work-rail[data-shown] {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      visibility 0s;
+  }
+  @media (min-width: 1400px) and (min-height: 640px) {
+    .work-rail {
+      display: flex;
+    }
+  }
+  [data-panel-split] .work-rail {
+    display: none;
+  }
+  .rail-dock {
+    width: 100%;
+  }
+  .rail-group + .rail-group {
+    margin-top: 8px;
+  }
+  /* The brand, once per employer, right-aligned over its labels. Muted
+     until the employer holds the entry you are reading. */
+  .rail-mark {
+    display: flex;
+    height: 14px;
+    align-items: center;
+    justify-content: flex-end;
+    padding-inline-end: 28px;
+    margin-bottom: 2px;
+    opacity: 0.45;
+    transform: scale(0.72);
+    transform-origin: right center;
+    transition: opacity 0.25s ease;
+  }
+  .rail-mark[data-current] {
+    opacity: 1;
+  }
+  .rail-stop {
+    --m: 0;
+  }
+  .rail-stop:hover,
+  .rail-stop:focus-within {
+    --m: 1;
+  }
+  .rail-link {
+    height: var(--rail-row);
+  }
+  .rail-dot {
+    /* Firmer than the hairline so each stop still reads at rest. */
+    background: color-mix(in oklab, var(--text) 35%, transparent);
+    transform: scale(calc(1 + 0.7 * var(--m)));
+    transition:
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+      background-color 0.25s ease;
+  }
+  .rail-stop:hover .rail-dot,
+  .rail-link[aria-current] .rail-dot {
+    background: var(--accent);
+  }
+  .rail-link[aria-current] .rail-dot {
+    transform: scale(1.7);
+    box-shadow: 0 0 0 3px var(--bg);
+  }
+  /* Labels read only near the pointer, except the entry you are reading. */
+  .rail-label {
+    color: var(--text-body);
+    opacity: calc((var(--m) - 0.35) * 2.5);
+    transform: translateX(calc(4px * (1 - var(--m))));
+    transition:
+      opacity 0.2s ease,
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .rail-link[aria-current] .rail-label {
+    color: var(--text);
+    font-weight: 500;
+    opacity: 1;
+    transform: none;
+  }
+  .rail-dock[data-active] :is(.rail-label, .rail-dot) {
+    transition-duration: 0.09s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .work-rail,
+    .work-rail[data-shown],
+    .rail-label,
+    .rail-dot,
+    .rail-mark {
+      transition: none;
+      transform: none;
+    }
+    .rail-link[aria-current] .rail-dot {
+      transform: scale(1.7);
+    }
+  }
+
   /* An entry reached from the timeline flashes once, so the eye lands on
      it rather than hunting the screen it scrolled to. */
   .work-entry {
