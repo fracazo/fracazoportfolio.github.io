@@ -598,6 +598,174 @@
     transform: scale(0.97);
   }
 
+  /* The floating way back (back-pill.tsx). Top left on wide screens; phones
+     get the tab bar below instead, except in the phone sheet, where the
+     pill sits at the bottom centre. While the reader scrolls
+     down it tucks into a 44px icon-only circle ([data-compact]); hover or
+     focus on desktop opens it again. The label collapses through a grid
+     track, so the pill's width animates without measuring. */
+  .back-pill-dock {
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    --pill-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+  .back-pill-dock--page {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+  }
+  .back-pill-dock--sheet {
+    position: absolute;
+    left: 50%;
+    bottom: var(--pill-bottom);
+    translate: -50% 0;
+    width: max-content;
+  }
+  @media (max-width: 767px) {
+    .back-pill-dock--page {
+      display: none;
+    }
+  }
+  .back-pill {
+    display: inline-flex;
+    height: 44px;
+    min-width: 44px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 9999px;
+    padding-inline: 16px 18px;
+    font-size: var(--text-meta);
+    color: var(--muted);
+    text-decoration: none;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease,
+      color 0.2s ease, transform 0.15s ease, gap 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      padding 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .back-pill:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .back-pill:focus-visible {
+    outline: none;
+    box-shadow: var(--glass-shadow), 0 0 0 2px var(--ring);
+  }
+  .back-pill-label {
+    display: grid;
+    grid-template-columns: 1fr;
+    transition: grid-template-columns 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 0.2s ease;
+  }
+  .back-pill-label > span {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .back-pill[data-compact] {
+    gap: 0;
+    padding-inline: 14px;
+  }
+  .back-pill[data-compact] .back-pill-label {
+    grid-template-columns: 0fr;
+    opacity: 0;
+  }
+  @media (hover: hover) {
+    .back-pill[data-compact]:is(:hover, :focus-visible) {
+      gap: 8px;
+      padding-inline: 16px 18px;
+    }
+    .back-pill[data-compact]:is(:hover, :focus-visible) .back-pill-label {
+      grid-template-columns: 1fr;
+      opacity: 1;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .back-pill,
+    .back-pill-label {
+      transition: none;
+    }
+  }
+
+  /* Phones' tab bar (phone-tab-bar.tsx): Home and Work in one glass capsule
+     at the bottom centre, the current section lit. Wide screens use the
+     Back/Home pill instead. Scrolling down tucks the labels away
+     ([data-compact]), the same grid-track collapse as the pill. */
+  .tab-bar {
+    display: none;
+  }
+  @media (max-width: 767px) {
+    .tab-bar {
+      position: fixed;
+      z-index: 40;
+      left: 50%;
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      translate: -50% 0;
+      /* left: 50% alone caps it at half the screen and squeezes the labels. */
+      width: max-content;
+      display: flex;
+      gap: 2px;
+      padding: 4px;
+      border-radius: 9999px;
+      view-transition-name: tab-bar;
+    }
+  }
+  .tab-bar-item {
+    display: inline-flex;
+    height: 44px;
+    min-width: 52px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 9999px;
+    padding-inline: 16px 18px;
+    font-size: var(--text-meta);
+    color: var(--muted);
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease,
+      gap 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      padding 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .tab-bar-item:hover {
+    text-decoration: none;
+  }
+  .tab-bar-item:active {
+    background-color: color-mix(in oklab, var(--text) 8%, transparent);
+  }
+  .tab-bar-item[aria-current="page"] {
+    color: var(--text);
+    background-color: color-mix(in oklab, var(--text) 10%, transparent);
+  }
+  .tab-bar-item:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ring);
+  }
+  .tab-bar-label {
+    display: grid;
+    grid-template-columns: 1fr;
+    transition: grid-template-columns 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 0.2s ease;
+  }
+  .tab-bar-label > span {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .tab-bar[data-compact] .tab-bar-item {
+    gap: 0;
+    padding-inline: 17px;
+  }
+  .tab-bar[data-compact] .tab-bar-label {
+    grid-template-columns: 0fr;
+    opacity: 0;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tab-bar-item,
+    .tab-bar-label {
+      transition: none;
+    }
+  }
+
   /* Framed thumbnail (work rows + row-list hover preview). The hairline is an
      inset shadow so it follows the rounded corners instead of clipping into a
      square like `outline` does, plus a drop that lifts light screenshots off
@@ -2934,48 +3102,30 @@
   }
 }
 
-/* Page transitions (components/page-transition.tsx). Forward: the new page
-   slides in from the right on the panel's curve and timing (.panel-enter),
-   the old one eases a quarter left and fades, as a stack pushes. Back runs
-   the same in reverse, with the leaving page kept on top. The rest of the
+/* Page transitions (components/page-transition.tsx). Pages are places, so
+   moving between them swaps in place: the old page fades out, the new one
+   fades in with a short rise. No direction and no stacking, the same both
+   ways; sliding over the page belongs to the sheet alone. The rest of the
    document (background) swaps without a crossfade. */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
 }
-::view-transition-new(.page-forward) {
-  animation: page-from-right 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+::view-transition-old(.page-swap) {
+  animation: page-out 160ms ease-out both;
 }
-::view-transition-old(.page-forward) {
-  animation: page-to-left 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
+::view-transition-new(.page-swap) {
+  animation: page-in 240ms cubic-bezier(0.2, 0.8, 0.2, 1) 60ms both;
 }
-::view-transition-new(.page-back) {
-  animation: page-from-left 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
-}
-::view-transition-old(.page-back) {
-  z-index: 1;
-  animation: page-to-right 340ms cubic-bezier(0.32, 0.72, 0, 1) both;
-}
-@keyframes page-from-right {
-  from {
-    transform: translateX(100%);
-  }
-}
-@keyframes page-to-left {
+@keyframes page-out {
   to {
-    transform: translateX(-25%);
     opacity: 0;
   }
 }
-@keyframes page-from-left {
+@keyframes page-in {
   from {
-    transform: translateX(-25%);
     opacity: 0;
-  }
-}
-@keyframes page-to-right {
-  to {
-    transform: translateX(100%);
+    transform: translateY(6px);
   }
 }
 @media (prefers-reduced-motion: reduce) {

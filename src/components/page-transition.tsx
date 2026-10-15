@@ -3,12 +3,11 @@
 import { ViewTransition, type ReactNode } from "react";
 
 /**
- * Moving between pages slides like the side panel opens: the new page comes
- * in from the right on the panel's own curve and timing, the old one eases
- * left. A link tagged `nav-back` (the Back pill) plays it in reverse. Every
+ * Moving between pages crossfades in place: pages are places, not layers,
+ * so nothing slides over anything (that motion belongs to the sheet). Every
  * page's shell wraps itself in this under one shared name, so the outgoing
  * and incoming pages animate as a pair; the motion lives in globals.css
- * under ::view-transition-*(.page-forward / .page-back).
+ * under ::view-transition-*(.page-swap).
  *
  * Only router navigations animate: the first load and the panel opening
  * (which pushes history itself) are left alone.
@@ -17,7 +16,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
   return (
     <ViewTransition
       name="page"
-      share={{ "nav-back": "page-back", default: "page-forward" }}
+      share="page-swap"
       default="none"
     >
       {children}

@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { BackToSite } from "./back-to-site";
+import { MoreWork } from "./more-work";
+import { caseStudyAnchors } from "./work-history";
 import { PlainShell } from "./plain-shell";
 
 /**
@@ -20,8 +22,9 @@ export function CaseStudyShell({
 }) {
   return (
     <PlainShell back={<BackToSite href={backHref} />}>
-      <div className="mx-auto grid w-full max-w-[800px] gap-16 pt-24 max-md:pt-20 [&>*]:min-w-0">
+      <div className="mx-auto grid w-full max-w-[800px] gap-16 pt-24 max-md:pt-10 [&>*]:min-w-0">
         {children}
+        <MoreWork anchors={caseStudyAnchors} />
       </div>
     </PlainShell>
   );

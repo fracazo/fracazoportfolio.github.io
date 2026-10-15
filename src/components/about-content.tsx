@@ -107,7 +107,7 @@ export function AboutContent({ back }: { back?: React.ReactNode } = {}) {
     <>
       {back}
       <section className="mx-auto w-full max-w-home">
-        <div className="pt-24 text-left max-md:pt-20">
+        <div className="pt-24 text-left max-md:pt-10">
           <h1 className="h1">About me</h1>
 
           <div className="writing-body">

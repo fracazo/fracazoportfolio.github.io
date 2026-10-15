@@ -17,11 +17,23 @@ function base({ size = 16, ...props }: IconProps): SVGProps<SVGSVGElement> {
   };
 }
 
+/* Filled, not outlined: Lucide's rounded house (soft corners, rounded roof
+   peak) drawn as a solid shape with the door cut out of it. Lucide itself
+   ships outlines only. */
 export function HomeIcon(props: IconProps) {
   return (
-    <svg {...base(props)}>
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <path d="M9 22V12h6v10" />
+    <svg {...base(props)} fill="currentColor" stroke="none">
+      <path d="M10.7 2.2a2 2 0 0 1 2.6 0l7.6 6.5A3 3 0 0 1 22 11v8a3 3 0 0 1-3 3h-3.5v-6.5a1.5 1.5 0 0 0-1.5-1.5h-4a1.5 1.5 0 0 0-1.5 1.5V22H5a3 3 0 0 1-3-3v-8a3 3 0 0 1 1.1-2.3z" />
+    </svg>
+  );
+}
+
+/* Filled to match HomeIcon: a rounded briefcase, the handle a solid loop. */
+export function WorkIcon(props: IconProps) {
+  return (
+    <svg {...base(props)} fill="currentColor" stroke="none">
+      <path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7h-2V5.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V7z" />
+      <path d="M5 7.5h14a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-7.5a3 3 0 0 1 3-3z" />
     </svg>
   );
 }

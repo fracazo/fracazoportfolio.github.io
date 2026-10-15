@@ -244,6 +244,10 @@ function Track({
         style={{ gridTemplateColumns: columns, height }}
         onPointerMove={(event) => {
           if (event.pointerType !== "mouse") return;
+          // The browser also reports a move when the line slides under a
+          // cursor that is standing still (the page arriving, a scroll).
+          // Only a hand on the mouse wakes the line.
+          if (!pointerOn.current && !event.movementX && !event.movementY) return;
           pointerOn.current = true;
           magnify(event.clientX);
         }}

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 export default function Work() {
   return (
     <PanelShell>
-      <PlainShell wide back={<BackToSite />}>
+      <PlainShell wide back={<BackToSite home />}>
         <WorkHistory
           footer={
             <div className="mx-auto w-full max-w-home">

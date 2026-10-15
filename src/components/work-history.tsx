@@ -445,6 +445,16 @@ export const earlierTimeline = timelineFor([
 ]);
 
 /* Icons for the short team lines under a role, in place of bullets. */
+/** Each case study's route mapped to its entry here, so a case study can
+    link back to its own place in the history (/work#entry). */
+export const caseStudyAnchors: Record<string, string> = Object.fromEntries(
+  roles.flatMap((role) =>
+    role.entries.flatMap((entry) =>
+      entry.work ? [[entry.work.href, entry.id]] : [],
+    ),
+  ),
+);
+
 const closingIcons = {
   idea: LightbulbIcon,
   people: UsersIcon,
@@ -601,7 +611,7 @@ function RoleSection({ role }: { role: Role }) {
 export function WorkHistory({ footer }: { footer?: ReactNode }) {
   return (
     <>
-      <header className="mx-auto w-full max-w-home pt-24 max-md:pt-20">
+      <header className="mx-auto w-full max-w-home pt-24 max-md:pt-10">
         <h1 className="h1">Work history</h1>
         {/* Same 12px under the title as the home hero: pull against .h1's
             32px bottom margin. */}

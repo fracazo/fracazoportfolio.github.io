@@ -12,7 +12,7 @@ import {
 } from "react";
 import { CheckIcon, CloseIcon, LinkIcon, ShareIcon } from "./icons";
 import { panelRegistry } from "./panel-registry";
-import { BackBar } from "./back-bar";
+import { BackPill } from "./back-pill";
 
 /**
  * From here up the panel is a sheet laid over the page, with a strip of the
@@ -240,26 +240,30 @@ export function PanelShell({ children }: { children: ReactNode }) {
               <SheetControls onClose={close} shareUrl={shareUrl} />
             </>
           )}
+          {!wide && (
+            // The phone sheet's way back floats at the bottom, in thumb
+            // reach, with Share beside it. First in the DOM so it comes
+            // first in the tab order, though it sits at the bottom.
+            <BackPill
+              onClick={close}
+              placement="sheet"
+              scroller={panelRef}
+              end={
+                shareUrl && (
+                  <ShareButton key={shareUrl} url={shareUrl} title={entry?.title} />
+                )
+              }
+            />
+          )}
           <div
             ref={panelRef}
             tabIndex={-1}
             className={
               wide
                 ? "panel-body panel-scroll h-full overflow-y-auto overscroll-contain px-10 pt-20 pb-16 outline-none"
-                : "panel-body h-full overflow-y-auto overscroll-contain px-6 outline-none"
+                : "panel-body h-full overflow-y-auto overscroll-contain px-6 pt-10 pb-28 outline-none"
             }
           >
-            {!wide && (
-              <BackBar
-                onClick={close}
-                className="-mx-6 px-6"
-                end={
-                  shareUrl && (
-                    <ShareButton key={shareUrl} url={shareUrl} title={entry?.title} />
-                  )
-                }
-              />
-            )}
             <Reveal key={active} enabled={wide}>
               {Content && <Content />}
             </Reveal>
@@ -326,7 +330,7 @@ function CopiedAnnouncement({ copied }: { copied: boolean }) {
  * over the content rather than in its flow, so the content can pass beneath
  * it into the blurred edge. Copy the entry's link, then close. Each explains
  * itself in a tooltip, since neither has a text label. (The full-screen
- * sheet uses the site's labelled Back pill instead.)
+ * sheet uses the site's floating Back pill instead.)
  */
 function SheetControls({
   onClose,
@@ -373,7 +377,7 @@ function CopyLinkButton({ url }: { url: string }) {
 }
 
 /**
- * The full-screen sheet's share control, at the far end of its Back bar.
+ * The full-screen sheet's share control, beside its floating Back pill.
  * Phones get the system share sheet (which carries Copy too); where there is
  * none, it copies the link instead.
  */
