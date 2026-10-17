@@ -22,7 +22,6 @@ export function GlqlContent({
       subtitle="GitLab Query Language"
       meta={[
         { label: "Role", value: "Product Designer" },
-        { label: "Year", value: "2024–25" },
         { label: "Project type", value: ["Experiment to product", "AI feature", "Design engineering"] },
         { label: "Platform", value: ["GitLab SaaS", "Self-managed"] },
       ]}
