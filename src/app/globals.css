@@ -1732,7 +1732,8 @@
     outline: 1px solid var(--img-outline);
     outline-offset: -1px;
   }
-  .case-study-section code {
+  .case-study-section code,
+  .cs-intro code {
     font-family: var(--font-mono);
     font-size: 0.9em;
     background: var(--panel-2);
@@ -1740,6 +1741,9 @@
     border-radius: 4px;
     padding: 1px 5px;
     color: var(--text);
+    /* A snippet that wraps keeps its padding and rounded ends on each line */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
   .notice-box {
     display: flex;
@@ -3368,6 +3372,12 @@
   max-width: 60ch;
   margin: 0;
   text-wrap: pretty;
+}
+.cs-intro p {
+  margin: 0;
+}
+.cs-intro p + p {
+  margin-top: 1em;
 }
 .cs-story > .case-study-content > .case-study-main > .case-study-section:first-of-type {
   padding-top: 32px;

@@ -48,11 +48,15 @@ export function GlqlContent({
 
         {breadcrumb}
 
-          <p className="cs-intro">GitLab Query Language (GLQL) was powerful, but you had to write queries by hand to use it. I made it work for people who had only ever used filters, without taking any power away from the experts. The end goal was simple to say: describe the view you want in plain words, and let AI write the query for you.</p>
-
+          <div className="cs-intro">
+            <p>A query language is a small, structured way to ask a system for data. You write a short sentence the computer can read exactly, it searches its records, and it gives you back only what matches.</p>
+            <p>You already use the idea without writing code. Filtering Gmail to &ldquo;unread, from my boss, this week&rdquo; is a query, and the filter chips are a visual way to build it. A query language is the written form of those filters, like <code>from:boss is:unread newer_than:7d</code> in Gmail&rsquo;s search&nbsp;bar.</p>
+            <p>SQL is the best known one, and most databases speak it. GitLab Query Language (GLQL) is GitLab&rsquo;s own, for asking about issues, epics and merge requests.</p>
+          </div>
 
           <div className="case-study-section">
             <h2 id="glql-challenge">The challenge</h2>
+            <p>GLQL was powerful, but you had to write queries by hand to use it. I made it work for people who had only ever used filters, without taking any power away from the experts. The end goal was simple to say: describe the view you want in plain words, and let AI write the query for you.</p>
             <p>GLQL started as an experimental feature and a strong proof of concept. It was a technical solution designed for technical people, and it worked. The job it was meant to serve was easy to say and hard to do: let someone track work progress without stitching it together by hand across boards, milestones, and issues.</p>
             <p>Many of the people with that job were not the people it was first built for. They were used to filters and boards, not writing code, and asking them to start from an empty code block was a big step.</p>
             <p>The same tool had to serve two people with opposite instincts. A project manager who never wants to see a line of code, and a power user who expects a query to behave exactly like the ones they already write. Most query tools pick one of those people and lose the other.</p>
@@ -60,7 +64,7 @@ export function GlqlContent({
 
           <div className="case-study-section">
             <h2 id="glql-vision">The vision</h2>
-            <p>Where we wanted to end up: you describe what you want to see in plain words, GitLab Duo (GitLab&apos;s AI assistant) writes the query, and the live view appears in front of you. If you want to, you open the query and edit it. Nobody has to learn the language to get value from it, and the people who already know it keep full control.</p>
+            <p>Where we wanted to end up: you describe what you want to see in plain words, GitLab Duo (GitLab&rsquo;s AI assistant) writes the query, and the live view appears in front of you. If you want to, you open the query and edit it. Nobody has to learn the language to get value from it, and the people who already know it keep full control.</p>
             <p>None of that was possible without the language. A query language is what let one view pull work from across groups and projects, and it was the only way to trial the feature at all. It was also what the AI would eventually write, so it had to be one a person could read and fix.</p>
             <p>The first release tested one narrow question. Can people query issues from other projects and see them as a table or a list? If the answer was yes, everything else in the vision had something to stand on.</p>
             <p>From there the work went in three steps: make the language readable, make it easy to start, then let people ask for what they want. The rest of this case study follows those steps.</p>
@@ -69,14 +73,14 @@ export function GlqlContent({
           <div className="case-study-section">
             <h2 id="glql-role">My role</h2>
             <p>I owned four products across the Knowledge group as its designer, embedded with engineering. The GLQL team had built something powerful quickly, and research had not been part of how it got there yet. So my first job was not a screen. It was making design useful fast enough that it sped the team up instead of slowing it down.</p>
-            <p>My way in was a UX scorecard run, GitLab&apos;s standing process where a designer walks a product&apos;s main jobs as a new user would and grades the experience. Scoring GLQL that way turned my concerns into an issue list the team could work through line by line, and it is what I took to the PM to make the case for proper research.</p>
+            <p>My way in was a UX scorecard run, GitLab&rsquo;s standing process where a designer walks a product&rsquo;s main jobs as a new user would and grades the experience. Scoring GLQL that way turned my concerns into an issue list the team could work through line by line, and it is what I took to the PM to make the case for proper research.</p>
           </div>
 
           <div className="case-study-section">
             <h2 id="glql-research">Research</h2>
             <p>I ran problem validation with our researcher to confirm the job was real, then a two-phase study on the part that worried me most: the syntax. Twelve participants, half internal, half external. In the first phase they wrote real queries against live documentation. In the second they compared three different syntax styles.</p>
             <p>Watching them write was where the design direction came from. People did not read their query before running it. They typed, hit an error, and used the error message to find their way. When the message was vague, they were stuck. The error messages were the navigation, not the docs.</p>
-            <p>And the finding that changed the team&apos;s mind: plain-language syntax was easier for non-technical users than a SQL-style one, because the people who knew SQL arrived expecting things our language could not do. Familiarity was a trap, not a shortcut.</p>
+            <p>And the finding that changed the team&rsquo;s mind: plain-language syntax was easier for non-technical users than a SQL-style one, because the people who knew SQL arrived expecting things our language could not do. Familiarity was a trap, not a shortcut.</p>
 
             <figure className="glql-video-figure">
               <video controls playsInline preload="metadata" className="glql-proto-video">
@@ -109,7 +113,7 @@ export function GlqlContent({
               <div className="glql-syntax-card">
                 <div className="glql-syntax-label">Option 3: SQL-style syntax</div>
                 <img className="glql-syntax-img" src="/images/glql-syntax-sql.png" width={478} height={164} alt={`SQL-style GLQL: SELECT state, title, labels("workflow") WHERE project = "gitlab-org/gitlab" AND milestone = "17.4" AND label = "group::knowledge" DISPLAY AS table`} />
-                <p className="glql-syntax-note">Full SQL-adjacent syntax. Familiar to data-literate users but risks importing SQL expectations that GLQL doesn&apos;t fully support.</p>
+                <p className="glql-syntax-note">Full SQL-adjacent syntax. Familiar to data-literate users but risks importing SQL expectations that GLQL doesn&rsquo;t fully support.</p>
               </div>
             </div>
           </div>
@@ -130,12 +134,12 @@ export function GlqlContent({
               </video>
             </figure>
 
-            <p>It also showed me what the last step had to beat. If people already started from someone else&apos;s example, a prompt that writes the example for you was the natural next move.</p>
+            <p>It also showed me what the last step had to beat. If people already started from someone else&rsquo;s example, a prompt that writes the example for you was the natural next move.</p>
           </div>
 
           <div className="case-study-section">
             <h2 id="glql-discoverability">Getting it found</h2>
-            <p>Even a strong feature has to be found before it gets used. I led the discoverability work: surfacing the feature inside the editor at the moment someone is writing, getting it placed as a primary item in the release post, and featuring it in GitLab&apos;s What&apos;s New. Adoption grew about a third in the first weeks after launch alongside that push.</p>
+            <p>Even a strong feature has to be found before it gets used. I led the discoverability work: surfacing the feature inside the editor at the moment someone is writing, getting it placed as a primary item in the release post, and featuring it in GitLab&rsquo;s What&rsquo;s New. Adoption grew about a third in the first weeks after launch alongside that push.</p>
 
             <figure className="glql-figure-pair">
               <div className="glql-figure-pair-grid">
@@ -149,7 +153,7 @@ export function GlqlContent({
           <div className="case-study-section">
             <h2 id="glql-shipping">Shipping in code</h2>
             <p>I did not hand off a spec and walk away. I worked in the same repository as the engineers, through the same review, and merged to production myself.</p>
-            <p>One example: an empty embedded view showed no count at all, so you could not scan a page of views and tell which ones had no results without opening each one. The cause was a shared component used in over fifty places that could only show a zero when it also had an icon. I fixed it without breaking the other places, wrote the tests, and shipped it. Being held to the same bar as the engineers is what earned the team&apos;s trust.</p>
+            <p>One example: an empty embedded view showed no count at all, so you could not scan a page of views and tell which ones had no results without opening each one. The cause was a shared component used in over fifty places that could only show a zero when it also had an icon. I fixed it without breaking the other places, wrote the tests, and shipped it. Being held to the same bar as the engineers is what earned the team&rsquo;s trust.</p>
 
             <figure className="glql-beforeafter-figure">
               <div className="glql-beforeafter">
@@ -176,7 +180,7 @@ export function GlqlContent({
             <h2 id="glql-duo-embed">Step three: ask for the view, keep the query</h2>
             <p>The readable syntax served both audiences, but it was still writing. Someone new to it had to know which fields existed and how to combine them before they saw anything useful.</p>
             <p>The view builder I designed lowered that barrier. It opened on a live result, so you saw your work before touching a single setting. But assembling a view was still friction.</p>
-            <p>When GitLab rolled out Duo&apos;s AI agents, the vision became buildable. I brought Duo into the view builder and called it Duo embed. You pick it from the editor&apos;s insert menu and describe the view you want in plain language, like &quot;show me issues and epics with the Brouns label across my most important projects.&quot; Duo builds the GLQL query and renders the live table in place, before you insert anything.</p>
+            <p>When GitLab rolled out Duo&rsquo;s AI agents, the vision became buildable. I brought Duo into the view builder and called it Duo embed. You pick it from the editor&rsquo;s insert menu and describe the view you want in plain language, like &quot;show me issues and epics with the Brouns label across my most important projects.&quot; Duo builds the GLQL query and renders the live table in place, before you insert anything.</p>
 
             <figure className="glql-video-figure">
               <video controls playsInline preload="metadata" className="glql-proto-video">
@@ -205,7 +209,7 @@ export function GlqlContent({
             <p>Each next step came out of something the first release or the research taught us.</p>
             <ul>
               <li><strong>More than issues.</strong> The first release proved people wanted to pull issues from other projects into one view. The same need applied to the rest of their work, like epics, so the next step was widening what a view could show.</li>
-              <li><strong>Start from a prompt, not a blank query.</strong> People already began from someone else&apos;s example. Letting Duo write that example for them was the shortest path to a first working view.</li>
+              <li><strong>Start from a prompt, not a blank query.</strong> People already began from someone else&rsquo;s example. Letting Duo write that example for them was the shortest path to a first working view.</li>
               <li><strong>Error messages that guide.</strong> People found their way by running a query and reading the error. Clearer errors help everyone who still writes queries by hand.</li>
               <li><strong>The query always stays editable.</strong> An AI answer has to be something you can check and fix, and power users had to keep the control they came for.</li>
             </ul>
