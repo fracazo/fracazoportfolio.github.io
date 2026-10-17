@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { WikiContextualCommentsContent } from "@/components/case-studies/wiki-contextual-comments";
 
-const title = "Wiki Contextual Comments - Alex Fracazo";
+const title = "Wiki contextual comments: tying discussion to the text - Alex Fracazo";
 const description =
-  "Designing contextual discussions for GitLab Wiki, positioning it as a competitive alternative to Confluence and Notion for async collaboration.";
+  "Comments on GitLab Wiki pages had no link to the text they discussed. I designed contextual comments without the clutter, from problem to engineering handoff.";
 
 export const metadata: Metadata = {
   title,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function WikiContextualComments() {
   return (
-    <CaseStudyShell>
+    <CaseStudyShell wide>
       <WikiContextualCommentsContent />
     </CaseStudyShell>
   );

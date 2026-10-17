@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
+import { CaseStudyLayout } from "@/components/case-study-layout";
 import { ExternalLinkIcon } from "@/components/icons";
+import { TanukiMark } from "@/components/scene-marks";
 
 /**
  * Body of the wiki-contextual-comments case study, without the route chrome.
@@ -14,223 +16,119 @@ export function WikiContextualCommentsContent({
   breadcrumb?: ReactNode;
 } = {}) {
   return (
+    <CaseStudyLayout
+      icon={<TanukiMark size={36} />}
+      title="Wiki contextual comments"
+      subtitle="Tying discussion to the text, without the clutter"
+      meta={[
+        { label: "Role", value: "Product Designer" },
+        { label: "Project type", value: "New feature" },
+        { label: "Platform", value: ["GitLab SaaS", "Self-managed"] },
+      ]}
+      chapters={[
+        { id: "wk-problem", label: "Comments with no context" },
+        { id: "wk-research", label: "What others got wrong" },
+        { id: "wk-approaches", label: "The layout problem" },
+        { id: "wk-solution", label: "A hybrid sidebar" },
+        { id: "wk-critique", label: "Decisions in critique" },
+        { id: "wk-handoff", label: "Through to handoff" },
+      ]}
+      hero={
+        <img src="/images/wiki-comments-sidebar.png" width={2896} height={2000} alt="A GitLab wiki page with contextual comments: highlighted passages in the text link to threaded discussions in a comments panel on the right" />
+      }
+    >
       <section className="section case-study-content">
         <div className="case-study-main">
 
         {breadcrumb}
 
-          <header className="case-header">
-            <h1 className="case-title">Wiki Contextual Comments</h1>
-            <div className="case-metadata-card">
-              <div className="metadata-content">
-                <div className="metadata-item">
-                  <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M6 3.75A2.75 2.75 0 0 1 8.75 1h2.5A2.75 2.75 0 0 1 14 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 0 1 6 4.193V3.75Zm6.5 0v.325a41.622 41.622 0 0 0-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25ZM10 10a1 1 0 0 0-1 1v.01a1 1 0 0 0 1 1h.01a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1H10Z" clipRule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 0 1-9.274 0C3.985 17.585 3 16.402 3 15.055Z"/></svg>
-                  <div className="metadata-text">
-                    <p className="metadata-label">Product</p>
-                    <p className="metadata-value">GitLab Wiki</p>
-                  </div>
-                </div>
-                <div className="metadata-item">
-                  <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clipRule="evenodd"/></svg>
-                  <div className="metadata-text">
-                    <p className="metadata-label">Platform</p>
-                    <p className="metadata-value">GitLab Web (SaaS &amp; Self-managed)</p>
-                  </div>
-                </div>
-                <div className="metadata-item">
-                  <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
-                  <div className="metadata-text">
-                    <p className="metadata-label">Role</p>
-                    <p className="metadata-value">Product Designer · Knowledge group</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p className="case-intro">GitLab Wiki had comments, but they sat at the bottom of the page with no connection to the text they discussed, and the real conversations happened in Slack. I designed a commenting system that ties a discussion to the exact line it refers to, without the cluttered pages Confluence users complain about. The designs are now in engineering development.</p>
-          </header>
-
+          <p className="cs-intro">GitLab Wiki had comments, but they sat at the bottom of the page with no link to the text they discussed, so the real conversations happened in Slack. I designed a way to tie a discussion to the exact passage it refers to, without the cluttered pages Confluence users complain about, and took it from problem to engineering handoff.</p>
 
           <div className="case-study-section">
-            <h2>My Role and Context</h2>
-
-            <h3>Starting from a spike</h3>
-            <p>This work began as a product design spike, issue #509789, created by the PM to scope the problem before committing to a full design cycle. The spike existed because I had argued for it. My UX scorecard run on Wiki, GitLab's structured evaluation of how well a product's main jobs hold up, had flagged how hard it was to follow comments on long content, and a scan of the main competitors showed every one of them already had contextual comments. I took both findings to the PM, and that is what put the problem on the roadmap. I was assigned the spike and took ownership of the design direction from day one. There was no brief beyond the problem statement. I had to define the constraints, deepen the competitor research, propose the architecture, and get cross-functional alignment, all while keeping the PM and two senior engineers in the loop asynchronously.</p>
-
-            <p>The challenge wasn't just designing a commenting feature. It was deciding where comments should live in an interface that already had comments at the bottom, a sidebar navigation on the right, and a full-width reading area. Adding a new discussion layer to this without breaking the existing mental model required thinking about the wiki layout as a whole, not just as a UI component.</p>
-
-            <h3>The broader wiki context</h3>
-            <p>This project ran in parallel with the Wiki Sidebar Redesign, where I was also rethinking how the sidebar navigation worked. Moving the sidebar from right to left was partly motivated by this project. A left-positioned navigation would free up the right side of the screen for a comments panel, making the two projects architecturally connected. I was designing both at the same time, which required keeping a consistent layout vision across separate issues and separate engineering conversations.</p>
+            <h2 id="wk-problem">Comments with no context</h2>
+            <p>I put this problem on the roadmap. My UX scorecard run on Wiki, GitLab&rsquo;s structured check of how well a product&rsquo;s main jobs hold up, showed how hard it was to follow comments on long pages, and a scan of the main competitors showed every one of them already had contextual comments. I took both to the PM, who opened a design spike, and I owned the design from there: the constraints, the research, the architecture and the alignment, working asynchronously with the PM and two senior engineers.</p>
+            <ul>
+              <li><strong>No context.</strong> A note like &ldquo;the third paragraph is unclear&rdquo; left the author hunting for what it meant.</li>
+              <li><strong>Decisions lived elsewhere.</strong> Real discussions happened in Slack or email, cut off from the document they shaped.</li>
+              <li><strong>No status.</strong> Nothing showed whether feedback had been dealt with, so comments sat at the bottom forever.</li>
+            </ul>
+            <p>The team&rsquo;s goal was to make Wiki a real Confluence alternative for teams already in GitLab, and contextual comments were table stakes for that. The question wasn&rsquo;t whether to build them, but how to build them without the problem Confluence users report most: inline comments piling up until the page is a mess to read.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Problem Definition</h2>
-
-            <h3>Where discussions were actually happening</h3>
-            <p>The existing wiki experience had a general comments section at the bottom of every page. In practice, this created several problems:</p>
-
+            <h2 id="wk-research">What the others got wrong</h2>
+            <p>The first scan only asked whether competitors had contextual comments. Before sketching, I looked at how they handle contextual and general comments together.</p>
             <ul>
-              <li>Comments at the bottom had no connection to the specific text they referred to. A reviewer would leave a note like "the third paragraph is unclear" and the author had to hunt for the context.</li>
-              <li>Substantive discussions about content happened in Slack or email, creating a permanent disconnect between the decision and the document it informed.</li>
-              <li>There was no way to track whether a piece of feedback had been addressed or resolved. Comments lived at the bottom indefinitely with no status.</li>
+              <li><strong>Google Docs and Notion</strong> have excellent inline comments: highlight text and a thread opens in a side panel. But neither has page-level comments, and GitLab Wiki already had them in wide use.</li>
+              <li><strong>Confluence</strong> is the one tool with both. On busy or public pages, the inline highlights pile up and the page gets noisy. That was the failure to avoid.</li>
+              <li><strong>GitLab merge requests</strong> already had inline comments on code. The question was how to adapt that to prose, where you anchor to a selection rather than a line.</li>
             </ul>
-
-            <p>This wasn't a niche problem. It was a core reason teams used Confluence or Notion instead of GitLab Wiki for collaborative documentation. Both products had solved inline commenting years earlier.</p>
-
-            <h3>The competitive gap</h3>
-            <p>GitLab's positioning for the Knowledge team was to make Wiki a genuine Confluence alternative for teams already working in GitLab. Contextual comments were a table-stakes feature for that positioning. The question wasn't whether to build them. It was how to build them without the problems that Confluence users consistently reported.</p>
-
-            <p>The most cited complaint about Confluence's inline comments: they made pages visually messy, especially on public-facing or high-traffic documentation. Comments accumulated over time, could no longer be resolved if the underlying text changed, and created a fragmented reading experience for anyone who hadn't participated in the discussion. That was the problem to avoid.</p>
+            <p>The products with the best contextual comments had no general comments, and the only one with both had the messy-page problem. GitLab needed both, without that problem.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Design Explorations</h2>
-
-            <h3>Competitive analysis</h3>
-            <p>The scan that helped put this on the roadmap had answered a yes-or-no question, whether the main competitors had contextual comments at all. Before sketching anything, I went deeper and mapped how five products handled the intersection of contextual and general comments. The key distinction I was looking for: which products had both, and how did they manage the tension between them.</p>
-
-            <ul>
-              <li><strong>Google Docs and Notion:</strong> Excellent inline commenting experience. You highlight text, a comment icon appears, and the thread opens in a right-side panel anchored to that text. Clean and intuitive. The limitation: neither product has a general comments section. All discussions are contextual. That doesn't work for GitLab Wiki, where page-level discussions already exist and are widely used.</li>
-              <li><strong>Confluence:</strong> The only major tool that combines both contextual and general comments. Contextual comments appear as highlighted text inline, with threads accessible via click. General comments live at the bottom. The problem I found in user research and public reports: on high-traffic or public-facing pages, the inline highlights accumulate and make the page feel messy. Multiple people commenting simultaneously creates visual noise that's hard to navigate. This was the primary failure mode I was designing to avoid.</li>
-              <li><strong>Medium:</strong> The product that first made contextual comments mainstream. When you highlight text, a comment icon appears inline and the comment is anchored to that passage as you read. It was a widely celebrated interaction when it launched. Medium's approach is clean because it has no general comment section competing for attention, but it was the clearest reference for what the interaction should feel like.</li>
-              <li><strong>GitLab Merge Requests:</strong> GitLab already had inline commenting on code. The familiar pattern of selecting a line and adding a comment existed in the product. The question was how to adapt that for prose content in a wiki, where the anchor is a text selection rather than a line number.</li>
-            </ul>
-
-            <p>The core insight from the analysis: the products with the best contextual comment UX (Google Docs, Notion, Medium) had no general comment section. The only product with both (Confluence) had the messy page problem. GitLab needed both and couldn't afford the Confluence problem. That framed the design challenge clearly.</p>
-
-            <h3>Three approaches explored</h3>
-            <p>I recorded a 13-minute walkthrough presenting the full competitive analysis and three design directions to the team for async review and feedback:</p>
-
+            <h2 id="wk-approaches">Three approaches, one layout problem</h2>
+            <p>I recorded a walkthrough of the research and three directions for the team to review asynchronously.</p>
             <div className="wiki-cc-video">
               <div className="wiki-cc-video-embed">
                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/k_K77qX_lNw" title="Wiki Contextual Comments: Design Explorations" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
-              <p className="glql-video-caption">13-minute walkthrough covering the competitive analysis, three design explorations, and the proposed layout direction. Shared in the issue for async review by the PM and engineers.</p>
+              <p className="glql-video-caption">My 13-minute walkthrough covering the competitive analysis, three design explorations, and the proposed layout direction. Shared in the issue for async review by the PM and engineers.</p>
             </div>
-
-            <p><strong>Approach 1: Simple integration.</strong> Select text, a comment button appears, and clicking it scrolls the page to the general comments section with the selected text pre-filled as context. The simplest implementation path. Rejected because on long wiki pages, the auto-scroll behaviour was jarring and broke the reading flow. More importantly, it didn't actually give users contextual comments while reading, the comment lived at the bottom, disconnected from the content it referred to. That defeated the purpose.</p>
-
-            <p><strong>Approach 2: Floating comments (Google Docs style).</strong> Contextual comments appear as floating threads anchored next to the selected text, with the same thread also visible in the general comments section at the bottom. Rejected because it created direct duplication: the same comment appeared in two places simultaneously. This created the exact Confluence problem: a messy, repetitive page where the same discussions surfaced multiple times. It also raised an unresolved question about which surface was the source of truth.</p>
-
-            <p><strong>Approach 3: Tabbed sidebar.</strong> A right-side sidebar with tabs for Pages, Table of Contents, and Comments. Contextual comments would live in the Comments tab. Rejected because comments were hidden by default. Users arriving at a page would have no indication that a discussion was already in progress. The discoverability was too low, and the risk of duplicate discussions being started in Slack or email remained high.</p>
-
-            <h3>The layout problem underlying all three</h3>
-            <p>All three approaches failed for the same underlying reason: the existing wiki layout had no dedicated, always-visible space for comments. The table of contents occupied the right side of the page, leaving nowhere to surface contextual discussions without either hiding them or duplicating them. Solving the comment UX well required first solving the layout. That realisation shifted the scope of the project from a feature design to a structural one.</p>
+            <ul>
+              <li><strong>Jump to the bottom.</strong> Selecting text scrolled you to the general comments with the quote filled in. Simple to build, but the jump broke reading, and the comment still lived far from its text.</li>
+              <li><strong>Floating threads, Google Docs style,</strong> also listed at the bottom. The same comment in two places: exactly the Confluence clutter, plus no clear source of truth.</li>
+              <li><strong>A tabbed sidebar</strong> with pages, contents and comments. Comments were hidden by default, so nobody would know a discussion existed.</li>
+            </ul>
+            <p>All three failed for the same reason: the page had no always-visible space for comments, because the table of contents took the right side. Solving comments meant solving the layout first. That turned a feature into a structural change, and it connected to the Wiki sidebar redesign I was running at the same time, where moving the navigation from right to left would free that space.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Proposed Solution</h2>
-
-            <h3>A hybrid sidebar approach</h3>
-            <p>The proposed solution restructured the wiki page layout to create a dedicated right-side comments panel. The key elements of the approach:</p>
-
+            <h2 id="wk-solution">A hybrid sidebar</h2>
+            <p>The proposal restructured the page around a comments panel on the right:</p>
             <ul>
-              <li><strong>Sidebar repositioned to the left.</strong> Moving the wiki page navigation from right to left freed the right side of the screen for comments without adding a third column or compressing the reading area.</li>
-              <li><strong>Minimal contextual indicators in the content.</strong> Rather than rendering full comment threads inline (the Confluence approach), a small indicator appears next to highlighted text. One floating comment bubble per highlight, not a full thread. The content stays readable.</li>
-              <li><strong>Clicking the indicator navigates to the thread in the sidebar.</strong> The full thread lives in the right-side comments panel alongside the document. This gave users the thread context they needed without the visual clutter of inline rendering.</li>
-              <li><strong>General comments and contextual comments unified in one panel.</strong> Rather than creating two separate comment surfaces, both types of comments appeared in the same right-side panel, with contextual comments anchored to their source text and general comments at the bottom. One source of truth for all page discussions.</li>
+              <li><strong>Navigation moves left,</strong> freeing the right side without a third column or a narrower reading area.</li>
+              <li><strong>A small marker in the text,</strong> one per highlight, instead of whole threads inline. The page stays readable.</li>
+              <li><strong>The marker opens its thread in the panel,</strong> next to the document.</li>
+              <li><strong>One panel for every comment.</strong> Contextual and general comments share one feed: one source of truth for the page.</li>
             </ul>
+            <p>I named the trade-off to the PM up front: reaching a thread takes one more click than fully inline comments. We agreed it was worth it to protect reading, especially on public pages.</p>
+          </div>
 
-            <p>The tradeoff I acknowledged directly with the PM: navigating to the thread required one extra click compared to a purely inline model. The team agreed this was an acceptable tradeoff to preserve the reading experience, especially for public-facing wiki pages.</p>
-
-            <img src="/images/wiki-comments-sidebar.png" alt="GitLab wiki page with contextual comments: highlighted passages in the content link to threaded discussions in a dedicated right-side comments panel" />
-            <p className="img-caption">The hybrid approach in the product: highlighted passages anchor to threads in a unified right-side comments panel, with general comments in the same feed.</p>
-
-            <h3>MVC scope</h3>
-            <p>After the design critique session (linked below), we aligned on a clear scope for the MVC, the minimal viable change:</p>
-
-            <ul>
-              <li>Sidebar comments panel (right side)</li>
-              <li>Contextual indicators on highlighted text</li>
-              <li>Centralised comments view showing all discussions in one space</li>
-              <li>Resolved thread status indicators</li>
-              <li>Handling for deleted or edited content within comment threads</li>
-            </ul>
-
-            <p>Floating comments alongside the text (a Phase 2 vision) were explicitly scoped out of the MVC after discussion with the PM and the lead engineer. I documented this decision in the issue so there was no ambiguity about what was in scope for the first engineering sprint.</p>
-
-            <h3>Design critique session</h3>
-            <p>I structured the session with a clear agenda: competitive reference, two triggering options, the floating vs. sidebar question, comment duplication, and resolved thread handling. The session produced several concrete decisions.</p>
-
+          <div className="case-study-section">
+            <h2 id="wk-critique">Decisions in critique</h2>
+            <p>I ran a design critique with a clear agenda: how to start a comment, floating versus sidebar, duplication, and resolved threads.</p>
             <div className="wiki-cc-video">
               <div className="wiki-cc-video-embed">
                 <iframe width="100%" height="100%" src="https://www.youtube.com/embed/67UZDRRE7gQ" title="Design Critique: Wiki Sidebar and Contextual Comments" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
               </div>
               <p className="glql-video-caption">Full design critique session recording. Covers triggering mechanisms, floating vs. sidebar placement, comment duplication, resolved threads, orphaned comments, and edit mode integration.</p>
             </div>
-
-            <h3>Key decisions from the session</h3>
-
-            <p><strong>Triggering mechanism: text selection wins over line hover.</strong> I presented two options. Option 1 showed a comment button when text was selected. Option 2 adapted GitLab's MR inline comment pattern, showing an icon on line hover. The team aligned on Option 1. Line hover worked well for code because comments anchored to a whole line, but for prose you want to select any fragment of text, as granular as a single word. Text selection was more specific, matched Google Docs, and was easier to discover.</p>
-
-            <p><strong>One unified comment panel, no duplication.</strong> I asked directly whether contextual comments should also appear in the general comments section at the bottom. The discussion was substantive. The team landed on a single centralised panel where everything lived together, with contextual comments showing their quoted text anchor and general comments appearing at the bottom of the same feed. The distinction between "inline" and "general" was removed. As one engineer put it: "Just everything is a comment. If it has a quote block attached to it, it's a line-level comment. If it doesn't, it's a doc comment." I synthesised that into the design direction immediately.</p>
-
-            <p><strong>Sidebar first, floating comments as a future phase.</strong> The team was genuinely excited by the floating comment explorations I showed in Figma, but we reasoned through the tradeoffs together. Floating comments have a specific advantage: you can see the comment in context while reading. But they also have real problems: multiple comments on adjacent words become hard to distinguish, they don't work when you're in edit mode since they'd be obscured by the editor, and they add significant engineering complexity. The sidebar gave us a single consistent location, worked in both read and edit modes, and was the right place to start. I proposed adding the floating concept to the design system as a documented future direction, which meant engineering could plan for it without it blocking the MVC.</p>
-
-            <p><strong>Auto-collapsing the wiki nav.</strong> I proposed that when a user opens the comments panel, the wiki page navigation collapses automatically to free up space. The reasoning was simple: if you are interacting with the comments sidebar, there is no realistic scenario where you also need the page navigation open at the same time. The team agreed. Users could still manually reopen the nav if needed, but the default behaviour would keep the layout clean.</p>
-
-            <p><strong>Orphaned comments.</strong> I raised the edge case of what happens when someone comments on a specific passage and the author later edits or deletes that text. I came prepared with how Google Docs handles it, surfacing orphaned comments with a visual indicator. The team agreed GitLab should handle it similarly: keep the comment visible in the panel with the original quoted text preserved, and add a status indicator to show the anchor is gone. This was captured as a design requirement for the MVC.</p>
-
-            <img src="/images/wiki-comments-orphaned.png" alt="Comments panel showing an 'Original content deleted' indicator on an orphaned thread, and a collapsed resolved threads section" />
-            <p className="img-caption">Edge cases in the panel: an orphaned thread keeps its record behind an "Original content deleted" indicator, and resolved threads collapse at the bottom.</p>
-
-            <p><strong>Resolved threads.</strong> The team aligned on following the design management pattern: resolving a thread removes the highlight from the content and moves the thread to a collapsed "resolved" section in the panel. This gave authors a clear way to close out feedback without losing the record.</p>
-
-            <p>At the end of the session I committed to mocking up the unified comment panel, the edit mode interaction, and the floating comment concept as a documented future vision. All three were delivered in the subsequent design iteration.</p>
-
-
+            <p><strong>Select text, don&rsquo;t hover a line.</strong> GitLab&rsquo;s code review shows a comment icon when you hover a line, which suits code. For prose you want to pick any fragment, down to a single word, so text selection won. It&rsquo;s also what people know from Google Docs.</p>
+            <p><strong>Everything is a comment.</strong> I asked whether contextual comments should also appear at the bottom. We landed on one feed, and an engineer put it best: &ldquo;Just everything is a comment. If it has a quote block attached to it, it&rsquo;s a line-level comment. If it doesn&rsquo;t, it&rsquo;s a doc comment.&rdquo; That became the design direction.</p>
+            <p><strong>Sidebar first, floating later.</strong> The team liked my floating-comment explorations, but floating threads get hard to tell apart on nearby words, get hidden by the editor in edit mode, and add a lot of engineering work. The sidebar works in both modes, so it came first, and I documented floating comments as a future direction so engineering could plan for them.</p>
+            <p><strong>Collapse the navigation when comments open.</strong> If you&rsquo;re in the comments, you don&rsquo;t need page navigation at the same time, so it collapses by default and can still be reopened.</p>
+            <p><strong>Orphaned and resolved threads.</strong> When the commented text is edited away, the thread stays in the panel with its original quote and a marker that the content is gone, as Google Docs does. Resolving a thread removes its highlight and moves it to a collapsed section, so feedback can be closed without losing the record.</p>
+            <img src="/images/wiki-comments-orphaned.png" alt="The comments panel with an Original content deleted marker on an orphaned thread, and resolved threads collapsed at the bottom" />
+            <p className="img-caption">Edge cases in the panel: an orphaned thread keeps its record behind an &ldquo;Original content deleted&rdquo; marker, and resolved threads collapse at the bottom.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Cross-functional Process</h2>
-
-            <h3>Working async with engineers</h3>
-            <p>This project involved two senior engineers with strong opinions about the implementation: a senior frontend engineer with deep familiarity with the wiki frontend, and a second senior engineer who raised early concerns about comment state management.</p>
-
-            <p>The frontend engineer had been thinking about the wiki layout problem independently and came to the design critique with a concrete suggestion: auto-collapse the super sidebar when a wiki page is opened and position a wiki-specific sidebar on the left. Their thinking aligned closely with my own direction, which accelerated the layout decision significantly. Getting alignment from an engineer who had already thought through the constraints saved multiple back-and-forth cycles.</p>
-
-            <p>The second engineer asked whether the new comment box should open in the sidebar or as a modal when the floating comment button was clicked. The frontend engineer weighed in directly in the issue thread, noting that a modal was slightly easier from an engineering standpoint but that building a shared store was a better long-term investment regardless. The discussion concluded in the issue without needing a meeting, and the design decision was made based on the ultimate UX vision rather than the short-term engineering convenience.</p>
-
-            <h3>Handling hard questions</h3>
-            <p>Two significant edge case questions came up during the cross-functional review:</p>
-
-            <p><strong>What happens when the original text is deleted?</strong> If a user comments on a specific paragraph and the author then deletes or rewrites that paragraph, the contextual anchor breaks. This is a known problem in Google Docs, which surfaces orphaned comments with a warning. I documented the GitLab approach for this in the designs: orphaned comments surface in the centralised view with a "content removed" indicator, giving users visibility without breaking the reading experience.</p>
-
-            <p><strong>Do contextual comments work in both the markdown and rich text editors?</strong> The PM flagged this as a requirement for a complete solution. I scoped the edit mode designs into a separate issue (#560758) to keep the MVC focused while ensuring the problem was captured and tracked. The two issues were linked so engineering could plan both in sequence.</p>
-
-            <h3>Shipping the handoff</h3>
-            <p>After the PM reviewed the complete designs and left comments, I iterated, updated the design management section in the issue with the final files, and changed the status to In Dev. The PM confirmed all designs were complete and closed the spike issue. The feature moved into the engineering Beta epic for implementation.</p>
-          </div>
-
-          <div className="case-study-section">
-            <h2>Outcomes</h2>
-
-            <h3>What shipped from this work</h3>
-            <ul>
-              <li>Complete MVC design system for contextual comments on wiki pages, covering default view, hover state, comment creation, centralised comments view, resolved thread states, and multi-comment scenarios</li>
-              <li>Designs for both the comments sidebar in read mode and the integration with the wiki layout restructure</li>
-              <li>Clear documentation of scope decisions (MVC vs. Phase 2 floating comments) in the issue, reducing ambiguity at engineering handoff</li>
-              <li>The feature moved to In Dev status and is tracked in the Wiki Contextual Discussions Beta epic for implementation</li>
-            </ul>
-
-            <h3>What I'd approach differently</h3>
-            <p>The scope creep from a design spike to a full layout redesign was the right call, but it took longer than expected to get explicit alignment on the fact that we were now designing a layout change, not just a commenting feature. I'd surface that scope shift earlier and more explicitly next time, with a clear framing like: "solving this well requires changing the page layout. Are we aligned on that?" rather than discovering the connection mid-exploration.</p>
-
-            <p>I'd also push earlier for a prototype users could interact with. Most of the design review happened through video walkthroughs and static designs, which worked well for the team but wouldn't be sufficient if we run solution validation before the engineering build completes. Having a clickable prototype ready earlier would make that research easier to execute.</p>
-
-            <h3>Broader impact</h3>
-            <p>This project, combined with the sidebar redesign, set the architectural foundation for GitLab Wiki as a Confluence alternative. Contextual comments were the single most-requested feature in competitive comparisons. Completing the design system positions the team to ship a feature that directly addresses the gap that drives teams toward Confluence, on a product they are already using for code and project management.</p>
+            <h2 id="wk-handoff">Through to handoff</h2>
+            <p>Two senior engineers shaped the work. The frontend engineer arrived at the critique having reached a layout idea close to mine on their own, which settled the layout quickly. When the other asked whether the new comment box should open in the sidebar or a modal, the frontend engineer answered in the thread that a modal was slightly easier but a shared store was the better long-term investment. It was settled in the issue without a meeting, on the long-term experience rather than short-term convenience.</p>
+            <p>To keep the first version focused, the scope was the comments panel, the markers on highlighted text, the single feed, resolved threads and orphaned comments. Floating comments were scoped out with the PM and the lead engineer. Editing in both the markdown and rich text editors went into its own linked issue, so it was tracked without slowing the first version.</p>
+            <p>The PM reviewed the complete designs, I iterated on their comments and added the final files to the issue, and the PM closed the spike with the designs handed to engineering. Looking back, I&rsquo;d have named the scope change sooner. Solving this well meant changing the page layout, and saying that plainly at the start would have got us aligned faster than discovering it halfway through.</p>
           </div>
 
           <div className="case-study-section">
             <h2>Links</h2>
             <ul>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/work_items/509789" target="_blank" rel="noopener">GitLab issue 509789<ExternalLinkIcon size={12} className="external-mark" /></a>, the design spike this work came from</li>
-              <li><a href="https://youtu.be/67UZDRRE7gQ" target="_blank" rel="noopener">Design critique<ExternalLinkIcon size={12} className="external-mark" /></a>, video</li>
+              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/work_items/509789" target="_blank" rel="noopener">Product Design Spike: Contextual Discussions for Wiki Pages<ExternalLinkIcon size={12} className="external-mark" /></a>, the spike this work came from</li>
             </ul>
-            <p>The scorecard run, the roadmap discussion, and most of the research behind this work sit in confidential GitLab issues and epics, so they cannot be linked here.</p>
           </div>
 
-        </div>{/* /case-study-main */}
+        </div>
       </section>
+    </CaseStudyLayout>
   );
 }
