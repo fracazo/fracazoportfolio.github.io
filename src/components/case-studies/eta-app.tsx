@@ -99,57 +99,26 @@ export function EtaAppContent({
           <p>The colours stayed with the Home Affairs brand, so the app looked like the government service people already knew. That matters when you&rsquo;re asking for someone&rsquo;s passport.</p>
           <img src="/images/62ca98319e6ac4a404da4d49_Screen-Shot-2022-07-10-at-7.13.01-pm.png" alt="Type and colour details" className="img-small" />
 
-          <h2>Key Features</h2>
-
-          <h3>Feature Overview</h3>
-          <img src="/images/62caa63e33c6504c2ebe850c_Android--iPhone.png" alt="Final results - Android and iPhone" />
-
-          <h3>Dashboards</h3>
+          <h2>Six steps, on iOS and Android</h2>
+          <img src="/images/62caa63e33c6504c2ebe850c_Android--iPhone.png" alt="The ETA app on Android and iPhone" />
+          <p>I worked alongside the engineers through the build. A government app should behave the way people expect, so I kept the flow standard.</p>
+          <p>The personality went into loading states and feedback animations, where it couldn&rsquo;t cost clarity.</p>
+          <img src="/images/62c94c07a33caa58679afdc3_NFC-Entrant.gif" alt="NFC scan animation" className="img-small" />
           <img src="/images/62ca9af337b2819503bdf0e1_Dashboards.png" alt="Dashboards" />
-
-          <h3>Live Photo Capture</h3>
           <img src="/images/62caac8537b28197abbe90b9_Live-Photo-Capture.png" alt="Live photo capture" />
-          <img src="/images/62cab1cd6e94d7a4ab3881ba_Confirm-info.png" alt="Confirm info" />
+          <img src="/images/62cab1cd6e94d7a4ab3881ba_Confirm-info.png" alt="Confirm details" />
           <img src="/images/62cab1e2707bc5d01d2e6328_Payment.png" alt="Payment" />
           <img src="/images/62cab1f7ca69f3a06ca60419_Submission.webp" alt="Submission" />
 
-          <h2>Outcomes & Learnings</h2>
-
-          <h3>Recognition</h3>
-          <p>The ETA app won <strong>Gold at the 2021 Sydney Design Awards</strong> in the Digital, Government Services category. The award went to the joint team from Home Affairs, SITA and Arq Group. I was the lead product designer at Arq Group.</p>
+          <h2>Gold at the Sydney Design Awards</h2>
+          <p>The app won Gold in Government Services in 2021. The award went to the joint team from Home Affairs, SITA and Arq Group.</p>
           <ul>
             <li><a href="https://betterfutureawards.com/syd21/project.asp?ID=22007" target="_blank" rel="noopener">The award listing<ExternalLinkIcon size={12} className="external-mark" /></a>, betterfutureawards.com</li>
           </ul>
 
-          <h3>Implementation</h3>
-          <img src="/images/62cab39b903d34450f12a591_Screen-Shot-2022-07-10-at-9.10.01-pm.webp" alt="Building phase" className="img-small" />
-          <p>I worked alongside the engineers through the build. Sketch, Abstract and Zeplin kept files, versions and assets in sync between design and development.</p>
-          <p>Assets were created for <strong>Android and iOS</strong></p>
-          
-          <h4>Delightful Details</h4>
-          <p>There's a user expectation of how these types of UIs operate, so there aren't many opportunities to take a conceptually unique approach. My solution was to design a "standard" step-by-step app, and save the personality for moments where it could not cost clarity, like the loading states and user feedback animations.</p>
-          <img src="/images/62c94c07a33caa58679afdc3_NFC-Entrant.gif" alt="NFC animation" className="img-small" />
-
-          <h3>Key Learnings</h3>
-          <ul>
-            <li>Using an external SDK provider made our team more agile on deliverables</li>
-            <li>I learned how to work with the legal team. I organised multiple showcases and workshops that helped to bring clarity on why we were doing this and how it was aligned with the company's key objectives and unblocked the team</li>
-          </ul>
-
-          <h3>Future Improvements</h3>
-          <ul>
-            <li>Checking analytics to see where users would drop off</li>
-            <li>Creating a feature where the user could get help</li>
-          </ul>
-          
-          <p><strong>Additional metrics I would look for</strong></p>
-          <ul>
-            <li>% time of visa application process</li>
-            <li>% of visa applications using the ETA app <strong>compared with</strong> web-based Visa applications</li>
-            <li>% of data accuracy reported by the Department of Home Affairs</li>
-            <li>% of visa applications via the ETA App</li>
-            <li>% of abandoned applications via the ETA App <strong>compared with</strong> web-based Visa applications</li>
-          </ul>
+          <h2>What I took from it</h2>
+          <p>Bring legal into the room early. Once they saw where people struggled, they helped us cut five steps down to one.</p>
+          <p>And when a vendor&rsquo;s screen can&rsquo;t change, the words around it still can.</p>
 
         </div>
 
