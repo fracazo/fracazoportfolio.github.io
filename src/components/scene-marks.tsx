@@ -49,3 +49,26 @@ export function TanukiMark({ size = 14 }: { size?: number }) {
     </svg>
   );
 }
+
+/* The BirthGuide app mark: the route icon from public/images/birthguide-hero.svg
+   (same path, not redrawn), white on the live site's rose tile. It is a full
+   app icon, so it fills the case study's icon tile. */
+export function BirthGuideAppIcon() {
+  return (
+    <svg viewBox="0 0 64 64" className="cs-app-icon" aria-hidden="true">
+      <rect width="64" height="64" rx="16" fill="#c2727a" />
+      <g
+        transform="translate(16 16) scale(1.3333)"
+        fill="none"
+        stroke="#fff"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="6" cy="19" r="3" />
+        <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" />
+        <circle cx="18" cy="5" r="3" />
+      </g>
+    </svg>
+  );
+}

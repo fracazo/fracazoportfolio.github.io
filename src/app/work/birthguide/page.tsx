@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function Birthguide() {
   return (
-    <CaseStudyShell>
+    <CaseStudyShell wide>
       <BirthguideContent />
     </CaseStudyShell>
   );
