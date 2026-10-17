@@ -28,7 +28,6 @@ export function GlqlContent({
       ]}
       stats={[
         { value: "+33%", label: "adoption in the first weeks after launch" },
-        { value: "0", label: "critical bugs at launch" },
       ]}
       chapters={[
         { id: "glql-challenge", label: "The challenge" },
