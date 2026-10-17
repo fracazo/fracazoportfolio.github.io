@@ -128,7 +128,7 @@ export function GitlabPagesContent({
                 src: "/images/gitlab-pages-deployments-limit.webp",
                 alt: "Pages deployments tab at its limit: a red 100 of 100 deploys used badge, a warning that the pipeline is blocked and that three merge request deployments expire in 23 hours, a full usage bar, and a Manage deployment limit link",
               }}
-              caption={<>The Pages deployments tab. Within the limit, the main site sits apart from merge request previews, with a toggle for stopped deployments. At the limit, the badge turns red and the block says the pipeline is blocked, when the next previews expire, and how to clear space.</>}
+              caption={<>The Pages deployments tab. Within the limit, the main site sits apart from merge request previews, with a toggle for stopped deployments. At the limit, the badge turns red, a warning says the pipeline is blocked and when the next previews expire, and a full usage bar sits above a link to manage the limit. That link is where the revenue work described below begins.</>}
             />
 
             <BeforeAfterToggle
@@ -156,8 +156,8 @@ export function GitlabPagesContent({
 
           <div className="case-study-section">
             <h2 id="gp-revenue">A new revenue point</h2>
-            <p>The PM had framed a coherent Pages page as the foundation for anything GitLab might charge for in Pages. That turned out to be literal. The redesign made the deployment limit visible for the first time. At 80% the deployments block turns amber and says which merge request previews are about to expire, so you can clean up before a pipeline fails. At 100% it turns red and says the pipeline is blocked, when the next previews expire, and how to clear space.</p>
-            <p>That limit became the way into a page that didn&rsquo;t exist before, where a project at its limit can buy more deployment space. I designed that page and the flow through it. It&rsquo;s a new revenue point, built on a settings page that nobody had a roadmap slot for six months earlier. The work is confidential, so it isn&rsquo;t shown here.</p>
+            <p>The PM had framed a coherent Pages page as the foundation for anything GitLab might charge for in Pages. That turned out to be literal. The redesign made the deployment limit visible for the first time. At 80% the deployments block turns amber and says which merge request previews are about to expire, so you can clean up before a pipeline fails. At 100% it turns red, says the pipeline is blocked and when the next previews expire, and shows a full usage bar.</p>
+            <p>Its &ldquo;Manage deployment limit&rdquo; link opens a page that didn&rsquo;t exist before, where a project at its limit can buy more deployment space. I designed that page and the flow through it. It&rsquo;s a new revenue point, built on a settings page that nobody had a roadmap slot for six months earlier. The work is confidential, so it isn&rsquo;t shown here.</p>
           </div>
 
           <div className="case-study-section">
