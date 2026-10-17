@@ -36,7 +36,7 @@ export function GitlabPagesContent({
       ]}
       link={{ href: "https://docs.gitlab.com/user/project/pages/", label: "docs.gitlab.com/user/project/pages" }}
       hero={
-        <img src="/images/gitlab-pages-hero.webp" width={1600} height={960} alt="The redesigned GitLab Pages overview: three tabs, a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and recent Pages deployments with a 2/100 limit badge" />
+        <img src="/images/gitlab-pages-hero.webp" width={2400} height={1644} alt="The redesigned GitLab Pages overview: three tabs, a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and four recent Pages deployments under a 3 of 100 deploys used badge" />
       }
     >
       <section className="section case-study-content">
@@ -57,7 +57,7 @@ export function GitlabPagesContent({
                 }}
                 after={{
                   src: "/images/gitlab-pages-after-overview-top.webp",
-                  alt: "The redesigned GitLab Pages overview tab: three tabs (Overview, Pages deployments, Domain and settings), a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and the first recent Pages deployments under a 2/100 limit badge",
+                  alt: "The redesigned GitLab Pages overview tab: three tabs (Overview, Pages deployments, Domain and settings), a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and the first recent Pages deployments under a 3 of 100 deploys used badge",
                 }}
               />
             <ul>
@@ -95,11 +95,11 @@ export function GitlabPagesContent({
             <BeforeAfterToggle
               labels={["Domain not verified", "No custom domain"]}
               before={{
-                src: "/images/gitlab-pages-overview-alert.png",
+                src: "/images/gitlab-pages-overview-alert.webp",
                 alt: "Overview tab with a Domain setup needed alert under the live block, listing the two steps to verify the custom domain and an Edit domain button",
               }}
               after={{
-                src: "/images/gitlab-pages-overview-prompt.png",
+                src: "/images/gitlab-pages-overview-prompt.webp",
                 alt: "Overview tab where the live block shows the GitLab-provided address and a one-line prompt to add a custom domain",
               }}
               caption={<>The &ldquo;hidden until something broke&rdquo; problem, solved on the first screen. A custom domain that isn&rsquo;t verified yet gets an alert with the exact steps. With no custom domain, the live block offers to add one, instead of a settings field nobody finds.</>}
@@ -108,11 +108,11 @@ export function GitlabPagesContent({
             <BeforeAfterToggle
               labels={["Free", "Premium"]}
               before={{
-                src: "/images/gitlab-pages-overview-free.png",
+                src: "/images/gitlab-pages-overview-free.webp",
                 alt: "Overview tab on the Free tier with an empty state explaining parallel deployments and an Upgrade to Premium button",
               }}
               after={{
-                src: "/images/gitlab-pages-overview-premium.png",
+                src: "/images/gitlab-pages-overview-premium.webp",
                 alt: "Overview tab on the Premium tier with the same empty state and a Learn more link instead of an upgrade button",
               }}
               caption={<>The same empty state for two tiers. Free explains what parallel deployments are and offers the upgrade. Premium gets the explanation without the upsell.</>}
@@ -121,24 +121,24 @@ export function GitlabPagesContent({
             <BeforeAfterToggle
               labels={["Within limit", "Limit reached"]}
               before={{
-                src: "/images/gitlab-pages-deployments.png",
-                alt: "Pages deployments tab with the main site in its own block, additional deployments at 2 of 100 below it, a toggle to show stopped deployments, and pagination",
+                src: "/images/gitlab-pages-deployments.webp",
+                alt: "Pages deployments tab with the main site in its own block, additional deployments below it at 3 of 100 deploys used, a toggle to show stopped deployments, and pagination",
               }}
               after={{
-                src: "/images/gitlab-pages-deployments-limit.png",
-                alt: "Pages deployments tab at 99 of 100, with the badge in red, a Reached pages deployment limit usage bar and a Manage deployment limit link",
+                src: "/images/gitlab-pages-deployments-limit.webp",
+                alt: "Pages deployments tab at its limit: a red 100 of 100 deploys used badge and a red message saying the pipeline is blocked, that three merge request deployments expire in 23 hours, and how to resume deployments",
               }}
-              caption={<>The Pages deployments tab. Within the limit, the main site sits apart from merge request previews, with a toggle for stopped deployments. At the limit, a red badge, a usage bar and a link to manage it appear before the next pipeline fails rather than after. That link is where the revenue work described below begins.</>}
+              caption={<>The Pages deployments tab. Within the limit, the main site sits apart from merge request previews, with a toggle for stopped deployments. At the limit, the badge turns red and the block says the pipeline is blocked, when the next previews expire, and how to clear space.</>}
             />
 
             <BeforeAfterToggle
               labels={["Resting", "Row menu open"]}
               before={{
-                src: "/images/gitlab-pages-settings.png",
+                src: "/images/gitlab-pages-settings.webp",
                 alt: "Domains and settings tab: three domains listed with a Primary domain badge, DNS check results inline, a verification alert with an Edit domain button, Force HTTPS and Use unique domain settings with explanatory copy, and a Delete Pages block",
               }}
               after={{
-                src: "/images/gitlab-pages-settings-menu.png",
+                src: "/images/gitlab-pages-settings-menu.webp",
                 alt: "The same tab with a domain's row menu open, showing Set as primary, Edit domain and Remove",
               }}
               caption={<>Domains &amp; settings. Each domain carries its role and its DNS check inline. The settings copy explains what each option does, and the danger zone says what gets deleted and how to get it back.</>}
