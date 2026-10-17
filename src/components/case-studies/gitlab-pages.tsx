@@ -28,8 +28,7 @@ export function GitlabPagesContent({
       ]}
       chapters={[
         { id: "gp-problem", label: "Four blocks, one question" },
-        { id: "gp-corrections", label: "Taking the corrections" },
-        { id: "gp-argument", label: "The argument I didn’t win" },
+        { id: "gp-engineering", label: "Working with engineering" },
         { id: "gp-design", label: "The design" },
         { id: "gp-shipping", label: "Shipping without a team" },
         { id: "gp-revenue", label: "A new revenue point" },
@@ -70,21 +69,9 @@ export function GitlabPagesContent({
           </div>
 
           <div className="case-study-section">
-            <h2 id="gp-corrections">Taking the engineers&rsquo; corrections</h2>
-            <p>I ran the review the way Tom Greever lays out in <em>Articulating Design Decisions</em>. Every proposal answered three questions: what problem it solves, how it affects the user, and why it beats the alternative. That kept the thread about the site owner rather than taste, and it made corrections cheap to accept. When an engineer had a better answer, the design changed and the argument was over.</p>
-            <ul>
-              <li><strong>Ports stay in the URL.</strong> Some self-managed instances run Pages on non-standard ports, so the tidy URLs in my mockups would have been broken links. Every URL in the final design keeps its port.</li>
-              <li><strong>Keep the name, explain the choice.</strong> My first rename of &ldquo;Use unique domain&rdquo; assumed the alternative was a custom domain. An engineer pointed out that both options are GitLab-provided: the setting decides whether your address gets a unique identifier or uses your username or group name. So the checkbox kept its name, and the copy under it now says what each choice gives you, with an example of each address.</li>
-            </ul>
-          </div>
-
-          <div className="case-study-section">
-            <h2 id="gp-argument">The argument I chose not to win</h2>
-            <p>Halfway through, I raised a bigger question. GitLab already has a Deployments list under Environments. Pages has its own deployments list. Same word, two places, no relationship between them. I argued in the thread that we were letting implementation details drive the interface: a Pages deployment being &ldquo;basically a file in object storage&rdquo; is not a reason to make users learn two mental models, any more than email and calendar should be shown separately because one uses IMAP and the other iCal.</p>
-
-            <p>The two backend engineers pushed back, and their reasons were good. Environments was heading toward Kubernetes and user-owned infrastructure. The feature overlap was tiny. Merging them would create cross-team dependencies that would stop the Pages team iterating at all, and most of the review-app benefit was already available with one line in the CI config. I still think the user-facing point stands. But I also knew that if I made the redesign depend on that outcome, nothing would ship.</p>
-
-            <p>Agreement on the details and support to move forward are not the same thing. I did not need the engineers to agree with me about Environments. I needed their support for the redesign. So I did two things. I wrote the unification down as a recommended future iteration in the final proposal, explicitly out of scope, so the argument was on the record without blocking anything. And I solved the confusion I could solve: terminology. Every instance of &ldquo;deployment&rdquo; in Pages became &ldquo;Pages deployment&rdquo;. &ldquo;Latest deployment&rdquo; became &ldquo;Latest Pages deployment&rdquo;, the tab is &ldquo;Pages deployments&rdquo;, and the lists are &ldquo;Recent pages deployments&rdquo; and &ldquo;Additional pages deployments&rdquo;. It costs one word and it tells users which of the two systems they are looking at.</p>
+            <h2 id="gp-engineering">Working with engineering</h2>
+            <p>I argued every proposal in the open, against three questions: what problem it solves, how it affects the user, and why it beats the alternative. When an engineer had a better answer, the design changed. Ports stayed in every URL because self-managed instances use them, and a setting I had renamed kept its name with clearer copy instead.</p>
+            <p>I also lost an argument on purpose. I wanted Pages deployments and GitLab&rsquo;s other deployments list in one place: same word, two places. The engineers had good reasons against it, and making the redesign depend on winning would have stalled it. So I recorded it as a future step and fixed what I could: every label now says &ldquo;Pages deployment&rdquo;, so people know which system they&rsquo;re in.</p>
           </div>
 
           <div className="case-study-section">
