@@ -83,3 +83,29 @@ export function QantasTailMark({ size = 14 }: { size?: number }) {
     </svg>
   );
 }
+
+/* Vodafone's speechmark, cut from public/images/brands/vodafone.png (not
+   redrawn) and used as a mask: white on Vodafone red, like their app icon.
+   A full app icon, so it fills the case study's icon tile. */
+export function VodafoneAppIcon() {
+  return (
+    <span className="cs-app-icon brand-mask-tile" style={{ background: "#e60000" }} aria-hidden="true">
+      <span
+        className="brand-mask"
+        style={{ backgroundColor: "#fff", maskImage: "url(/images/brands/vodafone-mark.png)", WebkitMaskImage: "url(/images/brands/vodafone-mark.png)" }}
+      />
+    </span>
+  );
+}
+
+/* The Commonwealth crest from public/images/brands/home-affairs.svg (not
+   redrawn), used as a mask in the text colour so it reads in both themes. */
+export function HomeAffairsCrest() {
+  return (
+    <span
+      className="brand-mask brand-mask--crest"
+      style={{ backgroundColor: "currentColor", maskImage: "url(/images/brands/home-affairs.svg)", WebkitMaskImage: "url(/images/brands/home-affairs.svg)" }}
+      aria-hidden="true"
+    />
+  );
+}

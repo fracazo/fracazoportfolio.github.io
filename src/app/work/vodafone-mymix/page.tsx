@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function VodafoneMymix() {
   return (
-    <CaseStudyShell>
+    <CaseStudyShell wide>
       <VodafoneMymixContent />
     </CaseStudyShell>
   );

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function EtaApp() {
   return (
-    <CaseStudyShell>
+    <CaseStudyShell wide>
       <EtaAppContent />
     </CaseStudyShell>
   );

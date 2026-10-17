@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { CaseStudyLayout } from "@/components/case-study-layout";
+import { VodafoneAppIcon } from "@/components/scene-marks";
 import { MymixBuilder } from "./mymix-builder";
 
 /**
@@ -15,63 +17,40 @@ export function VodafoneMymixContent({
   breadcrumb?: ReactNode;
 } = {}) {
   return (
-    <section className="section case-study-content">
-      <div className="case-study-main">
+    <CaseStudyLayout
+      icon={<VodafoneAppIcon />}
+      title="Vodafone MyMix"
+      subtitle="Letting prepaid customers design their own recharge"
+      meta={[
+        { label: "Role", value: "Senior UX Designer" },
+        { label: "Project type", value: "Zero to one" },
+        { label: "Platform", value: ["Web", "MyVodafone app"] },
+      ]}
+      stats={[
+        { value: "72", label: "price combinations, made clear in four taps" },
+        { value: "2+ yrs", label: "in market" },
+      ]}
+      chapters={[
+        { id: "mm-challenge", label: "The challenge" },
+        { id: "mm-two-ways", label: "Two ways to build a plan" },
+        { id: "mm-testing", label: "Testing the hypotheses" },
+        { id: "mm-shipped", label: "What shipped" },
+        { id: "mm-launch", label: "Launch and outcome" },
+      ]}
+      hero={
+        <div className="cs-hero-phone">
+          <img src="/images/vodafone/mymix-hero-phone.webp" width={764} height={1950} alt="The MyMix recharge builder with all four inclusions selected and a $40 price" />
+        </div>
+      }
+    >
+      <section className="section case-study-content">
+        <div className="case-study-main">
         {breadcrumb}
-        <header className="case-header">
-          <h1 className="case-title">
-            Letting Prepaid Customers Design Their Own Recharge
-          </h1>
-          <div className="case-metadata-card">
-            <img
-              src="/images/vodafone/mymix-hero-phone.webp"
-              alt="The MyMix recharge builder with all four inclusions selected and a $40 price"
-              className="case-hero-image"
-            />
-            <div className="metadata-content">
-              <div className="metadata-item">
-                <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M6 3.75A2.75 2.75 0 0 1 8.75 1h2.5A2.75 2.75 0 0 1 14 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 0 1 6 4.193V3.75Zm6.5 0v.325a41.622 41.622 0 0 0-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25ZM10 10a1 1 0 0 0-1 1v.01a1 1 0 0 0 1 1h.01a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1H10Z" clipRule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 0 1-9.274 0C3.985 17.585 3 16.402 3 15.055Z"/></svg>
-                <div className="metadata-text">
-                  <p className="metadata-label">Product</p>
-                  <p className="metadata-value">Vodafone MyMix</p>
-                </div>
-              </div>
-              <div className="metadata-item">
-                <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clipRule="evenodd"/></svg>
-                <div className="metadata-text">
-                  <p className="metadata-label">Platform</p>
-                  <p className="metadata-value">Web and MyVodafone app</p>
-                </div>
-              </div>
-              <div className="metadata-item">
-                <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
-                <div className="metadata-text">
-                  <p className="metadata-label">Role</p>
-                  <p className="metadata-value">Senior UX Designer</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p className="case-intro">
-            Prepaid customers build their own recharge from a menu of data,
-            voice and international inclusions. Four taps, one price.
-          </p>
-        </header>
 
-        <ul className="case-stats" role="list">
-          <li>
-            <span className="case-stat-value">72</span>
-            <span className="case-stat-label">price combinations, made clear in four taps</span>
-          </li>
-          <li>
-            <span className="case-stat-value">2+ yrs</span>
-            <span className="case-stat-label">in market</span>
-          </li>
-        </ul>
-
+        <p className="cs-intro">Prepaid customers build their own recharge from a menu of data, voice and international inclusions. Four taps, one price.</p>
 
         <div className="case-study-section">
-          <h2>The Challenge</h2>
+          <h2 id="mm-challenge">The Challenge</h2>
           <p>
             Prepaid recharges were fixed combinations. If you wanted more data
             you also paid for voice minutes you never used, and the plan names
@@ -114,7 +93,7 @@ export function VodafoneMymixContent({
         </div>
 
         <div className="case-study-section">
-          <h2>Two Ways to Build a Plan</h2>
+          <h2 id="mm-two-ways">Two Ways to Build a Plan</h2>
           <p>
             Sliders had a champion before they had a prototype. The
             project&rsquo;s sponsor was a senior executive who sat a floor
@@ -171,7 +150,7 @@ export function VodafoneMymixContent({
         </div>
 
         <div className="case-study-section">
-          <h2>Testing the Hypotheses</h2>
+          <h2 id="mm-testing">Testing the Hypotheses</h2>
           <p>
             We ran two rounds of moderated sessions: three prepay customers
             aged 18 to 27 recharging with a voucher and with a credit card,
@@ -248,7 +227,7 @@ export function VodafoneMymixContent({
         </div>
 
         <div className="case-study-section">
-          <h2>What Shipped</h2>
+          <h2 id="mm-shipped">What Shipped</h2>
           <p>
             The shipped builder is the button hypothesis with the testing
             recommendations applied. The price panel starts at $0, shows an
@@ -303,7 +282,7 @@ export function VodafoneMymixContent({
         </div>
 
         <div className="case-study-section">
-          <h2>Launch and outcome</h2>
+          <h2 id="mm-launch">Launch and outcome</h2>
           <figure className="mb-8">
             <img
               src="/images/vodafone/mymix-campaign.webp"
@@ -363,7 +342,8 @@ export function VodafoneMymixContent({
             keep.
           </p>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </CaseStudyLayout>
   );
 }
