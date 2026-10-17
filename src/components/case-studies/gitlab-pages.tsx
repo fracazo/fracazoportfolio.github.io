@@ -36,7 +36,7 @@ export function GitlabPagesContent({
       ]}
       link={{ href: "https://docs.gitlab.com/user/project/pages/", label: "docs.gitlab.com/user/project/pages" }}
       hero={
-        <img src="/images/gitlab-pages-hero.webp" width={2400} height={1644} alt="The redesigned GitLab Pages overview: three tabs, a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and four recent Pages deployments under a 3 of 100 deploys used badge" />
+        <img src="/images/gitlab-pages-hero.webp" width={1980} height={1356} alt="The redesigned GitLab Pages overview: three tabs, a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and four recent Pages deployments under a 3 of 100 deploys used badge" />
       }
     >
       <section className="section case-study-content">
@@ -126,7 +126,7 @@ export function GitlabPagesContent({
               }}
               after={{
                 src: "/images/gitlab-pages-deployments-limit.webp",
-                alt: "Pages deployments tab at its limit: a red 100 of 100 deploys used badge and a red message saying the pipeline is blocked, that three merge request deployments expire in 23 hours, and how to resume deployments",
+                alt: "Pages deployments tab at its limit: a red 100 of 100 deploys used badge, a red message saying the pipeline is blocked and that three merge request deployments expire in 23 hours, and a Reached pages deployment limit usage bar with a Manage deployment limit link",
               }}
               caption={<>The Pages deployments tab. Within the limit, the main site sits apart from merge request previews, with a toggle for stopped deployments. At the limit, the badge turns red and the block says the pipeline is blocked, when the next previews expire, and how to clear space.</>}
             />
