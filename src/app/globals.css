@@ -653,6 +653,19 @@
     outline: none;
     box-shadow: var(--glass-shadow), 0 0 0 2px var(--ring);
   }
+  /* Chevron and house read as one "back home" glyph: ~6px of visible space
+     between them, less than the ~9px before the label so they pair. The
+     chevron's path fills only the middle of its 14px box (about 5px empty
+     each side), so the negative start margin pulls that air back: the drawn
+     chevron then sits as far from the pill's edge as the house does from
+     the other edge when compact. */
+  .back-pill-home {
+    display: inline-flex;
+    align-items: center;
+  }
+  .back-pill-home > svg:first-child {
+    margin-inline-start: -3px;
+  }
   .back-pill-label {
     display: grid;
     grid-template-columns: 1fr;
