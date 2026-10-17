@@ -74,8 +74,7 @@ export function GitlabPagesContent({
             <p>I ran the review the way Tom Greever lays out in <em>Articulating Design Decisions</em>. Every proposal answered three questions: what problem it solves, how it affects the user, and why it beats the alternative. That kept the thread about the site owner rather than taste, and it made corrections cheap to accept. When an engineer had a better answer, the design changed and the argument was over.</p>
             <ul>
               <li><strong>Ports stay in the URL.</strong> Some self-managed instances run Pages on non-standard ports, so the tidy URLs in my mockups would have been broken links. Every URL in the final design keeps its port.</li>
-              <li><strong>&ldquo;Use a random subdomain&rdquo;.</strong> My first rename of &ldquo;Use unique domain&rdquo; assumed the alternative was a custom domain. An engineer pointed out that both options are GitLab-provided: the setting decides whether the subdomain is random, which stops cookies leaking between projects. The final copy explains that reason.</li>
-              <li><strong>Hide the security option, don&rsquo;t remove it.</strong> The toggle moved behind the actions menu with a note to leave it on. Most people never need it, and the ones who do know why.</li>
+              <li><strong>Keep the name, explain the choice.</strong> My first rename of &ldquo;Use unique domain&rdquo; assumed the alternative was a custom domain. An engineer pointed out that both options are GitLab-provided: the setting decides whether your address gets a unique identifier or uses your username or group name. So the checkbox kept its name, and the copy under it now says what each choice gives you, with an example of each address.</li>
             </ul>
           </div>
 
