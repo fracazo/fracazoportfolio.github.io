@@ -126,7 +126,7 @@ export function GitlabPagesContent({
               }}
               after={{
                 src: "/images/gitlab-pages-deployments-limit.webp",
-                alt: "Pages deployments tab at its limit: a red 100 of 100 deploys used badge, a red message saying the pipeline is blocked and that three merge request deployments expire in 23 hours, and a Reached pages deployment limit usage bar with a Manage deployment limit link",
+                alt: "Pages deployments tab at its limit: a red 100 of 100 deploys used badge, a warning that the pipeline is blocked and that three merge request deployments expire in 23 hours, a full usage bar, and a Manage deployment limit link",
               }}
               caption={<>The Pages deployments tab. Within the limit, the main site sits apart from merge request previews, with a toggle for stopped deployments. At the limit, the badge turns red and the block says the pipeline is blocked, when the next previews expire, and how to clear space.</>}
             />
