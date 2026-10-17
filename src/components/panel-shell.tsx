@@ -241,6 +241,12 @@ export function PanelShell({ children }: { children: ReactNode }) {
             </>
           )}
           {!wide && (
+            <>
+              <EdgeBlur edge="top" phone />
+              <EdgeBlur edge="bottom" phone />
+            </>
+          )}
+          {!wide && (
             // The phone sheet's way back floats at the bottom, in thumb
             // reach, with Share beside it. First in the DOM so it comes
             // first in the tab order, though it sits at the bottom.
@@ -408,11 +414,15 @@ function ShareButton({ url, title }: { url: string; title?: string }) {
  * A graded blur along one edge of the sheet, so content dissolves into the
  * edge instead of being cut off by it. Each layer blurs harder over a shorter
  * band; stacked, the blur ramps up smoothly toward the edge, which a single
- * blurred band with a gradient mask cannot do.
+ * blurred band with a gradient mask cannot do. The phone sheet uses the same
+ * layers full width, and fades to its solid background at both edges.
  */
-function EdgeBlur({ edge }: { edge: "top" | "bottom" }) {
+function EdgeBlur({ edge, phone = false }: { edge: "top" | "bottom"; phone?: boolean }) {
   return (
-    <div className={`panel-edge-blur panel-edge-blur--${edge}`} aria-hidden="true">
+    <div
+      className={`panel-edge-blur panel-edge-blur--${edge}${phone ? " panel-edge-blur--phone" : ""}`}
+      aria-hidden="true"
+    >
       <i />
       <i />
       <i />

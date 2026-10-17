@@ -2806,6 +2806,22 @@
 .panel-edge-blur--bottom i {
   mask-image: linear-gradient(to top, #000, transparent var(--stop));
 }
+/* Phone sheet: full width (no rounded corner to clear) on a solid
+   background, so both edges also fade to that background; a blur alone would
+   leave text crisp-coloured at the edge. The top band is only as deep as the
+   sheet's top padding plus the safe area, so nothing is covered at rest; the
+   bottom band sits under the floating back pill. */
+.panel-edge-blur--phone {
+  inset-inline: 0;
+}
+.panel-edge-blur--phone.panel-edge-blur--top {
+  height: calc(40px + env(safe-area-inset-top));
+  background: linear-gradient(to bottom, var(--bg) 20%, transparent);
+}
+.panel-edge-blur--phone.panel-edge-blur--bottom {
+  height: calc(96px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--bg) 25%, transparent);
+}
 
 /* Content entry: once the sheet has landed, the leading blocks ease out of a
    light blur one after another. Panel-shell tags the blocks and sets their
