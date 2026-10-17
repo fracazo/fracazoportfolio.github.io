@@ -58,6 +58,17 @@ export function VodafoneMymixContent({
           </p>
         </header>
 
+        <ul className="case-stats" role="list">
+          <li>
+            <span className="case-stat-value">72</span>
+            <span className="case-stat-label">price combinations, made clear in four taps</span>
+          </li>
+          <li>
+            <span className="case-stat-value">2+ yrs</span>
+            <span className="case-stat-label">in market</span>
+          </li>
+        </ul>
+
 
         <div className="case-study-section">
           <h2>The Challenge</h2>
@@ -80,7 +91,7 @@ export function VodafoneMymixContent({
           </p>
           <img
             src="/images/vodafone/mymix-workshop-postits.webp"
-            alt="Post-it wall from the June 2015 risks workshop, grouped into risks, constraints, technical notes and questions"
+            alt="Post-it wall from the risks workshop, grouped into risks, constraints, technical notes and questions"
           />
 
           <h3>First sketches</h3>
@@ -292,10 +303,31 @@ export function VodafoneMymixContent({
         </div>
 
         <div className="case-study-section">
-          <h2>Rollout</h2>
+          <h2>Launch and outcome</h2>
           <p>
-            The product launched in 2016 as MyMix, in the MyVodafone app and
-            on the website, with a public selector at vodafone.com.au/mymix.
+            MyMix launched on the website and in the MyVodafone app with the
+            button builder from testing, and a public selector at
+            vodafone.com.au/mymix. Vodafone later singled it out in its annual
+            results to the ASX:
+          </p>
+          <div className="testimonial-list">
+            <blockquote className="testimonial">
+              <p>
+                &ldquo;There has been a strong response to VHA&rsquo;s MyMix
+                product which allows prepaid customers to select a level of data
+                and call inclusions, and a recharge period of their
+                choice.&rdquo;
+              </p>
+              <footer>
+                <cite>Vodafone Hutchison Australia, annual results to the ASX</cite>
+              </footer>
+            </blockquote>
+          </div>
+          <p>
+            It stayed in market for more than two years, until Vodafone moved
+            prepaid to a new plan line.
+          </p>
+          <p>
             Because retail and care staff would be explaining a product with
             72 answers to &ldquo;what does it cost?&rdquo;, the launch included
             an internal training course built around the same tool customers
