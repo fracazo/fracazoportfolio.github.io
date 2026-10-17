@@ -3,22 +3,6 @@
 import { useState, type ReactNode } from "react";
 
 type Shot = { src: string; alt: string };
-/** A live HTML rebuild instead of a screenshot; `label` names it for screen readers. */
-type Pane = { node: ReactNode; label: string };
-
-function Side({ shot, visible }: { shot: Shot | Pane; visible: boolean }) {
-  const state = {
-    "data-visible": visible || undefined,
-    "aria-hidden": !visible || undefined,
-  };
-  return "node" in shot ? (
-    <div className="before-after-pane" role="img" aria-label={shot.label} inert={!visible} {...state}>
-      {shot.node}
-    </div>
-  ) : (
-    <img src={shot.src} alt={shot.alt} {...state} />
-  );
-}
 
 /**
  * BeforeAfterToggle: two screenshots in one frame with a switch above them,
@@ -35,8 +19,8 @@ export function BeforeAfterToggle({
   labels = ["Before", "After"],
   caption,
 }: {
-  before: Shot | Pane;
-  after: Shot | Pane;
+  before: Shot;
+  after: Shot;
   labels?: [string, string];
   caption?: ReactNode;
 }) {
@@ -53,8 +37,18 @@ export function BeforeAfterToggle({
         </button>
       </div>
       <div className="before-after-frame">
-        <Side shot={before} visible={!showAfter} />
-        <Side shot={after} visible={showAfter} />
+        <img
+          src={before.src}
+          alt={before.alt}
+          data-visible={!showAfter || undefined}
+          aria-hidden={showAfter || undefined}
+        />
+        <img
+          src={after.src}
+          alt={after.alt}
+          data-visible={showAfter || undefined}
+          aria-hidden={!showAfter || undefined}
+        />
       </div>
       {caption && <figcaption className="img-caption">{caption}</figcaption>}
     </figure>
