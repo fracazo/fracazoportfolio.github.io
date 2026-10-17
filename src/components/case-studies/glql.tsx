@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
+import { CaseStudyLayout } from "@/components/case-study-layout";
 import { ExternalLinkIcon } from "@/components/icons";
+import { TanukiMark } from "@/components/scene-marks";
 
 /**
  * Body of the glql case study, without the route chrome.
@@ -14,67 +16,52 @@ export function GlqlContent({
   breadcrumb?: ReactNode;
 } = {}) {
   return (
+    <CaseStudyLayout
+      icon={<TanukiMark size={36} />}
+      brand="GitLab"
+      title="GLQL"
+      subtitle="GitLab Query Language"
+      meta={[
+        { label: "Role", value: "Product Designer" },
+        { label: "Year", value: "2024–25" },
+        { label: "Platform", value: "SaaS & Self-managed" },
+      ]}
+      stats={[
+        { value: "+33%", label: "adoption in the first weeks after launch" },
+        { value: "0", label: "critical bugs at launch" },
+      ]}
+      chapters={[
+        { id: "glql-challenge", label: "The challenge" },
+        { id: "glql-research", label: "Research" },
+        { id: "glql-syntax", label: "The syntax is the UX" },
+        { id: "glql-starting-point", label: "A starting point" },
+        { id: "glql-duo-embed", label: "Ask for the view" },
+        { id: "glql-outcomes", label: "Outcomes" },
+      ]}
+      link={{ href: "https://docs.gitlab.com/user/glql/", label: "docs.gitlab.com/user/glql" }}
+      hero={
+        <video autoPlay muted loop playsInline preload="metadata" poster="/images/glql-duo-result.png" aria-label="Duo embed: a plain-language prompt becomes a live embedded view">
+          <source src="/images/glql-duo-embed.mp4" type="video/mp4" />
+        </video>
+      }
+    >
       <section className="section case-study-content">
         <div className="case-study-main">
 
         {breadcrumb}
 
-          <header className="case-header">
-            <h1 className="case-title">GLQL (GitLab Query Language): Embedded Views for Work Tracking</h1>
-            <div className="case-metadata-card">
-              <div className="metadata-content">
-                <div className="metadata-item">
-                  <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M6 3.75A2.75 2.75 0 0 1 8.75 1h2.5A2.75 2.75 0 0 1 14 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 0 1 6 4.193V3.75Zm6.5 0v.325a41.622 41.622 0 0 0-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25ZM10 10a1 1 0 0 0-1 1v.01a1 1 0 0 0 1 1h.01a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1H10Z" clipRule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 0 1-9.274 0C3.985 17.585 3 16.402 3 15.055Z"/></svg>
-                  <div className="metadata-text">
-                    <p className="metadata-label">Product</p>
-                    <p className="metadata-value">GitLab Query Language (GLQL)</p>
-                  </div>
-                </div>
-                <div className="metadata-item">
-                  <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clipRule="evenodd"/></svg>
-                  <div className="metadata-text">
-                    <p className="metadata-label">Platform</p>
-                    <p className="metadata-value">GitLab Web (SaaS &amp; Self-managed)</p>
-                  </div>
-                </div>
-                <div className="metadata-item">
-                  <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
-                  <div className="metadata-text">
-                    <p className="metadata-label">Role</p>
-                    <p className="metadata-value">Product Designer · Knowledge group</p>
-                  </div>
-                </div>
-                <div className="metadata-item">
-                  <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M5.75 2a.75.75 0 0 1 .75.75V4h7V2.75a.75.75 0 0 1 1.5 0V4h.25A2.75 2.75 0 0 1 18 6.75v8.5A2.75 2.75 0 0 1 15.25 18H4.75A2.75 2.75 0 0 1 2 15.25v-8.5A2.75 2.75 0 0 1 4.75 4H5V2.75A.75.75 0 0 1 5.75 2Zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75Z" clipRule="evenodd"/></svg>
-                  <div className="metadata-text">
-                    <p className="metadata-label">Year</p>
-                    <p className="metadata-value">2024–2025</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p className="case-intro">GitLab Query Language (GLQL) was powerful, but you had to write queries by hand to use it. I made it work for people who had only ever used filters, without taking any power away from the experts. The end goal was simple to say: describe the view you want in plain words, and let AI write the query for you.</p>
-          </header>
-
-          <ul className="case-stats" role="list">
-            <li><span className="case-stat-value">+33%</span><span className="case-stat-label">adoption growth in the first weeks after launch</span></li>
-            <li><span className="case-stat-value">0</span><span className="case-stat-label">critical bugs at launch</span></li>
-          </ul>
-
-          <div className="case-study-section">
-            <blockquote>Adoption grew about a third in the first weeks after launch. The team shipped something worth using, and the discoverability work I led helped people find it.</blockquote>
-          </div>
+          <p className="cs-intro">GitLab Query Language (GLQL) was powerful, but you had to write queries by hand to use it. I made it work for people who had only ever used filters, without taking any power away from the experts. The end goal was simple to say: describe the view you want in plain words, and let AI write the query for you.</p>
 
 
           <div className="case-study-section">
-            <h2>The challenge</h2>
+            <h2 id="glql-challenge">The challenge</h2>
             <p>GLQL started as an experimental feature and a strong proof of concept. It was a technical solution designed for technical people, and it worked. The job it was meant to serve was easy to say and hard to do: let someone track work progress without stitching it together by hand across boards, milestones, and issues.</p>
             <p>Many of the people with that job were not the people it was first built for. They were used to filters and boards, not writing code, and asking them to start from an empty code block was a big step.</p>
             <p>The same tool had to serve two people with opposite instincts. A project manager who never wants to see a line of code, and a power user who expects a query to behave exactly like the ones they already write. Most query tools pick one of those people and lose the other.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>The vision</h2>
+            <h2 id="glql-vision">The vision</h2>
             <p>Where we wanted to end up: you describe what you want to see in plain words, GitLab Duo (GitLab&apos;s AI assistant) writes the query, and the live view appears in front of you. If you want to, you open the query and edit it. Nobody has to learn the language to get value from it, and the people who already know it keep full control.</p>
             <p>None of that was possible without the language. A query language is what let one view pull work from across groups and projects, and it was the only way to trial the feature at all. It was also what the AI would eventually write, so it had to be one a person could read and fix.</p>
             <p>The first release tested one narrow question. Can people query issues from other projects and see them as a table or a list? If the answer was yes, everything else in the vision had something to stand on.</p>
@@ -82,13 +69,13 @@ export function GlqlContent({
           </div>
 
           <div className="case-study-section">
-            <h2>My role</h2>
+            <h2 id="glql-role">My role</h2>
             <p>I owned four products across the Knowledge group as its designer, embedded with engineering. The GLQL team had built something powerful quickly, and research had not been part of how it got there yet. So my first job was not a screen. It was making design useful fast enough that it sped the team up instead of slowing it down.</p>
             <p>My way in was a UX scorecard run, GitLab&apos;s standing process where a designer walks a product&apos;s main jobs as a new user would and grades the experience. Scoring GLQL that way turned my concerns into an issue list the team could work through line by line, and it is what I took to the PM to make the case for proper research.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Research</h2>
+            <h2 id="glql-research">Research</h2>
             <p>I ran problem validation with our researcher to confirm the job was real, then a two-phase study on the part that worried me most: the syntax. Twelve participants, half internal, half external. In the first phase they wrote real queries against live documentation. In the second they compared three different syntax styles.</p>
             <p>Watching them write was where the design direction came from. People did not read their query before running it. They typed, hit an error, and used the error message to find their way. When the message was vague, they were stuck. The error messages were the navigation, not the docs.</p>
             <p>And the finding that changed the team&apos;s mind: plain-language syntax was easier for non-technical users than a SQL-style one, because the people who knew SQL arrived expecting things our language could not do. Familiarity was a trap, not a shortcut.</p>
@@ -103,7 +90,7 @@ export function GlqlContent({
           </div>
 
           <div className="case-study-section">
-            <h2>Step one: the syntax is the UX</h2>
+            <h2 id="glql-syntax">Step one: the syntax is the UX</h2>
             <p>Three syntax options were on the table, and SQL was the natural pick. Clean, familiar to the technical users GLQL was first built for, with a tidy separation of concerns.</p>
             <p>SQL would have bought us something real. Technical users would have felt at home on day one. What it would have cost was everyone else, and the vision depended on everyone else. A query Duo writes later has to be one a project manager can read and correct, and SQL also brought expectations our language could not meet.</p>
             <p>My argument was that the syntax is the first thing a user touches, so it is the interface, and we should test it with the people we wanted to reach before locking it in. We tested it. The plain-language option won, and we shipped it with full backward compatibility, so nobody who had already written queries had to rewrite them.</p>
@@ -130,7 +117,7 @@ export function GlqlContent({
           </div>
 
           <div className="case-study-section">
-            <h2>Step two: bring the starting point in-product</h2>
+            <h2 id="glql-starting-point">Step two: bring the starting point in-product</h2>
             <p>User testing surfaced a behavior I had not designed for: people did not write queries from scratch. They found an example in the documentation, copied it, pasted it into GitLab, and adjusted from there. The docs were the starting point and the product was the workbench, with a round trip between the two every time they got stuck.</p>
 
             <img src="/images/glql-decision2.gif" alt="The GitLab documentation page for GLQL embedded views, the source users copied examples from" />
@@ -149,7 +136,7 @@ export function GlqlContent({
           </div>
 
           <div className="case-study-section">
-            <h2>Getting it found</h2>
+            <h2 id="glql-discoverability">Getting it found</h2>
             <p>Even a strong feature has to be found before it gets used. I led the discoverability work: surfacing the feature inside the editor at the moment someone is writing, getting it placed as a primary item in the release post, and featuring it in GitLab&apos;s What&apos;s New. Adoption grew about a third in the first weeks after launch alongside that push.</p>
 
             <figure className="glql-figure-pair">
@@ -162,7 +149,7 @@ export function GlqlContent({
           </div>
 
           <div className="case-study-section">
-            <h2>Shipping in code</h2>
+            <h2 id="glql-shipping">Shipping in code</h2>
             <p>I did not hand off a spec and walk away. I worked in the same repository as the engineers, through the same review, and merged to production myself.</p>
             <p>One example: an empty embedded view showed no count at all, so you could not scan a page of views and tell which ones had no results without opening each one. The cause was a shared component used in over fifty places that could only show a zero when it also had an icon. I fixed it without breaking the other places, wrote the tests, and shipped it. Being held to the same bar as the engineers is what earned the team&apos;s trust.</p>
 
@@ -188,7 +175,7 @@ export function GlqlContent({
           </div>
 
           <div className="case-study-section">
-            <h2>Step three: ask for the view, keep the query</h2>
+            <h2 id="glql-duo-embed">Step three: ask for the view, keep the query</h2>
             <p>The readable syntax served both audiences, but it was still writing. Someone new to it had to know which fields existed and how to combine them before they saw anything useful.</p>
             <p>The view builder I designed lowered that barrier. It opened on a live result, so you saw your work before touching a single setting. But assembling a view was still friction.</p>
             <p>When GitLab rolled out Duo&apos;s AI agents, the vision became buildable. I brought Duo into the view builder and called it Duo embed. You pick it from the editor&apos;s insert menu and describe the view you want in plain language, like &quot;show me issues and epics with the Brouns label across my most important projects.&quot; Duo builds the GLQL query and renders the live table in place, before you insert anything.</p>
@@ -216,7 +203,7 @@ export function GlqlContent({
           </div>
 
           <div className="case-study-section">
-            <h2>Next steps of the vision</h2>
+            <h2 id="glql-next-steps">Next steps of the vision</h2>
             <p>Each next step came out of something the first release or the research taught us.</p>
             <ul>
               <li><strong>More than issues.</strong> The first release proved people wanted to pull issues from other projects into one view. The same need applied to the rest of their work, like epics, so the next step was widening what a view could show.</li>
@@ -227,7 +214,7 @@ export function GlqlContent({
           </div>
 
           <div className="case-study-section">
-            <h2>Outcomes and what I learned</h2>
+            <h2 id="glql-outcomes">Outcomes and what I learned</h2>
             <p>Adoption grew about a third in the early weeks, on the back of a solid product from the whole team and a discoverability push that put it in front of people. Duo embed took the work from that first release to a final prototype of the end goal. The result I am prouder of is quieter and lasts longer. Research became part of how the team decided what to build, which made the projects after this one, the Wiki sidebar and contextual comments, faster to agree on and build.</p>
 
             <p>What I would carry into the next one:</p>
@@ -243,7 +230,7 @@ export function GlqlContent({
           </div>
 
           <div className="case-study-section">
-            <h2>Links</h2>
+            <h2 id="glql-links">Links</h2>
             <ul>
               <li><a href="https://about.gitlab.com/blog/embedded-views-the-future-of-work-tracking-in-gitlab/" target="_blank" rel="noopener">Blog post<ExternalLinkIcon size={12} className="external-mark" /></a>, about.gitlab.com</li>
               <li><a href="https://docs.gitlab.com/user/glql/" target="_blank" rel="noopener">Documentation<ExternalLinkIcon size={12} className="external-mark" /></a>, docs.gitlab.com</li>
@@ -253,5 +240,6 @@ export function GlqlContent({
 
         </div>{/* /case-study-main */}
       </section>
+    </CaseStudyLayout>
   );
 }

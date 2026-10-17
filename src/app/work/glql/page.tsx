@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function Glql() {
   return (
-    <CaseStudyShell>
+    <CaseStudyShell wide>
       <GlqlContent />
     </CaseStudyShell>
   );

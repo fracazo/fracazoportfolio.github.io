@@ -3201,3 +3201,281 @@
     display: none;
   }
 }
+
+/* ---- Case study layout: fixed context rail + scrolling story ---- */
+/* Sized by its container, not the viewport: the same page renders in the side
+   sheet and full screen, and only the space it actually has matters. */
+.cs {
+  container: cs / inline-size;
+}
+.cs-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+/* Narrow: rail and body dissolve into one column so their parts can be
+   reordered into the app-store sequence (identity, facts, picture, story). */
+.cs-rail,
+.cs-body {
+  display: contents;
+}
+.cs-id { order: 1; }
+.cs-meta { order: 2; }
+.cs-hero { order: 3; }
+.cs-stats { order: 4; }
+.cs-story { order: 5; }
+.cs-link { order: 6; }
+.cs-nav { display: none; }
+
+.cs-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cs-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--panel-2);
+  outline: 1px solid var(--img-outline);
+  outline-offset: -1px;
+}
+.cs-icon svg {
+  width: 36px;
+  height: auto;
+}
+.cs-brand-name {
+  display: none;
+}
+.cs-title {
+  margin: 20px 0 0;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.cs-subtitle {
+  margin: 2px 0 0;
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--muted);
+  text-wrap: balance;
+}
+
+/* Facts as label-over-chip, in a row that scrolls sideways and runs to the
+   screen edge, so a long value never wraps the row onto two lines. */
+.cs-meta {
+  display: flex;
+  gap: 20px;
+  margin: 0 -24px;
+  padding: 0 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.cs-meta::-webkit-scrollbar {
+  display: none;
+}
+.cs-meta-item {
+  flex: none;
+}
+.cs-meta dt {
+  font-size: var(--text-meta-size);
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.cs-meta dd {
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.cs-hero {
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--panel);
+  outline: 1px solid var(--img-outline);
+  outline-offset: -1px;
+}
+.cs-hero :is(img, video) {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cs-stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+.cs-stats li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cs-stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--text);
+}
+.cs-stat-label {
+  font-size: var(--text-meta-size);
+  line-height: 1.45;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.cs-link {
+  font-size: var(--text-meta-size);
+  color: var(--muted);
+  text-decoration: none;
+}
+.cs-link:hover {
+  color: var(--text);
+}
+
+/* The first words under the picture: the one-paragraph version of the story. */
+.cs-intro {
+  font-size: var(--text-subhead-size);
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 60ch;
+  margin: 0;
+  text-wrap: pretty;
+}
+.cs-story > .case-study-content > .case-study-main > .case-study-section:first-of-type {
+  padding-top: 32px;
+}
+/* A jump from the chapter nav lands the heading below the sheet's top edge. */
+.cs-story [id] {
+  scroll-margin-top: 80px;
+}
+
+/* Wide: two columns. The rail pins to the scroller and spends its height on
+   identity at the top and wayfinding at the bottom. */
+@container cs (min-width: 820px) {
+  .cs-layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+  .cs-rail {
+    position: sticky;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: calc(100dvh - 80px - 40px);
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  /* The side sheet's scroller already pads 80px; sticky offsets count from
+     inside that padding, so the rail pins at its edge. */
+  .panel-body .cs-rail {
+    top: 0;
+  }
+  .cs-body {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .cs-icon {
+    width: auto;
+    height: auto;
+    background: none;
+    outline: 0;
+    border-radius: 0;
+  }
+  .cs-icon svg {
+    width: 26px;
+  }
+  .cs-brand-name {
+    display: inline;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .cs-title {
+    margin-top: 14px;
+    font-size: 17px;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+  .cs-subtitle {
+    font-size: 17px;
+    line-height: 1.4;
+  }
+  /* In the rail there is room to stack, so the facts read as a short list. */
+  .cs-meta {
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+  .cs-meta dt {
+    margin-bottom: 2px;
+  }
+  .cs-meta dd {
+    padding: 0;
+    background: none;
+    font-size: 15px;
+    white-space: normal;
+    color: var(--text-body);
+  }
+  .cs-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .cs-stat-value {
+    font-size: 24px;
+  }
+  /* Back to source order: identity, facts, numbers, then wayfinding pushed
+     to the foot of the rail. */
+  .cs-rail > * {
+    order: 0;
+  }
+  .cs-nav {
+    display: block;
+    margin-top: auto;
+  }
+  .cs-nav ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 2px;
+  }
+  .cs-nav a {
+    display: block;
+    padding: 5px 0 5px 12px;
+    border-inline-start: 2px solid var(--border);
+    font-size: 15px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 150ms ease, border-color 150ms ease;
+  }
+  .cs-nav a:hover {
+    color: var(--text);
+  }
+  .cs-nav a[aria-current] {
+    color: var(--text);
+    border-color: var(--brand);
+  }
+  .cs-hero {
+    border-radius: 24px;
+  }
+}

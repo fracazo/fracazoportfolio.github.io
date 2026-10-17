@@ -15,14 +15,22 @@ import { PlainShell } from "./plain-shell";
 export function CaseStudyShell({
   children,
   backHref = "/work",
+  wide = false,
 }: {
   children: ReactNode;
   /** Where the back pill lands when there is no panel to return to. */
   backHref?: string;
+  /** Room for CaseStudyLayout's rail beside the story. Its top padding
+      matches the side sheet's, so the rail pins at the same height in both. */
+  wide?: boolean;
 }) {
   return (
     <PlainShell back={<BackToSite href={backHref} />}>
-      <div className="mx-auto grid w-full max-w-[800px] gap-16 pt-24 max-md:pt-10 [&>*]:min-w-0">
+      <div
+        className={`mx-auto grid w-full gap-16 [&>*]:min-w-0 ${
+          wide ? "max-w-[1200px] pt-20 max-md:pt-10" : "max-w-[800px] pt-24 max-md:pt-10"
+        }`}
+      >
         {children}
         <MoreWork anchors={caseStudyAnchors} />
       </div>
