@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { CaseStudyLayout } from "@/components/case-study-layout";
+import { QantasTailMark } from "@/components/scene-marks";
 
 /**
  * Body of the qantas-app case study, without the route chrome.
@@ -13,185 +15,84 @@ export function QantasAppContent({
   breadcrumb?: ReactNode;
 } = {}) {
   return (
+    <CaseStudyLayout
+      icon={<QantasTailMark size={36} />}
+      title="Qantas Airways app"
+      subtitle="Putting entertainment on the flight card"
+      meta={[
+        { label: "Role", value: "Lead Designer" },
+        { label: "Project type", value: "New feature" },
+        { label: "Platform", value: ["iOS", "Android"] },
+      ]}
+      stats={[
+        { value: "27k", label: "taps on Download Qantas Entertainment app in the first 24 hours" },
+        { value: "+70%", label: "year-on-year App Store download growth, up from +58%" },
+      ]}
+      chapters={[
+        { id: "qa-problem", label: "Nobody knew the app existed" },
+        { id: "qa-notice", label: "A notice that knows the aircraft" },
+        { id: "qa-launch", label: "27k taps in a day" },
+        { id: "qa-home", label: "Onto the home screen" },
+        { id: "qa-results", label: "Results" },
+      ]}
+      hero={
+        <img src="/images/62db651e9b61420fa9ab20ce_formfactor.webp" width={1544} height={672} alt="The flight card in the Qantas Airways app with a Download Qantas Entertainment app row, and the notice's variants for seatback screens, streaming, and the app already installed" />
+      }
+    >
       <section className="section case-study-content">
         <div className="case-study-main">
+
         {breadcrumb}
-        <header className="case-header">
-          <h1 className="case-title">Increasing App Adoption by Integrating Entertainment Services</h1>
-          <div className="case-metadata-card">
-            <img src="/images/62dc1d83920df32baae28d6b_work2-p-1080.png" alt="Qantas Airways App" className="case-hero-image" />
-            <div className="metadata-content">
-              <div className="metadata-item">
-                <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M6 3.75A2.75 2.75 0 0 1 8.75 1h2.5A2.75 2.75 0 0 1 14 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 0 1 6 4.193V3.75Zm6.5 0v.325a41.622 41.622 0 0 0-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25ZM10 10a1 1 0 0 0-1 1v.01a1 1 0 0 0 1 1h.01a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1H10Z" clipRule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 0 1-9.274 0C3.985 17.585 3 16.402 3 15.055Z"/></svg>
-                <div className="metadata-text">
-                  <p className="metadata-label">Product</p>
-                  <p className="metadata-value">Qantas Airways App</p>
-                </div>
-              </div>
-              <div className="metadata-item">
-                <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clipRule="evenodd"/></svg>
-                <div className="metadata-text">
-                  <p className="metadata-label">Platform</p>
-                  <p className="metadata-value">iOS and Android</p>
-                </div>
-              </div>
-              <div className="metadata-item">
-                <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
-                <div className="metadata-text">
-                  <p className="metadata-label">Role</p>
-                  <p className="metadata-value">Lead Designer</p>
-                </div>
-              </div>
-            </div>
+
+          <p className="cs-intro">More and more Qantas travellers watch on their own phones and tablets, but most didn&rsquo;t know the Qantas Entertainment app existed until they were on board, too late to download it. I designed a notice on the flight card in the Qantas Airways app that knows which aircraft you&rsquo;re flying and whether you have the app, then grew it into entertainment on the app&rsquo;s home screen.</p>
+
+          <div className="case-study-section">
+            <h2 id="qa-problem">Nobody knew the app existed</h2>
+            <p>Qantas had a strong seatback experience but no easy way to watch on your own device, even as travellers brought more of them on board. I led design for the Entertainment squad in Qantas Digital Direct, working with the Travel, Emerging Channels, Loyalty and Smart Retail squads. I ran discovery, guerrilla tests at the airport and interviews in the Qantas Lounge, and showed the work to the wider team every two weeks.</p>
+            <img src="/images/62cd72933cf5aa86945be94f_Screen-Shot-2022-07-12-at-11.09.27-pm.webp" alt="The traveller journey from booking to landing, with pain points: not knowing to download another app, not knowing what is new for the flight, not wanting to wait for the flight to start entertainment, not finishing what they were watching" />
+            <blockquote>Travellers <strong>don&rsquo;t know</strong> about the Entertainment app until they get on board the flight.</blockquote>
+            <p>But they did open the Qantas Airways app before flying: 35% of trips were synced or added to it a week before departure. So the experiment was to put a message about the Entertainment app on the flight card in the Qantas Airways app, and measure Entertainment app downloads from the App Store.</p>
+            <img src="/images/62d92064bd8dc262d8f4684e_Screen-Shot-2022-07-21-at-7.45.40-pm.webp" alt="The original flow: home screen, then the trip itinerary, with no mention of entertainment" />
           </div>
-          <p className="case-intro">Using entertainment features to drive a 70% increase in app downloads.</p>
-        </header>
 
+          <div className="case-study-section">
+            <h2 id="qa-notice">A notice that knows the aircraft</h2>
+            <p>The notice only works if it&rsquo;s true for your flight. Qantas flies aircraft with different systems, so I designed it around four situations:</p>
+            <ul>
+              <li>The aircraft only has seatback screens</li>
+              <li>It only has streaming to your device</li>
+              <li>It has both</li>
+              <li>It has neither, so the notice stays hidden</li>
+            </ul>
+            <p>It also checks whether you already have the Entertainment app, and adjusts the message to match. Each message stays short and out of the way, so the flight card still does its main job.</p>
+            <img src="/images/62d920e6a8820bb1f683016a_Screen-Shot-2022-07-21-at-7.48.07-pm.webp" alt="The flight card on the home screen with the Download the Qantas Entertainment app before you fly notice highlighted" className="img-xs" />
+            <img src="/images/62d923ef2a634d7332345a07_Screen-Shot-2022-07-21-at-8.01.09-pm.webp" alt="The redesigned flow: from the notice on the home screen and itinerary straight to the Entertainment app in the App Store" />
+          </div>
 
-        <div className="case-study-section">
-          <h2>The Challenge</h2>
+          <div className="case-study-section">
+            <h2 id="qa-launch">27k taps in a day</h2>
+            <p>In the first 24 hours after launch, 27k unique visitors tapped &ldquo;Download Qantas Entertainment app&rdquo;, and 9k tapped &ldquo;Open Qantas Entertainment app&rdquo;. The flight card was the right place: people were already there, planning their trip.</p>
+          </div>
 
-          <p>Qantas provides a wide range of inflight entertainment systems, using multiple providers for aircraft hardware. Traveller behaviour is moving towards bringing personal devices on board. We've seen more and more travellers using their personal devices to stream content as well as switch devices/systems at will.</p>
-          <p>Qantas already has an appealing seatback screen experience but lacks a hassle-free personal device experience. Building a better experience for entertainment using the Qantas Airways app is a great extension of the company's mission, while managing to leverage its existing systems and providers, increase its value for customers and provide the company with another revenue stream.</p>
+          <div className="case-study-section">
+            <h2 id="qa-home">Onto the home screen</h2>
+            <p>With that result, we added more to get travellers excited about their trip, starting with the five latest movies on their flight, then a detail page that could hold movies, TV shows, games and music.</p>
+            <img src="/images/62d932ca88b9cb77a06bf8ee_Screen-Shot-2022-07-21-at-9.04.18-pm.webp" alt="Entertainment on the itinerary: the latest movies for the flight and the download notice" className="img-small" />
+            <img src="/images/62db6a93b82931731af85715_Media-details.webp" alt="Detail pages for a movie, a TV show, a game and music, each with where to watch on this flight" />
+            <p>Meanwhile the Travel squad was bringing the itinerary onto the app&rsquo;s home screen, so travellers wouldn&rsquo;t need to tap a card to see what mattered for their flight. Because the entertainment pattern was simple, consistent and cheap to build, it moved onto the new home screen as it was. Entertainment for your flight went from a tap away to the first screen 1.17 million monthly users see.</p>
+            <img src="/images/62d9376db01acdaf39623982_Screen-Shot-2022-07-21-at-9.23.58-pm.webp" alt="How the pattern evolved: the notice on the flight card, then on the itinerary, then entertainment on the new home screen" className="img-small" />
+          </div>
 
-          <h3>Team & Context</h3>
-          <img src="/images/62d8b0123816d7fee7a5344b_Screen-Shot-2022-07-21-at-11.46.45-am.webp" alt="Team structure" className="img-small" />
-          <p>I led design for the Entertainment Squad under the Qantas Digital Direct team, and collaborated with the Travel, Emerging Channels, Loyalty and Smart Retail squads.</p>
-          
-          <h4>Key milestones</h4>
-          <ul>
-            <li>Lead discovery research & ideation sessions</li>
-            <li>Present and showcase my findings, prototypes, visual designs and rationales to the Qantas Digital Direct team every 2 weeks</li>
-            <li>Lead informal design reviews</li>
-            <li>Organise and run guerrilla testing at the airport</li>
-          </ul>
-
-          <h3>Research & Discovery</h3>
-          <p>Some known facts about the Qantas product offering that are relevant to entertainment:</p>
-          
-          <h4>1. Qantas Airways app (Flagship) - 1.17 million active monthly users</h4>
-          <ul>
-            <li>Utility</li>
-            <li>Check-in, select seat, access boarding pass or manage the trip</li>
-            <li>Book flights, hotels, request an Uber and more</li>
-          </ul>
-
-          <h4>2. Qantas Entertainment app (Streaming) - 107k active monthly users</h4>
-          <ul>
-            <li>Stream Entertainment to a customer's personal device</li>
-            <li>Watch or listen to movies, TV shows & boxsets, podcasts, and games</li>
-          </ul>
-
-          <h4>Leveraging insights and data</h4>
-          <p>Focus on deeply understanding the problem by leveraging insights from other teams. I started mapping the customer journey and adding important touch points where users had an action to complete.</p>
-
-          <h4>Mapping the customer journey</h4>
-          <p>In addition to analysis of previous research conducted by the Qantas team including customer journeys, personas and competitor analysis, we also had free access to the Qantas Lounge to interview travellers. Here is what we found:</p>
-          <img src="/images/62cd72933cf5aa86945be94f_Screen-Shot-2022-07-12-at-11.09.27-pm.webp" alt="Customer journey" />
-
-          <h3>Problem Definition</h3>
-          <blockquote>Travellers <strong>don't know</strong> about the Entertainment app until they get on board the flight</blockquote>
-          <p>A known fact for Qantas was that 35% of trips are synced or added to the "Qantas Airways app" one week before departure. Our solution hypothesis was that there is an opportunity to engage travellers through the Qantas Airways app, and this would lead to increased use of the entertainment app.</p>
-
-          <h4>Experiment:</h4>
-          <p>Incorporate a message about the Qantas Entertainment app in the "flight card" of the Qantas Airways app</p>
-          
-          <h4>Main Metric:</h4>
-          <p>The Qantas Entertainment app downloads from the App Store</p>
-
-          <h4>User flow - Original version</h4>
-          <img src="/images/62d92064bd8dc262d8f4684e_Screen-Shot-2022-07-21-at-7.45.40-pm.webp" alt="Original user flow" />
-
-          <h2>Solution & Design</h2>
-
-          <h3>Solution Exploration</h3>
-          <p>Every week the Qantas design team holds a sparring/jam session, with the aim to understand what each designer is working on and how they are collaborating on each project, and also to establish our design experience principles used across the Qantas products. Here's how I connected those principles to the solutions presented:</p>
-
-          <h4>Simple and streamlined</h4>
-          <blockquote>Focus on primary needs without distractions</blockquote>
-
-          <h4>Connect experience across channels</h4>
-          <blockquote>Start, continue and complete tasks across platforms</blockquote>
-
-          <h4>Leverage device strengths</h4>
-          <blockquote>Supercharge experiences utilising channel capabilities</blockquote>
-
-          <h4>Respect context</h4>
-          <blockquote>Give the user the right experience at the right time</blockquote>
-
-          <h3>Design & Experience</h3>
-          <p>One of our solutions was to identify whether users have the Qantas Entertainment App installed on their device, and if not, to surface a distraction-free notice:</p>
-          <img src="/images/62d920e6a8820bb1f683016a_Screen-Shot-2022-07-21-at-7.48.07-pm.webp" alt="Notice design" className="img-xs" />
-
-          <h3>Redesigned User Flow</h3>
-          <img src="/images/62d923ef2a634d7332345a07_Screen-Shot-2022-07-21-at-8.01.09-pm.webp" alt="Redesigned user flow" />
-
-          <h3>Technical Constraints</h3>
-          <p>The thought process for creating this "notice" was based on which model of aircraft the traveller was flying. Qantas operates a fleet of 126 aircraft: Airbus A380, Airbus A330, Boeing 737 and Boeing 787. Our team had to understand the basics to create this experience. So we considered four different situations regarding the aircraft system:</p>
-          <ul>
-            <li>Aircraft only has the seatback screen</li>
-            <li>Aircraft only has wi-fi streaming enabled</li>
-            <li>Aircraft has both (seatback and streaming services)</li>
-            <li>Aircraft has neither (hide the notice)</li>
-          </ul>
-          <p>The feature needed to understand which system was available on the aircraft and also whether the user had the app installed on their device to adjust the message accordingly.</p>
-          <img src="/images/62db651e9b61420fa9ab20ce_formfactor.webp" alt="Form factor" />
-
-          <h2>Rollout & Iteration</h2>
-
-          <h3>Experiment Results</h3>
-          <p>We collected the following data 24 hours after launch:</p>
-          <ul>
-            <li>27k unique visitors tapped on the 'Download Qantas Entertainment app'</li>
-            <li>9k unique visitors tapped on 'Open Qantas Entertainment app'</li>
-          </ul>
-
-          <h3>Progressive Releases</h3>
-          <p>With the positive results of our experiment, we decided to launch more features that we believed could solve other user-identified pain points and also get travellers engaged and excited about their trip. We started by showing the 5 latest movies available for their flight.</p>
-          <img src="/images/62d932ca88b9cb77a06bf8ee_Screen-Shot-2022-07-21-at-9.04.18-pm.webp" alt="Movies feature" />
-
-          <h3>Media Content</h3>
-          <p>We also decided to explore a page structure that would accommodate:</p>
-          <ul>
-            <li>Movies</li>
-            <li>TV Shows</li>
-            <li>Games</li>
-            <li>Music</li>
-          </ul>
-          <img src="/images/62db6a93b82931731af85715_Media-details.webp" alt="Media details" />
-
-          <h3>Home Page Integration</h3>
-          <p>During this process, the Qantas Airways app was also improved by another team on the Travel Squad. Their objective was to surface the itinerary page on the home page so that users wouldn't need to tap on a card to see what's important for their flight.</p>
-          <p>When their change shipped, the entertainment pattern slotted into the new home page as it was. Entertainment for your flight moved from a card tap away to the first screen 1.17 million monthly users see, and the download growth below owes a lot to that placement.</p>
-
-          <h3>Design Evolution</h3>
-          <ul>
-            <li>Surface important user actions</li>
-            <li>Cheap to implement and roll-out</li>
-            <li>A consistent design pattern across app releases</li>
-            <li>High learnability due to user recognition</li>
-          </ul>
-          <img src="/images/62d9376db01acdaf39623982_Screen-Shot-2022-07-21-at-9.23.58-pm.webp" alt="Design evolution" className="img-small" />
-
-          <h2>Results & Learnings</h2>
-
-          <h3>Outcomes</h3>
-          <ol>
-            <li>Entertainment is now on the Qantas Airways app home page</li>
-            <li>Informing <strong>1.17 million active monthly users</strong> of the entertainment offering for their flight</li>
-            <li>App Store downloads: year-on-year growth of +58% at the start of the project (2017) rose to <strong>+70%</strong> after the redesign (~2018)</li>
-          </ol>
-
-          <img src="/images/62de769d97f4602e89070492_user-flow.webp" alt="Final user flow" className="img-full" />
-
-          <h3>Key Takeaways</h3>
-          <p>Beyond making the pattern easy to use, we let passengers discover what's showing on board their next flight. This feature delivers awareness of what entertainment is available when travelling with Qantas and further strengthens the passengers' engagement with the app and the Qantas brand.</p>
-          <img src="/images/62df2cccc02b82ce55e9b9f3_conclusion.webp" alt="Conclusion" />
-          <p>This work is one half of the story. The other half is the Qantas Entertainment app redesign, where the same strategy continues inside the streaming app itself.</p>
-
-        </div>
+          <div className="case-study-section">
+            <h2 id="qa-results">Results</h2>
+            <p>Entertainment is now on the Qantas Airways app&rsquo;s home screen, telling travellers what&rsquo;s on their flight before they board. Year-on-year App Store download growth went from +58% at the start of the project to +70% after the redesign, helped a lot by that home screen placement.</p>
+            <img src="/images/62de769d97f4602e89070492_user-flow.webp" alt="The final flow: whether the traveller has a trip and the app, through the home screen and itinerary, to the Entertainment app or the App Store" />
+            <img src="/images/62df2cccc02b82ce55e9b9f3_conclusion.webp" alt="A traveller holding a phone with the Qantas Entertainment app open" />
+            <p>This is one half of the story. The other half is the <a href="/work/qantas-entertainment-app">Qantas Entertainment app redesign</a>, where the same idea continues inside the streaming app.</p>
+          </div>
 
         </div>
       </section>
+    </CaseStudyLayout>
   );
 }

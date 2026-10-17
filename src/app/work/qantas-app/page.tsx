@@ -3,9 +3,9 @@ import { CaseStudyShell } from "@/components/case-study-shell";
 import { QantasAppContent } from "@/components/case-studies/qantas-app";
 
 const title =
-  "Increasing App Adoption by Integrating Entertainment Services - Alex Fracazo";
+  "Qantas Airways app: putting entertainment on the flight card - Alex Fracazo";
 const description =
-  "Using entertainment features to drive a 70% increase in app downloads.";
+  "Travellers didn’t know the Qantas Entertainment app existed until they boarded. An aircraft-aware notice on the flight card got 27k download taps in its first day.";
 
 export const metadata: Metadata = {
   title,
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function QantasApp() {
   return (
-    <CaseStudyShell>
+    <CaseStudyShell wide>
       <QantasAppContent />
     </CaseStudyShell>
   );
