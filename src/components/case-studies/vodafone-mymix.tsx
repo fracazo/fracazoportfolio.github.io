@@ -304,6 +304,13 @@ export function VodafoneMymixContent({
 
         <div className="case-study-section">
           <h2>Launch and outcome</h2>
+          <figure className="mb-8">
+            <img
+              src="/images/vodafone/mymix-campaign.webp"
+              alt="Vodafone's MyMix launch campaign lockup: Prepaid just got Personal, with a fingerprint as the letter o"
+            />
+            <figcaption className="img-caption">The launch campaign line, &ldquo;Prepaid just got personal&rdquo;.</figcaption>
+          </figure>
           <p>
             MyMix launched on the website and in the MyVodafone app with the
             button builder from testing, and a public selector at
