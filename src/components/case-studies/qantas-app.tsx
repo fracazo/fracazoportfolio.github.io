@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { CaseStudyLayout } from "@/components/case-study-layout";
-import { QantasTailMark } from "@/components/scene-marks";
 
 /**
  * Body of the qantas-app case study, without the route chrome.
@@ -16,7 +15,7 @@ export function QantasAppContent({
 } = {}) {
   return (
     <CaseStudyLayout
-      icon={<QantasTailMark size={36} />}
+      icon={<img className="cs-app-icon" src="/images/qantas-airways-icon.webp" width={256} height={256} alt="" />}
       title="Qantas Airways app"
       subtitle="Putting entertainment on the flight card"
       meta={[
