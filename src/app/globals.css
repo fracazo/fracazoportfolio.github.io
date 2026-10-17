@@ -2172,7 +2172,7 @@
     outline: 1px solid var(--img-outline);
     outline-offset: -1px;
   }
-  .case-study-section .before-after-frame img {
+  .case-study-section .before-after-frame :is(img, .before-after-pane) {
     /* Same width for both so the two screens compare at one scale; the frame
        takes the taller one's height and the shorter sits at the top. */
     grid-area: 1 / 1;
@@ -2187,12 +2187,12 @@
     visibility: hidden;
     transition: opacity 0.25s ease, visibility 0.25s;
   }
-  .case-study-section .before-after-frame img[data-visible] {
+  .case-study-section .before-after-frame :is(img, .before-after-pane)[data-visible] {
     opacity: 1;
     visibility: visible;
   }
   @media (prefers-reduced-motion: reduce) {
-    .case-study-section .before-after-frame img {
+    .case-study-section .before-after-frame :is(img, .before-after-pane) {
       transition: none;
     }
   }
@@ -3522,4 +3522,179 @@
 :is(.case-study-content, .cs) :is(input, textarea, [contenteditable="true"]) {
   -webkit-user-select: text;
   user-select: text;
+}
+
+/* ---- GitLab Pages deployments mock ----
+   A rebuild of a shipped GitLab screen, so it keeps GitLab's own type and
+   Pajamas colours (fixed, light only) instead of the site's tokens. Values
+   measured from the shipped screenshots at their 1.6x capture scale. */
+@font-face {
+  font-family: "GitLab Sans";
+  src: url("/fonts/GitLabSans.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+/* The native-width block must not size its column: contain the inline size
+   so the wrapper takes the column's width and the block scales into it. */
+.glm-fit {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  contain: inline-size;
+}
+.before-after-pane {
+  min-width: 0;
+}
+.glm {
+  width: 894px;
+  transform-origin: 0 0;
+  font-family: "GitLab Sans", system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  color: #333238;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "tnum" 0;
+}
+.glm-card {
+  border: 1px solid #dcdcde;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+}
+.glm-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 16px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #18171d;
+  border-bottom: 1px solid #dcdcde;
+}
+.glm-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #ececef;
+  font-size: 12px;
+  font-weight: 400;
+  color: #535158;
+}
+.glm-row {
+  display: grid;
+  grid-template-columns: 246px 1fr auto;
+  padding: 16px;
+  background: #fbfafd;
+  border-bottom: 1px solid #dcdcde;
+}
+.glm-row > :nth-child(2) {
+  padding-left: 16px;
+}
+.glm-row--th {
+  padding-block: 15px;
+  background: #fff;
+  font-weight: 600;
+  color: #535158;
+}
+.glm-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.glm-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.glm-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.glm-line svg,
+.glm-icon-btn svg {
+  fill: #626168;
+  flex-shrink: 0;
+}
+.glm-line--tight {
+  gap: 4px;
+}
+.glm-meta {
+  color: #626168;
+}
+.glm-dot {
+  margin: 0 6px;
+}
+.glm-link {
+  color: #0b5cad;
+}
+.glm-muted {
+  color: #626168;
+}
+.glm-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  text-align: right;
+}
+.glm-row > .glm-actions {
+  padding-top: 3px;
+}
+.glm-row--th > .glm-actions {
+  display: block;
+  padding-top: 0;
+}
+.glm-icon-btn {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  margin: -4px -4px 0 0;
+  align-items: center;
+  justify-content: center;
+}
+.glm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #c3e6cd;
+  color: #028345;
+}
+.glm-badge svg {
+  fill: currentColor;
+}
+.glm-avatar {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ececef url("/images/avatar.png") center / cover;
+}
+.glm-more {
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 16px;
+}
+/* Compact rows: name, badge + URL, and expiry share one 20px first line,
+   so their text sits on a single centre line across the row. */
+.glm--compact .glm-row:not(.glm-row--th) > :first-child {
+  line-height: 20px;
+}
+.glm--compact .glm-row:not(.glm-row--th) > .glm-actions {
+  padding-top: 0;
+}
+.glm--compact .glm-actions .glm-line {
+  height: 20px;
+}
+.glm--compact .glm-icon-btn {
+  margin: -2px -4px -2px 0;
 }

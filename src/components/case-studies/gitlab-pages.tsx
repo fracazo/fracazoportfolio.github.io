@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { BeforeAfterToggle } from "@/components/before-after-toggle";
 import { CaseStudyLayout } from "@/components/case-study-layout";
 import { ExternalLinkIcon } from "@/components/icons";
+import { GitlabPagesDeploymentsMock, type MockDeployment } from "@/components/gitlab-pages-mock";
 import { TanukiMark } from "@/components/scene-marks";
 
 /**
@@ -11,6 +12,13 @@ import { TanukiMark } from "@/components/scene-marks";
  * panel on the home page. `breadcrumb` is a slot the route fills and the
  * panel leaves empty, since it doesn't belong beside the index.
  */
+/* Sample previews for the deployment list critique. */
+const deployments: MockDeployment[] = [
+  { name: "mr-1042", path: "https://docs.gitlab.io/mr-1042", job: 787, files: "3 files • 1.1 KiB", author: "Alex Fracazo", ago: "3 minutes ago", expires: "Expiring in 23 hours" },
+  { name: "mr-1038", path: "https://docs.gitlab.io/mr-1038", job: 781, files: "5 files • 2.4 KiB", author: "Alex Fracazo", ago: "1 hour ago", expires: "Expiring in 22 hours" },
+  { name: "mr-1031", path: "https://docs.gitlab.io/mr-1031", job: 776, files: "3 files • 1.2 KiB", author: "Alex Fracazo", ago: "4 hours ago", expires: "Expiring in 19 hours" },
+];
+
 export function GitlabPagesContent({
   breadcrumb,
 }: {
@@ -57,8 +65,8 @@ export function GitlabPagesContent({
                   alt: "The old GitLab Pages settings page: a maximum size field, Force HTTPS and Use unique domain checkboxes, a primary domain dropdown, an Access pages block listing two URLs, a Domains block repeating one of them with a not-verified warning, and a red Remove pages box",
                 }}
                 after={{
-                  src: "/images/gitlab-pages-after-overview.png",
-                  alt: "The redesigned GitLab Pages overview tab: three tabs (Overview, Pages deployments, Domain and settings), a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and a Recent pages deployments list showing a 2/100 limit badge and four active merge request previews",
+                  src: "/images/gitlab-pages-after-overview-top.webp",
+                  alt: "The redesigned GitLab Pages overview tab: three tabs (Overview, Pages deployments, Domain and settings), a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and the first recent Pages deployments under a 2/100 limit badge",
                 }}
               />
             <ul>
@@ -165,6 +173,19 @@ export function GitlabPagesContent({
             <h2 id="gp-differently">What I&rsquo;d do differently</h2>
             <p>I&rsquo;d attach a metric on day one: time to find the site address, support requests about unverified domains, or the share of projects that add a custom domain. Without one, nobody was measuring the cost of not building it, and the capacity conversation came down to preference instead of a trade-off.</p>
             <p>I&rsquo;d go to Paper Cuts in February, not April. When I marked the designs final I asked for a last review, which invites more comments. The right ask was the direct one: do we agree to move forward? That yes came two months later. The slow part of this story was never the shipping. It was the two months I spent treating the roadmap as the only door.</p>
+            <p>And I&rsquo;d rethink the deployment rows. Each one stacks five lines: status, address, deploy job, files and author. The two things people scan for, whether it&rsquo;s live and where, get the same weight as the details. Now I&rsquo;d put status and address on one line and the details on a quieter second line, which halves the height of every row.</p>
+            <BeforeAfterToggle
+              labels={["Shipped", "What I’d change"]}
+              before={{
+                label: "The shipped deployments list: each row stacks status, address, deploy job, files and author on five lines",
+                node: <GitlabPagesDeploymentsMock variant="shipped" deployments={deployments} used={3} />,
+              }}
+              after={{
+                label: "The same list with two lines per row: status and address first, then deploy job, files and author on a muted line",
+                node: <GitlabPagesDeploymentsMock variant="compact" deployments={deployments} used={3} />,
+              }}
+              caption={<>Rebuilt in HTML from the shipped screens. The second version is a critique of my own work, not what shipped.</>}
+            />
           </div>
 
           <div className="case-study-section">
