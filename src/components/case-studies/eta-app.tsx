@@ -49,7 +49,7 @@ export function EtaAppContent({
           <p className="case-intro">Travellers to Australia typed their passport details into a long web form, and every typo caused trouble at the border. We built an app that reads the passport chip instead.</p>
           <AwardBadge
             title="Sydney Design Awards"
-            detail="Gold 2021 · Government Services"
+            detail="Gold · Government Services"
             href="https://betterfutureawards.com/syd21/project.asp?ID=22007"
           />
         </header>
@@ -58,9 +58,8 @@ export function EtaAppContent({
         <div className="case-study-section">
           <h2>Context</h2>
           <p>An ETA is Australia&rsquo;s e-visa for short tourist and business trips. Approval could take a week or two months.</p>
+          <p>Australia expected visitor numbers to grow from about 9 million a year toward 14 million within a decade. Every typo and every slow approval would grow with them. That is why Home Affairs started this work.</p>
           <p>I was the lead product designer at Arq Group. We worked with the Department of Home Affairs and SITA, the company behind the border systems.</p>
-          <img src="/images/62c93ec16128094ec8c19b4b_Screen-Shot-2022-07-09-at-6.39.18-pm.png" alt="The old ETA web form" />
-          <p className="img-caption">The old web form. Every field typed by hand.</p>
 
           <h2>The form wasn&rsquo;t the problem. The typing was.</h2>
           <p>I spent time with Home Affairs and SITA staff and went through a year of their processing data. The mistakes came from people typing passport details by hand. Every mismatch meant staff chasing airlines and gates to fix it.</p>
@@ -104,7 +103,7 @@ export function EtaAppContent({
           <img src="/images/62cab1f7ca69f3a06ca60419_Submission.webp" alt="Submission" />
 
           <h2>Gold at the Sydney Design Awards</h2>
-          <p>The app won Gold in Government Services in 2021. The award went to the joint team from Home Affairs, SITA and Arq Group.</p>
+          <p>The app won Gold in Government Services. The award went to the joint team from Home Affairs, SITA and Arq Group.</p>
           <ul>
             <li><a href="https://betterfutureawards.com/syd21/project.asp?ID=22007" target="_blank" rel="noopener">The award listing<ExternalLinkIcon size={12} className="external-mark" /></a>, betterfutureawards.com</li>
           </ul>
