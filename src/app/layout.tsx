@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Young_Serif } from "next/font/google";
 import "./globals.css";
+import { CopyGuard } from "@/components/copy-guard";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -75,7 +76,10 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <script dangerouslySetInnerHTML={{ __html: introInit }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <CopyGuard />
+      </body>
     </html>
   );
 }

@@ -3463,3 +3463,21 @@
     flex-wrap: wrap;
   }
 }
+
+/* ---- Case study copy guard ---- */
+/* No text selection, no long-press callout, no dragging images out. Form
+   fields inside a case study (the MyMix builder) stay usable. CopyGuard
+   covers select-all, copy and the context menu. */
+:is(.case-study-content, .cs) {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+:is(.case-study-content, .cs) img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+:is(.case-study-content, .cs) :is(input, textarea, [contenteditable="true"]) {
+  -webkit-user-select: text;
+  user-select: text;
+}
