@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { GitlabPagesContent } from "@/components/case-studies/gitlab-pages";
 
-const title = "Making Site Status Visible in GitLab Pages - Alex Fracazo";
+const title = "GitLab Pages: shipping a redesign without a team - Alex Fracazo";
 const description =
-  "Diagnosing why GitLab Pages spread site status across four screens, then shipping the fix through UX Paper Cuts in one release, with no delivery team assigned and no roadmap slot used.";
+  "GitLab Pages spread site status across four blocks and hid DNS problems until something broke. I designed the fix and, with no team assigned to Pages, got it shipped in a single release.";
 
 export const metadata: Metadata = {
   title,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function GitlabPages() {
   return (
-    <CaseStudyShell>
+    <CaseStudyShell wide>
       <GitlabPagesContent />
     </CaseStudyShell>
   );

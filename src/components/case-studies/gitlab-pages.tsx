@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { BeforeAfterToggle } from "@/components/before-after-toggle";
+import { CaseStudyLayout } from "@/components/case-study-layout";
 import { ExternalLinkIcon } from "@/components/icons";
+import { TanukiMark } from "@/components/scene-marks";
 
 /**
  * Body of the GitLab Pages case study, without the route chrome.
@@ -15,105 +17,71 @@ export function GitlabPagesContent({
   breadcrumb?: ReactNode;
 } = {}) {
   return (
+    <CaseStudyLayout
+      icon={<TanukiMark size={36} />}
+      title="GitLab Pages"
+      subtitle="Shipping a redesign without a team"
+      meta={[
+        { label: "Role", value: "Product Designer" },
+        { label: "Project type", value: "Redesign" },
+        { label: "Platform", value: ["GitLab SaaS", "Self-managed"] },
+      ]}
+      chapters={[
+        { id: "gp-problem", label: "Four blocks, one question" },
+        { id: "gp-corrections", label: "Taking the corrections" },
+        { id: "gp-argument", label: "The argument I didn’t win" },
+        { id: "gp-design", label: "The design" },
+        { id: "gp-shipping", label: "Shipping without a team" },
+        { id: "gp-revenue", label: "A new revenue point" },
+        { id: "gp-differently", label: "What I’d do differently" },
+      ]}
+      link={{ href: "https://docs.gitlab.com/user/project/pages/", label: "docs.gitlab.com/user/project/pages" }}
+      hero={
+        <img src="/images/gitlab-pages-hero.webp" width={1600} height={960} alt="The redesigned GitLab Pages overview: three tabs, a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and recent Pages deployments with a 2/100 limit badge" />
+      }
+    >
       <section className="section case-study-content">
         <div className="case-study-main">
 
         {breadcrumb}
 
-          <header className="case-header">
-            <h1 className="case-title">Making Site Status Visible in GitLab Pages</h1>
-            <div className="case-metadata-card">
-              <div className="metadata-content">
-                <div className="metadata-item">
-                  <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M6 3.75A2.75 2.75 0 0 1 8.75 1h2.5A2.75 2.75 0 0 1 14 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 0 1 6 4.193V3.75Zm6.5 0v.325a41.622 41.622 0 0 0-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25ZM10 10a1 1 0 0 0-1 1v.01a1 1 0 0 0 1 1h.01a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1H10Z" clipRule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 0 1-9.274 0C3.985 17.585 3 16.402 3 15.055Z"/></svg>
-                  <div className="metadata-text">
-                    <p className="metadata-label">Product</p>
-                    <p className="metadata-value">GitLab Pages</p>
-                  </div>
-                </div>
-                <div className="metadata-item">
-                  <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clipRule="evenodd"/></svg>
-                  <div className="metadata-text">
-                    <p className="metadata-label">Platform</p>
-                    <p className="metadata-value">GitLab Web (SaaS &amp; Self-managed)</p>
-                  </div>
-                </div>
-                <div className="metadata-item">
-                  <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
-                  <div className="metadata-text">
-                    <p className="metadata-label">Role</p>
-                    <p className="metadata-value">Product Designer · Knowledge group</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p className="case-intro">GitLab Pages had spread the state of your site across four disconnected blocks. Deployment status was ambiguous, and DNS and SSL problems stayed hidden until something broke. I found it during a scorecard pass, wrote the diagnosis and designed the fix. No delivery team was assigned to Pages that release, so instead of waiting for roadmap space I took the design to the UX Paper Cuts program and broke it into merge requests that could each ship on their own. Eleven of them landed in GitLab 18.1, the redesign live inside one monthly cycle without using a roadmap slot. The deployments work went further, into a new revenue point for GitLab: a way to buy more deployment space when a project hits its limit.</p>
-          </header>
-
+          <p className="cs-intro">GitLab Pages spread your site&rsquo;s status across four blocks and two pages, and DNS and SSL problems stayed hidden until something broke. I found the problem, designed the fix, and with no team assigned to Pages, got it built and shipped in a single release.</p>
 
           <div className="case-study-section">
-            <h2>My Role and Context</h2>
-
-            <h3>Starting from the product, not a brief</h3>
-            <p>I was the product designer for the Knowledge group, which owned Wiki, GLQL and Pages. Pages had a small, dedicated engineering team and no roadmap pressure on its interface, which is exactly the condition under which usability debt builds up unnoticed. I decided it deserved a designer&rsquo;s attention before a customer escalation or a competitor forced the question. So I ran GitLab&rsquo;s UX scorecard on it, a structured evaluation of a product&rsquo;s main jobs that repeats each milestone. That run surfaced the site-status problems documented below, and the issue list it produced is what I took to the PM to argue Pages onto the roadmap.</p>
-
-            <p>On 31 December 2024 I opened <a href="https://gitlab.com/gitlab-org/gitlab/-/issues/511049" target="_blank" rel="noopener">Revamp GitLab Pages<ExternalLinkIcon size={12} className="external-mark" /></a>, an issue with a written diagnosis and a proposal, tagged the Pages engineers and the PM, and asked for their critique. There was no brief, no research budget and no allocated engineering time. What I had was the product itself, a docs site I was maintaining on it, and engineers willing to tell me where I was wrong.</p>
-
-            <h3>Who was in the room</h3>
-            <p>The work ran entirely asynchronously in the issue and its design threads. The people who shaped it: two backend engineers who knew Pages best, the engineer who had just shipped the primary domain feature, the engineer taking over the Rails work, the PM, and the technical writer who reviewed every line of interface copy. An engineer from a different team built it.</p>
+            <h2 id="gp-problem">Four blocks, one question</h2>
+            <p>I was the product designer for the Knowledge group, which owned Wiki, GLQL and Pages. Nobody had asked for Pages work. I ran GitLab&rsquo;s UX scorecard on it, a structured walk through a product&rsquo;s main jobs, then wrote a diagnosis and a proposal in an issue and asked the Pages engineers and the PM to critique it.</p>
+            <p>The settings page was a stack of unrelated sections, and deployments lived on another page altogether.</p>
+              <BeforeAfterToggle
+                before={{
+                  src: "/images/gitlab-pages-before.png",
+                  alt: "The old GitLab Pages settings page: a maximum size field, Force HTTPS and Use unique domain checkboxes, a primary domain dropdown, an Access pages block listing two URLs, a Domains block repeating one of them with a not-verified warning, and a red Remove pages box",
+                }}
+                after={{
+                  src: "/images/gitlab-pages-after-overview.png",
+                  alt: "The redesigned GitLab Pages overview tab: three tabs (Overview, Pages deployments, Domain and settings), a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and a Recent pages deployments list showing a 2/100 limit badge and four active merge request previews",
+                }}
+              />
+            <ul>
+              <li><strong>Status was spread across screens.</strong> Whether the site was live, which URL was canonical and whether the last deployment worked were three lookups on two pages.</li>
+              <li><strong>DNS and SSL were hidden until something broke.</strong> An unverified custom domain showed no warning on the main page. You found out when your visitors did.</li>
+              <li><strong>The copy assumed you already knew.</strong> &ldquo;Use unique domain&rdquo; didn&rsquo;t say why you&rsquo;d want one, and &ldquo;Force HTTPS&rdquo; sat next to domain validation, so people mixed the two up.</li>
+              <li><strong>Two blocks did the same job.</strong> &ldquo;Access pages&rdquo; and &ldquo;Domains&rdquo; listed the same URLs with different actions.</li>
+            </ul>
+            <p>This mattered beyond tidiness. Pages is often the first thing someone deploys on GitLab: the demo, the docs site, the personal blog. A confusing settings page there is a confusing first impression of GitLab as a place to deploy.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Problem Definition</h2>
-
-            <h3>Four blocks, one question</h3>
-            <p>The Pages settings page was a stack of unrelated sections. Global settings at the top, with a maximum size field, a Force HTTPS checkbox and a &ldquo;Use unique domain&rdquo; checkbox nobody could explain. Then a block called &ldquo;Access pages&rdquo; listing URLs. Then a separate &ldquo;Domains&rdquo; block listing some of the same URLs again, with different actions. Then a red &ldquo;Remove pages&rdquo; box. Deployments lived on a different page altogether.</p>
-
-            <BeforeAfterToggle
-              before={{
-                src: "/images/gitlab-pages-before.png",
-                alt: "The old GitLab Pages settings page: a maximum size field, Force HTTPS and Use unique domain checkboxes, a primary domain dropdown, an Access pages block listing two URLs, a Domains block repeating one of them with a not-verified warning, and a red Remove pages box",
-              }}
-              after={{
-                src: "/images/gitlab-pages-after-overview.png",
-                alt: "The redesigned GitLab Pages overview tab: three tabs (Overview, Pages deployments, Domain and settings), a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and a Recent pages deployments list showing a 2/100 limit badge and four active merge request previews",
-              }}
-            />
-
-            <p>The specific problems I documented:</p>
-
+            <h2 id="gp-corrections">Taking the engineers&rsquo; corrections</h2>
+            <p>I ran the review the way Tom Greever lays out in <em>Articulating Design Decisions</em>. Every proposal answered three questions: what problem it solves, how it affects the user, and why it beats the alternative. That kept the thread about the site owner rather than taste, and it made corrections cheap to accept. When an engineer had a better answer, the design changed and the argument was over.</p>
             <ul>
-              <li><strong>Status was spread across screens.</strong> Whether the site was live, which URL was canonical, and whether the last deployment succeeded were three separate lookups on two pages.</li>
-              <li><strong>Deployment states were unclear.</strong> Parallel deployments had only recently been renamed from &ldquo;extra deployments&rdquo;, and the list showed them behind an accordion with badges that didn&rsquo;t distinguish active from stopped at a glance.</li>
-              <li><strong>DNS and SSL were hidden until something broke.</strong> A custom domain could sit unverified with no indication on the main page. You found out when visitors did.</li>
-              <li><strong>The copy assumed you already knew.</strong> &ldquo;Use unique domain&rdquo; told you nothing about why you would want one. &ldquo;Force HTTPS&rdquo; sat next to domain validation and users conflated the two. The primary domain setting was a dropdown labelled &ldquo;Don&rsquo;t enforce a primary domain&rdquo;.</li>
-              <li><strong>&ldquo;Access pages&rdquo; and &ldquo;Domains&rdquo; overlapped.</strong> One of the Pages engineers had wanted to remove the first block for a while, since the second had replaced its purpose. Nobody had made the case.</li>
+              <li><strong>Ports stay in the URL.</strong> Some self-managed instances run Pages on non-standard ports, so the tidy URLs in my mockups would have been broken links. Every URL in the final design keeps its port.</li>
+              <li><strong>&ldquo;Use a random subdomain&rdquo;.</strong> My first rename of &ldquo;Use unique domain&rdquo; assumed the alternative was a custom domain. An engineer pointed out that both options are GitLab-provided: the setting decides whether the subdomain is random, which stops cookies leaking between projects. The final copy explains that reason.</li>
+              <li><strong>Hide the security option, don&rsquo;t remove it.</strong> The toggle moved behind the actions menu with a note to leave it on. Most people never need it, and the ones who do know why.</li>
             </ul>
-
-            <h3>Why it mattered beyond tidiness</h3>
-            <p>Pages is often the first thing someone deploys on GitLab. It is the demo, the docs site, the personal blog. A confusing settings page there is a confusing first impression of GitLab as a deployment platform. The PM later framed the same point commercially: a coherent Pages surface is the foundation for anything the company might want to charge for in Pages, because there is finally a sensible place to put it. That turned out to be literal. The deployment limit on the redesigned page became the place where GitLab could sell more capacity.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Design Explorations</h2>
-
-            <h3>From &ldquo;fix domains&rdquo; to &ldquo;fix the page&rdquo;</h3>
-            <p>The issue title changed three times, which tells the story of the scope. It started as &ldquo;Improve GitLab pages&rdquo;, a grab bag. After the first round of feedback I narrowed it to &ldquo;Simplify domain management&rdquo;, because that was where the most visible pain was: merging Access pages into Domains, inline DNS and certificate status, and a clearer way to set a primary domain. By late January it had widened again into a full redesign, because every domain fix I proposed kept bumping into the layout around it.</p>
-
-            <h3>How I argued each decision</h3>
-            <p>I ran the review the way Tom Greever lays out in <em>Articulating Design Decisions</em>. Every proposal in the thread answered three questions: what problem does this solve, how does it affect the user, and why is it better than the alternative. Framing it that way kept the discussion about the site owner rather than about taste. It also made corrections cheap to accept, because when an engineer had a better answer to one of the three questions, the design changed and the argument was over.</p>
-
-            <h3>Absorbing engineering constraints</h3>
-            <p>Each round of feedback from the engineers changed the design in a concrete way, and I made a point of taking their corrections rather than defending the mockup:</p>
-
-            <ul>
-              <li><strong>Ports stay in the URL.</strong> One of the backend engineers pointed out that some self-managed instances run Pages on non-standard ports, so the friendly URLs in my mockups would have produced broken links. Every URL in the final design carries its port.</li>
-              <li><strong>&ldquo;Use GitLab-provided subdomain&rdquo; was wrong.</strong> My first rename of &ldquo;Use unique domain&rdquo; assumed the alternative was a custom domain. The engineer who built the domain feature corrected me: both URL patterns are GitLab-provided. The setting is about whether the subdomain is random, which exists to stop cookies leaking between projects. Another engineer suggested &ldquo;Use a random subdomain&rdquo;, and the final copy explains the security reason instead of just naming the mechanism.</li>
-              <li><strong>Hide the security option, don&rsquo;t remove it.</strong> The same backend engineer suggested the unique domain toggle belonged behind the actions menu with a note that it should stay on. Most users never need to touch it, and the ones who do know why.</li>
-              <li><strong>Edit and set-primary need to be findable.</strong> The domain feature&rsquo;s engineer asked how a user edits a domain or picks the primary one from my &ldquo;Options&rdquo; dropdown. Fair question. The final design puts both as named actions in the row menu and adds a confirmation modal for changing the primary domain, since it triggers a permanent 301 redirect.</li>
-            </ul>
-
-            <h3>The argument I chose not to win</h3>
+            <h2 id="gp-argument">The argument I chose not to win</h2>
             <p>Halfway through, I raised a bigger question. GitLab already has a Deployments list under Environments. Pages has its own deployments list. Same word, two places, no relationship between them. I argued in the thread that we were letting implementation details drive the interface: a Pages deployment being &ldquo;basically a file in object storage&rdquo; is not a reason to make users learn two mental models, any more than email and calendar should be shown separately because one uses IMAP and the other iCal.</p>
 
             <p>The two backend engineers pushed back, and their reasons were good. Environments was heading toward Kubernetes and user-owned infrastructure. The feature overlap was tiny. Merging them would create cross-team dependencies that would stop the Pages team iterating at all, and most of the review-app benefit was already available with one line in the CI config. I still think the user-facing point stands. But I also knew that if I made the redesign depend on that outcome, nothing would ship.</p>
@@ -122,23 +90,9 @@ export function GitlabPagesContent({
           </div>
 
           <div className="case-study-section">
-            <h2>Proposed Solution</h2>
-
-            <h3>Three tabs, one question answered first</h3>
-            <p>The final proposal organised Pages around what someone actually comes to the page to find out:</p>
-
-            <ul>
-              <li><strong>Overview.</strong> A live block at the top: &ldquo;Your Pages site is live at&rdquo;, the address, the deploy job that put it there, who triggered it and when, and a Visit site button. Below it, configuration alerts for unverified domains or missing certificates, and a preview of recent Pages deployments with a limit badge. If you only look at one screen, this is it.</li>
-              <li><strong>Pages deployments.</strong> The full list, with the main site in its own block above the additional deployments used for merge request previews. Each row shows status, URL, deploy job, file count and size, who deployed it and when, and its expiry, with actions visible rather than hidden in an accordion. A toggle shows stopped deployments when you need them and hides them when you don&rsquo;t.</li>
-              <li><strong>Domain &amp; settings.</strong> Every domain in one list with its role and its DNS check inline: the GitLab-provided one, the custom one marked as primary, and any others noted as redirecting to it. A domain that fails verification shows the failure in red and an alert underneath saying exactly what to add at your registrar. Set as primary, Edit and Remove live in the row menu. Force HTTPS and the unique domain setting sit below the domains with copy that explains what each one does. The danger zone at the bottom became &ldquo;Delete Pages&rdquo;, with a sentence on what is deleted and how to get it back.</li>
-            </ul>
-
-            <img src="/images/gitlab-pages-after.png" alt="The redesigned GitLab Pages overview tab: three tabs (Overview, Pages deployments, Domain and settings), a block reading Your pages site is live at docs.company.com with the deploy job and a Visit site button, and a Recent pages deployments list showing a 2/100 limit badge and four active merge request previews with URL, job, size and expiry" />
-            <p className="img-caption">After: the Overview tab. The first thing on the page is whether the site is live and where. Deployments are labelled as Pages deployments to keep them distinct from Environments.</p>
-
-            <h3>Designing for the tiers</h3>
-            <p>The design covered the states the engineers would need, not just the happy path: each tier, each domain state, the deployment limit, and the menus behind every row, so nothing had to be guessed during implementation.</p>
-
+            <h2 id="gp-design">The design</h2>
+            <p>The final design organises Pages around what people come to find out. The Overview tab opens with &ldquo;Your Pages site is live at&rdquo;, the address, the deploy job behind it and a Visit site button. Pages deployments get their own tab, and every domain sits in one list on Domain &amp; settings, with its DNS check inline.</p>
+            <p>I covered the states the engineers would need, not just the happy path: each tier, each domain state, the deployment limit, the menus behind every row, and the loading, empty and error states.</p>
             <BeforeAfterToggle
               labels={["Domain not verified", "No custom domain"]}
               before={{
@@ -191,69 +145,38 @@ export function GitlabPagesContent({
               caption={<>Domains &amp; settings. Each domain carries its role and its DNS check inline. The settings copy explains what each option does, and the danger zone says what gets deleted and how to get it back.</>}
             />
 
-            <p>Loading, empty and error states for the deployments list were specified alongside these so they could be cleaned up in the same pass.</p>
-
-            <h3>Copy as part of the design</h3>
-            <p>The technical writer reviewed every string across the overview, deployments and settings designs, and I updated the copy in a single pass in early February. The generic &ldquo;Learn more&rdquo; help link became a question, &ldquo;How do I publish my site with Pages?&rdquo;. &ldquo;Create domain&rdquo; became &ldquo;Add domain&rdquo;. The domain verification warning was rewritten to say what to do. None of this shows up in a screenshot comparison, and all of it is the difference between a page that explains itself and one that sends you to the docs.</p>
+            <p>The technical writer reviewed every string. &ldquo;Learn more&rdquo; became &ldquo;How do I publish my site with Pages?&rdquo;, &ldquo;Create domain&rdquo; became &ldquo;Add domain&rdquo;, and the domain warning now says what to do.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Cross-functional Process</h2>
-
-            <h3>Loved, and unaffordable</h3>
-            <p>On 5 February 2025 I marked the designs as final and asked the team for a last review. The reply from the senior backend engineer was honest and, at the time, deflating. They loved the design and thought it would make Pages look much better. They also said the team was spending too much of its capacity on Pages, wanted to move toward Wiki, and was shortest on exactly the front-end skills this needed. Their suggestion was to find a minimal slice and open it to community contributors.</p>
-
-            <p>That would have meant the design sitting in the backlog indefinitely. I kept the issue warm instead: resolved every open design thread, kept the designs updated as related questions came in, and when a duplicate issue for the deployment limit badge appeared I folded it in rather than letting the work fragment.</p>
-
-            <h3>Going around the roadmap, not through it</h3>
-            <p>Waiting for roadmap space would have meant a slot in some future quarter, if Pages ever got one. The route I took instead was the UX Paper Cuts team, a small group under the foundations department that ships focused interface improvements each milestone without needing a roadmap allocation. The design already fit their brief: reviewed, scoped, and splittable into small changes. In late April I took it to them, and the question that came back through my manager in the issue was whether the work was completely ready for implementation, because the Paper Cuts leadership wanted to know if it was worth that team&rsquo;s time. I said the designs were reviewed and every thread resolved, then asked the Pages engineers and the PM directly for a final sign-off so the Paper Cuts team wasn&rsquo;t walking into an unsettled debate. This was the lock-in step: a direct request for agreement, in writing, from each person who could later reopen the discussion.</p>
-
-            <p>The PM re-reviewed and approved the proposal without further changes, citing the strategic value beyond the immediate fix. Two of the engineers signed off. The third was on leave and the PM confirmed that shouldn&rsquo;t block a start. A Paper Cuts engineer picked it up for the 18.1 milestone.</p>
-
-            <h3>Shipping in slices</h3>
-            <p>Paper Cuts ships small changes, so the redesign had to become small changes. I broke it into slices that could each be reviewed and merged on their own, none of them blocked on another, and the Paper Cuts engineer shipped them as eleven merge requests over ten days in May 2025, each with a before-and-after screenshot linked back to the issue. In order: the help link copy, migrating the deployments list to the standard CRUD component, reorganising each deployment row, cleaning up loading, empty and error states, the tabs, the domain settings copy, the delete block, inline domain verification status, the live block on the overview, moving settings into the CRUD component, and a final spacing fix. Working from a complete set of specified states meant none of those merge requests came back with a design question, and the whole redesign went from first merge to release inside one monthly cycle.</p>
-
-            <p>One part of the design is missing from that public list on purpose. The dedicated Pages deployments tab was split out of the Paper Cuts track because it had stopped being a paper cut. By then the deployment limit had become a commercial question, and that work moved into confidential issues.</p>
+            <h2 id="gp-shipping">Shipping without a team</h2>
+            <p>When I marked the designs final, the senior backend engineer&rsquo;s reply was honest. They loved the design, but the team was spending too much of its time on Pages, wanted to move on to Wiki, and was short on exactly the front-end skills this needed. Their suggestion was to find a minimal slice and open it to community contributors. That would have left the design in the backlog indefinitely.</p>
+            <p>I kept the issue warm, resolving every open thread and folding in a duplicate issue about the deployment limit, and looked for another way to get it built. UX Paper Cuts is a small team that ships focused interface fixes each milestone without needing roadmap time, and the design fit their brief: reviewed, scoped and easy to split. When their leadership asked whether it was ready, I asked the Pages engineers and the PM directly for a final sign-off, so the Paper Cuts team wasn&rsquo;t walking into an open debate. The PM approved it, citing its strategic value, and the engineers signed off.</p>
+            <p>I split the redesign into slices that could each be reviewed and merged on their own. Because every state was already specified, none came back with a design question. A Paper Cuts engineer built it in ten days, and it shipped in one monthly release. It&rsquo;s the same instinct I use on my own products: find the problem, fix it, ship it in pieces, just inside a company with a release train.</p>
           </div>
 
           <div className="case-study-section">
-            <h2>Outcomes</h2>
+            <h2 id="gp-revenue">A new revenue point</h2>
+            <p>The PM had framed a coherent Pages page as the foundation for anything GitLab might charge for in Pages. That turned out to be literal. The redesign made the deployment limit visible for the first time. At 80% the deployments block turns amber and says which merge request previews are about to expire, so you can clean up before a pipeline fails. At 100% it turns red and says the pipeline is blocked and why.</p>
+            <p>Its &ldquo;Manage deployment limit&rdquo; link opens a page that didn&rsquo;t exist before, where a project at its limit can buy more deployment space. I designed that page and the flow through it. It&rsquo;s a new revenue point, built on a settings page that nobody had a roadmap slot for six months earlier. The work is confidential, so it isn&rsquo;t shown here.</p>
+          </div>
 
-            <h3>What shipped</h3>
-            <p>Eleven merge requests in release 18.1, without a delivery team assigned to Pages and without a roadmap slot. It is the same instinct I use on my own products, find the problem, fix it, ship it in pieces, applied inside a company with a monthly release train.</p>
-            <ul>
-              <li>Tab-based Pages page with the overview and domain &amp; settings tabs, live in GitLab 18.1 (June 2025)</li>
-              <li>&ldquo;Your Pages site is live at&rdquo; block with deploy job, author and time</li>
-              <li>Inline domain verification status and rewritten domain copy</li>
-              <li>Reorganised deployment rows with visible actions, grouped file and size information, and clearer active and stopped states</li>
-              <li>Cleaned-up loading, empty and error states for deployments</li>
-              <li>Settings and the remove action aligned with GitLab&rsquo;s standard CRUD layout</li>
-            </ul>
-
-            <h3>What it led to</h3>
-            <p>Within a month one of the Pages engineers had used the new interface in earnest and opened two follow-up issues with feedback, which is the outcome you want: a real user of the feature filing real paper cuts against the new baseline instead of the old one. The question I raised about whether &ldquo;Use unique domain&rdquo; should be on by default was spun out into its own issue, and the permissions split between Pages maintainers and developers was queued behind this work. I also wrote a GitLab blog post, &ldquo;Build a new website in a few easy steps with GitLab Pages&rdquo;, walking through the new experience end to end.</p>
-
-            <p>The bigger consequence stayed out of public view. Pages projects have a limit on parallel deployments, and the redesign made approaching it visible for the first time. At 80% the deployments block turns amber and says which merge request previews are about to expire, so you can wait for cleanup or delete them before a pipeline fails. At 100% it turns red and says the pipeline is blocked and why. The &ldquo;Manage deployment limit&rdquo; link on that block opens a page that did not exist before: a dedicated deployment limit page where a project that has reached its limit can purchase more deployment space. I designed that page and the flow through it. It is a new revenue point built on a settings page that, six months earlier, nobody had a roadmap slot for. The issue behind it is confidential, so the design is not shown here.</p>
-            <p>The issue itself was closed as complete in early 2026, when the PM and I agreed Pages would not be prioritised again soon and the Paper Cuts work had covered the bulk of it. It closed because the product moved on, not because the design didn&rsquo;t ship.</p>
-
-            <h3>What I&rsquo;d approach differently</h3>
-            <p>I would attach a metric to the proposal on day one. The diagnosis was sound and the reviewers agreed with it, but the issue never carried a number: time to find the site address, support requests about unverified domains, the share of Pages projects that add a custom domain. A project without a goal stalls, and that is what happened here: once the design was ready, nobody was measuring the cost of not building it. A metric would have turned the capacity conversation in February into a trade-off instead of a preference.</p>
-
-            <p>I would go to Paper Cuts in February, not April. When I marked the designs final I asked for a last review, which invites more comments. The right ask was the direct one: do we agree to move forward with this? That explicit yes only came two months later, once I had a build route and my manager asked whether the work was ready. Asking for it the day the design was finished would have given me a decision to carry straight to Paper Cuts, and the build itself took ten days once it started. The slow part of this story was never the shipping. It was the two months I spent treating the roadmap as the only door.</p>
+          <div className="case-study-section">
+            <h2 id="gp-differently">What I&rsquo;d do differently</h2>
+            <p>I&rsquo;d attach a metric on day one: time to find the site address, support requests about unverified domains, or the share of projects that add a custom domain. Without one, nobody was measuring the cost of not building it, and the capacity conversation came down to preference instead of a trade-off.</p>
+            <p>I&rsquo;d go to Paper Cuts in February, not April. When I marked the designs final I asked for a last review, which invites more comments. The right ask was the direct one: do we agree to move forward? That yes came two months later. The slow part of this story was never the shipping. It was the two months I spent treating the roadmap as the only door.</p>
           </div>
 
           <div className="case-study-section">
             <h2>Links</h2>
             <ul>
               <li><a href="https://gitlab.com/gitlab-org/gitlab/-/issues/511049" target="_blank" rel="noopener">Revamp GitLab Pages<ExternalLinkIcon size={12} className="external-mark" /></a>, the diagnosis, proposal and full design discussion</li>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/merge_requests/191744" target="_blank" rel="noopener">Pages: Add tabs<ExternalLinkIcon size={12} className="external-mark" /></a>, the merge request that landed the new structure, one of eleven in 18.1</li>
-              <li><a href="https://gitlab.com/gitlab-org/gitlab/-/merge_requests/191809" target="_blank" rel="noopener">Pages live block<ExternalLinkIcon size={12} className="external-mark" /></a>, the &ldquo;Your Pages site is live at&rdquo; block</li>
-              <li><a href="https://about.gitlab.com/blog/build-a-new-website-in-a-few-easy-steps-with-gitlab-pages/" target="_blank" rel="noopener">Build a new website in a few easy steps with GitLab Pages<ExternalLinkIcon size={12} className="external-mark" /></a>, GitLab Blog, 2025</li>
+              <li><a href="https://about.gitlab.com/blog/build-a-new-website-in-a-few-easy-steps-with-gitlab-pages/" target="_blank" rel="noopener">Build a new website in a few easy steps with GitLab Pages<ExternalLinkIcon size={12} className="external-mark" /></a>, my walkthrough of the new experience on the GitLab Blog</li>
             </ul>
-            <p>The scorecard run that started this work, and the roadmap discussion around it, live in confidential GitLab issues and epics, so only the public artifacts are linked above.</p>
           </div>
 
-        </div>{/* /case-study-main */}
+        </div>
       </section>
+    </CaseStudyLayout>
   );
 }
