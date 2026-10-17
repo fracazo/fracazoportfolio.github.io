@@ -51,16 +51,36 @@ export function TanukiMark({ size = 14 }: { size?: number }) {
 }
 
 
-/* The Qantas Entertainment icon Alex designed: a play symbol in the Qantas
-   brand's pebble shape. Traced from the icon rationale, in its own red. */
-export function QantasEntertainmentMark({ size = 14 }: { size?: number }) {
+/* The Qantas Entertainment app icon Alex designed: a play symbol in the
+   Qantas brand's pebble shape, on the app's dark background. Drawn edge to
+   edge so it fills the case study's icon tile, which supplies the rounded
+   corners. Redrawn from the 64px store asset so it stays sharp at 2x. */
+export function QantasEntertainmentAppIcon() {
   return (
-    <svg viewBox="0 0 100 94" width={size} height={(size * 94) / 100} className="shrink-0">
+    <svg viewBox="0 0 512 512" className="cs-app-icon" aria-hidden="true">
+      <defs>
+        <linearGradient id="qe-bg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#2e2e2e" />
+          <stop offset="1" stopColor="#1a1a1a" />
+        </linearGradient>
+        <linearGradient id="qe-pebble" x1="0.3" y1="0" x2="0.6" y2="1">
+          <stop offset="0" stopColor="#ff0a0a" />
+          <stop offset="1" stopColor="#c40000" />
+        </linearGradient>
+        <linearGradient id="qe-play" x1="0.7" y1="0.3" x2="0.2" y2="0.9">
+          <stop offset="0.45" stopColor="#ffffff" />
+          <stop offset="1" stopColor="#c9c9c9" />
+        </linearGradient>
+      </defs>
+      <rect width="512" height="512" fill="url(#qe-bg)" />
       <path
-        d="M35 0C60 0 88 25 97 50c7 20-12 44-47 44C20 94 0 75 0 48 0 20 15 0 35 0Z"
-        fill="#E40000"
+        d="M188 101c86-6 186 58 220 132 32 72-20 172-142 172C156 405 92 343 92 252c0-90 38-146 96-151Z"
+        fill="url(#qe-pebble)"
       />
-      <path d="M37 34.5 63 51 37 67.5Z" fill="#fff" stroke="#fff" strokeWidth="4" strokeLinejoin="round" />
+      <path
+        d="M206 192c0-11 12-18 22-12l96 60c9 6 9 19 0 25l-96 60c-10 6-22-1-22-12V192Z"
+        fill="url(#qe-play)"
+      />
     </svg>
   );
 }
