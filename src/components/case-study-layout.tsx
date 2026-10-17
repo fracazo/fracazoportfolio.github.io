@@ -23,6 +23,7 @@ export function CaseStudyLayout({
   subtitle,
   meta,
   stats,
+  statsNote,
   chapters,
   link,
   hero,
@@ -35,6 +36,8 @@ export function CaseStudyLayout({
   subtitle: string;
   meta: CaseStudyMeta[];
   stats?: CaseStudyStat[];
+  /** A line under the numbers, e.g. that the client had them adjusted. */
+  statsNote?: string;
   /** The story's chapters, in order; each id is a section in `children`. */
   chapters: CaseStudyChapter[];
   link?: { href: string; label: string };
@@ -74,14 +77,17 @@ export function CaseStudyLayout({
   );
 
   const numbers = stats && stats.length > 0 && (
-    <ul className="cs-stats" role="list">
-      {stats.map((s) => (
-        <li key={s.label}>
-          <span className="cs-stat-value">{s.value}</span>
-          <span className="cs-stat-label">{s.label}</span>
-        </li>
-      ))}
-    </ul>
+    <div className="cs-numbers">
+      <ul className="cs-stats" role="list">
+        {stats.map((s) => (
+          <li key={s.label}>
+            <span className="cs-stat-value">{s.value}</span>
+            <span className="cs-stat-label">{s.label}</span>
+          </li>
+        ))}
+      </ul>
+      {statsNote && <p className="cs-stats-note">{statsNote}</p>}
+    </div>
   );
 
   // Facts and numbers render in two places and CSS shows one: up front on

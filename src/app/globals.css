@@ -3333,8 +3333,16 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  /* Three numbers still share one row on a 320px phone */
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   gap: 16px;
+}
+.cs-stats-note {
+  margin: 12px 0 0;
+  font-size: var(--text-meta-size);
+  line-height: 1.45;
+  color: var(--muted);
+  text-wrap: pretty;
 }
 .cs-stats li {
   display: flex;

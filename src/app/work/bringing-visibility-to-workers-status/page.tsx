@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function BringingVisibilityToWorkersStatus() {
   return (
-    <CaseStudyShell>
+    <CaseStudyShell wide>
       <BringingVisibilityToWorkersStatusContent />
     </CaseStudyShell>
   );
