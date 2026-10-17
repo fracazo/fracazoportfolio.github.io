@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 
-export type CaseStudyMeta = { label: string; value: string };
+export type CaseStudyMeta = { label: string; value: string | string[] };
 export type CaseStudyStat = { value: string; label: string };
 export type CaseStudyChapter = { id: string; label: string };
 
@@ -19,7 +19,6 @@ export type CaseStudyChapter = { id: string; label: string };
  */
 export function CaseStudyLayout({
   icon,
-  brand,
   title,
   subtitle,
   meta,
@@ -29,10 +28,8 @@ export function CaseStudyLayout({
   hero,
   children,
 }: {
-  /** Square company mark, shown in a tile on narrow layouts. */
+  /** Square company mark, set in a tile. */
   icon: ReactNode;
-  /** Company name set beside the mark in the rail. */
-  brand: string;
   /** Product name; the page's h1. */
   title: string;
   subtitle: string;
@@ -59,38 +56,52 @@ export function CaseStudyLayout({
     });
   };
 
+  const facts = (
+    <dl className="cs-facts">
+      {meta.map((m) => (
+        <div key={m.label} className="cs-fact">
+          <dt>{m.label}</dt>
+          <dd>
+            {(Array.isArray(m.value) ? m.value : [m.value]).map((v) => (
+              <span key={v} className="cs-chip">
+                {v}
+              </span>
+            ))}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  );
+
+  const numbers = stats && stats.length > 0 && (
+    <ul className="cs-stats" role="list">
+      {stats.map((s) => (
+        <li key={s.label}>
+          <span className="cs-stat-value">{s.value}</span>
+          <span className="cs-stat-label">{s.label}</span>
+        </li>
+      ))}
+    </ul>
+  );
+
+  // Facts and numbers render in two places and CSS shows one: up front on
+  // narrow layouts, where they introduce the story like an app store page,
+  // and as closing credits on wide ones, where the rail keeps only identity
+  // and wayfinding so the story starts with the picture.
   return (
     <div className="cs">
       <div className="cs-layout">
         <div className="cs-rail">
           <div className="cs-id">
-            <div className="cs-brand">
-              <span className="cs-icon">{icon}</span>
-              <span className="cs-brand-name">{brand}</span>
-            </div>
+            <span className="cs-icon">{icon}</span>
             <h1 className="cs-title">{title}</h1>
             <p className="cs-subtitle">{subtitle}</p>
           </div>
 
-          <dl className="cs-meta">
-            {meta.map((m) => (
-              <div key={m.label} className="cs-meta-item">
-                <dt>{m.label}</dt>
-                <dd>{m.value}</dd>
-              </div>
-            ))}
-          </dl>
-
-          {stats && stats.length > 0 && (
-            <ul className="cs-stats" role="list">
-              {stats.map((s) => (
-                <li key={s.label}>
-                  <span className="cs-stat-value">{s.value}</span>
-                  <span className="cs-stat-label">{s.label}</span>
-                </li>
-              ))}
-            </ul>
-          )}
+          <div className="cs-lead">
+            {facts}
+            {numbers}
+          </div>
 
           <nav className="cs-nav" aria-label="Chapters">
             <ol role="list">
@@ -118,6 +129,10 @@ export function CaseStudyLayout({
         <div className="cs-body">
           <div className="cs-hero">{hero}</div>
           <div className="cs-story">{children}</div>
+          <footer className="cs-credits">
+            {numbers}
+            {facts}
+          </footer>
         </div>
       </div>
     </div>

@@ -3220,18 +3220,19 @@
   display: contents;
 }
 .cs-id { order: 1; }
-.cs-meta { order: 2; }
+.cs-lead { order: 2; }
 .cs-hero { order: 3; }
-.cs-stats { order: 4; }
-.cs-story { order: 5; }
-.cs-link { order: 6; }
-.cs-nav { display: none; }
-
-.cs-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.cs-story { order: 4; }
+.cs-link { order: 5; }
+.cs-nav,
+.cs-credits {
+  display: none;
 }
+.cs-lead {
+  display: grid;
+  gap: 28px;
+}
+
 .cs-icon {
   display: grid;
   place-items: center;
@@ -3245,9 +3246,6 @@
 .cs-icon svg {
   width: 36px;
   height: auto;
-}
-.cs-brand-name {
-  display: none;
 }
 .cs-title {
   margin: 20px 0 0;
@@ -3265,9 +3263,9 @@
   text-wrap: balance;
 }
 
-/* Facts as label-over-chip, in a row that scrolls sideways and runs to the
-   screen edge, so a long value never wraps the row onto two lines. */
-.cs-meta {
+/* Facts as label-over-chips. Up front they share one row that scrolls
+   sideways and runs to the screen edge, so a long value never wraps the row. */
+.cs-facts {
   display: flex;
   gap: 20px;
   margin: 0 -24px;
@@ -3275,19 +3273,23 @@
   overflow-x: auto;
   scrollbar-width: none;
 }
-.cs-meta::-webkit-scrollbar {
+.cs-facts::-webkit-scrollbar {
   display: none;
 }
-.cs-meta-item {
+.cs-fact {
   flex: none;
 }
-.cs-meta dt {
+.cs-fact dt {
   font-size: var(--text-meta-size);
   color: var(--muted);
   margin-bottom: 8px;
 }
-.cs-meta dd {
+.cs-fact dd {
   margin: 0;
+  display: flex;
+  gap: 8px;
+}
+.cs-chip {
   padding: 8px 14px;
   border-radius: 10px;
   background: var(--panel-2);
@@ -3362,12 +3364,12 @@
   scroll-margin-top: 80px;
 }
 
-/* Wide: two columns. The rail pins to the scroller and spends its height on
-   identity at the top and wayfinding at the bottom. */
+/* Wide: two columns. The rail pins to the scroller and holds only who this
+   is (top) and where you are (bottom); the facts close the story instead. */
 @container cs (min-width: 820px) {
   .cs-layout {
     display: grid;
-    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-columns: 260px minmax(0, 1fr);
     gap: 56px;
     align-items: start;
   }
@@ -3376,7 +3378,6 @@
     top: 80px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
     height: calc(100dvh - 80px - 40px);
     overflow-y: auto;
     scrollbar-width: none;
@@ -3386,96 +3387,79 @@
   .panel-body .cs-rail {
     top: 0;
   }
+  .cs-rail > *,
+  .cs-body > * {
+    order: 0;
+  }
+  .cs-lead {
+    display: none;
+  }
   .cs-body {
     display: flex;
     flex-direction: column;
     gap: 40px;
   }
   .cs-icon {
-    width: auto;
-    height: auto;
-    background: none;
-    outline: 0;
-    border-radius: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
   }
   .cs-icon svg {
-    width: 26px;
-  }
-  .cs-brand-name {
-    display: inline;
-    font-size: 26px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--text);
+    width: 28px;
   }
   .cs-title {
-    margin-top: 14px;
-    font-size: 17px;
-    line-height: 1.4;
-    font-weight: 500;
+    margin-top: 20px;
+    font-size: 22px;
+    line-height: 1.3;
   }
   .cs-subtitle {
-    font-size: 17px;
-    line-height: 1.4;
-  }
-  /* In the rail there is room to stack, so the facts read as a short list. */
-  .cs-meta {
-    flex-direction: column;
-    gap: 10px;
-    margin: 0;
-    padding: 0;
-    overflow: visible;
-  }
-  .cs-meta dt {
-    margin-bottom: 2px;
-  }
-  .cs-meta dd {
-    padding: 0;
-    background: none;
-    font-size: 15px;
-    white-space: normal;
-    color: var(--text-body);
-  }
-  .cs-stats {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .cs-stat-value {
-    font-size: 24px;
-  }
-  /* Back to source order: identity, facts, numbers, then wayfinding pushed
-     to the foot of the rail. */
-  .cs-rail > * {
-    order: 0;
+    font-size: 22px;
+    line-height: 1.3;
   }
   .cs-nav {
     display: block;
-    margin-top: auto;
+    margin: auto 0;
   }
   .cs-nav ol {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 2px;
+    gap: 4px;
   }
+  /* Plain words, no rule: the lit chapter is simply the one in full ink. */
   .cs-nav a {
     display: block;
-    padding: 5px 0 5px 12px;
-    border-inline-start: 2px solid var(--border);
-    font-size: 15px;
+    padding: 2px 0;
+    font-size: 17px;
     color: var(--muted);
     text-decoration: none;
-    transition: color 150ms ease, border-color 150ms ease;
+    transition: color 150ms ease;
   }
-  .cs-nav a:hover {
-    color: var(--text);
-  }
+  .cs-nav a:hover,
   .cs-nav a[aria-current] {
     color: var(--text);
-    border-color: var(--brand);
   }
   .cs-hero {
     border-radius: 24px;
+  }
+  /* Closing credits: a hairline, the numbers, then the facts as wrapping
+     groups of chips. */
+  .cs-credits {
+    display: grid;
+    gap: 40px;
+    margin-top: 24px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+  }
+  .cs-credits .cs-facts {
+    flex-wrap: wrap;
+    gap: 28px 48px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+  .cs-credits .cs-fact dd {
+    flex-wrap: wrap;
   }
 }

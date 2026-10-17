@@ -18,13 +18,13 @@ export function GlqlContent({
   return (
     <CaseStudyLayout
       icon={<TanukiMark size={36} />}
-      brand="GitLab"
       title="GLQL"
       subtitle="GitLab Query Language"
       meta={[
         { label: "Role", value: "Product Designer" },
         { label: "Year", value: "2024–25" },
-        { label: "Platform", value: "SaaS & Self-managed" },
+        { label: "Project type", value: ["Experiment to product", "AI feature", "Design engineering"] },
+        { label: "Platform", value: ["GitLab SaaS", "Self-managed"] },
       ]}
       stats={[
         { value: "+33%", label: "adoption in the first weeks after launch" },
