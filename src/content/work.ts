@@ -63,7 +63,7 @@ export const work = {
     title: "Summarize Merge Requests with AI",
     tagline:
       "Finding where AI summaries earn trust in code review, including the conviction to remove what didn’t work.",
-    outcome: "3 shipped iterations",
+    outcome: "From reviewer summary to author assistant",
     vignette: "mr-summary",
   },
   hireup: {

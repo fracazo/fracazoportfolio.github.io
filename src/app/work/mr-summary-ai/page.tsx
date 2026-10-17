@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { CaseStudyShell } from "@/components/case-study-shell";
 import { MrSummaryAiContent } from "@/components/case-studies/mr-summary-ai";
 
-const title = "Summarize Merge Requests with AI - Alex Fracazo";
+const title = "Merge request summaries: moving AI from the reviewer to the author - Alex Fracazo";
 const description =
-  "How three iterations and a Qualtrics survey reshaped an AI feature from reviewer-facing summary to author-facing writing assistant.";
+  "Three shipped versions and a survey showed the AI was in the wrong role. The fix was helping authors write the description, with the author in control.";
 
 export const metadata: Metadata = {
   title,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function MrSummaryAi() {
   return (
-    <CaseStudyShell>
+    <CaseStudyShell wide>
       <MrSummaryAiContent />
     </CaseStudyShell>
   );
