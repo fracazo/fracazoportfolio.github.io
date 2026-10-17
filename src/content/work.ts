@@ -72,7 +72,7 @@ export const work = {
     title: "Worker Status Visibility",
     tagline:
       "Reducing uncertainty in a two-sided marketplace by making availability honest.",
-    outcome: "+12% bookings · Connection rate 3% → 5%",
+    outcome: "2× workers updating their status",
     vignette: "hireup",
   },
   eta: {

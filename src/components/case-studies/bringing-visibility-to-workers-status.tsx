@@ -17,7 +17,7 @@ export function BringingVisibilityToWorkersStatusContent({
         <div className="case-study-main">
         {breadcrumb}
         <header className="case-header">
-          <h1 className="case-title">Changing Booking Behaviour Through Worker Status Visibility</h1>
+          <h1 className="case-title">Changing booking behaviour by making worker status visible</h1>
           <div className="case-metadata-card">
             <img src="/images/62fbf14400d70051caf1b477_hireup-project-p-1080.png" alt="Hireup" className="case-hero-image" />
             <div className="metadata-content">
@@ -44,171 +44,68 @@ export function BringingVisibilityToWorkersStatusContent({
               </div>
             </div>
           </div>
-          <p className="case-intro">Redesigned availability visibility across iOS and Android at Hireup, Australia's largest disability support platform. The change lifted response rate from 39.1% to 45.8%, grew connection rate from 3% to 5%, and drove +46% inactive worker reactivations.</p>
+          <p className="case-intro">Clients on Hireup, Australia&rsquo;s largest disability support marketplace, kept messaging support workers who had stopped using the app, and never heard back. I redesigned how workers see and change their availability on iOS and Android. In the experiment group, almost every client went on to message active workers, and twice as many workers kept their status up to date.</p>
         </header>
 
+        <div className="case-study-section">
+          <h2>The problem</h2>
+          <p>Hireup matches people with disability (clients) with support workers. A worker can mark themselves as open for work or not, and only workers who are open appear in client search and get job alerts. Clients were complaining that workers weren&rsquo;t getting back to them.</p>
+          <p>I sent a short survey to workers about how they use their status. Most set it to open during onboarding and never touched it again. Some left it open in case the right job came along.</p>
+          <p>Changing it was also hard. Workers had to tap their avatar, scroll through My Account to find My Availability, and switch it there.</p>
+          <img src="/images/62fdcd93d56ca3a042cc5291_current-flow.gif" alt="The old flow: avatar, then My Account, then My Availability, then the switch" className="img-xs" />
+          <img src="/images/62fb7e3f6533969785087587_Current-experience.png" alt="The screens a worker passed through to change their availability before the redesign" />
+          <p>The flow data showed it. Fewer than 1 in 10 workers who opened My Account went on to update their availability.</p>
+          <img src="/images/62fc2b5863456152bfa022e5_flow-report.png" alt="Flow report before the redesign: most workers who opened My Account never reached Update availability" />
+        </div>
 
         <div className="case-study-section">
-          <h2>Understanding the Problem</h2>
-          
-          <h3>About Hireup</h3>
-          <p>Hireup is the largest online network of support workers in Australia for people with disabilities. The software is a marketplace that matches people with disabilities ("clients") with support workers ("workers").</p>
-          
-          <h3>How the Platform Works</h3>
-          <img src="/images/62fb51f3578196031228354d_How-does-it-work.png" alt="How Hireup works" />
-          
-          <h3>The Problem</h3>
-          <p>In order to support our company-wide quarter objective of improving the discovery and connection between support workers (workers) and people with disabilities (clients), we started to investigate complaints from clients about workers not getting back to them.</p>
-          
-          <blockquote>We noticed from our data that 39.1% of clients who were looking for support were messaging workers that hadn't been active on the platform but had kept their availability status as "Looking for support work".</blockquote>
-          
-          <p>A support worker at Hireup can choose to update their availability to "Looking for work" or "Not looking for work". This means when they are looking for work their profile will be listed in the client search and they can receive job alerts from clients that are looking for a support worker.</p>
-          <p>For more clarity on the problem, I ran lean research - sent an email survey asking workers about how they use and update their availability status. Early insight on this was that workers set their status as "open to work" and forget to update their availability later.</p>
-          <p>Most of the respondents set it during their account creation and onboarding. Another reason given was that they leave their status open only in case the "right" job arises.</p>
+          <h2>Workers who come back</h2>
+          <p>As a team, we agreed to switch availability off automatically after 30 days without activity. The business was concerned it would shrink the pool of available workers, but clients would reach the workers who actually reply, and that trade-off made the call.</p>
+          <p>That took inactive workers out of search, but I could see a second problem coming. Workers had told us they set their status once and forget it. I asked the data team about reactivations, and they showed a large spike every January and February. Those workers would come back switched off without knowing it, and miss out on work.</p>
+          <img src="/images/62fc0f9fc79dbff73d588373_Reactivation-metrics.png" alt="Reactivations of inactive support workers, peaking in January and February" />
+          <p>Some on the team suggested switching returning workers back on automatically. I argued against it. Opening the app doesn&rsquo;t mean you want work, in the same way that logging in to LinkedIn doesn&rsquo;t mean you want your profile to say &ldquo;open to work&rdquo;. Workers needed a status they could see and change themselves.</p>
+        </div>
 
-          <h3>Current User Flow Analysis</h3>
-          <p>How would workers update their availability status?</p>
-          <img src="/images/62fdcd93d56ca3a042cc5291_current-flow.gif" alt="Current flow animation" className="img-xs" />
-          <p>They would tap on their profile avatar which would open the "My account" page. Inside this page, the user would skim through more options until they find "My Availability", which would open the page where they could switch their "Looking for support work" status to on/off.</p>
-          <img src="/images/62fb7e3f6533969785087587_Current-experience.png" alt="Current experience" />
+        <div className="case-study-section">
+          <h2>Keeping the toggle in My Account</h2>
+          <p>The PM wanted a new home-screen module with the switch, one tap away. I argued for keeping the toggle in My Account, for three reasons. Availability is a setting, and workers already look for settings there, so a second place for the same control means two places to check. The home screen only had to answer &ldquo;what is my status right now?&rdquo;, and a signifier could do that on every page without holding the control. And once one setting earns a home-screen module, every future setting has a claim to the same space. The team agreed.</p>
+          <img src="/images/62fb817e7d3362906fa43868_My-Account.png" alt="My Account with the availability card at the top" />
+          <p>I also rewrote the labels. &ldquo;Looking for support work&rdquo; became &ldquo;You are open for work&rdquo;, with a line underneath that says what it means: your profile appears in search and you receive job alerts.</p>
+          <img src="/images/62fc90125c97db0ee5c84b53_open-for-work---not-open-for-work.gif" alt="The availability card switching between open for work and not open for work" className="img-xs" />
+          <img src="/images/62fc52776345612371bb29d8_My-account---thought-process.png" alt="Iterations of the My Account availability card" />
+          <p className="img-caption">How the availability card changed through testing and critique.</p>
+        </div>
 
-          <h3>Flow Report</h3>
-          <p>By analysing the data, I noticed that few workers were tapping to update their availability.</p>
-          <img src="/images/62fc2b5863456152bfa022e5_flow-report.png" alt="Flow report" />
+        <div className="case-study-section">
+          <h2>Status on every screen</h2>
+          <p>Next to the worker&rsquo;s avatar at the top of every main page, a small badge shows their status. It uses the same bag icon as jobs in the rest of the app, so workers recognise it without having to learn it.</p>
+          <img src="/images/62fc5238e209d1f5865eda41_Home-page.png" alt="The home screen with the status badge beside the avatar, not open for work on the left and open for work on the right" />
+          <img src="/images/62fbe16ca13a8d3ee01e9078_Home-page---thought-process.png" alt="Iterations of the status badge" />
+          <p className="img-caption">How the badge changed through testing and critique.</p>
+          <p>The designs went through four rounds of user testing and two design critiques, and I checked each build against them with the engineers.</p>
+          <img src="/images/62fc5222cf2458417e3c4205_Final-design.png" alt="The final design across the home screen and My Account" />
+          <img src="/images/62fc9b36aee467542d9116cf_final-design.gif" alt="Prototype: a worker checks their status and switches it on" className="img-xs" />
+        </div>
 
-          <h3>Why This Mattered</h3>
-          <p>This problem impacted Hireup's connection rate. "Connection" is the first booking between a client and a support worker. We noticed a drop in clients creating a new connection with a support worker, meaning a low connection rate. This also impacted client activation, which in turn impacted user churn.</p>
+        <div className="case-study-section">
+          <h2>Rollout</h2>
+          <p>We released to cohorts, with a control group of workers in Sydney and Melbourne. With the marketing team, I planned the messages for workers affected by the auto-off: a warning by push, SMS and email after 25 days without activity, then a notice when they were switched off at 30 days.</p>
+          <img src="/images/62fc4c700a231f91c8fcf134_Implementing-the-solution.png" alt="The warning and switch-off messages sent to inactive workers" className="img-md" />
+          <p>For workers who missed those messages, we added a &ldquo;What&rsquo;s new&rdquo; screen that explains the change when they next open the app.</p>
+          <img src="/images/62fc51dad208697fbaaaf774_whats-new.png" alt="The What's new screen shown to returning workers" />
+        </div>
 
-          <h3>Key Metrics</h3>
-          <ul>
-            <li><strong>Response rate:</strong> Workers that respond (within 3 days) to clients' first message</li>
-            <li><strong>Connection rate:</strong> Connections are created within 7 days after the first message from the client</li>
-            <li><strong>Availability update:</strong> % of workers that update their availability</li>
-          </ul>
-
-          <h3>Inactive workers</h3>
-          <p>The solution proposed, led by the data team and the product manager, was to automatically turn off the availability status for workers who maintain their status as "Looking for Support Work" but have not been active on the platform in the last 30 days. This would result in those inactive workers being filtered out from search results.</p>
-          
-          <p><strong>This solved part of the problem</strong></p>
-          <p>I shared my learnings about the common behaviour of workers setting and forgetting their availability to "open for work". I was also thinking about users that might decide to provide services for Hireup again after some time off. I asked the data team about reactivations and flagged to my team that workers could reactivate after being inactive. They might not know they had to update their availability to "Looking for support work".</p>
-          <img src="/images/62fc0f9fc79dbff73d588373_Reactivation-metrics.png" alt="Reactivation metrics" />
-          
-          <p>We could see that there was a large spike in reactivations from inactive support workers, seasonally, around January - February.</p>
-          
-          <blockquote>Because of this, we predicted that these workers that planned to reactivate might not manually switch their availability back to "Looking for work", so their profile would not appear on search results. This would result in them potentially missing out on work opportunities.</blockquote>
-          
-          <p>There were discussions in the team of simply reversing the mechanism to automatically switch reactivated support workers back to "Looking for work". I was concerned about the assumption that workers who would be back on the platform would be "Looking for work" as they may or may not be. A scenario I used to explain my line of thought was LinkedIn - when people log on to LinkedIn, it doesn't mean they want their profile to say "open to work".</p>
-
-          <h2>Designing the Solution</h2>
-
-          <h3>Problem Statement & Design Prompt</h3>
-          <p>Workers who have returned to the platform after being inactive may not get new jobs on Hireup. This is because the software triggers the worker's availability status to "not looking for work" when they remain 30 days without using the platform (inactive user).</p>
-          
-          <blockquote>How might we design an experience that makes it easy for current active workers and workers who return to the platform after being inactive to identify and understand what their availability status means and why it is important to keep it up to date?</blockquote>
-
-          <h3>Design Approach</h3>
-          <ul>
-            <li>No clear visibility on the availability status</li>
-            <li>Hard to find how to switch the "Looking for support work" feature on/off</li>
-            <li>Workers set their status to "open to work" and forget to update</li>
-            <li>Inactive workers that become active again on the platform, might not notice they were set to "not looking for work" status and have to manually switch it back to "looking for support work"</li>
-          </ul>
-          
-          <p>I started by organising the workload according to user input touchpoints:</p>
-          <ul>
-            <li>My Account</li>
-            <li>Home Page</li>
-          </ul>
-
-          <h3>My Account</h3>
-          <p><strong>Surface toggle on my account</strong></p>
-          <p>There was a debate on where the control should live. The PM suggested a new home-screen module with the switch, so workers could reach it in one tap. I argued for keeping the toggle in "My Account", on three grounds. Availability is a setting, and workers already look for settings in My Account, so a second surface for the same control would create two places to check and keep in sync. The home screen's job was answering "what is my status right now", and the avatar signifier below does that on every page without carrying the control. And once one setting earns a home-screen module, every future setting has a claim to the same space. The team agreed, and the shipped design pairs the signifier on the home page with the toggle in My Account.</p>
-          <img src="/images/62fb817e7d3362906fa43868_My-Account.png" alt="My Account design" />
-
-          <h3>Copywriting with empathy</h3>
-          <p>I've recommended changing the microcopy from "Looking for support work / Not looking for support work" to more direct, plain language that is easy for everyone to understand.</p>
-          <img src="/images/62fc90125c97db0ee5c84b53_open-for-work---not-open-for-work.gif" alt="Copywriting animation" className="img-xs" />
-
-          <p><strong>Thought process and design evolution</strong></p>
-          <p>The process to decide on a solution was through design iteration based on feedback from multiple teams involved in the project and insights from user research.</p>
-          <img src="/images/62fc52776345612371bb29d8_My-account---thought-process.png" alt="My Account thought process" />
-
-          <h3>Home Page Design</h3>
-          <p><strong>Status signifier on avatar</strong></p>
-          <p>This solution brought visibility of workers' availability status across all main app pages, as it was consistently at the top of the nav bar. The use of the "Bag" iconography across other features of the software (the same icon used on jobs) made this pattern easy to understand and recognise.</p>
-          <img src="/images/62fc5238e209d1f5865eda41_Home-page.png" alt="Home page design" />
-
-          <p><strong>Thought process and design evolution</strong></p>
-          <p>This solution would also educate workers on what it means to turn it on/off, driving a key behaviour for Hireup.</p>
-          <img src="/images/62fbe16ca13a8d3ee01e9078_Home-page---thought-process.png" alt="Home page thought process" />
-
-          <p><strong>The Design Process Included:</strong></p>
-          <ul>
-            <li>4 rounds of user testing</li>
-            <li>2 rounds of design critique / Jam</li>
-            <li>Working closely with engineers to validate the design and copy implementations. Along with daily stand-ups, we also had weekly demos and occasionally huddled together over Slack and cross-checked implementation with final designs.</li>
-          </ul>
-
-          <h3>Final design</h3>
-          <img src="/images/62fc5222cf2458417e3c4205_Final-design.png" alt="Final design" />
-
-          <h2>Implementation & Testing</h2>
-
-          <h3>Prototype</h3>
-          <img src="/images/62fc9b36aee467542d9116cf_final-design.gif" alt="Prototype animation" className="img-xs" />
-
-          <h3>Release Strategy</h3>
-          <p>To measure and control risks, the team planned to release this feature by using experimentation and testing with cohorts.</p>
-          <p>I worked alongside engineers through implementation, cross-checking each build against the final designs.</p>
-          <p>I worked with the marketing team on clear release communication to workers affected by the change. This communication was sent to workers who were automatically set to "not looking for work". They were notified using a mix of push, SMS and email. They receive a warning after 25 days of inactivity and are switched off, then also informed at the 30-day mark.</p>
-          <img src="/images/62fc4c700a231f91c8fcf134_Implementing-the-solution.png" alt="Implementation" className="img-md" />
-          
-          <p>Setting workers to "not looking for work" was done in stages and comms were sent out to workers that may have been impacted by the change.</p>
-
-          <h3>User Communication</h3>
-          <p>We also introduced a new feature that communicates important changes to users that return to the app. This helps to gather context in case they miss comms for any reason. They would see it when they are back on the app.</p>
-          <img src="/images/62fc51dad208697fbaaaf774_whats-new.png" alt="What's new feature" />
-
-          <h2>Results & Impact</h2>
-
-          <h3>Behavior Change</h3>
-          <img src="/images/62fc4eb12b9343326b9c9ecc_first-results.png" alt="First results" className="img-small" />
-          <p>By monitoring our data, we saw a +46.24% increase in inactive workers returning to the platform.</p>
-
-          <p><strong>Experimenting with cohorts</strong></p>
-          <p>A subset of workers in Sydney and Melbourne markets were grouped as the control group</p>
-          <img src="/images/62fbefd1b95849422076b287_control-groups.png" alt="Control groups" />
-
-          <h3>Response Rate Improvement</h3>
-          <img src="/images/62fc1fc75683e24e4d73f378_Response-rate.png" alt="Response rate" className="img-small" />
-          <p>Response rate for the experimental group increased from 39.1% to 45.8%.</p>
-
-          <h3>Connection Rate Growth</h3>
-          <img src="/images/62fc1fbd85376430031ca998_Connection-rate.png" alt="Connection rate" className="img-small" />
-          <p>Connection rate for the experimental group increased from 3% to 5%</p>
-
-          <h3>Availability Updates</h3>
-          <img src="/images/62fc1ff1d055b02593cac784_flow-report-future.png" alt="Flow report future" />
-          <p>An increase of +10% workers updating their availability.</p>
-
-          <p><strong>Overall impact</strong></p>
-          <ul>
-            <li>An increase in connection rate, within 7 days of the client message</li>
-            <li>We estimate that <strong>40 new connections per month</strong> were generated due to this new feature.</li>
-            <li>We estimate that automatically setting inactive workers to "not looking for work" has had a <strong>+12% incremental impact on the connections from client first messages</strong>.</li>
-          </ul>
-
-          <h2>Key Learnings</h2>
-          <ul>
-            <li>Working with a diverse team that had to combine efforts to launch this feature: Product, Engineering, Data, Marketing and Design.</li>
-            <li>The design work was created in a way that would drive user behaviour, this was key to understanding that the design decisions we made impact lots of users every day.</li>
-            <li>Having organised and led many design critiques within the design team, sparring sessions with the engineers led to multiple feedback and design rounds. I had to look back on the original problem and own my design decisions to filter out feedback that would increase the scope and not add value.</li>
-            <li>It was important to bring many questions to different teams to gather knowledge and clarity.</li>
-          </ul>
-
-          <p><strong>What's next?</strong></p>
-          <p>Continue to monitor how this affects important client experience metrics. We want to learn something statistically significant about messages, we know that message is the first step before a connection between a worker and a client. Next, I would use the learnings here to improve the message feature.</p>
-
+        <div className="case-study-section">
+          <h2>Results</h2>
+          <p>Figures adjusted at Hireup&rsquo;s request to protect commercial data. The direction and scale of each change are accurate.</p>
+          <p>In the experiment group, about 99% of clients were messaging active workers by the end of the trial.</p>
+          <p>46% of inactive workers logged back in.</p>
+          <img src="/images/62fc4eb12b9343326b9c9ecc_first-results.png" alt="Share of inactive workers who logged back in" className="img-small" />
+          <p>Twice as many workers who opened My Account went on to update their availability.</p>
+          <img src="/images/62fc1ff1d055b02593cac784_flow-report-future.png" alt="Flow report after the redesign, with more workers reaching Update availability" />
+          <p>Response and connection rates both rose in the experiment group, while the control group&rsquo;s fell.</p>
+          <img src="/images/62fc1fc75683e24e4d73f378_Response-rate.png" alt="Response rate before and after, control and experiment groups" className="img-small" />
+          <img src="/images/62fc1fbd85376430031ca998_Connection-rate.png" alt="Connection rate before and after, control and experiment groups" className="img-small" />
         </div>
 
         </div>
