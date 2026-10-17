@@ -95,7 +95,7 @@ export const work = {
     title: "A Unified In-flight Entertainment Experience",
     tagline:
       "Making the entertainment app useful before and after the flight, not just on board.",
-    outcome: "Ad revenue 225k → 675k",
+    outcome: "Ad revenue AUD 225k → 675k a year",
     image: {
       src: "/images/62dc26d29e21732abffdaacd_work4-p-1080.png",
       alt: "Qantas Entertainment App",

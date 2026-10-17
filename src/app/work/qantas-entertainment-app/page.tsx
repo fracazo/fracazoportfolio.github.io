@@ -3,7 +3,7 @@ import { CaseStudyShell } from "@/components/case-study-shell";
 import { QantasEntertainmentAppContent } from "@/components/case-studies/qantas-entertainment-app";
 
 const title =
-  "Driving Engagement Through a Unified Entertainment Experience - Alex Fracazo";
+  "Qantas Entertainment: tripling ad revenue by making in-flight entertainment work before the flight - Alex Fracazo";
 const description =
   "Making the entertainment app useful before and after the flight, not just on board.";
 
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function QantasEntertainmentApp() {
   return (
-    <CaseStudyShell>
+    <CaseStudyShell wide>
       <QantasEntertainmentAppContent />
     </CaseStudyShell>
   );

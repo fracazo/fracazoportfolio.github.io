@@ -50,3 +50,17 @@ export function TanukiMark({ size = 14 }: { size?: number }) {
   );
 }
 
+
+/* The Qantas Entertainment icon Alex designed: a play symbol in the Qantas
+   brand's pebble shape. Traced from the icon rationale, in its own red. */
+export function QantasEntertainmentMark({ size = 14 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 100 94" width={size} height={(size * 94) / 100} className="shrink-0">
+      <path
+        d="M35 0C60 0 88 25 97 50c7 20-12 44-47 44C20 94 0 75 0 48 0 20 15 0 35 0Z"
+        fill="#E40000"
+      />
+      <path d="M37 34.5 63 51 37 67.5Z" fill="#fff" stroke="#fff" strokeWidth="4" strokeLinejoin="round" />
+    </svg>
+  );
+}

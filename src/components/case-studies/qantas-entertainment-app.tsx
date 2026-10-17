@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { CaseStudyLayout } from "@/components/case-study-layout";
+import { QantasEntertainmentMark } from "@/components/scene-marks";
 
 /**
  * Body of the qantas-entertainment-app case study, without the route chrome.
@@ -13,188 +15,99 @@ export function QantasEntertainmentAppContent({
   breadcrumb?: ReactNode;
 } = {}) {
   return (
+    <CaseStudyLayout
+      icon={<QantasEntertainmentMark size={36} />}
+      title="Qantas Entertainment"
+      subtitle="Tripling ad revenue by making in-flight entertainment work before the flight"
+      meta={[
+        { label: "Role", value: "Lead Designer" },
+        { label: "Project type", value: "Redesign" },
+        { label: "Platform", value: ["iOS", "Android"] },
+      ]}
+      stats={[
+        { value: "2.1 → 4.5", label: "App Store rating" },
+        { value: "3×", label: "ad revenue from partner offers, AUD 225k to 675k a year" },
+      ]}
+      chapters={[
+        { id: "qe-problem", label: "Only worked on board" },
+        { id: "qe-research", label: "Before, during and after" },
+        { id: "qe-offers", label: "Offers without a new back end" },
+        { id: "qe-aircraft", label: "Five kinds of aircraft" },
+        { id: "qe-icon", label: "An icon Qantas adopted" },
+        { id: "qe-results", label: "Results" },
+      ]}
+      hero={
+        <img src="/images/62dbf18c99bfd636c45d7ceb_Experience-2.webp" width={3224} height={1856} alt="The redesigned home screen in three states: no trip booked with the latest movies, before a flight with personal device options and partner offers, and on board" />
+      }
+    >
       <section className="section case-study-content">
         <div className="case-study-main">
+
         {breadcrumb}
-        <header className="case-header">
-          <h1 className="case-title">Driving Engagement Through a Unified Entertainment Experience</h1>
-          <div className="case-metadata-card">
-            <img src="/images/62dc26d29e21732abffdaacd_work4-p-1080.png" alt="Qantas Entertainment App" className="case-hero-image" />
-            <div className="metadata-content">
-              <div className="metadata-item">
-                <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M6 3.75A2.75 2.75 0 0 1 8.75 1h2.5A2.75 2.75 0 0 1 14 3.75v.443c.572.055 1.14.122 1.706.2C17.053 4.582 18 5.75 18 7.07v3.469c0 1.126-.694 2.191-1.83 2.54-1.952.599-4.024.921-6.17.921s-4.219-.322-6.17-.921C2.694 12.73 2 11.665 2 10.539V7.07c0-1.321.947-2.489 2.294-2.676A41.047 41.047 0 0 1 6 4.193V3.75Zm6.5 0v.325a41.622 41.622 0 0 0-5 0V3.75c0-.69.56-1.25 1.25-1.25h2.5c.69 0 1.25.56 1.25 1.25ZM10 10a1 1 0 0 0-1 1v.01a1 1 0 0 0 1 1h.01a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1H10Z" clipRule="evenodd"/><path d="M3 15.055v-.684c.126.053.255.1.39.142 2.092.642 4.313.987 6.61.987 2.297 0 4.518-.345 6.61-.987.135-.041.264-.089.39-.142v.684c0 1.347-.985 2.53-2.363 2.686a41.454 41.454 0 0 1-9.274 0C3.985 17.585 3 16.402 3 15.055Z"/></svg>
-                <div className="metadata-text">
-                  <p className="metadata-label">Product</p>
-                  <p className="metadata-value">Qantas Entertainment App</p>
-                </div>
-              </div>
-              <div className="metadata-item">
-                <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fillRule="evenodd" d="M2 4.25A2.25 2.25 0 0 1 4.25 2h11.5A2.25 2.25 0 0 1 18 4.25v8.5A2.25 2.25 0 0 1 15.75 15h-3.105a3.501 3.501 0 0 0 1.1 1.677A.75.75 0 0 1 13.26 18H6.74a.75.75 0 0 1-.484-1.323A3.501 3.501 0 0 0 7.355 15H4.25A2.25 2.25 0 0 1 2 12.75v-8.5Zm1.5 0a.75.75 0 0 1 .75-.75h11.5a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-.75.75H4.25a.75.75 0 0 1-.75-.75v-7.5Z" clipRule="evenodd"/></svg>
-                <div className="metadata-text">
-                  <p className="metadata-label">Platform</p>
-                  <p className="metadata-value">iOS and Android</p>
-                </div>
-              </div>
-              <div className="metadata-item">
-                <svg className="metadata-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3.465 14.493a1.23 1.23 0 0 0 .41 1.412A9.957 9.957 0 0 0 10 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 0 0-13.074.003Z"/></svg>
-                <div className="metadata-text">
-                  <p className="metadata-label">Role</p>
-                  <p className="metadata-value">Lead Designer</p>
-                </div>
-              </div>
-            </div>
+
+          <p className="cs-intro">The Qantas Entertainment app streamed movies and shows to your own phone or tablet on board, and did nothing on the ground. People installed it and forgot about it. I redesigned it to be useful before and after the flight, and after launch, advertising revenue from partner offers in the app tripled.</p>
+
+          <div className="case-study-section">
+            <h2 id="qe-problem">An app that only worked on board</h2>
+            <p>The app only worked when you were on the plane and connected to the Qantas network. Open it anywhere else and there was nothing to do, so most people who had it installed rarely opened it.</p>
+            <img src="/images/62db95b70af0c632dbf50130_Screen-Shot-2022-07-23-at-4.29.49-pm.webp" alt="The old app, which needed the on-board network to show anything" className="img-small" />
+            <img src="/images/62db960e9e2cf8f5ed8f3cc0_Screen-Shot-2022-07-23-at-4.29.55-pm.webp" alt="More screens from the old app" className="img-small" />
           </div>
-          <p className="case-intro">The entertainment app only worked on board, connected to the Qantas network. This redesign made it useful before and after the flight, and tripled advertising revenue.</p>
-        </header>
 
+          <div className="case-study-section">
+            <h2 id="qe-research">Before, during and after the flight</h2>
+            <p>I mapped the whole trip with travellers: before the flight, on board and after landing. I ran workshops with stakeholders, interviewed travellers and tested early ideas with them face to face. One goal guided the work: get travellers to their entertainment with as little effort as possible.</p>
+            <img src="/images/62dbb2f91599635a246c14ba_Sketch.webp" alt="Concept sketches from the workshops" />
+            <img src="/images/62ddc453f0156d74347ac1cf_IMG_8141.webp" alt="Testing printed mockups with a traveller" />
+            <p>We kept testing as the design took shape, including on board, with travellers using the app during real flights.</p>
+            <img src="/images/62ddc62adc69f994be51a3a8_IMG_8117.webp" alt="A user research session with a traveller" className="img-small" />
+            <img src="/images/62ddc5e63b3a73d76a254359_IMG_8124.webp" alt="A traveller trying the prototype" className="img-xs" />
+            <img src="/images/62ddc5473b3a732620253c07_IMG_4772.webp" alt="Testing the app on board a Qantas flight" className="img-small" />
+            <img src="/images/62ddc4c6ee175f391ba87014_IMG_1742.webp" alt="A traveller using the app in their seat" className="img-xs" />
+          </div>
 
-        <div className="case-study-section">
-          <h2>Understanding the Opportunity</h2>
+          <div className="case-study-section">
+            <h2 id="qe-offers">Partner offers without a six-month build</h2>
+            <p>The design for partner offers was ready, and the product owner wanted to build it as designed. Looking at it, I could see it needed a new back-end service, and that the service would take a long time to build. I brought the back-end engineer into our discovery sessions, and the engineer confirmed it: about six months.</p>
+            <p>So I redesigned the offers before any of that work started. They became a row of cards in the same place as &ldquo;What&rsquo;s new this month&rdquo;, the carousel of the latest movies, which people were already using a lot. Offers sat where travellers were already looking, without the new service.</p>
+            <img src="/images/62dbf33322fdbe67a1f79575_redesigned---ready-to-flight.webp" alt="Before the flight: the home screen with entertainment offers at the bottom, next to newspapers and magazines" />
+          </div>
 
-          <h3>User Insights</h3>
-          <p>Having an in-depth understanding of the traveller's flight journey (pre-flight, during, and after) laid the foundations for building an effective customer experience. I held multiple workshops, conducted qualitative interviews and tested our initial assumptions via face-to-face conversations and prototypes. One goal anchored the team's design thinking, letting travellers get to their entertainment with as little effort as possible. The features that follow all trace back to it.</p>
+          <div className="case-study-section">
+            <h2 id="qe-aircraft">One app, five kinds of aircraft</h2>
+            <p>The app reads your name, flight and frequent flyer details from the Qantas app, so it knows which aircraft you&rsquo;re on. The home screen changes to match what that aircraft has:</p>
+            <ul>
+              <li>No upcoming trip: the latest movies</li>
+              <li>Seatback screens only</li>
+              <li>Streaming to your device only</li>
+              <li>Both seatback screens and streaming</li>
+              <li>Neither: newspapers, magazines and partner offers</li>
+            </ul>
+            <img src="/images/62dbf1780df0886dbe040658_Experience-1.webp" alt="Launch screens: the app asks to share details with the Qantas app, then finds your flights" />
+            <img src="/images/62ef67ff917ce135295b4b6c_Experience-3.webp" alt="The home screen annotated: greeting and trip, entertainment options by where they play, partner offers, and a badge for plane or lounge wi-fi" />
+            <img src="/images/62dbb371788939d647160c0f_redesigned---at-the-airplane.webp" alt="On the plane: each option on the home screen and the service behind it" />
+          </div>
 
-          <h3>Current State Analysis</h3>
-          <p>The Qantas Entertainment app is used to stream entertainment to a customer's personal device, it allows the user to watch or listen to various forms of media.</p>
-          <p>A known <strong>problem</strong> was that the current app only worked when the user was on board the plane and connected to a Qantas streaming network.</p>
-          <img src="/images/62db95b70af0c632dbf50130_Screen-Shot-2022-07-23-at-4.29.49-pm.webp" alt="Current app state" className="img-small" />
-          <img src="/images/62db960e9e2cf8f5ed8f3cc0_Screen-Shot-2022-07-23-at-4.29.55-pm.webp" alt="App screens" className="img-small" />
+          <div className="case-study-section">
+            <h2 id="qe-icon">An icon Qantas adopted</h2>
+            <p>The old icon was an 80s TV, which hinted at slow streaming. It also used the same red as the Qantas Airways app, so the two were easy to mix up in a folder or in the App Store.</p>
+            <img src="/images/62db9a6a0af0c66bb8f54054_icon-redesign.webp" alt="The old icon and its problems" />
+            <img src="/images/62dba00a2ccfa45b6b5caa25_icon.webp" alt="The old Entertainment icon next to the Qantas app in a folder, both red" className="img-xs" />
+            <p>The Qantas brand guidelines include a secondary &ldquo;pebble&rdquo; shape. I put a play symbol inside it, on the app&rsquo;s own dark background.</p>
+            <img src="/images/62ef65249d54c22b8832a872_icon-rationality.webp" alt="How the icon is built: app background colour, the pebble shape, and a symbol for what the app does" />
+            <p>The brand manager adopted the icon as the Qantas brand for entertainment.</p>
+            <img src="/images/62dfbfe1ae91243f8a293521_icon.webp" alt="The new icon on a phone home screen" />
+          </div>
 
-          <h3>Project Goals</h3>
-          <blockquote>Increase Entertainment app usage.</blockquote>
-
-          <h3>Core Problem</h3>
-          <blockquote>Travellers that have the Entertainment app installed on their phone don't engage with it, because the app doesn't work if not connected to the Qantas network.</blockquote>
-
-          <h3>Hypothesis</h3>
-          <blockquote>We predict that increasing the entertainment offering before and after the flight will increase the app usage.</blockquote>
-
-          <h2>Design & Iteration</h2>
-
-          <h3>Concept Development</h3>
-          <p>Workshops with stakeholders and team members.</p>
-          <img src="/images/62dbb2f91599635a246c14ba_Sketch.webp" alt="Sketches" />
-
-          <h3>Iteration & Testing</h3>
-          <p>The winning ideas are iterated and turned into mockups for user research.</p>
-          <img src="/images/62ddc453f0156d74347ac1cf_IMG_8141.webp" alt="Testing" />
-
-          <h2>Icon Redesign</h2>
-
-          <h3>Icon Strategy</h3>
-          <p>Redesigning the app icon was part of the process during the project, as it should be the strongest connection with the user. It is what they will see first when they land or search in the App Store.</p>
-
-          <h4>What problems does the current app icon have?</h4>
-          <img src="/images/62db9a6a0af0c66bb8f54054_icon-redesign.webp" alt="Icon problems" />
-          <ul>
-            <li>The image of an old TV from the 80s could imply that streaming would be slow</li>
-            <li>The red background is the same colour as the Qantas Airways app, which could cause confusion when trying to find it in the App Store</li>
-          </ul>
-          <img src="/images/62dba00a2ccfa45b6b5caa25_icon.webp" alt="Icon comparison" className="img-xs" />
-
-          <h3>Design Rationale</h3>
-          <p>An app icon is expected to be a visual anchor for the product. It is a small piece of branding that, in addition to being attractive and standing out, should ideally also communicate the essence of the Qantas Entertainment (QE) app.</p>
-
-          <h4>I created the QE app icon with 4 basic design principles in mind:</h4>
-          <ul>
-            <li>Scalability</li>
-            <li>Recognisability</li>
-            <li>Consistency</li>
-            <li>Uniqueness</li>
-          </ul>
-          <p>Reviewing the Qantas Brand Guidelines, I discovered a branded device called "pebble shape" that would work perfectly to hold a play icon.</p>
-          <img src="/images/62ef65249d54c22b8832a872_icon-rationality.webp" alt="Icon rationality" />
-
-          <h3>Final Icon Design</h3>
-          <p>The new icon had visibility across the Qantas group and the brand manager adopted the icon as the Qantas brand for entertainment.</p>
-          <img src="/images/62dfbfe1ae91243f8a293521_icon.webp" alt="New icon" />
-
-          <h2>Product Experience</h2>
-
-          <h3>Feature Design</h3>
-          <p>Qantas Entertainment can retrieve data from the Qantas Airways app, like user name, flight and frequent flyer info.</p>
-          <img src="/images/62dbf1780df0886dbe040658_Experience-1.webp" alt="Experience 1" />
-
-          <h4>The UI adapts to the entertainment type the aircraft supports</h4>
-          <ul>
-            <li>User has no upcoming trips - show the latest 5 movies</li>
-            <li>Aircraft only has the seatback screen</li>
-            <li>Aircraft only has streaming services</li>
-            <li>Aircraft has both (seat back and streaming services)</li>
-            <li>Aircraft has neither (users only have access to Newspapers & Magazines, and exclusive offers)</li>
-          </ul>
-          <img src="/images/62dbf18c99bfd636c45d7ceb_Experience-2.webp" alt="Experience 2" />
-          <img src="/images/62dbf33322fdbe67a1f79575_redesigned---ready-to-flight.webp" alt="Ready to flight" />
-          <img src="/images/62dbb371788939d647160c0f_redesigned---at-the-airplane.webp" alt="At the airplane" />
-          <img src="/images/62ef67ff917ce135295b4b6c_Experience-3.webp" alt="Experience 3" />
-
-          <h3>User Research</h3>
-          <p>The way I like to perform qualitative user testing is to start talking about their life. In a relaxing way, I ask about specific things that have happened in the past and how they solved them. After gathering an understanding of their situation, I ask them to perform a task and I watch to see how they complete it, without helping them along the way.</p>
-          <img src="/images/62ddc62adc69f994be51a3a8_IMG_8117.webp" alt="Research 1" className="img-small" />
-          <img src="/images/62ddc5e63b3a73d76a254359_IMG_8124.webp" alt="Research 2" className="img-xs" />
-
-          <h3>Ongoing Validation</h3>
-          <p>We also ran embedded user tests, on board the plane.</p>
-          <img src="/images/62ddc5473b3a732620253c07_IMG_4772.webp" alt="Testing on plane" className="img-small" />
-          <img src="/images/62ddc4c6ee175f391ba87014_IMG_1742.webp" alt="Testing 2" className="img-xs" />
-
-          <h3>Cross-Channel Integration</h3>
-          <p>I worked closely with engineers to validate the design and copy implementations. Along with daily stand-ups, we also had weekly demos and would occasionally sit together to cross-check implementation with final designs.</p>
-          <ul>
-            <li>4 rounds of user testing</li>
-            <li>2 rounds of design critique / Jam</li>
-          </ul>
-
-          <img src="/images/user-flow.webp" alt="User flow" className="img-full" />
-
-          <img src="/images/62ddc84c1ae3453b107eac6d_effedb79-f8b4-48eb-8219-395614866761.webp" alt="Presentation" className="img-small" />
-          <p className="img-caption">Presenting iPad results during Qantas showcase</p>
-
-          <h2>Impact & Learnings</h2>
-
-          <h3>Results</h3>
-          <p>Help customers to be fully prepared by guiding them on downloading the Qantas Entertainment app before they board, including informing them on what devices to bring onboard to make the most of the Entertainment & Wi-Fi on flights.</p>
-          <img src="/images/62de6bf705fafdd2df4c3e83_IFE-Image-1-1024x690.webp" alt="Results" className="img-small" />
-
-          <h4>Monthly Active Users (MAU)</h4>
-          <ul>
-            <li>Start of the project (2017) = 165k</li>
-            <li>After redesign (~2019) = 180k • <strong>+10%</strong></li>
-          </ul>
-
-          <h4>App Store Rating</h4>
-          <ul>
-            <li>Start of the project (2017) = 2.1</li>
-            <li>After redesign (~2019) = 4.5 • <strong>+114%</strong></li>
-          </ul>
-
-          <h4>Advertising Revenue (from partners' offers)</h4>
-          <ul>
-            <li>Start of the project (2017) = 225k</li>
-            <li>After implementation (~2019) = 675k • <strong>+~200%</strong></li>
-          </ul>
-
-          <h3>Key Learnings</h3>
-
-          <h4>Don't take simple implementations for granted</h4>
-          <p>The "what's new" feature displayed the latest 5 new movies available for the user's flight. We identified huge engagement with this design pattern. There was an opportunity to add offers from Qantas partners.</p>
-
-          <h4>Bring engineers early on to uncover blind spots on implementation</h4>
-          <p>The tech review happened only after the design was approved. During the tech review, we identified that to create this service (back-end) would take ~6 months. Therefore I changed the design and created a new design pattern. I've learned to bring engineers to the design reviews early in the discovery journey.</p>
-
-          <h3>Future Opportunities</h3>
-          <p>Some ideas related to traveller expectations that could be explored further:</p>
-          <ul>
-            <li>Premium content within the app</li>
-            <li>Flight information such as refreshment times and flight crew profiles</li>
-            <li>What other passengers are watching on the same flight</li>
-            <li>Onboard cabin upgrade options (during the flight)</li>
-          </ul>
-          <img src="/images/62dc0d9832dfaec69cd1fe1c_Experience-4.webp" alt="Next steps" />
-
-        </div>
+          <div className="case-study-section">
+            <h2 id="qe-results">Results</h2>
+            <p>After launch, the app&rsquo;s App Store rating went from 2.1 to 4.5. Advertising revenue from partner offers went from AUD 225k to AUD 675k a year.</p>
+            <img src="/images/62ddc84c1ae3453b107eac6d_effedb79-f8b4-48eb-8219-395614866761.webp" alt="Presenting the results at a Qantas showcase" className="img-small" />
+            <p className="img-caption">Presenting the results at a Qantas showcase.</p>
+          </div>
 
         </div>
       </section>
+    </CaseStudyLayout>
   );
 }
