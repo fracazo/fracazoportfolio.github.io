@@ -3264,13 +3264,14 @@
   width: 36px;
   height: auto;
 }
-/* A full app icon is its own tile: it fills the tile edge to edge and the
-   tile only lends its corners and hairline. */
+/* A full app icon is already a tile, with its own corner shape: it takes
+   the tile's size and the tile steps back (no fill, no hairline). */
 .cs-icon:has(> .cs-app-icon) {
-  overflow: hidden;
   background: none;
+  outline: none;
 }
-.cs-icon > svg.cs-app-icon {
+.cs-icon > .cs-app-icon {
+  display: block;
   width: 100%;
   height: 100%;
 }

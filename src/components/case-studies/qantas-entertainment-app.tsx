@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { CaseStudyLayout } from "@/components/case-study-layout";
-import { QantasEntertainmentAppIcon } from "@/components/scene-marks";
 
 /**
  * Body of the qantas-entertainment-app case study, without the route chrome.
@@ -16,7 +15,7 @@ export function QantasEntertainmentAppContent({
 } = {}) {
   return (
     <CaseStudyLayout
-      icon={<QantasEntertainmentAppIcon />}
+      icon={<img className="cs-app-icon" src="/images/qantas-entertainment-icon.webp" width={256} height={256} alt="" />}
       title="Qantas Entertainment"
       subtitle="Tripling ad revenue by making in-flight entertainment work before the flight"
       meta={[
