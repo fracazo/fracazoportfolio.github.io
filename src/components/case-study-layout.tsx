@@ -90,9 +90,10 @@ export function CaseStudyLayout({
     </div>
   );
 
-  // Facts and numbers close the story on every layout, as credits under the
-  // last chapter: the reader meets the product and the work first, and the
-  // role and numbers land once they mean something.
+  // Facts and numbers render in two places and CSS shows one: up front on
+  // narrow layouts, where they introduce the story like an app store page,
+  // and as closing credits on wide ones, where the rail keeps only identity
+  // and wayfinding so the story starts with the picture.
   return (
     <div className="cs">
       <div className="cs-layout">
@@ -101,6 +102,11 @@ export function CaseStudyLayout({
             <span className="cs-icon">{icon}</span>
             <h1 className="cs-title">{title}</h1>
             <p className="cs-subtitle">{subtitle}</p>
+          </div>
+
+          <div className="cs-lead">
+            {facts}
+            {numbers}
           </div>
 
           <nav className="cs-nav" aria-label="Chapters">
