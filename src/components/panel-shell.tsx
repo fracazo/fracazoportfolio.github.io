@@ -9,10 +9,12 @@ import {
   useState,
   type AnimationEvent,
   type ReactNode,
+  type RefObject,
 } from "react";
-import { CheckIcon, CloseIcon, LinkIcon, ShareIcon } from "./icons";
+import { ArrowUpIcon, CheckIcon, CloseIcon, LinkIcon, ShareIcon } from "./icons";
 import { panelRegistry } from "./panel-registry";
 import { BackPill } from "./back-pill";
+import { useSheetDrag } from "./use-sheet-drag";
 
 /**
  * From here up the panel is a sheet laid over the page, with a strip of the
@@ -56,6 +58,9 @@ export function PanelShell({ children }: { children: ReactNode }) {
   const [closing, setClosing] = useState(false);
   const [wide, setWide] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  /** The phone sheet's frame and its grab handle, for pull-to-dismiss. */
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const grabberRef = useRef<HTMLDivElement>(null);
   /** Element that opened the panel, refocused on close. */
   const opener = useRef<HTMLElement | null>(null);
 
@@ -109,9 +114,9 @@ export function PanelShell({ children }: { children: ReactNode }) {
   );
 
   // Every close goes through history (the strip, the close button, Escape,
-  // the back button, the system back gesture) and lands here. The wide sheet
-  // slides back out before it unmounts; the full-screen sheet and reduced
-  // motion just go. Forward onto the panel's entry reopens it, so the sheet
+  // the back button, the system back gesture) and lands here. Both sheets
+  // slide back out the way they came before they unmount; reduced motion
+  // just goes. Forward onto the panel's entry reopens it, so the sheet
   // always matches the URL.
   useEffect(() => {
     const onPop = () => {
@@ -121,9 +126,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
         setActive(state.panel);
         return;
       }
-      const animate =
-        window.matchMedia(`(min-width: ${SHEET_MIN}px)`).matches &&
-        !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const animate = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (animate) setClosing(true);
       else setActive(null);
     };
@@ -195,6 +198,14 @@ export function PanelShell({ children }: { children: ReactNode }) {
     if (!closing) window.history.back();
   };
 
+  useSheetDrag({
+    sheet: sheetRef,
+    scroller: panelRef,
+    grabber: grabberRef,
+    enabled: Boolean(active) && !wide && !closing,
+    onDismiss: close,
+  });
+
   /*
    * `children` is rendered in exactly one place and never moves. The sheet
    * lies over it rather than reflowing it, so the page underneath keeps its
@@ -217,6 +228,17 @@ export function PanelShell({ children }: { children: ReactNode }) {
         />
       )}
 
+      {active && !wide && (
+        // Phone: the page stays in view above the sheet, washed back. Tapping
+        // it closes, like the wide sheet's strip. Pointer only; Back is the
+        // route for keyboard and assistive tech.
+        <div
+          aria-hidden="true"
+          onClick={close}
+          className={`panel-phone-scrim${closing ? " is-closing" : ""}`}
+        />
+      )}
+
       {active && (
         // The frame carries the material (glass, highlight edge, shadow) and
         // the overlays that sit above the scrolling content: the dissolving
@@ -230,8 +252,9 @@ export function PanelShell({ children }: { children: ReactNode }) {
           className={
             wide
               ? `panel-sheet${closing ? " panel-sheet-exit" : ""}`
-              : "panel-enter fixed inset-0 z-50 bg-bg"
+              : `panel-phone-sheet${closing ? " panel-phone-sheet-exit" : ""}`
           }
+          ref={wide ? undefined : sheetRef}
         >
           {wide && (
             <>
@@ -244,6 +267,11 @@ export function PanelShell({ children }: { children: ReactNode }) {
             <>
               <EdgeBlur edge="top" phone />
               <EdgeBlur edge="bottom" phone />
+              {/* Grab handle: pull it down to dismiss. Decorative to
+                  assistive tech, which closes with Back. */}
+              <div ref={grabberRef} className="panel-phone-grabber" aria-hidden="true">
+                <span />
+              </div>
             </>
           )}
           {!wide && (
@@ -255,9 +283,12 @@ export function PanelShell({ children }: { children: ReactNode }) {
               placement="sheet"
               scroller={panelRef}
               end={
-                shareUrl && (
-                  <ShareButton key={shareUrl} url={shareUrl} title={entry?.title} />
-                )
+                <>
+                  {shareUrl && (
+                    <ShareButton key={shareUrl} url={shareUrl} title={entry?.title} />
+                  )}
+                  <ToTopButton scroller={panelRef} />
+                </>
               }
             />
           )}
@@ -267,7 +298,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
             className={
               wide
                 ? "panel-body panel-scroll h-full overflow-y-auto overscroll-contain px-10 pt-20 pb-16 outline-none"
-                : "panel-body h-full overflow-y-auto overscroll-contain px-6 pt-10 pb-28 outline-none"
+                : "panel-body h-full overflow-y-auto overscroll-contain px-6 pt-12 pb-28 outline-none"
             }
           >
             <Reveal key={active} enabled={wide}>
@@ -406,6 +437,44 @@ function ShareButton({ url, title }: { url: string; title?: string }) {
     >
       {copied ? <CheckIcon size={16} /> : <ShareIcon size={16} />}
       <CopiedAnnouncement copied={copied} />
+    </button>
+  );
+}
+
+/** Past this much reading, the way back to the top shows up. */
+const TO_TOP_AFTER_PX = 900;
+
+/**
+ * Back to the top of a long read, beside Back and Share on the phone sheet.
+ * It only appears once there is a top worth going back to.
+ */
+function ToTopButton({ scroller }: { scroller: RefObject<HTMLElement | null> }) {
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const el = scroller.current;
+    if (!el) return;
+    const onScroll = () => setShown(el.scrollTop > TO_TOP_AFTER_PX);
+    onScroll();
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [scroller]);
+
+  const toTop = () => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    scroller.current?.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={toTop}
+      aria-label="Back to top"
+      tabIndex={shown ? undefined : -1}
+      aria-hidden={shown ? undefined : true}
+      data-shown={shown || undefined}
+      className="to-top glass glass-interactive inline-flex h-12 w-12 cursor-pointer items-center justify-center rounded-full text-muted hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    >
+      <ArrowUpIcon size={16} />
     </button>
   );
 }
