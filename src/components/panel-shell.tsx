@@ -69,9 +69,18 @@ export function PanelShell({ children }: { children: ReactNode }) {
   // panel: browser back from a page a link inside the sheet led to, or a
   // reload on a stub (a route entry reloads as its full page instead, since
   // the URL is that page's). Reopen it.
+  //
+  // It is also how a failed load recovers (see LoadFailover): the page
+  // reloads on the base URL with the entry still in history, and the sheet
+  // reopens on fresh files. The address bar then goes back to the entry's
+  // own URL, so Share and a later reload behave as if it had opened normally.
   useEffect(() => {
     const state = panelState();
-    if (state) setActive(state.panel);
+    if (!state) return;
+    setActive(state.panel);
+    if (state.panel.startsWith("/") && window.location.pathname !== state.panel) {
+      window.history.replaceState(window.history.state, "", state.panel);
+    }
   }, []);
 
   useEffect(() => {
@@ -446,13 +455,15 @@ function ShareButton({ url, title }: { url: string; title?: string }) {
   );
 }
 
+/** A second failed load within this window gives up on the sheet. */
+const RETRY_WINDOW_MS = 60_000;
+
 /**
  * A deploy replaces every code file, so a page opened before it (or cached by
  * the browser) asks for case study chunks that no longer exist, and the
  * failed load would otherwise take the whole page down to Next's error
- * screen. Instead, go to the entry's own page: a full load always gets the
- * current files. A stub has no page, so the page underneath reloads and
- * reopens it from history.
+ * screen. Instead, reload the page underneath and reopen the sheet on the
+ * current files; only if that fails too, go to the entry's own page.
  */
 class LoadFailover extends Component<
   { href: string; children: ReactNode },
@@ -465,8 +476,32 @@ class LoadFailover extends Component<
   }
 
   componentDidCatch() {
-    if (this.props.href.startsWith("/")) window.location.assign(this.props.href);
-    else window.location.reload();
+    const { href } = this.props;
+    const key = `panel-retry:${href}`;
+    let retried = false;
+    try {
+      retried = Date.now() - Number(sessionStorage.getItem(key) ?? 0) < RETRY_WINDOW_MS;
+      sessionStorage.setItem(key, String(Date.now()));
+    } catch {
+      // Storage blocked: treat as already retried, so this can never loop.
+      retried = true;
+    }
+
+    // Second failure in a row: the page underneath is not the problem, so
+    // go to the entry's own page (a stub has none; reload where it is).
+    if (retried) {
+      if (href.startsWith("/")) window.location.assign(href);
+      else window.location.reload();
+      return;
+    }
+
+    // First failure: reload the page underneath, fresh from the server, with
+    // the entry kept in history. The mount effect reopens the sheet on the
+    // current files, so the visitor stays in the sheet.
+    const state = window.history.state;
+    const base = typeof state?.base === "string" ? state.base : "/";
+    window.history.replaceState({ ...state, panel: href, base }, "", base);
+    window.location.reload();
   }
 
   render() {
