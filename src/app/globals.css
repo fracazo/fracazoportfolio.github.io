@@ -3534,11 +3534,31 @@
   outline: none;
   box-shadow: none;
 }
-/* A brand mark (not a full app icon) that is only available small: shown no
-   larger than its own pixels inside the tile. */
-.cs-icon > .cs-icon-mark {
+/* A full logo shown as is, in place of the icon tile: the tile steps back
+   entirely and the logo sits on the page at its own proportions, never
+   past its own pixels (230x59). One file per theme. */
+.cs-icon:has(> .cs-logo) {
   width: auto;
-  height: min(59px, 62%);
+  height: auto;
+  border-radius: 0;
+  background: none;
+  outline: none;
+  place-items: start;
+}
+.cs-icon > .cs-logo {
+  display: block;
+  width: auto;
+  height: 40px;
+}
+:root.light .cs-icon > .cs-logo--dark,
+:root:not(.light) .cs-icon > .cs-logo--light {
+  display: none;
+}
+/* The rail's smaller tile on wide layouts, so the logo scales with it. */
+@container cs (min-width: 820px) {
+  .cs-icon > .cs-logo {
+    height: 32px;
+  }
 }
 /* An award under the intro gets the same breathing room as a paragraph. */
 .cs-intro + .award-badge {

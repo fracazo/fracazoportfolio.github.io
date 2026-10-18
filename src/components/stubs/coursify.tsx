@@ -28,8 +28,13 @@ export function CoursifyStub() {
   return (
     <CaseStudyLayout
       icon={
-        // eslint-disable-next-line @next/next/no-img-element
-        <img className="cs-icon-mark" src="/images/coursify-mark.png" width={32} height={59} alt="" />
+        <>
+          {/* The full logo, as is: white wordmark on dark, dark on light. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="cs-logo cs-logo--dark" src="/images/coursify-logo-dark.png" width={230} height={59} alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="cs-logo cs-logo--light" src="/images/coursify-logo-light.png" width={230} height={59} alt="" />
+        </>
       }
       title="Coursify.me"
       subtitle="An online course platform, from the UX to the brand"
