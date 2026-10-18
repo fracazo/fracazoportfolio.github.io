@@ -13,6 +13,7 @@ import {
 import { CheckIcon, CloseIcon, LinkIcon, ShareIcon } from "./icons";
 import { panelRegistry } from "./panel-registry";
 import { BackPill } from "./back-pill";
+import { PeekCursor } from "./peek-cursor";
 
 /**
  * From here up the panel is a sheet laid over the page, with a strip of the
@@ -56,6 +57,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
   const [closing, setClosing] = useState(false);
   const [wide, setWide] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const stripRef = useRef<HTMLDivElement>(null);
   /** Element that opened the panel, refocused on close. */
   const opener = useRef<HTMLElement | null>(null);
 
@@ -211,6 +213,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
         // order and the accessibility tree; the close button in the sheet is
         // the route for keyboard and assistive tech.
         <div
+          ref={stripRef}
           aria-hidden="true"
           onClick={close}
           className={`panel-return-strip${closing ? " is-closing" : ""}`}
@@ -275,6 +278,11 @@ export function PanelShell({ children }: { children: ReactNode }) {
             </Reveal>
           </div>
         </div>
+      )}
+      {active && wide && (
+        // After the sheet, so the strip and the sheet stay adjacent for the
+        // peek's sibling selector.
+        <PeekCursor strip={stripRef} base={panelState()?.base ?? "/"} hidden={closing} />
       )}
     </PanelContext.Provider>
   );
