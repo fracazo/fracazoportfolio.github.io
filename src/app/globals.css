@@ -2849,10 +2849,8 @@
 
 /* The return strip covers the whole page behind the sheet, so a click
    anywhere outside it goes back. Hovering it eases the sheet aside to show a
-   little more of the page, and the cursor becomes a small return arrow in the
-   secondary text grey. A cursor image cannot read custom properties, so each
-   theme carries its own copy. Hotspot sits at the glyph's centre: it marks a
-   region, not a point. */
+   little more of the page; the pointer becomes the back pill in
+   peek-cursor.tsx, with a plain pointer as the fallback. */
 .panel-return-strip {
   position: fixed;
   inset: 0;
@@ -2865,14 +2863,7 @@
     background-color 320ms ease,
     -webkit-backdrop-filter 320ms ease,
     backdrop-filter 320ms ease;
-  cursor:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23a2988c' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 14 4 9l5-5'/%3E%3Cpath d='M4 9h10.5a5.5 5.5 0 0 1 0 11H11'/%3E%3C/svg%3E") 10 10,
-    pointer;
-}
-:root.light .panel-return-strip {
-  cursor:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%238a847c' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 14 4 9l5-5'/%3E%3Cpath d='M4 9h10.5a5.5 5.5 0 0 1 0 11H11'/%3E%3C/svg%3E") 10 10,
-    pointer;
+  cursor: pointer;
 }
 @keyframes panel-scrim-in {
   from {
