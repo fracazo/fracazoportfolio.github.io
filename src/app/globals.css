@@ -3692,13 +3692,14 @@
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 4px;
   }
-  /* Plain words, no rule: the lit chapter is simply the one in full ink. */
+  /* Plain words, no rule: the lit chapter is simply the one in full ink.
+     Body size, set close like a list rather than spaced like links; each
+     line is still a target of 24px or more. */
   .cs-nav a {
     display: block;
-    padding: 2px 0;
-    font-size: 17px;
+    font-size: var(--text-body-size);
+    line-height: 1.55;
     color: var(--muted);
     text-decoration: none;
     transition: color 150ms ease;
