@@ -823,7 +823,7 @@
 
   /* Work-row hover vignettes (WorkVignette). Real classes rather than Tailwind
      arbitrary values where commas are involved: they break that parser (see
-     .panel-enter). Scenes drive their own inline transitions; these classes
+     "Panel motion"). Scenes drive their own inline transitions; these classes
      supply the shared stage fade, the card frame, and the caret blink. */
   .vignette-fade {
     transition: opacity 250ms ease;
