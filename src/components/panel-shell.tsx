@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Component,
   createContext,
   useCallback,
   useContext,
@@ -302,7 +303,11 @@ export function PanelShell({ children }: { children: ReactNode }) {
             }
           >
             <Reveal key={active} enabled={wide}>
-              {Content && <Content />}
+              {Content && (
+                <LoadFailover key={active} href={active}>
+                  <Content />
+                </LoadFailover>
+              )}
             </Reveal>
           </div>
         </div>
@@ -439,6 +444,34 @@ function ShareButton({ url, title }: { url: string; title?: string }) {
       <CopiedAnnouncement copied={copied} />
     </button>
   );
+}
+
+/**
+ * A deploy replaces every code file, so a page opened before it (or cached by
+ * the browser) asks for case study chunks that no longer exist, and the
+ * failed load would otherwise take the whole page down to Next's error
+ * screen. Instead, go to the entry's own page: a full load always gets the
+ * current files. A stub has no page, so the page underneath reloads and
+ * reopens it from history.
+ */
+class LoadFailover extends Component<
+  { href: string; children: ReactNode },
+  { failed: boolean }
+> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  componentDidCatch() {
+    if (this.props.href.startsWith("/")) window.location.assign(this.props.href);
+    else window.location.reload();
+  }
+
+  render() {
+    return this.state.failed ? null : this.props.children;
+  }
 }
 
 /** Past this much reading, the way back to the top shows up. */

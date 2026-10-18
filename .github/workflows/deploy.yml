@@ -38,6 +38,32 @@ jobs:
       - name: Build static export
         run: npm run build
 
+      # Keep earlier builds' code chunks on the site. A deploy replaces every
+      # file, so a page opened before it (or cached by the browser) would ask
+      # for chunks that no longer exist when it opens a case study in the
+      # sheet, and the page would crash. Chunk names are content hashes, so
+      # old and new sit side by side without clashing. The archive lives in
+      # the Actions cache; chunks older than 30 days are dropped.
+      - name: Restore earlier chunks
+        uses: actions/cache/restore@v4
+        with:
+          path: .chunk-archive
+          key: chunk-archive-${{ github.run_id }}
+          restore-keys: chunk-archive-
+
+      - name: Merge earlier chunks into the build
+        run: |
+          mkdir -p .chunk-archive/_next/static
+          find .chunk-archive -type f -mtime +30 -delete
+          cp -r --update=none .chunk-archive/_next/static/. out/_next/static/
+          cp -r --update=none out/_next/static/. .chunk-archive/_next/static/
+
+      - name: Save chunk archive
+        uses: actions/cache/save@v4
+        with:
+          path: .chunk-archive
+          key: chunk-archive-${{ github.run_id }}
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
