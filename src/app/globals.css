@@ -3494,27 +3494,45 @@
   height: min(520px, 60vh);
   border-radius: 8px;
 }
-/* The phone-hero backdrop also frames small screen recordings, shown at
-   their own size instead of stretched. */
-.cs-hero > .cs-hero-phone video {
-  display: block;
+/* Screen recordings in the MacBook frame from coursify.me (coursify.tsx).
+   The frame is 522x297 with a 390x247 screen opening at (66, 15); the
+   recording sits behind the frame so the bezel covers its edges. Never
+   wider than 460px, the size coursify.me shows it at, so the low-res
+   recordings are never scaled up. In the story it lines up with the text. */
+.cs-mac {
+  position: relative;
   width: 100%;
-  max-width: 392px;
-  height: auto;
-  border-radius: 8px;
+  max-width: 460px;
+  aspect-ratio: 522 / 297;
+  margin: 0;
 }
-/* Small screen recordings in the story: native size at most, centred. */
-.case-study-section .cs-small-video {
-  margin: 24px 0 8px;
+.case-study-section .cs-mac {
+  margin: 28px 0 8px;
 }
-.case-study-section .cs-small-video video {
-  display: block;
+.cs-mac > video,
+.cs-hero .cs-mac > video {
+  position: absolute;
+  left: 12.64%;
+  top: 5.05%;
+  width: 74.71%;
+  height: 83.16%;
+  object-fit: cover;
+  background: #fff;
+}
+.cs-mac > img,
+.cs-hero .cs-mac > img,
+.case-study-section .cs-mac > img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 392px;
-  margin-inline: auto;
-  border-radius: 8px;
-  outline: 1px solid var(--img-outline);
-  outline-offset: -1px;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
 }
 /* A brand mark (not a full app icon) that is only available small: shown no
    larger than its own pixels inside the tile. */

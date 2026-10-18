@@ -6,6 +6,24 @@ import { CaseStudyLayout } from "@/components/case-study-layout";
  * The three product areas and their screen recordings come from the
  * coursify.me home page (the GIFs, re-encoded as video).
  */
+/**
+ * A screen recording inside the MacBook frame from coursify.me, as the site
+ * shows them. The frame's screen opening is 390x247, the recordings' own
+ * size, so they sit 1:1 behind the bezel; the whole frame shows at most at
+ * 460px, the size coursify.me uses, so the recordings never scale up.
+ */
+function MacFrame({ name, label }: { name: string; label: string }) {
+  return (
+    <figure className="cs-mac">
+      <video autoPlay muted loop playsInline preload="metadata" poster={`/images/${name}-poster.jpg`} aria-label={label}>
+        <source src={`/videos/${name}.mp4`} type="video/mp4" />
+      </video>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/images/coursify-macbook-frame.png" width={522} height={297} alt="" />
+    </figure>
+  );
+}
+
 export function CoursifyStub() {
   return (
     <CaseStudyLayout
@@ -30,9 +48,7 @@ export function CoursifyStub() {
       link={{ href: "https://coursify.me/", label: "coursify.me" }}
       hero={
         <div className="cs-hero-phone">
-          <video autoPlay muted loop playsInline preload="metadata" poster="/images/coursify-school-poster.jpg" aria-label="Setting up a school: name, slogan and address, logo, cover image and colour scheme">
-            <source src="/videos/coursify-school.mp4" type="video/mp4" />
-          </video>
+          <MacFrame name="coursify-school" label="Setting up a school: name, slogan and address, logo, cover image and colour scheme" />
         </div>
       }
     >
@@ -63,21 +79,13 @@ export function CoursifyStub() {
           <div className="case-study-section">
             <h2 id="cf-builder">Online course builder</h2>
             <p>Courses were built in sections and lessons, with a live view of the course page while you edited it, and room for a presentation video and student testimonials.</p>
-            <figure className="cs-small-video">
-              <video autoPlay muted loop playsInline preload="metadata" poster="/images/coursify-builder-poster.jpg" aria-label="Building a course page: sections, lessons, a presentation video and testimonials, previewed live">
-                <source src="/videos/coursify-builder.mp4" type="video/mp4" />
-              </video>
-            </figure>
+            <MacFrame name="coursify-builder" label="Building a course page: sections, lessons, a presentation video and testimonials, previewed live" />
           </div>
 
           <div className="case-study-section">
             <h2 id="cf-student">Student area</h2>
             <p>Students got a dashboard of their courses and progress, and a focused area to follow the lessons and ask questions, all in the school&rsquo;s own logo and colours.</p>
-            <figure className="cs-small-video">
-              <video autoPlay muted loop playsInline preload="metadata" poster="/images/coursify-student-poster.jpg" aria-label="The student area: a course dashboard with progress, and a lesson with questions">
-                <source src="/videos/coursify-student.mp4" type="video/mp4" />
-              </video>
-            </figure>
+            <MacFrame name="coursify-student" label="The student area: a course dashboard with progress, and a lesson with questions" />
           </div>
 
           <div className="case-study-section">
