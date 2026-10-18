@@ -2700,10 +2700,10 @@
   --sheet-shadow: 0 8px 40px rgb(0 0 0 / 0.45);
   --sheet-shadow-hover: 0 12px 52px rgb(0 0 0 / 0.55);
   --sheet-scrim: rgb(0 0 0 / 0.5);
-  /* While the pointer rests on the way back, the sheet slides aside far
-     enough to uncover the start of the page's own content (which begins well
-     inside its margin), and the wash lifts so that content reads. */
-  --sheet-peek: clamp(80px, 11vw, 170px);
+  /* While the pointer rests on the way back, the sheet slides aside a little
+     and the wash lifts. The page has already settled with its content just
+     behind the sheet's edge, so this small slide uncovers real text. */
+  --sheet-peek: 120px;
   --sheet-scrim-peek: rgb(0 0 0 / 0.25);
 }
 :root.light {
@@ -2876,6 +2876,36 @@
 @keyframes panel-scrim-out {
   to {
     opacity: 0;
+  }
+}
+/* The page under the wide sheet (panel-shell.tsx). While the sheet is up it
+   eases left so its content sits just behind the sheet's edge; panel-shell
+   measures how far. Both ways it moves a touch slower and softer than the
+   sheet, so it reads as the page settling aside and settling back as the
+   sheet clears, rather than being pushed. */
+.panel-page {
+  transition: translate 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.panel-page[data-shifted] {
+  translate: var(--page-shift, 0px) 0;
+  transition: translate 640ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* Moving the page also carries its fixed back pill, which would vanish off a
+   scrolled page and snap back at the end. So it fades out as the page moves
+   aside (the peek pill does its job meanwhile) and fades back in only once
+   the page has settled. */
+.panel-page .back-pill-dock--page {
+  transition: opacity 240ms ease 480ms;
+}
+.panel-page[data-shifted] .back-pill-dock--page {
+  opacity: 0;
+  transition-delay: 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .panel-page,
+  .panel-page[data-shifted],
+  .panel-page .back-pill-dock--page {
+    transition: none;
   }
 }
 /* The pointer over the way back (peek-cursor.tsx): a glass pill built like

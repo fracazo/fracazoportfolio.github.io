@@ -22,6 +22,48 @@ import { PeekCursor } from "./peek-cursor";
  */
 const SHEET_MIN = 768;
 
+/**
+ * Where the page's content should sit, from the window's left edge, while the
+ * sheet is up: just behind the sheet's edge (48px), so the hover peek
+ * uncovers about a hundred pixels of real text.
+ */
+const PAGE_CONTENT_AT = 72;
+
+/**
+ * Left edge of the page's visible text, ignoring fixed chrome (the page's
+ * back pill, tab bar). Reads rendered text, not containers, because a
+ * full-width wrapper says nothing about where the words start.
+ */
+function contentLeft(root: HTMLElement): number | null {
+  // Wherever the page is right now, mid-transition included, so the edge
+  // comes back in the page's own, unshifted layout.
+  const shift = parseFloat(getComputedStyle(root).translate) || 0;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  const range = document.createRange();
+  const fixed = new WeakMap<Element, boolean>();
+  const inFixed = (el: Element | null): boolean => {
+    if (!el || el === root) return false;
+    const known = fixed.get(el);
+    if (known !== undefined) return known;
+    const result =
+      getComputedStyle(el).position === "fixed" || inFixed(el.parentElement);
+    fixed.set(el, result);
+    return result;
+  };
+  let min = Infinity;
+  let seen = 0;
+  for (let node = walker.nextNode(); node && seen < 400; node = walker.nextNode()) {
+    if (!node.textContent?.trim()) continue;
+    range.selectNodeContents(node);
+    const r = range.getBoundingClientRect();
+    if (r.width === 0 || r.bottom < 0 || r.top > window.innerHeight) continue;
+    seen++;
+    if (inFixed(node.parentElement)) continue;
+    min = Math.min(min, r.left - shift);
+  }
+  return min === Infinity ? null : min;
+}
+
 type PanelApi = {
   open: (href: string, trigger?: HTMLElement) => void;
   active: string | null;
@@ -58,6 +100,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
   const [wide, setWide] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const stripRef = useRef<HTMLDivElement>(null);
+  const pageRef = useRef<HTMLDivElement>(null);
   /** Element that opened the panel, refocused on close. */
   const opener = useRef<HTMLElement | null>(null);
 
@@ -174,6 +217,34 @@ export function PanelShell({ children }: { children: ReactNode }) {
     if (active && panelRef.current) panelRef.current.scrollTop = 0;
   }, [active]);
 
+  // While the wide sheet is up, the page underneath eases left until its
+  // content sits just behind the sheet's edge, so the peek on the way back
+  // uncovers real content at any window width. Measured, not assumed: pages
+  // centre their content, so where it starts depends on the window. It eases
+  // back as the sheet leaves.
+  const shifted = Boolean(active) && wide && !closing;
+  useEffect(() => {
+    const page = pageRef.current;
+    if (!page) return;
+    if (!shifted) {
+      page.style.removeProperty("--page-shift");
+      delete page.dataset.shifted;
+      return;
+    }
+    const apply = () => {
+      const left = contentLeft(page);
+      const shift = left === null ? 0 : Math.round(Math.max(0, left - PAGE_CONTENT_AT));
+      page.style.setProperty("--page-shift", `${-shift}px`);
+      // Left untouched when its content already sits at the edge: a
+      // transform would also re-anchor the page's fixed chrome for nothing.
+      if (shift > 0) page.dataset.shifted = "";
+      else delete page.dataset.shifted;
+    };
+    apply();
+    window.addEventListener("resize", apply);
+    return () => window.removeEventListener("resize", apply);
+  }, [shifted]);
+
   const entry = active ? panelRegistry[active] : null;
   const Content = entry?.load;
 
@@ -205,7 +276,9 @@ export function PanelShell({ children }: { children: ReactNode }) {
    */
   return (
     <PanelContext.Provider value={{ open, active }}>
-      <div inert={isOpen || undefined}>{children}</div>
+      <div ref={pageRef} className="panel-page" inert={isOpen || undefined}>
+        {children}
+      </div>
 
       {active && wide && (
         // The way back is the page itself: the strip of it left showing down
