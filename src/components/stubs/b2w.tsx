@@ -17,7 +17,7 @@ export function B2wStub() {
       title="Americanas"
       subtitle="Mobile for Americanas, Submarino and Shoptime"
       meta={[
-        { label: "Role", value: "Lead iOS and Android designer" },
+        { label: "Role", value: "Senior Product Designer" },
         { label: "Project type", value: "Redesign" },
         { label: "Platform", value: ["Mobile web", "iOS", "Android"] },
       ]}

@@ -3494,6 +3494,34 @@
   height: min(520px, 60vh);
   border-radius: 8px;
 }
+/* The phone-hero backdrop also frames small screen recordings, shown at
+   their own size instead of stretched. */
+.cs-hero > .cs-hero-phone video {
+  display: block;
+  width: 100%;
+  max-width: 392px;
+  height: auto;
+  border-radius: 8px;
+}
+/* Small screen recordings in the story: native size at most, centred. */
+.case-study-section .cs-small-video {
+  margin: 24px 0 8px;
+}
+.case-study-section .cs-small-video video {
+  display: block;
+  width: 100%;
+  max-width: 392px;
+  margin-inline: auto;
+  border-radius: 8px;
+  outline: 1px solid var(--img-outline);
+  outline-offset: -1px;
+}
+/* A brand mark (not a full app icon) that is only available small: shown no
+   larger than its own pixels inside the tile. */
+.cs-icon > .cs-icon-mark {
+  width: auto;
+  height: min(59px, 62%);
+}
 /* An award under the intro gets the same breathing room as a paragraph. */
 .cs-intro + .award-badge {
   margin-top: 20px;
