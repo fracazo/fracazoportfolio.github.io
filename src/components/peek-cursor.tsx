@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, type RefObject } from "react";
-import { ChevronLeftIcon, HomeIcon, WorkIcon } from "./icons";
+import { CornerUpLeftIcon } from "./icons";
 
-/** Where the chevron sits inside the pill, so it lands under the pointer. */
+/** Where the arrow sits inside the pill, so it lands under the pointer. */
 const HOTSPOT_X = 18;
 const HOTSPOT_Y = 20;
 /** Keeps the pill off the window's left edge when the pointer hugs it. */
@@ -11,8 +11,8 @@ const EDGE = 8;
 
 /**
  * The pointer over the sheet's way back. The system cursor hides and a small
- * glass pill takes its place, built like the page's back pill: a chevron,
- * then the icon and name of the page underneath ("Home" or "Work"). It opens
+ * glass pill takes its place, built like the page's back pill: the arrow
+ * back, then the name of the page underneath ("Home" or "Work"). It opens
  * out as the sheet peeks aside, so the reader sees where a click will land
  * while the page itself shows through.
  *
@@ -86,11 +86,7 @@ export function PeekCursor({
       data-hidden={hidden || undefined}
       aria-hidden="true"
     >
-      <span className="back-pill-home">
-        <ChevronLeftIcon strokeWidth={2.5} />
-        {home && <HomeIcon size={16} />}
-        {work && <WorkIcon size={16} />}
-      </span>
+      <CornerUpLeftIcon />
       <span className="peek-cursor-label">
         <span>{label}</span>
       </span>

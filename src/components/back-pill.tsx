@@ -8,7 +8,7 @@ import {
   type ReactNode,
   type RefObject,
 } from "react";
-import { ArrowLeftIcon, ChevronLeftIcon, HomeIcon } from "./icons";
+import { CornerUpLeftIcon } from "./icons";
 
 /** Scroll depth before the pill may tuck itself away. */
 const COMPACT_AFTER_PX = 240;
@@ -57,9 +57,10 @@ export function useCompactOnScroll(scroller?: RefObject<HTMLElement | null>) {
  * down it tucks into an icon-only circle, still there as the reminder of the
  * way out, and comes back when they scroll up (or hover it, on desktop).
  *
- * `home` swaps the arrow and "Back" for a chevron, a house and "Home", for
- * the page whose way out is always the home page (the work history). The
- * chevron says the house leads back, not to a new place. Pass `href` for
+ * One glyph for every way back, an arrow turning a corner, so the pill, the
+ * sheet's and the peek cursor read the same. `home` names the way "Home"
+ * instead of "Back", for the page whose way out is always the home page
+ * (the work history). Pass `href` for
  * a page (a real link) or only `onClick` for the sheet (a button). `end`
  * holds an optional control beside the pill.
  */
@@ -84,15 +85,7 @@ export function BackPill({
   const label = home ? "Home" : "Back";
   const content = (
     <>
-      {home ? (
-        <span className="back-pill-home">
-          {/* Heavier stroke so the line holds its own beside the solid house. */}
-          <ChevronLeftIcon strokeWidth={2.5} />
-          <HomeIcon size={16} />
-        </span>
-      ) : (
-        <ArrowLeftIcon size={16} />
-      )}
+      <CornerUpLeftIcon />
       <span className="back-pill-label">
         <span>{label}</span>
       </span>

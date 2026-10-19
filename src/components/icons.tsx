@@ -137,6 +137,16 @@ export function ChevronLeftIcon(props: IconProps) {
   );
 }
 
+/* Lucide's corner-up-left: the arrow back, turning a corner. */
+export function CornerUpLeftIcon(props: IconProps) {
+  return (
+    <svg {...base({ size: 18, ...props })}>
+      <path d="M20 20v-7a4 4 0 0 0-4-4H4" />
+      <path d="m9 14-5-5 5-5" />
+    </svg>
+  );
+}
+
 export function ArrowLeftIcon(props: IconProps) {
   return (
     <svg {...base({ size: 14, ...props })}>
