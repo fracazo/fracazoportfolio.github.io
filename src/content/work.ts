@@ -151,10 +151,12 @@ export const work = {
       "Every screen your coding agent builds, connected on one canvas you can zoom in and out of. Works on any device.",
     outcome: "Claude Code skill",
     image: {
-      src: "/images/flow-demo-poster.jpg",
+      src: "/images/flow-demo-thumb-poster.jpg",
       alt: "Flow prototype's map: every screen of a birth-planning app's flows on one canvas, connected by their paths",
     },
-    video: { src: "/videos/flow-demo.mp4", window: true },
+    // A recut of the hero recording that pans and zooms so each beat
+    // (map, live view, overview) starts in the window's top-left corner.
+    video: { src: "/videos/flow-demo-thumb.mp4", window: true },
   },
 } satisfies Record<string, WorkEntry>;
 
