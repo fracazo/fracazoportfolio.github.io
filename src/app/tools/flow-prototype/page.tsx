@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function FlowPrototype() {
   return (
-    <CaseStudyShell>
+    <CaseStudyShell wide>
       <FlowPrototypeContent />
     </CaseStudyShell>
   );

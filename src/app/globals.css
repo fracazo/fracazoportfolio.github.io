@@ -3560,6 +3560,25 @@
     height: 32px;
   }
 }
+/* A tool titled by its slash command: the slash is muted, like a prompt,
+   so the name reads first. With no icon above, the title starts the rail. */
+.cs-title > .cs-slash {
+  margin-right: 0.06em;
+  font-weight: 400;
+  color: var(--muted);
+}
+.cs-id > .cs-title:first-child {
+  margin-top: 0;
+  /* Trimmed to the capitals, so the letters, not the line box, meet the
+     hero's top edge, the way an icon tile does. */
+  text-box: trim-start cap alphabetic;
+}
+/* An animated stage as the hero brings its own card frame; the hero frame
+   already draws one, so the stage takes its corners and drops its hairline. */
+.cs-hero > .thumb-frame {
+  border-radius: inherit;
+  box-shadow: none;
+}
 /* An award under the intro gets the same breathing room as a paragraph. */
 .cs-intro + .award-badge {
   margin-top: 20px;

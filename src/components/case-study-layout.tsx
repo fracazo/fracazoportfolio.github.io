@@ -36,10 +36,11 @@ export function CaseStudyLayout({
   hero,
   children,
 }: {
-  /** Square company mark, set in a tile. */
-  icon: ReactNode;
+  /** Square company mark, set in a tile. Optional: a tool can let its name
+   *  (e.g. a slash command) stand for it instead. */
+  icon?: ReactNode;
   /** Product name; the page's h1. */
-  title: string;
+  title: ReactNode;
   subtitle: string;
   meta: CaseStudyMeta[];
   stats?: CaseStudyStat[];
@@ -107,7 +108,7 @@ export function CaseStudyLayout({
       <div className="cs-layout">
         <div className="cs-rail">
           <div className="cs-id">
-            <span className="cs-icon">{icon}</span>
+            {icon && <span className="cs-icon">{icon}</span>}
             <h1 className="cs-title">{title}</h1>
             <p className="cs-subtitle">{subtitle}</p>
           </div>
