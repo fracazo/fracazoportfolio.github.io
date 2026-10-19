@@ -140,7 +140,11 @@ export const work = {
     tagline:
       "Every screen your coding agent builds, connected on one canvas you can zoom in and out of. Works on any device.",
     outcome: "Claude Code skill",
-    vignette: "flow",
+    image: {
+      src: "/images/flow-demo-poster.jpg",
+      alt: "Flow prototype's map: every screen of a birth-planning app's flows on one canvas, connected by their paths",
+    },
+    video: { src: "/videos/flow-demo.mp4" },
   },
 } satisfies Record<string, WorkEntry>;
 
