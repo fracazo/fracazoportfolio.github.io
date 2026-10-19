@@ -18,7 +18,6 @@ export function WikiContextualCommentsContent({
   return (
     <CaseStudyLayout
       icon={<TanukiMark size={36} />}
-      brand="#fc6d26"
       title="Wiki contextual comments"
       subtitle="Tying discussion to the text, without the clutter"
       meta={[

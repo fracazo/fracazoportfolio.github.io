@@ -18,7 +18,6 @@ export function MrSummaryAiContent({
   return (
     <CaseStudyLayout
       icon={<TanukiMark size={36} />}
-      brand="#fc6d26"
       title="Merge request summaries"
       subtitle="Moving AI from the reviewer to the author"
       meta={[

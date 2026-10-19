@@ -4,7 +4,6 @@ import {
   useEffect,
   useRef,
   useState,
-  type CSSProperties,
   type MouseEvent,
   type ReactNode,
   type RefObject,
@@ -35,7 +34,6 @@ export function CaseStudyLayout({
   chapters,
   link,
   hero,
-  brand,
   children,
 }: {
   /** Square company mark, set in a tile. */
@@ -52,8 +50,6 @@ export function CaseStudyLayout({
   link?: { href: string; label: string };
   /** Image or video that opens the story. */
   hero: ReactNode;
-  /** The product's brand colour; the chapter nav inks in it as you read. */
-  brand?: string;
   children: ReactNode;
 }) {
   const nav = useRef<HTMLOListElement>(null);
@@ -107,7 +103,7 @@ export function CaseStudyLayout({
   // and as closing credits on wide ones, where the rail keeps only identity
   // and wayfinding so the story starts with the picture.
   return (
-    <div className="cs" style={brand ? ({ "--cs-brand": brand } as CSSProperties) : undefined}>
+    <div className="cs">
       <div className="cs-layout">
         <div className="cs-rail">
           <div className="cs-id">

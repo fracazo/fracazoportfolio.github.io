@@ -18,7 +18,6 @@ export function GlqlContent({
   return (
     <CaseStudyLayout
       icon={<TanukiMark size={36} />}
-      brand="#fc6d26"
       title="GLQL"
       subtitle="GitLab Query Language"
       meta={[

@@ -3696,8 +3696,8 @@
   /* Plain words, no rule. Each label inks in, left to right, as you read
      its chapter (--ink, 0 to 1, from useChapterProgress): chapters ahead
      are muted, chapters read are full ink, and the one you are in is part
-     way, so the nav doubles as how far through the story you are. The ink
-     is the product's brand colour when the study sets one (--cs-brand).
+     way, so the nav doubles as how far through the story you are. Quiet on
+     purpose: muted to full ink, the same pair as before, never a colour.
      Body size, set close like a list rather than spaced like links; each
      line is still a target of 24px or more. */
   .cs-nav a {
@@ -3713,7 +3713,7 @@
     --fill: calc(var(--ink, 0) * 100%);
     background-image: linear-gradient(
       to right,
-      var(--cs-brand, var(--text)) var(--fill),
+      var(--text) var(--fill),
       var(--muted) var(--fill)
     );
     -webkit-background-clip: text;
