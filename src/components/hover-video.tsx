@@ -9,6 +9,8 @@ type HoverVideoProps = {
   image: { src: string; alt: string; srcSet?: string; sizes?: string };
   /** Mirrors `WorkRow`'s priority: eager-load the still for above-the-fold rows. */
   priority?: boolean;
+  /** Frame the still and clip as an app window (`.footage-window`). */
+  window?: boolean;
 };
 
 /**
@@ -22,7 +24,12 @@ type HoverVideoProps = {
  * hovering the title animates the thumbnail too. The clip rewinds on leave so
  * every hover replays from the same point as the poster.
  */
-export function HoverVideo({ src, image, priority = false }: HoverVideoProps) {
+export function HoverVideo({
+  src,
+  image,
+  priority = false,
+  window: framed = false,
+}: HoverVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const scrolledTo = useScrollPlay(videoRef, ".group", "(hover: hover)");
 
@@ -66,30 +73,32 @@ export function HoverVideo({ src, image, priority = false }: HoverVideoProps) {
 
   return (
     <div className="relative aspect-[16/10] overflow-hidden">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={image.src}
-        alt={image.alt}
-        srcSet={image.srcSet}
-        sizes={image.sizes}
-        loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : undefined}
-        className="h-full w-full object-cover"
-      />
-      <video
-        ref={videoRef}
-        src={src}
-        poster={image.src}
-        muted
-        loop
-        playsInline
-        preload="none"
-        aria-hidden="true"
-        tabIndex={-1}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-100 motion-reduce:hidden ${
-          scrolledTo ? "opacity-100" : "opacity-0"
-        }`}
-      />
+      <div className={framed ? "footage-window" : "contents"}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image.src}
+          alt={image.alt}
+          srcSet={image.srcSet}
+          sizes={image.sizes}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
+          className="h-full w-full object-cover"
+        />
+        <video
+          ref={videoRef}
+          src={src}
+          poster={image.src}
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-hidden="true"
+          tabIndex={-1}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-100 motion-reduce:hidden ${
+            scrolledTo ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      </div>
     </div>
   );
 }

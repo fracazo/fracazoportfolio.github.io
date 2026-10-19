@@ -14,7 +14,12 @@ export type WorkEntry = {
   outcome?: string;
   vignette?: WorkVignetteKind;
   image?: { src: string; alt: string };
-  video?: { src: string };
+  video?: {
+    src: string;
+    /** Show the footage as an app window on the stage, inset from the top
+        left and running off the other edges, like the drawn scenes. */
+    window?: boolean;
+  };
   award?: Award;
 };
 
@@ -27,7 +32,12 @@ export type StubEntry = {
   metric?: string;
   vignette?: WorkVignetteKind;
   image?: { src: string; alt: string };
-  video?: { src: string };
+  video?: {
+    src: string;
+    /** Show the footage as an app window on the stage, inset from the top
+        left and running off the other edges, like the drawn scenes. */
+    window?: boolean;
+  };
 };
 
 export const work = {
@@ -144,7 +154,7 @@ export const work = {
       src: "/images/flow-demo-poster.jpg",
       alt: "Flow prototype's map: every screen of a birth-planning app's flows on one canvas, connected by their paths",
     },
-    video: { src: "/videos/flow-demo.mp4" },
+    video: { src: "/videos/flow-demo.mp4", window: true },
   },
 } satisfies Record<string, WorkEntry>;
 
