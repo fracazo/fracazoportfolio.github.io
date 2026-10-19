@@ -36,6 +36,7 @@ export function CoursifyStub() {
           <img className="cs-logo cs-logo--light" src="/images/coursify-logo-light.png" width={230} height={59} alt="" />
         </>
       }
+      brand="#faa61a"
       title="Coursify.me"
       subtitle="An online course platform, from the UX to the brand"
       meta={[

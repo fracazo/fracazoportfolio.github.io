@@ -14,6 +14,7 @@ export function BemDiretoStub() {
         // eslint-disable-next-line @next/next/no-img-element
         <img className="cs-app-icon cs-app-icon--clip" src="/images/bemdireto-icon.webp" width={256} height={256} alt="" />
       }
+      brand="#fd8100"
       title="Bem Direto"
       subtitle="Brazil&rsquo;s first real estate marketplace for agents"
       meta={[

@@ -19,6 +19,7 @@ export function GitlabPagesContent({
   return (
     <CaseStudyLayout
       icon={<TanukiMark size={36} />}
+      brand="#fc6d26"
       title="GitLab Pages"
       subtitle="Shipping a redesign without a team"
       meta={[

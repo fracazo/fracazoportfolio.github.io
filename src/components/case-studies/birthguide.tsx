@@ -17,6 +17,7 @@ export function BirthguideContent({
   return (
     <CaseStudyLayout
       icon={<BirthGuideAppIcon />}
+      brand="#c2727a"
       title="BirthGuide"
       subtitle="Making the learning the product"
       meta={[

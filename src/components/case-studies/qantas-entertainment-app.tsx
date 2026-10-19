@@ -16,6 +16,7 @@ export function QantasEntertainmentAppContent({
   return (
     <CaseStudyLayout
       icon={<img className="cs-app-icon" src="/images/qantas-entertainment-icon.webp" width={256} height={256} alt="" />}
+      brand="#e40000"
       title="Qantas Entertainment"
       subtitle="Tripling ad revenue by making in-flight entertainment work before the flight"
       meta={[

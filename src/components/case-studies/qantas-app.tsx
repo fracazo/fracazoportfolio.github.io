@@ -16,6 +16,7 @@ export function QantasAppContent({
   return (
     <CaseStudyLayout
       icon={<img className="cs-app-icon" src="/images/qantas-airways-icon.webp" width={256} height={256} alt="" />}
+      brand="#e40000"
       title="Qantas Airways app"
       subtitle="Putting entertainment on the flight card"
       meta={[

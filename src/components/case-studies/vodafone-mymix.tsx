@@ -19,6 +19,7 @@ export function VodafoneMymixContent({
   return (
     <CaseStudyLayout
       icon={<VodafoneAppIcon />}
+      brand="#e60000"
       title="Vodafone MyMix"
       subtitle="Letting prepaid customers design their own recharge"
       meta={[

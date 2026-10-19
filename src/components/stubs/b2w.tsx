@@ -14,6 +14,7 @@ export function B2wStub() {
         // eslint-disable-next-line @next/next/no-img-element
         <img className="cs-app-icon cs-app-icon--clip" src="/images/americanas-icon.webp" width={256} height={256} alt="" />
       }
+      brand="#e2303c"
       title="Americanas"
       subtitle="Mobile for Americanas, Submarino and Shoptime"
       meta={[

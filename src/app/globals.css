@@ -3693,7 +3693,11 @@
     padding: 0;
     display: grid;
   }
-  /* Plain words, no rule: the lit chapter is simply the one in full ink.
+  /* Plain words, no rule. Each label inks in, left to right, as you read
+     its chapter (--ink, 0 to 1, from useChapterProgress): chapters ahead
+     are muted, chapters read are full ink, and the one you are in is part
+     way, so the nav doubles as how far through the story you are. The ink
+     is the product's brand colour when the study sets one (--cs-brand).
      Body size, set close like a list rather than spaced like links; each
      line is still a target of 24px or more. */
   .cs-nav a {
@@ -3702,11 +3706,23 @@
     line-height: 1.55;
     color: var(--muted);
     text-decoration: none;
-    transition: color 150ms ease;
   }
-  .cs-nav a:hover,
-  .cs-nav a[aria-current] {
-    color: var(--text);
+  /* The ink is a hard-edged fill clipped to the glyphs. On the inline span
+     it runs across the text only, and continues onto a wrapped line. */
+  .cs-nav a > span {
+    --fill: calc(var(--ink, 0) * 100%);
+    background-image: linear-gradient(
+      to right,
+      var(--cs-brand, var(--text)) var(--fill),
+      var(--muted) var(--fill)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .cs-nav a:hover > span,
+  .cs-nav a:focus-visible > span {
+    --fill: 100%;
   }
   .cs-hero {
     border-radius: 24px;

@@ -1,6 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type MouseEvent,
+  type ReactNode,
+  type RefObject,
+} from "react";
 
 export type CaseStudyMeta = { label: string; value: string | string[] };
 export type CaseStudyStat = { value: string; label: string };
@@ -27,6 +35,7 @@ export function CaseStudyLayout({
   chapters,
   link,
   hero,
+  brand,
   children,
 }: {
   /** Square company mark, set in a tile. */
@@ -43,9 +52,12 @@ export function CaseStudyLayout({
   link?: { href: string; label: string };
   /** Image or video that opens the story. */
   hero: ReactNode;
+  /** The product's brand colour; the chapter nav inks in it as you read. */
+  brand?: string;
   children: ReactNode;
 }) {
-  const active = useActiveChapter(chapters);
+  const nav = useRef<HTMLOListElement>(null);
+  const active = useChapterProgress(chapters, nav);
 
   const jump = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
     // Scroll in place rather than follow the hash: in the side sheet a new
@@ -95,7 +107,7 @@ export function CaseStudyLayout({
   // and as closing credits on wide ones, where the rail keeps only identity
   // and wayfinding so the story starts with the picture.
   return (
-    <div className="cs">
+    <div className="cs" style={brand ? ({ "--cs-brand": brand } as CSSProperties) : undefined}>
       <div className="cs-layout">
         <div className="cs-rail">
           <div className="cs-id">
@@ -110,7 +122,7 @@ export function CaseStudyLayout({
           </div>
 
           <nav className="cs-nav" aria-label="Chapters">
-            <ol role="list">
+            <ol ref={nav} role="list">
               {chapters.map((c) => (
                 <li key={c.id}>
                   <a
@@ -118,7 +130,7 @@ export function CaseStudyLayout({
                     onClick={(e) => jump(e, c.id)}
                     aria-current={active === c.id ? "location" : undefined}
                   >
-                    {c.label}
+                    <span>{c.label}</span>
                   </a>
                 </li>
               ))}
@@ -146,13 +158,23 @@ export function CaseStudyLayout({
 }
 
 /**
- * The chapter whose heading most recently crossed the reading line, a third
- * of the way down the screen. Sections between chapters keep the last one
- * lit, so the nav names the part of the story you are in, not the heading
- * nearest your eye. Listens in the capture phase so it hears the side sheet's
- * scroller as well as the page.
+ * Where the reader is in the story. Returns the chapter whose heading most
+ * recently crossed the reading line, a third of the way down the screen;
+ * sections between chapters keep the last one lit, so the nav names the part
+ * of the story you are in, not the heading nearest your eye.
+ *
+ * It also inks the nav as you read: each link gets `--ink`, from 0 (not
+ * reached) to 1 (read), for how far the reading line has travelled through
+ * that chapter, up to the next heading (the last one, to the story's end).
+ * Written straight to the links' style, so scrolling never re-renders.
+ *
+ * Listens in the capture phase so it hears the side sheet's scroller as well
+ * as the page.
  */
-function useActiveChapter(chapters: CaseStudyChapter[]) {
+function useChapterProgress(
+  chapters: CaseStudyChapter[],
+  nav: RefObject<HTMLOListElement | null>,
+) {
   const [active, setActive] = useState<string | null>(null);
   const ids = useRef(chapters.map((c) => c.id));
 
@@ -160,12 +182,31 @@ function useActiveChapter(chapters: CaseStudyChapter[]) {
     let frame = 0;
     const measure = () => {
       frame = 0;
-      const line = window.innerHeight / 3;
+      const h = window.innerHeight;
+      // Near the end of the scroll the reading line slides from a third of
+      // the way down to the bottom of the screen, so a short story still
+      // reaches its last chapters and arriving at the end reads them all.
+      const scroller = scrollerOf(nav.current);
+      const left = scroller.scrollHeight - scroller.clientHeight - scroller.scrollTop;
+      const ramp = (h * 2) / 3;
+      const line = h / 3 + ramp * (1 - Math.min(Math.max(left, 0) / ramp, 1));
+      const tops = ids.current.map(
+        (id) => document.getElementById(id)?.getBoundingClientRect().top ?? Infinity,
+      );
+      const story = document.getElementById(ids.current[0])?.closest(".cs-story");
+      const storyEnd = story?.getBoundingClientRect().bottom ?? Infinity;
+      const links = nav.current?.querySelectorAll<HTMLElement>("a") ?? [];
+
       let current: string | null = null;
-      for (const id of ids.current) {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= line) current = id;
-      }
+      tops.forEach((top, i) => {
+        if (top <= line) current = ids.current[i];
+        // A chapter ends where the next heading meets the line; the last one
+        // where the story itself ends.
+        const end = i + 1 < tops.length ? tops[i + 1] : storyEnd;
+        const span = Math.max(end - top, 1);
+        const ink = Math.min(Math.max((line - top) / span, 0), 1);
+        links[i]?.style.setProperty("--ink", ink.toFixed(4));
+      });
       setActive(current);
     };
     const onScroll = () => {
@@ -179,7 +220,17 @@ function useActiveChapter(chapters: CaseStudyChapter[]) {
       document.removeEventListener("scroll", onScroll, { capture: true });
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [nav]);
 
   return active;
+}
+
+/** The element that scrolls the story: the side sheet's body, or the page. */
+function scrollerOf(el: Element | null): Element {
+  for (let node = el?.parentElement; node; node = node.parentElement) {
+    const { overflowY } = getComputedStyle(node);
+    const scrolls = overflowY === "auto" || overflowY === "scroll";
+    if (scrolls && node.scrollHeight > node.clientHeight) return node;
+  }
+  return document.scrollingElement ?? document.documentElement;
 }
