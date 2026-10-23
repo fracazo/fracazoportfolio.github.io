@@ -33,7 +33,7 @@ export default function Work() {
         <WorkHistory
           footer={
             <div className="mx-auto w-full max-w-home">
-              <SiteFooter className="!ml-0" links={null} />
+              <SiteFooter className="!ml-0" />
             </div>
           }
         />
