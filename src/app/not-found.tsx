@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AppShell } from "@/components/app-shell";
+import { PlainShell } from "@/components/plain-shell";
 import { SiteFooter } from "@/components/site-footer";
+import { BackToSite } from "@/components/back-to-site";
 
 export const metadata: Metadata = {
   title: "Page Not Found - Alex Fracazo",
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <AppShell>
+    <PlainShell back={<BackToSite home />}>
       <section className="mx-auto w-full max-w-content">
         <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 py-12 text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -49,7 +50,9 @@ export default function NotFound() {
         </div>
       </section>
 
-      <SiteFooter />
-    </AppShell>
+      <div className="mx-auto w-full max-w-home">
+        <SiteFooter className="!ml-0" />
+      </div>
+    </PlainShell>
   );
 }
