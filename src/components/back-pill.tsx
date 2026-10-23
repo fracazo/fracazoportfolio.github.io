@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {
+  type CSSProperties,
   useEffect,
   useState,
   type MouseEventHandler,
@@ -51,7 +52,7 @@ export function useCompactOnScroll(scroller?: RefObject<HTMLElement | null>) {
 }
 
 /**
- * The way back: one floating glass pill. On a page it sits top left on
+ * The way back: one floating glass pill. On a page it sits on the column on
  * wide screens; phones get the tab bar instead (phone-tab-bar.tsx). In the
  * phone sheet it sits at the bottom, in thumb reach. While the reader scrolls
  * down it tucks into an icon-only circle, still there as the reminder of the
@@ -62,7 +63,9 @@ export function useCompactOnScroll(scroller?: RefObject<HTMLElement | null>) {
  * instead of "Back", for the page whose way out is always the home page
  * (the work history). Pass `href` for
  * a page (a real link) or only `onClick` for the sheet (a button). `end`
- * holds an optional control beside the pill.
+ * holds an optional control beside the pill. On a page the pill starts on
+ * the content column's left edge, in the slot the avatar holds on home, and
+ * pins to the top as the page scrolls; `column` is that column's width.
  */
 export function BackPill({
   href,
@@ -71,6 +74,7 @@ export function BackPill({
   placement,
   scroller,
   end,
+  column,
 }: {
   href?: string;
   onClick?: MouseEventHandler<HTMLElement>;
@@ -80,6 +84,8 @@ export function BackPill({
   /** The element whose scroll tucks the pill; the window when left out. */
   scroller?: RefObject<HTMLElement | null>;
   end?: ReactNode;
+  /** `page` only: the max width of the column the pill lines up with. */
+  column?: string;
 }) {
   const compact = useCompactOnScroll(scroller);
   const label = home ? "Home" : "Back";
@@ -96,7 +102,7 @@ export function BackPill({
     "data-compact": compact || undefined,
   };
 
-  return (
+  const dock = (
     <div className={`back-pill-dock back-pill-dock--${placement}`}>
       {href ? (
         <Link href={href} onClick={onClick} {...pillProps}>
@@ -108,6 +114,18 @@ export function BackPill({
         </button>
       )}
       {end}
+    </div>
+  );
+
+  if (placement === "sheet") return dock;
+  // A page-tall track sized like the content column, so the sticky dock
+  // inside it keeps the column's left edge.
+  return (
+    <div
+      className="back-pill-track"
+      style={column ? ({ "--back-column": column } as CSSProperties) : undefined}
+    >
+      <div className="back-pill-column">{dock}</div>
     </div>
   );
 }

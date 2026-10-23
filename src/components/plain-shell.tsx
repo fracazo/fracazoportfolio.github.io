@@ -30,7 +30,7 @@ export function PlainShell({
   return (
     <>
       <PageTransition>
-        <div className="min-h-dvh">
+        <div className="relative min-h-dvh">
           {themeToggle && (
             <div className="fixed top-4 end-4 z-50">
               <ThemeToggle side="bottom" className="glass glass-interactive" />
@@ -42,6 +42,10 @@ export function PlainShell({
             id="content"
             className={`mx-auto grid w-full gap-16 px-6 pb-18 [&>*]:min-w-0 ${
               wide ? "" : "max-w-[1200px]"
+            } ${
+              // Room for the back pill above the page, so the first heading
+              // lands where the home H1 does (below the avatar's slot).
+              back ? "pt-24 max-md:pt-0" : ""
             } max-md:pb-28`}
           >
             {children}

@@ -25,7 +25,9 @@ export function CaseStudyShell({
   wide?: boolean;
 }) {
   return (
-    <PlainShell back={<BackToSite href={backHref} />}>
+    <PlainShell
+      back={<BackToSite href={backHref} column={wide ? "1152px" : "800px"} />}
+    >
       <div
         className={`mx-auto grid w-full gap-16 [&>*]:min-w-0 ${
           wide ? "max-w-[1200px] pt-20 max-md:pt-10" : "max-w-[800px] pt-24 max-md:pt-10"
