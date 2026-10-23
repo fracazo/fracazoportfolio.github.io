@@ -88,7 +88,7 @@ export default function Contact() {
             </li>
           </ul>
 
-          <SiteFooter links={null} className="mt-8" />
+          <SiteFooter className="mt-8" />
         </div>
       </section>
     </AppShell>
