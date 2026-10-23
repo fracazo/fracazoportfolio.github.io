@@ -50,9 +50,7 @@ export default function NotFound() {
         </div>
       </section>
 
-      <div className="mx-auto w-full max-w-home">
-        <SiteFooter className="!ml-0" />
-      </div>
+      <SiteFooter />
     </PlainShell>
   );
 }

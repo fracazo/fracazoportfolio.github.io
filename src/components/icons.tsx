@@ -84,15 +84,6 @@ export function CloseIcon(props: IconProps) {
   );
 }
 
-export function MenuIcon(props: IconProps) {
-  return (
-    <svg {...base({ size: 20, strokeWidth: 2.5, ...props })}>
-      <path d="M5 8H19" />
-      <path d="M5 16H19" />
-    </svg>
-  );
-}
-
 export function LinkIcon(props: IconProps) {
   return (
     <svg {...base({ size: 14, ...props })}>

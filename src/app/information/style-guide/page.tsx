@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { AppShell } from "@/components/app-shell";
+import { PlainShell } from "@/components/plain-shell";
 import { SiteFooter } from "@/components/site-footer";
+import { BackToSite } from "@/components/back-to-site";
 
 export const metadata: Metadata = {
   title: "Style Guide - Alex Fracazo",
@@ -10,9 +11,9 @@ export const metadata: Metadata = {
 
 export default function StyleGuide() {
   return (
-    <AppShell>
+    <PlainShell back={<BackToSite />}>
       <section className="section">
-        <h1 className="h1">Style Guide</h1>
+        <h1 className="h1 mt-24 max-md:mt-14">Style Guide</h1>
         <p className="text">Design system documentation for typography, colors, and components used across the site.</p>
 
         {/* Typography */}
@@ -178,6 +179,6 @@ export default function StyleGuide() {
       </section>
 
       <SiteFooter />
-    </AppShell>
+    </PlainShell>
   );
 }

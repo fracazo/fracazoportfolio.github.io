@@ -9,7 +9,8 @@ import { ThemeToggle } from "./theme-toggle";
  * way back on every other page (on phones, a Home/Work tab bar instead). Used by the landing page, where the
  * hero is the first thing on the page and navigation lives in the work rows
  * and the footer, and by the reading pages (writing, about, case studies),
- * which carry their own back pill. Utility pages still use AppShell.
+ * which carry their own back pill, and by the utility pages (404,
+ * experiments, style guide).
  */
 export function PlainShell({
   children,
