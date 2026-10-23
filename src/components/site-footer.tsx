@@ -18,12 +18,14 @@ export function SiteFooter({
       className={`mx-auto w-full max-w-content${className ? ` ${className}` : ""}`}
     >
       <footer role="contentinfo">
-        <div className="grid gap-2">
-          <p id="footer-title" className="text mt-0 text-text">
-            Hybrid or remote (UTC+10). Working globally.
-          </p>
+        <p className="text mt-0">
+          <span id="footer-title">
+            Hybrid or remote on Australian east coast time, working with teams
+            anywhere.
+          </span>
           {links !== null && (
-            <p className="text mt-2">
+            <>
+              {" "}
               {links ?? (
                 <>
                   You can find me on{" "}
@@ -38,9 +40,9 @@ export function SiteFooter({
                   .
                 </>
               )}
-            </p>
+            </>
           )}
-        </div>
+        </p>
       </footer>
     </section>
   );
