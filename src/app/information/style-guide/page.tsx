@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function StyleGuide() {
   return (
-    <PlainShell back={<BackToSite />}>
+    <PlainShell back={<BackToSite column="var(--container-content)" />}>
       <section className="section">
         <h1 className="h1 mt-24 max-md:mt-14">Style Guide</h1>
         <p className="text">Design system documentation for typography, colors, and components used across the site.</p>

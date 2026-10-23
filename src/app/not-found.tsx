@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <PlainShell back={<BackToSite home />}>
+    <PlainShell back={<BackToSite home column="var(--container-content)" />}>
       <section className="mx-auto w-full max-w-content">
         <div className="flex min-h-[60vh] flex-col items-center justify-center px-6 py-12 text-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}

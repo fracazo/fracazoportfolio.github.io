@@ -27,7 +27,7 @@ const videoWrapClass =
 
 export default function Experiments() {
   return (
-    <PlainShell back={<BackToSite />}>
+    <PlainShell back={<BackToSite column="var(--container-content)" />}>
       <section className="mx-auto w-full max-w-content">
         <h1 className="h1 mt-24 mb-3 max-md:mt-14">Prototypes and experiments</h1>
         <p className="text">Prototypes built in Xcode with SwiftUI.</p>
