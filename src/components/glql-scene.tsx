@@ -14,14 +14,20 @@ import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
  *
  * `t` is milliseconds since the replay started, or Infinity for the settled
  * frame. `compact` is the tighter crop for row thumbnails and phones: fewer
- * columns and no toolbar, so the text can be larger.
+ * columns and no toolbar, so the text can be larger. The hero's cursor
+ * drives `focused` (the glql block takes the editor's focus ring) and
+ * `hoverRow` (that row's title shows as the link it is).
  */
 export function GlqlScene({
   t,
   compact = false,
+  focused = false,
+  hoverRow,
 }: {
   t: number;
   compact?: boolean;
+  focused?: boolean;
+  hoverRow?: number;
 }) {
   const chars = Math.max(
     0,
@@ -58,6 +64,10 @@ export function GlqlScene({
               fontSize: size.code,
               lineHeight: `${size.codeLine}px`,
               padding: "7px 10px",
+              boxShadow: focused
+                ? "0 0 0 1px var(--gl-page), 0 0 0 3px var(--gl-focus)"
+                : "none",
+              transition: "box-shadow 150ms ease",
             }}
           >
             <span
@@ -78,7 +88,7 @@ export function GlqlScene({
             <div className="whitespace-nowrap">
               <Key>query</Key>
               <QueryText chars={chars} />
-              {typing && (
+              {(typing || (focused && t >= CUE.typed)) && (
                 <span className="vignette-caret ml-px inline-block h-[1.05em] w-px translate-y-[2px] bg-[var(--gl-text-strong)]" />
               )}
             </div>
@@ -99,7 +109,13 @@ export function GlqlScene({
               t < CUE.rows + i * ROW_STAGGER_MS ? (
                 <SkeletonRow key={row.title} size={size} />
               ) : (
-                <Row key={row.title} row={row} size={size} compact={compact} />
+                <Row
+                  key={row.title}
+                  row={row}
+                  size={size}
+                  compact={compact}
+                  hovered={hoverRow === i}
+                />
               ),
             )}
           </div>
@@ -236,6 +252,10 @@ const CUE = (() => {
 /** How long the stage holds the scene before a loop replays it. */
 export const GLQL_LOOP_MS = CUE.done + 3500;
 
+/** When the query starts typing and when the view has fully rendered, for
+    the hero's cursor and camera. */
+export const GLQL_CUE = { type: CUE.type, typed: CUE.typed, done: CUE.done };
+
 /* ---- Layout ---- */
 
 /* The row scene's canvas: 16:10, larger than the 280px row canvas so the
@@ -360,21 +380,35 @@ function Row({
   row,
   size,
   compact,
+  hovered = false,
 }: {
   row: GlqlRow;
   size: Size;
   compact: boolean;
+  hovered?: boolean;
 }) {
   return (
     <div
       className="glql-row flex items-center border-b border-[var(--gl-border-muted)] pl-[12px] whitespace-nowrap"
-      style={{ height: size.rowH, fontSize: size.text }}
+      style={{
+        height: size.rowH,
+        fontSize: size.text,
+        background: hovered ? "var(--gl-subtle)" : undefined,
+        transition: "background-color 150ms ease",
+      }}
     >
-      <span
-        className="shrink-0 overflow-hidden pr-3 text-ellipsis text-[var(--gl-text-strong)]"
-        style={{ width: size.cols[0] }}
-      >
-        {row.title}
+      {/* Titles link to their issue, so hover underlines them in link blue. */}
+      <span className="shrink-0 pr-3" style={{ width: size.cols[0] }}>
+        <span
+          className="block overflow-hidden text-ellipsis"
+          style={{
+            color: hovered ? "var(--gl-link)" : "var(--gl-text-strong)",
+            textDecoration: hovered ? "underline" : "none",
+            textUnderlineOffset: 2,
+          }}
+        >
+          {row.title}
+        </span>
       </span>
       <span className="shrink-0" style={{ width: size.cols[1] }}>
         <StateBadge open={row.open} />
