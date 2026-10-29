@@ -13,6 +13,7 @@ import { ExternalLinkIcon } from "@/components/icons";
 import { work } from "@/content/work";
 import { WorkTimeline } from "@/components/work-timeline";
 import { earlierTimeline } from "@/components/work-history";
+import { Greeting } from "@/components/greeting";
 
 /* The home page drops the years from each card's meta line ("Qantas · 2016"
    becomes "Qantas"); /work keeps them. */
@@ -92,8 +93,12 @@ export default function Home() {
                 part of the headline. One step up from body, in the primary
                 colour, so it stays with the H1 rather than the paragraph. */}
               <p className="-mt-5 text-subhead text-text-primary">
-                👋 <span lang="pt">Olá</span>, I&rsquo;m Alex Fracazo, a product
-                designer.
+                <Greeting />
+                {/* One unit: on a phone it moves under the greeting whole
+                    rather than splitting the name across lines. */}
+                <span className="inline-block">
+                  I&rsquo;m Alex Fracazo, a product designer.
+                </span>
               </p>
               {/* The explanation of the claim above, at reading size. Its links
                 replace the old About me / Work history / Get in touch buttons.

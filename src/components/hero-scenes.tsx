@@ -9,8 +9,15 @@ import {
   type RefObject,
 } from "react";
 import { VignetteStage } from "./work-vignette";
-import { GlqlScene, GLQL_LOOP_MS } from "./glql-scene";
+import { GlqlScene, GLQL_CUE, GLQL_LOOP_MS } from "./glql-scene";
 import { HireupMark } from "./scene-marks";
+import {
+  cameraAt,
+  SceneCamera,
+  SceneCursor,
+  type CameraKey,
+  type CursorKey,
+} from "./scene-cursor";
 import type { WorkVignetteKind } from "./work-vignette-kinds";
 
 /**
@@ -48,15 +55,16 @@ const prefersReducedMotion = () =>
 /**
  * Drives a stage's playToken: plays once the stage is on screen, then loops
  * every `loopMs` while it stays there. With `loop: false` it plays once and
- * holds the final frame. `replay` restarts the scene (and the loop clock)
- * now; the hero calls it on selection. Reduced motion never plays, so the
- * stage rests on its settled frame.
+ * holds the final frame. With `autoplay: false` nothing plays until
+ * `replay` is called. `replay` restarts the scene (and the loop clock) now;
+ * the hero calls it on hover and selection. Reduced motion never plays, so
+ * the stage rests on its settled frame.
  */
 export function useScenePlayback(
   stageRef: RefObject<HTMLElement | null>,
   /* Undefined when the stage shows footage instead of a scene. */
   kind: WorkVignetteKind | undefined,
-  { loop = true }: { loop?: boolean } = {},
+  { loop = true, autoplay = true }: { loop?: boolean; autoplay?: boolean } = {},
 ) {
   const [playToken, setPlayToken] = useState(0);
   const [onScreen, setOnScreen] = useState(false);
@@ -76,13 +84,14 @@ export function useScenePlayback(
 
   useEffect(() => {
     if (!onScreen || prefersReducedMotion()) return;
+    if (!autoplay && playToken === 0) return;
     if (!loop && playToken !== 0) return;
     const timer = window.setTimeout(
       () => setPlayToken((token) => token + 1),
       playToken === 0 ? FIRST_PLAY_MS : loopMs,
     );
     return () => clearTimeout(timer);
-  }, [onScreen, playToken, loopMs, loop]);
+  }, [onScreen, playToken, loopMs, loop, autoplay]);
 
   const replay = useCallback(() => {
     if (!prefersReducedMotion()) setPlayToken((token) => token + 1);
@@ -119,7 +128,7 @@ export function LoopingHeroStage({
 
 /** How long each hero scene's loop runs, including its held final frame. */
 export const HERO_LOOP_MS: Partial<Record<WorkVignetteKind, number>> = {
-  glql: GLQL_LOOP_MS,
+  glql: GLQL_LOOP_MS + 1900,
   pages: 6800,
   flow: 8400,
   hireup: 8400,
@@ -137,7 +146,6 @@ const HERO_SCENES: Partial<Record<WorkVignetteKind, HeroScene>> = {
 /* 16:10 like the stage, at about its rendered width, so text sits near 1:1. */
 const HERO_W = 560;
 const HERO_H = 350;
-const TICK_MS = 50;
 /* Past every scene's last cue: the clock stops and the final frame holds. */
 const RUN_MS = 10000;
 const RESET_MS = 220;
@@ -167,19 +175,22 @@ function HeroCanvas({
 
   useEffect(() => {
     if (playToken === 0) return;
-    let interval: number | undefined;
+    let frame: number | undefined;
     // A short cleared beat before the timeline, like the thumbnail replays.
+    // Then a frame-rate clock: the cursor and camera are computed from `t`,
+    // so they need every frame to glide rather than step.
     const start = window.setTimeout(() => {
       const startedAt = performance.now();
-      interval = window.setInterval(() => {
+      const tick = () => {
         const t = performance.now() - startedAt;
         setClock({ token: playToken, t });
-        if (t > RUN_MS) clearInterval(interval);
-      }, TICK_MS);
+        if (t <= RUN_MS) frame = requestAnimationFrame(tick);
+      };
+      frame = requestAnimationFrame(tick);
     }, RESET_MS);
     return () => {
       clearTimeout(start);
-      clearInterval(interval);
+      if (frame !== undefined) cancelAnimationFrame(frame);
     };
   }, [playToken]);
 
@@ -214,8 +225,54 @@ function reveal(t: number, at: number, from = "translateY(6px)") {
 
 /* ---- GLQL: a query in a comment renders a live embedded view ---- */
 
+/* The cursor's walk-in before the query types: the scene's own clock runs
+   this far behind the stage's. */
+const GLQL_LEAD = 1000;
+const GLQL_AT = {
+  click: 1100,
+  typed: GLQL_LEAD + GLQL_CUE.typed,
+  done: GLQL_LEAD + GLQL_CUE.done,
+};
+const GLQL_HOVER_AT = GLQL_AT.done - 200;
+/* The camera starts close on the glql block, pinned to the editor's corner
+   so the query reads large with the frame's margin kept, then pulls back
+   as the view renders under it. 1.3 is as close as the full query fits. */
+const GLQL_CORNER = { x: 28, y: 28 };
+const GLQL_CAMERA: CameraKey[] = [
+  { at: 0, ms: 0, ...GLQL_CORNER, zoom: 1.3 },
+  { at: GLQL_AT.typed + 100, ms: 1200, ...GLQL_CORNER, zoom: 1 },
+];
+/* Click into the query line once the pointer has settled, step aside while
+   it types, then rest on an issue title in the rendered view: the titles
+   are links. */
+const GLQL_CURSOR: CursorKey[] = [
+  { at: 0, ms: 0, x: 460, y: 290 },
+  { at: 100, ms: 700, x: 205, y: 116 },
+  { at: GLQL_AT.click + 300, ms: 500, x: 262, y: 168 },
+  { at: GLQL_HOVER_AT, ms: 700, x: 198, y: 257, hand: true },
+];
+
 function GlqlHeroScene({ t }: { t: number }) {
-  return <GlqlScene t={t} />;
+  const camera = cameraAt(t, GLQL_CAMERA, HERO_W, HERO_H);
+  const live = Number.isFinite(t);
+  return (
+    <div className="glql-scene absolute inset-0">
+      <SceneCamera camera={camera} w={HERO_W} h={HERO_H}>
+        <GlqlScene
+          t={t - GLQL_LEAD}
+          focused={live && t >= GLQL_AT.click && t < GLQL_HOVER_AT}
+          hoverRow={live && t >= GLQL_HOVER_AT + 600 ? 1 : undefined}
+        />
+      </SceneCamera>
+      <SceneCursor
+        t={t}
+        keys={GLQL_CURSOR}
+        presses={[GLQL_AT.click]}
+        camera={camera}
+        color="var(--gl-focus)"
+      />
+    </div>
+  );
 }
 
 /* Typed text: how many characters of `text` show at time `t`. */
@@ -730,14 +787,56 @@ const HIREUP_OTHERS = [
   { initials: "TW", name: "Tom W.", meta: "6km away · replies in 2 days" },
 ];
 const HIREUP_ROW_H = 52;
+/* Close on the worker's phone while they turn the status on, across to the
+   client's search for the message, then back to show both sides. Pinned to
+   the card's top-left corner, then its top-right, so the card keeps its
+   margin on the side the camera is looking at. */
+const HIREUP_CAMERA: CameraKey[] = [
+  { at: 0, ms: 0, x: 16, y: 16, zoom: 1.5 },
+  // 1.65 is the least zoom that takes the phone fully out of frame.
+  { at: HIREUP_CUE.close, ms: 900, x: 544, y: 16, zoom: 1.65 },
+  { at: HIREUP_CUE.notify - 200, ms: 1000, x: 544, y: 16, zoom: 1 },
+];
+/* Avatar, toggle, Close, then the client's Message button. */
+const HIREUP_CURSOR: CursorKey[] = [
+  { at: 0, ms: 0, x: 330, y: 260 },
+  { at: 300, ms: 800, x: 180, y: 70, hand: true },
+  { at: HIREUP_CUE.sheet + 200, ms: 700, x: 166, y: 204, hand: true },
+  { at: HIREUP_CUE.open + 150, ms: 700, x: 177, y: 72, hand: true },
+  { at: HIREUP_CUE.close + 100, ms: 900, x: 485, y: 108, hand: true },
+  { at: HIREUP_CUE.notify - 100, ms: 700, x: 420, y: 196 },
+];
+const HIREUP_PRESSES = [
+  HIREUP_CUE.tapAvatar,
+  HIREUP_CUE.tapToggle,
+  HIREUP_CUE.tapClose,
+  HIREUP_CUE.message,
+];
 
 function HireupHeroScene({ t }: { t: number }) {
+  const camera = cameraAt(t, HIREUP_CAMERA, HERO_W, HERO_H);
+  return (
+    <>
+      <SceneCamera camera={camera} w={HERO_W} h={HERO_H}>
+        <HireupProduct t={t} />
+      </SceneCamera>
+      <SceneCursor
+        t={t}
+        keys={HIREUP_CURSOR}
+        presses={HIREUP_PRESSES}
+        camera={camera}
+        color="var(--hireup)"
+      />
+    </>
+  );
+}
+
+function HireupProduct({ t }: { t: number }) {
   const sheetUp = t >= HIREUP_CUE.sheet && t < HIREUP_CUE.close;
   const open = t >= HIREUP_CUE.open;
   const listed = t >= HIREUP_CUE.listed;
   const messaged = t >= HIREUP_CUE.message;
   const notified = t >= HIREUP_CUE.notify;
-  const tapped = (at: number) => t >= at && t < at + 400;
 
   return (
     <div className="vignette-card absolute inset-4 flex gap-4 rounded-xl bg-surface p-3.5">
@@ -756,7 +855,6 @@ function HireupHeroScene({ t }: { t: number }) {
               <span className="flex size-6 items-center justify-center rounded-full bg-hireup/25 text-[9px] font-semibold text-text">
                 VJ
               </span>
-              <HireupTap tapped={tapped(HIREUP_CUE.tapAvatar)} />
             </span>
           </div>
           <div className="mt-2.5 text-meta font-semibold text-text">
@@ -799,7 +897,6 @@ function HireupHeroScene({ t }: { t: number }) {
             <span className="font-semibold text-text">My Account</span>
             <span className="relative justify-self-end text-hireup">
               Close
-              <HireupTap tapped={tapped(HIREUP_CUE.tapClose)} />
             </span>
           </div>
           <span className="mt-3 flex size-10 items-center justify-center rounded-full bg-hireup/25 text-[13px] font-semibold text-text">
@@ -826,7 +923,6 @@ function HireupHeroScene({ t }: { t: number }) {
                   className="absolute top-[2px] left-[2px] size-3 rounded-full bg-surface transition-transform duration-200"
                   style={{ transform: open ? "translateX(12px)" : "none" }}
                 />
-                <HireupTap tapped={tapped(HIREUP_CUE.tapToggle)} />
               </span>
             </div>
             <p className="mt-1 mb-0 text-[11px] leading-[14px] text-text-body">
@@ -966,21 +1062,5 @@ function HireupBadge({ open }: { open: boolean }) {
         )}
       </svg>
     </span>
-  );
-}
-
-/* Tap: a ring pulses out from the centre of its parent, as in Flow. */
-function HireupTap({ tapped }: { tapped: boolean }) {
-  return (
-    <span
-      className="pointer-events-none absolute top-1/2 left-1/2 size-6 rounded-full border-2 border-hireup"
-      style={{
-        opacity: tapped ? 1 : 0,
-        transform: `translate(-50%, -50%) scale(${tapped ? 1.4 : 0.6})`,
-        transition: tapped
-          ? "opacity 100ms ease, transform 400ms ease-out"
-          : "opacity 250ms ease, transform 0ms",
-      }}
-    />
   );
 }
