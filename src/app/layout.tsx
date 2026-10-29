@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Young_Serif } from "next/font/google";
 import "./globals.css";
 import { CopyGuard } from "@/components/copy-guard";
+import { greetingInit } from "@/components/greeting";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -75,6 +76,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <script dangerouslySetInnerHTML={{ __html: introInit }} />
+        <script dangerouslySetInnerHTML={{ __html: greetingInit }} />
       </head>
       <body>
         {children}

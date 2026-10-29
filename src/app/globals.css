@@ -517,6 +517,23 @@
   }
 }
 
+/* The hero greeting (greeting.tsx). Every line is in the page; the one for
+   the visitor's time of day, stamped on <html> before first paint, is the
+   only one shown. Without a stamp, "Olá" stands in. */
+.greeting {
+  display: none;
+}
+:root:not([data-daypart]) .greeting[data-part="default"],
+:root[data-daypart="early"] .greeting[data-part="early"],
+:root[data-daypart="morning"] .greeting[data-part="morning"],
+:root[data-daypart="lunch"] .greeting[data-part="lunch"],
+:root[data-daypart="afternoon"] .greeting[data-part="afternoon"],
+:root[data-daypart="evening"] .greeting[data-part="evening"],
+:root[data-daypart="late"] .greeting[data-part="late"],
+:root[data-daypart="night"] .greeting[data-part="night"] {
+  display: inline;
+}
+
 /* The avatar develops into focus from a heavier blur, reading as the deliberate
    first beat before the text lines arrive. Movement is kept minimal. */
 @keyframes reveal-avatar {
