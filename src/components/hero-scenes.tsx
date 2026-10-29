@@ -55,15 +55,16 @@ const prefersReducedMotion = () =>
 /**
  * Drives a stage's playToken: plays once the stage is on screen, then loops
  * every `loopMs` while it stays there. With `loop: false` it plays once and
- * holds the final frame. `replay` restarts the scene (and the loop clock)
- * now; the hero calls it on selection. Reduced motion never plays, so the
- * stage rests on its settled frame.
+ * holds the final frame. With `autoplay: false` nothing plays until
+ * `replay` is called. `replay` restarts the scene (and the loop clock) now;
+ * the hero calls it on hover and selection. Reduced motion never plays, so
+ * the stage rests on its settled frame.
  */
 export function useScenePlayback(
   stageRef: RefObject<HTMLElement | null>,
   /* Undefined when the stage shows footage instead of a scene. */
   kind: WorkVignetteKind | undefined,
-  { loop = true }: { loop?: boolean } = {},
+  { loop = true, autoplay = true }: { loop?: boolean; autoplay?: boolean } = {},
 ) {
   const [playToken, setPlayToken] = useState(0);
   const [onScreen, setOnScreen] = useState(false);
@@ -83,13 +84,14 @@ export function useScenePlayback(
 
   useEffect(() => {
     if (!onScreen || prefersReducedMotion()) return;
+    if (!autoplay && playToken === 0) return;
     if (!loop && playToken !== 0) return;
     const timer = window.setTimeout(
       () => setPlayToken((token) => token + 1),
       playToken === 0 ? FIRST_PLAY_MS : loopMs,
     );
     return () => clearTimeout(timer);
-  }, [onScreen, playToken, loopMs, loop]);
+  }, [onScreen, playToken, loopMs, loop, autoplay]);
 
   const replay = useCallback(() => {
     if (!prefersReducedMotion()) setPlayToken((token) => token + 1);
@@ -227,21 +229,22 @@ function reveal(t: number, at: number, from = "translateY(6px)") {
    this far behind the stage's. */
 const GLQL_LEAD = 1000;
 const GLQL_AT = {
-  click: 850,
+  click: 1100,
   typed: GLQL_LEAD + GLQL_CUE.typed,
   done: GLQL_LEAD + GLQL_CUE.done,
 };
 const GLQL_HOVER_AT = GLQL_AT.done - 200;
-/* The camera starts close on the glql block and pans with the query as it
-   types, so it reads large, then pulls back as the view renders under it. */
+/* The camera starts close on the glql block, pinned to the editor's corner
+   so the query reads large with the frame's margin kept, then pulls back
+   as the view renders under it. 1.3 is as close as the full query fits. */
+const GLQL_CORNER = { x: 28, y: 28 };
 const GLQL_CAMERA: CameraKey[] = [
-  { at: 0, ms: 0, x: 184, y: 100, zoom: 1.8 },
-  { at: GLQL_LEAD + GLQL_CUE.type + 600, ms: 1200, x: 268, y: 100, zoom: 1.8 },
-  { at: GLQL_AT.typed + 100, ms: 1000, x: 280, y: 215, zoom: 1.12 },
-  { at: GLQL_AT.done + 500, ms: 1000, x: 280, y: 175, zoom: 1 },
+  { at: 0, ms: 0, ...GLQL_CORNER, zoom: 1.3 },
+  { at: GLQL_AT.typed + 100, ms: 1200, ...GLQL_CORNER, zoom: 1 },
 ];
-/* Click into the query line, step aside while it types, then rest on an
-   issue title in the rendered view: the titles are links. */
+/* Click into the query line once the pointer has settled, step aside while
+   it types, then rest on an issue title in the rendered view: the titles
+   are links. */
 const GLQL_CURSOR: CursorKey[] = [
   { at: 0, ms: 0, x: 460, y: 290 },
   { at: 100, ms: 700, x: 205, y: 116 },
@@ -785,11 +788,14 @@ const HIREUP_OTHERS = [
 ];
 const HIREUP_ROW_H = 52;
 /* Close on the worker's phone while they turn the status on, across to the
-   client's search for the message, then back to show both sides. */
+   client's search for the message, then back to show both sides. Pinned to
+   the card's top-left corner, then its top-right, so the card keeps its
+   margin on the side the camera is looking at. */
 const HIREUP_CAMERA: CameraKey[] = [
-  { at: 0, ms: 0, x: 130, y: 120, zoom: 1.5 },
-  { at: HIREUP_CUE.close, ms: 900, x: 410, y: 110, zoom: 1.5 },
-  { at: HIREUP_CUE.notify - 200, ms: 1000, x: 280, y: 175, zoom: 1 },
+  { at: 0, ms: 0, x: 16, y: 16, zoom: 1.5 },
+  // 1.65 is the least zoom that takes the phone fully out of frame.
+  { at: HIREUP_CUE.close, ms: 900, x: 544, y: 16, zoom: 1.65 },
+  { at: HIREUP_CUE.notify - 200, ms: 1000, x: 544, y: 16, zoom: 1 },
 ];
 /* Avatar, toggle, Close, then the client's Message button. */
 const HIREUP_CURSOR: CursorKey[] = [

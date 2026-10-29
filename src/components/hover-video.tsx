@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { FootageCursor } from "./footage-cursor";
 import { useScrollPlay } from "./use-scroll-play";
 
 type HoverVideoProps = {
@@ -22,7 +23,8 @@ type HoverVideoProps = {
  *
  * Playback is driven from the row (`.group`) rather than the frame, so
  * hovering the title animates the thumbnail too. The clip rewinds on leave so
- * every hover replays from the same point as the poster.
+ * every hover replays from the same point as the poster. A clip with a
+ * cursor track gets the scene pointer drawn over it (FootageCursor).
  */
 export function HoverVideo({
   src,
@@ -98,6 +100,7 @@ export function HoverVideo({
             scrolledTo ? "opacity-100" : "opacity-0"
           }`}
         />
+        <FootageCursor src={src} videoRef={videoRef} />
       </div>
     </div>
   );

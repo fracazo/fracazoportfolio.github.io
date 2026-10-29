@@ -15,7 +15,9 @@ import type { ReactNode } from "react";
 export type CameraKey = {
   at: number;
   ms: number;
-  /** The scene point the camera centres on. */
+  /** The scene point that holds still as the camera zooms: pin a frame's
+      corner here and the frame keeps its composed margin on that side,
+      bleeding off the others, rather than being sliced through. */
   x: number;
   y: number;
   zoom: number;
@@ -57,7 +59,7 @@ const lerp = (a: number, b: number, p: number) => a + (b - a) * p;
 
 /**
  * The camera at `t` for a `w` × `h` scene, kept inside the scene's edges so
- * zooming never shows past the drawing.
+ * zooming never shows past the drawing. Panning is the pinned point moving.
  */
 export function cameraAt(
   t: number,
@@ -70,8 +72,8 @@ export function cameraAt(
   const zoom = lerp(from.zoom, to.zoom, progress);
   const x = lerp(from.x, to.x, progress);
   const y = lerp(from.y, to.y, progress);
-  const tx = Math.min(0, Math.max(w - w * zoom, w / 2 - zoom * x));
-  const ty = Math.min(0, Math.max(h - h * zoom, h / 2 - zoom * y));
+  const tx = Math.min(0, Math.max(w - w * zoom, x * (1 - zoom)));
+  const ty = Math.min(0, Math.max(h - h * zoom, y * (1 - zoom)));
   return { tx, ty, zoom };
 }
 
@@ -104,8 +106,8 @@ export function SceneCamera({
    hand's fingertip. */
 const ARROW_HOT = { x: 4, y: 2.5 };
 const HAND_HOT = { x: 9.5, y: 2 };
-/* Drawn size in scene pixels: about 42px on the home stage at 1440, big enough to
-   find at a glance, like a screen recording's pointer. */
+/* Drawn size in scene pixels: about 42px on the home stage at 1440, big
+   enough to find at a glance, like a screen recording's pointer. */
 const CURSOR_SIZE = 40;
 const PRESS_MS = 180;
 const RIPPLE_MS = 560;
@@ -115,6 +117,7 @@ const ARC = 0.12;
 /**
  * The pointer. `presses` are click times: the pointer dips and a ring
  * ripples out from the hotspot in `color`. Hidden on the settled frame.
+ * `size` overrides the drawn size for smaller frames.
  */
 export function SceneCursor({
   t,
@@ -122,12 +125,14 @@ export function SceneCursor({
   presses,
   camera = IDLE_CAMERA,
   color = "var(--accent)",
+  size = CURSOR_SIZE,
 }: {
   t: number;
   keys: CursorKey[];
   presses: number[];
   camera?: Camera;
   color?: string;
+  size?: number;
 }) {
   if (!Number.isFinite(t) || keys.length === 0) return null;
 
@@ -147,7 +152,8 @@ export function SceneCursor({
   const sx = camera.tx + camera.zoom * x;
   const sy = camera.ty + camera.zoom * y;
   const hot = hand ? HAND_HOT : ARROW_HOT;
-  const unit = CURSOR_SIZE / 24;
+  const unit = size / 24;
+  const ring = size * 1.1;
 
   return (
     <div
@@ -161,10 +167,10 @@ export function SceneCursor({
         <span
           className="absolute rounded-full border-2"
           style={{
-            width: 44,
-            height: 44,
-            left: -22,
-            top: -22,
+            width: ring,
+            height: ring,
+            left: -ring / 2,
+            top: -ring / 2,
             borderColor: color,
             background: `color-mix(in oklab, ${color} 18%, transparent)`,
             opacity: 1 - rippleP,
@@ -174,8 +180,8 @@ export function SceneCursor({
       )}
       <svg
         viewBox="0 0 24 24"
-        width={CURSOR_SIZE}
-        height={CURSOR_SIZE}
+        width={size}
+        height={size}
         className="absolute overflow-visible"
         style={{
           left: -hot.x * unit,
