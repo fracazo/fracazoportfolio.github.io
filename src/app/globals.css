@@ -26,9 +26,17 @@
   --text-tertiary: #9b9286;
   --border: #2e2922;
   --border-muted: #241f1a;
-  --accent: #c8855a;
-  /* Warm near-white for the rare text/icon that sits on an --accent fill */
-  --on-accent: #faf7f2;
+  /* Avatar amber: the yellow behind the profile photo */
+  --accent: #fdbf27;
+  /* Espresso for the rare text/icon that sits on an --accent fill: near-white
+     fails on amber. Light mode resets it to near-white on deep honey. */
+  --on-accent: #1a1612;
+  /* Inline prose links (see .text-link): amber text and underline at rest,
+     a lemon marker with ink text on hover. Light mode keeps the text ink. */
+  --link: var(--accent);
+  --link-underline: var(--accent);
+  --marker: #fbe44d;
+  --on-marker: #1a1612;
   /* Hireup's product blue, for the Hireup scenes only: they recreate the
      shipped app, so its own colour marks it as real client work. Lifted in
      dark mode so the mark and the open state stay legible on espresso. */
@@ -109,7 +117,14 @@
   --text-tertiary: #6f6862;
   --border: #e7e3db;
   --border-muted: #f0ede6;
-  --accent: #9c5a34;
+  /* Deep honey: yellow can't carry text or rings on paper (about 2:1), so
+     accent text, focus rings and tints use the amber's shadow (7.3:1). The
+     yellow itself lives on in the link underline and marker. */
+  --accent: #7a4600;
+  --on-accent: #faf7f2;
+  --link: var(--text-primary);
+  --link-underline: #e0a400;
+  --on-marker: #1c1917;
 
   --panel: #f4f1ea;
   --panel-2: #efebe2;
@@ -943,37 +958,49 @@
     }
   }
 
-  /* Inline prose links (TextLink). On hover or keyboard focus an underline
-     wipes in from the left and the mark moves the way it points: → slides
-     on, ↗ lifts out, the envelope rises. Motion that agrees with the mark,
-     so hovering confirms where the link goes rather than changing its
-     meaning. Single line only (TextLink is nowrap), which is what lets the
-     underline be one absolutely placed bar. Reduced motion: the underline
-     still appears, instantly, and nothing moves. */
-  .text-link {
-    --text-link-ease: cubic-bezier(0.62, 0.05, 0.01, 0.99);
-  }
-  .text-link:hover {
+  /* Inline prose links: TextLink, plus plain links inside case study,
+     writing and metadata copy. A highlighter taken from the avatar: at rest
+     an underline in the avatar's amber; on hover or keyboard focus it swells
+     into a rounded lemon marker and the text turns ink. The marker reaches
+     --pad past the letters, cancelled by a negative margin so nothing in the
+     line moves, and is cloned per line so a wrapped link gets a rounded pill
+     on each line. The ↗ mark lifts the way it points. Reduced motion: the
+     marker appears instantly and nothing moves. */
+  :is(
+      .text-link,
+      .case-study-section :is(p, li) a,
+      .writing-body a,
+      .metadata-value a,
+      .rich-text-sample a
+    ) {
+    --pad: 0.12em;
+    --text-link-ease: cubic-bezier(0.2, 0, 0, 1);
+    color: var(--link);
     text-decoration: none;
+    padding: 0.04em var(--pad);
+    margin: 0 calc(var(--pad) * -1);
+    border-radius: 0.25em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    background-image: linear-gradient(var(--link-underline), var(--link-underline));
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-size: calc(100% - var(--pad) * 2) 2px;
+    transition:
+      background-size 0.22s var(--text-link-ease),
+      color 0.22s var(--text-link-ease);
   }
-  .text-link-label {
-    position: relative;
-  }
-  .text-link-label::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    height: 1.5px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.5s var(--text-link-ease);
-  }
-  .text-link:is(:hover, :focus-visible) .text-link-label::after {
-    transform: scaleX(1);
-    transform-origin: left;
+  :is(
+      .text-link,
+      .case-study-section :is(p, li) a,
+      .writing-body a,
+      .metadata-value a,
+      .rich-text-sample a
+    ):is(:hover, :focus-visible) {
+    color: var(--on-marker);
+    text-decoration: none;
+    background-image: linear-gradient(var(--marker), var(--marker));
+    background-size: 100% 100%;
   }
   .text-link-mark {
     transition: transform 0.5s var(--text-link-ease);
@@ -982,7 +1009,13 @@
     transform: translate(1.5px, -1.5px);
   }
   @media (prefers-reduced-motion: reduce) {
-    .text-link-label::after,
+    :is(
+        .text-link,
+        .case-study-section :is(p, li) a,
+        .writing-body a,
+        .metadata-value a,
+        .rich-text-sample a
+      ),
     .text-link-mark {
       transition: none;
     }
@@ -1547,13 +1580,6 @@
     color: var(--text);
     margin: 0;
     line-height: 1.4;
-  }
-  .metadata-value a {
-    color: var(--brand);
-    text-decoration: none;
-  }
-  .metadata-value a:hover {
-    text-decoration: underline;
   }
   @media (max-width: 768px) {
     .case-metadata-card {
@@ -2300,13 +2326,6 @@
     color: var(--text);
     margin: 44px 0 14px;
   }
-  .writing-body a {
-    color: var(--brand);
-    text-decoration: none;
-  }
-  .writing-body a:hover {
-    text-decoration: underline;
-  }
   .writing-body code {
     font-family: var(--font-mono);
     font-size: 0.9em;
@@ -2630,9 +2649,6 @@
     color: var(--text-body);
     line-height: 1.7;
     margin-bottom: 16px;
-  }
-  .rich-text-sample a {
-    color: var(--brand);
   }
   .rich-text-sample ul {
     color: var(--text-body);

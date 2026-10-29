@@ -5,8 +5,8 @@ import { PanelLink } from "./panel-link";
 
 /* The new-tab mark is sized in em so it tracks the fluid body size instead
    of shrinking to a speck beside it, and drawn at full strength in the link
-   colour. The hover underline and mark motion live in globals.css under
-   .text-link. */
+   colour. The underline, hover marker and mark motion live in globals.css
+   under .text-link. */
 const markClass =
   "text-link-mark ms-[0.2em] inline-block size-[0.85em] align-[-0.1em]";
 

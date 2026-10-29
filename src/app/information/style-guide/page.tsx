@@ -80,9 +80,9 @@ export default function StyleGuide() {
               <div className="color-value">#a2988c</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#c8855a" }}></div>
+              <div className="color-box" style={{ background: "#fdbf27" }}></div>
               <div className="color-name">Accent</div>
-              <div className="color-value">#c8855a</div>
+              <div className="color-value">#fdbf27</div>
             </div>
             <div className="color-swatch">
               <div className="color-box" style={{ background: "#2e2922" }}></div>
@@ -116,9 +116,9 @@ export default function StyleGuide() {
               <div className="color-value">#57534e</div>
             </div>
             <div className="color-swatch">
-              <div className="color-box" style={{ background: "#9c5a34" }}></div>
+              <div className="color-box" style={{ background: "#7a4600" }}></div>
               <div className="color-name">Accent</div>
-              <div className="color-value">#9c5a34</div>
+              <div className="color-value">#7a4600</div>
             </div>
             <div className="color-swatch">
               <div className="color-box" style={{ background: "#e7e3db" }}></div>
