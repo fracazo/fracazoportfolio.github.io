@@ -9,7 +9,8 @@ import { ThemeToggle } from "./theme-toggle";
  * way back on every other page (on phones, a Home/Work tab bar instead). Used by the landing page, where the
  * hero is the first thing on the page and navigation lives in the work rows
  * and the footer, and by the reading pages (writing, about, case studies),
- * which carry their own back pill. Utility pages still use AppShell.
+ * which carry their own back pill, and by the utility pages (404,
+ * experiments, style guide).
  */
 export function PlainShell({
   children,
@@ -30,7 +31,7 @@ export function PlainShell({
   return (
     <>
       <PageTransition>
-        <div className="min-h-dvh">
+        <div className="relative min-h-dvh">
           {themeToggle && (
             <div className="fixed top-4 end-4 z-50">
               <ThemeToggle side="bottom" className="glass glass-interactive" />
@@ -42,6 +43,10 @@ export function PlainShell({
             id="content"
             className={`mx-auto grid w-full gap-16 px-6 pb-18 [&>*]:min-w-0 ${
               wide ? "" : "max-w-[1200px]"
+            } ${
+              // Room for the back pill above the page, so the first heading
+              // lands where the home H1 does (below the avatar's slot).
+              back ? "pt-24 max-md:pt-0" : ""
             } max-md:pb-28`}
           >
             {children}

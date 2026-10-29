@@ -24,7 +24,12 @@ type WorkRowProps = {
   /** Optional hover clip: fades in over the still and plays while the row is
       hovered (or, on touch, while the row sits mid-viewport). Keyboard and
       reduced-motion users keep the still. */
-  video?: { src: string };
+  video?: {
+    src: string;
+    /** Show the footage as an app window on the stage, inset from the top
+        left and running off the other edges, like the drawn scenes. */
+    window?: boolean;
+  };
   /**
    * Above-the-fold row: load its image eagerly. The first row on the landing
    * page should set this so its thumbnail isn't lazy-loaded into view.
@@ -79,7 +84,7 @@ export function WorkRow({
           text owns the scan line. */}
       <div className="thumb-frame overflow-hidden rounded-card bg-panel-2 transition-shadow duration-200 @min-[600px]:col-start-2 @min-[600px]:row-start-1">
         {video && image ? (
-          <HoverVideo src={video.src} image={image} priority={priority} />
+          <HoverVideo src={video.src} image={image} priority={priority} window={video.window} />
         ) : (
           <div className="relative aspect-[16/10] overflow-hidden">
             {image && !(vignette && VIGNETTE_REPLACES_IMAGE[vignette]) && (

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <PlainShell back={<BackToSite />}>
+    <PlainShell back={<BackToSite column="var(--container-content)" />}>
       <EffortAndImpactContent />
     </PlainShell>
   );

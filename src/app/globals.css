@@ -49,6 +49,7 @@
   --ring: var(--accent);
   /* Subtle image edge — warm light in dark mode so it never reads as a tint */
   --img-outline: rgba(236, 231, 223, 0.1);
+  --footage-shadow: 0 2px 10px rgb(0 0 0 / 0.35);
 
   /* Young Serif display face (page titles + section headings), Geist for UI */
   --font-display: var(--font-young-serif), "Young Serif", Georgia, serif;
@@ -114,6 +115,7 @@
   --panel-2: #efebe2;
   --text-body: #3d362f;
   --img-outline: rgba(28, 25, 23, 0.14);
+  --footage-shadow: 0 2px 10px rgb(40 39 45 / 0.08);
   /* Near-flat warm shadow for light mode */
   --shadow:
     0px 0px 0px 1px rgba(28, 25, 23, 0.05),
@@ -598,7 +600,7 @@
     transform: scale(0.97);
   }
 
-  /* The floating way back (back-pill.tsx). Top left on wide screens; phones
+  /* The floating way back (back-pill.tsx). On the content column on wide screens; phones
      get the tab bar below instead, except in the phone sheet, where the
      pill sits at the bottom centre. While the reader scrolls
      down it tucks into a 44px icon-only circle ([data-compact]); hover or
@@ -611,10 +613,29 @@
     gap: 8px;
     --pill-bottom: calc(16px + env(safe-area-inset-bottom));
   }
+  /* On a page the pill lives in the content column: the track spans the
+     whole page, the column inside it matches the page's (main's 24px gutter
+     included), and the dock starts in the avatar's slot on home (60px from
+     96px down, so 104px for a 44px pill) then pins 16px from the top. */
+  .back-pill-track {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    pointer-events: none;
+  }
+  .back-pill-column {
+    box-sizing: content-box;
+    height: 100%;
+    max-width: var(--back-column, var(--container-home));
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
   .back-pill-dock--page {
-    position: fixed;
+    position: sticky;
     top: 16px;
-    left: 16px;
+    margin-top: 104px;
+    width: max-content;
+    pointer-events: auto;
   }
   .back-pill-dock--sheet {
     position: absolute;
@@ -624,7 +645,7 @@
     width: max-content;
   }
   @media (max-width: 767px) {
-    .back-pill-dock--page {
+    .back-pill-track {
       display: none;
     }
   }
@@ -2873,7 +2894,7 @@
   translate: var(--page-shift, 0px) 0;
   transition: translate 640ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-/* Moving the page also carries its fixed back pill, which would vanish off a
+/* Moving the page also carries its pinned back pill, which would vanish off a
    scrolled page and snap back at the end. So it fades out as the page moves
    aside (the peek pill does its job meanwhile) and fades back in only once
    the page has settled. */
@@ -3587,6 +3608,26 @@
 .cs-hero > .thumb-frame {
   border-radius: inherit;
   box-shadow: none;
+}
+/* Product footage set on a stage like the drawn scenes (glql-scene.tsx):
+   an app window inset from the top left (27px on the 532px stage, so 5.1%
+   of the width and 8.1% of the 16:10 height), running 12px off the right
+   and bottom, only its top-left corner rounded. The footage anchors top
+   left, so a wider clip loses its right edge, never its start. */
+.footage-window {
+  position: absolute;
+  left: 5.1%;
+  top: 8.1%;
+  right: -2.3%;
+  bottom: -3.6%;
+  overflow: hidden;
+  border-top-left-radius: 10px;
+  border-top: 1px solid var(--img-outline);
+  border-left: 1px solid var(--img-outline);
+  box-shadow: var(--footage-shadow);
+}
+.footage-window > :is(img, video) {
+  object-position: left top;
 }
 /* An award under the intro gets the same breathing room as a paragraph. */
 .cs-intro + .award-badge {

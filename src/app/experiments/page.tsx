@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { AppShell } from "@/components/app-shell";
+import { PlainShell } from "@/components/plain-shell";
 import { SiteFooter } from "@/components/site-footer";
+import { BackToSite } from "@/components/back-to-site";
 
 export const metadata: Metadata = {
   title: "Experiments - Alex Fracazo Product Designer",
@@ -26,7 +27,7 @@ const videoWrapClass =
 
 export default function Experiments() {
   return (
-    <AppShell>
+    <PlainShell back={<BackToSite column="var(--container-content)" />}>
       <section className="mx-auto w-full max-w-content">
         <h1 className="h1 mt-24 mb-3 max-md:mt-14">Prototypes and experiments</h1>
         <p className="text">Prototypes built in Xcode with SwiftUI.</p>
@@ -83,6 +84,6 @@ export default function Experiments() {
       </section>
 
       <SiteFooter />
-    </AppShell>
+    </PlainShell>
   );
 }

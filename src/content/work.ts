@@ -14,7 +14,12 @@ export type WorkEntry = {
   outcome?: string;
   vignette?: WorkVignetteKind;
   image?: { src: string; alt: string };
-  video?: { src: string };
+  video?: {
+    src: string;
+    /** Show the footage as an app window on the stage, inset from the top
+        left and running off the other edges, like the drawn scenes. */
+    window?: boolean;
+  };
   award?: Award;
 };
 
@@ -27,7 +32,12 @@ export type StubEntry = {
   metric?: string;
   vignette?: WorkVignetteKind;
   image?: { src: string; alt: string };
-  video?: { src: string };
+  video?: {
+    src: string;
+    /** Show the footage as an app window on the stage, inset from the top
+        left and running off the other edges, like the drawn scenes. */
+    window?: boolean;
+  };
 };
 
 export const work = {
@@ -140,7 +150,13 @@ export const work = {
     tagline:
       "Every screen your coding agent builds, connected on one canvas you can zoom in and out of. Works on any device.",
     outcome: "Claude Code skill",
-    vignette: "flow",
+    image: {
+      src: "/images/flow-demo-thumb-poster.jpg",
+      alt: "Flow prototype's map: every screen of a birth-planning app's flows on one canvas, connected by their paths",
+    },
+    // A recut of the hero recording that pans and zooms so each beat
+    // (map, live view, overview) starts in the window's top-left corner.
+    video: { src: "/videos/flow-demo-thumb.mp4", window: true },
   },
 } satisfies Record<string, WorkEntry>;
 

@@ -19,7 +19,12 @@ export type FeaturedItem = {
       `image` and `video` instead, and the stage plays the clip. */
   vignette?: WorkVignetteKind;
   image?: { src: string; alt: string };
-  video?: { src: string };
+  video?: {
+    src: string;
+    /** Show the footage as an app window on the stage, inset from the top
+        left and running off the other edges, like the drawn scenes. */
+    window?: boolean;
+  };
 };
 
 /* How long the pointer has to rest on a project before the stage switches,
@@ -115,7 +120,10 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
       const top = list.offsetTop + item.offsetTop;
       const height = item.offsetHeight;
       const stageHeight = stage.offsetHeight;
-      const room = Math.max(0, list.offsetTop + list.offsetHeight - stageHeight);
+      const room = Math.max(
+        0,
+        list.offsetTop + list.offsetHeight - stageHeight,
+      );
       const centred = top + height / 2 - stageHeight / 2 - stage.offsetTop;
       const stageShift = Math.min(Math.max(0, centred), room);
       setBar({
@@ -256,7 +264,11 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
             // Scenes above the selection sit up, below it sit down, so a
             // switch moves both in the direction the bar travelled.
             const offset =
-              index === selected ? 0 : index < selected ? -SCENE_SHIFT_PX : SCENE_SHIFT_PX;
+              index === selected
+                ? 0
+                : index < selected
+                  ? -SCENE_SHIFT_PX
+                  : SCENE_SHIFT_PX;
             return (
               <div
                 key={item.href}
@@ -276,6 +288,7 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
                   <FootageStage
                     image={item.image}
                     video={item.video}
+                    framed={item.video.window}
                     playing={index === selected}
                   />
                 ) : null}
@@ -309,10 +322,13 @@ function FootageStage({
   image,
   video,
   playing,
+  framed = false,
 }: {
   image: { src: string; alt: string };
   video: { src: string };
   playing: boolean;
+  /** Frame the footage as an app window (`.footage-window`). */
+  framed?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [onScreen, setOnScreen] = useState(false);
@@ -332,7 +348,9 @@ function FootageStage({
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (playing && onScreen && !reduced) {
       el.play().catch(() => {});
     } else {
@@ -342,7 +360,7 @@ function FootageStage({
   }, [playing, onScreen]);
 
   return (
-    <>
+    <div className={framed ? "footage-window" : "contents"}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={image.src}
@@ -361,6 +379,6 @@ function FootageStage({
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
       />
-    </>
+    </div>
   );
 }

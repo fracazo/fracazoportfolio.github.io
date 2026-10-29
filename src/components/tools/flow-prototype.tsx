@@ -1,6 +1,5 @@
 import { CaseStudyLayout } from "@/components/case-study-layout";
 import { CopyCommand } from "@/components/copy-command";
-import { LoopingHeroStage } from "@/components/hero-scenes";
 
 /**
  * Body of the Flow prototype tool page, without the route chrome, so the same
@@ -36,10 +35,17 @@ export function FlowPrototypeContent() {
         label: "github.com/fracazo/flow-prototype",
       }}
       hero={
-        <LoopingHeroStage
-          kind="flow"
-          label="Animation: the Live view walks an onboarding flow one screen at a time, then the canvas zooms out to show every screen and the paths connecting them."
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/images/flow-demo-poster.jpg"
+          aria-label="Flow prototype at work: the map of every flow, one screen opened, the Live view stepping through screens, then the canvas zoomed out to every screen and path"
+        >
+          <source src="/videos/flow-demo.mp4" type="video/mp4" />
+        </video>
       }
     >
       <section className="section case-study-content">
