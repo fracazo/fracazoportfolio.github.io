@@ -27,8 +27,8 @@ const SHEET_MIN = 768;
 
 /**
  * Where the page's content should sit, from the window's left edge, while the
- * sheet is up: just behind the sheet's edge (48px), so the hover peek
- * uncovers about a hundred pixels of real text.
+ * sheet is up: behind the sheet's edge (24px), and still behind it after the
+ * first peek's nudge (48px), so the full peek uncovers about 30px of text.
  */
 const PAGE_CONTENT_AT = 72;
 
@@ -400,7 +400,12 @@ export function PanelShell({ children }: { children: ReactNode }) {
       {active && wide && (
         // After the sheet, so the strip and the sheet stay adjacent for the
         // peek's sibling selector.
-        <PeekCursor strip={stripRef} base={panelState()?.base ?? "/"} hidden={closing} />
+        <PeekCursor
+          strip={stripRef}
+          base={panelState()?.base ?? "/"}
+          panelId={active}
+          hidden={closing}
+        />
       )}
     </PanelContext.Provider>
   );

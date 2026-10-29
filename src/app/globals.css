@@ -2695,7 +2695,7 @@
    catching the glass, instead of a border drawn all the way round. Dark mode
    keeps the highlight faint: a bright line on espresso reads as a stroke. */
 :root {
-  --sheet-gutter: 48px;
+  --sheet-gutter: 24px;
   --sheet-radius: 28px;
   --sheet-glass: color-mix(in srgb, var(--bg) 97%, transparent);
   --sheet-highlight: rgb(255 245 230 / 0.07);
@@ -2704,8 +2704,14 @@
   --sheet-scrim: rgb(0 0 0 / 0.5);
   /* While the pointer rests on the way back, the sheet slides aside a little
      and the wash lifts. The page has already settled with its content just
-     behind the sheet's edge, so this small slide uncovers real text. */
-  --sheet-peek: 120px;
+     behind the sheet's edge, so this slide uncovers real text. The first
+     time per study it only nudges, to the strip's old 48px, a hint that
+     there's something behind; the full peek waits for the second
+     (peek-cursor.tsx). */
+  --sheet-nudge: 24px;
+  /* Sized to the pill: at the window's edge (8px in), "Home" ends 8px
+     short of the sheet, the same gap on both sides. */
+  --sheet-peek: 80px;
   --sheet-scrim-peek: rgb(0 0 0 / 0.25);
 }
 :root.light {
@@ -2928,14 +2934,16 @@
   display: inline-flex;
   align-items: center;
   height: 40px;
-  padding-inline: 14px;
+  /* Icon alone, the pill is a 40px circle. The left side never changes, so
+     the arrow stays put under the pointer when the label opens. */
+  padding-inline: 11px;
   border-radius: 9999px;
   font-size: var(--text-meta);
   color: var(--text);
   pointer-events: none;
   opacity: 0;
   scale: 0.85;
-  transform-origin: 18px 50%;
+  transform-origin: 20px 50%;
   transition:
     opacity 160ms ease,
     scale 160ms ease,
@@ -2944,7 +2952,9 @@
 .peek-cursor[data-visible] {
   opacity: 1;
   scale: 1;
-  padding-inline: 14px 16px;
+}
+.peek-cursor[data-visible][data-full] {
+  padding-inline: 11px 16px;
   transition-delay: 0s, 0s, 80ms;
 }
 .peek-cursor[data-hidden] {
@@ -2963,7 +2973,7 @@
   overflow: hidden;
   white-space: nowrap;
 }
-.peek-cursor[data-visible] .peek-cursor-label {
+.peek-cursor[data-visible][data-full] .peek-cursor-label {
   grid-template-columns: 1fr;
   opacity: 1;
   margin-inline-start: 8px;
@@ -2976,18 +2986,29 @@
   }
 }
 /* The peek waits a beat before it starts, so brushing past the edge while
-   reading doesn't throw the sheet aside; it settles back without waiting. */
+   reading doesn't throw the sheet aside; it settles back without waiting.
+   The first peek at a study is a nudge: the sheet gives a little and
+   overshoots, like paper flicked at its edge, and the wash stays put. From
+   the second on (data-peek="full") it slides aside and the wash lifts. */
 @media (hover: hover) {
-  .panel-return-strip:hover {
+  .panel-return-strip:hover ~ .panel-sheet:not(.panel-sheet-exit) {
+    translate: var(--sheet-nudge) 0;
+    transition:
+      translate 420ms cubic-bezier(0.34, 1.8, 0.64, 1) 80ms,
+      box-shadow 320ms ease 80ms;
+  }
+  .panel-return-strip[data-peek="full"]:hover {
     background-color: var(--sheet-scrim-peek);
     -webkit-backdrop-filter: blur(0);
     backdrop-filter: blur(0);
     transition-delay: 80ms;
   }
-  .panel-return-strip:hover ~ .panel-sheet:not(.panel-sheet-exit) {
+  .panel-return-strip[data-peek="full"]:hover ~ .panel-sheet:not(.panel-sheet-exit) {
     translate: var(--sheet-peek) 0;
     box-shadow: var(--sheet-shadow-hover);
-    transition-delay: 80ms;
+    transition:
+      translate 320ms cubic-bezier(0.32, 0.72, 0, 1) 80ms,
+      box-shadow 320ms ease 80ms;
   }
 }
 
