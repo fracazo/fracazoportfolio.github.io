@@ -5,6 +5,7 @@ import { Chip } from "./chip";
 import { PanelLink } from "./panel-link";
 import { WorkRow } from "./work-row";
 import { HeroStage, useScenePlayback } from "./hero-scenes";
+import { FootageCursor } from "./footage-cursor";
 import type { WorkVignetteKind } from "./work-vignette-kinds";
 
 export type FeaturedItem = {
@@ -77,11 +78,32 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
   const { playToken, replay } = useScenePlayback(
     stageRef,
     items[selected].vignette,
-    { loop: false },
+    { loop: false, autoplay: false },
   );
+  // Nothing plays until the reader engages: the stage rests on the selected
+  // project's settled frame (or footage still) until the pointer or focus
+  // reaches the hero, then plays the selection, and each switch replays.
+  const [engaged, setEngagedState] = useState(false);
+  // Mirrors `engaged` for the hover-intent timer, whose callback closes
+  // over an older render.
+  const engagedRef = useRef(false);
+  const setEngaged = (next: boolean) => {
+    engagedRef.current = next;
+    setEngagedState(next);
+  };
+
+  const engage = () => {
+    if (engagedRef.current) return;
+    setEngaged(true);
+    replay();
+  };
 
   const select = (index: number) => {
-    if (index === selected) return;
+    if (index === selected) {
+      engage();
+      return;
+    }
+    setEngaged(true);
     setSelected(index);
     replay();
   };
@@ -155,6 +177,9 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
       <div
         ref={rootRef}
         className="featured-plate relative hidden grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-start gap-10 @min-[760px]:grid"
+        onPointerLeave={(event) => {
+          if (event.pointerType === "mouse") setEngaged(false);
+        }}
       >
         {/* The bar: the plate's reach from the stage to the selected row. It
             runs under the stage's left edge so the two read as one shape. */}
@@ -254,6 +279,9 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
             its own, so the bar joins it without a seam. */}
         <div
           ref={stageRef}
+          onPointerEnter={(event) => {
+            if (event.pointerType === "mouse") engage();
+          }}
           className="featured-plate-slide relative aspect-[16/10] overflow-hidden rounded-card bg-panel-2"
           style={{
             transform: `translateY(${bar?.stageShift ?? 0}px)`,
@@ -289,7 +317,7 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
                     image={item.image}
                     video={item.video}
                     framed={item.video.window}
-                    playing={index === selected}
+                    playing={engaged && index === selected}
                   />
                 ) : null}
               </div>
@@ -316,7 +344,8 @@ export function FeaturedWork({ items }: { items: FeaturedItem[] }) {
  * The stage for work shown as real product footage rather than a drawn
  * scene: the still rests underneath, and the clip plays while its project is
  * selected and on screen. Reduced motion keeps the still. The clip is only
- * fetched once it first plays.
+ * fetched once it first plays. A recording with a cursor track gets the
+ * scenes' pointer drawn over it, so its clicks read like theirs.
  */
 function FootageStage({
   image,
@@ -379,6 +408,7 @@ function FootageStage({
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover motion-reduce:hidden"
       />
+      <FootageCursor src={video.src} videoRef={videoRef} />
     </div>
   );
 }

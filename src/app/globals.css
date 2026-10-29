@@ -886,6 +886,8 @@
     --gl-code-key: #ac93e6;
     --gl-code-string: #91d4a8;
     --gl-code-ref: #63a6e9;
+    --gl-focus: #428fdc;
+    --gl-link: #63a6e9;
     --gl-skeleton: #333238;
     --gl-id-1-bg: #660e00;
     --gl-id-1-text: #fcb5aa;
@@ -923,6 +925,8 @@
     --gl-code-key: #6e49cb;
     --gl-code-string: #217645;
     --gl-code-ref: #1f75cb;
+    --gl-focus: #428fdc;
+    --gl-link: #0b5cad;
     --gl-skeleton: #ececef;
     --gl-id-1-bg: #fcf1ef;
     --gl-id-1-text: #a31700;
